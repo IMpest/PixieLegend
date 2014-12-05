@@ -80,6 +80,7 @@ int velocityValue (int x, int y) {
         self.pixieEnemy = pixieB;
         sceneTypeString = kElementTypeString[sceneType];
         
+        
         // 初始化宠物基础数据
         petCombos = 0;
         petAssimSameEleNum = 0;
@@ -95,19 +96,24 @@ int velocityValue (int x, int y) {
         PPElementType enemyElement = pixieB.pixieBall.ballElementType;
         interCoefficient = kElementInhibition[petElement][enemyElement];
         
+        
         // 设置场景物理属性
         self.physicsWorld.gravity = CGVectorMake(0, 0);
         self.physicsWorld.contactDelegate = self;
         
         
-        
         // 添加背景图片
 //        SKSpriteNode * bg = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat:@"%@_wall_back.png",sceneTypeString]];
         SKSpriteNode * bg = [SKSpriteNode spriteNodeWithImageNamed:@"table_back"];
-
         bg.size = CGSizeMake(320, 320);
         bg.position = CGPointMake(CGRectGetMidX(self.frame), 160 + SPACE_BOTTOM + PP_FIT_TOP_SIZE);
         [self addChild:bg];
+        
+        
+        SKSpriteNode * bgWall = [SKSpriteNode spriteNodeWithImageNamed:@"table_wall"];
+        bgWall.size = CGSizeMake(320, 320);
+        bgWall.position = CGPointMake(CGRectGetMidX(self.frame), 160 + SPACE_BOTTOM + PP_FIT_TOP_SIZE);
+        [self addChild:bgWall];
         
         
         // 添加状态条
@@ -131,6 +137,9 @@ int velocityValue (int x, int y) {
         CGFloat tHeight = 320.0f;
         [self addWalls:CGSizeMake(tWidth, kWallThick) atPosition:CGPointMake(tWidth / 2, tHeight + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
         [self addWalls:CGSizeMake(tWidth, kWallThick) atPosition:CGPointMake(tWidth / 2, 0 + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
+        [self addWalls:CGSizeMake(kWallThick,tWidth) atPosition:CGPointMake(0.0f, tHeight/2.0f + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
+        [self addWalls:CGSizeMake(kWallThick,tWidth) atPosition:CGPointMake(self.size.width, tHeight/2.0f + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
+
         
         
         // 添加己方玩家球
@@ -336,6 +345,7 @@ int velocityValue (int x, int y) {
 // 开始碰撞事件监测
 -(void)didBeginContact:(SKPhysicsContact *)contact
 {
+    
     if (!_isBallRolling) return;
     
     if((contact.bodyA == self.ballPlayer.physicsBody || contact.bodyB == self.ballPlayer.physicsBody))
@@ -344,9 +354,18 @@ int velocityValue (int x, int y) {
         
         if ((contact.bodyA == self.ballEnemy.physicsBody || contact.bodyB == self.ballEnemy.physicsBody)) return;
         
+        //我方球体撞墙
+        if ((contact.bodyA.categoryBitMask == EntityCategoryWall || contact.bodyB.categoryBitMask == EntityCategoryWall)) {
+           
+            NSLog(@"ballPlayer vec x=%f y=%f",self.ballPlayer.physicsBody.velocity.dx,self.ballPlayer.physicsBody.velocity.dy);
+            
+        
+        };
+        
         if ([contact.bodyB.node.name isEqualToString:PP_BALL_TYPE_COMBO_NAME]||[contact.bodyA.node.name isEqualToString:PP_BALL_TYPE_COMBO_NAME])
             //我方碰到连击球
         {
+            
             
             if (contact.bodyA == self.ballPlayer.physicsBody) {
                 PPBall *ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
@@ -354,8 +373,8 @@ int velocityValue (int x, int y) {
             } else {
                 PPBall *ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
                 [ballCombo startComboAnimation:CGVectorMake(self.ballPlayer.position.x-ballCombo.position.x,self.ballPlayer.position.y-ballCombo.position.y)];
-                
             }
+            
             
             petCombos++;
             [self.playerAndEnemySide setComboLabelText:petCombos withEnemy:enemyCombos];
@@ -370,8 +389,16 @@ int velocityValue (int x, int y) {
     } else if ((contact.bodyA == self.ballEnemy.physicsBody || contact.bodyB == self.ballEnemy.physicsBody))
         //如果敌方人物球撞击到物体
     {
-        
+       
         if ((contact.bodyA == self.ballPlayer.physicsBody || contact.bodyB == self.ballPlayer.physicsBody)) return;
+        
+        //敌方球体撞墙
+        if ((contact.bodyA.categoryBitMask == EntityCategoryWall || contact.bodyB.categoryBitMask == EntityCategoryWall)) {
+            
+            NSLog(@"ballEnemy vec x=%f y=%f",self.ballEnemy.physicsBody.velocity.dx,self.ballEnemy.physicsBody.velocity.dy);
+            
+        };
+        
         
         if ([contact.bodyB.node.name isEqualToString:PP_BALL_TYPE_COMBO_NAME]||[contact.bodyA.node.name isEqualToString:PP_BALL_TYPE_COMBO_NAME])
             //敌方碰到连击球
@@ -821,8 +848,8 @@ int velocityValue (int x, int y) {
     wall.physicsBody.dynamic = NO;
     wall.physicsBody.friction = 0.1;
     wall.physicsBody.categoryBitMask = EntityCategoryWall;
-    //wall.physicsBody.contactTestBitMask = EntityCategoryBall;
-    //wall.physicsBody.collisionBitMask = 0;
+    wall.physicsBody.contactTestBitMask = EntityCategoryBall;
+    wall.physicsBody.collisionBitMask = 0;
     
     [self addChild:wall];
 }

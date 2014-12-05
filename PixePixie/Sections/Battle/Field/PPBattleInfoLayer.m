@@ -171,6 +171,8 @@
     ppixieEnemyBtn = [[SKSpriteNode alloc] init];
     ppixieEnemyBtn.size = CGSizeMake(50.0f, 50.0f);
     [ppixieEnemyBtn setPosition:CGPointMake(ppixiePetBtn.position.x+150,ppixiePetBtn.position.y)];
+    ppixieEnemyBtn.xScale = -1;
+    
     [self addChild:ppixieEnemyBtn];
     [ppixieEnemyBtn runAction:[SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_stop",kElementTypeString[enemyppixie.pixieElement]]]]];
 
