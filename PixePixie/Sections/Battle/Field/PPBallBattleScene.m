@@ -14,6 +14,13 @@ typedef NS_OPTIONS (int, EntityCategory)
     EntityCategoryWall    =  0x1 << 1,
 };
 
+typedef NS_OPTIONS (int, HitTypeValue)
+{
+    kPetHitWallTypeValue    =  0x1 << 0,
+    kEnemyHitWallTypeValue    =  0x1 << 1,
+    kPetAndEnemyHitTypeValue    =  0x1 << 2,
+};
+
 // 计算两点间距离
 CGFloat distanceBetweenPoints (CGPoint first, CGPoint second) {
     CGFloat deltaX = second.x - first.x;
@@ -193,7 +200,8 @@ int velocityValue (int x, int y) {
             comboBall.physicsBody.categoryBitMask = EntityCategoryBall;
             comboBall.physicsBody.contactTestBitMask = EntityCategoryBall|EntityCategoryWall;
             comboBall.physicsBody.collisionBitMask = EntityCategoryBall|EntityCategoryWall;
-            comboBall.physicsBody.dynamic = NO;
+            comboBall.physicsBody.dynamic = YES;
+            comboBall.physicsBody.mass= 10000;
             comboBall.physicsBody.PPBallPhysicsBodyStatus = [NSNumber numberWithInt:i];
             [self addChild:comboBall];
             [self.ballsCombos addObject:comboBall];
@@ -352,13 +360,24 @@ int velocityValue (int x, int y) {
         //如果我方人物球撞击到物体
     {
         
-        if ((contact.bodyA == self.ballEnemy.physicsBody || contact.bodyB == self.ballEnemy.physicsBody)) return;
+        if ((contact.bodyA == self.ballEnemy.physicsBody || contact.bodyB == self.ballEnemy.physicsBody))
+        {
+            
+            [self addHitAnimationNodes:contact.contactPoint andType:kPetAndEnemyHitTypeValue];
+            
+            return;
+        }
         
         //我方球体撞墙
         if ((contact.bodyA.categoryBitMask == EntityCategoryWall || contact.bodyB.categoryBitMask == EntityCategoryWall)) {
            
-            NSLog(@"ballPlayer vec x=%f y=%f",self.ballPlayer.physicsBody.velocity.dx,self.ballPlayer.physicsBody.velocity.dy);
             
+            NSLog(@"ballPlayer vec x=%f y=%f",self.ballPlayer.physicsBody.velocity.dx,self.ballPlayer.physicsBody.velocity.dy);
+            NSLog(@"contact x=%f y=%f", contact.contactPoint.x,contact.contactPoint.y);
+            
+            [self addHitAnimationNodes:contact.contactPoint andType:kPetHitWallTypeValue];
+            
+            return;
         
         };
         
@@ -390,13 +409,18 @@ int velocityValue (int x, int y) {
         //如果敌方人物球撞击到物体
     {
        
-        if ((contact.bodyA == self.ballPlayer.physicsBody || contact.bodyB == self.ballPlayer.physicsBody)) return;
+        if ((contact.bodyA == self.ballPlayer.physicsBody || contact.bodyB == self.ballPlayer.physicsBody)){
+            [self addHitAnimationNodes:contact.contactPoint andType:kPetAndEnemyHitTypeValue];
+
+            return;
+        }
         
         //敌方球体撞墙
         if ((contact.bodyA.categoryBitMask == EntityCategoryWall || contact.bodyB.categoryBitMask == EntityCategoryWall)) {
             
             NSLog(@"ballEnemy vec x=%f y=%f",self.ballEnemy.physicsBody.velocity.dx,self.ballEnemy.physicsBody.velocity.dy);
             
+            [self addHitAnimationNodes:contact.contactPoint andType:kEnemyHitWallTypeValue];
         };
         
         
@@ -853,7 +877,65 @@ int velocityValue (int x, int y) {
     
     [self addChild:wall];
 }
-
+-(void)addHitAnimationNodes:(CGPoint)pointNode andType:(HitTypeValue)hitType
+{
+    
+    switch (hitType) {
+        case kPetHitWallTypeValue:
+        {
+            
+            
+            SKSpriteNode *hitAniNode=[[SKSpriteNode alloc] init];
+            hitAniNode.size = CGSizeMake(50.0f, 50.0f);
+            [hitAniNode setPosition:pointNode];
+            [self addChild:hitAniNode];
+            
+            [hitAniNode runAction:[[PPAtlasManager battle_field_ball] getAnimation:@"ball_pixie_hit"]
+                                 completion:^{[hitAniNode removeFromParent];}];
+            
+            
+            
+        }
+            break;
+            case kEnemyHitWallTypeValue:
+        {
+            
+            SKSpriteNode *hitAniNode=[[SKSpriteNode alloc] init];
+            hitAniNode.size = CGSizeMake(50.0f, 50.0f);
+            [hitAniNode setPosition:pointNode];
+            [self addChild:hitAniNode];
+            
+            [hitAniNode runAction:[[PPAtlasManager battle_field_ball] getAnimation:@"ball_pixie_hit"]
+                       completion:^{[hitAniNode removeFromParent];}];
+            
+        }
+            break;
+        case kPetAndEnemyHitTypeValue:
+        {
+            
+            SKSpriteNode *hitAniNode=[[SKSpriteNode alloc] init];
+            hitAniNode.size = CGSizeMake(100.0f, 100.0f);
+            [hitAniNode setPosition:pointNode];
+            [self addChild:hitAniNode];
+            
+            [hitAniNode runAction:[[PPAtlasManager battle_field_ball] getAnimation:@"ball_pixie_hit"]
+                       completion:^{[hitAniNode removeFromParent];}];
+            
+            SKSpriteNode *hitFiledAniNode=[[SKSpriteNode alloc] init];
+            hitFiledAniNode.size = CGSizeMake(50.0f, 50.0f);
+            [hitFiledAniNode setPosition:pointNode];
+            [self addChild:hitFiledAniNode];
+            
+            [hitFiledAniNode runAction:[[PPAtlasManager pixie_battle_effect] getAnimation:@"shield_break"]
+                       completion:^{[hitFiledAniNode removeFromParent];}];
+            
+        }
+            break;
+        default:
+            break;
+    }
+    
+}
 // 结算combo添加元素球
 -(void)creatCombosTotal:(NSString *)stringSide
 {

@@ -638,9 +638,10 @@
 -(void)startAttackAnimation:(BOOL)isPetAttack
 {
     if (isPetAttack) {
-        SKAction *action1=[SKAction moveByX:200 y:0.0f duration:1];
+        SKAction *action1=[SKAction moveToX:ppixieEnemyBtn.position.x-30.0f duration:0.5];
 //        SKAction *action11=[[PPAtlasManager ball_action] getAnimation:[NSString stringWithFormat:@"%@3attack",kElementTypeString[currentPPPixie.pixieElement]]];
-        SKAction *action111=[SKAction moveByX:-200 y:0.0f duration:1];
+        SKAction *action111=[SKAction moveToX:-61.5f duration:1];
+        
         SKAction *action1Result=[SKAction sequence:[NSArray arrayWithObjects:action1,action111, nil]];
         
         
@@ -649,7 +650,16 @@
         
 //        SKAction *result=[SKAction group:[NSArray arrayWithObjects:action1Result,action2, nil]];
         
+//        [ppixieEnemyBtn removeAllActions];
+//        [ppixiePetBtn removeAllActions];
+        
         [ppixiePetBtn runAction:action1Result];
+        
+
+        [ppixieEnemyBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"fire3_beated"] completion:^{
+//            [ppixieEnemyBtn removeAllActions];
+        }];
+        
         
         
     }else
@@ -659,6 +669,18 @@
 //        SKAction *action3=[SKAction repeatActionForever:action2];
 //        SKAction *result=[SKAction group:[NSArray arrayWithObjects:action1,action3, nil]];
 //        [ppixieEnemyBtn runAction:result];
+//        [ppixiePetBtn removeAllActions];
+//        [ppixieEnemyBtn removeAllActions];
+        
+        SKAction *actionBeated = [[PPAtlasManager pixie_battle_action] getAnimation:@"plant3_beated"];
+        
+        [ppixiePetBtn runAction:actionBeated completion:^{
+
+//            [ppixiePetBtn removeAllActions];
+            
+        }];
+
+        
     }
 }
 

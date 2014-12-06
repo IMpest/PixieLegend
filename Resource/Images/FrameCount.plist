@@ -47,7 +47,7 @@
 	<key>____pixie_battle_action____</key>
 	<string></string>
 	<key>fire3_beated</key>
-	<string></string>
+	<integer>4</integer>
 	<key>fire3_hit</key>
 	<integer>4</integer>
 	<key>fire3_move</key>
