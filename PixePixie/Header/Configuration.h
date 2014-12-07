@@ -22,6 +22,7 @@
 
 #define PP_PET_COMBOS_NAME      @"petcombos"
 #define PP_ENEMY_COMBOS_NAME    @"enemycombos"
+#define PP_TOUCH_NODE_BALL_NAME    @"touchballnamepet"
 
 #define PP_BACK_BUTTON_ZPOSITION 100
 

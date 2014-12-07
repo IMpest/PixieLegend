@@ -33,6 +33,12 @@
     [tBall addChild:nodeBack];
     
     
+    SKSpriteNode *touchBallNode = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(50.0f, 50.0)];
+    touchBallNode.name = PP_TOUCH_NODE_BALL_NAME;
+    touchBallNode.zPosition = 1;
+    [tBall addChild:touchBallNode];
+    
+    
     SKSpriteNode *showSpriteNode = [[SKSpriteNode alloc] init];
     showSpriteNode.size = CGSizeMake(50.0f, 50.0f);
     [showSpriteNode setPosition: CGPointMake(0.0f, 10.0f)];

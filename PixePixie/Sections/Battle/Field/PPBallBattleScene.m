@@ -44,7 +44,10 @@ int velocityValue (int x, int y) {
     BOOL isNotSkillRun;
     NSString * sceneTypeString;
     BOOL isNotSkillShowTime;
+    BOOL isTouchPetBall;
+    BOOL isShowingSkillBar;
     SKSpriteNode *spriteArrow;
+    SKSpriteNode *petSkillBar;
 }
 
 @property (nonatomic, retain) PPPixie * pixiePlayer;
@@ -78,7 +81,8 @@ int velocityValue (int x, int y) {
     if (self = [super initWithSize:size]) {
         
         _isTrapEnable = NO;
-        
+        isTouchPetBall = NO;
+        isShowingSkillBar = NO;
         // 帧数间隔计数
         frameFlag = 0;
         
@@ -240,29 +244,67 @@ int velocityValue (int x, int y) {
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
     if (_isBallRolling == YES) return;
-    if (touches.count > 1 || _isBallDragging || _isBallRolling || isNotSkillRun) return;
+    if (touches.count > 1  || _isBallRolling) return;
     
     UITouch * touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     //    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
     origtinTouchPoint = location;
     
+    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
+    
+    
+    if ([touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]) {
+        
+        NSLog(@"touched pet begin");
+        isTouchPetBall = YES;
+        
+    }
+    
+//        if (touchedNode == petSkillBar) {
+//
+//        if (petSkillBar!=nil) {
+//            [petSkillBar removeFromParent];
+//            petSkillBar = nil;
+//            [self setPlayerSideRoundEndState];
+//        }
+//        return;
+//    }else
+//    {
+//        if (isShowingSkillBar) {
+//            if (petSkillBar!=nil) {
+//                [petSkillBar removeFromParent];
+//                petSkillBar = nil;
+//                isShowingSkillBar = NO;
+//                [self setPlayerSideRoundEndState];
+//            }
+//            return;
+//        }
+//    }
+    
+    if (isNotSkillRun || _isBallDragging) {
+        return;
+    }
+    
     if (spriteArrow != nil) {
         [spriteArrow removeFromParent];
         spriteArrow = nil;
     }
     
-    
     spriteArrow = [[SKSpriteNode alloc] initWithImageNamed:@"table_arrow"];
     spriteArrow.size = CGSizeMake(spriteArrow.size.width/2.0f, spriteArrow.size.height/2.0f);
     spriteArrow.xScale = 0.2;
     spriteArrow.yScale = 0.2;
+    if (isTouchPetBall) {
+        spriteArrow.hidden=YES;
+    }
     spriteArrow.position = self.ballPlayer.position;
     [self addChild:spriteArrow];
     
-    
     _isBallDragging = YES;
+
     _ballShadow = [PPBall ballWithPixie:self.pixiePlayer];
     _ballShadow.size = CGSizeMake(kBallSize, kBallSize);
     _ballShadow.position = location;
@@ -270,16 +312,41 @@ int velocityValue (int x, int y) {
     _ballShadow.physicsBody = nil;
     [self addChild:_ballShadow];
     
-    
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
     if (touches.count > 1) return;
+    if (isNotSkillRun) {
+        return;
+    }
     
     if (_isBallDragging && !_isBallRolling) {
+        
+        
         UITouch * touch = [touches anyObject];
         CGPoint location = [touch locationInNode:self];
+        SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
+
+        if (touchedNode == petSkillBar) {
+            if (petSkillBar!=nil) {
+                [petSkillBar removeFromParent];
+                petSkillBar = nil;
+            }
+            return;
+        }
+        
+        if(distanceBetweenPoints(location, origtinTouchPoint)>3)
+        {
+            spriteArrow.hidden = NO;
+        }else{
+            if (isTouchPetBall) {
+                spriteArrow.hidden = YES;
+
+            }
+        }
+        
         _ballShadow.position = location;
         CGVector angleVector=CGVectorMake((origtinTouchPoint.x - _ballShadow.position.x) * kBounceReduce,
                                           (origtinTouchPoint.y - _ballShadow.position.y) * kBounceReduce);
@@ -294,22 +361,70 @@ int velocityValue (int x, int y) {
         if (scaleChange >=2) {
             scaleChange = 2;
         }
+
         spriteArrow.xScale = scaleChange;
         spriteArrow.yScale = scaleChange;
         NSLog(@"scaleFactor=%f",scaleFactor);
-        
+            
     }
-    
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
     if (touches.count > 1 ) return;
+    
+    UITouch * touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
+    
+    if (touchedNode == petSkillBar) {
+        
+        if (petSkillBar!=nil) {
+            [petSkillBar removeFromParent];
+            petSkillBar = nil;
+            [self setPlayerSideRoundEndState];
+        }
+        return;
+    }
+    
+    if (isNotSkillRun) {
+        return;
+    }
     
     if (_isBallDragging && !_isBallRolling) {
         
-        [self changeBallStatus:PP_PET_PLAYER_SIDE_NODE_NAME];
+        UITouch * touch = [touches anyObject];
+        CGPoint location = [touch locationInNode:self];
+        SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
+        
+        if (touchedNode == petSkillBar) {
+            if (petSkillBar!=nil) {
+                [petSkillBar removeFromParent];
+                petSkillBar = nil;
+            }
+            return;
+        }
+        
+        if ([touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]&&isTouchPetBall) {
+            NSLog(@"touched pet end");
 
+            NSLog(@"touchedNode=%@ name =%@",touchedNode,touchedNode.name);
+            
+            [_ballShadow removeFromParent];
+            
+            
+            [self addPetSkillBar];
+            
+
+            
+        }else
+        {
+            
+            
+            
+        [self changeBallStatus:PP_PET_PLAYER_SIDE_NODE_NAME];
+       
         
         _isBallDragging = NO;
         [spriteArrow removeFromParent];
@@ -329,10 +444,11 @@ int velocityValue (int x, int y) {
         _isBallRolling = YES;
         
         
-        
+        }
     }
     
 }
+
 -(void)changeBallStatus:(NSString *)stringSide
 {
     if ([stringSide isEqualToString:PP_PET_PLAYER_SIDE_NODE_NAME]) {
@@ -877,6 +993,7 @@ int velocityValue (int x, int y) {
     
     [self addChild:wall];
 }
+
 -(void)addHitAnimationNodes:(CGPoint)pointNode andType:(HitTypeValue)hitType
 {
     
@@ -936,6 +1053,60 @@ int velocityValue (int x, int y) {
     }
     
 }
+-(void)addPetSkillBar
+{
+    if (petSkillBar) {
+        [petSkillBar removeFromParent];
+        petSkillBar = nil;
+    }
+    petSkillBar = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(self.size.width, self.size.height)];
+//    petSkillBar.color =[UIColor blackColor];
+//    petSkillBar.colorBlendFactor = 0.6;
+
+    // 添加技能槽
+    for (int i = 0; i < 4; i++) {
+        
+        NSDictionary *dictSkill=nil;
+        if ([self.pixiePlayer.pixieSkills count]>i) {
+            dictSkill=[self.pixiePlayer.pixieSkills objectAtIndex:i];
+        }
+        
+        NSString * stringSkillStatus = [dictSkill objectForKey:@"skillstatus"];
+        
+        NSString * stringSkillBtn = [dictSkill objectForKey:@"skillbtntexture"];
+        PPSpriteButton * passButton = nil;
+        
+        if (![stringSkillStatus isEqualToString:@"valid"]) {
+            stringSkillBtn = [NSString stringWithFormat:@"%@_none",kElementTypeString[self.pixiePlayer.pixieElement]];
+            passButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager skill_icon] textureNamed:stringSkillBtn]
+                                                   andSize:CGSizeMake(50.0f, 50.0f)];
+            //            [passButton setLabelWithText:@"不可用" andFont:[UIFont boldSystemFontOfSize:14.0f] withColor:[UIColor whiteColor]];
+            
+            passButton.userInteractionEnabled = YES;
+            [passButton addTarget:self selector:@selector(skillInvalidBtnClick:)
+                       withObject:passButton forControlEvent:PPButtonControlEventTouchUp];
+            
+        } else {
+            passButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager skill_icon] textureNamed:stringSkillBtn]
+                                                   andSize:CGSizeMake(50.0f, 50.0f)];
+            [passButton addTarget:self selector:@selector(skillPlayerShowBegin:)
+                       withObject:passButton forControlEvent:PPButtonControlEventTouchUp];
+        }
+        
+        passButton.name = [NSString stringWithFormat:@"%d",PP_SKILLS_CHOOSE_BTN_TAG+i];
+        passButton.position = CGPointMake(65*i - 112.0f, 0.0f);
+        
+        [petSkillBar addChild:passButton];
+    }
+    
+    petSkillBar.position = CGPointMake(self.size.width/2.0f, self.ballPlayer.position.y+50);
+    [self addChild:petSkillBar];
+
+    isShowingSkillBar = YES;
+    
+    [self setPlayerSideRoundRunState];
+}
+
 // 结算combo添加元素球
 -(void)creatCombosTotal:(NSString *)stringSide
 {
@@ -1514,8 +1685,13 @@ int velocityValue (int x, int y) {
 }
 
 //技能不可用按钮点击
--(void)skillInvalidBtnClick:(NSDictionary *)skillInfo
+-(void)skillInvalidBtnClick:(PPSpriteButton *)skillInvalidButton
 {
+    
+//       NSDictionary *skillChoosed = [self.ballPlayer.pixie.pixieSkills objectAtIndex:[skillInvalidButton.name intValue] - PP_SKILLS_CHOOSE_BTN_TAG];
+    
+    
+    
     SKLabelNode * labelNode = (SKLabelNode *)[self childNodeWithName:@"mpisnotenough"];
     if (labelNode) [labelNode removeFromParent];
     
@@ -1535,8 +1711,12 @@ int velocityValue (int x, int y) {
 }
 
 //技能动画展示开始
--(void)skillPlayerShowBegin:(NSDictionary *)skillInfo
+-(void)skillPlayerShowBegin:(PPSpriteButton *)skillButton
 {
+    
+    
+    NSDictionary *skillInfo = [self.ballPlayer.pixie.pixieSkills objectAtIndex:[skillButton.name intValue] - PP_SKILLS_CHOOSE_BTN_TAG];
+    
     CGFloat mpToConsume = [[skillInfo objectForKey:@"skillmpchange"] floatValue];
     NSLog(@"currentMP=%f mptoConsume=%f",self.playerAndEnemySide.currentPPPixie.currentMP,mpToConsume);
     NSLog(@"skillInfo=%@",skillInfo);
@@ -1562,6 +1742,11 @@ int velocityValue (int x, int y) {
         return ;
     } else {
         [self.playerAndEnemySide changePetMPValue:mpToConsume];
+    }
+    
+    if (petSkillBar) {
+        [petSkillBar removeFromParent];
+        petSkillBar = nil;
     }
     
     //
