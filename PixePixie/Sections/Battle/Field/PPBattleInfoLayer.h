@@ -109,10 +109,19 @@
 -(void)removeBuffShow:(PPBuff *)buffShow andSide:(NSString *)stringSide;
 /**
  * @brief 显示攻击动画
- * @param buffShow   buff信息
  * @param stringSide   战斗来源
  
  */
 -(void)startAttackAnimation:(BOOL)isPetAttack;
+/**
+ * @brief 显示攻击特效
+ * @param stringSide   战斗来源
+ 
+ */
+-(void)startAttackShowAnimation:(BOOL)isPetAttack;
+/**
+ * @brief 重置头像位置
+ */
+-(void)resetPetAndEnemyPosition;
 
 @end

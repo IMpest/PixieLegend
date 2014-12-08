@@ -76,7 +76,7 @@
 	<string>0</string>
 	<key>defend</key>
 	<integer>7</integer>
-	<key>fire3attack</key>
+	<key>fire3_attack</key>
 	<integer>5</integer>
 	<key>plant3_attack</key>
 	<integer>4</integer>

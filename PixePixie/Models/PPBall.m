@@ -495,4 +495,31 @@
     ball.physicsBody.usesPreciseCollisionDetection = YES;   // 使用快速运动检测碰撞
 }
 
+-(void)startActiveStatus
+{
+    if (spriteNodeActive) {
+        [spriteNodeActive removeFromParent];
+        spriteNodeActive = nil;
+    }
+    
+    spriteNodeActive =[[SKSpriteNode alloc] init];
+    spriteNodeActive.size = CGSizeMake(50.0f, 50.0f);
+    [spriteNodeActive setPosition:CGPointMake(0.0f, 0.0f)];
+    [self addChild:spriteNodeActive];
+    
+    
+    [spriteNodeActive runAction:[[PPAtlasManager battle_field_ball] getAnimation:@"ball_pixie_active"]];
+    
+}
+
+-(void)closeActiveStatus
+{
+    
+    if (spriteNodeActive) {
+        [spriteNodeActive removeFromParent];
+        spriteNodeActive = nil;
+    }
+    
+}
+
 @end

@@ -7,6 +7,7 @@
 {
     SKSpriteNode * ppixiePetBtn;
     SKSpriteNode * ppixieEnemyBtn;
+    SKSpriteNode * attackShowNode;
 }
 @end
 @implementation PPBattleInfoLayer
@@ -635,14 +636,19 @@
         }
     }    
 }
+
 -(void)startAttackAnimation:(BOOL)isPetAttack
 {
+    
     if (isPetAttack) {
-        SKAction *action1=[SKAction moveToX:ppixieEnemyBtn.position.x-30.0f duration:0.5];
-//        SKAction *action11=[[PPAtlasManager ball_action] getAnimation:[NSString stringWithFormat:@"%@3attack",kElementTypeString[currentPPPixie.pixieElement]]];
-        SKAction *action111=[SKAction moveToX:-61.5f duration:1];
         
-        SKAction *action1Result=[SKAction sequence:[NSArray arrayWithObjects:action1,action111, nil]];
+//        SKAction *action1=[SKAction moveToX:ppixieEnemyBtn.position.x-30.0f duration:0.1];
+        
+        ppixiePetBtn.position = CGPointMake(60.0f, ppixiePetBtn.position.y);
+//        SKAction *action11=[[PPAtlasManager ball_action] getAnimation:[NSString stringWithFormat:@"%@3attack",kElementTypeString[currentPPPixie.pixieElement]]];
+//        SKAction *action111=[SKAction moveToX:-61.5f duration:1];
+        
+//        SKAction *action1Result=[SKAction sequence:[NSArray arrayWithObjects:action1, nil]];
         
         
 //        SKAction *action2=[[PPAtlasManager  ball_action] getAnimation:[NSString stringWithFormat:@"%@3move",kElementTypeString[currentPPPixie.pixieElement]]];
@@ -653,10 +659,11 @@
 //        [ppixieEnemyBtn removeAllActions];
 //        [ppixiePetBtn removeAllActions];
         
-        [ppixiePetBtn runAction:action1Result];
+//        [ppixiePetBtn runAction:action1Result];
         
 
         [ppixieEnemyBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"fire3_beated"] completion:^{
+            
 //            [ppixieEnemyBtn removeAllActions];
         }];
         
@@ -664,7 +671,10 @@
         
     }else
     {
-//        SKAction *action1=[SKAction moveToX:200.0f duration:3];
+        ppixieEnemyBtn.position = CGPointMake(-30.0f, ppixieEnemyBtn.position.y);
+
+        
+//        SKAction *action1=[SKAction moveToX:-30 duration:0.1];
 //        SKAction *action2=[[PPAtlasManager  ball_action] getAnimation:[NSString stringWithFormat:@"%@3move",kElementTypeString[currentPPPixieEnemy.pixieElement]]];
 //        SKAction *action3=[SKAction repeatActionForever:action2];
 //        SKAction *result=[SKAction group:[NSArray arrayWithObjects:action1,action3, nil]];
@@ -679,9 +689,67 @@
 //            [ppixiePetBtn removeAllActions];
             
         }];
+        
 
         
     }
+}
+-(void)startAttackShowAnimation:(BOOL)isPetAttack
+{
+    
+    if (isPetAttack) {
+        
+        if (attackShowNode) {
+            [attackShowNode removeFromParent];
+            attackShowNode = nil;
+        }
+        
+        attackShowNode =[[SKSpriteNode alloc] init];
+        attackShowNode.size = CGSizeMake(50.0f, 50.0f);
+        [attackShowNode setPosition:CGPointMake(90.0f, 20.0f)];
+        [self addChild:attackShowNode];
+        
+        
+        [attackShowNode runAction:[[PPAtlasManager pixie_battle_effect] getAnimation:@"plant3_attack"] completion:^{
+            if (attackShowNode) {
+                [attackShowNode removeFromParent];
+                attackShowNode = nil;
+            }
+           
+        
+        }];
+        
+    }else
+    {
+        
+        if (attackShowNode) {
+            [attackShowNode removeFromParent];
+            attackShowNode = nil;
+        }
+        
+        attackShowNode =[[SKSpriteNode alloc] init];
+        attackShowNode.size = CGSizeMake(50.0f, 50.0f);
+        [attackShowNode setPosition:CGPointMake(-30, 20.0f)];
+        attackShowNode.xScale = -1;
+        [self addChild:attackShowNode];
+        
+        
+        [attackShowNode runAction:[[PPAtlasManager pixie_battle_effect] getAnimation:@"fire3_attack"] completion:^{
+            if (attackShowNode) {
+                [attackShowNode removeFromParent];
+                attackShowNode = nil;
+            }
+            
+            
+        }];
+        
+    }
+
+}
+-(void)resetPetAndEnemyPosition
+{
+    [ppixiePetBtn setPosition:CGPointMake(-61.5f, 20.0f)];
+    [ppixieEnemyBtn setPosition:CGPointMake(ppixiePetBtn.position.x+150,ppixiePetBtn.position.y)];
 }
 
 @end

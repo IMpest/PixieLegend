@@ -373,6 +373,7 @@ int velocityValue (int x, int y) {
 {
     
     if (touches.count > 1 ) return;
+
     
     UITouch * touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
@@ -385,6 +386,7 @@ int velocityValue (int x, int y) {
             petSkillBar = nil;
             [self setPlayerSideRoundEndState];
         }
+        
         return;
     }
     
@@ -413,6 +415,10 @@ int velocityValue (int x, int y) {
             
             [_ballShadow removeFromParent];
             
+            if (spriteArrow) {
+                [spriteArrow removeFromParent];
+                spriteArrow = nil;
+            }
             
             [self addPetSkillBar];
             
@@ -544,6 +550,7 @@ int velocityValue (int x, int y) {
             //敌方碰到连击球
         {
             NSLog(@"bodyStatus=%d",[contact.bodyB.PPBallPhysicsBodyStatus intValue]);
+            [self.playerAndEnemySide resetPetAndEnemyPosition];
             
             if (contact.bodyA == self.ballEnemy.physicsBody) {
                 PPBall *ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
@@ -635,11 +642,13 @@ int velocityValue (int x, int y) {
     
     if (self.ballPlayer == pixieball) {
         [self.playerAndEnemySide changeEnemyHPValue:-50];
+        [self.playerAndEnemySide startAttackShowAnimation:YES];
         [self.playerAndEnemySide changePetMPValue:200];
         
     } else {
         
         [self.playerAndEnemySide changePetHPValue:-50];
+        [self.playerAndEnemySide startAttackShowAnimation:NO];
         [self.playerAndEnemySide changeEnemyMPValue:200];
         
     }
@@ -843,6 +852,8 @@ int velocityValue (int x, int y) {
         _isTrapEnable = NO;
         for (PPBall * tBall in self.ballsElement) [tBall setToDefaultTexture];
         
+        [self.playerAndEnemySide resetPetAndEnemyPosition];
+        
         if(currentPhysicsAttack == 1)
         {
             
@@ -852,6 +863,7 @@ int velocityValue (int x, int y) {
             
         }else
         {
+            
             [self roundRotateMoved:PP_ENEMY_SIDE_NODE_NAME];
 
 //            [self  showPhysicsAttackAnimation:PP_ENEMY_SIDE_NODE_NAME];
@@ -1622,6 +1634,7 @@ int velocityValue (int x, int y) {
 -(void)setPlayerSideRoundRunState
 {
     isNotSkillRun = YES;
+    [self.ballPlayer closeActiveStatus];
 
 //    [self.playerSkillSide setSideSkillButtonDisable];
 }
@@ -1629,8 +1642,12 @@ int velocityValue (int x, int y) {
 //回合结束状态 玩家可进行操作
 -(void)setPlayerSideRoundEndState
 {
+    
     isNotSkillRun = NO;
+    [self.ballPlayer startActiveStatus];
+
 //    [self.playerSkillSide setSideSkillButtonEnable];
+    
 }
 
 //物理攻击开始提示

@@ -44,6 +44,7 @@ static void * MyObjectMyCustomPorpertyKey1 = (void *) @"MyObjectMyCustomPorperty
     id target;
     SEL animationEndSel;
     PPBallBattleScene *battleCurrentScene;
+    SKSpriteNode *spriteNodeActive;
     
 }
 
@@ -140,6 +141,18 @@ static void * MyObjectMyCustomPorpertyKey1 = (void *) @"MyObjectMyCustomPorperty
 */
 
 -(void)startPlantrootAppearOrDisappear:(BOOL)isAppear;
+
+/**
+ * @brief 人物球激活状态播放
+ */
+
+-(void)startActiveStatus;
+
+/**
+ * @brief 人物球激活状态关闭
+ */
+
+-(void)closeActiveStatus;
 
 
 @end
