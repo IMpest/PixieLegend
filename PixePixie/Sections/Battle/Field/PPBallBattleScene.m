@@ -100,7 +100,7 @@ int velocityValue (int x, int y) {
         enemyAssimDiffEleNum = 0;
         enemyAssimSameEleNum = 0;
         currentPhysicsAttack = 0;
-        
+
         
         // 设置敌我元素属性
         PPElementType petElement = pixieA.pixieBall.ballElementType;
@@ -156,8 +156,25 @@ int velocityValue (int x, int y) {
         // 添加己方玩家球
         self.ballPlayer = pixieA.pixieBall;
         self.ballPlayer.name = @"ball_player";
-        self.ballPlayer.position = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y + PP_FIT_TOP_SIZE);
-        self.ballPlayer.position = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y + PP_FIT_TOP_SIZE);
+        float xPlayer=BALL_RANDOM_X;
+        float yPlayer=BALL_RANDOM_Y + PP_FIT_TOP_SIZE;
+        
+        if (xPlayer<20) {
+            xPlayer = 20;
+        }
+        if (xPlayer>self.size.width-20) {
+            xPlayer = self.size.width - 20;
+        }
+        
+        if (yPlayer <64) {
+            yPlayer = 64;
+        }
+        
+        if (yPlayer>344) {
+            yPlayer = 344;
+        }
+        
+        self.ballPlayer.position = CGPointMake(xPlayer, yPlayer);
         self.ballPlayer->battleCurrentScene = self;
         self.ballPlayer.physicsBody.categoryBitMask = EntityCategoryBall;
         self.ballPlayer.physicsBody.contactTestBitMask = EntityCategoryBall;
@@ -248,6 +265,13 @@ int velocityValue (int x, int y) {
     if (_isBallRolling == YES) return;
     if (touches.count > 1  || _isBallRolling) return;
     
+    
+//    if (petSkillBar) {
+//        [petSkillBar removeFromParent];
+//        petSkillBar = nil;
+//        return;
+//    }
+    
     UITouch * touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     //    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
@@ -256,12 +280,16 @@ int velocityValue (int x, int y) {
     SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
     
     
+
+    
     if ([touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]) {
         
         NSLog(@"touched pet begin");
         isTouchPetBall = YES;
         
     }
+    
+
     
 //        if (touchedNode == petSkillBar) {
 //
@@ -330,10 +358,7 @@ int velocityValue (int x, int y) {
         SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
 
         if (touchedNode == petSkillBar) {
-            if (petSkillBar!=nil) {
-                [petSkillBar removeFromParent];
-                petSkillBar = nil;
-            }
+            [self removeSkillBar];
             return;
         }
         
@@ -377,15 +402,11 @@ int velocityValue (int x, int y) {
     
     UITouch * touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
-    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
+//    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
     
-    if (touchedNode == petSkillBar) {
+    if (isShowingSkillBar) {
         
-        if (petSkillBar!=nil) {
-            [petSkillBar removeFromParent];
-            petSkillBar = nil;
-            [self setPlayerSideRoundEndState];
-        }
+        [self removeSkillBar];
         
         return;
     }
@@ -401,10 +422,8 @@ int velocityValue (int x, int y) {
         SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
         
         if (touchedNode == petSkillBar) {
-            if (petSkillBar!=nil) {
-                [petSkillBar removeFromParent];
-                petSkillBar = nil;
-            }
+            [self removeSkillBar];
+            
             return;
         }
         
@@ -427,10 +446,7 @@ int velocityValue (int x, int y) {
         }else
         {
             
-            
-            
         [self changeBallStatus:PP_PET_PLAYER_SIDE_NODE_NAME];
-       
         
         _isBallDragging = NO;
         [spriteArrow removeFromParent];
@@ -441,20 +457,32 @@ int velocityValue (int x, int y) {
          CGVectorMake((origtinTouchPoint.x - _ballShadow.position.x) * kBounceReduce,
                       (origtinTouchPoint.y - _ballShadow.position.y) * kBounceReduce) andType:@"step"];
         currentPhysicsAttack = 1;
-        _ballShadow.position = self.ballPlayer.position;
+//        _ballShadow.position = self.ballPlayer.position;
         
         [self setPlayerSideRoundRunState];
-        [_ballShadow runAction:[SKAction fadeAlphaTo:0.0f duration:2] completion:^{
-            [_ballShadow removeFromParent];
-        }];
-        _isBallRolling = YES;
+            if (_ballShadow) {
+                [_ballShadow removeFromParent];
+                _ballShadow = nil;
+            }
         
+        [self addBallMoveAnimation:self.ballPlayer.position];
+        _isBallRolling = YES;
         
         }
     }
     
 }
-
+-(void)addBallMoveAnimation:(CGPoint )positionAni
+{
+    SKSpriteNode *actionNode= [SKSpriteNode spriteNodeWithImageNamed:@"ball_pixie_start_0000"];
+    actionNode.position = self.ballPlayer.position;
+    [self addChild:actionNode];
+    SKAction *action1=[SKAction repeatAction:[[PPAtlasManager battle_field_ball] getAnimation:@"ball_pixie_start"] count:5];
+    SKAction *action2=[SKAction group:[NSArray arrayWithObjects:action1,[SKAction fadeAlphaTo:0 duration:2], nil]];
+    [actionNode runAction:action2 completion:^{
+        [actionNode removeFromParent];
+    }];
+}
 -(void)changeBallStatus:(NSString *)stringSide
 {
     if ([stringSide isEqualToString:PP_PET_PLAYER_SIDE_NODE_NAME]) {
@@ -492,7 +520,6 @@ int velocityValue (int x, int y) {
         
         //我方球体撞墙
         if ((contact.bodyA.categoryBitMask == EntityCategoryWall || contact.bodyB.categoryBitMask == EntityCategoryWall)) {
-           
             
             NSLog(@"ballPlayer vec x=%f y=%f",self.ballPlayer.physicsBody.velocity.dx,self.ballPlayer.physicsBody.velocity.dy);
             NSLog(@"contact x=%f y=%f", contact.contactPoint.x,contact.contactPoint.y);
@@ -506,7 +533,6 @@ int velocityValue (int x, int y) {
         if ([contact.bodyB.node.name isEqualToString:PP_BALL_TYPE_COMBO_NAME]||[contact.bodyA.node.name isEqualToString:PP_BALL_TYPE_COMBO_NAME])
             //我方碰到连击球
         {
-            
             
             if (contact.bodyA == self.ballPlayer.physicsBody) {
                 PPBall *ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
@@ -1019,7 +1045,7 @@ int velocityValue (int x, int y) {
             [hitAniNode setPosition:pointNode];
             [self addChild:hitAniNode];
             
-            [hitAniNode runAction:[[PPAtlasManager battle_field_ball] getAnimation:@"ball_pixie_hit"]
+            [hitAniNode runAction:[[PPAtlasManager battle_field_ball] getAnimation:@"ball_pixie_wall"]
                                  completion:^{[hitAniNode removeFromParent];}];
             
             
@@ -1034,7 +1060,7 @@ int velocityValue (int x, int y) {
             [hitAniNode setPosition:pointNode];
             [self addChild:hitAniNode];
             
-            [hitAniNode runAction:[[PPAtlasManager battle_field_ball] getAnimation:@"ball_pixie_hit"]
+            [hitAniNode runAction:[[PPAtlasManager battle_field_ball] getAnimation:@"ball_pixie_wall"]
                        completion:^{[hitAniNode removeFromParent];}];
             
         }
@@ -1067,10 +1093,8 @@ int velocityValue (int x, int y) {
 }
 -(void)addPetSkillBar
 {
-    if (petSkillBar) {
-        [petSkillBar removeFromParent];
-        petSkillBar = nil;
-    }
+    [self removeSkillBar];
+    
     petSkillBar = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(self.size.width, self.size.height)];
 //    petSkillBar.color =[UIColor blackColor];
 //    petSkillBar.colorBlendFactor = 0.6;
@@ -1099,7 +1123,7 @@ int velocityValue (int x, int y) {
                        withObject:passButton forControlEvent:PPButtonControlEventTouchUp];
             
         } else {
-            passButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager skill_icon] textureNamed:stringSkillBtn]
+            passButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager pixie_battle_skill] textureNamed:stringSkillBtn]
                                                    andSize:CGSizeMake(50.0f, 50.0f)];
             [passButton addTarget:self selector:@selector(skillPlayerShowBegin:)
                        withObject:passButton forControlEvent:PPButtonControlEventTouchUp];
@@ -1118,7 +1142,16 @@ int velocityValue (int x, int y) {
     
     [self setPlayerSideRoundRunState];
 }
+-(void)removeSkillBar
+{
+    if (petSkillBar) {
+        [petSkillBar removeFromParent];
+        petSkillBar = nil;
+        [self setPlayerSideRoundEndState];
 
+    }
+    isShowingSkillBar = NO;
+}
 // 结算combo添加元素球
 -(void)creatCombosTotal:(NSString *)stringSide
 {
@@ -1391,6 +1424,8 @@ int velocityValue (int x, int y) {
 {
     roundActionNum = 0;
     roundIndex += 1;
+    petCombos = 0;
+    enemyCombos = 0;
     [self setRoundNumberLabel:@"回合开始" begin:YES];
 }
 
@@ -1496,6 +1531,8 @@ int velocityValue (int x, int y) {
     float randomX = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
     float randomY = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
     [self.ballEnemy.physicsBody applyImpulse:CGVectorMake(randomX, randomY)];
+    [self addBallMoveAnimation:self.ballEnemy.position];
+
     [self.ballEnemy startPixieAccelerateAnimation:CGVectorMake(randomX, randomY) andType:@"step"];
     [self setPlayerSideRoundRunState];
     _isBallRolling = YES;
@@ -1761,10 +1798,6 @@ int velocityValue (int x, int y) {
         [self.playerAndEnemySide changePetMPValue:mpToConsume];
     }
     
-    if (petSkillBar) {
-        [petSkillBar removeFromParent];
-        petSkillBar = nil;
-    }
     
     //
     //    if (isNotSkillShowTime) return;

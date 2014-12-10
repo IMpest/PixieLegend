@@ -72,6 +72,8 @@
 	<integer>5</integer>
 	<key>ball_pixie_start</key>
 	<integer>3</integer>
+	<key>ball_pixie_wall</key>
+	<integer>4</integer>
 	<key>___pixie_battle_effect____ </key>
 	<string>0</string>
 	<key>defend</key>

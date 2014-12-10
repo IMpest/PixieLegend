@@ -508,7 +508,9 @@
     [self addChild:spriteNodeActive];
     
     
-    [spriteNodeActive runAction:[[PPAtlasManager battle_field_ball] getAnimation:@"ball_pixie_active"]];
+    SKAction *activieAct = [SKAction repeatActionForever:[[PPAtlasManager battle_field_ball] getAnimation:@"ball_pixie_active"]];
+    
+    [spriteNodeActive runAction:activieAct];
     
 }
 
