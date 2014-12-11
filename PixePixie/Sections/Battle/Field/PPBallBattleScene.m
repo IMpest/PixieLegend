@@ -667,6 +667,7 @@ int velocityValue (int x, int y) {
     
     
     if (self.ballPlayer == pixieball) {
+        
         [self.playerAndEnemySide changeEnemyHPValue:-50];
         [self.playerAndEnemySide startAttackShowAnimation:YES];
         [self.playerAndEnemySide changePetMPValue:200];

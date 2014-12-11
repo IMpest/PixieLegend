@@ -642,7 +642,18 @@
         
 //        SKAction *action1=[SKAction moveToX:ppixieEnemyBtn.position.x-30.0f duration:0.1];
         
+        SKSpriteNode *spriteNodeMoving = [SKSpriteNode spriteNodeWithImageNamed:@"moving_0000"];
+        spriteNodeMoving.position = ppixiePetBtn.position;
+        [self addChild:spriteNodeMoving];
+        SKAction *actionMove=[SKAction moveToX:-61.5f duration:1];
+        SKAction *actionEffect = [SKAction repeatAction:[[PPAtlasManager pixie_battle_effect] getAnimation:@"moving"] count:2];
+        [spriteNodeMoving runAction:[SKAction group:[NSArray arrayWithObjects:actionMove,actionEffect, nil]] completion:^{
+            [spriteNodeMoving removeFromParent];
+        }];
+        
         ppixiePetBtn.position = CGPointMake(60.0f, ppixiePetBtn.position.y);
+        
+        
 //        SKAction *action11=[[PPAtlasManager ball_action] getAnimation:[NSString stringWithFormat:@"%@3attack",kElementTypeString[currentPPPixie.pixieElement]]];
 //        SKAction *action111=[SKAction moveToX:-61.5f duration:1];
         
@@ -662,13 +673,24 @@
 
         [ppixieEnemyBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"fire3_beated"] completion:^{
             
-//            [ppixieEnemyBtn removeAllActions];
+            [spriteNodeMoving removeFromParent];
+            
         }];
         
         
         
     }else
-    {
+    { 
+        
+        SKSpriteNode *spriteNodeMoving = [SKSpriteNode spriteNodeWithImageNamed:@"moving_0000"];
+        spriteNodeMoving.position = ppixieEnemyBtn.position;
+        spriteNodeMoving.xScale  = -1;
+        [self addChild:spriteNodeMoving];
+        SKAction *actionMove=[SKAction moveToX:-61.5f duration:1];
+        SKAction *actionEffect = [SKAction repeatAction:[[PPAtlasManager pixie_battle_effect] getAnimation:@"moving"] count:2];
+        [spriteNodeMoving runAction:[SKAction group:[NSArray arrayWithObjects:actionMove,actionEffect, nil]]];
+        
+        
         ppixieEnemyBtn.position = CGPointMake(-30.0f, ppixieEnemyBtn.position.y);
 
         
