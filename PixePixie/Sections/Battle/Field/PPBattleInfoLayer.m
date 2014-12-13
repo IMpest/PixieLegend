@@ -688,7 +688,9 @@
         [self addChild:spriteNodeMoving];
         SKAction *actionMove=[SKAction moveToX:-61.5f duration:1];
         SKAction *actionEffect = [SKAction repeatAction:[[PPAtlasManager pixie_battle_effect] getAnimation:@"moving"] count:2];
-        [spriteNodeMoving runAction:[SKAction group:[NSArray arrayWithObjects:actionMove,actionEffect, nil]]];
+        [spriteNodeMoving runAction:[SKAction group:[NSArray arrayWithObjects:actionMove,actionEffect, nil]] completion:^{
+            [spriteNodeMoving removeFromParent];
+        }];
         
         
         ppixieEnemyBtn.position = CGPointMake(-30.0f, ppixieEnemyBtn.position.y);

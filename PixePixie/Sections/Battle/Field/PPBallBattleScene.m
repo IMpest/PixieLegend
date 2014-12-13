@@ -289,29 +289,6 @@ int velocityValue (int x, int y) {
         
     }
     
-
-    
-//        if (touchedNode == petSkillBar) {
-//
-//        if (petSkillBar!=nil) {
-//            [petSkillBar removeFromParent];
-//            petSkillBar = nil;
-//            [self setPlayerSideRoundEndState];
-//        }
-//        return;
-//    }else
-//    {
-//        if (isShowingSkillBar) {
-//            if (petSkillBar!=nil) {
-//                [petSkillBar removeFromParent];
-//                petSkillBar = nil;
-//                isShowingSkillBar = NO;
-//                [self setPlayerSideRoundEndState];
-//            }
-//            return;
-//        }
-//    }
-    
     if (isNotSkillRun || _isBallDragging) {
         return;
     }
@@ -427,7 +404,7 @@ int velocityValue (int x, int y) {
             return;
         }
         
-        if ([touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]&&isTouchPetBall) {
+        if ([touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]&&isTouchPetBall&&distanceBetweenPoints(location, origtinTouchPoint)<3) {
             NSLog(@"touched pet end");
 
             NSLog(@"touchedNode=%@ name =%@",touchedNode,touchedNode.name);
