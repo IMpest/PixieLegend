@@ -779,6 +779,9 @@ int velocityValue (int x, int y) {
 -(void)pauseBtnClick:(NSString *)stringName
 {
     
+    
+    self.paused = YES;
+    
     PPCustomAlertNode *alertNode = [[PPCustomAlertNode alloc] initWithFrame:CGRectMake(self.size.width / 2,
                                                                                        self.size.height / 2,
                                                                                        self.size.width, self.size.height)];
@@ -794,6 +797,10 @@ int velocityValue (int x, int y) {
 -(void)pauseMenuBtnClick:(NSString *)btnStr
 {
     NSLog(@"btnStr= %@",btnStr);
+    
+    if ([btnStr isEqualToString:@"button1"]) {
+        self.paused = NO;
+    }
     
     if ([btnStr isEqualToString:@"button2"]) {
         [self backButtonClick:nil];

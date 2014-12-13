@@ -277,6 +277,9 @@
 
 -(void)stopBtnClick:(NSString *)stringname
 {
+    
+    
+    
     if (self.target != nil && self.pauseSelector != nil &&
         [self.target respondsToSelector:self.pauseSelector])
     {
@@ -645,7 +648,7 @@
         SKSpriteNode *spriteNodeMoving = [SKSpriteNode spriteNodeWithImageNamed:@"moving_0000"];
         spriteNodeMoving.position = ppixiePetBtn.position;
         [self addChild:spriteNodeMoving];
-        SKAction *actionMove=[SKAction moveToX:-61.5f duration:1];
+        SKAction *actionMove=[SKAction moveToX:91.5f duration:1];
         SKAction *actionEffect = [SKAction repeatAction:[[PPAtlasManager pixie_battle_effect] getAnimation:@"moving"] count:2];
         [spriteNodeMoving runAction:[SKAction group:[NSArray arrayWithObjects:actionMove,actionEffect, nil]] completion:^{
             [spriteNodeMoving removeFromParent];
@@ -672,8 +675,10 @@
         
 
         [ppixieEnemyBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"fire3_beated"] completion:^{
-            
-            [spriteNodeMoving removeFromParent];
+            if (spriteNodeMoving) {
+                [spriteNodeMoving removeFromParent];
+
+            }
             
         }];
         
@@ -709,7 +714,11 @@
         [ppixiePetBtn runAction:actionBeated completion:^{
 
 //            [ppixiePetBtn removeAllActions];
-            
+            if (spriteNodeMoving) {
+                [spriteNodeMoving removeFromParent];
+
+            }
+
         }];
         
 
