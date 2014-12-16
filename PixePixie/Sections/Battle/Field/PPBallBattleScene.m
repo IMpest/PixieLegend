@@ -264,13 +264,7 @@ int velocityValue (int x, int y) {
     
     if (_isBallRolling == YES) return;
     if (touches.count > 1  || _isBallRolling) return;
-    
-    
-//    if (petSkillBar) {
-//        [petSkillBar removeFromParent];
-//        petSkillBar = nil;
-//        return;
-//    }
+
     
     UITouch * touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
@@ -278,9 +272,6 @@ int velocityValue (int x, int y) {
     origtinTouchPoint = location;
     
     SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
-    
-    
-
     
     if ([touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]) {
         
@@ -342,6 +333,7 @@ int velocityValue (int x, int y) {
         if(distanceBetweenPoints(location, origtinTouchPoint)>3)
         {
             spriteArrow.hidden = NO;
+            
         }else{
             if (isTouchPetBall) {
                 spriteArrow.hidden = YES;
@@ -411,10 +403,10 @@ int velocityValue (int x, int y) {
             
             [_ballShadow removeFromParent];
             
-            if (spriteArrow) {
-                [spriteArrow removeFromParent];
-                spriteArrow = nil;
-            }
+//            if (spriteArrow) {
+//                [spriteArrow removeFromParent];
+//                spriteArrow = nil;
+//            }
             
             [self addPetSkillBar];
             
@@ -426,7 +418,6 @@ int velocityValue (int x, int y) {
         [self changeBallStatus:PP_PET_PLAYER_SIDE_NODE_NAME];
         
         _isBallDragging = NO;
-        [spriteArrow removeFromParent];
         [self.ballPlayer.physicsBody applyImpulse:
          CGVectorMake((origtinTouchPoint.x - _ballShadow.position.x) * kBounceReduce,
                       (origtinTouchPoint.y - _ballShadow.position.y) * kBounceReduce)];
@@ -447,7 +438,12 @@ int velocityValue (int x, int y) {
         
         }
     }
-    
+    if(spriteArrow)
+    {
+    [spriteArrow removeFromParent];
+    spriteArrow = nil;
+
+    }
 }
 -(void)addBallMoveAnimation:(CGPoint )positionAni
 {
@@ -459,6 +455,28 @@ int velocityValue (int x, int y) {
     [actionNode runAction:action2 completion:^{
         [actionNode removeFromParent];
     }];
+}
+-(void)changeSkillBtnCdRounds
+{
+    
+    for (int i=0; i<4; i++) {
+        if(petSkillBar)
+        {
+        PPSpriteButton *spriteBtn = (PPSpriteButton *)[petSkillBar childNodeWithName:[NSString stringWithFormat:@"%d",PP_SKILLS_CHOOSE_BTN_TAG+i]];
+            if ([spriteBtn.PPBallPhysicsBodyStatus  isEqual: @1]) {
+                SKLabelNode *labelNode = (SKLabelNode *)[spriteBtn childNodeWithName:PP_SKILL_CD_LABEL_NODE_NAME];
+                spriteBtn.PPBallSkillStatus = [NSNumber numberWithInt:[spriteBtn.PPBallSkillStatus intValue] -1];
+                [labelNode setText:[NSString stringWithFormat:@"%@",spriteBtn.PPBallSkillStatus]];
+                if (spriteBtn.PPBallSkillStatus<=0) {
+                    spriteBtn.color = [UIColor blackColor];
+                    spriteBtn.colorBlendFactor = 0.0;
+                    spriteBtn.userInteractionEnabled = YES;
+                }
+            }
+       
+        }
+    }
+    
 }
 -(void)changeBallStatus:(NSString *)stringSide
 {
@@ -1078,7 +1096,14 @@ int velocityValue (int x, int y) {
 }
 -(void)addPetSkillBar
 {
-    [self removeSkillBar];
+    
+//    [self removeSkillBar];
+    
+    if (petSkillBar) {
+        petSkillBar.zPosition = 1;
+        petSkillBar.hidden = NO;
+        return;
+    }
     
     petSkillBar = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(self.size.width, self.size.height)];
 //    petSkillBar.color =[UIColor blackColor];
@@ -1106,18 +1131,46 @@ int velocityValue (int x, int y) {
             passButton.userInteractionEnabled = YES;
             [passButton addTarget:self selector:@selector(skillInvalidBtnClick:)
                        withObject:passButton forControlEvent:PPButtonControlEventTouchUp];
+
             
         } else {
+            
             passButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager pixie_battle_skill] textureNamed:stringSkillBtn]
                                                    andSize:CGSizeMake(50.0f, 50.0f)];
             [passButton addTarget:self selector:@selector(skillPlayerShowBegin:)
                        withObject:passButton forControlEvent:PPButtonControlEventTouchUp];
+            
+//            SKLabelNode *cdLabel = [SKLabelNode labelNodeWithFontNamed:PP_WORDS_FONT_NAME];
+//            cdLabel.fontSize = 10;
+//            cdLabel.name = PP_SKILL_CD_LABEL_NODE_NAME;
+//            cdLabel.position = CGPointMake(0,0.0f);
+//            [cdLabel setColor:[UIColor orangeColor]];
+//            [cdLabel setText:[NSString stringWithFormat:@"%@",[dictSkill objectForKey:@"skillcdrounds"]]];
+//            [passButton addChild:cdLabel];
         }
-        
+        passButton.color = [UIColor blackColor];
+        passButton.colorBlendFactor = 0.0;
+        passButton.userInteractionEnabled = YES;
         passButton.name = [NSString stringWithFormat:@"%d",PP_SKILLS_CHOOSE_BTN_TAG+i];
         passButton.position = CGPointMake(65*i - 112.0f, 0.0f);
-        
         [petSkillBar addChild:passButton];
+        
+        
+        
+        SKLabelNode *cdLabel = [SKLabelNode labelNodeWithFontNamed:PP_WORDS_FONT_NAME];
+        cdLabel.fontSize = 19;
+        cdLabel.name = PP_SKILL_CD_LABEL_NODE_NAME;
+        cdLabel.position = CGPointMake(passButton.size.width/2.0f,10.0f);
+//        cdLabel.position = passButton.position;
+        [cdLabel setColor:[UIColor orangeColor]];
+        [cdLabel setFontColor:[UIColor redColor]];
+        NSString *cdString = [NSString stringWithFormat:@"%@",[dictSkill objectForKey:@"skillcdrounds"]];
+        passButton.PPBallSkillStatus = [dictSkill objectForKey:@"skillcdrounds"];
+        [cdLabel setText:cdString];
+        NSLog(@"cdString=%@",cdString);
+        [passButton addChild:cdLabel];
+        
+ 
     }
     
     petSkillBar.position = CGPointMake(self.size.width/2.0f, self.ballPlayer.position.y+50);
@@ -1130,8 +1183,8 @@ int velocityValue (int x, int y) {
 -(void)removeSkillBar
 {
     if (petSkillBar) {
-        [petSkillBar removeFromParent];
-        petSkillBar = nil;
+        petSkillBar.zPosition = -5;
+        petSkillBar.hidden = YES;
         [self setPlayerSideRoundEndState];
 
     }
@@ -1446,11 +1499,11 @@ int velocityValue (int x, int y) {
 {
     roundActionNum = 0;
     
-    
-    
     [self setRoundNumberLabel:@"回合结束" begin:NO];
+    [self changeSkillBtnCdRounds];
     
     [self performSelectorOnMainThread:@selector(roundRotateBegin) withObject:nil afterDelay:3];
+    
 }
 
 #pragma mark Battle Procceed
@@ -1754,12 +1807,16 @@ int velocityValue (int x, int y) {
 {
     
     
+    
+    
+    
     NSDictionary *skillInfo = [self.ballPlayer.pixie.pixieSkills objectAtIndex:[skillButton.name intValue] - PP_SKILLS_CHOOSE_BTN_TAG];
     
     CGFloat mpToConsume = [[skillInfo objectForKey:@"skillmpchange"] floatValue];
     NSLog(@"currentMP=%f mptoConsume=%f",self.playerAndEnemySide.currentPPPixie.currentMP,mpToConsume);
     NSLog(@"skillInfo=%@",skillInfo);
     [self setPlayerSideRoundRunState];
+    
     
     if (self.playerAndEnemySide.currentPPPixie.currentMP < fabsf(mpToConsume)) {
         SKLabelNode * labelNode = (SKLabelNode *)[self childNodeWithName:@"mpisnotenough"];
@@ -1769,8 +1826,10 @@ int velocityValue (int x, int y) {
         additonLabel.name  = @"mpisnotenough";
         additonLabel.fontColor = [UIColor redColor];
         additonLabel.position = CGPointMake(160.0f, 200.0f);
-        [additonLabel setText:@"能量不足"];
+        [additonLabel setText:@"技能已释放"];
         [self addChild:additonLabel];
+        
+        
         
         SKAction * actionScale = [SKAction scaleBy:2.0 duration:1];
         [additonLabel runAction:actionScale completion:^{
@@ -1778,6 +1837,12 @@ int velocityValue (int x, int y) {
             isNotSkillShowTime = NO;
             [self setPlayerSideRoundEndState];
         }];
+        
+        skillButton.color = [UIColor blackColor];
+        skillButton.colorBlendFactor = 0.6;
+        skillButton.userInteractionEnabled = NO;
+        skillButton.PPBallPhysicsBodyStatus = @1;
+        
         return ;
     } else {
         [self.playerAndEnemySide changePetMPValue:mpToConsume];

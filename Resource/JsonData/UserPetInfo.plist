@@ -70,7 +70,7 @@
 					<key>skillmpchange</key>
 					<integer>-1390</integer>
 					<key>skilltype</key>
-					<integer>3</integer>
+					<integer>4</integer>
 					<key>skillobject</key>
 					<integer>1</integer>
 					<key>skillname</key>
@@ -100,7 +100,7 @@
 					<key>skillname</key>
 					<string>木系掌控</string>
 					<key>skillcdrounds</key>
-					<integer>3</integer>
+					<integer>2</integer>
 					<key>skillcontinue</key>
 					<integer>0</integer>
 				</dict>
@@ -124,7 +124,7 @@
 					<key>skillname</key>
 					<string>木系掌控</string>
 					<key>skillcdrounds</key>
-					<integer>3</integer>
+					<integer>5</integer>
 					<key>skillcontinue</key>
 					<integer>0</integer>
 				</dict>
@@ -202,7 +202,7 @@
 					<key>skillname</key>
 					<string>阳光普照</string>
 					<key>skillcdrounds</key>
-					<integer>3</integer>
+					<integer>4</integer>
 					<key>skillcontinue</key>
 					<integer>0</integer>
 				</dict>
@@ -226,7 +226,7 @@
 					<key>skillname</key>
 					<string>木旋风</string>
 					<key>skillcdrounds</key>
-					<integer>3</integer>
+					<integer>2</integer>
 					<key>skillcontinue</key>
 					<integer>0</integer>
 				</dict>
@@ -250,7 +250,7 @@
 					<key>skillname</key>
 					<string>木旋风</string>
 					<key>skillcdrounds</key>
-					<integer>3</integer>
+					<integer>5</integer>
 					<key>skillcontinue</key>
 					<integer>0</integer>
 				</dict>
@@ -328,7 +328,7 @@
 					<key>skillname</key>
 					<string>狼焰斩</string>
 					<key>skillcdrounds</key>
-					<integer>3</integer>
+					<integer>2</integer>
 					<key>skillcontinue</key>
 					<integer>0</integer>
 				</dict>
@@ -352,7 +352,7 @@
 					<key>skillname</key>
 					<string>狼焰防御</string>
 					<key>skillcdrounds</key>
-					<integer>3</integer>
+					<integer>4</integer>
 					<key>skillcontinue</key>
 					<integer>0</integer>
 				</dict>
@@ -376,7 +376,7 @@
 					<key>skillname</key>
 					<string>狼焰防御</string>
 					<key>skillcdrounds</key>
-					<integer>3</integer>
+					<integer>5</integer>
 					<key>skillcontinue</key>
 					<integer>0</integer>
 				</dict>

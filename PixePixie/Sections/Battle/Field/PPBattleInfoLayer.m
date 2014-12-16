@@ -53,21 +53,35 @@
             passButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager skill_icon] textureNamed:stringSkillBtn]
                                                    andSize:CGSizeMake(50.0f, 50.0f)];
             //            [passButton setLabelWithText:@"不可用" andFont:[UIFont boldSystemFontOfSize:14.0f] withColor:[UIColor whiteColor]];
-            
+            passButton.PPBallSkillStatus = [dictSkill objectForKey:@"skillcdrounds"];
             passButton.userInteractionEnabled = NO;
             [passButton addTarget:self selector:@selector(skillInvalidClick:)
                        withObject:passButton forControlEvent:PPButtonControlEventTouchUp];
             
+            
+            SKLabelNode *cdLabel = [SKLabelNode labelNodeWithFontNamed:PP_WORDS_FONT_NAME];
+            cdLabel.fontSize = 10;
+            cdLabel.name = PP_SKILL_CD_LABEL_NODE_NAME;
+            cdLabel.position = CGPointMake(0,0.0f);
+            [cdLabel setColor:[UIColor orangeColor]];
+            [cdLabel setText:[NSString stringWithFormat:@"%@",[dictSkill objectForKey:@"skillcdrounds"]]];
+            [passButton addChild:cdLabel];
+            
+            
         } else {
+            
             passButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager skill_icon] textureNamed:stringSkillBtn]
                                                    andSize:CGSizeMake(50.0f, 50.0f)];
             [passButton addTarget:self selector:@selector(skillSideClick:)
                        withObject:passButton forControlEvent:PPButtonControlEventTouchUp];
+            
+          
+            
+            
         }
         
         passButton.name = [NSString stringWithFormat:@"%d",PP_SKILLS_CHOOSE_BTN_TAG+i];
         passButton.position = CGPointMake(65*i - 112.0f, 0.0f);
-        
         [self addChild:passButton];
         
         
@@ -79,6 +93,7 @@
             [skillName setPosition:CGPointMake(passButton.position.x,
                                                passButton.position.y-30.0f-skillName.frame.size.height/2.0f)];
             [self addChild:skillName];
+            
         }
     }
     
@@ -333,7 +348,14 @@
         [self.target performSelectorInBackground:self.skillSelector withObject:skillChoosed];
     }
 }
-
+-(void)updateSkllCDStatus
+{
+    
+    
+    
+    
+    
+}
 -(void)setSideSkillButtonDisable
 {
     

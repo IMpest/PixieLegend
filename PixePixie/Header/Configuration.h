@@ -4,6 +4,7 @@
 
 #define PP_FIT_TOP_SIZE     ((CurrentDeviceRealSize.height > 500) ? (44.0f) : (0.0f))
 #define PP_FIRST_LOG_IN     @"firstenter"
+#define PP_WORDS_FONT_NAME @"Chalkduster"
 
 #define PP_PET_SKILL_SHOW_NODE_NAME     @"petskillshow"
 #define PP_ENEMY_SKILL_SHOW_NODE_NAME   @"enemyskillshow"
@@ -23,6 +24,8 @@
 #define PP_PET_COMBOS_NAME      @"petcombos"
 #define PP_ENEMY_COMBOS_NAME    @"enemycombos"
 #define PP_TOUCH_NODE_BALL_NAME    @"touchballnamepet"
+
+#define PP_SKILL_CD_LABEL_NODE_NAME    @"skillcdlabelname"
 
 #define PP_BACK_BUTTON_ZPOSITION 100
 
