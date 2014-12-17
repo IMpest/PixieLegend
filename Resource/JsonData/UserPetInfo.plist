@@ -50,7 +50,7 @@
 					<key>skillobject</key>
 					<integer>0</integer>
 					<key>skillname</key>
-					<string>发芽</string>
+					<string>恶魔重生</string>
 					<key>skillcdrounds</key>
 					<integer>3</integer>
 					<key>skillcontinue</key>
@@ -176,7 +176,7 @@
 					<key>skillobject</key>
 					<integer>1</integer>
 					<key>skillname</key>
-					<string>巨木降临</string>
+					<string>恶魔重生</string>
 					<key>skillcdrounds</key>
 					<integer>3</integer>
 					<key>skillcontinue</key>
@@ -302,7 +302,7 @@
 					<key>skillobject</key>
 					<integer>1</integer>
 					<key>skillname</key>
-					<string>森林瞬起</string>
+					<string>恶魔重生</string>
 					<key>skillcdrounds</key>
 					<integer>3</integer>
 					<key>skillcontinue</key>

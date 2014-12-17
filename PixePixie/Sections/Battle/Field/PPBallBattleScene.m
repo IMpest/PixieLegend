@@ -1,6 +1,6 @@
 
 #import "PPBallBattleScene.h"
-
+#import "PPBallBattleSkillInfo.h"
 #include"stdio.h"
 
 #define SPACE_BOTTOM 0
@@ -48,6 +48,7 @@ int velocityValue (int x, int y) {
     BOOL isShowingSkillBar;
     SKSpriteNode *spriteArrow;
     SKSpriteNode *petSkillBar;
+    PPBallBattleSkillInfo *battleSkillInfo;
 }
 
 @property (nonatomic, retain) PPPixie * pixiePlayer;
@@ -85,6 +86,8 @@ int velocityValue (int x, int y) {
         isShowingSkillBar = NO;
         // 帧数间隔计数
         frameFlag = 0;
+        
+        battleSkillInfo = [[PPBallBattleSkillInfo alloc] init];
         
         // 处理参数
         self.pixiePlayer = pixieA;
@@ -264,25 +267,6 @@ int velocityValue (int x, int y) {
     
     if (_isBallRolling == YES) return;
     if (touches.count > 1  || _isBallRolling) return;
-
-    
-    UITouch * touch = [touches anyObject];
-    CGPoint location = [touch locationInNode:self];
-    //    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
-    origtinTouchPoint = location;
-    
-    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
-    
-    if ([touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]) {
-        
-        NSLog(@"touched pet begin");
-        isTouchPetBall = YES;
-        
-    }
-    
-    if (isNotSkillRun || _isBallDragging) {
-        return;
-    }
     
     if (spriteArrow != nil) {
         [spriteArrow removeFromParent];
@@ -298,6 +282,27 @@ int velocityValue (int x, int y) {
     }
     spriteArrow.position = self.ballPlayer.position;
     [self addChild:spriteArrow];
+    
+    UITouch * touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    //    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
+    origtinTouchPoint = location;
+    
+    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
+    
+    if ([touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]) {
+        
+        NSLog(@"touched pet begin");
+        isTouchPetBall = YES;
+        
+    }
+    
+    
+    if (isNotSkillRun || _isBallDragging) {
+        return;
+    }
+    
+
     
     _isBallDragging = YES;
 
@@ -347,9 +352,20 @@ int velocityValue (int x, int y) {
         
         double rotation = atan(angleVector.dy/angleVector.dx);
         rotation = angleVector.dx > 0 ? rotation : rotation + 3.1415926;
+//        if (!spriteArrow) {
+//            spriteArrow = [[SKSpriteNode alloc] initWithImageNamed:@"table_arrow"];
+//            spriteArrow.size = CGSizeMake(spriteArrow.size.width/2.0f, spriteArrow.size.height/2.0f);
+//            spriteArrow.xScale = 0.2;
+//            spriteArrow.yScale = 0.2;
+//            if (isTouchPetBall) {
+//                spriteArrow.hidden=YES;
+//            }
+//            spriteArrow.position = self.ballPlayer.position;
+//            [self addChild:spriteArrow];
+//        }
 //        spriteArrow.zRotation = rotation-3.1415926/2.0;
         spriteArrow.zRotation = rotation;
-        
+        spriteArrow.hidden = NO;
         double scaleFactor = sqrt(angleVector.dx * angleVector.dx + angleVector.dy * angleVector.dy );
         float scaleChange = scaleFactor/20;
         if (scaleChange >=2) {
@@ -403,11 +419,7 @@ int velocityValue (int x, int y) {
             
             [_ballShadow removeFromParent];
             
-//            if (spriteArrow) {
-//                [spriteArrow removeFromParent];
-//                spriteArrow = nil;
-//            }
-            
+       
             [self addPetSkillBar];
             
 
@@ -438,12 +450,14 @@ int velocityValue (int x, int y) {
         
         }
     }
-    if(spriteArrow)
-    {
-    [spriteArrow removeFromParent];
-    spriteArrow = nil;
-
+    
+    if (spriteArrow) {
+        spriteArrow.hidden = YES;
+        [spriteArrow removeFromParent];
+        spriteArrow = nil;
     }
+    
+    
 }
 -(void)addBallMoveAnimation:(CGPoint )positionAni
 {
@@ -473,6 +487,8 @@ int velocityValue (int x, int y) {
                     spriteBtn.userInteractionEnabled = YES;
                 }
             }
+            //恶魔重生
+            battleSkillInfo.petHitRecoverHP = 0;
        
         }
     }
@@ -537,11 +553,19 @@ int velocityValue (int x, int y) {
                 [ballCombo startComboAnimation:CGVectorMake(self.ballPlayer.position.x-ballCombo.position.x,self.ballPlayer.position.y-ballCombo.position.y)];
             }
             
-            
             petCombos++;
             [self.playerAndEnemySide setComboLabelText:petCombos withEnemy:enemyCombos];
             [self.playerAndEnemySide startAttackAnimation:YES];
             [self dealPixieBallContactComboBall:contact andPetBall:self.ballPlayer];
+            
+            //恶魔重生
+            if (battleSkillInfo.petHitRecoverHP!=0) {
+                [self.playerAndEnemySide changePetHPValue:battleSkillInfo.petHitRecoverHP];
+                NSLog(@"恶魔重生=%d",battleSkillInfo.petHitRecoverHP);
+                [self removeSkillBar];
+                
+            }
+ 
             
             [self addComboValueChangeCombos:petCombos position:self.ballPlayer.position];
             
@@ -669,7 +693,7 @@ int velocityValue (int x, int y) {
         
     } else {
         
-        [self.playerAndEnemySide changePetHPValue:-50];
+        [self.playerAndEnemySide changePetHPValue:-100];
         [self.playerAndEnemySide startAttackShowAnimation:NO];
         [self.playerAndEnemySide changeEnemyMPValue:200];
         
@@ -1826,9 +1850,18 @@ int velocityValue (int x, int y) {
         additonLabel.name  = @"mpisnotenough";
         additonLabel.fontColor = [UIColor redColor];
         additonLabel.position = CGPointMake(160.0f, 200.0f);
-        [additonLabel setText:@"技能已释放"];
         [self addChild:additonLabel];
         
+         [additonLabel setText:[NSString stringWithFormat:@"%@已释放",[skillInfo objectForKey:@"skillname"]]];
+        if ([[skillInfo objectForKey:@"skillname"] isEqualToString:@"恶魔重生"]) {
+//            [additonLabel setText:[NSString stringWithFormat:@"%@技能已释放",@"恶魔重生"]];
+
+            battleSkillInfo.petHitRecoverHP = 10;
+        }else
+        {
+           
+
+        }
         
         
         SKAction * actionScale = [SKAction scaleBy:2.0 duration:1];

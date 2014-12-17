@@ -187,6 +187,7 @@
 		D413CB611945FF62004B4FDE /* PPSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = D413CB601945FF62004B4FDE /* PPSkill.m */; };
 		D44935C41948B52E00F3B5B9 /* UserPetInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = D44935C31948B52E00F3B5B9 /* UserPetInfo.plist */; };
 		D457012D194F430700C2EFCE /* EnemyInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = D457012C194F430700C2EFCE /* EnemyInfo.plist */; };
+		D48312C61A41BE9600C82302 /* PPBallBattleSkillInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D48312C51A41BE9600C82302 /* PPBallBattleSkillInfo.m */; };
 		D4877A40196C314E009509E5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4877A3F196C314E009509E5 /* Images.xcassets */; };
 		D48C1B001A2467EC00566DF6 /* pixie_action.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D48C1AFF1A2467EC00566DF6 /* pixie_action.atlas */; };
 		D4916A17193F636C00662F88 /* PassInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4916A16193F636C00662F88 /* PassInfo.plist */; };
@@ -438,6 +439,8 @@
 		D413CB601945FF62004B4FDE /* PPSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPSkill.m; path = Models/PPSkill.m; sourceTree = "<group>"; };
 		D44935C31948B52E00F3B5B9 /* UserPetInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserPetInfo.plist; sourceTree = "<group>"; };
 		D457012C194F430700C2EFCE /* EnemyInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EnemyInfo.plist; sourceTree = "<group>"; };
+		D48312C41A41BE9600C82302 /* PPBallBattleSkillInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPBallBattleSkillInfo.h; path = PixePixie/Models/PPBallBattleSkillInfo.h; sourceTree = SOURCE_ROOT; };
+		D48312C51A41BE9600C82302 /* PPBallBattleSkillInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPBallBattleSkillInfo.m; path = PixePixie/Models/PPBallBattleSkillInfo.m; sourceTree = SOURCE_ROOT; };
 		D4877A3F196C314E009509E5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D48C1AFF1A2467EC00566DF6 /* pixie_action.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = pixie_action.atlas; path = Resource/Images/pixie_action.atlas; sourceTree = "<group>"; };
 		D4916A16193F636C00662F88 /* PassInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PassInfo.plist; sourceTree = "<group>"; };
@@ -621,6 +624,8 @@
 				1933E72D1A2F0D4800E8C5BF /* PPSkillButtonNode.m */,
 				1933E72E1A2F0D4800E8C5BF /* PPSkillNode.h */,
 				1933E72F1A2F0D4800E8C5BF /* PPSkillNode.m */,
+				D48312C41A41BE9600C82302 /* PPBallBattleSkillInfo.h */,
+				D48312C51A41BE9600C82302 /* PPBallBattleSkillInfo.m */,
 			);
 			name = Field;
 			sourceTree = "<group>";
@@ -1224,6 +1229,7 @@
 				19CBA8C31907C77600A249AB /* PPBall.m in Sources */,
 				193F96891A2EF49800F266A6 /* PPAppDelegate.m in Sources */,
 				193F96A71A2EF5DD00F266A6 /* PPCookingScene.m in Sources */,
+				D48312C61A41BE9600C82302 /* PPBallBattleSkillInfo.m in Sources */,
 				193F96DB1A2EF93E00F266A6 /* PPSettingScene.m in Sources */,
 				193F969B1A2EF53000F266A6 /* PPMonsterBoxScene.m in Sources */,
 				193F969F1A2EF53000F266A6 /* PPTalentTreeScene.m in Sources */,
