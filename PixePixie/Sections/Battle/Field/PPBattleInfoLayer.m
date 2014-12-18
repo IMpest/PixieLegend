@@ -597,7 +597,6 @@
                 
                 if (buffBtnFirstEmpty==nil) {
                     buffBtnFirstEmpty = enemyBuffBtn;
-                    
                 }
                 break;
             }else

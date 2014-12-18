@@ -62,7 +62,7 @@ int velocityValue (int x, int y) {
 
 @property (nonatomic, retain) NSMutableArray * ballsElement;
 @property (nonatomic, retain) NSMutableArray * ballsCombos;
-@property (nonatomic, retain) NSMutableArray * trapFrames;
+@property (nonatomic, retain) NSMutableArray * battleBuffArray;
 @property (nonatomic, retain) PPBattleInfoLayer * playerSkillSide;
 @property (nonatomic, retain) PPBattleInfoLayer * playerAndEnemySide;
 
@@ -73,6 +73,7 @@ int velocityValue (int x, int y) {
 @implementation PPBallBattleScene
 @synthesize hurdleReady;
 @synthesize ballsCombos;
+@synthesize battleBuffArray;
 
 -(id)initWithSize:(CGSize)size
       PixiePlayer:(PPPixie *)pixieA
@@ -88,7 +89,7 @@ int velocityValue (int x, int y) {
         frameFlag = 0;
         
         battleSkillInfo = [[PPBallBattleSkillInfo alloc] init];
-        
+        self.battleBuffArray = [[NSMutableArray alloc] init];
         // 处理参数
         self.pixiePlayer = pixieA;
         self.pixieEnemy = pixieB;
@@ -235,230 +236,6 @@ int velocityValue (int x, int y) {
     return self;
 }
 
-#pragma mark SKScene delegate
-
--(void)didMoveToView:(SKView *)view
-{
-    [self setPlayerSideRoundRunState];
-    [self performSelectorOnMainThread:@selector(roundRotateBegin) withObject:nil afterDelay:1.0f];
-}
-
--(void)willMoveFromView:(SKView *)view
-{
-    
-}
-
-// 每帧处理程序开始
--(void)update:(NSTimeInterval)currentTime
-{
-    frameFlag++;
-    frameFlag %= 30;
-}
-
--(void)didSimulatePhysics
-{
-    if (frameFlag == 15) [self checkingBallsMove];
-}
-
-#pragma mark UIResponder
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    
-    if (_isBallRolling == YES) return;
-    if (touches.count > 1  || _isBallRolling) return;
-    
-    if (spriteArrow != nil) {
-        [spriteArrow removeFromParent];
-        spriteArrow = nil;
-    }
-    
-    spriteArrow = [[SKSpriteNode alloc] initWithImageNamed:@"table_arrow"];
-    spriteArrow.size = CGSizeMake(spriteArrow.size.width/2.0f, spriteArrow.size.height/2.0f);
-    spriteArrow.xScale = 0.2;
-    spriteArrow.yScale = 0.2;
-    if (isTouchPetBall) {
-        spriteArrow.hidden=YES;
-    }
-    spriteArrow.position = self.ballPlayer.position;
-    [self addChild:spriteArrow];
-    
-    UITouch * touch = [touches anyObject];
-    CGPoint location = [touch locationInNode:self];
-    //    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
-    origtinTouchPoint = location;
-    
-    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
-    
-    if ([touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]) {
-        
-        NSLog(@"touched pet begin");
-        isTouchPetBall = YES;
-        
-    }
-    
-    
-    if (isNotSkillRun || _isBallDragging) {
-        return;
-    }
-    
-
-    
-    _isBallDragging = YES;
-
-    _ballShadow = [PPBall ballWithPixie:self.pixiePlayer];
-    _ballShadow.size = CGSizeMake(kBallSize, kBallSize);
-    _ballShadow.position = location;
-    _ballShadow.alpha = 0.5f;
-    _ballShadow.physicsBody = nil;
-    [self addChild:_ballShadow];
-    
-}
-
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    
-    if (touches.count > 1) return;
-    if (isNotSkillRun) {
-        return;
-    }
-    
-    if (_isBallDragging && !_isBallRolling) {
-        
-        
-        UITouch * touch = [touches anyObject];
-        CGPoint location = [touch locationInNode:self];
-        SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
-
-        if (touchedNode == petSkillBar) {
-            [self removeSkillBar];
-            return;
-        }
-        
-        if(distanceBetweenPoints(location, origtinTouchPoint)>3)
-        {
-            spriteArrow.hidden = NO;
-            
-        }else{
-            if (isTouchPetBall) {
-                spriteArrow.hidden = YES;
-
-            }
-        }
-        
-        _ballShadow.position = location;
-        CGVector angleVector=CGVectorMake((origtinTouchPoint.x - _ballShadow.position.x) * kBounceReduce,
-                                          (origtinTouchPoint.y - _ballShadow.position.y) * kBounceReduce);
-        
-        double rotation = atan(angleVector.dy/angleVector.dx);
-        rotation = angleVector.dx > 0 ? rotation : rotation + 3.1415926;
-//        if (!spriteArrow) {
-//            spriteArrow = [[SKSpriteNode alloc] initWithImageNamed:@"table_arrow"];
-//            spriteArrow.size = CGSizeMake(spriteArrow.size.width/2.0f, spriteArrow.size.height/2.0f);
-//            spriteArrow.xScale = 0.2;
-//            spriteArrow.yScale = 0.2;
-//            if (isTouchPetBall) {
-//                spriteArrow.hidden=YES;
-//            }
-//            spriteArrow.position = self.ballPlayer.position;
-//            [self addChild:spriteArrow];
-//        }
-//        spriteArrow.zRotation = rotation-3.1415926/2.0;
-        spriteArrow.zRotation = rotation;
-        spriteArrow.hidden = NO;
-        double scaleFactor = sqrt(angleVector.dx * angleVector.dx + angleVector.dy * angleVector.dy );
-        float scaleChange = scaleFactor/20;
-        if (scaleChange >=2) {
-            scaleChange = 2;
-        }
-
-        spriteArrow.xScale = scaleChange;
-        spriteArrow.yScale = scaleChange;
-        NSLog(@"scaleFactor=%f",scaleFactor);
-            
-    }
-}
-
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    
-    if (touches.count > 1 ) return;
-
-    
-    UITouch * touch = [touches anyObject];
-//    CGPoint location = [touch locationInNode:self];
-//    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
-    
-    if (isShowingSkillBar) {
-        
-        [self removeSkillBar];
-        
-        return;
-    }
-    
-    if (isNotSkillRun) {
-        return;
-    }
-    
-    if (_isBallDragging && !_isBallRolling) {
-        
-        UITouch * touch = [touches anyObject];
-        CGPoint location = [touch locationInNode:self];
-        SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
-        
-        if (touchedNode == petSkillBar) {
-            [self removeSkillBar];
-            
-            return;
-        }
-        
-        if ([touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]&&isTouchPetBall&&distanceBetweenPoints(location, origtinTouchPoint)<3) {
-            NSLog(@"touched pet end");
-
-            NSLog(@"touchedNode=%@ name =%@",touchedNode,touchedNode.name);
-            
-            [_ballShadow removeFromParent];
-            
-       
-            [self addPetSkillBar];
-            
-
-            
-        }else
-        {
-            
-        [self changeBallStatus:PP_PET_PLAYER_SIDE_NODE_NAME];
-        
-        _isBallDragging = NO;
-        [self.ballPlayer.physicsBody applyImpulse:
-         CGVectorMake((origtinTouchPoint.x - _ballShadow.position.x) * kBounceReduce,
-                      (origtinTouchPoint.y - _ballShadow.position.y) * kBounceReduce)];
-        [self.ballPlayer startPixieAccelerateAnimation:
-         CGVectorMake((origtinTouchPoint.x - _ballShadow.position.x) * kBounceReduce,
-                      (origtinTouchPoint.y - _ballShadow.position.y) * kBounceReduce) andType:@"step"];
-        currentPhysicsAttack = 1;
-//        _ballShadow.position = self.ballPlayer.position;
-        
-        [self setPlayerSideRoundRunState];
-            if (_ballShadow) {
-                [_ballShadow removeFromParent];
-                _ballShadow = nil;
-            }
-        
-        [self addBallMoveAnimation:self.ballPlayer.position];
-        _isBallRolling = YES;
-        
-        }
-    }
-    
-    if (spriteArrow) {
-        spriteArrow.hidden = YES;
-        [spriteArrow removeFromParent];
-        spriteArrow = nil;
-    }
-    
-    
-}
 -(void)addBallMoveAnimation:(CGPoint )positionAni
 {
     SKSpriteNode *actionNode= [SKSpriteNode spriteNodeWithImageNamed:@"ball_pixie_start_0000"];
@@ -508,162 +285,6 @@ int velocityValue (int x, int y) {
 
     }
     
-}
-#pragma mark SKPhysicsContactDelegate
-
-// 开始碰撞事件监测
--(void)didBeginContact:(SKPhysicsContact *)contact
-{
-    
-    if (!_isBallRolling) return;
-    
-    if((contact.bodyA == self.ballPlayer.physicsBody || contact.bodyB == self.ballPlayer.physicsBody))
-        //如果我方人物球撞击到物体
-    {
-        
-        if ((contact.bodyA == self.ballEnemy.physicsBody || contact.bodyB == self.ballEnemy.physicsBody))
-        {
-            
-            [self addHitAnimationNodes:contact.contactPoint andType:kPetAndEnemyHitTypeValue];
-            
-            return;
-        }
-        
-        //我方球体撞墙
-        if ((contact.bodyA.categoryBitMask == EntityCategoryWall || contact.bodyB.categoryBitMask == EntityCategoryWall)) {
-            
-            NSLog(@"ballPlayer vec x=%f y=%f",self.ballPlayer.physicsBody.velocity.dx,self.ballPlayer.physicsBody.velocity.dy);
-            NSLog(@"contact x=%f y=%f", contact.contactPoint.x,contact.contactPoint.y);
-            
-            [self addHitAnimationNodes:contact.contactPoint andType:kPetHitWallTypeValue];
-            
-            return;
-        
-        };
-        
-        if ([contact.bodyB.node.name isEqualToString:PP_BALL_TYPE_COMBO_NAME]||[contact.bodyA.node.name isEqualToString:PP_BALL_TYPE_COMBO_NAME])
-            //我方碰到连击球
-        {
-            
-            if (contact.bodyA == self.ballPlayer.physicsBody) {
-                PPBall *ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
-                [ballCombo startComboAnimation:CGVectorMake(self.ballPlayer.position.x-ballCombo.position.x,self.ballPlayer.position.y-ballCombo.position.y)];
-            } else {
-                PPBall *ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
-                [ballCombo startComboAnimation:CGVectorMake(self.ballPlayer.position.x-ballCombo.position.x,self.ballPlayer.position.y-ballCombo.position.y)];
-            }
-            
-            petCombos++;
-            [self.playerAndEnemySide setComboLabelText:petCombos withEnemy:enemyCombos];
-            [self.playerAndEnemySide startAttackAnimation:YES];
-            [self dealPixieBallContactComboBall:contact andPetBall:self.ballPlayer];
-            
-            //恶魔重生
-            if (battleSkillInfo.petHitRecoverHP!=0) {
-                [self.playerAndEnemySide changePetHPValue:battleSkillInfo.petHitRecoverHP];
-                NSLog(@"恶魔重生=%d",battleSkillInfo.petHitRecoverHP);
-                [self removeSkillBar];
-                
-            }
- 
-            
-            [self addComboValueChangeCombos:petCombos position:self.ballPlayer.position];
-            
-            return;
-            
-        }
-    } else if ((contact.bodyA == self.ballEnemy.physicsBody || contact.bodyB == self.ballEnemy.physicsBody))
-        //如果敌方人物球撞击到物体
-    {
-       
-        if ((contact.bodyA == self.ballPlayer.physicsBody || contact.bodyB == self.ballPlayer.physicsBody)){
-            [self addHitAnimationNodes:contact.contactPoint andType:kPetAndEnemyHitTypeValue];
-
-            return;
-        }
-        
-        //敌方球体撞墙
-        if ((contact.bodyA.categoryBitMask == EntityCategoryWall || contact.bodyB.categoryBitMask == EntityCategoryWall)) {
-            
-            NSLog(@"ballEnemy vec x=%f y=%f",self.ballEnemy.physicsBody.velocity.dx,self.ballEnemy.physicsBody.velocity.dy);
-            
-            [self addHitAnimationNodes:contact.contactPoint andType:kEnemyHitWallTypeValue];
-        };
-        
-        
-        if ([contact.bodyB.node.name isEqualToString:PP_BALL_TYPE_COMBO_NAME]||[contact.bodyA.node.name isEqualToString:PP_BALL_TYPE_COMBO_NAME])
-            //敌方碰到连击球
-        {
-            NSLog(@"bodyStatus=%d",[contact.bodyB.PPBallPhysicsBodyStatus intValue]);
-            [self.playerAndEnemySide resetPetAndEnemyPosition];
-            
-            if (contact.bodyA == self.ballEnemy.physicsBody) {
-                PPBall *ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
-                [ballCombo startComboAnimation:CGVectorMake(self.ballEnemy.position.x-ballCombo.position.x,self.ballEnemy.position.y-ballCombo.position.y)];
-            } else {
-                PPBall *ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
-                [ballCombo startComboAnimation:CGVectorMake(self.ballEnemy.position.x-ballCombo.position.x,self.ballEnemy.position.y-ballCombo.position.y)];
-            }
-            enemyCombos++;
-            [self.playerAndEnemySide setComboLabelText:petCombos withEnemy:enemyCombos];
-            [self dealPixieBallContactComboBall:contact andPetBall:self.ballEnemy];
-            [self.playerAndEnemySide startAttackAnimation:NO];
-
-            [self addComboValueChangeCombos:enemyCombos position:self.ballEnemy.position];
-            
-            
-            return;
-        }
-    } else return;
-}
-
-// 碰撞事件结束监测
-- (void)didEndContact:(SKPhysicsContact *)contact{
-    
-    BOOL needPlayerRun = NO;
-    BOOL needPlayerStep = NO;
-    BOOL needEnemyRun = NO;
-    BOOL needEnemyStep = NO;
-    
-    // 判断是否需要处理速度特效
-    if((contact.bodyA == self.ballPlayer.physicsBody || contact.bodyB == self.ballPlayer.physicsBody))
-        //如果我方人物球撞击到物体
-    {
-        if ((contact.bodyA == self.ballEnemy.physicsBody || contact.bodyB == self.ballEnemy.physicsBody))
-        {
-            if (currentPhysicsAttack == 1) needPlayerRun = YES;
-            if (currentPhysicsAttack == 2) needEnemyRun = YES;
-        } else needPlayerStep = YES;
-    } else if ((contact.bodyA == self.ballEnemy.physicsBody || contact.bodyB == self.ballEnemy.physicsBody))
-        //如果敌方人物球撞击到物体
-    {
-        if ((contact.bodyA == self.ballPlayer.physicsBody || contact.bodyB == self.ballPlayer.physicsBody))
-        {
-            if (currentPhysicsAttack == 1) needPlayerRun = YES;
-            if (currentPhysicsAttack == 2) needEnemyRun = YES;
-        } else needEnemyStep = YES;
-    }
-    
-    if (needPlayerStep) {
-        [self.ballPlayer startPixieAccelerateAnimation:self.ballPlayer.physicsBody.velocity andType:@"step"];
-        return;
-    }
-    if (needPlayerRun) {
-        [self.ballPlayer startPixieAccelerateAnimation:self.ballPlayer.physicsBody.velocity andType:@"run"];
-        self.ballPlayer.physicsBody.velocity = CGVectorMake(self.ballPlayer.physicsBody.velocity.dx * kVelocityAddition,
-                                                            self.ballPlayer.physicsBody.velocity.dy * kVelocityAddition);
-        return;
-    }
-    if (needEnemyStep) {
-        [self.ballEnemy startPixieAccelerateAnimation:self.ballEnemy.physicsBody.velocity andType:@"step"];
-        return;
-    }
-    if (needEnemyRun) {
-        [self.ballEnemy startPixieAccelerateAnimation:self.ballPlayer.physicsBody.velocity andType:@"run"];
-        self.ballEnemy.physicsBody.velocity = CGVectorMake(self.ballEnemy.physicsBody.velocity.dx * kVelocityAddition,
-                                                           self.ballEnemy.physicsBody.velocity.dy * kVelocityAddition);
-        return;
-    }
 }
 
 #pragma mark Deal ball contact
@@ -1800,6 +1421,7 @@ int velocityValue (int x, int y) {
     [ballsLabel runAction:action];
 }
 
+#pragma mark skill btn click
 //技能不可用按钮点击
 -(void)skillInvalidBtnClick:(PPSpriteButton *)skillInvalidButton
 {
@@ -1830,10 +1452,6 @@ int velocityValue (int x, int y) {
 -(void)skillPlayerShowBegin:(PPSpriteButton *)skillButton
 {
     
-    
-    
-    
-    
     NSDictionary *skillInfo = [self.ballPlayer.pixie.pixieSkills objectAtIndex:[skillButton.name intValue] - PP_SKILLS_CHOOSE_BTN_TAG];
     
     CGFloat mpToConsume = [[skillInfo objectForKey:@"skillmpchange"] floatValue];
@@ -1853,14 +1471,29 @@ int velocityValue (int x, int y) {
         [self addChild:additonLabel];
         
          [additonLabel setText:[NSString stringWithFormat:@"%@已释放",[skillInfo objectForKey:@"skillname"]]];
-        if ([[skillInfo objectForKey:@"skillname"] isEqualToString:@"恶魔重生"]) {
-//            [additonLabel setText:[NSString stringWithFormat:@"%@技能已释放",@"恶魔重生"]];
+        
+        
+        switch ([[skillInfo objectForKey:@"skillid"] intValue]) {
+            case kPPPetSkillDevilRebirth:
+            {
+                battleSkillInfo.petHitRecoverHP = 10;
 
-            battleSkillInfo.petHitRecoverHP = 10;
-        }else
-        {
-           
+            }
+                break;
+            case kPPPetSkillDevilBreathe:
+            {
+                [self addSkillBuff:1 skillInfo:skillInfo];
 
+            }
+                break;
+            case 2:
+            {
+                
+            }
+                break;
+                
+            default:
+                break;
         }
         
         
@@ -1953,6 +1586,65 @@ int velocityValue (int x, int y) {
         default:
             break;
     }
+}
+
+-(void)addSkillBuff:(int) buffId skillInfo:(NSDictionary *)skillInfo
+{
+    switch (buffId) {
+        case 1:
+        {
+            
+            battleSkillInfo.enemyPoisoningHP = 50;
+            PPBuff *buffId1 = [[PPBuff alloc] init];
+            buffId1.continueRound = [[skillInfo objectForKey:@"skillcontinue"] intValue];
+            [self.battleBuffArray addObject:buffId1];
+            
+        }
+            break;
+        case 2:
+        {
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+  
+    
+}
+
+-(void)changeBuffRound
+{
+    
+    for (int i=0;i<[self.battleBuffArray count]; i++) {
+        PPBuff *buff = [self.battleBuffArray objectAtIndex:i];
+        buff.continueRound--;
+        NSLog(@"continueRound =%d",buff.continueRound);
+        
+        if (buff.continueRound<0) {
+            [self removeBuff:buff];
+            
+        }
+    }
+}
+-(void)removeBuff:(PPBuff *)buff
+{
+    
+    switch ([buff.buffId intValue]) {
+        case 1:
+        {
+            
+           
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self.battleBuffArray removeObject:buff];
+    
 }
 
 //血条动画结束
@@ -2066,6 +1758,386 @@ int velocityValue (int x, int y) {
     //    [ball removeFromParent];
     //    [self.ballsElement removeObject:ball];
     //    ball = nil;
+}
+#pragma mark SKScene  delegate
+// 开始碰撞事件监测
+-(void)didBeginContact:(SKPhysicsContact *)contact
+{
+    
+    if (!_isBallRolling) return;
+    
+    if((contact.bodyA == self.ballPlayer.physicsBody || contact.bodyB == self.ballPlayer.physicsBody))
+        //如果我方人物球撞击到物体
+    {
+        
+        if ((contact.bodyA == self.ballEnemy.physicsBody || contact.bodyB == self.ballEnemy.physicsBody))
+        {
+            
+            [self addHitAnimationNodes:contact.contactPoint andType:kPetAndEnemyHitTypeValue];
+            
+            return;
+        }
+        
+        //我方球体撞墙
+        if ((contact.bodyA.categoryBitMask == EntityCategoryWall || contact.bodyB.categoryBitMask == EntityCategoryWall)) {
+            
+            NSLog(@"ballPlayer vec x=%f y=%f",self.ballPlayer.physicsBody.velocity.dx,self.ballPlayer.physicsBody.velocity.dy);
+            NSLog(@"contact x=%f y=%f", contact.contactPoint.x,contact.contactPoint.y);
+            
+            [self addHitAnimationNodes:contact.contactPoint andType:kPetHitWallTypeValue];
+            
+            return;
+            
+        };
+        
+        if ([contact.bodyB.node.name isEqualToString:PP_BALL_TYPE_COMBO_NAME]||[contact.bodyA.node.name isEqualToString:PP_BALL_TYPE_COMBO_NAME])
+            //我方碰到连击球
+        {
+            
+            if (contact.bodyA == self.ballPlayer.physicsBody) {
+                PPBall *ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
+                [ballCombo startComboAnimation:CGVectorMake(self.ballPlayer.position.x-ballCombo.position.x,self.ballPlayer.position.y-ballCombo.position.y)];
+            } else {
+                PPBall *ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
+                [ballCombo startComboAnimation:CGVectorMake(self.ballPlayer.position.x-ballCombo.position.x,self.ballPlayer.position.y-ballCombo.position.y)];
+            }
+            
+            petCombos++;
+            [self.playerAndEnemySide setComboLabelText:petCombos withEnemy:enemyCombos];
+            [self.playerAndEnemySide startAttackAnimation:YES];
+            [self dealPixieBallContactComboBall:contact andPetBall:self.ballPlayer];
+            
+            //恶魔重生
+            if (battleSkillInfo.petHitRecoverHP!=0) {
+                [self.playerAndEnemySide changePetHPValue:battleSkillInfo.petHitRecoverHP];
+                NSLog(@"恶魔重生=%d",battleSkillInfo.petHitRecoverHP);
+                [self removeSkillBar];
+                
+            }
+            
+            
+            [self addComboValueChangeCombos:petCombos position:self.ballPlayer.position];
+            
+            return;
+            
+        }
+    } else if ((contact.bodyA == self.ballEnemy.physicsBody || contact.bodyB == self.ballEnemy.physicsBody))
+        //如果敌方人物球撞击到物体
+    {
+        
+        if ((contact.bodyA == self.ballPlayer.physicsBody || contact.bodyB == self.ballPlayer.physicsBody)){
+            [self addHitAnimationNodes:contact.contactPoint andType:kPetAndEnemyHitTypeValue];
+            
+            return;
+        }
+        
+        //敌方球体撞墙
+        if ((contact.bodyA.categoryBitMask == EntityCategoryWall || contact.bodyB.categoryBitMask == EntityCategoryWall)) {
+            
+            NSLog(@"ballEnemy vec x=%f y=%f",self.ballEnemy.physicsBody.velocity.dx,self.ballEnemy.physicsBody.velocity.dy);
+            
+            [self addHitAnimationNodes:contact.contactPoint andType:kEnemyHitWallTypeValue];
+        };
+        
+        
+        if ([contact.bodyB.node.name isEqualToString:PP_BALL_TYPE_COMBO_NAME]||[contact.bodyA.node.name isEqualToString:PP_BALL_TYPE_COMBO_NAME])
+            //敌方碰到连击球
+        {
+            NSLog(@"bodyStatus=%d",[contact.bodyB.PPBallPhysicsBodyStatus intValue]);
+            [self.playerAndEnemySide resetPetAndEnemyPosition];
+            
+            if (contact.bodyA == self.ballEnemy.physicsBody) {
+                PPBall *ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
+                [ballCombo startComboAnimation:CGVectorMake(self.ballEnemy.position.x-ballCombo.position.x,self.ballEnemy.position.y-ballCombo.position.y)];
+            } else {
+                PPBall *ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
+                [ballCombo startComboAnimation:CGVectorMake(self.ballEnemy.position.x-ballCombo.position.x,self.ballEnemy.position.y-ballCombo.position.y)];
+            }
+            enemyCombos++;
+            [self.playerAndEnemySide setComboLabelText:petCombos withEnemy:enemyCombos];
+            [self dealPixieBallContactComboBall:contact andPetBall:self.ballEnemy];
+            [self.playerAndEnemySide startAttackAnimation:NO];
+            
+            [self addComboValueChangeCombos:enemyCombos position:self.ballEnemy.position];
+            
+            
+            return;
+        }
+    } else return;
+}
+
+// 碰撞事件结束监测
+- (void)didEndContact:(SKPhysicsContact *)contact{
+    
+    BOOL needPlayerRun = NO;
+    BOOL needPlayerStep = NO;
+    BOOL needEnemyRun = NO;
+    BOOL needEnemyStep = NO;
+    
+    // 判断是否需要处理速度特效
+    if((contact.bodyA == self.ballPlayer.physicsBody || contact.bodyB == self.ballPlayer.physicsBody))
+        //如果我方人物球撞击到物体
+    {
+        if ((contact.bodyA == self.ballEnemy.physicsBody || contact.bodyB == self.ballEnemy.physicsBody))
+        {
+            if (currentPhysicsAttack == 1) needPlayerRun = YES;
+            if (currentPhysicsAttack == 2) needEnemyRun = YES;
+        } else needPlayerStep = YES;
+    } else if ((contact.bodyA == self.ballEnemy.physicsBody || contact.bodyB == self.ballEnemy.physicsBody))
+        //如果敌方人物球撞击到物体
+    {
+        if ((contact.bodyA == self.ballPlayer.physicsBody || contact.bodyB == self.ballPlayer.physicsBody))
+        {
+            if (currentPhysicsAttack == 1) needPlayerRun = YES;
+            if (currentPhysicsAttack == 2) needEnemyRun = YES;
+        } else needEnemyStep = YES;
+    }
+    
+    if (needPlayerStep) {
+        [self.ballPlayer startPixieAccelerateAnimation:self.ballPlayer.physicsBody.velocity andType:@"step"];
+        return;
+    }
+    if (needPlayerRun) {
+        [self.ballPlayer startPixieAccelerateAnimation:self.ballPlayer.physicsBody.velocity andType:@"run"];
+        self.ballPlayer.physicsBody.velocity = CGVectorMake(self.ballPlayer.physicsBody.velocity.dx * kVelocityAddition,
+                                                            self.ballPlayer.physicsBody.velocity.dy * kVelocityAddition);
+        return;
+    }
+    if (needEnemyStep) {
+        [self.ballEnemy startPixieAccelerateAnimation:self.ballEnemy.physicsBody.velocity andType:@"step"];
+        return;
+    }
+    if (needEnemyRun) {
+        [self.ballEnemy startPixieAccelerateAnimation:self.ballPlayer.physicsBody.velocity andType:@"run"];
+        self.ballEnemy.physicsBody.velocity = CGVectorMake(self.ballEnemy.physicsBody.velocity.dx * kVelocityAddition,
+                                                           self.ballEnemy.physicsBody.velocity.dy * kVelocityAddition);
+        return;
+    }
+}
+
+-(void)didMoveToView:(SKView *)view
+{
+    [self setPlayerSideRoundRunState];
+    [self performSelectorOnMainThread:@selector(roundRotateBegin) withObject:nil afterDelay:1.0f];
+}
+
+-(void)willMoveFromView:(SKView *)view
+{
+    
+}
+
+// 每帧处理程序开始
+-(void)update:(NSTimeInterval)currentTime
+{
+    frameFlag++;
+    frameFlag %= 30;
+}
+
+-(void)didSimulatePhysics
+{
+    if (frameFlag == 15) [self checkingBallsMove];
+}
+
+
+
+#pragma mark UIResponder delegate
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+    if (_isBallRolling == YES) return;
+    if (touches.count > 1  || _isBallRolling) return;
+    
+    if (spriteArrow != nil) {
+        [spriteArrow removeFromParent];
+        spriteArrow = nil;
+    }
+    
+    spriteArrow = [[SKSpriteNode alloc] initWithImageNamed:@"table_arrow"];
+    spriteArrow.size = CGSizeMake(spriteArrow.size.width/2.0f, spriteArrow.size.height/2.0f);
+    spriteArrow.xScale = 0.2;
+    spriteArrow.yScale = 0.2;
+    if (isTouchPetBall) {
+        spriteArrow.hidden=YES;
+    }
+    spriteArrow.position = self.ballPlayer.position;
+    [self addChild:spriteArrow];
+    
+    UITouch * touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    //    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
+    origtinTouchPoint = location;
+    
+    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
+    
+    if ([touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]) {
+        
+        NSLog(@"touched pet begin");
+        isTouchPetBall = YES;
+        
+    }
+    
+    
+    if (isNotSkillRun || _isBallDragging) {
+        return;
+    }
+    
+    
+    
+    _isBallDragging = YES;
+    
+    _ballShadow = [PPBall ballWithPixie:self.pixiePlayer];
+    _ballShadow.size = CGSizeMake(kBallSize, kBallSize);
+    _ballShadow.position = location;
+    _ballShadow.alpha = 0.5f;
+    _ballShadow.physicsBody = nil;
+    [self addChild:_ballShadow];
+    
+}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+    if (touches.count > 1) return;
+    if (isNotSkillRun) {
+        return;
+    }
+    
+    if (_isBallDragging && !_isBallRolling) {
+        
+        
+        UITouch * touch = [touches anyObject];
+        CGPoint location = [touch locationInNode:self];
+        SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
+        
+        if (touchedNode == petSkillBar) {
+            [self removeSkillBar];
+            return;
+        }
+        
+        if(distanceBetweenPoints(location, origtinTouchPoint)>3)
+        {
+            spriteArrow.hidden = NO;
+            
+        }else{
+            if (isTouchPetBall) {
+                spriteArrow.hidden = YES;
+                
+            }
+        }
+        
+        _ballShadow.position = location;
+        CGVector angleVector=CGVectorMake((origtinTouchPoint.x - _ballShadow.position.x) * kBounceReduce,
+                                          (origtinTouchPoint.y - _ballShadow.position.y) * kBounceReduce);
+        
+        double rotation = atan(angleVector.dy/angleVector.dx);
+        rotation = angleVector.dx > 0 ? rotation : rotation + 3.1415926;
+        //        if (!spriteArrow) {
+        //            spriteArrow = [[SKSpriteNode alloc] initWithImageNamed:@"table_arrow"];
+        //            spriteArrow.size = CGSizeMake(spriteArrow.size.width/2.0f, spriteArrow.size.height/2.0f);
+        //            spriteArrow.xScale = 0.2;
+        //            spriteArrow.yScale = 0.2;
+        //            if (isTouchPetBall) {
+        //                spriteArrow.hidden=YES;
+        //            }
+        //            spriteArrow.position = self.ballPlayer.position;
+        //            [self addChild:spriteArrow];
+        //        }
+        //        spriteArrow.zRotation = rotation-3.1415926/2.0;
+        spriteArrow.zRotation = rotation;
+        spriteArrow.hidden = NO;
+        double scaleFactor = sqrt(angleVector.dx * angleVector.dx + angleVector.dy * angleVector.dy );
+        float scaleChange = scaleFactor/20;
+        if (scaleChange >=2) {
+            scaleChange = 2;
+        }
+        
+        spriteArrow.xScale = scaleChange;
+        spriteArrow.yScale = scaleChange;
+        NSLog(@"scaleFactor=%f",scaleFactor);
+        
+    }
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+    if (touches.count > 1 ) return;
+    
+    
+    UITouch * touch = [touches anyObject];
+    //    CGPoint location = [touch locationInNode:self];
+    //    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
+    
+    if (isShowingSkillBar) {
+        
+        [self removeSkillBar];
+        
+        return;
+    }
+    
+    if (isNotSkillRun) {
+        return;
+    }
+    
+    if (_isBallDragging && !_isBallRolling) {
+        
+        UITouch * touch = [touches anyObject];
+        CGPoint location = [touch locationInNode:self];
+        SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
+        
+        if (touchedNode == petSkillBar) {
+            [self removeSkillBar];
+            
+            return;
+        }
+        
+        if ([touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]&&isTouchPetBall&&distanceBetweenPoints(location, origtinTouchPoint)<3) {
+            NSLog(@"touched pet end");
+            
+            NSLog(@"touchedNode=%@ name =%@",touchedNode,touchedNode.name);
+            
+            [_ballShadow removeFromParent];
+            
+            
+            [self addPetSkillBar];
+            
+            
+            
+        }else
+        {
+            
+            [self changeBallStatus:PP_PET_PLAYER_SIDE_NODE_NAME];
+            
+            _isBallDragging = NO;
+            [self.ballPlayer.physicsBody applyImpulse:
+             CGVectorMake((origtinTouchPoint.x - _ballShadow.position.x) * kBounceReduce,
+                          (origtinTouchPoint.y - _ballShadow.position.y) * kBounceReduce)];
+            [self.ballPlayer startPixieAccelerateAnimation:
+             CGVectorMake((origtinTouchPoint.x - _ballShadow.position.x) * kBounceReduce,
+                          (origtinTouchPoint.y - _ballShadow.position.y) * kBounceReduce) andType:@"step"];
+            currentPhysicsAttack = 1;
+            //        _ballShadow.position = self.ballPlayer.position;
+            
+            [self setPlayerSideRoundRunState];
+            if (_ballShadow) {
+                [_ballShadow removeFromParent];
+                _ballShadow = nil;
+            }
+            
+            [self addBallMoveAnimation:self.ballPlayer.position];
+            _isBallRolling = YES;
+            
+        }
+    }
+    
+    if (spriteArrow) {
+        spriteArrow.hidden = YES;
+        [spriteArrow removeFromParent];
+        spriteArrow = nil;
+    }
+    
+    
 }
 
 @end

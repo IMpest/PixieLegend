@@ -285,6 +285,8 @@
 			<key>pixieSkills</key>
 			<array>
 				<dict>
+					<key>skillid</key>
+					<string>00</string>
 					<key>skillstatus</key>
 					<string>valid</string>
 					<key>animateTexturename</key>
@@ -309,6 +311,8 @@
 					<integer>0</integer>
 				</dict>
 				<dict>
+					<key>skillid</key>
+					<string>01</string>
 					<key>skillstatus</key>
 					<string>valid</string>
 					<key>animateTexturename</key>
@@ -326,13 +330,15 @@
 					<key>skillobject</key>
 					<integer>1</integer>
 					<key>skillname</key>
-					<string>狼焰斩</string>
+					<string>恶魔呼吸</string>
 					<key>skillcdrounds</key>
-					<integer>2</integer>
+					<integer>4</integer>
 					<key>skillcontinue</key>
-					<integer>0</integer>
+					<integer>3</integer>
 				</dict>
 				<dict>
+					<key>skillid</key>
+					<string>02</string>
 					<key>skillstatus</key>
 					<string>valid</string>
 					<key>animateTexturename</key>
@@ -350,13 +356,15 @@
 					<key>skillobject</key>
 					<integer>1</integer>
 					<key>skillname</key>
-					<string>狼焰防御</string>
+					<string>魔藤缠绕</string>
 					<key>skillcdrounds</key>
 					<integer>4</integer>
 					<key>skillcontinue</key>
 					<integer>0</integer>
 				</dict>
 				<dict>
+					<key>skillid</key>
+					<string>03</string>
 					<key>skillstatus</key>
 					<string>valid</string>
 					<key>animateTexturename</key>
@@ -374,7 +382,7 @@
 					<key>skillobject</key>
 					<integer>1</integer>
 					<key>skillname</key>
-					<string>狼焰防御</string>
+					<string>黑夜审判</string>
 					<key>skillcdrounds</key>
 					<integer>5</integer>
 					<key>skillcontinue</key>

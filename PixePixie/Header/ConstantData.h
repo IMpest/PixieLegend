@@ -38,6 +38,20 @@ static  NSString * kElementTypeString[kElementTypeMax+1] = {
     @"stone"
 };
 
+// 技能id
+typedef NS_ENUM(int, PPPetSkillId)
+{
+    kPPPetSkillDevilRebirth = 0,    // 恶魔重生
+    
+    kPPPetSkillDevilBreathe,       // 恶魔呼吸
+    kPPPetSkillRattanTwine,       // 魔藤缠绕
+    kPPPetSkillNightJudge,       // 黑夜审判
+    kPPPetSkillDevilGrill,       // 恶魔拷问
+    kPPPetSkillDevilSkin,       // 恶魔之肤
+    kPPPetSkillDevilAnger,       // 愤怒
+    kPPPetSkillDevilExtinction      // 灭绝
+
+};
 
 // 元素类型定义
 typedef NS_ENUM(int, PPElementType)
