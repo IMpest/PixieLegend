@@ -4,7 +4,7 @@
 {
     NSString * playerName;
     long playerStone;
-    int playerLevel;
+    long playerLevel;
     
     NSArray * playerFriends;
     NSArray * playerPixies;

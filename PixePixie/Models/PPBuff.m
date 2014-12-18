@@ -4,12 +4,6 @@
 
 @implementation PPBuff
 
-@synthesize buffName;
-@synthesize buffId;
-@synthesize continueRound;
-@synthesize attackAddition;
-@synthesize defenseAddition;
-@synthesize cdRoundsAttAdd;
-@synthesize cdRoundsDefAdd;
+@synthesize buffName,buffId,continueRound,attackAddition,defenseAddition,cdRoundsAttAdd,cdRoundsDefAdd;
 
 @end

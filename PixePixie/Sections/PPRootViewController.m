@@ -7,19 +7,20 @@
     UIView * userInfoBar;
     UIView * menuInfoBar;
     SKView * skViewMain;
-    UIButton *backToMain;
+    UIButton * backToMain;
     
-    PPMonsterMainView *monsterMainView;
-    PPKnapsackMainView *knapsackMainView;
-    PPFightingMainView*fightingMainView;
-    PPScheduleMainView *scheduleMainView;
-    PPOthersMainView *othersMainView;
+    PPMonsterMainView * monsterMainView;
+    PPKnapsackMainView * knapsackMainView;
+    PPFightingMainView * fightingMainView;
+    PPScheduleMainView * scheduleMainView;
+    PPOthersMainView * othersMainView;
 }
 @end
 
 @implementation PPRootViewController
 
-NSString * userInfo[] = {
+NSString * userInfo[] =
+{
     @"Name",
     @"Tips",
     @"Coin",
@@ -27,7 +28,8 @@ NSString * userInfo[] = {
     @"friends"
 };
 
-NSString * menu[] = {
+NSString * menu[] =
+{
     @"精灵",
     @"背包",
     @"战斗",

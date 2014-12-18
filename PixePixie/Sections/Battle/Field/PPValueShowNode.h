@@ -1,13 +1,22 @@
 
+typedef enum {
+    PP_HPTYPE,
+    PP_MPTYPE
+}VALUESHOWTYPE;
+
+
 @interface PPValueShowNode : SKSpriteNode
 {
+    
 @public
     CGFloat maxValue;
     CGFloat currentValue;
     id target;
     SEL animateEnd;
     CGFloat originalMax;
+    
 }
+
 /**
  * @brief 设置hp/mp变化条
  * @param maxV 上限值

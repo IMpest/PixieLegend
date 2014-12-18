@@ -7,8 +7,6 @@
 @property (nonatomic) SKTexture * defaultTexture;
 @end
 
-
-
 @implementation PPBall
 @synthesize sustainRounds,pixie, ballElementType, pixieEnemy, ballStatus, comboBallTexture, comboBallSprite,ballBuffs,plantrootAnimationNode;
 

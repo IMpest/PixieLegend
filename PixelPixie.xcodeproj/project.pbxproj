@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1917DFF718C8551300E54F02 /* PPElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 1917DFF618C8551300E54F02 /* PPElement.m */; };
 		1933E70E1A2F088100E8C5BF /* PPBasicScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1933E70D1A2F088100E8C5BF /* PPBasicScene.m */; };
 		1933E7161A2F08AC00E8C5BF /* PPAtlasManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1933E7111A2F08AC00E8C5BF /* PPAtlasManager.m */; };
 		1933E7171A2F08AC00E8C5BF /* PPCommonTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1933E7131A2F08AC00E8C5BF /* PPCommonTool.m */; };
@@ -206,11 +205,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1917DFF518C8551300E54F02 /* PPElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPElement.h; path = Models/PPElement.h; sourceTree = "<group>"; };
-		1917DFF618C8551300E54F02 /* PPElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPElement.m; path = Models/PPElement.m; sourceTree = "<group>"; };
+		191863411A42CE25001F6F09 /* ConstantData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ConstantData.h; path = PixePixie/Header/ConstantData.h; sourceTree = "<group>"; };
 		1933E70C1A2F088100E8C5BF /* PPBasicScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPBasicScene.h; path = PixePixie/General/Basic/PPBasicScene.h; sourceTree = "<group>"; };
 		1933E70D1A2F088100E8C5BF /* PPBasicScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPBasicScene.m; path = PixePixie/General/Basic/PPBasicScene.m; sourceTree = "<group>"; };
-		1933E70F1A2F08AC00E8C5BF /* ConstantData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConstantData.h; path = PixePixie/Core/ConstantData.h; sourceTree = SOURCE_ROOT; };
 		1933E7101A2F08AC00E8C5BF /* PPAtlasManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPAtlasManager.h; path = PixePixie/Core/PPAtlasManager.h; sourceTree = SOURCE_ROOT; };
 		1933E7111A2F08AC00E8C5BF /* PPAtlasManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPAtlasManager.m; path = PixePixie/Core/PPAtlasManager.m; sourceTree = SOURCE_ROOT; };
 		1933E7121A2F08AC00E8C5BF /* PPCommonTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPCommonTool.h; path = PixePixie/Core/PPCommonTool.h; sourceTree = SOURCE_ROOT; };
@@ -479,8 +476,6 @@
 		1917DFF418C8545200E54F02 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1917DFF518C8551300E54F02 /* PPElement.h */,
-				1917DFF618C8551300E54F02 /* PPElement.m */,
 				19CBA8C41907C7D000A249AB /* PPPlayer.h */,
 				19CBA8C51907C7D000A249AB /* PPPlayer.m */,
 				193DC4AA19686162007308C7 /* PPPixie.h */,
@@ -660,6 +655,7 @@
 		193DC47C19685B46007308C7 /* Header */ = {
 			isa = PBXGroup;
 			children = (
+				191863411A42CE25001F6F09 /* ConstantData.h */,
 				193DC48319686054007308C7 /* Configuration.h */,
 				1933E7431A2F0DF700E8C5BF /* Importation.h */,
 			);
@@ -945,7 +941,6 @@
 		D449CFD2192BB278007179B1 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				1933E70F1A2F08AC00E8C5BF /* ConstantData.h */,
 				1933E7101A2F08AC00E8C5BF /* PPAtlasManager.h */,
 				1933E7111A2F08AC00E8C5BF /* PPAtlasManager.m */,
 				1933E7121A2F08AC00E8C5BF /* PPCommonTool.h */,
@@ -1213,7 +1208,6 @@
 				1933E7211A2F0A3300E8C5BF /* PPMenuDungeonScene.m in Sources */,
 				193F96CC1A2EF91000F266A6 /* PPOthersMainView.m in Sources */,
 				1933E70E1A2F088100E8C5BF /* PPBasicScene.m in Sources */,
-				1917DFF718C8551300E54F02 /* PPElement.m in Sources */,
 				1933E73F1A2F0D8100E8C5BF /* PPCustomAlertNode.m in Sources */,
 				D49844301A0A1527008A2175 /* UserInfo.xcdatamodeld in Sources */,
 				1933E7221A2F0A3300E8C5BF /* PPMenuThemeScene.m in Sources */,

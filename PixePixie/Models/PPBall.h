@@ -1,7 +1,17 @@
 
 #import <objc/runtime.h>
 
-@class PPPixie;
+// 球类型定义
+typedef NS_ENUM(NSInteger, PPBallType)
+{
+    PPBallTypeNone = 0,     // 无
+    PPBallTypePlayer,       // 玩家球
+    PPBallTypeEnemy,        // 敌方球
+    PPBallTypeCombo,        // 连击球
+    PPBallTypeElement,      // 元素球
+    PPBallTypeTrap,         // 陷阱球
+};
+
 
 @interface NSObject (ExtendedProperties)
 @property (nonatomic, strong, readwrite) id PPBallPhysicsBodyStatus;

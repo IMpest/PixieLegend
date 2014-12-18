@@ -386,7 +386,7 @@ int velocityValue (int x, int y) {
 
     
     UITouch * touch = [touches anyObject];
-    CGPoint location = [touch locationInNode:self];
+//    CGPoint location = [touch locationInNode:self];
 //    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
     
     if (isShowingSkillBar) {
