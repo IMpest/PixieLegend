@@ -27,8 +27,6 @@
 		1933E7461A2F11E800E8C5BF /* battle_field_ball.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1933E7451A2F11E800E8C5BF /* battle_field_ball.atlas */; };
 		1933E74B1A2F11F100E8C5BF /* battle_field_ui.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1933E7471A2F11F100E8C5BF /* battle_field_ui.atlas */; };
 		1933E74C1A2F11F100E8C5BF /* pixie_battle_action.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1933E7481A2F11F100E8C5BF /* pixie_battle_action.atlas */; };
-		1933E74D1A2F11F100E8C5BF /* pixie_battle_effect.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1933E7491A2F11F100E8C5BF /* pixie_battle_effect.atlas */; };
-		1933E74E1A2F11F100E8C5BF /* pixie_battle_skill.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1933E74A1A2F11F100E8C5BF /* pixie_battle_skill.atlas */; };
 		193DC4AD19686162007308C7 /* PPPixie.m in Sources */ = {isa = PBXBuildFile; fileRef = 193DC4AB19686162007308C7 /* PPPixie.m */; };
 		193F96891A2EF49800F266A6 /* PPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F96861A2EF49800F266A6 /* PPAppDelegate.m */; };
 		193F968A1A2EF49800F266A6 /* PPRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F96881A2EF49800F266A6 /* PPRootViewController.m */; };
@@ -54,6 +52,10 @@
 		193F96D91A2EF93E00F266A6 /* PPNewsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F96D21A2EF93E00F266A6 /* PPNewsScene.m */; };
 		193F96DA1A2EF93E00F266A6 /* PPOptionsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F96D41A2EF93E00F266A6 /* PPOptionsScene.m */; };
 		193F96DB1A2EF93E00F266A6 /* PPSettingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F96D61A2EF93E00F266A6 /* PPSettingScene.m */; };
+		197358861A44180F008F0B4A /* battle_field_skill.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 197358851A44180F008F0B4A /* battle_field_skill.atlas */; };
+		197358881A44181A008F0B4A /* battle_fight_ui.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 197358871A44181A008F0B4A /* battle_fight_ui.atlas */; };
+		1973588A1A441E2E008F0B4A /* battle_fight_effect.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 197358891A441E2E008F0B4A /* battle_fight_effect.atlas */; };
+		1973589F1A4421DD008F0B4A /* battle_field_skill_icon.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1973589E1A4421DD008F0B4A /* battle_field_skill_icon.atlas */; };
 		1992B3EE19E9269C00BFE51E /* FrameCount.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1992B3ED19E9269B00BFE51E /* FrameCount.plist */; };
 		1992B3F219E926E700BFE51E /* skill_buff.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1992B3F119E926E600BFE51E /* skill_buff.atlas */; };
 		1992B3F419E926FB00BFE51E /* ball_buff.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1992B3F319E926FB00BFE51E /* ball_buff.atlas */; };
@@ -244,8 +246,6 @@
 		1933E7451A2F11E800E8C5BF /* battle_field_ball.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_field_ball.atlas; path = Resource/Image/battle_field_ball.atlas; sourceTree = "<group>"; };
 		1933E7471A2F11F100E8C5BF /* battle_field_ui.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_field_ui.atlas; path = Resource/Image/battle_field_ui.atlas; sourceTree = "<group>"; };
 		1933E7481A2F11F100E8C5BF /* pixie_battle_action.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = pixie_battle_action.atlas; path = Resource/Image/pixie_battle_action.atlas; sourceTree = "<group>"; };
-		1933E7491A2F11F100E8C5BF /* pixie_battle_effect.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = pixie_battle_effect.atlas; path = Resource/Image/pixie_battle_effect.atlas; sourceTree = "<group>"; };
-		1933E74A1A2F11F100E8C5BF /* pixie_battle_skill.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = pixie_battle_skill.atlas; path = Resource/Image/pixie_battle_skill.atlas; sourceTree = "<group>"; };
 		193DC48319686054007308C7 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Configuration.h; path = PixePixie/Header/Configuration.h; sourceTree = "<group>"; };
 		193DC4AA19686162007308C7 /* PPPixie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPPixie.h; path = Models/PPPixie.h; sourceTree = "<group>"; };
 		193DC4AB19686162007308C7 /* PPPixie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPPixie.m; path = Models/PPPixie.m; sourceTree = "<group>"; };
@@ -297,6 +297,10 @@
 		193F96D41A2EF93E00F266A6 /* PPOptionsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPOptionsScene.m; path = PixePixie/Sections/Other/PPOptionsScene.m; sourceTree = SOURCE_ROOT; };
 		193F96D51A2EF93E00F266A6 /* PPSettingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPSettingScene.h; path = PixePixie/Sections/Other/PPSettingScene.h; sourceTree = SOURCE_ROOT; };
 		193F96D61A2EF93E00F266A6 /* PPSettingScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPSettingScene.m; path = PixePixie/Sections/Other/PPSettingScene.m; sourceTree = SOURCE_ROOT; };
+		197358851A44180F008F0B4A /* battle_field_skill.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_field_skill.atlas; path = Resource/Image/battle_field_skill.atlas; sourceTree = "<group>"; };
+		197358871A44181A008F0B4A /* battle_fight_ui.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_fight_ui.atlas; path = Resource/Image/battle_fight_ui.atlas; sourceTree = "<group>"; };
+		197358891A441E2E008F0B4A /* battle_fight_effect.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_fight_effect.atlas; path = Resource/Image/battle_fight_effect.atlas; sourceTree = "<group>"; };
+		1973589E1A4421DD008F0B4A /* battle_field_skill_icon.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_field_skill_icon.atlas; path = Resource/Image/battle_field_skill_icon.atlas; sourceTree = "<group>"; };
 		1992B3ED19E9269B00BFE51E /* FrameCount.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = FrameCount.plist; path = Resource/Images/FrameCount.plist; sourceTree = "<group>"; };
 		1992B3F119E926E600BFE51E /* skill_buff.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = skill_buff.atlas; path = Resource/Images/skill_buff.atlas; sourceTree = "<group>"; };
 		1992B3F319E926FB00BFE51E /* ball_buff.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = ball_buff.atlas; path = Resource/Images/ball_buff.atlas; sourceTree = "<group>"; };
@@ -644,10 +648,12 @@
 			isa = PBXGroup;
 			children = (
 				1933E7451A2F11E800E8C5BF /* battle_field_ball.atlas */,
+				1973589E1A4421DD008F0B4A /* battle_field_skill_icon.atlas */,
+				197358851A44180F008F0B4A /* battle_field_skill.atlas */,
 				1933E7471A2F11F100E8C5BF /* battle_field_ui.atlas */,
+				197358891A441E2E008F0B4A /* battle_fight_effect.atlas */,
+				197358871A44181A008F0B4A /* battle_fight_ui.atlas */,
 				1933E7481A2F11F100E8C5BF /* pixie_battle_action.atlas */,
-				1933E7491A2F11F100E8C5BF /* pixie_battle_effect.atlas */,
-				1933E74A1A2F11F100E8C5BF /* pixie_battle_skill.atlas */,
 			);
 			name = Image;
 			sourceTree = "<group>";
@@ -1057,6 +1063,7 @@
 				1999AC4119EE64D500B25ED2 /* map_icon_plant.png in Resources */,
 				1999AC2919EE64D500B25ED2 /* plant_forward_0002.png in Resources */,
 				19F6EDA818C6C09900BFFF9A /* InfoPlist.strings in Resources */,
+				1973588A1A441E2E008F0B4A /* battle_fight_effect.atlas in Resources */,
 				1999AC3119EE64D500B25ED2 /* plant_forward_0010.png in Resources */,
 				1999AC3E19EE64D500B25ED2 /* map_all_03.png in Resources */,
 				1999AC6519EE64D500B25ED2 /* fire_shield_cast_0006.png in Resources */,
@@ -1064,17 +1071,19 @@
 				1999AC5719EE64D500B25ED2 /* fire_blade_cast_0016.png in Resources */,
 				1999AC6319EE64D500B25ED2 /* fire_shield_cast_0004.png in Resources */,
 				1999AC2419EE64D500B25ED2 /* fire_forward_0018.png in Resources */,
+				197358861A44180F008F0B4A /* battle_field_skill.atlas in Resources */,
 				1999AD3119EE6D3F00B25ED2 /* water_selected.png in Resources */,
 				1999AC4319EE64D500B25ED2 /* map_scene_metal.png in Resources */,
 				1999AC4A19EE64D500B25ED2 /* fire_blade_cast_0003.png in Resources */,
 				1999AC4019EE64D500B25ED2 /* map_icon_metal.png in Resources */,
-				1933E74D1A2F11F100E8C5BF /* pixie_battle_effect.atlas in Resources */,
 				1999AC3B19EE64D500B25ED2 /* map_all_00.png in Resources */,
 				1999AC1119EE64D500B25ED2 /* fire_encounter.png in Resources */,
 				1999AC4E19EE64D500B25ED2 /* fire_blade_cast_0007.png in Resources */,
 				1999AC2D19EE64D500B25ED2 /* plant_forward_0006.png in Resources */,
 				1999AC7819EE64D500B25ED2 /* fire_shield_cast_0025.png in Resources */,
+				1973589F1A4421DD008F0B4A /* battle_field_skill_icon.atlas in Resources */,
 				D4AE4CB0196ED1D100FC24EF /* PetsChooseInfo.plist in Resources */,
+				197358881A44181A008F0B4A /* battle_fight_ui.atlas in Resources */,
 				1999AD2F19EE6D3F00B25ED2 /* soil_selected.png in Resources */,
 				1999AC7519EE64D500B25ED2 /* fire_shield_cast_0022.png in Resources */,
 				D4BF767E19E6928D003CFFAB /* ball_elements.atlas in Resources */,
@@ -1170,7 +1179,6 @@
 				1999AC4919EE64D500B25ED2 /* fire_blade_cast_0002.png in Resources */,
 				1999AC5F19EE64D500B25ED2 /* fire_shield_cast_0000.png in Resources */,
 				1999AC2219EE64D500B25ED2 /* fire_forward_0016.png in Resources */,
-				1933E74E1A2F11F100E8C5BF /* pixie_battle_skill.atlas in Resources */,
 				1999AD2D19EE6D3F00B25ED2 /* pixie_plant3_battle1.png in Resources */,
 				1999AC6719EE64D500B25ED2 /* fire_shield_cast_0008.png in Resources */,
 				1999AC7919EE64D500B25ED2 /* fire_shield_cast_0026.png in Resources */,

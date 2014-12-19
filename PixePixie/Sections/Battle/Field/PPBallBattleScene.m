@@ -1480,15 +1480,10 @@ int velocityValue (int x, int y) {
 
             }
                 break;
-            case kPPPetSkillDevilBreathe:
+            case kPPPetSkillDevilBreath:
             {
                 [self addSkillBuff:1 skillInfo:skillInfo];
 
-            }
-                break;
-            case 2:
-            {
-                
             }
                 break;
                 
@@ -1514,8 +1509,6 @@ int velocityValue (int x, int y) {
         [self.playerAndEnemySide changePetMPValue:mpToConsume];
     }
     
-    
-    //
     //    if (isNotSkillShowTime) return;
     
     NSLog(@"skillInfo=%@",skillInfo);
@@ -2065,7 +2058,7 @@ int velocityValue (int x, int y) {
     if (touches.count > 1 ) return;
     
     
-    UITouch * touch = [touches anyObject];
+    //    UITouch * touch = [touches anyObject];
     //    CGPoint location = [touch locationInNode:self];
     //    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
     
