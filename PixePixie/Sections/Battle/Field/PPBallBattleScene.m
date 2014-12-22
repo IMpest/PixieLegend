@@ -88,6 +88,7 @@ int velocityValue (int x, int y) {
         self.pixiePlayer = pixieA;
         self.ballPlayer = pixieA.pixieBall;
         
+        
         self.pixieEnemy = pixieB;
         sceneTypeString = kElementTypeString[sceneType];
         
@@ -155,6 +156,10 @@ int velocityValue (int x, int y) {
         [self addWalls:CGSizeMake(kWallThick,tWidth) atPosition:CGPointMake(self.size.width, tHeight/2.0f + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
 
         [self initComboBalls];
+        [self initPlayerBalls];
+        [self initEnemyBall];
+        
+        
     }
     return self;
 }
@@ -178,8 +183,32 @@ int velocityValue (int x, int y) {
     self.ballPlayer.physicsBody.density = 1.0f;
     self.ballPlayer->battleCurrentScene = self;
     [self addChild:self.ballPlayer];
+    
 }
-
+-(void)initEnemyBall
+{
+    if(self.ballEnemy != nil){
+        [self.ballEnemy removeFromParent];
+        self.ballEnemy = nil;
+    }
+    
+    // 添加 Ball of Enemey
+    self.ballEnemy = self.pixieEnemy.pixieBall;
+    self.ballEnemy.position = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y + PP_FIT_TOP_SIZE);
+    self.ballEnemy->battleCurrentScene = self;
+    if (fabsf(self.ballEnemy.position.x)>=290) {
+        self.ballEnemy.position = CGPointMake(290.0f, self.ballPlayer.position.y);
+    }
+    if (fabsf(self.ballEnemy.position.y)>380) {
+        self.ballEnemy.position = CGPointMake(self.ballPlayer.position.x, 380);
+        
+    }
+    self.ballEnemy.physicsBody.categoryBitMask = EntityCategoryBall;
+    self.ballEnemy.physicsBody.contactTestBitMask = EntityCategoryBall;
+    [self addChild:self.ballEnemy];
+    
+    
+}
 // 添加连击球
 -(void)initComboBalls{
     
@@ -1471,7 +1500,9 @@ int velocityValue (int x, int y) {
             case kPPPetSkillDevilRebirth:
             {
                 battleSkillInfo.petHitRecoverHP = 10;
-
+              
+                [self addBuffAnimation:1];
+              
             }
                 break;
             case kPPPetSkillDevilBreath:
@@ -1574,6 +1605,36 @@ int velocityValue (int x, int y) {
             break;
     }
 }
+
+-(void)addBuffAnimation:(int)skillID
+{
+    
+    SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
+    buffShowNode.size = CGSizeMake(50.0f, 50.0f);
+    [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
+    [self.ballPlayer addChild:buffShowNode];
+    
+    switch (skillID) {
+        case 1:
+        {
+            
+            [buffShowNode runAction:[[PPAtlasManager battle_table_skill] getAnimation:@"01_skillbuff"] completion:^{
+                if (buffShowNode) {
+                    [buffShowNode removeFromParent];
+                }
+                
+            }];
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+}
+
 
 -(void)addSkillBuff:(int) buffId skillInfo:(NSDictionary *)skillInfo
 {

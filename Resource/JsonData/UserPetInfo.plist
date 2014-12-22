@@ -286,7 +286,7 @@
 			<array>
 				<dict>
 					<key>skillid</key>
-					<string>00</string>
+					<string>01</string>
 					<key>skillstatus</key>
 					<string>valid</string>
 					<key>animateTexturename</key>
@@ -294,7 +294,7 @@
 					<key>animatetexturecount</key>
 					<integer>20</integer>
 					<key>skillbtntexture</key>
-					<string>plant3_00</string>
+					<string>01_devilrebirth</string>
 					<key>skillhpchange</key>
 					<integer>700</integer>
 					<key>skillmpchange</key>
@@ -312,7 +312,7 @@
 				</dict>
 				<dict>
 					<key>skillid</key>
-					<string>01</string>
+					<string>02</string>
 					<key>skillstatus</key>
 					<string>valid</string>
 					<key>animateTexturename</key>
@@ -320,7 +320,7 @@
 					<key>animatetexturecount</key>
 					<integer>20</integer>
 					<key>skillbtntexture</key>
-					<string>plant3_01</string>
+					<string>02_devilbreath</string>
 					<key>skillhpchange</key>
 					<integer>-200</integer>
 					<key>skillmpchange</key>
@@ -346,7 +346,7 @@
 					<key>animatetexturecount</key>
 					<integer>20</integer>
 					<key>skillbtntexture</key>
-					<string>plant3_02</string>
+					<string>03_rattantwine</string>
 					<key>skillhpchange</key>
 					<integer>-554</integer>
 					<key>skillmpchange</key>
@@ -372,7 +372,7 @@
 					<key>animatetexturecount</key>
 					<integer>20</integer>
 					<key>skillbtntexture</key>
-					<string>plant3_03</string>
+					<string>04_nightjudge</string>
 					<key>skillhpchange</key>
 					<integer>-554</integer>
 					<key>skillmpchange</key>

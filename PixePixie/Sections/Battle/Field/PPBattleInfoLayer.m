@@ -111,12 +111,16 @@
 -(void)setSideElements:(PPPixie *)petppixie andEnemy:(PPPixie *)enemyppixie andSceneString:(NSString *)sceneString
 {
     
+    
     self.currentPPPixie = petppixie;
     self.currentPPPixieEnemy = enemyppixie;
     isHaveDead = NO;
     
     // 添加上方背景图片
-    SKSpriteNode * bgSprite = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_back",sceneString]]];
+//    SKSpriteNode * bgSprite = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_back",sceneString]]];
+    
+    
+    SKSpriteNode * bgSprite = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager pixie_fight_ui] textureNamed:[NSString stringWithFormat:@"%@",@"fight_back"]]];
     bgSprite.size = CGSizeMake(320.0f, 160.0f);
     bgSprite.position = CGPointMake(0.0f,0.0f);
     [self addChild:bgSprite];
@@ -662,14 +666,22 @@
 -(void)startAttackAnimation:(BOOL)isPetAttack
 {
     
+    SKNode *previousNode = [self childNodeWithName:@"spriteNodeMoving"];
+    if (previousNode) {
+        [previousNode removeFromParent];
+        previousNode = nil;
+    }
+    
     if (isPetAttack) {
         
 //        SKAction *action1=[SKAction moveToX:ppixieEnemyBtn.position.x-30.0f duration:0.1];
         
         SKSpriteNode *spriteNodeMoving = [SKSpriteNode spriteNodeWithImageNamed:@"moving_0000"];
+        spriteNodeMoving.name = @"spriteNodeMoving";
         spriteNodeMoving.position = ppixiePetBtn.position;
         [self addChild:spriteNodeMoving];
         SKAction *actionMove=[SKAction moveToX:91.5f duration:1];
+        spriteNodeMoving.size = CGSizeMake(spriteNodeMoving.size.width/2.0f, spriteNodeMoving.size.height/2.0f);
         SKAction *actionEffect = [SKAction repeatAction:[[PPAtlasManager pixie_battle_effect] getAnimation:@"moving"] count:2];
         [spriteNodeMoving runAction:[SKAction group:[NSArray arrayWithObjects:actionMove,actionEffect, nil]] completion:^{
             [spriteNodeMoving removeFromParent];
@@ -696,10 +708,10 @@
         
 
         [ppixieEnemyBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"fire3_beated"] completion:^{
-            if (spriteNodeMoving) {
-                [spriteNodeMoving removeFromParent];
-
-            }
+//            if (spriteNodeMoving) {
+//                [spriteNodeMoving removeFromParent];
+//
+//            }
             
         }];
         
@@ -708,10 +720,16 @@
     }else
     { 
         
+        
         SKSpriteNode *spriteNodeMoving = [SKSpriteNode spriteNodeWithImageNamed:@"moving_0000"];
         spriteNodeMoving.position = ppixieEnemyBtn.position;
+        spriteNodeMoving.name = @"spriteNodeMoving";
+        spriteNodeMoving.size = CGSizeMake(spriteNodeMoving.size.width/2.0f, spriteNodeMoving.size.height/2.0f);
         spriteNodeMoving.xScale  = -1;
+
         [self addChild:spriteNodeMoving];
+        
+        
         SKAction *actionMove=[SKAction moveToX:-61.5f duration:1];
         SKAction *actionEffect = [SKAction repeatAction:[[PPAtlasManager pixie_battle_effect] getAnimation:@"moving"] count:2];
         [spriteNodeMoving runAction:[SKAction group:[NSArray arrayWithObjects:actionMove,actionEffect, nil]] completion:^{
@@ -735,10 +753,10 @@
         [ppixiePetBtn runAction:actionBeated completion:^{
 
 //            [ppixiePetBtn removeAllActions];
-            if (spriteNodeMoving) {
-                [spriteNodeMoving removeFromParent];
-
-            }
+//            if (spriteNodeMoving) {
+//                [spriteNodeMoving removeFromParent];
+//
+//            }
 
         }];
         
@@ -803,5 +821,4 @@
     [ppixiePetBtn setPosition:CGPointMake(-61.5f, 20.0f)];
     [ppixieEnemyBtn setPosition:CGPointMake(ppixiePetBtn.position.x+150,ppixiePetBtn.position.y)];
 }
-
 @end

@@ -69,6 +69,7 @@
 //    PPBall * tBall = [PPBall spriteNodeWithTexture:[SKTexture textureWithImageNamed:imageName]];
     PPBall * tBall = [PPBall spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(50.0f, 50.0f)];
 
+    
     SKTexture *comboBallBack = [[PPAtlasManager battle_field_ball] textureNamed:@"ball_all"];
     SKSpriteNode *nodeBack=[SKSpriteNode spriteNodeWithTexture:comboBallBack];
     nodeBack.size = CGSizeMake(50.0f, 50.0f);
@@ -133,6 +134,7 @@
 // 创建连击球
 +(PPBall *)ballWithCombo
 {
+    
     NSString * imageName = @"ball_combo.png";
     SKTexture * tTexture = [SKTexture textureWithImageNamed:imageName];
     PPBall * tBall = [PPBall spriteNodeWithTexture:tTexture];
@@ -152,7 +154,9 @@
         [PPBall defaultBallPhysicsBody:tBall];
         tBall.pixie = nil;
     }
+    
     return tBall;
+    
 }
 
 // 设置元素球的持续回合
@@ -171,6 +175,7 @@
 
 -(void)addBuffWithName:(NSString *)buffName andRoundNum:(int)continueRound
 {
+    
     PPBuff *buff=[[PPBuff alloc] init];
     buff.buffName = buffName;
     buff.continueRound = continueRound;
@@ -182,6 +187,7 @@
 -(void)changeBuffRound
 {
     
+    
     for (int i=0;i<[self.ballBuffs count]; i++) {
         PPBuff *buff = [self.ballBuffs objectAtIndex:i];
         buff.continueRound--;
@@ -189,9 +195,9 @@
         
         if (buff.continueRound<0) {
             [self removeBuff:buff];
-            
         }
     }
+    
 }
 
 -(void)removeBuff:(PPBuff *)buff
@@ -206,6 +212,7 @@
             self.physicsBody.dynamic = YES;
             
             [battleCurrentScene removeBuff:buff andSide:PP_ENEMY_SIDE_NODE_NAME];
+            
         }
             break;
             

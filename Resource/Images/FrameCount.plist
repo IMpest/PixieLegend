@@ -90,5 +90,11 @@
 	<integer>5</integer>
 	<key>shield_break</key>
 	<integer>2</integer>
+	<key>_____battle_table_skill___</key>
+	<string></string>
+	<key>01_skillbuff</key>
+	<integer>8</integer>
+	<key>02_skillbuff</key>
+	<integer>21</integer>
 </dict>
 </plist>

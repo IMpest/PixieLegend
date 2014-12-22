@@ -48,5 +48,9 @@
  * @param stringSide 标记哪一方的buff 敌方或者我方
  */
 -(void)removeBuff:(PPBuff *)buffToRemove andSide:(NSString *)stringSide;
+/**
+ * @brief 增加技能状态效果
+ */
+-(void)addBuffAnimation:(int)skillID;
 
 @end

@@ -177,6 +177,7 @@
     titilePass.position = CGPointMake(0.0f,-150.0f);
     [spriteContent addChild:titilePass];
     
+    
     // 显示精灵选择菜单
     SKAction * actionMove=[SKAction moveTo:CGPointMake(160.0, 50) duration:0.5];
     [spriteContent runAction:actionMove];

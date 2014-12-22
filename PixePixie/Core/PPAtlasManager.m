@@ -132,6 +132,25 @@
     });
     return tAtlas;
 }
++(SKTextureAtlas *)battle_table_skill
+{
+    __strong static SKTextureAtlas * tAtlas = nil;
+    static dispatch_once_t pred;
+    dispatch_once(&pred, ^{
+        tAtlas = [SKTextureAtlas atlasNamed:@"battle_table_skill"];
+    });
+    return tAtlas;
+}
++(SKTextureAtlas *)battle_table_ball
+{
+    __strong static SKTextureAtlas * tAtlas = nil;
+    static dispatch_once_t pred;
+    dispatch_once(&pred, ^{
+        tAtlas = [SKTextureAtlas atlasNamed:@"battle_table_ball"];
+    });
+    return tAtlas;
+}
+
 
 +(SKTextureAtlas *)pixie_battle_action
 {
@@ -151,6 +170,18 @@
         tAtlas = [SKTextureAtlas atlasNamed:@"pixie_battle_effect"];
     });
     return tAtlas;
+}
+
++(SKTextureAtlas *)pixie_fight_ui
+{
+    
+    __strong static SKTextureAtlas * tAtlas = nil;
+    static dispatch_once_t pred;
+    dispatch_once(&pred, ^{
+        tAtlas = [SKTextureAtlas atlasNamed:@"battle_fight_ui"];
+    });
+    return tAtlas;
+    
 }
 
 +(SKTextureAtlas *)pixie_battle_skill
