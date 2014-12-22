@@ -12,6 +12,7 @@
     });
     return tAtlas;
 }
+
 +(SKTextureAtlas *)ball_action
 {
     __strong static SKTextureAtlas * tAtlas = nil;
@@ -117,7 +118,7 @@
     __strong static SKTextureAtlas * tAtlas = nil;
     static dispatch_once_t pred;
     dispatch_once(&pred, ^{
-        tAtlas = [SKTextureAtlas atlasNamed:@"battle_field_ball"];
+        tAtlas = [SKTextureAtlas atlasNamed:@"battle_table_ball"];
     });
     return tAtlas;
 }
@@ -127,10 +128,11 @@
     __strong static SKTextureAtlas * tAtlas = nil;
     static dispatch_once_t pred;
     dispatch_once(&pred, ^{
-        tAtlas = [SKTextureAtlas atlasNamed:@"battle_field_ui"];
+        tAtlas = [SKTextureAtlas atlasNamed:@"battle_table_ui"];
     });
     return tAtlas;
 }
+
 +(SKTextureAtlas *)pixie_battle_action
 {
     __strong static SKTextureAtlas * tAtlas = nil;
@@ -140,6 +142,7 @@
     });
     return tAtlas;
 }
+
 +(SKTextureAtlas *)pixie_battle_effect
 {
     __strong static SKTextureAtlas * tAtlas = nil;
@@ -149,6 +152,7 @@
     });
     return tAtlas;
 }
+
 +(SKTextureAtlas *)pixie_battle_skill
 {
     __strong static SKTextureAtlas * tAtlas = nil;
