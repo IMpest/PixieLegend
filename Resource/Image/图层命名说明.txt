@@ -9,7 +9,7 @@ battle 战斗模块
 
 			ball 球		
 
-		fighting 战斗区域
+		fight 战斗区域
 
 			info 菜单项
 

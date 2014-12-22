@@ -75,6 +75,8 @@ int velocityValue (int x, int y) {
 @synthesize ballsCombos;
 @synthesize battleBuffArray;
 
+#pragma mark Initilization
+
 -(id)initWithSize:(CGSize)size
       PixiePlayer:(PPPixie *)pixieA
        PixieEnemy:(PPPixie *)pixieB
@@ -82,19 +84,22 @@ int velocityValue (int x, int y) {
     
     if (self = [super initWithSize:size]) {
         
+        // 处理参数
+        self.pixiePlayer = pixieA;
+        self.ballPlayer = pixieA.pixieBall;
+        
+        self.pixieEnemy = pixieB;
+        sceneTypeString = kElementTypeString[sceneType];
+        
         _isTrapEnable = NO;
         isTouchPetBall = NO;
         isShowingSkillBar = NO;
+        
         // 帧数间隔计数
         frameFlag = 0;
         
         battleSkillInfo = [[PPBallBattleSkillInfo alloc] init];
         self.battleBuffArray = [[NSMutableArray alloc] init];
-        // 处理参数
-        self.pixiePlayer = pixieA;
-        self.pixieEnemy = pixieB;
-        sceneTypeString = kElementTypeString[sceneType];
-        
         
         // 初始化宠物基础数据
         petCombos = 0;
@@ -104,34 +109,29 @@ int velocityValue (int x, int y) {
         enemyAssimDiffEleNum = 0;
         enemyAssimSameEleNum = 0;
         currentPhysicsAttack = 0;
-
         
         // 设置敌我元素属性
         PPElementType petElement = pixieA.pixieBall.ballElementType;
         PPElementType enemyElement = pixieB.pixieBall.ballElementType;
         interCoefficient = kElementInhibition[petElement][enemyElement];
         
-        
         // 设置场景物理属性
         self.physicsWorld.gravity = CGVectorMake(0, 0);
         self.physicsWorld.contactDelegate = self;
         
-        
-        // 添加背景图片
-//        SKSpriteNode * bg = [SKSpriteNode spriteNodeWithImageNamed:[NSString stringWithFormat:@"%@_wall_back.png",sceneTypeString]];
+        // 添加弹珠台图片
         SKSpriteNode * bg = [SKSpriteNode spriteNodeWithImageNamed:@"table_back"];
         bg.size = CGSizeMake(320, 320);
         bg.position = CGPointMake(CGRectGetMidX(self.frame), 160 + SPACE_BOTTOM + PP_FIT_TOP_SIZE);
         [self addChild:bg];
-        
         
         SKSpriteNode * bgWall = [SKSpriteNode spriteNodeWithImageNamed:@"table_wall"];
         bgWall.size = CGSizeMake(320, 320);
         bgWall.position = CGPointMake(CGRectGetMidX(self.frame), 160 + SPACE_BOTTOM + PP_FIT_TOP_SIZE);
         [self addChild:bgWall];
         
-        
         // 添加状态条
+        
 //        self.playerSkillSide = [[PPBattleInfoLayer alloc] init];
 //        self.playerSkillSide.position = CGPointMake(self.size.width/2, 40 + PP_FIT_TOP_SIZE);
 //        self.playerSkillSide.size =  CGSizeMake(self.size.width, 80);
@@ -145,7 +145,6 @@ int velocityValue (int x, int y) {
 //        [self.playerSkillSide setSideSkillsBtn:pixieA andSceneString:sceneTypeString];
 //        [self addChild:self.playerSkillSide];
         
-        
         // 添加围墙
         self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
         CGFloat tWidth = 320.0f;
@@ -155,98 +154,92 @@ int velocityValue (int x, int y) {
         [self addWalls:CGSizeMake(kWallThick,tWidth) atPosition:CGPointMake(0.0f, tHeight/2.0f + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
         [self addWalls:CGSizeMake(kWallThick,tWidth) atPosition:CGPointMake(self.size.width, tHeight/2.0f + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
 
-        
-        
-        // 添加己方玩家球
-        self.ballPlayer = pixieA.pixieBall;
-        self.ballPlayer.name = @"ball_player";
-        float xPlayer=BALL_RANDOM_X;
-        float yPlayer=BALL_RANDOM_Y + PP_FIT_TOP_SIZE;
-        
-        if (xPlayer<20) {
-            xPlayer = 20;
-        }
-        if (xPlayer>self.size.width-20) {
-            xPlayer = self.size.width - 20;
-        }
-        
-        if (yPlayer <64) {
-            yPlayer = 64;
-        }
-        
-        if (yPlayer>344) {
-            yPlayer = 344;
-        }
-        
-        self.ballPlayer.position = CGPointMake(xPlayer, yPlayer);
-        self.ballPlayer->battleCurrentScene = self;
-        self.ballPlayer.physicsBody.categoryBitMask = EntityCategoryBall;
-        self.ballPlayer.physicsBody.contactTestBitMask = EntityCategoryBall;
-        self.ballPlayer.physicsBody.density = 1.0f;
-        [self addChild:self.ballPlayer];
-        
-        
-        // 添加连击球
-        self.ballsElement = [[NSMutableArray alloc] init];
-        self.ballsCombos = [[NSMutableArray alloc] init];
-        
-//        NSMutableArray *arrayPositionArray=[[NSMutableArray alloc] init];
-        
-        
-        for (int i = 0; i < 5; i++) {
-            
-            BOOL isRequred;
-            PPBall * comboBall = [PPBall ballWithCombo];
-           JUMP:{
-               
-               isRequred=YES;
-
-            CGPoint pointCombo = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y + PP_FIT_TOP_SIZE);
-               
-            for (PPBall *ballAdded in self.ballsCombos) {
-                
-                CGFloat distanceValue = distanceBetweenPoints(ballAdded.position,pointCombo);
-                if (distanceValue<=30) {
-                    isRequred = NO;
-                    break;
-                }
-                
-            }
-            comboBall.position = pointCombo;
-
-           }
-            
-            if (!isRequred)
-            goto JUMP;
-
-            
-            comboBall.name = PP_BALL_TYPE_COMBO_NAME;
-            comboBall.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:25];
-            comboBall.physicsBody.categoryBitMask = EntityCategoryBall;
-            comboBall.physicsBody.contactTestBitMask = EntityCategoryBall|EntityCategoryWall;
-            comboBall.physicsBody.collisionBitMask = EntityCategoryBall|EntityCategoryWall;
-            comboBall.physicsBody.dynamic = YES;
-            comboBall.physicsBody.mass= 10000;
-            comboBall.physicsBody.PPBallPhysicsBodyStatus = [NSNumber numberWithInt:i];
-            [self addChild:comboBall];
-            [self.ballsCombos addObject:comboBall];
-            
-        }
+        [self initComboBalls];
     }
     return self;
 }
 
--(void)addBallMoveAnimation:(CGPoint )positionAni
+// 添加己方玩家球
+-(void)initPlayerBalls{
+    
+    float xPlayer = BALL_RANDOM_X;
+    float yPlayer = BALL_RANDOM_Y + PP_FIT_TOP_SIZE;
+    
+    // 修正位置防止越界
+    if (xPlayer < 20) xPlayer = 20;
+    if (xPlayer > self.size.width - 20) xPlayer = self.size.width - 20;
+    if (yPlayer < 64) yPlayer = 64;
+    if (yPlayer > 344) yPlayer = 344;
+    
+    self.ballPlayer.name = @"ball_player";
+    self.ballPlayer.position = CGPointMake(xPlayer, yPlayer);
+    self.ballPlayer.physicsBody.categoryBitMask = EntityCategoryBall;
+    self.ballPlayer.physicsBody.contactTestBitMask = EntityCategoryBall;
+    self.ballPlayer.physicsBody.density = 1.0f;
+    self.ballPlayer->battleCurrentScene = self;
+    [self addChild:self.ballPlayer];
+}
+
+// 添加连击球
+-(void)initComboBalls{
+    
+    self.ballsElement = [[NSMutableArray alloc] init];
+    self.ballsCombos = [[NSMutableArray alloc] init];
+    
+    BOOL cb[8] = {NO, NO, NO, NO, NO, NO, NO, NO};
+    int cx[8] = {160, 160, 160, 320, 320, 480, 480, 480};
+    int cy[8] = {160, 320, 480, 160, 480, 160, 320, 480};
+    
+    for (int i = 0; i < 5; i++) {
+        
+        BOOL isRequred;
+        PPBall * comboBall = [PPBall ballWithCombo];
+        
+        // 调整尺寸防止重叠
+    JUMP:{
+        isRequred = YES;
+        
+        CGPoint pointCombo = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y + PP_FIT_TOP_SIZE);
+        
+        for (PPBall * ballAdded in self.ballsCombos) {
+            CGFloat distanceValue = distanceBetweenPoints(ballAdded.position,pointCombo);
+            if (distanceValue <= 30) {
+                isRequred = NO;
+                break;
+            }
+        }
+        comboBall.position = pointCombo;
+    }
+        if (!isRequred) goto JUMP;
+        
+        // 添加连击球
+        comboBall.name = PP_BALL_TYPE_COMBO_NAME;
+        comboBall.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:25];
+        comboBall.physicsBody.categoryBitMask = EntityCategoryBall;
+        comboBall.physicsBody.contactTestBitMask = EntityCategoryBall|EntityCategoryWall;
+        comboBall.physicsBody.collisionBitMask = EntityCategoryBall|EntityCategoryWall;
+        comboBall.physicsBody.dynamic = YES;
+        comboBall.physicsBody.mass = 10000;
+        comboBall.physicsBody.PPBallPhysicsBodyStatus = [NSNumber numberWithInt:i];
+        [self addChild:comboBall];
+        [self.ballsCombos addObject:comboBall];
+    }
+}
+
+#pragma mark BallAnimation
+
+-(void)addBallMoveAnimation:(CGPoint)positionAni
 {
-    SKSpriteNode *actionNode= [SKSpriteNode spriteNodeWithImageNamed:@"ball_pixie_start_0000"];
+    SKSpriteNode * actionNode = [SKSpriteNode spriteNodeWithImageNamed:@"ball_pixie_start_0000"];
     actionNode.position = self.ballPlayer.position;
     [self addChild:actionNode];
-    SKAction *action1=[SKAction repeatAction:[[PPAtlasManager battle_field_ball] getAnimation:@"ball_pixie_start"] count:5];
-    SKAction *action2=[SKAction group:[NSArray arrayWithObjects:action1,[SKAction fadeAlphaTo:0 duration:2], nil]];
+    SKAction * action1=[SKAction repeatAction:[[PPAtlasManager battle_field_ball] getAnimation:@"ball_pixie_start"] count:5];
+    SKAction * action2=[SKAction group:[NSArray arrayWithObjects:action1, [SKAction fadeAlphaTo:0 duration:2], nil]];
     [actionNode runAction:action2 completion:^{
         [actionNode removeFromParent];
     }];
 }
+
 -(void)changeSkillBtnCdRounds
 {
     
@@ -269,8 +262,8 @@ int velocityValue (int x, int y) {
        
         }
     }
-    
 }
+
 -(void)changeBallStatus:(NSString *)stringSide
 {
     if ([stringSide isEqualToString:PP_PET_PLAYER_SIDE_NODE_NAME]) {
@@ -288,6 +281,7 @@ int velocityValue (int x, int y) {
 }
 
 #pragma mark Deal ball contact
+
 //处理人物球与连击球碰撞
 -(NSNumber *)dealPixieBallContactComboBall:(SKPhysicsContact *)contact andPetBall:(PPBall *)pixieball
 {
@@ -567,7 +561,7 @@ int velocityValue (int x, int y) {
     }
 }
 
-//设置战斗对象
+// 设置战斗对象
 -(void)setEnemyAtIndex:(int)index
 {
     currentEnemyIndex = index;
