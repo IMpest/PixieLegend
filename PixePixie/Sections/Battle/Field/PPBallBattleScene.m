@@ -159,7 +159,6 @@ int velocityValue (int x, int y) {
         [self initPlayerBalls];
         [self initEnemyBall];
         
-        
     }
     return self;
 }
@@ -183,8 +182,8 @@ int velocityValue (int x, int y) {
     self.ballPlayer.physicsBody.density = 1.0f;
     self.ballPlayer->battleCurrentScene = self;
     [self addChild:self.ballPlayer];
-    
 }
+
 -(void)initEnemyBall
 {
     if(self.ballEnemy != nil){
@@ -206,40 +205,45 @@ int velocityValue (int x, int y) {
     self.ballEnemy.physicsBody.categoryBitMask = EntityCategoryBall;
     self.ballEnemy.physicsBody.contactTestBitMask = EntityCategoryBall;
     [self addChild:self.ballEnemy];
-    
-    
 }
+
 // 添加连击球
 -(void)initComboBalls{
     
     self.ballsElement = [[NSMutableArray alloc] init];
     self.ballsCombos = [[NSMutableArray alloc] init];
-    
-    BOOL cb[8] = {NO, NO, NO, NO, NO, NO, NO, NO};
-    int cx[8] = {160, 160, 160, 320, 320, 480, 480, 480};
-    int cy[8] = {160, 320, 480, 160, 480, 160, 320, 480};
+
+    // 8选5方式决定位置
+    const int tmax = 8;
+    BOOL cb[tmax] = {NO, NO, NO, NO, NO, NO, NO, NO};
+    int cx[tmax] = {40, 40, 40, 160, 160, 280, 280, 280};
+    int cy[tmax] = {40, 160, 280, 40, 280, 40, 160, 280};
     
     for (int i = 0; i < 5; i++) {
         
-        BOOL isRequred;
         PPBall * comboBall = [PPBall ballWithCombo];
+
+        int t = arc4random() % tmax;
+        while (cb[t] == YES) t = arc4random() % tmax;
+        cb[t] = YES;
+        NSLog(@"%d %d %d", t, cx[t], cy[t]);
+        comboBall.position = CGPointMake(cx[t], cy[t] + PP_FIT_TOP_SIZE);
         
-        // 调整尺寸防止重叠
-    JUMP:{
-        isRequred = YES;
-        
-        CGPoint pointCombo = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y + PP_FIT_TOP_SIZE);
-        
-        for (PPBall * ballAdded in self.ballsCombos) {
-            CGFloat distanceValue = distanceBetweenPoints(ballAdded.position,pointCombo);
-            if (distanceValue <= 30) {
-                isRequred = NO;
-                break;
-            }
-        }
-        comboBall.position = pointCombo;
-    }
-        if (!isRequred) goto JUMP;
+        // 调整随机尺寸结果防止重叠
+//        BOOL isRequred = NO;
+//        while (!isRequred) {
+//            isRequred = YES;
+//            CGPoint pointCombo = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y + PP_FIT_TOP_SIZE);
+//            for (PPBall * ballAdded in self.ballsCombos) {
+//                CGFloat distanceValue = distanceBetweenPoints(ballAdded.position,pointCombo);
+//                if (distanceValue <= 30) {
+//                    isRequred = NO;
+//                    break;
+//                }
+//            }
+//            comboBall.position = pointCombo;
+//            NSLog(@"%f %f", pointCombo.x, pointCombo.y);
+//        }
         
         // 添加连击球
         comboBall.name = PP_BALL_TYPE_COMBO_NAME;

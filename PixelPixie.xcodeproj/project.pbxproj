@@ -647,12 +647,12 @@
 		1933E7441A2F11B200E8C5BF /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				197358891A441E2E008F0B4A /* battle_fight_effect.atlas */,
+				197358871A44181A008F0B4A /* battle_fight_ui.atlas */,
 				19C8BE001A4821AE00872CE9 /* battle_table_ball.atlas */,
 				19C8BE011A4821AE00872CE9 /* battle_table_skill_icon.atlas */,
 				19C8BE021A4821AE00872CE9 /* battle_table_skill.atlas */,
 				19C8BE031A4821AE00872CE9 /* battle_table_ui.atlas */,
-				197358891A441E2E008F0B4A /* battle_fight_effect.atlas */,
-				197358871A44181A008F0B4A /* battle_fight_ui.atlas */,
 				1933E7481A2F11F100E8C5BF /* pixie_battle_action.atlas */,
 			);
 			name = Image;

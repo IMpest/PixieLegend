@@ -10,19 +10,19 @@
 	<string>PixelPixie</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>a665cacd-51d4-8da6-5d3b-ce57b7db7bff++505</key>
+		<key>1143720B078128A3E073E77919AE31B2CD048E84</key>
 		<string>https://github.com/IMpest/PixieLegend/trunk</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>PixelPixie.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>a665cacd-51d4-8da6-5d3b-ce57b7db7bff++505</key>
+		<key>1143720B078128A3E073E77919AE31B2CD048E84</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectRepositoryRootDictionary</key>
 	<dict>
-		<key>a665cacd-51d4-8da6-5d3b-ce57b7db7bff++505</key>
+		<key>1143720B078128A3E073E77919AE31B2CD048E84</key>
 		<string>https://github.com/IMpest/PixieLegend</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -30,14 +30,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>a665cacd-51d4-8da6-5d3b-ce57b7db7bff++505</string>
+	<string>1143720B078128A3E073E77919AE31B2CD048E84</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.subversion</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>a665cacd-51d4-8da6-5d3b-ce57b7db7bff++505</string>
+			<string>1143720B078128A3E073E77919AE31B2CD048E84</string>
 			<key>IDESourceControlWCCName</key>
 			<string>PixieLegend</string>
 		</dict>
