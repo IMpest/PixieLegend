@@ -43,8 +43,10 @@
 @interface PPAtlasManager : NSObject
 +(SKTextureAtlas *)battle_field_ball;
 +(SKTextureAtlas *)battle_field_ui;
++(SKTextureAtlas *)battle_fight_effect;
 +(SKTextureAtlas *)battle_table_ball;
 +(SKTextureAtlas *)battle_table_skill;
++(SKTextureAtlas *)battle_table_skill_icon;
 
 
 +(SKTextureAtlas *)pixie_battle_action;

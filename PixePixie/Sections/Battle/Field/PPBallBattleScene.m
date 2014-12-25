@@ -786,7 +786,9 @@ int velocityValue (int x, int y) {
         
         NSDictionary *dictSkill=nil;
         if ([self.pixiePlayer.pixieSkills count]>i) {
+            
             dictSkill=[self.pixiePlayer.pixieSkills objectAtIndex:i];
+            
         }
         
         NSString * stringSkillStatus = [dictSkill objectForKey:@"skillstatus"];
@@ -796,7 +798,7 @@ int velocityValue (int x, int y) {
         
         if (![stringSkillStatus isEqualToString:@"valid"]) {
             stringSkillBtn = [NSString stringWithFormat:@"%@_none",kElementTypeString[self.pixiePlayer.pixieElement]];
-            passButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager skill_icon] textureNamed:stringSkillBtn]
+            passButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager battle_table_skill_icon] textureNamed:stringSkillBtn]
                                                    andSize:CGSizeMake(50.0f, 50.0f)];
             //            [passButton setLabelWithText:@"不可用" andFont:[UIFont boldSystemFontOfSize:14.0f] withColor:[UIColor whiteColor]];
             
@@ -807,7 +809,7 @@ int velocityValue (int x, int y) {
             
         } else {
             
-            passButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager pixie_battle_skill] textureNamed:stringSkillBtn]
+            passButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager battle_table_skill_icon] textureNamed:stringSkillBtn]
                                                    andSize:CGSizeMake(50.0f, 50.0f)];
             [passButton addTarget:self selector:@selector(skillPlayerShowBegin:)
                        withObject:passButton forControlEvent:PPButtonControlEventTouchUp];

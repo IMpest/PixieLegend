@@ -672,6 +672,7 @@
         previousNode = nil;
     }
     
+    
     if (isPetAttack) {
         
 //        SKAction *action1=[SKAction moveToX:ppixieEnemyBtn.position.x-30.0f duration:0.1];
@@ -682,7 +683,7 @@
         [self addChild:spriteNodeMoving];
         SKAction *actionMove=[SKAction moveToX:91.5f duration:1];
         spriteNodeMoving.size = CGSizeMake(spriteNodeMoving.size.width/2.0f, spriteNodeMoving.size.height/2.0f);
-        SKAction *actionEffect = [SKAction repeatAction:[[PPAtlasManager pixie_battle_effect] getAnimation:@"moving"] count:2];
+        SKAction *actionEffect = [SKAction repeatAction:[[PPAtlasManager battle_fight_effect] getAnimation:@"moving"] count:2];
         [spriteNodeMoving runAction:[SKAction group:[NSArray arrayWithObjects:actionMove,actionEffect, nil]] completion:^{
             [spriteNodeMoving removeFromParent];
         }];
@@ -731,7 +732,7 @@
         
         
         SKAction *actionMove=[SKAction moveToX:-61.5f duration:1];
-        SKAction *actionEffect = [SKAction repeatAction:[[PPAtlasManager pixie_battle_effect] getAnimation:@"moving"] count:2];
+        SKAction *actionEffect = [SKAction repeatAction:[[PPAtlasManager battle_fight_effect] getAnimation:@"moving"] count:2];
         [spriteNodeMoving runAction:[SKAction group:[NSArray arrayWithObjects:actionMove,actionEffect, nil]] completion:^{
             [spriteNodeMoving removeFromParent];
         }];
@@ -780,7 +781,7 @@
         [self addChild:attackShowNode];
         
         
-        [attackShowNode runAction:[[PPAtlasManager pixie_battle_effect] getAnimation:@"plant3_attack"] completion:^{
+        [attackShowNode runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"plant3_hit"] completion:^{
             if (attackShowNode) {
                 [attackShowNode removeFromParent];
                 attackShowNode = nil;
@@ -804,7 +805,7 @@
         [self addChild:attackShowNode];
         
         
-        [attackShowNode runAction:[[PPAtlasManager pixie_battle_effect] getAnimation:@"fire3_attack"] completion:^{
+        [attackShowNode runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"fire3_hit"] completion:^{
             if (attackShowNode) {
                 [attackShowNode removeFromParent];
                 attackShowNode = nil;
