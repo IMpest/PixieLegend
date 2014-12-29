@@ -21,6 +21,7 @@
     return self;
 }
 
+
 //
 -(void)introduceInfoLabel:(NSString *)text
 {
@@ -53,6 +54,7 @@
     [enemyDeadContent addChild:confirmButton];
 }
 
+
 //
 -(void)confirmBtnClick:(SKSpriteNode *)contentNode
 {
@@ -61,6 +63,7 @@
         contentNode = nil;
     }
 }
+
 
 //
 -(void)addPassChoose
@@ -80,7 +83,8 @@
                                       andFont:[UIFont systemFontOfSize:11] withColor:nil];
         passIntroduceButton.position = CGPointMake(passButton.position.x + 60.0f,passButton.position.y + 15.0f);
         passIntroduceButton.name = [NSString stringWithFormat:@"副本%d介绍",5-i];
-        [passIntroduceButton addTarget:self selector:@selector(introduceInfoLabel:) withObject:passIntroduceButton.name
+        [passIntroduceButton addTarget:self selector:@selector(introduceInfoLabel:)
+                            withObject:passIntroduceButton.name
                        forControlEvent:PPButtonControlEventTouchUpInside];
         [self addChild:passIntroduceButton];
     }
@@ -92,7 +96,35 @@
     [self enterHurdleReady];
 }
 
-//
+
+// 这里直接进入战斗画面
+-(void)spriteChooseClick
+{
+//    NSArray * petsArray = nil;
+//    NSArray * enemysArray = nil;
+//    
+//    
+//    NSDictionary * petsChoosedInfo = [petsArray objectAtIndex:302 - PP_PETS_CHOOSE_BTN_TAG];
+//    NSDictionary * choosedPet = [NSDictionary dictionaryWithDictionary:petsChoosedInfo];
+//    
+//    // 初始化 ballScene
+//    PPPixie * playerPixie = [PPPixie birthPixieWithPetsInfo:choosedPet];
+//    PPPixie * enemyPixie = [PPPixie birthEnemyPixieWithPetsInfo:[enemysArray objectAtIndex:currentEnemyIndex]];
+//    if (playerPixie == nil || enemyPixie == nil) return;
+//    
+//    // 创建战斗场景并显示
+//    PPBallBattleScene * ballScene = [[PPBallBattleScene alloc] initWithSize:CurrentDeviceRealSize
+//                                                                PixiePlayer:playerPixie
+//                                                                 PixieEnemy:enemyPixie  andSceneType:currentElementType];
+//    
+//    ballScene.scaleMode = SKSceneScaleModeAspectFill;
+//    ballScene.hurdleReady = self;
+//    [ballScene setEnemyAtIndex:currentEnemyIndex];
+//    [self.view presentScene:ballScene];
+}
+
+
+// 进入推进场景（旧版）
 -(void)enterHurdleReady
 {
     SKNode * spriteNode = [self childNodeWithName:PP_GOFORWARD_MENU_DUNGEON_FIGHTING];
@@ -109,6 +141,7 @@
     [battleScene setCurrentHurdle:0];
     [self.view presentScene:battleScene];
 }
+
 
 -(void)backButtonClick:(NSString *)backName
 {

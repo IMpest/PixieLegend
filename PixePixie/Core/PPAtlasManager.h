@@ -48,8 +48,9 @@
 +(SKTextureAtlas *)battle_table_skill;
 +(SKTextureAtlas *)battle_table_skill_icon;
 
-
 +(SKTextureAtlas *)pixie_battle_action;
+
+/////////////////////////////////////////
 +(SKTextureAtlas *)pixie_battle_effect;
 +(SKTextureAtlas *)pixie_battle_skill;
 +(SKTextureAtlas *)pixie_fight_ui;

@@ -32,7 +32,7 @@
 
 #pragma mark - add current Hurdle
 
-//
+
 -(void)setEnemysArray
 {
     self.enemysArray = [[NSArray alloc] initWithArray:[self.allEnemys objectForKey:@"EnemysInfo"]];
@@ -51,7 +51,7 @@
     if (contentPetChooseNode != nil) {
         [contentPetChooseNode removeFromParent];
     }
-    //战斗结束
+    // 战斗结束
     if ([self.enemysArray count] <= currentIndex)
     {
         NSLog(@"战斗结束，结算奖励");
@@ -97,7 +97,8 @@
         [self addChangeStatus:hurdleReadyContentNode];
     }];
 }
-//添加己方精灵
+
+// 添加己方精灵
 -(void)addChangeStatus:(SKSpriteNode *)contentSprite
 {
 
@@ -106,17 +107,15 @@
     _playerPixie.size = CGSizeMake(320.0f, 150.0f);
     [contentSprite addChild:_playerPixie];
     
-    //预加载变身动画
+    // 预加载变身动画
     NSMutableArray *texturesArray = [[NSMutableArray alloc] initWithCapacity:44];
     @synchronized(texturesArray)
     {
-        
         for (int i = 0; i < 27; i++) {
-            NSString *textureName = [NSString stringWithFormat:@"fire_shield_cast_00%02d.png", i];
+            NSString * textureName = [NSString stringWithFormat:@"fire_shield_cast_00%02d.png", i];
             SKTexture * temp = [SKTexture textureWithImageNamed:textureName];
             [texturesArray addObject:temp];
         }
-        
     }
     self.pixieAnimation = [NSMutableArray arrayWithArray:texturesArray];
     
@@ -130,42 +129,47 @@
 }
 
 #pragma mark - add a pet choose node
-//设置 选择己方战斗宠物
+
+// 设置 选择己方战斗宠物
+
 -(void)setPetsChooseContent
 {
+    
     SKSpriteNode *enemyNode = [[SKSpriteNode alloc] init];
-    [enemyNode setSize:CGSizeMake(125.0f, 125.0f)];
-    [enemyNode setPosition:CGPointMake(self.size.width/2.0f, self.size.height/2.0f)];
+    [enemyNode setSize:CGSizeMake(125, 125)];
+    [enemyNode setPosition:CGPointMake(self.size.width/2, self.size.height/2)];
     [enemyNode setTexture:[[PPAtlasManager pixie_info] textureNamed:[NSString stringWithFormat:@"%@3_encounter",kElementTypeString[chooseSceneType]]]];
     [self addChild:enemyNode];
 
-    
-    SKSpriteNode *spriteContent = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(320, 100)];
+    SKSpriteNode * spriteContent = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(320, 100)];
     spriteContent.name = PP_HURDLE_PETCHOOSE_CONTENT_NAME;
-    spriteContent.position = CGPointMake(160.0, -50.0);
+    spriteContent.position = CGPointMake(160, -50);
     [self addChild:spriteContent];
     
     NSDictionary * dictUserPets = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"UserPetInfo"
                                                                                                              ofType:@"plist"]];
-    NSArray *petsInfoArray = [[NSArray alloc] initWithArray:[dictUserPets objectForKey:@"userpetinfo"]];
+    NSArray * petsInfoArray = [[NSArray alloc] initWithArray:[dictUserPets objectForKey:@"userpetinfo"]];
     NSInteger petsCount = [petsInfoArray count];
     
     for (int i = 0; i < petsCount; i++) {
 
 //        PPSpriteButton *petChooseButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(80.0f, 80.0f)];
         
-        PPSpriteButton *petChooseButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager pixie_info] textureNamed:[[petsInfoArray objectAtIndex:i] objectForKey:@"petimage"]] andSize:CGSizeMake(80, 80)];
+        PPSpriteButton * petChooseButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager pixie_info] textureNamed:[[petsInfoArray objectAtIndex:i] objectForKey:@"petimage"]]
+                                                                     andSize:CGSizeMake(80, 80)];
         NSLog(@"petimage=%@",[[petsInfoArray objectAtIndex:i] objectForKey:@"petimage"]);
-        [petChooseButton setLabelWithText:[[petsInfoArray objectAtIndex:i] objectForKey:@"petname"] andFont:[UIFont systemFontOfSize:15] withColor:nil];
+        [petChooseButton setLabelWithText:[[petsInfoArray objectAtIndex:i] objectForKey:@"petname"]
+                                  andFont:[UIFont systemFontOfSize:15] withColor:nil];
         [petChooseButton.label setPosition:CGPointMake(0.0f, -42.0f)];
         petChooseButton.position = CGPointMake(100 * (i - 1),0.0);
         petChooseButton.name = [NSString stringWithFormat:@"%d", PP_PETS_CHOOSE_BTN_TAG + i];
-        [petChooseButton addTarget:self selector:@selector(spriteChooseClick:) withObject:petChooseButton.name forControlEvent:PPButtonControlEventTouchUpInside];
+        [petChooseButton addTarget:self
+                          selector:@selector(spriteChooseClick:)
+                        withObject:petChooseButton.name
+                   forControlEvent:PPButtonControlEventTouchUpInside];
         [spriteContent addChild:petChooseButton];
-        
     }
 
-    
     self.petsArray = [NSArray arrayWithArray:petsInfoArray];
     
     SKLabelNode * titilePass = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
@@ -177,11 +181,12 @@
     titilePass.position = CGPointMake(0.0f,-150.0f);
     [spriteContent addChild:titilePass];
     
-    
     // 显示精灵选择菜单
     SKAction * actionMove=[SKAction moveTo:CGPointMake(160.0, 50) duration:0.5];
     [spriteContent runAction:actionMove];
+    
 }
+
 /*
 -(void)sceneChooseClick:(PPSpriteButton *)btn
 {
@@ -217,7 +222,9 @@
 //选择宠物之后 开始战斗
 -(void)spriteChooseClick:(NSString *)spriteName
 {
-    NSDictionary * petsChoosedInfo = [self.petsArray objectAtIndex:[spriteName integerValue]-PP_PETS_CHOOSE_BTN_TAG];
+    NSLog(@"aaa%@",spriteName);
+    
+    NSDictionary * petsChoosedInfo = [self.petsArray objectAtIndex:[spriteName integerValue] - PP_PETS_CHOOSE_BTN_TAG];
     NSDictionary * choosedPet = [NSDictionary dictionaryWithDictionary:petsChoosedInfo];
     
     // 初始化 ballScene
@@ -234,12 +241,13 @@
     ballScene.hurdleReady = self;
     [ballScene setEnemyAtIndex:currentEnemyIndex];
     [self.view presentScene:ballScene];
+    
 }
 
 #pragma mark - add a scroling uiview
 
-
 //得到应用程序Documents文件夹下的目标路径
+
 -(NSString *)getPersonalSetTargetPath
 {
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);

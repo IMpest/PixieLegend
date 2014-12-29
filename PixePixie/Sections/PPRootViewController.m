@@ -50,14 +50,19 @@ NSString * menu[] =
     
     NSString * isNotFirstEnter = [PPCommonTool contentFromUserDefaultKey:PP_FIRST_LOG_IN];
     
-    if ([isNotFirstEnter isEqualToString:@"1"]) {
-        
+//    if ([isNotFirstEnter isEqualToString:@"1"]) {
+    
+    if (NO) {
         [self enterMainScene];
-        
     } else {
         
+        // 首次启动菜单
+        UIImageView * imgvBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_start"]];
+        imgvBg.frame = CGRectMake(0, PP_FIT_TOP_SIZE, 320, 480);
+        [self.view addSubview:imgvBg];
+        
         UIView * contentView = [[UIView alloc] initWithFrame:CGRectMake(10, 100, 300, 200)];
-        [contentView setBackgroundColor:[UIColor cyanColor]];
+        [contentView setBackgroundColor:[UIColor clearColor]];
         contentView.tag = PP_CONTENT_TAG;
         
         UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 200, 40)];
@@ -79,8 +84,11 @@ NSString * menu[] =
         
         [self.view addSubview:contentView];
     }
-    
-    // 添加上下两个条
+    [self addFitSizeBar];
+}
+
+// 添加上下两个条
+-(void)addFitSizeBar{
     if (CurrentDeviceRealSize.height > 500) {
         UIImageView * upBlackBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ui_fit_top.png"]];
         upBlackBar.frame = CGRectMake(0, 0, 320, 44);
@@ -92,40 +100,37 @@ NSString * menu[] =
         [downBlackBar setBackgroundColor:[UIColor blackColor]];
         [self.view addSubview:downBlackBar];
     }
-    
-
 }
 
+// 确认宠物名字
 -(void)textInputConfirmClick
 {
-    UIView *contentView = [self.view viewWithTag:PP_CONTENT_TAG];
+    UIView * contentView = [self.view viewWithTag:PP_CONTENT_TAG];
     if (contentView != nil)
     {
         [contentView removeFromSuperview];
     }
     
-    UIView * viewContent = [[UIView alloc] initWithFrame:CGRectMake(0, 20+PP_FIT_TOP_SIZE, 320, 400)];
+    UIView * viewContent = [[UIView alloc] initWithFrame:CGRectMake(0, 20 + PP_FIT_TOP_SIZE, 320, 400)];
     viewContent.tag = PP_CHOOSE_PET_CONTENT_TAG;
-    [viewContent setBackgroundColor:[UIColor magentaColor]];
+    [viewContent setBackgroundColor:[UIColor clearColor]];
     
     
-    NSDictionary * dictUserPets=[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PetsChooseInfo" ofType:@"plist"]];
+    NSDictionary * dictUserPets=[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PetsChooseInfo"
+                                                                                                           ofType:@"plist"]];
     
-    
-    PPChoosePetScrollView *petsScroll=[[PPChoosePetScrollView alloc] initWithFrame:CGRectMake(20.0f, 20.0f, 280.0f, 250.0f)];
+    PPChoosePetScrollView * petsScroll=[[PPChoosePetScrollView alloc] initWithFrame:CGRectMake(20.0f, 20.0f, 280.0f, 250.0f)];
     [petsScroll setBackgroundColor:[UIColor cyanColor]];
     [petsScroll setSCrollWith:dictUserPets];
     [viewContent addSubview:petsScroll];
     
-    
-    UILabel *labelEnemyInfo = [[UILabel alloc] initWithFrame:CGRectMake(20, 280, 280, 60)];
+    UILabel * labelEnemyInfo = [[UILabel alloc] initWithFrame:CGRectMake(20, 280, 280, 60)];
     [labelEnemyInfo setText:@"怪物信息"];
     [labelEnemyInfo setBackgroundColor:[UIColor whiteColor]];
     [labelEnemyInfo setTextAlignment:NSTextAlignmentCenter];
     [viewContent addSubview:labelEnemyInfo];
     
-    
-    UILabel *labelConfrimInfo = [[UILabel alloc] initWithFrame:
+    UILabel * labelConfrimInfo = [[UILabel alloc] initWithFrame:
                                  CGRectMake(labelEnemyInfo.frame.origin.x,
                                             labelEnemyInfo.frame.origin.y+labelEnemyInfo.frame.size.height+10.0f, 200, 40)];
     [labelConfrimInfo setFont:[UIFont boldSystemFontOfSize:11]];
@@ -145,9 +150,10 @@ NSString * menu[] =
     [self.view addSubview:viewContent];
 }
 
+// 确认宠物
 -(void)petsChooseCofirmBtnClick:(UIButton *)sender
 {
-    UIView *contentView = [self.view viewWithTag:PP_CHOOSE_PET_CONTENT_TAG];
+    UIView * contentView = [self.view viewWithTag:PP_CHOOSE_PET_CONTENT_TAG];
     if (contentView) {
         [contentView removeFromSuperview];
     }
@@ -161,6 +167,7 @@ NSString * menu[] =
     [textField resignFirstResponder];
 }
 
+// 进入主界面
 -(void)enterMainScene
 {
     menuAnimationTag = 0;
@@ -191,39 +198,32 @@ NSString * menu[] =
     [userInfoBar setBackgroundColor:[UIColor purpleColor]];
     [skViewMain addSubview:userInfoBar];
     
-    
     for (int i = 0; i < PP_MENU_COUNT; i++) {
         UIButton  *userInfoBtn=[UIButton buttonWithType:UIButtonTypeCustom];
         switch (i) {
             case 0:
             {
                 [userInfoBtn setFrame:CGRectMake(5.0f,2.0f, 100.0f,18.0f)];
-                
             }
                 break;
             case 1:
             {
-                
                 [userInfoBtn setFrame:CGRectMake(110.0f,2.0f, 100.0f,18.0f)];
-                
             }
                 break;
             case 2:
             {
-                
                 [userInfoBtn setFrame:CGRectMake(5.0f,24.0f, 100.0f,18.0f)];
             }
                 break;
             case 3:
             {
                 [userInfoBtn setFrame:CGRectMake(110,24.0f, 100.0f,18.0f)];
-                
             }
                 break;
             case 4:
             {
                 [userInfoBtn setFrame:CGRectMake(220.0f,2, 80.0f,40.0f)];
-                
             }
                 break;
             default:
@@ -240,7 +240,7 @@ NSString * menu[] =
     [menuInfoBar setBackgroundColor:[UIColor purpleColor]];
     [skViewMain addSubview:menuInfoBar];
     
-    for (int i=0; i<PP_MENU_COUNT; i++) {
+    for (int i = 0; i < PP_MENU_COUNT; i++) {
         UIButton  *menuBtn=[UIButton buttonWithType:UIButtonTypeCustom];
         [menuBtn setFrame:CGRectMake(i*skViewMain.frame.size.width/PP_MENU_COUNT,2.0f, 50.0f, 40.0f)];
         [menuBtn.titleLabel setFont:[UIFont systemFontOfSize:8]];
@@ -251,19 +251,6 @@ NSString * menu[] =
     }
     
     [self changeMenuState:0];
-
-//    // 添加上下两个条
-//    if (CurrentDeviceRealSize.height > 500) {
-//        UIImageView * upBlackBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ui_fit_top.png"]];
-//        upBlackBar.frame = CGRectMake(0, 0, 320, 44);
-//        [upBlackBar setBackgroundColor:[UIColor blackColor]];
-//        [self.view addSubview:upBlackBar];
-//        
-//        UIImageView * downBlackBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ui_fit_bottom.png"]];
-//        downBlackBar.frame = CGRectMake(0, self.view.frame.size.height-44, 320, 44);
-//        [downBlackBar setBackgroundColor:[UIColor blackColor]];
-//        [self.view addSubview:downBlackBar];
-//    }
 }
 
 -(void)counterpartEnter:(id)obj
@@ -305,7 +292,7 @@ NSString * menu[] =
 
 -(void)enterBattle:(NSNumber *)passNumber
 {
-    UIView *passNumView=[self.view viewWithTag:PP_PASSNUM_CHOOSE_TABLE_TAG];
+    UIView * passNumView = [self.view viewWithTag:PP_PASSNUM_CHOOSE_TABLE_TAG];
     [passNumView removeFromSuperview];
     passNumber=nil;
     
@@ -349,13 +336,10 @@ NSString * menu[] =
     switch (sender.tag - PP_MENU_BUTON_TAG) {
         case 0:
         {
-            
-            
             [monsterMainView setBackgroundColor:[UIColor redColor]];
             [skViewMain bringSubviewToFront:monsterMainView];
             
 //            [self menuDownAnimation];
-//
 //            PPMonsterScene * monsterScene = [[PPMonsterScene alloc] initWithSize:CurrentDeviceRealSize];
 //            monsterScene.scaleMode = SKSceneScaleModeAspectFill;
 //            [skViewMain presentScene:monsterScene];
@@ -366,7 +350,6 @@ NSString * menu[] =
             [skViewMain bringSubviewToFront:knapsackMainView];
 
 //            [self menuDownAnimation];
-//
 //            PPPacksackScene * packsackScene = [[PPPacksackScene alloc] initWithSize:CurrentDeviceRealSize];
 //            packsackScene.scaleMode = SKSceneScaleModeAspectFill;
 //            [skViewMain presentScene:packsackScene];
@@ -377,6 +360,7 @@ NSString * menu[] =
         {
             [skViewMain bringSubviewToFront:fightingMainView];
             fightingMainView->mainScene->backButton.hidden = NO;
+            
 //            [self menuDownAnimation];
 //            PPPassNumberScene * passScene = [[PPPassNumberScene alloc] initWithSize:CurrentDeviceRealSize];
 //            passScene.scaleMode = SKSceneScaleModeAspectFill;
@@ -388,8 +372,6 @@ NSString * menu[] =
             [skViewMain bringSubviewToFront:scheduleMainView];
             
 //            [self menuDownAnimation];
-//
-//            
 //            PPShopScene * shopScene = [[PPShopScene alloc] initWithSize:CurrentDeviceRealSize];
 //            shopScene.scaleMode = SKSceneScaleModeAspectFill;
 //            [skViewMain presentScene:shopScene];
@@ -400,7 +382,6 @@ NSString * menu[] =
             [skViewMain bringSubviewToFront:othersMainView];
             
 //            [self menuDownAnimation];
-//
 //            PPSettingScene * ppSetScene = [[PPSettingScene alloc] initWithSize:CurrentDeviceRealSize];
 //            ppSetScene.scaleMode = SKSceneScaleModeAspectFill;
 //            [skViewMain presentScene:ppSetScene];
@@ -416,17 +397,14 @@ NSString * menu[] =
 
 -(void)changeMenuState:(int)index
 {
-    
-    for (int i=0; i<PP_MENU_COUNT; i++) {
-        UIButton *buttonMenuTmp=(UIButton *)[menuInfoBar viewWithTag:PP_MENU_BUTON_TAG+i];
-        if (i==index) {
+    for (int i = 0; i < PP_MENU_COUNT; i++) {
+        UIButton * buttonMenuTmp = (UIButton *)[menuInfoBar viewWithTag:PP_MENU_BUTON_TAG + i];
+        if (i == index) {
             [buttonMenuTmp setBackgroundColor:[UIColor blueColor]];
-        }else
-        {
+        } else {
             [buttonMenuTmp setBackgroundColor:[UIColor purpleColor]];
         }
     }
-    
 }
 
 //-(void)backToMainClick
