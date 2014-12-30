@@ -13,13 +13,14 @@
 
 -(void)initMonsterInfo:(NSDictionary *)monsterInfo
 {
-    PPSpriteButton * monsterTexture = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"pixie_plant3_battle0.png"]
-                                                                andSize:CGSizeMake(150, 200)];
+    PPSpriteButton * monsterTexture = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"plant3_temp.png"]
+                                                                andSize:CGSizeMake(180, 180)];
     monsterTexture.position = CGPointMake(0, 10);
     monsterTexture.name = @"pixie_plant3_battle0";
     [monsterTexture addTarget:self selector:@selector(monsterTextureClick:)
                    withObject:monsterTexture.name forControlEvent:PPButtonControlEventTouchUpInside];
     [self addChild:monsterTexture];
+    
     
     for (int i = 0; i < 3; i++) {
         PPSpriteButton * buffButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(30, 30)];

@@ -201,6 +201,7 @@
 		19A8ED641A52977600EFEA7A /* pet_hint.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A8ED481A52977600EFEA7A /* pet_hint.png */; };
 		19A8ED651A52977600EFEA7A /* pet_name.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A8ED491A52977600EFEA7A /* pet_name.png */; };
 		19A8ED661A52977600EFEA7A /* pets_card.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A8ED4A1A52977600EFEA7A /* pets_card.png */; };
+		19A8ED691A52B4D000EFEA7A /* plant3_temp.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A8ED681A52B4D000EFEA7A /* plant3_temp.png */; };
 		19C8BE041A4821AE00872CE9 /* battle_table_ball.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 19C8BE001A4821AE00872CE9 /* battle_table_ball.atlas */; };
 		19C8BE051A4821AE00872CE9 /* battle_table_skill_icon.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 19C8BE011A4821AE00872CE9 /* battle_table_skill_icon.atlas */; };
 		19C8BE061A4821AE00872CE9 /* battle_table_skill.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 19C8BE021A4821AE00872CE9 /* battle_table_skill.atlas */; };
@@ -473,6 +474,7 @@
 		19A8ED481A52977600EFEA7A /* pet_hint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pet_hint.png; sourceTree = "<group>"; };
 		19A8ED491A52977600EFEA7A /* pet_name.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pet_name.png; sourceTree = "<group>"; };
 		19A8ED4A1A52977600EFEA7A /* pets_card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pets_card.png; sourceTree = "<group>"; };
+		19A8ED681A52B4D000EFEA7A /* plant3_temp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plant3_temp.png; sourceTree = "<group>"; };
 		19C8BE001A4821AE00872CE9 /* battle_table_ball.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_table_ball.atlas; path = Resource/Image/battle_table_ball.atlas; sourceTree = "<group>"; };
 		19C8BE011A4821AE00872CE9 /* battle_table_skill_icon.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_table_skill_icon.atlas; path = Resource/Image/battle_table_skill_icon.atlas; sourceTree = "<group>"; };
 		19C8BE021A4821AE00872CE9 /* battle_table_skill.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_table_skill.atlas; path = Resource/Image/battle_table_skill.atlas; sourceTree = "<group>"; };
@@ -708,6 +710,7 @@
 				19C8BE021A4821AE00872CE9 /* battle_table_skill.atlas */,
 				19C8BE031A4821AE00872CE9 /* battle_table_ui.atlas */,
 				1933E7481A2F11F100E8C5BF /* pixie_battle_action.atlas */,
+				19A8ED671A52B4D000EFEA7A /* pixie_temp */,
 				19A8ED2D1A52977600EFEA7A /* ui_bar */,
 				19A8ED3B1A52977600EFEA7A /* ui_start */,
 			);
@@ -957,6 +960,15 @@
 			);
 			name = ui_start;
 			path = Resource/Image/ui_start;
+			sourceTree = "<group>";
+		};
+		19A8ED671A52B4D000EFEA7A /* pixie_temp */ = {
+			isa = PBXGroup;
+			children = (
+				19A8ED681A52B4D000EFEA7A /* plant3_temp.png */,
+			);
+			name = pixie_temp;
+			path = Resource/Image/pixie_temp;
 			sourceTree = "<group>";
 		};
 		19F6ED8F18C6C09900BFFF9A = {
@@ -1289,6 +1301,7 @@
 				19C8BE041A4821AE00872CE9 /* battle_table_ball.atlas in Resources */,
 				1999AC2F19EE64D500B25ED2 /* plant_forward_0008.png in Resources */,
 				1999AC6219EE64D500B25ED2 /* fire_shield_cast_0003.png in Resources */,
+				19A8ED691A52B4D000EFEA7A /* plant3_temp.png in Resources */,
 				1999AC4519EE64D500B25ED2 /* ui_fit_bottom.png in Resources */,
 				1999AC2719EE64D500B25ED2 /* plant_forward_0000.png in Resources */,
 				1999AC1919EE64D500B25ED2 /* fire_forward_0007.png in Resources */,

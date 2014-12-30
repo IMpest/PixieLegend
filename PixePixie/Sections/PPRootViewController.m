@@ -33,11 +33,11 @@ NSString * userInfo[] =
 - (void)viewDidLoad
 {    
     [super viewDidLoad];
+    
+    NSString * isNotFirstEnter = [PPLocalData contentFromUserDefaultKey:PP_FIRST_LOG_IN];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(backToMonsterScene:)
                                                  name:PP_BACK_TO_MAIN_VIEW object:nil];
-
-    NSString * isNotFirstEnter = [PPLocalData contentFromUserDefaultKey:PP_FIRST_LOG_IN];
     
 //    if ([isNotFirstEnter isEqualToString:@"1"]) {
     if (NO) {
@@ -61,7 +61,7 @@ NSString * userInfo[] =
         [self.view addSubview:upBlackBar];
         
         UIImageView * downBlackBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ui_fit_bottom.png"]];
-        downBlackBar.frame = CGRectMake(0, self.view.frame.size.height-44, 320, 44);
+        downBlackBar.frame = CGRectMake(0, self.view.frame.size.height - 44, 320, 44);
         [downBlackBar setBackgroundColor:[UIColor blackColor]];
         [self.view addSubview:downBlackBar];
     }
@@ -185,7 +185,6 @@ NSString * userInfo[] =
     
     [skViewMain bringSubviewToFront:monsterMainView];
     
-    
     // 上方信息栏
     userInfoBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     [userInfoBar setBackgroundColor:[UIColor clearColor]];
@@ -239,13 +238,13 @@ NSString * userInfo[] =
     [menuInfoBar setBackgroundColor:[UIColor blackColor]];
     
     UIImageView * imgvBgBottom = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_bar_bottom.png"]];
-    imgvBgBottom.frame = CGRectMake(0, 0, 320, 50);
+    imgvBgBottom.frame = CGRectMake(0, 0, 320, 44);
     [menuInfoBar addSubview:imgvBgBottom];
     
     for (int i = 0; i < PP_MENU_COUNT; i++) {
-        UIButton  * menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIButton * menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         menuBtn.tag = PP_MENU_BUTON_TAG + i;
-        menuBtn.frame = CGRectMake(i*skViewMain.frame.size.width/PP_MENU_COUNT+(64-38)/2, 5, 38, 38);
+        menuBtn.frame = CGRectMake(i * skViewMain.frame.size.width/PP_MENU_COUNT+(64-38)/2, 5, 38, 38);
         menuBtn.titleLabel.font = [UIFont systemFontOfSize:8];
         [menuBtn setImage:[UIImage imageNamed:[NSString stringWithFormat:@"tab_btn%d",i]] forState:UIControlStateNormal];
         [menuBtn addTarget:self action:@selector(menuBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -253,15 +252,14 @@ NSString * userInfo[] =
     }
     [skViewMain addSubview:menuInfoBar];
     
-    
     // 设置Monster界面为首页界面
     [self changeMenuState:0];
 }
 
-
 //上方按钮点击
 -(void)userBtnClick:(UIButton *)sender
 {
+    
 }
 
 //下方按钮点击

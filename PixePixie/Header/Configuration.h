@@ -2,7 +2,7 @@
 #define CurrentDeviceRealSize   [UIScreen mainScreen].bounds.size
 #define CustomAlertFrame        CGRectMake(160.0f, 300.0f, 320.0f, 200.0f)
 
-#define PP_FIT_TOP_SIZE     ((CurrentDeviceRealSize.height > 500) ? (44.0f) : (0.0f))
+#define PP_FIT_TOP_SIZE     ((CurrentDeviceRealSize.height > 500) ? 44.0f : 0.0f)
 #define PP_FIRST_LOG_IN     @"firstenter"
 #define PP_WORDS_FONT_NAME @"Chalkduster"
 
@@ -30,6 +30,7 @@
 #define PP_BACK_BUTTON_ZPOSITION 100
 
 #define PP_MENU_COUNT 5
+
 #define PP_USER_BUTON_TAG 50
 #define PP_MENU_BUTON_TAG 100
 #define PP_PASSNUM_CHOOSE_TABLE_TAG 200

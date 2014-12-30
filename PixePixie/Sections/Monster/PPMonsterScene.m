@@ -7,11 +7,13 @@
 //
 
 #import "PPMonsterScene.h"
+
 static NSString *monsterBtnTitle[]={
-    @"Sell Monster",
-    @"Euo Fusion",
-    @"Talent Tree"
+    @"变卖",
+    @"强化",
+    @"天赋"
 };
+
 @implementation PPMonsterScene
 - (id)initWithSize:(CGSize)size
 {
@@ -19,7 +21,7 @@ static NSString *monsterBtnTitle[]={
         
         [self showPetInfo];
         
-        PPSpriteButton *showMonsterBtn = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(40.0f, 100.0f)];
+        PPSpriteButton * showMonsterBtn = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(40.0f, 100.0f)];
         [showMonsterBtn setLabelWithText:@"show" andFont:[UIFont systemFontOfSize:15] withColor:nil];
         showMonsterBtn.name = @"showMonsterName";
         showMonsterBtn.position = CGPointMake(22.0f,180.0f);
@@ -56,35 +58,38 @@ static NSString *monsterBtnTitle[]={
 -(void)showPetInfo
 {
     
-    PPSpriteButton *feedFromFriendButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(120.0f, 30.0f)];
+    PPSpriteButton * feedFromFriendButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(120.0f, 30.0f)];
     [feedFromFriendButton setLabelWithText:@"有朋友给你的宠物喂食了!" andFont:[UIFont systemFontOfSize:10] withColor:nil];
     feedFromFriendButton.position = CGPointMake(60.0f,360.0f);
-    feedFromFriendButton.name=@"";
-    [feedFromFriendButton addTarget:self selector:@selector(feedButtonClick:) withObject:feedFromFriendButton.name forControlEvent:PPButtonControlEventTouchUpInside];
+    feedFromFriendButton.name = @"";
+    [feedFromFriendButton addTarget:self selector:@selector(feedButtonClick:)
+                         withObject:feedFromFriendButton.name forControlEvent:PPButtonControlEventTouchUpInside];
     [self addChild:feedFromFriendButton];
     
     
-    PPSpriteButton *removeToGroupBtn = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(80, 30.0f)];
+    PPSpriteButton * removeToGroupBtn = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(80, 30.0f)];
     [removeToGroupBtn setLabelWithText:@"remove to Group" andFont:[UIFont systemFontOfSize:10] withColor:nil];
     removeToGroupBtn.position = CGPointMake(feedFromFriendButton.position.x+120,feedFromFriendButton.position.y);
-    removeToGroupBtn.name=@"removeFromGroupBtn";
-    [removeToGroupBtn addTarget:self selector:@selector(removeToGroupBtnClick:) withObject:feedFromFriendButton.name forControlEvent:PPButtonControlEventTouchUpInside];
+    removeToGroupBtn.name = @"removeFromGroupBtn";
+    [removeToGroupBtn addTarget:self selector:@selector(removeToGroupBtnClick:)
+                     withObject:feedFromFriendButton.name forControlEvent:PPButtonControlEventTouchUpInside];
     [self addChild:removeToGroupBtn];
     
     
-    PPSpriteButton *worldBossButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(60.0f, 30.0f)];
+    PPSpriteButton * worldBossButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(60.0f, 30.0f)];
     [worldBossButton setLabelWithText:@"world boss" andFont:[UIFont systemFontOfSize:10] withColor:nil];
     worldBossButton.position = CGPointMake(160.0f+feedFromFriendButton.size.width/2.0f+50.0f,feedFromFriendButton.position.y);
-    worldBossButton.name=@"";
-    [worldBossButton addTarget:self selector:@selector(worldBossButtonClick:) withObject:feedFromFriendButton.name forControlEvent:PPButtonControlEventTouchUpInside];
+    worldBossButton.name = @"";
+    [worldBossButton addTarget:self selector:@selector(worldBossButtonClick:)
+                    withObject:feedFromFriendButton.name forControlEvent:PPButtonControlEventTouchUpInside];
     [self addChild:worldBossButton];
     
     
-    PPMonsterInfoNode *monsterInfo=[[PPMonsterInfoNode alloc] initWithColor:[UIColor cyanColor] size:CGSizeMake(320, 300)];
+    PPMonsterInfoNode * monsterInfo = [[PPMonsterInfoNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(320, 260)];
     [monsterInfo initMonsterInfo:nil];
-    monsterInfo.position = CGPointMake(160.0f, 170);
+    monsterInfo.position = CGPointMake(160, 170);
     [self addChild:monsterInfo];
-
+    
     
 }
 
