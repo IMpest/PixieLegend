@@ -1,15 +1,15 @@
-#import "PPCommonTool.h"
+#import "PPLocalData.h"
 #import <objc/runtime.h>
 
-static PPCommonTool * commonTool = nil;
+static PPLocalData * commonTool = nil;
 
-@implementation PPCommonTool
+@implementation PPLocalData
 
--(PPCommonTool *)getInstance
+-(PPLocalData *)getInstance
 {
     @synchronized(self){
         if (commonTool == nil) {
-            commonTool = [[PPCommonTool alloc] init];
+            commonTool = [[PPLocalData alloc] init];
         }
     }
     return commonTool;

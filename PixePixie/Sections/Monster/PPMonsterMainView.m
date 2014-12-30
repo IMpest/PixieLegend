@@ -1,10 +1,3 @@
-//
-//  PPMonsterMainView.m
-//  PixelPixie
-//
-//  Created by xiefei on 7/3/14.
-//  Copyright (c) 2014 Psyches. All rights reserved.
-//
 
 #import "PPMonsterMainView.h"
 
@@ -14,17 +7,19 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        mainScene = [[PPMonsterScene alloc] initWithSize:self.bounds.size];
-        mainScene.scaleMode = SKSceneScaleModeFill;
-        [self presentScene:mainScene];
-        self.backgroundColor = [UIColor redColor];
-        // Initialization code
+        
+        self.backgroundColor = [UIColor blueColor];
+        
+        monsterScene = [[PPMonsterScene alloc] initWithSize:self.bounds.size];
+        monsterScene.scaleMode = SKSceneScaleModeFill;
+        [self presentScene:monsterScene];
     }
     return self;
 }
 
 -(void)hideMonstorShowBtns
 {
-    [mainScene hideShowbtns];
+    [monsterScene hideShowbtns];
 }
+
 @end

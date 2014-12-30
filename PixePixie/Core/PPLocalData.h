@@ -1,9 +1,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PPCommonTool : NSObject
+@interface PPLocalData : NSObject
 
--(PPCommonTool *)getInstance;
+-(PPLocalData *)getInstance;
 +(NSString *)getUserInfoPath;
 
 // json 数据转换

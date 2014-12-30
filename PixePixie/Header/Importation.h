@@ -1,6 +1,6 @@
 /* Core */
 #import "ConstantData.h"
-#import "PPCommonTool.h"
+#import "PPLocalData.h"
 #import "PPAtlasManager.h"
 #import "PPSceneManager.h"
 
@@ -26,7 +26,6 @@
 
 // Monster
 #import "PPMonsterMainView.h"
-#import "PPMainScene.h"
 #import "PPMonsterScene.h"
 #import "PPMonsterBoxScene.h"
 #import "PPEuoFusionScene.h"

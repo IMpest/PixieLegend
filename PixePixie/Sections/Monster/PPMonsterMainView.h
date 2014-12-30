@@ -3,7 +3,7 @@
 
 @interface PPMonsterMainView : SKView
 {
-    PPMonsterScene * mainScene;
+    PPMonsterScene * monsterScene;
 }
 
 -(void)hideMonstorShowBtns;

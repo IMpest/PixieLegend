@@ -31,16 +31,16 @@
         [self addChild:buffButton];
     }
     
-    PPSpriteButton * moodButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(30, 30)];
-    moodButton.position = CGPointMake(130, -85);
-    moodButton.name = @"心情";
-    [moodButton setLabelWithText:@"心情" andFont:[UIFont systemFontOfSize:15] withColor:nil];
-    [moodButton addTarget:self selector:@selector(moodButtonClick:)
-               withObject:moodButton.name forControlEvent:PPButtonControlEventTouchUpInside];
-    [self addChild:moodButton];
+//    PPSpriteButton * moodButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(30, 30)];
+//    moodButton.position = CGPointMake(130, -85);
+//    moodButton.name = @"心情";
+//    [moodButton setLabelWithText:@"心情" andFont:[UIFont systemFontOfSize:15] withColor:nil];
+//    [moodButton addTarget:self selector:@selector(moodButtonClick:)
+//               withObject:moodButton.name forControlEvent:PPButtonControlEventTouchUpInside];
+//    [self addChild:moodButton];
     
     PPSpriteButton * feedButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(30, 30)];
-    feedButton.position = CGPointMake(moodButton.position.x,moodButton.position.y-40);
+    feedButton.position = CGPointMake(130, -125);
     feedButton.name = @"喂食";
     [feedButton setLabelWithText:@"喂食" andFont:[UIFont systemFontOfSize:15] withColor:nil];
     [feedButton addTarget:self selector:@selector(feedButtonClick:) withObject:feedButton.name forControlEvent:PPButtonControlEventTouchUpInside];

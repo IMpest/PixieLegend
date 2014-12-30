@@ -15,33 +15,32 @@ static NSString *monsterBtnTitle[]={
 @implementation PPMonsterScene
 - (id)initWithSize:(CGSize)size
 {
-    if (self=[super initWithSize:size]) {
-        self.backgroundColor = [UIColor redColor];
-//        [self setBackTitleText:@"Monster" andPositionY:380.0f];
+    if (self = [super initWithSize:size]) {
         
-               [self showPetInfo];
-        
+        [self showPetInfo];
         
         PPSpriteButton *showMonsterBtn = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(40.0f, 100.0f)];
         [showMonsterBtn setLabelWithText:@"show" andFont:[UIFont systemFontOfSize:15] withColor:nil];
         showMonsterBtn.name = @"showMonsterName";
         showMonsterBtn.position = CGPointMake(22.0f,180.0f);
-        [showMonsterBtn addTarget:self selector:@selector(showMonsterBtnClick:) withObject:showMonsterBtn forControlEvent:PPButtonControlEventTouchUpInside];
+        [showMonsterBtn addTarget:self selector:@selector(showMonsterBtnClick:)
+                       withObject:showMonsterBtn forControlEvent:PPButtonControlEventTouchUpInside];
         [self addChild:showMonsterBtn];
     }
     return self;
 }
+
 -(void)showMonsterBtnClick:(PPSpriteButton *)showBtn
 {
     if ([showBtn.color isEqual:[UIColor orangeColor]]) {
         showBtn.color = [UIColor blueColor];
-        
-        for (int i=0; i<3; i++) {
+
+        for (int i = 0; i < 3; i++) {
             
-            PPSpriteButton *monsterButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(200.0f, 40.0f)];
-            [monsterButton setLabelWithText:monsterBtnTitle[i] andFont:[UIFont systemFontOfSize:15] withColor:nil];
-            monsterButton.position = CGPointMake(160.0f,i*100+80.0f);
+            PPSpriteButton * monsterButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(200, 40)];
+            monsterButton.position = CGPointMake(160,i * 100 + 80);
             monsterButton.name = [NSString stringWithFormat:@"%d",i];
+            [monsterButton setLabelWithText:monsterBtnTitle[i] andFont:[UIFont systemFontOfSize:15] withColor:nil];
             [monsterButton addTarget:self selector:@selector(monsterButtonClick:) withObject:monsterButton.name forControlEvent:PPButtonControlEventTouchUpInside];
             [self addChild:monsterButton];
             
