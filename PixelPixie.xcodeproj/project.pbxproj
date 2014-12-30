@@ -684,10 +684,10 @@
 		193F96841A2EF3DF00F266A6 /* Start */ = {
 			isa = PBXGroup;
 			children = (
-				193F96BB1A2EF89A00F266A6 /* PPTableView.h */,
-				193F96BC1A2EF89A00F266A6 /* PPTableView.m */,
 				193F96BE1A2EF8A400F266A6 /* PPChoosePetScrollView.h */,
 				193F96BF1A2EF8A400F266A6 /* PPChoosePetScrollView.m */,
+				193F96BB1A2EF89A00F266A6 /* PPTableView.h */,
+				193F96BC1A2EF89A00F266A6 /* PPTableView.m */,
 			);
 			name = Start;
 			sourceTree = "<group>";

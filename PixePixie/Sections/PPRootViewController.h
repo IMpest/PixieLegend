@@ -1,7 +1,4 @@
 
 @interface PPRootViewController : UIViewController
-{
-    
-}
 
 @end

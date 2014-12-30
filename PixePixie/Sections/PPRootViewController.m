@@ -1,23 +1,22 @@
 
 #import "PPRootViewController.h"
-#import "PPCommonTool.h"
+
 @interface PPRootViewController ()
-{
-    int menuAnimationTag;
-    UIView * userInfoBar;
-    UIView * menuInfoBar;
-    SKView * skViewMain;
-    UIButton * backToMain;
-    
-    PPMonsterMainView * monsterMainView;
-    PPKnapsackMainView * knapsackMainView;
-    PPFightingMainView * fightingMainView;
-    PPScheduleMainView * scheduleMainView;
-    PPOthersMainView * othersMainView;
-}
 @end
 
 @implementation PPRootViewController
+
+int menuAnimationTag;
+SKView * skViewMain;
+UIView * userInfoBar;
+UIView * menuInfoBar;
+UIButton * backToMain;
+
+PPMonsterMainView * monsterMainView;
+PPKnapsackMainView * knapsackMainView;
+PPFightingMainView * fightingMainView;
+PPScheduleMainView * scheduleMainView;
+PPOthersMainView * othersMainView;
 
 NSString * userInfo[] =
 {
@@ -45,15 +44,13 @@ NSString * menu[] =
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToMonsterScene:)
                                                  name:PP_BACK_TO_MAIN_VIEW object:nil];
 
-    skViewMain = [[SKView alloc] initWithFrame:CGRectMake(0.0f, PP_FIT_TOP_SIZE, 320.0f, 480.0f)];
-    [self.view addSubview:skViewMain];
-    
     NSString * isNotFirstEnter = [PPCommonTool contentFromUserDefaultKey:PP_FIRST_LOG_IN];
     
 //    if ([isNotFirstEnter isEqualToString:@"1"]) {
     
     if (NO) {
-        [self enterMainScene];
+        [self loadMainScene];
+        [self.view addSubview:skViewMain];
     } else {
         
         // 首次启动菜单
@@ -119,7 +116,7 @@ NSString * menu[] =
     NSDictionary * dictUserPets=[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PetsChooseInfo"
                                                                                                            ofType:@"plist"]];
     
-    PPChoosePetScrollView * petsScroll=[[PPChoosePetScrollView alloc] initWithFrame:CGRectMake(20.0f, 20.0f, 280.0f, 250.0f)];
+    PPChoosePetScrollView * petsScroll = [[PPChoosePetScrollView alloc] initWithFrame:CGRectMake(20.0f, 20.0f, 280.0f, 250.0f)];
     [petsScroll setBackgroundColor:[UIColor cyanColor]];
     [petsScroll setSCrollWith:dictUserPets];
     [viewContent addSubview:petsScroll];
@@ -159,7 +156,8 @@ NSString * menu[] =
     }
     
     [PPCommonTool setContent:@"1" forContentKey:PP_FIRST_LOG_IN];
-    [self enterMainScene];
+    [self loadMainScene];
+    [self.view addSubview:skViewMain];
 }
 
 -(void)textFieldResign:(UITextField *)textField
@@ -167,12 +165,14 @@ NSString * menu[] =
     [textField resignFirstResponder];
 }
 
-// 进入主界面
--(void)enterMainScene
+// 加载主界面
+-(void)loadMainScene
 {
     menuAnimationTag = 0;
     
-    CGRect NormalViewRect = CGRectMake(0.0f, 44.0f, skViewMain.frame.size.width, skViewMain.frame.size.height - 44.0f*2);
+    skViewMain = [[SKView alloc] initWithFrame:CGRectMake(0, PP_FIT_TOP_SIZE, 320, 480)];
+    
+    CGRect NormalViewRect = CGRectMake(0, 44, skViewMain.frame.size.width, skViewMain.frame.size.height - 44*2);
     
     monsterMainView = [[PPMonsterMainView alloc] initWithFrame:NormalViewRect];
     [skViewMain addSubview:monsterMainView];
@@ -180,9 +180,7 @@ NSString * menu[] =
     knapsackMainView = [[PPKnapsackMainView alloc] initWithFrame:NormalViewRect];
     [skViewMain addSubview:knapsackMainView];
     
-    fightingMainView = [[PPFightingMainView alloc] initWithFrame:CGRectMake(0.0f, 0.0f,
-                                                                          skViewMain.frame.size.width,
-                                                                          skViewMain.frame.size.height)];
+    fightingMainView = [[PPFightingMainView alloc] initWithFrame:NormalViewRect];
     [skViewMain addSubview:fightingMainView];
     
     scheduleMainView = [[PPScheduleMainView alloc] initWithFrame:NormalViewRect];
@@ -193,22 +191,22 @@ NSString * menu[] =
     
     [skViewMain bringSubviewToFront:monsterMainView];
     
-    // Bar上方状态栏
-    userInfoBar=[[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f)];
-    [userInfoBar setBackgroundColor:[UIColor purpleColor]];
+    // 上方信息栏
+    userInfoBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    [userInfoBar setBackgroundColor:[UIColor blackColor]];
     [skViewMain addSubview:userInfoBar];
     
     for (int i = 0; i < PP_MENU_COUNT; i++) {
-        UIButton  *userInfoBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+        UIButton  * userInfoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         switch (i) {
             case 0:
             {
-                [userInfoBtn setFrame:CGRectMake(5.0f,2.0f, 100.0f,18.0f)];
+                [userInfoBtn setFrame:CGRectMake(5, 2, 100, 18)];
             }
                 break;
             case 1:
             {
-                [userInfoBtn setFrame:CGRectMake(110.0f,2.0f, 100.0f,18.0f)];
+                [userInfoBtn setFrame:CGRectMake(110, 2, 100,18)];
             }
                 break;
             case 2:
@@ -236,13 +234,14 @@ NSString * menu[] =
         [userInfoBar addSubview:userInfoBtn];
     }
     
-    menuInfoBar = [[UIView alloc] initWithFrame:CGRectMake(0.0f, skViewMain.frame.size.height-44.0f, 320.0f, 44.0f)];
-    [menuInfoBar setBackgroundColor:[UIColor purpleColor]];
+    // 下方一排按钮
+    menuInfoBar = [[UIView alloc] initWithFrame:CGRectMake(0, skViewMain.frame.size.height-44, 320, 44)];
+    [menuInfoBar setBackgroundColor:[UIColor blackColor]];
     [skViewMain addSubview:menuInfoBar];
     
     for (int i = 0; i < PP_MENU_COUNT; i++) {
-        UIButton  *menuBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-        [menuBtn setFrame:CGRectMake(i*skViewMain.frame.size.width/PP_MENU_COUNT,2.0f, 50.0f, 40.0f)];
+        UIButton  * menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [menuBtn setFrame:CGRectMake(i*skViewMain.frame.size.width/PP_MENU_COUNT,2, 50, 40)];
         [menuBtn.titleLabel setFont:[UIFont systemFontOfSize:8]];
         [menuBtn addTarget:self action:@selector(menuBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [menuBtn setTitle:menu[i] forState:UIControlStateNormal];
@@ -253,69 +252,9 @@ NSString * menu[] =
     [self changeMenuState:0];
 }
 
--(void)counterpartEnter:(id)obj
-{
-    PPTableView * ppTable1 = [[PPTableView alloc] initWithFrame:CGRectMake(0.0f, 80, 320, 200)];
-    ppTable1.tag = PP_PASSNUM_CHOOSE_TABLE_TAG;
-    ppTable1.choosePassNumber = self;
-    ppTable1.choosePassNumberSel = @selector(enterBattle:);
-    NSArray * productInfoArray = [NSArray arrayWithObjects:@"关卡1",@"关卡2",@"关卡3",@"关卡4",@"关卡5",@"关卡6", nil];
-    [ppTable1 ppsetTableViewWithData:productInfoArray];
-    [self.view addSubview:ppTable1];
-}
-
--(void)backToMonsterScene:(NSNotification *)notifi
-{
-    
-//    [skViewMain bringSubviewToFront:monsterMainView];
-    [self menuBtnClick:nil];
-    [self changeMenuState:0];
-    if ([[notifi object] isEqualToString:PP_BACK_TO_MAIN_VIEW_FIGHTING]) {
-        
-        [skViewMain bringSubviewToFront:menuInfoBar];
-        [skViewMain bringSubviewToFront:userInfoBar];
-        
-    }
-}
-
-/*
--(void)backToMainScene:(NSNotification *)notifi
-{
-   
-    [skViewMain bringSubviewToFront:mainView];
-    if ([[notifi object] isEqualToString:PP_BACK_TO_MAIN_VIEW_FIGHTING]) {
-        [skViewMain bringSubviewToFront:menuInfoBar];
-        [skViewMain bringSubviewToFront:userInfoBar];
-    }
-}
-*/
-
--(void)enterBattle:(NSNumber *)passNumber
-{
-    UIView * passNumView = [self.view viewWithTag:PP_PASSNUM_CHOOSE_TABLE_TAG];
-    [passNumView removeFromSuperview];
-    passNumber=nil;
-    
-    [UIView animateWithDuration:0.1 animations:^{
-        [backToMain setFrame:CGRectMake(0.0f, backToMain.frame.origin.y, backToMain.frame.size.width, backToMain.frame.size.height)];
-    } completion:^(BOOL finished){}];
-    
-    [self menuDownAnimation];
-
-    PPHurdleReadyScene * battleScene;
-    battleScene = [[PPHurdleReadyScene alloc] initWithSize:CurrentDeviceRealSize];
-    battleScene.scaleMode = SKSceneScaleModeAspectFill;
-    
-    [skViewMain presentScene:battleScene];
-}
-
--(void)userBtnClick:(UIButton *)sender
-{
-}
 
 -(void)menuBtnClick:(UIButton *)sender
 {
-    
     [UIView animateWithDuration:0.2
                      animations:^{
                          [backToMain setFrame:CGRectMake(0.0f,
@@ -325,7 +264,6 @@ NSString * menu[] =
                      }
                      completion:^(BOOL finished){
                      }];
-    
    
     [self changeMenuState:(int)sender.tag - PP_MENU_BUTON_TAG];
     
@@ -338,53 +276,27 @@ NSString * menu[] =
         {
             [monsterMainView setBackgroundColor:[UIColor redColor]];
             [skViewMain bringSubviewToFront:monsterMainView];
-            
-//            [self menuDownAnimation];
-//            PPMonsterScene * monsterScene = [[PPMonsterScene alloc] initWithSize:CurrentDeviceRealSize];
-//            monsterScene.scaleMode = SKSceneScaleModeAspectFill;
-//            [skViewMain presentScene:monsterScene];
         }
             break;
         case 1:
         {
             [skViewMain bringSubviewToFront:knapsackMainView];
-
-//            [self menuDownAnimation];
-//            PPPacksackScene * packsackScene = [[PPPacksackScene alloc] initWithSize:CurrentDeviceRealSize];
-//            packsackScene.scaleMode = SKSceneScaleModeAspectFill;
-//            [skViewMain presentScene:packsackScene];
-            
         }
             break;
         case 2:
         {
             [skViewMain bringSubviewToFront:fightingMainView];
             fightingMainView->mainScene->backButton.hidden = NO;
-            
-//            [self menuDownAnimation];
-//            PPPassNumberScene * passScene = [[PPPassNumberScene alloc] initWithSize:CurrentDeviceRealSize];
-//            passScene.scaleMode = SKSceneScaleModeAspectFill;
-//            [skViewMain presentScene:passScene];
         }
             break;
         case 3:
         {
             [skViewMain bringSubviewToFront:scheduleMainView];
-            
-//            [self menuDownAnimation];
-//            PPShopScene * shopScene = [[PPShopScene alloc] initWithSize:CurrentDeviceRealSize];
-//            shopScene.scaleMode = SKSceneScaleModeAspectFill;
-//            [skViewMain presentScene:shopScene];
         }
             break;
         case 4:
         {
             [skViewMain bringSubviewToFront:othersMainView];
-            
-//            [self menuDownAnimation];
-//            PPSettingScene * ppSetScene = [[PPSettingScene alloc] initWithSize:CurrentDeviceRealSize];
-//            ppSetScene.scaleMode = SKSceneScaleModeAspectFill;
-//            [skViewMain presentScene:ppSetScene];
         }
             break;
             
@@ -407,85 +319,104 @@ NSString * menu[] =
     }
 }
 
-//-(void)backToMainClick
+//// Todo 加注释
+//-(void)counterpartEnter:(id)obj
 //{
-////    if ([UIScreen mainScreen].bounds.size.height > 500) {
-////
-////    [skViewMain setFrame:CGRectMake(0.0f, 44.0f, 320.0f, 480.0f)];
-////        
-////    }
+//    PPTableView * ppTable1 = [[PPTableView alloc] initWithFrame:CGRectMake(0.0f, 80, 320, 200)];
+//    ppTable1.tag = PP_PASSNUM_CHOOSE_TABLE_TAG;
+//    ppTable1.choosePassNumber = self;
+//    ppTable1.choosePassNumberSel = @selector(enterBattle:);
+//    NSArray * productInfoArray = [NSArray arrayWithObjects:@"关卡1",@"关卡2",@"关卡3",@"关卡4",@"关卡5",@"关卡6", nil];
+//    [ppTable1 ppsetTableViewWithData:productInfoArray];
+//    [self.view addSubview:ppTable1];
+//}
+//
+//// Todo 加注释
+//-(void)enterBattle:(NSNumber *)passNumber
+//{
+//    UIView * passNumView = [self.view viewWithTag:PP_PASSNUM_CHOOSE_TABLE_TAG];
+//    [passNumView removeFromSuperview];
+//    passNumber = nil;
 //    
-////    [skViewMain presentScene:mainScene];
-////    [UIView animateWithDuration:0.1 animations:^{
-////        
-////        [backToMain setFrame:CGRectMake(-backToMain.frame.size.width, backToMain.frame.origin.y, backToMain.frame.size.width, backToMain.frame.size.height)];
-////        
-////    } completion:^(BOOL finished){}];
-////    [self menuUpAnimation];
+//    [UIView animateWithDuration:0.1 animations:^{
+//        [backToMain setFrame:CGRectMake(0.0f, backToMain.frame.origin.y,
+//                                        backToMain.frame.size.width, backToMain.frame.size.height)];
+//    } completion:^(BOOL finished){}];
+//    
+//    //    [self menuDownAnimation];
+//    
+//    PPHurdleReadyScene * battleScene;
+//    battleScene = [[PPHurdleReadyScene alloc] initWithSize:CurrentDeviceRealSize];
+//    battleScene.scaleMode = SKSceneScaleModeAspectFill;
+//    
+//    [skViewMain presentScene:battleScene];
 //}
 
--(void)menuUpAnimation
-{
-    [self performSelector:@selector(upMenuBtn) withObject:nil];
-}
-
--(void)menuDownAnimation
-{
-    [self performSelector:@selector(downMenuBtn) withObject:nil];
-}
-
--(void)upMenuBtn
-{
-    [UIView animateWithDuration:0.05
-                     animations:
-     ^{
-        UIButton *buttonTmp=(UIButton *)[skViewMain viewWithTag:PP_MENU_BUTON_TAG+menuAnimationTag];
-        NSLog(@"height=%f",skViewMain.frame.size.height);
-        [buttonTmp setFrame:CGRectMake(buttonTmp.frame.origin.x,2, buttonTmp.frame.size.width, buttonTmp.frame.size.height)];
-     }
-                     completion:
-     ^(BOOL finished) {
-        menuAnimationTag++;
-        if (menuAnimationTag < PP_MENU_COUNT) {
-            [self performSelector:@selector(menuUpAnimation) withObject:nil];
-            return ;
-        }
-        menuAnimationTag=0;
-     }];
-}
-
--(void)downMenuBtn
-{
-    [UIView animateWithDuration:0.05 animations:^{
-        
+//-(void)backToMainClick
+//{
+//    if ([UIScreen mainScreen].bounds.size.height > 500) {
+//
+//    [skViewMain setFrame:CGRectMake(0.0f, 44.0f, 320.0f, 480.0f)];
+//        
+//    }
+//    
+//    [skViewMain presentScene:mainScene];
+//    [UIView animateWithDuration:0.1 animations:^{
+//        
+//        [backToMain setFrame:CGRectMake(-backToMain.frame.size.width, backToMain.frame.origin.y,
+//                                        backToMain.frame.size.width, backToMain.frame.size.height)];
+//        
+//    } completion:^(BOOL finished){}];
+//    [self menuUpAnimation];
+//}
+//
+//-(void)menuUpAnimation
+//{
+//    [self performSelector:@selector(upMenuBtn) withObject:nil];
+//}
+//
+//-(void)menuDownAnimation
+//{
+//    [self performSelector:@selector(downMenuBtn) withObject:nil];
+//}
+//
+//-(void)upMenuBtn
+//{
+//    [UIView animateWithDuration:0.05
+//                     animations:
+//     ^{
 //        UIButton *buttonTmp=(UIButton *)[skViewMain viewWithTag:PP_MENU_BUTON_TAG+menuAnimationTag];
-//        [buttonTmp setFrame:CGRectMake(buttonTmp.frame.origin.x,buttonTmp.frame.size.height, buttonTmp.frame.size.width, buttonTmp.frame.size.height)];
-        
-    } completion:^(BOOL finished){
-        menuAnimationTag++;
-        if (menuAnimationTag < PP_MENU_COUNT) {
-            [self performSelector:@selector(menuDownAnimation) withObject:nil];
-            return ;
-        }
-        menuAnimationTag = 0;
-    }];
-}
+//        NSLog(@"height=%f",skViewMain.frame.size.height);
+//        [buttonTmp setFrame:CGRectMake(buttonTmp.frame.origin.x,2, buttonTmp.frame.size.width, buttonTmp.frame.size.height)];
+//     }
+//                     completion:
+//     ^(BOOL finished) {
+//        menuAnimationTag++;
+//        if (menuAnimationTag < PP_MENU_COUNT) {
+//            [self performSelector:@selector(menuUpAnimation) withObject:nil];
+//            return ;
+//        }
+//        menuAnimationTag=0;
+//     }];
+//}
+//
+//-(void)downMenuBtn
+//{
+//    [UIView animateWithDuration:0.05 animations:^{
+//        
+//        UIButton * buttonTmp = (UIButton *)[skViewMain viewWithTag:PP_MENU_BUTON_TAG + menuAnimationTag];
+//        [buttonTmp setFrame:CGRectMake(buttonTmp.frame.origin.x, buttonTmp.frame.size.height,
+//                                       buttonTmp.frame.size.width, buttonTmp.frame.size.height)];
+//
+//    } completion:^(BOOL finished){
+//        menuAnimationTag++;
+//        if (menuAnimationTag < PP_MENU_COUNT) {
+//            [self performSelector:@selector(menuDownAnimation) withObject:nil];
+//            return ;
+//        }
+//        menuAnimationTag = 0;
+//    }];
+//
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

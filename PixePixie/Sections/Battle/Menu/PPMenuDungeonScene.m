@@ -22,7 +22,7 @@
 }
 
 
-//
+// 介绍窗口
 -(void)introduceInfoLabel:(NSString *)text
 {
     SKSpriteNode * enemyDeadContent = [[SKSpriteNode alloc] initWithColor:[UIColor orangeColor] size:CGSizeMake(320, 350)];
@@ -54,8 +54,7 @@
     [enemyDeadContent addChild:confirmButton];
 }
 
-
-//
+// 确认按钮
 -(void)confirmBtnClick:(SKSpriteNode *)contentNode
 {
     if (contentNode != nil) {
@@ -64,8 +63,7 @@
     }
 }
 
-
-//
+// 添加按钮
 -(void)addPassChoose
 {
     for (int i = 0; i < 5; i++) {
@@ -96,14 +94,12 @@
     [self enterHurdleReady];
 }
 
-
 // 这里直接进入战斗画面
 -(void)spriteChooseClick
 {
 //    NSArray * petsArray = nil;
 //    NSArray * enemysArray = nil;
-//    
-//    
+//
 //    NSDictionary * petsChoosedInfo = [petsArray objectAtIndex:302 - PP_PETS_CHOOSE_BTN_TAG];
 //    NSDictionary * choosedPet = [NSDictionary dictionaryWithDictionary:petsChoosedInfo];
 //    
