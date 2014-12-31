@@ -44,18 +44,14 @@ static NSString *monsterBtnTitle[]={
         showBtn.color = [UIColor blueColor];
 
         for (int i = 0; i < 3; i++) {
-            
             PPSpriteButton * monsterButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(200, 40)];
             monsterButton.position = CGPointMake(160,i * 100 + 80);
             monsterButton.name = [NSString stringWithFormat:@"%d",i];
             [monsterButton setLabelWithText:monsterBtnTitle[i] andFont:[UIFont systemFontOfSize:15] withColor:nil];
             [monsterButton addTarget:self selector:@selector(monsterButtonClick:) withObject:monsterButton.name forControlEvent:PPButtonControlEventTouchUpInside];
             [self addChild:monsterButton];
-            
         }
-        
-    }else
-    {
+    } else {
         [self hideShowbtns];
     }
     
@@ -63,7 +59,6 @@ static NSString *monsterBtnTitle[]={
 
 -(void)showPetInfo
 {
-    
     PPSpriteButton * feedFromFriendButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(120.0f, 30.0f)];
     [feedFromFriendButton setLabelWithText:@"有朋友给你的宠物喂食了!" andFont:[UIFont systemFontOfSize:10] withColor:nil];
     feedFromFriendButton.position = CGPointMake(60.0f,360.0f);
@@ -71,7 +66,6 @@ static NSString *monsterBtnTitle[]={
     [feedFromFriendButton addTarget:self selector:@selector(feedButtonClick:)
                          withObject:feedFromFriendButton.name forControlEvent:PPButtonControlEventTouchUpInside];
     [self addChild:feedFromFriendButton];
-    
     
     PPSpriteButton * removeToGroupBtn = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(80, 30.0f)];
     [removeToGroupBtn setLabelWithText:@"remove to Group" andFont:[UIFont systemFontOfSize:10] withColor:nil];
@@ -81,7 +75,6 @@ static NSString *monsterBtnTitle[]={
                      withObject:feedFromFriendButton.name forControlEvent:PPButtonControlEventTouchUpInside];
     [self addChild:removeToGroupBtn];
     
-    
     PPSpriteButton * worldBossButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(60.0f, 30.0f)];
     [worldBossButton setLabelWithText:@"world boss" andFont:[UIFont systemFontOfSize:10] withColor:nil];
     worldBossButton.position = CGPointMake(160.0f+feedFromFriendButton.size.width/2.0f+50.0f,feedFromFriendButton.position.y);
@@ -90,27 +83,23 @@ static NSString *monsterBtnTitle[]={
                     withObject:feedFromFriendButton.name forControlEvent:PPButtonControlEventTouchUpInside];
     [self addChild:worldBossButton];
     
-    
     PPMonsterInfoNode * monsterInfo = [[PPMonsterInfoNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(320, 260)];
     [monsterInfo initMonsterInfo:nil];
     monsterInfo.position = CGPointMake(160, 170);
     [self addChild:monsterInfo];
-    
-    
 }
 
 -(void)feedButtonClick:(NSString *)nameString
 {
-    
 }
+
 -(void)removeToGroupBtnClick:(NSString *)nameString
-{
-    
-}
--(void)worldBossButtonClick:(NSString *)nameString
 {
 }
 
+-(void)worldBossButtonClick:(NSString *)nameString
+{
+}
 
 -(void)monsterButtonClick:(NSString *)name
 {
@@ -149,34 +138,29 @@ static NSString *monsterBtnTitle[]={
             break;
     }
 }
+
 -(void)backButtonClick:(NSString *)backName
 {
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:PP_BACK_TO_MAIN_VIEW object:nil];
-    
-    
 }
+
 -(void)didMoveToView:(SKView *)view
 {
-
 }
+
 - (void)willMoveFromView:(SKView *)view
 {
     [self hideShowbtns];
-
-    
 }
+
 -(void)hideShowbtns
 {
-    
-    PPSpriteButton *btn = (PPSpriteButton *)[self childNodeWithName:@"showMonsterName"];
-    
+    PPSpriteButton * btn = (PPSpriteButton *)[self childNodeWithName:@"showMonsterName"];
     btn.color = [UIColor orangeColor];
-
-    for (int i=0; i<3; i++) {
-        SKNode *monsterButton = [self childNodeWithName:[NSString stringWithFormat:@"%d",i]];
+    for (int i = 0; i < 3; i++) {
+        SKNode * monsterButton = [self childNodeWithName:[NSString stringWithFormat:@"%d",i]];
         [monsterButton removeFromParent];
     }
-    
 }
+
 @end

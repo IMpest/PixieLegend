@@ -35,12 +35,12 @@ NSString * userInfo[] =
 {    
     [super viewDidLoad];
     
-    NSString * isNotFirstEnter = [PPLocalData contentFromUserDefaultKey:PP_FIRST_LOG_IN];
+    //这个不知道干嘛的我先注释掉了
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(backToMonsterScene:)
 //                                                 name:PP_BACK_TO_MAIN_VIEW object:nil];
     
-//    if ([isNotFirstEnter isEqualToString:@"1"]) {
+//    if ([[PPLocalData contentFromUserDefaultKey:PP_FIRST_LOG_IN] isEqualToString:@"1"]) {
     if (NO) {
         [self loadMainView];
         [self.view addSubview:skViewMain];
@@ -182,7 +182,6 @@ NSString * userInfo[] =
     othersMainView = [[PPOthersMainView alloc] initWithFrame:NormalViewRect];
     [skViewMain addSubview:othersMainView];
     
-    [skViewMain bringSubviewToFront:monsterMainView];
     
     // 上方信息栏
     userInfoBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
@@ -253,7 +252,9 @@ NSString * userInfo[] =
     // 设置Monster界面为首页界面
     tabLight = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tab_light.png"]];
     [menuInfoBar addSubview:tabLight];
-    [self changeMenuState:0];
+    
+    [skViewMain bringSubviewToFront:monsterMainView];
+    [self changeMenuState:PP_MENU_START];
 }
 
 //上方按钮点击

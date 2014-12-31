@@ -29,6 +29,7 @@
 
 #define PP_BACK_BUTTON_ZPOSITION 100
 
+#define PP_MENU_START 0
 #define PP_MENU_COUNT 5
 
 #define PP_USER_BUTON_TAG 50

@@ -1,10 +1,10 @@
 
-#import "PPMenuDungeonScene.h"
+#import "PPMenuScene.h"
 
-@interface PPMenuDungeonScene()
+@interface PPMenuScene()
 @end
 
-@implementation PPMenuDungeonScene
+@implementation PPMenuScene
 
 -(id)initWithSize:(CGSize)size andElement:(PPElementType)elementType{
     if (self = [super initWithSize:size]) {

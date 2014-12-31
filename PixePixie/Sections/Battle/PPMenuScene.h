@@ -1,5 +1,5 @@
 
-@interface PPMenuDungeonScene : PPBasicScene
+@interface PPMenuScene : PPBasicScene
 {
     PPElementType currentElementType;
 }
