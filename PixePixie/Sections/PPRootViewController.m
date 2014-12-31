@@ -14,6 +14,7 @@ UIView * skViewPixie;
 UIView * skViewMain;
 UIView * userInfoBar;
 UIView * menuInfoBar;
+UIImageView * tabLight;
 
 PPMonsterMainView * monsterMainView;
 PPKnapsackMainView * knapsackMainView;
@@ -24,8 +25,8 @@ PPOthersMainView * othersMainView;
 NSString * userInfo[] =
 {
     @"Name",
-    @"Stone",
     @"Energy",
+    @"Stone",
     @"Coin",
     @""
 };
@@ -35,9 +36,9 @@ NSString * userInfo[] =
     [super viewDidLoad];
     
     NSString * isNotFirstEnter = [PPLocalData contentFromUserDefaultKey:PP_FIRST_LOG_IN];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(backToMonsterScene:)
-                                                 name:PP_BACK_TO_MAIN_VIEW object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(backToMonsterScene:)
+//                                                 name:PP_BACK_TO_MAIN_VIEW object:nil];
     
 //    if ([isNotFirstEnter isEqualToString:@"1"]) {
     if (NO) {
@@ -57,12 +58,10 @@ NSString * userInfo[] =
     if (CurrentDeviceRealSize.height > 500) {
         UIImageView * upBlackBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ui_fit_top.png"]];
         upBlackBar.frame = CGRectMake(0, 0, 320, 44);
-        [upBlackBar setBackgroundColor:[UIColor blackColor]];
         [self.view addSubview:upBlackBar];
         
         UIImageView * downBlackBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ui_fit_bottom.png"]];
         downBlackBar.frame = CGRectMake(0, self.view.frame.size.height - 44, 320, 44);
-        [downBlackBar setBackgroundColor:[UIColor blackColor]];
         [self.view addSubview:downBlackBar];
     }
 }
@@ -191,9 +190,9 @@ NSString * userInfo[] =
     
     CGRect barPos[5] = {
         CGRectMake(30, 2, 80, 18),
-        CGRectMake(130, 2, 80, 18),
+        CGRectMake(140, 2, 80, 18),
         CGRectMake(30, 23, 80, 18),
-        CGRectMake(130, 23, 80, 18),
+        CGRectMake(140, 23, 80, 18),
         CGRectMake(245, 2, 50, 40)
     };
     
@@ -205,11 +204,11 @@ NSString * userInfo[] =
     imgvName.frame = barPos[0];
     [userInfoBar addSubview:imgvName];
 
-    UIImageView * imgvStone = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"info_stone.png"]];
+    UIImageView * imgvStone = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"info_energy.png"]];
     imgvStone.frame = barPos[1];
     [userInfoBar addSubview:imgvStone];
     
-    UIImageView * imgvEnergy = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"info_energy.png"]];
+    UIImageView * imgvEnergy = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"info_stone.png"]];
     imgvEnergy.frame = barPos[2];
     [userInfoBar addSubview:imgvEnergy];
 
@@ -235,7 +234,6 @@ NSString * userInfo[] =
     
     // 下方一排按钮
     menuInfoBar = [[UIView alloc] initWithFrame:CGRectMake(0, skViewMain.frame.size.height - 44, 320, 44)];
-    [menuInfoBar setBackgroundColor:[UIColor blackColor]];
     
     UIImageView * imgvBgBottom = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_bar_bottom.png"]];
     imgvBgBottom.frame = CGRectMake(0, 0, 320, 44);
@@ -253,6 +251,8 @@ NSString * userInfo[] =
     [skViewMain addSubview:menuInfoBar];
     
     // 设置Monster界面为首页界面
+    tabLight = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tab_light.png"]];
+    [menuInfoBar addSubview:tabLight];
     [self changeMenuState:0];
 }
 
@@ -265,7 +265,6 @@ NSString * userInfo[] =
 //下方按钮点击
 -(void)menuBtnClick:(UIButton *)sender
 {
-    
 //    [UIView animateWithDuration:0.2
 //                     animations:^{
 //                         [backToMain setFrame:CGRectMake(0,
@@ -285,7 +284,6 @@ NSString * userInfo[] =
     switch (sender.tag - PP_MENU_BUTON_TAG) {
         case 0:
         {
-            [monsterMainView setBackgroundColor:[UIColor redColor]];
             [skViewMain bringSubviewToFront:monsterMainView];
         }
             break;
@@ -297,7 +295,7 @@ NSString * userInfo[] =
         case 2:
         {
             [skViewMain bringSubviewToFront:fightingMainView];
-            fightingMainView->mainScene->backButton.hidden = NO;
+//            fightingMainView->mainScene->backButton.hidden = NO;
         }
             break;
         case 3:
@@ -318,16 +316,18 @@ NSString * userInfo[] =
     [monsterMainView hideMonstorShowBtns];
 }
 
+// 改变tab提示
 -(void)changeMenuState:(int)index
 {
-    for (int i = 0; i < PP_MENU_COUNT; i++) {
-        UIButton * buttonMenuTmp = (UIButton *)[menuInfoBar viewWithTag:PP_MENU_BUTON_TAG + i];
-        if (i == index) {
-            [buttonMenuTmp setBackgroundColor:[UIColor blueColor]];
-        } else {
-            [buttonMenuTmp setBackgroundColor:[UIColor clearColor]];
-        }
-    }
+    tabLight.frame = CGRectMake(index * skViewMain.frame.size.width/PP_MENU_COUNT+(64-36)/2, 5, 36, 36);
+//    for (int i = 0; i < PP_MENU_COUNT; i++) {
+//        UIButton * buttonMenuTmp = (UIButton *)[menuInfoBar viewWithTag:PP_MENU_BUTON_TAG + i];
+//        if (i == index) {
+//            [buttonMenuTmp setBackgroundColor:[UIColor blueColor]];
+//        } else {
+//            [buttonMenuTmp setBackgroundColor:[UIColor clearColor]];
+//        }
+//    }
 }
 
 //// Todo 加注释

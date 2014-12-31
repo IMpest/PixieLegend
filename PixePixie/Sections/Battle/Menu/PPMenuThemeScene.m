@@ -17,23 +17,22 @@ static NSString * stringMenuTheme[3] = {@"fire",@"metal",@"plant"};
 
 -(void)didMoveToView:(SKView *)view
 {
-    UIView *contentView= [self.view viewWithTag:PP_MAP_SCROLL_VIEW_TAG];
+    UIView * contentView = [self.view viewWithTag:PP_MAP_SCROLL_VIEW_TAG];
     if (contentView) {
         [contentView removeFromSuperview];
         contentView = nil;
     }
     
-    UIScrollView * contentScrollView = [[UIScrollView alloc]initWithFrame:self.view.frame];
-    contentScrollView.delegate = self;
+    UIScrollView * contentScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 392)];
+    contentScrollView.bounces = NO;
     contentScrollView.tag = PP_MAP_SCROLL_VIEW_TAG;
     contentScrollView.contentSize = CGSizeMake(self.view.frame.size.width*4, self.view.frame.size.height);
-    contentScrollView.backgroundColor = [UIColor whiteColor];
-    [contentScrollView setUserInteractionEnabled:YES];
+    contentScrollView.userInteractionEnabled = YES;
     contentScrollView.decelerationRate = 0.0;
     
     for (int i = 0; i < 4; i++) {
-        UIImageView * themeImageContent = [[UIImageView alloc] initWithFrame:CGRectMake(i*self.view.frame.size.width,
-                                                                                        0.0f,
+        UIImageView * themeImageContent = [[UIImageView alloc] initWithFrame:CGRectMake(i * self.view.frame.size.width,
+                                                                                        0,
                                                                                         contentScrollView.frame.size.width,
                                                                                         contentScrollView.frame.size.height)];
         themeImageContent.image = [UIImage imageNamed:[NSString stringWithFormat:@"map_all_%02d",i]];
@@ -70,12 +69,12 @@ static NSString * stringMenuTheme[3] = {@"fire",@"metal",@"plant"};
     }
     [self.view addSubview:contentScrollView];
     
-    backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton setBackgroundColor:[UIColor orangeColor]];
-    [backButton setTitle:@"返回" forState:UIControlStateNormal];
-    [backButton setFrame:CGRectMake(15.0f, contentScrollView.frame.origin.y+10, 45.0f, 30.0f)];
-    [backButton addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backButton];
+//    backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [backButton setBackgroundColor:[UIColor orangeColor]];
+//    [backButton setTitle:@"返回" forState:UIControlStateNormal];
+//    [backButton setFrame:CGRectMake(15.0f, contentScrollView.frame.origin.y+10, 45.0f, 30.0f)];
+//    [backButton addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:backButton];
 }
 
 -(void)willMoveFromView:(SKView *)view
@@ -83,22 +82,11 @@ static NSString * stringMenuTheme[3] = {@"fire",@"metal",@"plant"};
     backButton.hidden = YES;
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    
-    if (scrollView.contentOffset.x<=0) {
-        scrollView.contentOffset = CGPointMake(0.0f, scrollView.contentOffset.y);
-    }else if(scrollView.contentOffset.x>=scrollView.contentSize.width-self.view.frame.size.width)
-    {
-        scrollView.contentOffset = CGPointMake(scrollView.contentSize.width-self.view.frame.size.width, scrollView.contentOffset.y);
-    }
-}
-
--(void)backButtonClick:(UIButton *)backBtn
-{
-    backBtn.hidden = YES;
-    [[NSNotificationCenter defaultCenter] postNotificationName:PP_BACK_TO_MAIN_VIEW object:PP_BACK_TO_MAIN_VIEW_FIGHTING];
-}
+//-(void)backButtonClick:(UIButton *)backBtn
+//{
+//    backBtn.hidden = YES;
+//    [[NSNotificationCenter defaultCenter] postNotificationName:PP_BACK_TO_MAIN_VIEW object:PP_BACK_TO_MAIN_VIEW_FIGHTING];
+//}
 
 -(void)passChoose:(UIButton *)passBtn
 {

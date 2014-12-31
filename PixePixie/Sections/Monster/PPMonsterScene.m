@@ -15,11 +15,15 @@ static NSString *monsterBtnTitle[]={
 };
 
 @implementation PPMonsterScene
+
 - (id)initWithSize:(CGSize)size
 {
     if (self = [super initWithSize:size]) {
         
-        [self showPetInfo];
+        SKSpriteNode * bgImg = [[SKSpriteNode alloc] initWithImageNamed:@"theme_forest.png"];
+        bgImg.size = CGSizeMake(320, 392);
+        bgImg.position = CGPointMake(160, 196);
+        [self addChild:bgImg];
         
         PPSpriteButton * showMonsterBtn = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(40.0f, 100.0f)];
         [showMonsterBtn setLabelWithText:@"show" andFont:[UIFont systemFontOfSize:15] withColor:nil];
@@ -27,6 +31,8 @@ static NSString *monsterBtnTitle[]={
         showMonsterBtn.position = CGPointMake(22.0f,180.0f);
         [showMonsterBtn addTarget:self selector:@selector(showMonsterBtnClick:)
                        withObject:showMonsterBtn forControlEvent:PPButtonControlEventTouchUpInside];
+        
+        [self showPetInfo];
         [self addChild:showMonsterBtn];
     }
     return self;
@@ -163,8 +169,7 @@ static NSString *monsterBtnTitle[]={
 -(void)hideShowbtns
 {
     
-    PPSpriteButton *btn=(PPSpriteButton *)[self childNodeWithName:@"showMonsterName"];
-    
+    PPSpriteButton *btn = (PPSpriteButton *)[self childNodeWithName:@"showMonsterName"];
     
     btn.color = [UIColor orangeColor];
 
