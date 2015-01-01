@@ -182,7 +182,6 @@ NSString * userInfo[] =
     othersMainView = [[PPOthersMainView alloc] initWithFrame:NormalViewRect];
     [skViewMain addSubview:othersMainView];
     
-    
     // 上方信息栏
     userInfoBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     [userInfoBar setBackgroundColor:[UIColor clearColor]];

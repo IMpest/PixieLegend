@@ -1,9 +1,12 @@
-//#define EXTERN_SIZE_SCREEN_MERGE CGSizeMake(320.0f,480.0f)
 
 
 @interface NSObject (performSelectorEx)
+
 - (void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay;
+
 @end
+
+
 
 @implementation NSObject (performSelectorEx)
 

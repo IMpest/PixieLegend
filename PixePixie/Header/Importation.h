@@ -19,7 +19,6 @@
 #import "PPRootViewController.h"
 
 // Start
-#import "PPTableView.h"
 #import "PPChoosePetScrollView.h"
 
 // Monster

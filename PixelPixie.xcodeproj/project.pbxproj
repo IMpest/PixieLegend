@@ -40,7 +40,6 @@
 		193F96A71A2EF5DD00F266A6 /* PPCookingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F96A41A2EF5DD00F266A6 /* PPCookingScene.m */; };
 		193F96A81A2EF5DD00F266A6 /* PPPacksackScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F96A61A2EF5DD00F266A6 /* PPPacksackScene.m */; };
 		193F96AD1A2EF69000F266A6 /* PPFightingMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F96AA1A2EF69000F266A6 /* PPFightingMainView.m */; };
-		193F96BD1A2EF89A00F266A6 /* PPTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F96BC1A2EF89A00F266A6 /* PPTableView.m */; };
 		193F96C01A2EF8A400F266A6 /* PPChoosePetScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F96BF1A2EF8A400F266A6 /* PPChoosePetScrollView.m */; };
 		193F96C31A2EF8B300F266A6 /* PPScheduleMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F96C21A2EF8B300F266A6 /* PPScheduleMainView.m */; };
 		193F96C81A2EF8E300F266A6 /* PPActivityDetailScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F96C51A2EF8E300F266A6 /* PPActivityDetailScene.m */; };
@@ -291,8 +290,6 @@
 		193F96A61A2EF5DD00F266A6 /* PPPacksackScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPPacksackScene.m; path = PixePixie/Sections/Knapsack/PPPacksackScene.m; sourceTree = SOURCE_ROOT; };
 		193F96A91A2EF69000F266A6 /* PPFightingMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPFightingMainView.h; path = PixePixie/Sections/Battle/PPFightingMainView.h; sourceTree = SOURCE_ROOT; };
 		193F96AA1A2EF69000F266A6 /* PPFightingMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPFightingMainView.m; path = PixePixie/Sections/Battle/PPFightingMainView.m; sourceTree = SOURCE_ROOT; };
-		193F96BB1A2EF89A00F266A6 /* PPTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPTableView.h; path = PixePixie/Sections/Start/PPTableView.h; sourceTree = SOURCE_ROOT; };
-		193F96BC1A2EF89A00F266A6 /* PPTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPTableView.m; path = PixePixie/Sections/Start/PPTableView.m; sourceTree = SOURCE_ROOT; };
 		193F96BE1A2EF8A400F266A6 /* PPChoosePetScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPChoosePetScrollView.h; path = PixePixie/Sections/Start/PPChoosePetScrollView.h; sourceTree = SOURCE_ROOT; };
 		193F96BF1A2EF8A400F266A6 /* PPChoosePetScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPChoosePetScrollView.m; path = PixePixie/Sections/Start/PPChoosePetScrollView.m; sourceTree = SOURCE_ROOT; };
 		193F96C11A2EF8B300F266A6 /* PPScheduleMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPScheduleMainView.h; path = PixePixie/Sections/Schedule/PPScheduleMainView.h; sourceTree = SOURCE_ROOT; };
@@ -721,8 +718,6 @@
 			children = (
 				193F96BE1A2EF8A400F266A6 /* PPChoosePetScrollView.h */,
 				193F96BF1A2EF8A400F266A6 /* PPChoosePetScrollView.m */,
-				193F96BB1A2EF89A00F266A6 /* PPTableView.h */,
-				193F96BC1A2EF89A00F266A6 /* PPTableView.m */,
 			);
 			name = Start;
 			sourceTree = "<group>";
@@ -1276,7 +1271,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				193F96BD1A2EF89A00F266A6 /* PPTableView.m in Sources */,
 				193F96C91A2EF8E300F266A6 /* PPScheduleScene.m in Sources */,
 				19F6EDAA18C6C09900BFFF9A /* main.m in Sources */,
 				1933E7181A2F08AC00E8C5BF /* PPSceneManager.m in Sources */,

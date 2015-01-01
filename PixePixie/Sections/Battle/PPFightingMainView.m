@@ -9,6 +9,8 @@ static NSString * stringMenuTheme[3] = {
 
 @implementation PPFightingMainView
 
+UIScrollView * contentScrollView;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -16,9 +18,8 @@ static NSString * stringMenuTheme[3] = {
         
 //        [self changeToPassScene];
         
-        UIScrollView * contentScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 392)];
+        contentScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 392)];
         contentScrollView.bounces = NO;
-        contentScrollView.tag = PP_MAP_SCROLL_VIEW_TAG;
         contentScrollView.contentSize = CGSizeMake(self.frame.size.width * 4, self.frame.size.height);
         contentScrollView.userInteractionEnabled = YES;
         contentScrollView.decelerationRate = 0.0;
@@ -28,6 +29,7 @@ static NSString * stringMenuTheme[3] = {
                                                                                             0,
                                                                                             contentScrollView.frame.size.width,
                                                                                             contentScrollView.frame.size.height)];
+            
             themeImageContent.image = [UIImage imageNamed:[NSString stringWithFormat:@"map_all_%02d",i]];
             [contentScrollView addSubview:themeImageContent];
             
@@ -65,8 +67,7 @@ static NSString * stringMenuTheme[3] = {
 
 -(void)passChoose:(UIButton *)passBtn
 {
-    UIView * contentScroll = [self viewWithTag:PP_MAP_SCROLL_VIEW_TAG];
-    [contentScroll removeFromSuperview];
+    [contentScrollView removeFromSuperview];
     
     NSDictionary * dictPassInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PassInfo"
                                                                                                              ofType:@"plist"]];
@@ -79,19 +80,15 @@ static NSString * stringMenuTheme[3] = {
         passDictInfo = [NSDictionary dictionaryWithDictionary:[passArray objectAtIndex:index]];
     }
     
-    // 火属性hardCode
-    if (index == 0) {
-        index = 4;
-    }
-    
-    PPMenuScene * menuScene = [[PPMenuScene alloc] initWithSize:self.bounds.size
-                                                                          andElement:index];
-    
+    if (index == 0) index = 4; // 火属性hardCode
+    PPMenuScene * menuScene = [[PPMenuScene alloc] initWithSize:self.bounds.size andElement:index];
+    //    menuScene->previousScene = self;
     menuScene.passDictInfo = passDictInfo;
-//    menuScene->previousScene = self;
     menuScene.scaleMode = SKSceneScaleModeAspectFill;
     
     [self presentScene:menuScene];
+    
+    
 }
 
 -(void)changeToPassScene
