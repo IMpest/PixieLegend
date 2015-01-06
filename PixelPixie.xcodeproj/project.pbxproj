@@ -27,6 +27,10 @@
 		1933E7411A2F0D8100E8C5BF /* PPMonsterInfoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1933E73C1A2F0D8100E8C5BF /* PPMonsterInfoNode.m */; };
 		1933E7421A2F0D8100E8C5BF /* PPSpriteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1933E73E1A2F0D8100E8C5BF /* PPSpriteButton.m */; };
 		1933E74C1A2F11F100E8C5BF /* pixie_battle_action.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1933E7481A2F11F100E8C5BF /* pixie_battle_action.atlas */; };
+		193D9F341A5BCFAA005762D6 /* bt_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 193D9F311A5BCFAA005762D6 /* bt_back.png */; };
+		193D9F351A5BCFAA005762D6 /* bt_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 193D9F321A5BCFAA005762D6 /* bt_pause.png */; };
+		193D9F361A5BCFAA005762D6 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = 193D9F331A5BCFAA005762D6 /* title.png */; };
+		193D9F381A5BCFBD005762D6 /* ui_number.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 193D9F371A5BCFBD005762D6 /* ui_number.atlas */; };
 		193DC4AD19686162007308C7 /* PPPixie.m in Sources */ = {isa = PBXBuildFile; fileRef = 193DC4AB19686162007308C7 /* PPPixie.m */; };
 		193F96891A2EF49800F266A6 /* PPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F96861A2EF49800F266A6 /* PPAppDelegate.m */; };
 		193F968A1A2EF49800F266A6 /* PPRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F96881A2EF49800F266A6 /* PPRootViewController.m */; };
@@ -162,7 +166,6 @@
 		1999AC7719EE64D500B25ED2 /* fire_shield_cast_0024.png in Resources */ = {isa = PBXBuildFile; fileRef = 1999AC0E19EE64D500B25ED2 /* fire_shield_cast_0024.png */; };
 		1999AC7819EE64D500B25ED2 /* fire_shield_cast_0025.png in Resources */ = {isa = PBXBuildFile; fileRef = 1999AC0F19EE64D500B25ED2 /* fire_shield_cast_0025.png */; };
 		1999AC7919EE64D500B25ED2 /* fire_shield_cast_0026.png in Resources */ = {isa = PBXBuildFile; fileRef = 1999AC1019EE64D500B25ED2 /* fire_shield_cast_0026.png */; };
-		199EFF2C19F613B9003074D7 /* ui_number.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 199EFF2B19F613B9003074D7 /* ui_number.atlas */; };
 		19A8ED4B1A52977600EFEA7A /* bg_bar_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A8ED2E1A52977600EFEA7A /* bg_bar_bottom.png */; };
 		19A8ED4C1A52977600EFEA7A /* bg_bar_top.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A8ED2F1A52977600EFEA7A /* bg_bar_top.png */; };
 		19A8ED4D1A52977600EFEA7A /* info_coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A8ED301A52977600EFEA7A /* info_coin.png */; };
@@ -263,6 +266,10 @@
 		1933E73E1A2F0D8100E8C5BF /* PPSpriteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPSpriteButton.m; path = PixePixie/General/Nodes/PPSpriteButton.m; sourceTree = "<group>"; };
 		1933E7431A2F0DF700E8C5BF /* Importation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Importation.h; path = PixePixie/Header/Importation.h; sourceTree = "<group>"; };
 		1933E7481A2F11F100E8C5BF /* pixie_battle_action.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = pixie_battle_action.atlas; path = Resource/Image/pixie_battle_action.atlas; sourceTree = "<group>"; };
+		193D9F311A5BCFAA005762D6 /* bt_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_back.png; sourceTree = "<group>"; };
+		193D9F321A5BCFAA005762D6 /* bt_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_pause.png; sourceTree = "<group>"; };
+		193D9F331A5BCFAA005762D6 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
+		193D9F371A5BCFBD005762D6 /* ui_number.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = ui_number.atlas; path = Resource/Image/ui_number.atlas; sourceTree = "<group>"; };
 		193DC48319686054007308C7 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Configuration.h; path = PixePixie/Header/Configuration.h; sourceTree = "<group>"; };
 		193DC4AA19686162007308C7 /* PPPixie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPPixie.h; path = Models/PPPixie.h; sourceTree = "<group>"; };
 		193DC4AB19686162007308C7 /* PPPixie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPPixie.m; path = Models/PPPixie.m; sourceTree = "<group>"; };
@@ -422,7 +429,6 @@
 		1999AC0E19EE64D500B25ED2 /* fire_shield_cast_0024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire_shield_cast_0024.png; sourceTree = "<group>"; };
 		1999AC0F19EE64D500B25ED2 /* fire_shield_cast_0025.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire_shield_cast_0025.png; sourceTree = "<group>"; };
 		1999AC1019EE64D500B25ED2 /* fire_shield_cast_0026.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire_shield_cast_0026.png; sourceTree = "<group>"; };
-		199EFF2B19F613B9003074D7 /* ui_number.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = ui_number.atlas; path = Resource/Images/ui_number.atlas; sourceTree = "<group>"; };
 		19A8ED2E1A52977600EFEA7A /* bg_bar_bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_bar_bottom.png; sourceTree = "<group>"; };
 		19A8ED2F1A52977600EFEA7A /* bg_bar_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_bar_top.png; sourceTree = "<group>"; };
 		19A8ED301A52977600EFEA7A /* info_coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info_coin.png; sourceTree = "<group>"; };
@@ -695,11 +701,24 @@
 				19C8BE021A4821AE00872CE9 /* battle_table_skill.atlas */,
 				19C8BE031A4821AE00872CE9 /* battle_table_ui.atlas */,
 				1933E7481A2F11F100E8C5BF /* pixie_battle_action.atlas */,
+				193D9F371A5BCFBD005762D6 /* ui_number.atlas */,
 				1927DE6B1A53B38C0098501C /* temp */,
+				193D9F301A5BCFAA005762D6 /* ui_general */,
 				19A8ED2D1A52977600EFEA7A /* ui_bar */,
 				19A8ED3B1A52977600EFEA7A /* ui_start */,
 			);
 			name = Image;
+			sourceTree = "<group>";
+		};
+		193D9F301A5BCFAA005762D6 /* ui_general */ = {
+			isa = PBXGroup;
+			children = (
+				193D9F311A5BCFAA005762D6 /* bt_back.png */,
+				193D9F321A5BCFAA005762D6 /* bt_pause.png */,
+				193D9F331A5BCFAA005762D6 /* title.png */,
+			);
+			name = ui_general;
+			path = Resource/Image/ui_general;
 			sourceTree = "<group>";
 		};
 		193DC47C19685B46007308C7 /* Header */ = {
@@ -738,7 +757,6 @@
 				1992B3F119E926E600BFE51E /* skill_buff.atlas */,
 				D4BF767919E6928D003CFFAB /* skill_icon.atlas */,
 				D4BF767B19E6928D003CFFAB /* ui_fighting.atlas */,
-				199EFF2B19F613B9003074D7 /* ui_number.atlas */,
 				D4BF767C19E6928D003CFFAB /* ui_talent.atlas */,
 			);
 			name = Images;
@@ -1108,6 +1126,7 @@
 				19A8ED611A52977600EFEA7A /* element_metal.png in Resources */,
 				1999AC5619EE64D500B25ED2 /* fire_blade_cast_0015.png in Resources */,
 				1999AC3419EE64D500B25ED2 /* plant_forward_0013.png in Resources */,
+				193D9F341A5BCFAA005762D6 /* bt_back.png in Resources */,
 				1927DE711A53B38C0098501C /* theme_forest.png in Resources */,
 				1999AC2619EE64D500B25ED2 /* plant_encounter.png in Resources */,
 				1999AC5419EE64D500B25ED2 /* fire_blade_cast_0013.png in Resources */,
@@ -1191,6 +1210,7 @@
 				1999AC5019EE64D500B25ED2 /* fire_blade_cast_0009.png in Resources */,
 				1999AC1E19EE64D500B25ED2 /* fire_forward_0012.png in Resources */,
 				D4BF768219E6928D003CFFAB /* pixie_info.atlas in Resources */,
+				193D9F351A5BCFAA005762D6 /* bt_pause.png in Resources */,
 				19A8ED541A52977600EFEA7A /* tab_btn0.png in Resources */,
 				19A8ED531A52977600EFEA7A /* tab_btn1.png in Resources */,
 				1999AC4B19EE64D500B25ED2 /* fire_blade_cast_0004.png in Resources */,
@@ -1250,17 +1270,18 @@
 				1999AC2819EE64D500B25ED2 /* plant_forward_0001.png in Resources */,
 				19A8ED4D1A52977600EFEA7A /* info_coin.png in Resources */,
 				1999AC2E19EE64D500B25ED2 /* plant_forward_0007.png in Resources */,
-				199EFF2C19F613B9003074D7 /* ui_number.atlas in Resources */,
 				19A8ED551A52977600EFEA7A /* tab_btn4.png in Resources */,
 				1999AC4919EE64D500B25ED2 /* fire_blade_cast_0002.png in Resources */,
 				1927DE6F1A53B38C0098501C /* plant3_temp.png in Resources */,
 				1999AC5F19EE64D500B25ED2 /* fire_shield_cast_0000.png in Resources */,
+				193D9F381A5BCFBD005762D6 /* ui_number.atlas in Resources */,
 				1999AC2219EE64D500B25ED2 /* fire_forward_0016.png in Resources */,
 				19A8ED661A52977600EFEA7A /* pets_card.png in Resources */,
 				198D051F1A515CE800D7244F /* battle_fight_pixie.atlas in Resources */,
 				19A8ED4B1A52977600EFEA7A /* bg_bar_bottom.png in Resources */,
 				1999AC6719EE64D500B25ED2 /* fire_shield_cast_0008.png in Resources */,
 				1999AC7919EE64D500B25ED2 /* fire_shield_cast_0026.png in Resources */,
+				193D9F361A5BCFAA005762D6 /* title.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
