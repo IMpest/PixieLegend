@@ -17,7 +17,7 @@
 
 -(id)initWithSize:(CGSize)size{
     if (self = [super initWithSize:size]) {
-        [self setBackTitleText:@"遭遇怪物" andPositionY:450.0f];
+        [self setBackTitleText:@"遭遇怪物" andPositionY:380.0f];
         chooseSceneType = PPElementTypePlant;
 
     }
@@ -78,54 +78,61 @@
     forwardSprite.position = CGPointMake(0.0f, 0.0f);
     [hurdleReadyContentNode addChild:forwardSprite];
     
-    NSMutableArray * texturesArray = [[NSMutableArray alloc] initWithCapacity:44];
-    @synchronized(texturesArray)
-    {
-        
-        for (int i = 0; i < 20; i++) {
-            NSString * textureName =
-            [NSString stringWithFormat:@"%@_forward_%04d.png", kElementTypeString[chooseSceneType],i];
-            SKTexture * temp = [SKTexture textureWithImageNamed:textureName];
-            [texturesArray addObject:temp];
-        }
-        
-    }
+//    NSMutableArray * texturesArray = [[NSMutableArray alloc] initWithCapacity:44];
+//    @synchronized(texturesArray)
+//    {
+//        
+//        for (int i = 0; i < 20; i++) {
+//            NSString * textureName =
+//            [NSString stringWithFormat:@"%@_forward_%04d.png", kElementTypeString[chooseSceneType],i];
+//            SKTexture * temp = [SKTexture textureWithImageNamed:textureName];
+//            [texturesArray addObject:temp];
+//        }
+//        
+//    }
+//    
+//    [forwardSprite runAction:[SKAction animateWithTextures:texturesArray timePerFrame:kFrameInterval]
+//                  completion:^{
+////        [forwardSprite removeFromParent];
+//        [self addChangeStatus:hurdleReadyContentNode];
+//    }];
     
-    [forwardSprite runAction:[SKAction animateWithTextures:texturesArray timePerFrame:kFrameInterval]
-                  completion:^{
-//        [forwardSprite removeFromParent];
-        [self addChangeStatus:hurdleReadyContentNode];
-    }];
+    [self addChangeStatus:hurdleReadyContentNode];
+
 }
 
 // 添加己方精灵
 -(void)addChangeStatus:(SKSpriteNode *)contentSprite
 {
+//
+//    _playerPixie = [SKSpriteNode spriteNodeWithImageNamed:@"fire_shield_cast_0000.png"];
+//    _playerPixie.position = CGPointMake(0.0f,0.0f);
+//    _playerPixie.size = CGSizeMake(320.0f, 150.0f);
+//    [contentSprite addChild:_playerPixie];
+    
+    [self setPetsChooseContent];
+    
 
-    _playerPixie = [SKSpriteNode spriteNodeWithImageNamed:@"fire_shield_cast_0000.png"];
-    _playerPixie.position = CGPointMake(0.0f,0.0f);
-    _playerPixie.size = CGSizeMake(320.0f, 150.0f);
-    [contentSprite addChild:_playerPixie];
+//    // 预加载变身动画
+//    NSMutableArray *texturesArray = [[NSMutableArray alloc] initWithCapacity:44];
+//    @synchronized(texturesArray)
+//    {
+//        for (int i = 0; i < 27; i++) {
+//            NSString * textureName = [NSString stringWithFormat:@"fire_shield_cast_00%02d.png", i];
+//            SKTexture * temp = [SKTexture textureWithImageNamed:textureName];
+//            [texturesArray addObject:temp];
+//        }
+//    }
+//    self.pixieAnimation = [NSMutableArray arrayWithArray:texturesArray];
+//    
+//    
+//    [_playerPixie runAction:[SKAction animateWithTextures:self.pixieAnimation timePerFrame:0.02f]
+//                 completion:^{
+//                     [_playerPixie removeFromParent];
+//                     _playerPixie = nil;
+//                     [self setPetsChooseContent];
+//                 }];
     
-    // 预加载变身动画
-    NSMutableArray *texturesArray = [[NSMutableArray alloc] initWithCapacity:44];
-    @synchronized(texturesArray)
-    {
-        for (int i = 0; i < 27; i++) {
-            NSString * textureName = [NSString stringWithFormat:@"fire_shield_cast_00%02d.png", i];
-            SKTexture * temp = [SKTexture textureWithImageNamed:textureName];
-            [texturesArray addObject:temp];
-        }
-    }
-    self.pixieAnimation = [NSMutableArray arrayWithArray:texturesArray];
-    
-    
-    [_playerPixie runAction:[SKAction animateWithTextures:self.pixieAnimation timePerFrame:0.02f]
-                 completion:^{
-                     [_playerPixie removeFromParent];
-                     _playerPixie = nil;
-                     [self setPetsChooseContent];
-                 }];
 }
 
 #pragma mark - add a pet choose node
@@ -135,11 +142,11 @@
 -(void)setPetsChooseContent
 {
     
-    SKSpriteNode *enemyNode = [[SKSpriteNode alloc] init];
-    [enemyNode setSize:CGSizeMake(125, 125)];
-    [enemyNode setPosition:CGPointMake(self.size.width/2, self.size.height/2)];
-    [enemyNode setTexture:[[PPAtlasManager pixie_info] textureNamed:[NSString stringWithFormat:@"%@3_encounter",kElementTypeString[chooseSceneType]]]];
-    [self addChild:enemyNode];
+//    SKSpriteNode *enemyNode = [[SKSpriteNode alloc] init];
+//    [enemyNode setSize:CGSizeMake(125, 125)];
+//    [enemyNode setPosition:CGPointMake(self.size.width/2, self.size.height/2)];
+//    [enemyNode setTexture:[[PPAtlasManager pixie_info] textureNamed:[NSString stringWithFormat:@"%@3_encounter",kElementTypeString[chooseSceneType]]]];
+//    [self addChild:enemyNode];
 
     SKSpriteNode * spriteContent = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(320, 100)];
     spriteContent.name = PP_HURDLE_PETCHOOSE_CONTENT_NAME;
@@ -256,9 +263,11 @@
     return cahcesPlist;
 }
 
+//返回小地图选择场景
 -(void)backButtonClick:(NSString *)backName
 {
     [self.view presentScene:previousScene];
+
 }
 
 @end

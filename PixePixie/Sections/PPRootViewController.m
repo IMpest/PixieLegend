@@ -35,13 +35,13 @@ NSString * userInfo[] =
 {    
     [super viewDidLoad];
     
-    //这个不知道干嘛的我先注释掉了
+    //这个不知道干嘛的我先注释掉了(返回到世界大地图)
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(backToMonsterScene:)
 //                                                 name:PP_BACK_TO_MAIN_VIEW object:nil];
     
-//    if ([[PPLocalData contentFromUserDefaultKey:PP_FIRST_LOG_IN] isEqualToString:@"1"]) {
-    if (NO) {
+    if ([[PPLocalData contentFromUserDefaultKey:PP_FIRST_LOG_IN] isEqualToString:@"1"]) {
+//    if (NO) {
         [self loadMainView];
         [self.view addSubview:skViewMain];
     } else {
@@ -278,7 +278,12 @@ NSString * userInfo[] =
     [self changeMenuState:(int)sender.tag - PP_MENU_BUTON_TAG];
     
     if (sender == nil) {
+//        CGRect NormalViewRect = CGRectMake(0, 44, skViewMain.frame.size.width, skViewMain.frame.size.height - 44 * 2);
+//        fightingMainView = nil;
+//        fightingMainView = [[PPFightingMainView alloc] initWithFrame:NormalViewRect];
+        
          [skViewMain bringSubviewToFront:monsterMainView];
+        return ;
     }
     
     switch (sender.tag - PP_MENU_BUTON_TAG) {
@@ -314,6 +319,22 @@ NSString * userInfo[] =
     }
     
     [monsterMainView hideMonstorShowBtns];
+    
+}
+
+-(void)backToMonsterScene:(NSNotification *)notifi
+{
+    
+    //    [skViewMain bringSubviewToFront:monsterMainView];
+    [self menuBtnClick:nil];
+    [self changeMenuState:3];
+    
+//    if ([[notifi object] isEqualToString:PP_BACK_TO_MAIN_VIEW_FIGHTING]) {
+//        
+//        [skViewMain bringSubviewToFront:menuInfoBar];
+//        [skViewMain bringSubviewToFront:userInfoBar];
+//        
+//    }
 }
 
 // 改变tab提示

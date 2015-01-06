@@ -1,6 +1,6 @@
 
 #import "PPMenuScene.h"
-
+#import "PPFightingMainView.h"
 @interface PPMenuScene()
 @end
 
@@ -9,7 +9,6 @@
 -(id)initWithSize:(CGSize)size andElement:(PPElementType)elementType{
     if (self = [super initWithSize:size]) {
         currentElementType = elementType;
-        [self setBackTitleText:@"小场景" andPositionY:450.0f];
         [self setBackgroundColor:[UIColor purpleColor]];
         NSString * mapName = [NSString stringWithFormat:@"map_scene_%@.png", kElementTypeString[elementType]];
         SKSpriteNode *spriteBackNode=[SKSpriteNode spriteNodeWithImageNamed:mapName];
@@ -17,6 +16,9 @@
         spriteBackNode.size = CGSizeMake(320.0f, 480.0f);
         [self addChild:spriteBackNode];
         [self addPassChoose];
+        
+        [self setBackTitleText:@"小场景" andPositionY:380.0f];
+
     }
     return self;
 }
@@ -70,7 +72,7 @@
         PPSpriteButton *  passButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(90, 60)];
         
         [passButton setLabelWithText:[NSString stringWithFormat:@"副本 %d",5-i] andFont:[UIFont systemFontOfSize:15] withColor:nil];
-        passButton.position = CGPointMake(160.0f,i*70+60);
+        passButton.position = CGPointMake(160.0f,i*70+40);
         passButton.name = [NSString stringWithFormat:@"%d",i+PP_SECONDARY_PASSNUM_BTN_TAG];
         [passButton addTarget:self selector:@selector(menuDungeonGoForward:)
                    withObject:passButton.name forControlEvent:PPButtonControlEventTouchUpInside];
@@ -92,11 +94,13 @@
 -(void)menuDungeonGoForward:(NSString *)stringName
 {
     [self enterHurdleReady];
+    
 }
 
 // 这里直接进入战斗画面
 -(void)spriteChooseClick
 {
+    
 //    NSArray * petsArray = nil;
 //    NSArray * enemysArray = nil;
 //
@@ -117,12 +121,14 @@
 //    ballScene.hurdleReady = self;
 //    [ballScene setEnemyAtIndex:currentEnemyIndex];
 //    [self.view presentScene:ballScene];
+    
 }
 
 
 // 进入推进场景（旧版）
 -(void)enterHurdleReady
 {
+    
     SKNode * spriteNode = [self childNodeWithName:PP_GOFORWARD_MENU_DUNGEON_FIGHTING];
     if (spriteNode) [spriteNode removeFromParent];
     
@@ -136,12 +142,21 @@
     [battleScene setEnemysArray];
     [battleScene setCurrentHurdle:0];
     [self.view presentScene:battleScene];
+    
 }
 
+//返回到世界地图首页
 
 -(void)backButtonClick:(NSString *)backName
 {
-    [self.view presentScene:previousScene];
+    
+//    backBtn.hidden = YES;
+//    [[NSNotificationCenter defaultCenter] postNotificationName:PP_BACK_TO_MAIN_VIEW object:PP_BACK_TO_MAIN_VIEW_FIGHTING];
+    [self.view presentScene:nil];
+    [preiviousView setMenuContentScrollView];
+    
+//    [(PPFightingMainView)self.view cont
+    
 }
 
 @end

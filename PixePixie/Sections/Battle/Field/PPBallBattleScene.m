@@ -714,7 +714,6 @@ int velocityValue (int x, int y) {
         case kPetHitWallTypeValue:
         {
             
-            
             SKSpriteNode *hitAniNode=[[SKSpriteNode alloc] init];
             hitAniNode.size = CGSizeMake(50.0f, 50.0f);
             [hitAniNode setPosition:pointNode];
@@ -756,7 +755,7 @@ int velocityValue (int x, int y) {
             [hitFiledAniNode setPosition:pointNode];
             [self addChild:hitFiledAniNode];
             
-            [hitFiledAniNode runAction:[[PPAtlasManager pixie_battle_effect] getAnimation:@"shield_break"]
+            [hitFiledAniNode runAction:[[PPAtlasManager battle_fight_effect] getAnimation:@"shield_break"]
                        completion:^{[hitFiledAniNode removeFromParent];}];
             
         }
