@@ -92,9 +92,9 @@
 	<integer>2</integer>
 	<key>_____battle_table_skill___</key>
 	<string></string>
-	<key>01_skillbuff</key>
+	<key>01_devilrebirth</key>
 	<integer>8</integer>
-	<key>02_skillbuff</key>
+	<key>02_devilbreath</key>
 	<integer>21</integer>
 </dict>
 </plist>

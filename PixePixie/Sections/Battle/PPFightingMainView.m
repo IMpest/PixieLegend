@@ -103,7 +103,24 @@ UIScrollView * contentScrollView;
     }
     [self addSubview:contentScrollView];
 }
-
+//战斗界面全屏
+-(void)fullScreenForBattleScene
+{
+    [self setFrame:CGRectMake(0.0f, 0.0f,
+                             rootViewControl->skViewMain.frame.size.width,
+                              rootViewControl->skViewMain.frame.size.height)];
+    [rootViewControl->skViewMain bringSubviewToFront:self];
+    
+}
+//正常屏幕大小
+-(void)normalScreenForMenu
+{
+    
+    [self setFrame:CGRectMake(0.0f, 44.0f, rootViewControl->skViewMain.frame.size.width, rootViewControl->skViewMain.frame.size.height - 44.0f*2)];
+    [rootViewControl->skViewMain bringSubviewToFront:self];
+    
+    
+}
 -(void)changeToPassScene
 {
 //    mainScene = [[PPMenuThemeScene alloc] initWithSize:self.bounds.size];

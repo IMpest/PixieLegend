@@ -1,14 +1,17 @@
 
 //@class PPMenuThemeScene;
-
+@class PPRootViewController;
 @interface PPFightingMainView : SKView
 {
-//    @public
-//    PPMenuThemeScene * mainScene;
+    @public
+    PPRootViewController *rootViewControl;
+    
 }
 
 //添加世界大地图
 -(void)setMenuContentScrollView;
+-(void)fullScreenForBattleScene;
+-(void)normalScreenForMenu;
 
 -(void)changeToPassScene;
 

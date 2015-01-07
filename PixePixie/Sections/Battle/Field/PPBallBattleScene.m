@@ -451,6 +451,8 @@ int velocityValue (int x, int y) {
 -(void)backButtonClick:(NSString *)backName
 {
     
+    [(PPFightingMainView *)self.view normalScreenForMenu];
+
     [self.view presentScene:self.hurdleReady transition:[SKTransition doorsOpenVerticalWithDuration:1]];
     
 }
@@ -1049,6 +1051,7 @@ int velocityValue (int x, int y) {
 //改变元素球持续回合数
 -(void)changeBallsRoundsEnd
 {
+    
     NSLog(@"ballsElement count=%d",(int)[self.ballsElement count]);
     
     [self enumerateChildNodesWithName:PP_BALL_TYPE_PET_ELEMENT_NAME usingBlock:^(SKNode *node,BOOL *stop){
@@ -1089,6 +1092,7 @@ int velocityValue (int x, int y) {
         PPBall * tBall = [self.ballsElement objectAtIndex:i];
         tBall.physicsBody.PPBallPhysicsBodyStatus=[NSNumber numberWithInt:PP_ELEMENT_NAME_TAG+i];
     }
+    
 }
 -(PPBuff *)getBuff:(NSString *)buffId{
     PPBuff *buffTmp=[[PPBuff alloc] init];
@@ -1201,7 +1205,6 @@ int velocityValue (int x, int y) {
         {
             
             [self creatCombosTotal:PP_BALL_TYPE_ENEMY_ELEMENT_NAME];
-            
             [self performSelector:@selector(executeEnemyRoundAction:) withObject:[NSNumber numberWithInt:decision] afterDelay:1];
             
         }
@@ -1343,10 +1346,12 @@ int velocityValue (int x, int y) {
         [self changeBallsRoundsEnd];
         
     } else {
+        
         SKSpriteNode *roundLabelContent=[[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(320, 240)];
         [roundLabelContent setPosition:CGPointMake(160.0f, 300)];
         [self addChild:roundLabelContent];
         roundLabelContent.alpha = 0.0f;
+        
         
         SKSpriteNode *numberNode=[self getNumber:roundIndex AndColor:@"blue"];
         numberNode.size = CGSizeMake(50.0f, 50.0f);
@@ -1437,12 +1442,14 @@ int velocityValue (int x, int y) {
     skillNameLabel.position = CGPointMake(100.0f,221);
     [self addChild:skillNameLabel];
     
+    
     SKLabelNode * ballsLabel = [[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
     [ballsLabel setFontSize:20];
     ballsLabel.fontColor = [UIColor whiteColor];
     ballsLabel.text = [NSString stringWithFormat:@"吸收球数:%d",(int)ballsCount];
     ballsLabel.position = CGPointMake(200.0f,221);
     [self addChild:ballsLabel];
+    
     
     SKAction * action = [SKAction fadeAlphaTo:0.0f duration:5];
     [skillNameLabel runAction:action];
@@ -1488,6 +1495,7 @@ int velocityValue (int x, int y) {
     [self setPlayerSideRoundRunState];
     
     
+    
     if (self.playerAndEnemySide.currentPPPixie.currentMP < fabsf(mpToConsume)) {
         SKLabelNode * labelNode = (SKLabelNode *)[self childNodeWithName:@"mpisnotenough"];
         if (labelNode) [labelNode removeFromParent];
@@ -1499,19 +1507,21 @@ int velocityValue (int x, int y) {
         [self addChild:additonLabel];
         
          [additonLabel setText:[NSString stringWithFormat:@"%@已释放",[skillInfo objectForKey:@"skillname"]]];
-        
+        [self removeSkillBar];
         
         switch ([[skillInfo objectForKey:@"skillid"] intValue]) {
             case kPPPetSkillDevilRebirth:
             {
                 battleSkillInfo.petHitRecoverHP = 10;
               
-                [self addBuffAnimation:1];
+                [self addBuffAnimation:kPPPetSkillDevilRebirth];
               
             }
                 break;
             case kPPPetSkillDevilBreath:
             {
+                [self addBuffAnimation:kPPPetSkillDevilBreath];
+
                 [self addSkillBuff:1 skillInfo:skillInfo];
 
             }
@@ -1528,6 +1538,7 @@ int velocityValue (int x, int y) {
             isNotSkillShowTime = NO;
             [self setPlayerSideRoundEndState];
         }];
+        
         
         skillButton.color = [UIColor blackColor];
         skillButton.colorBlendFactor = 0.6;
@@ -1615,24 +1626,41 @@ int velocityValue (int x, int y) {
 {
     
     SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
-    buffShowNode.size = CGSizeMake(50.0f, 50.0f);
+    buffShowNode.size = CGSizeMake(115.0f, 107.0f);
     [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
     [self.ballPlayer addChild:buffShowNode];
     
     switch (skillID) {
-        case 1:
+        case kPPPetSkillDevilRebirth:
         {
             
-            [buffShowNode runAction:[[PPAtlasManager battle_table_skill] getAnimation:@"01_skillbuff"] completion:^{
-                if (buffShowNode) {
-                    [buffShowNode removeFromParent];
-                }
+//            SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"01_devilrebirth.png"]];
+            
+            SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_table_skill] getAnimation:@"01_devilrebirth"] count:10];
+            [buffShowNode runAction:actionRep completion:^{
+                //                if (buffShowNode) {
+                //                    [buffShowNode removeFromParent];
+                //                }
                 
             }];
             
         }
             break;
+        case kPPPetSkillDevilBreath:
+        {
             
+//            SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"02_devilbreath.png"]];
+            SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreath"] count:10];
+
+            [buffShowNode runAction:actionRep completion:^{
+                //                if (buffShowNode) {
+                //                    [buffShowNode removeFromParent];
+                //                }
+                
+            }];
+            
+        }
+            break;
         default:
             break;
     }
@@ -1970,13 +1998,16 @@ int velocityValue (int x, int y) {
 
 -(void)didMoveToView:(SKView *)view
 {
+    
+    [(PPFightingMainView *)self.view fullScreenForBattleScene];
+    
+    
     [self setPlayerSideRoundRunState];
     [self performSelectorOnMainThread:@selector(roundRotateBegin) withObject:nil afterDelay:1.0f];
 }
 
 -(void)willMoveFromView:(SKView *)view
 {
-    
 }
 
 // 每帧处理程序开始

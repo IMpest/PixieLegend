@@ -23,7 +23,6 @@
     return self;
 }
 
-
 // 介绍窗口
 -(void)introduceInfoLabel:(NSString *)text
 {
