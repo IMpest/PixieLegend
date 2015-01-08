@@ -9,7 +9,7 @@
 int menuAnimationTag;
 UIButton * backToMain;
 
-UIView * skViewName;
+PPPlayerNameView * skViewName;
 UIView * skViewPixie;
 UIView * userInfoBar;
 UIView * menuInfoBar;
@@ -30,23 +30,23 @@ NSString * userInfo[] =
     @""
 };
 
-- (void)viewDidLoad
-{    
-    [super viewDidLoad];
+-(void)loadView
+{
+    [super loadView];
     
-    //这个不知道干嘛的我先注释掉了(返回到世界大地图)
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(backToMonsterScene:)
-//                                                 name:PP_BACK_TO_MAIN_VIEW object:nil];
+    // 添加大背景
+    UIImageView * imgvBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_start"]];
+    imgvBg.frame = CGRectMake(0, PP_FIT_TOP_SIZE, 320, 480);
+    [self.view addSubview:imgvBg];
     
-    if ([[PPLocalData contentFromUserDefaultKey:PP_FIRST_LOG_IN] isEqualToString:@"1"]) {
-//    if (NO) {
-        [self loadMainView];
-        [self.view addSubview:skViewMain];
-    } else {
+    //    if (![[PPLocalData contentFromUserDefaultKey:PP_FIRST_LOG_IN] isEqualToString:@"1"]) {
+    if (YES) {
         // 首次启动菜单
         [self loadNameView];
         [self.view addSubview:skViewName];
+    } else {
+        [self loadMainView];
+        [self.view addSubview:skViewMain];
     }
     [self addFitSizeBar];
 }
@@ -68,38 +68,14 @@ NSString * userInfo[] =
 // 加载名字输入界面
 -(void)loadNameView
 {
-    skViewName = [[UIView alloc] initWithFrame:CGRectMake(0, PP_FIT_TOP_SIZE, 320, 480)];
-    
-    UIImageView * imgvBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_start"]];
-    imgvBg.frame = CGRectMake(0, 0, 320, 480);
-    [skViewName addSubview:imgvBg];
-    
-    UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 200, 40)];
-    [titleLabel setBackgroundColor:[UIColor yellowColor]];
-    [titleLabel setText:@"下面请告诉我你的名字："];
-    [skViewName addSubview:titleLabel];
-    
-    UITextField * textFiled = [[UITextField alloc] initWithFrame:CGRectMake(40, 50, 150, 50)];
-    [textFiled addTarget:self action:@selector(textFieldResign:) forControlEvents:UIControlEventEditingDidEndOnExit];
-    [textFiled setBackgroundColor:[UIColor redColor]];
-    [skViewName addSubview:textFiled];
-    
-    UIButton * buttonConfirm = [UIButton buttonWithType:UIButtonTypeCustom];
-    [buttonConfirm setTitle:@"确定" forState:UIControlStateNormal];
-    [buttonConfirm setBackgroundColor:[UIColor brownColor]];
-    [buttonConfirm addTarget:self action:@selector(textInputConfirmClick) forControlEvents:UIControlEventTouchUpInside];
-    [buttonConfirm setFrame:CGRectMake(120, 120, 60, 40)];
-    [skViewName addSubview:buttonConfirm];
+    skViewName = [[PPPlayerNameView alloc] initWithFrame:CGRectMake(0, PP_FIT_TOP_SIZE, 320, 480)];
+    [self.view addSubview:skViewName];
 }
 
 // 点击跳转确认宠物名字界面
 -(void)textInputConfirmClick
 {
     skViewPixie = [[UIView alloc] initWithFrame:CGRectMake(0, PP_FIT_TOP_SIZE, 320, 480)];
-    
-    UIImageView * imgvBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_start"]];
-    imgvBg.frame = CGRectMake(0, 0, 320, 480);
-    [skViewPixie addSubview:imgvBg];
     
     NSDictionary * dictUserPets = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PetsChooseInfo"
                                                                                                              ofType:@"plist"]];
@@ -154,16 +130,12 @@ NSString * userInfo[] =
     }
 }
 
--(void)textFieldResign:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-}
-
 // 加载主界面
 -(void)loadMainView
 {
     skViewMain = [[SKView alloc] initWithFrame:CGRectMake(0, PP_FIT_TOP_SIZE, 320, 480)];
     
+    // 分组界面
     CGRect NormalViewRect = CGRectMake(0, 44, skViewMain.frame.size.width, skViewMain.frame.size.height - 44 * 2);
     
     monsterMainView = [[PPMonsterMainView alloc] initWithFrame:NormalViewRect];

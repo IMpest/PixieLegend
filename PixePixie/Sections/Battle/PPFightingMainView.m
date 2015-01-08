@@ -103,6 +103,7 @@ UIScrollView * contentScrollView;
     }
     [self addSubview:contentScrollView];
 }
+
 //战斗界面全屏
 -(void)fullScreenForBattleScene
 {
@@ -112,6 +113,7 @@ UIScrollView * contentScrollView;
     [rootViewControl->skViewMain bringSubviewToFront:self];
     
 }
+
 //正常屏幕大小
 -(void)normalScreenForMenu
 {

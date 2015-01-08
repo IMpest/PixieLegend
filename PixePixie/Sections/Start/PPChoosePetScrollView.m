@@ -59,48 +59,41 @@ static NSString *typeString[]={
         switch (i) {
             case 0:
             {
-                [petsTypeBtn setImage:[UIImage imageNamed:@"fire.png"] forState:UIControlStateNormal];
-                [petsTypeBtn setImage:[UIImage imageNamed:@"fire_selected.png"] forState:UIControlStateSelected];
-                
+                [petsTypeBtn setImage:[UIImage imageNamed:@"element_metal.png"] forState:UIControlStateNormal];
+                [petsTypeBtn setImage:[UIImage imageNamed:@"element_metal.png"] forState:UIControlStateSelected];
                 [petsImageView setBackgroundColor:[UIColor yellowColor]];
             }
                 break;
             case 1:
             {
-                [petsTypeBtn setImage:[UIImage imageNamed:@"soil.png"] forState:UIControlStateNormal];
-                [petsTypeBtn setImage:[UIImage imageNamed:@"soil_selected.png"] forState:UIControlStateHighlighted];
+                [petsTypeBtn setImage:[UIImage imageNamed:@"element_plant.png"] forState:UIControlStateNormal];
+                [petsTypeBtn setImage:[UIImage imageNamed:@"element_plant.png"] forState:UIControlStateHighlighted];
                 [petsImageView setBackgroundColor:[UIColor greenColor]];
-                
             }
                 break;
             case 2:
             {
-                [petsTypeBtn setImage:[UIImage imageNamed:@"water.png"] forState:UIControlStateNormal];
-                [petsTypeBtn setImage:[UIImage imageNamed:@"water_selected.png"] forState:UIControlStateHighlighted];
+                [petsTypeBtn setImage:[UIImage imageNamed:@"element_water.png"] forState:UIControlStateNormal];
+                [petsTypeBtn setImage:[UIImage imageNamed:@"element_water.png"] forState:UIControlStateHighlighted];
                 [petsImageView setBackgroundColor:[UIColor greenColor]];
                 [petsImageView setBackgroundColor:[UIColor grayColor]];
-                
             }
                 break;
             case 3:
             {
-                
-                [petsTypeBtn setImage:[UIImage imageNamed:@"fire.png"] forState:UIControlStateNormal];
-                [petsTypeBtn setImage:[UIImage imageNamed:@"fire_selected.png"] forState:UIControlStateHighlighted];
+                [petsTypeBtn setImage:[UIImage imageNamed:@"element_fire.png"] forState:UIControlStateNormal];
+                [petsTypeBtn setImage:[UIImage imageNamed:@"element_fire.png"] forState:UIControlStateHighlighted];
                 
                 [petsImageView setBackgroundColor:[UIColor yellowColor]];
                 [petsImageView setBackgroundColor:[UIColor purpleColor]];
-                
             }
                 break;
             case 4:
             {
-                
-                [petsTypeBtn setImage:[UIImage imageNamed:@"soil.png"] forState:UIControlStateNormal];
-                [petsTypeBtn setImage:[UIImage imageNamed:@"soil_selected.png"] forState:UIControlStateHighlighted];
+                [petsTypeBtn setImage:[UIImage imageNamed:@"element_earth.png"] forState:UIControlStateNormal];
+                [petsTypeBtn setImage:[UIImage imageNamed:@"element_earth.png"] forState:UIControlStateHighlighted];
                 [petsImageView setBackgroundColor:[UIColor greenColor]];
                 [petsImageView setBackgroundColor:[UIColor redColor]];
-                
             }
                 break;
                 

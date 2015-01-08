@@ -3,6 +3,8 @@
 {
     @public
     UIView * skViewMain;
-    
 }
+
+-(void)textInputConfirmClick;
+
 @end

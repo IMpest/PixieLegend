@@ -19,6 +19,7 @@
 #import "PPRootViewController.h"
 
 // Start
+#import "PPPlayerNameView.h"
 #import "PPChoosePetScrollView.h"
 
 // Monster
