@@ -27,6 +27,8 @@
 
 #define PP_SKILL_CD_LABEL_NODE_NAME    @"skillcdlabelname"
 
+#define PP_BUFF_ANIMATION_NODE_NAME @"buffanimationname"
+
 #define PP_BACK_BUTTON_ZPOSITION 100
 
 #define PP_MENU_START 0

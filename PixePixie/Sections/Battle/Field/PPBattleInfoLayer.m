@@ -5,9 +5,7 @@
 
 @interface PPBattleInfoLayer()
 {
-    SKSpriteNode * ppixiePetBtn;
-    SKSpriteNode * ppixieEnemyBtn;
-    SKSpriteNode * attackShowNode;
+   
 }
 @end
 @implementation PPBattleInfoLayer

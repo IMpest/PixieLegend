@@ -177,6 +177,8 @@ int velocityValue (int x, int y) {
     
     self.ballPlayer.name = @"ball_player";
     self.ballPlayer.position = CGPointMake(xPlayer, yPlayer);
+    self.ballPlayer.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:20.0f];
+    self.ballPlayer.physicsBody.allowsRotation = NO;
     self.ballPlayer.physicsBody.categoryBitMask = EntityCategoryBall;
     self.ballPlayer.physicsBody.contactTestBitMask = EntityCategoryBall;
     self.ballPlayer.physicsBody.density = 1.0f;
@@ -290,9 +292,13 @@ int velocityValue (int x, int y) {
                     spriteBtn.userInteractionEnabled = YES;
                 }
             }
+            
             //恶魔重生
             battleSkillInfo.petHitRecoverHP = 0;
-       
+            SKNode *node =[self.playerAndEnemySide->ppixiePetBtn childNodeWithName:PP_BUFF_ANIMATION_NODE_NAME];
+//            [node removeActionForKey:PP_BUFF_ANIMATION_ACTION_KEY];
+            [node removeFromParent];
+
         }
     }
 }
@@ -1625,24 +1631,25 @@ int velocityValue (int x, int y) {
 -(void)addBuffAnimation:(int)skillID
 {
     
-    SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
-    buffShowNode.size = CGSizeMake(115.0f, 107.0f);
-    [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
-    [self.ballPlayer addChild:buffShowNode];
+    
     
     switch (skillID) {
         case kPPPetSkillDevilRebirth:
         {
             
 //            SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"01_devilrebirth.png"]];
+            SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
+            buffShowNode.size = CGSizeMake(115.0f, 107.0f);
+//            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
+            [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
+
+            buffShowNode.name = PP_BUFF_ANIMATION_NODE_NAME;
+            [self.playerAndEnemySide->ppixiePetBtn addChild:buffShowNode];
             
-            SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_table_skill] getAnimation:@"01_devilrebirth"] count:10];
-            [buffShowNode runAction:actionRep completion:^{
-                //                if (buffShowNode) {
-                //                    [buffShowNode removeFromParent];
-                //                }
-                
-            }];
+//            SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_table_skill] getAnimation:@"01_devilrebirth"] count:0];
+            SKAction *actionRep = [SKAction repeatActionForever:[[PPAtlasManager battle_table_skill] getAnimation:@"01_devilrebirth"]];
+
+            [buffShowNode runAction:actionRep];
             
         }
             break;
@@ -1650,6 +1657,10 @@ int velocityValue (int x, int y) {
         {
             
 //            SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"02_devilbreath.png"]];
+            SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
+            buffShowNode.size = CGSizeMake(115.0f, 107.0f);
+            [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
+            [self.ballPlayer addChild:buffShowNode];
             SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreath"] count:10];
 
             [buffShowNode runAction:actionRep completion:^{
@@ -1875,18 +1886,60 @@ int velocityValue (int x, int y) {
             //我方碰到连击球
         {
             
+            if (battleSkillInfo.petHitRecoverHP!=0) {
+                
+                
+                SKSpriteNode *addHPAnimation = [self  getNumber:battleSkillInfo.petHitRecoverHP AndColor:@"green"];
+                [addHPAnimation setPosition:CGPointMake(20.0f, 20.0f)];
+                [self.playerAndEnemySide->ppixiePetBtn addChild:addHPAnimation];
+//                SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"01_devilrebirth.png"]];
+                
+                
+                SKSpriteNode *nodeSkillBuffer=[SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"01_devilrebirth.png"]];
+                nodeSkillBuffer.position = contact.contactPoint;
+                nodeSkillBuffer.size = CGSizeMake(nodeSkillBuffer.size.width/2.0f, nodeSkillBuffer.size.height/2.0f);
+                [self addChild:nodeSkillBuffer];
+                
+                
+                SKAction *actionRemove = [SKAction fadeAlphaTo:1.0f duration:2];
+            
+                [nodeSkillBuffer runAction:actionRemove completion:^{
+                
+                    [nodeSkillBuffer removeFromParent];
+                    
+                }];
+                
+                
+                [addHPAnimation runAction:[SKAction scaleTo:2.0f duration:1] completion:^{
+                    
+                    [addHPAnimation removeFromParent];
+                    
+                }];
+                
+            }
+            
             if (contact.bodyA == self.ballPlayer.physicsBody) {
+                
+            
+                
+                
                 PPBall *ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
                 [ballCombo startComboAnimation:CGVectorMake(self.ballPlayer.position.x-ballCombo.position.x,self.ballPlayer.position.y-ballCombo.position.y)];
+                
+               
+                
             } else {
+                
                 PPBall *ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
                 [ballCombo startComboAnimation:CGVectorMake(self.ballPlayer.position.x-ballCombo.position.x,self.ballPlayer.position.y-ballCombo.position.y)];
+                
             }
             
             petCombos++;
             [self.playerAndEnemySide setComboLabelText:petCombos withEnemy:enemyCombos];
             [self.playerAndEnemySide startAttackAnimation:YES];
             [self dealPixieBallContactComboBall:contact andPetBall:self.ballPlayer];
+            
             
             //恶魔重生
             if (battleSkillInfo.petHitRecoverHP!=0) {
@@ -2176,7 +2229,9 @@ int velocityValue (int x, int y) {
             return;
         }
         
-        if ([touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]&&isTouchPetBall&&distanceBetweenPoints(location, origtinTouchPoint)<3) {
+        NSLog(@"direct=%f",distanceBetweenPoints(location, origtinTouchPoint));
+        
+        if ([touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]&&isTouchPetBall&&distanceBetweenPoints(location, origtinTouchPoint)<18) {
             NSLog(@"touched pet end");
             
             NSLog(@"touchedNode=%@ name =%@",touchedNode,touchedNode.name);
@@ -2185,7 +2240,6 @@ int velocityValue (int x, int y) {
             
             
             [self addPetSkillBar];
-            
             
             
         }else

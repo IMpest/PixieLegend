@@ -10,6 +10,11 @@
     PPValueShowNode *enemyPlayerMP;
     BOOL isHaveDead;
     
+    @public
+    SKSpriteNode * ppixiePetBtn;
+    SKSpriteNode * ppixieEnemyBtn;
+    SKSpriteNode * attackShowNode;
+    
     
 }
 //回调对象
