@@ -17,7 +17,7 @@
         [self addChild:spriteBackNode];
         [self addPassChoose];
         
-        [self setBackTitleText:@"小场景" andPositionY:380.0f];
+        [self setBackTitleText:@"小场景" andPositionY:420.0f];
 
     }
     return self;
@@ -127,20 +127,54 @@
 // 进入推进场景（旧版）
 -(void)enterHurdleReady
 {
-    
-    SKNode * spriteNode = [self childNodeWithName:PP_GOFORWARD_MENU_DUNGEON_FIGHTING];
-    if (spriteNode) [spriteNode removeFromParent];
-    
-    NSDictionary * dictEnemy = [NSDictionary dictionaryWithContentsOfFile:
-                                [[NSBundle mainBundle]pathForResource:@"EnemyInfo" ofType:@"plist"]];
 
-    PPHurdleReadyScene * battleScene = [[PPHurdleReadyScene alloc] initWithSize:self.view.bounds.size];
-    battleScene.allEnemys = dictEnemy;
-    battleScene->chooseSceneType = currentElementType;
-    battleScene->previousScene = self;
-    [battleScene setEnemysArray];
-    [battleScene setCurrentHurdle:0];
-    [self.view presentScene:battleScene];
+    NSDictionary * dictUserPets = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"UserPetInfo"
+                                                                                                             ofType:@"plist"]];
+    NSArray * petsInfoArray = [[NSArray alloc] initWithArray:[dictUserPets objectForKey:@"userpetinfo"]];
+    
+    NSDictionary * petsChoosedInfo = [petsInfoArray objectAtIndex:2];
+    
+    
+    
+    // 初始化 ballScene
+    PPPixie * playerPixie = [PPPixie birthPixieWithPetsInfo:petsChoosedInfo];
+    NSDictionary *allEnemys = [NSDictionary dictionaryWithContentsOfFile:
+                               [[NSBundle mainBundle]pathForResource:@"EnemyInfo" ofType:@"plist"]];
+    NSDictionary *enemyDicInfo=[[[NSArray alloc] initWithArray:[allEnemys objectForKey:@"EnemysInfo"]] objectAtIndex:0];
+    NSLog(@"petsChoosedInfo=%@,enemyDicInfo=%@",petsChoosedInfo,enemyDicInfo);
+
+    PPPixie * enemyPixie = [PPPixie birthEnemyPixieWithPetsInfo:enemyDicInfo];
+    if (playerPixie == nil || enemyPixie == nil) return;
+    
+    // 创建战斗场景并显示
+    PPBallBattleScene * ballScene = [[PPBallBattleScene alloc] initWithSize:CurrentDeviceRealSize
+                                                                PixiePlayer:playerPixie
+                                                                 PixieEnemy:enemyPixie  andSceneType:currentElementType];
+    
+    ballScene.scaleMode = SKSceneScaleModeAspectFill;
+//    ballScene.hurdleReady = self;
+    ballScene->previousScene = self;
+    [ballScene setEnemyAtIndex:0];
+    [self.view presentScene:ballScene];
+
+    
+    
+    
+    
+//    
+//    SKNode * spriteNode = [self childNodeWithName:PP_GOFORWARD_MENU_DUNGEON_FIGHTING];
+//    if (spriteNode) [spriteNode removeFromParent];
+//    
+//    NSDictionary * dictEnemy = [NSDictionary dictionaryWithContentsOfFile:
+//                                [[NSBundle mainBundle]pathForResource:@"EnemyInfo" ofType:@"plist"]];
+//
+//    PPHurdleReadyScene * battleScene = [[PPHurdleReadyScene alloc] initWithSize:self.view.bounds.size];
+//    battleScene.allEnemys = dictEnemy;
+//    battleScene->chooseSceneType = currentElementType;
+//    battleScene->previousScene = self;
+//    [battleScene setEnemysArray];
+//    [battleScene setCurrentHurdle:0];
+//    [self.view presentScene:battleScene];
     
 }
 
@@ -151,11 +185,19 @@
     
 //    backBtn.hidden = YES;
 //    [[NSNotificationCenter defaultCenter] postNotificationName:PP_BACK_TO_MAIN_VIEW object:PP_BACK_TO_MAIN_VIEW_FIGHTING];
+    [(PPFightingMainView *)self.view normalScreenForMenu];
+
+    
     [self.view presentScene:nil];
     [preiviousView setMenuContentScrollView];
     
 //    [(PPFightingMainView)self.view cont
     
+}
+
+-(void)didMoveToView:(SKView *)view
+{
+
 }
 
 @end

@@ -229,14 +229,21 @@
 //选择宠物之后 开始战斗
 -(void)spriteChooseClick:(NSString *)spriteName
 {
-    NSLog(@"aaa%@",spriteName);
+    NSLog(@"aaa%@ %lu",spriteName,(unsigned long)[self.enemysArray count]);
+    
     
     NSDictionary * petsChoosedInfo = [self.petsArray objectAtIndex:[spriteName integerValue] - PP_PETS_CHOOSE_BTN_TAG];
+    
+    
     NSDictionary * choosedPet = [NSDictionary dictionaryWithDictionary:petsChoosedInfo];
     
     // 初始化 ballScene
     PPPixie * playerPixie = [PPPixie birthPixieWithPetsInfo:choosedPet];
     PPPixie * enemyPixie = [PPPixie birthEnemyPixieWithPetsInfo:[self.enemysArray objectAtIndex:currentEnemyIndex]];
+    
+    NSLog(@"petsChoosedInfo=%@,enemy=%@",petsChoosedInfo,[self.enemysArray objectAtIndex:currentEnemyIndex]);
+
+    
     if (playerPixie == nil || enemyPixie == nil) return;
     
     // 创建战斗场景并显示

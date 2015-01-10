@@ -41,6 +41,10 @@ UIScrollView * contentScrollView;
     }
     
     if (index == 0) index = 4; // 火属性hardCode
+    
+    
+    [self fullScreenForBattleScene];
+
     PPMenuScene * menuScene = [[PPMenuScene alloc] initWithSize:self.bounds.size andElement:index];
     menuScene->preiviousView = self;
     menuScene.passDictInfo = passDictInfo;
