@@ -768,22 +768,18 @@
     
     if (isPetAttack) {
         
-        if (attackShowNode) {
-            [attackShowNode removeFromParent];
-            attackShowNode = nil;
-        }
+//        if (attackShowNode) {
+//            [attackShowNode removeFromParent];
+//            attackShowNode = nil;
+//        }
+//        
+//        attackShowNode =[[SKSpriteNode alloc] init];
+//        attackShowNode.size = CGSizeMake(50.0f, 50.0f);
+//        [attackShowNode setPosition:CGPointMake(90.0f, 20.0f)];
+//        [self addChild:attackShowNode];
+//        
         
-        attackShowNode =[[SKSpriteNode alloc] init];
-        attackShowNode.size = CGSizeMake(50.0f, 50.0f);
-        [attackShowNode setPosition:CGPointMake(90.0f, 20.0f)];
-        [self addChild:attackShowNode];
-        
-        
-        [attackShowNode runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"plant3_hit"] completion:^{
-            if (attackShowNode) {
-                [attackShowNode removeFromParent];
-                attackShowNode = nil;
-            }
+        [ppixiePetBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"plant3_hit"] completion:^{
            
         
         }];

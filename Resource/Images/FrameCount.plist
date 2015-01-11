@@ -95,6 +95,8 @@
 	<key>01_devilrebirth</key>
 	<integer>8</integer>
 	<key>02_devilbreath</key>
-	<integer>21</integer>
+	<integer>10</integer>
+	<key>02_devilbreathEffect</key>
+	<integer>11</integer>
 </dict>
 </plist>

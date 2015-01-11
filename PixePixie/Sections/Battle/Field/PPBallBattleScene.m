@@ -88,7 +88,6 @@ int velocityValue (int x, int y) {
         self.pixiePlayer = pixieA;
         self.ballPlayer = pixieA.pixieBall;
         
-        
         self.pixieEnemy = pixieB;
         sceneTypeString = kElementTypeString[sceneType];
         
@@ -100,6 +99,10 @@ int velocityValue (int x, int y) {
         frameFlag = 0;
         
         battleSkillInfo = [[PPBallBattleSkillInfo alloc] init];
+        battleSkillInfo.enemyPoisoningHP = 0;
+        battleSkillInfo.petHitRecoverHP = 0;
+        
+        
         self.battleBuffArray = [[NSMutableArray alloc] init];
         
         // 初始化宠物基础数据
@@ -177,7 +180,7 @@ int velocityValue (int x, int y) {
     
     self.ballPlayer.name = @"ball_player";
     self.ballPlayer.position = CGPointMake(xPlayer, yPlayer);
-    self.ballPlayer.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:20.0f];
+//    self.ballPlayer.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:20.0f];
     self.ballPlayer.physicsBody.allowsRotation = NO;
     self.ballPlayer.physicsBody.categoryBitMask = EntityCategoryBall;
     self.ballPlayer.physicsBody.contactTestBitMask = EntityCategoryBall;
@@ -1742,9 +1745,27 @@ int velocityValue (int x, int y) {
         buff.continueRound--;
         NSLog(@"continueRound =%d",buff.continueRound);
         
-        if (buff.continueRound<0) {
+        if (buff.continueRound<=0) {
             
             [self removeBuff:buff];
+            
+        }else
+        {
+            
+            [self.playerAndEnemySide startAttackShowAnimation:YES];
+            
+            SKNode *buffshowNode = [self.playerAndEnemySide->ppixieEnemyBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilBreath]];
+            
+            [buffshowNode runAction:[[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreathEffect"] completion:^{
+            
+                [buffshowNode removeFromParent];
+                
+                
+                [self addBuffAnimation:kPPPetSkillDevilBreath];
+                
+            }];
+            [self.playerAndEnemySide changeEnemyHPValue:battleSkillInfo.enemyPoisoningHP];
+            
             
         }
         
@@ -1759,7 +1780,7 @@ int velocityValue (int x, int y) {
         {
             
             [[self.playerAndEnemySide->ppixieEnemyBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilBreath]] removeFromParent];
-            
+            battleSkillInfo.enemyPoisoningHP = 0;
            
         }
             break;
@@ -1978,6 +1999,10 @@ int velocityValue (int x, int y) {
                 NSLog(@"恶魔重生=%d",battleSkillInfo.petHitRecoverHP);
                 [self removeSkillBar];
                 
+            }
+            
+            if (battleSkillInfo.enemyPoisoningHP!=0) {
+                battleSkillInfo.enemyPoisoningHP *=(1.1) ;
             }
             
             
