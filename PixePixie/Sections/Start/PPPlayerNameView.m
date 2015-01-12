@@ -7,7 +7,10 @@
 -(void)layoutSubviews
 {
     
-    UIImageView * imgvBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_alert"]];
+    UIImageView * imgvBg = [[UIImageView alloc] initWithImage:
+                            [[UIImage imageNamed:@"bg_alert"] stretchableImageWithLeftCapWidth:100
+                                                                                  topCapHeight:50]];
+    
     imgvBg.frame = CGRectMake(40, 100, 240, 200);
     [self addSubview:imgvBg];
     
@@ -27,7 +30,8 @@
     [buttonConfirm setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonConfirm setTitle:@"确定" forState:UIControlStateNormal];
     [buttonConfirm setBackgroundImage:[UIImage imageNamed:@"bt_ok.png"] forState:UIControlStateNormal];
-    [buttonConfirm addTarget:self.pView action:@selector(textInputConfirmClick) forControlEvents:UIControlEventTouchUpInside];
+    [buttonConfirm addTarget:self.rootVC action:@selector(textInputConfirmClick:)
+            forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:buttonConfirm];
 }
 

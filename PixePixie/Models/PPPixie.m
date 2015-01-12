@@ -28,6 +28,12 @@
 @synthesize pixieBuffs;
 @synthesize pixieBall;
 
+// 输出宠物数值
+-(void)outputInfo
+{
+    NSLog(@"Pixie:%@\n %d\n %d\n %f\n %f\n", pixieName, pixieStatus, pixieLEVEL, pixieHPmax, pixieMPmax);
+    
+}
 
 // 物理攻击伤害计算
 -(CGFloat)countPhysicalDamageTo:(PPPixie *)targetPixie
@@ -42,6 +48,7 @@
     return 350;
 }
 
+
 // 创建新的宠物
 +(PPPixie *)birthPixieWithPetsInfo:(NSDictionary *)petsDict
 {
@@ -51,8 +58,6 @@
     tPixie.pixieMPmax = 1000*[[petsDict objectForKey:@"petstatus"] intValue];
     tPixie.pixieName = [petsDict objectForKey:@"petname"];
     tPixie.currentHP = tPixie.pixieHPmax;
-    NSLog(@"currentHP=%f hpmax=%f",tPixie.currentHP,tPixie.pixieHPmax);
-    
     tPixie.currentMP = 0.0f;
     
     tPixie.currentAP = 10;
@@ -61,11 +66,34 @@
     
     tPixie.pixieElement = [[petsDict objectForKey:@"petelementtype"] intValue];
     tPixie.pixieSkills = [NSArray arrayWithArray:[petsDict objectForKey:@"pixieSkills"]];
-    tPixie.pixieBuffs = [[NSMutableArray alloc] initWithObjects:@"buff1",@"buff2",@"buff3", nil];
+    tPixie.pixieBuffs = [[NSMutableArray alloc] initWithObjects:@"buff1", @"buff2", @"buff3", nil];
     tPixie.pixieBall = [PPBall ballWithPixie:tPixie];
     
     return tPixie;
 }
+
+// 创建宠物模型
++(PPPixie *)birthPixieWithHPmax:(CGFloat)hpmax MPmax:(CGFloat)mpmax
+{
+    PPPixie * tPixie = [[PPPixie alloc] init];
+    
+    tPixie.pixieName = @"Name";
+    tPixie.pixieHPmax = 1000;
+    tPixie.pixieMPmax = 1000;
+    tPixie.currentHP = 100;
+    tPixie.currentMP = 100;
+    
+    tPixie.pixieAP = 10;
+    tPixie.pixieDP = 1;
+    tPixie.pixieDEX = 10;
+    tPixie.pixieDEF = 10;
+    
+    tPixie.pixieElement = PPElementTypeFire;
+    tPixie.pixieGeneration = 1;
+    
+    return tPixie;
+}
+
 
 // 创建新的敌方宠物
 +(PPPixie *)birthEnemyPixieWithPetsInfo:(NSDictionary *)petsDict;

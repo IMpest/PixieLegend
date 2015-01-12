@@ -6,6 +6,9 @@
 
 /* General */
 
+// View
+#import "PPInfoView.h"
+
 // Basic
 #import "PPBasicScene.h"
 
@@ -20,6 +23,7 @@
 
 // Start
 #import "PPPlayerNameView.h"
+#import "PPChoosePetView.h"
 #import "PPChoosePetScrollView.h"
 
 // Monster

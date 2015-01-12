@@ -5,6 +5,7 @@
     UIView * skViewMain;
 }
 
--(void)textInputConfirmClick;
+-(void)textInputConfirmClick:(UIButton *)sender;
+-(void)petsChooseCofirmBtnClick:(UIButton *)sender;
 
 @end

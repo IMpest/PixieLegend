@@ -10,7 +10,7 @@ int menuAnimationTag;
 UIButton * backToMain;
 
 PPPlayerNameView * skViewName;
-UIView * skViewPixie;
+PPChoosePetView * skViewPixie;
 UIView * userInfoBar;
 UIView * menuInfoBar;
 UIImageView * tabLight;
@@ -39,7 +39,7 @@ NSString * userInfo[] =
     imgvBg.frame = CGRectMake(0, PP_FIT_TOP_SIZE, 320, 480);
     [self.view addSubview:imgvBg];
     
-    //    if (![[PPLocalData contentFromUserDefaultKey:PP_FIRST_LOG_IN] isEqualToString:@"1"]) {
+    //    if (![[PPLocalData contentFromUserDefaultKey:PP_FIRST_LOG_IN] isEqualToString:@"Logged"]) {
     if (YES) {
         // 首次启动菜单
         [self loadNameView];
@@ -73,41 +73,9 @@ NSString * userInfo[] =
 }
 
 // 点击跳转确认宠物名字界面
--(void)textInputConfirmClick
+-(void)textInputConfirmClick:(UIButton *)sender
 {
-    skViewPixie = [[UIView alloc] initWithFrame:CGRectMake(0, PP_FIT_TOP_SIZE, 320, 480)];
-    
-    NSDictionary * dictUserPets = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PetsChooseInfo"
-                                                                                                             ofType:@"plist"]];
-    
-    PPChoosePetScrollView * petsScroll = [[PPChoosePetScrollView alloc] initWithFrame:CGRectMake(20, 20, 280, 250)];
-    [petsScroll setBackgroundColor:[UIColor cyanColor]];
-    [petsScroll setSCrollWith:dictUserPets];
-    [skViewPixie addSubview:petsScroll];
-    
-    UILabel * labelEnemyInfo = [[UILabel alloc] initWithFrame:CGRectMake(20, 280, 280, 60)];
-    [labelEnemyInfo setText:@"怪物信息"];
-    [labelEnemyInfo setBackgroundColor:[UIColor whiteColor]];
-    [labelEnemyInfo setTextAlignment:NSTextAlignmentCenter];
-    [skViewPixie addSubview:labelEnemyInfo];
-    
-    UILabel * labelConfrimInfo = [[UILabel alloc] initWithFrame:
-                                 CGRectMake(labelEnemyInfo.frame.origin.x,
-                                            labelEnemyInfo.frame.origin.y+labelEnemyInfo.frame.size.height + 10, 200, 40)];
-    [labelConfrimInfo setFont:[UIFont boldSystemFontOfSize:11]];
-    [labelConfrimInfo setTextColor:[UIColor blackColor]];
-    [labelConfrimInfo setText:@"是否选择此怪物作为你的第一个伙伴？"];
-    [labelConfrimInfo setTextAlignment:NSTextAlignmentCenter];
-    [skViewPixie addSubview:labelConfrimInfo];
-    
-    UIButton * petsChooseCofirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [petsChooseCofirmBtn setTitle:@"确认" forState:UIControlStateNormal];
-    [petsChooseCofirmBtn setBackgroundColor:[UIColor blackColor]];
-    [petsChooseCofirmBtn setFrame:CGRectMake(labelConfrimInfo.frame.origin.x + labelConfrimInfo.frame.size.width + 20,
-                                             labelConfrimInfo.frame.origin.y, 40, 40)];
-    [petsChooseCofirmBtn addTarget:self action:@selector(petsChooseCofirmBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [skViewPixie addSubview:petsChooseCofirmBtn];
-    
+    skViewPixie = [[PPChoosePetView alloc] initWithFrame:CGRectMake(0, PP_FIT_TOP_SIZE, 320, 480)];
     [self.view addSubview:skViewPixie];
     
     if (skViewName != nil)
@@ -120,7 +88,7 @@ NSString * userInfo[] =
 // 确认宠物点击
 -(void)petsChooseCofirmBtnClick:(UIButton *)sender
 {
-    [PPLocalData setContent:@"1" forContentKey:PP_FIRST_LOG_IN];
+    [PPLocalData setContent:@"Logged" forContentKey:PP_FIRST_LOG_IN];
     [self loadMainView];
     [self.view addSubview:skViewMain];
     

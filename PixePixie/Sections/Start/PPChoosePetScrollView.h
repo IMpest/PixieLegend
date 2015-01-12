@@ -3,6 +3,7 @@
 
 @interface PPChoosePetScrollView : UIScrollView
 
--(void)setSCrollWith:(NSDictionary *)petsDict;
+-(id)initWithFrame:(CGRect)frame
+            Pixies:(NSArray *)pixies;
 
 @end

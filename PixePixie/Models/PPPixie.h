@@ -31,9 +31,13 @@
 @property (nonatomic, retain) NSMutableArray * pixieBuffs;     // 附加状态
 @property (nonatomic) PPBall * pixieBall;               // 小球
 
+-(void)outputInfo;
+
 -(CGFloat)countPhysicalDamageTo:(PPPixie *)targetPixie;
 -(CGFloat)countMagicalDamageTo:(PPPixie *)targetPixie
                      WithSkill:(PPSkill *)usingSkill;
+
++(PPPixie *)birthPixieWithHPmax:(CGFloat)hpmax MPmax:(CGFloat)mpmax;
 
 +(PPPixie *)birthPixieWithPetsInfo:(NSDictionary *)petsDict;
 +(PPPixie *)birthEnemyPixieWithPetsInfo:(NSDictionary *)petsDict;

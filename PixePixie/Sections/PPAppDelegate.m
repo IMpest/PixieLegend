@@ -4,13 +4,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     
-    PPRootViewController * vc = [[PPRootViewController alloc] init];
-    
-    UINavigationController * navMain = [[UINavigationController alloc] initWithRootViewController:vc];
-    navMain.navigationBarHidden = YES;
+//    PPRootViewController * vc = [[PPRootViewController alloc] init];
+//    
+//    UINavigationController * navMain = [[UINavigationController alloc] initWithRootViewController:vc];
+//    navMain.navigationBarHidden = YES;
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = navMain;
+    self.window.rootViewController = [[PPRootViewController alloc] init];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
