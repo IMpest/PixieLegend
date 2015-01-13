@@ -338,7 +338,7 @@
 				</dict>
 				<dict>
 					<key>skillid</key>
-					<string>02</string>
+					<string>03</string>
 					<key>skillstatus</key>
 					<string>valid</string>
 					<key>animateTexturename</key>

@@ -11,4 +11,5 @@
 @implementation PPBallBattleSkillInfo
 @synthesize petHitRecoverHP;
 @synthesize enemyPoisoningHP;
+@synthesize rattanTwineState;
 @end

@@ -101,7 +101,8 @@ int velocityValue (int x, int y) {
         battleSkillInfo = [[PPBallBattleSkillInfo alloc] init];
         battleSkillInfo.enemyPoisoningHP = 0;
         battleSkillInfo.petHitRecoverHP = 0;
-        
+        battleSkillInfo.rattanTwineState = 0;
+
         
         self.battleBuffArray = [[NSMutableArray alloc] init];
         
@@ -136,18 +137,18 @@ int velocityValue (int x, int y) {
         
         // 添加状态条
         
-//        self.playerSkillSide = [[PPBattleInfoLayer alloc] init];
-//        self.playerSkillSide.position = CGPointMake(self.size.width/2, 40 + PP_FIT_TOP_SIZE);
-//        self.playerSkillSide.size =  CGSizeMake(self.size.width, 80);
-//        self.playerSkillSide.name = PP_PET_PLAYER_SIDE_NODE_NAME;
-//        self.playerSkillSide.target = self;
-//        self.playerSkillSide.skillSelector = @selector(skillPlayerShowBegin:);
-//        self.playerSkillSide.pauseSelector = @selector(pauseBtnClick:);
-//        self.playerSkillSide.hpBeenZeroSel = @selector(hpBeenZeroMethod:);
-//        self.playerSkillSide.skillInvalidSel = @selector(skillInvalidBtnClick:);
-//        [self.playerSkillSide setColor:[UIColor grayColor]];
-//        [self.playerSkillSide setSideSkillsBtn:pixieA andSceneString:sceneTypeString];
-//        [self addChild:self.playerSkillSide];
+        //        self.playerSkillSide = [[PPBattleInfoLayer alloc] init];
+        //        self.playerSkillSide.position = CGPointMake(self.size.width/2, 40 + PP_FIT_TOP_SIZE);
+        //        self.playerSkillSide.size =  CGSizeMake(self.size.width, 80);
+        //        self.playerSkillSide.name = PP_PET_PLAYER_SIDE_NODE_NAME;
+        //        self.playerSkillSide.target = self;
+        //        self.playerSkillSide.skillSelector = @selector(skillPlayerShowBegin:);
+        //        self.playerSkillSide.pauseSelector = @selector(pauseBtnClick:);
+        //        self.playerSkillSide.hpBeenZeroSel = @selector(hpBeenZeroMethod:);
+        //        self.playerSkillSide.skillInvalidSel = @selector(skillInvalidBtnClick:);
+        //        [self.playerSkillSide setColor:[UIColor grayColor]];
+        //        [self.playerSkillSide setSideSkillsBtn:pixieA andSceneString:sceneTypeString];
+        //        [self addChild:self.playerSkillSide];
         
         // 添加围墙
         self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
@@ -157,7 +158,7 @@ int velocityValue (int x, int y) {
         [self addWalls:CGSizeMake(tWidth, kWallThick) atPosition:CGPointMake(tWidth / 2, 0 + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
         [self addWalls:CGSizeMake(kWallThick,tWidth) atPosition:CGPointMake(0.0f, tHeight/2.0f + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
         [self addWalls:CGSizeMake(kWallThick,tWidth) atPosition:CGPointMake(self.size.width, tHeight/2.0f + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
-
+        
         [self initComboBalls];
         [self initPlayerBalls];
         [self initEnemyBall];
@@ -180,7 +181,7 @@ int velocityValue (int x, int y) {
     
     self.ballPlayer.name = @"ball_player";
     self.ballPlayer.position = CGPointMake(xPlayer, yPlayer);
-//    self.ballPlayer.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:20.0f];
+    //    self.ballPlayer.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:20.0f];
     self.ballPlayer.physicsBody.allowsRotation = NO;
     self.ballPlayer.physicsBody.categoryBitMask = EntityCategoryBall;
     self.ballPlayer.physicsBody.contactTestBitMask = EntityCategoryBall;
@@ -217,7 +218,7 @@ int velocityValue (int x, int y) {
     
     self.ballsElement = [[NSMutableArray alloc] init];
     self.ballsCombos = [[NSMutableArray alloc] init];
-
+    
     // 8选5方式决定位置
     const int tmax = 8;
     BOOL cb[tmax] = {NO, NO, NO, NO, NO, NO, NO, NO};
@@ -227,7 +228,7 @@ int velocityValue (int x, int y) {
     for (int i = 0; i < 5; i++) {
         
         PPBall * comboBall = [PPBall ballWithCombo];
-
+        
         int t = arc4random() % tmax;
         while (cb[t] == YES) t = arc4random() % tmax;
         cb[t] = YES;
@@ -235,20 +236,20 @@ int velocityValue (int x, int y) {
         comboBall.position = CGPointMake(cx[t], cy[t] + PP_FIT_TOP_SIZE);
         
         // 调整随机尺寸结果防止重叠
-//        BOOL isRequred = NO;
-//        while (!isRequred) {
-//            isRequred = YES;
-//            CGPoint pointCombo = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y + PP_FIT_TOP_SIZE);
-//            for (PPBall * ballAdded in self.ballsCombos) {
-//                CGFloat distanceValue = distanceBetweenPoints(ballAdded.position,pointCombo);
-//                if (distanceValue <= 30) {
-//                    isRequred = NO;
-//                    break;
-//                }
-//            }
-//            comboBall.position = pointCombo;
-//            NSLog(@"%f %f", pointCombo.x, pointCombo.y);
-//        }
+        //        BOOL isRequred = NO;
+        //        while (!isRequred) {
+        //            isRequred = YES;
+        //            CGPoint pointCombo = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y + PP_FIT_TOP_SIZE);
+        //            for (PPBall * ballAdded in self.ballsCombos) {
+        //                CGFloat distanceValue = distanceBetweenPoints(ballAdded.position,pointCombo);
+        //                if (distanceValue <= 30) {
+        //                    isRequred = NO;
+        //                    break;
+        //                }
+        //            }
+        //            comboBall.position = pointCombo;
+        //            NSLog(@"%f %f", pointCombo.x, pointCombo.y);
+        //        }
         
         // 添加连击球
         comboBall.name = PP_BALL_TYPE_COMBO_NAME;
@@ -259,11 +260,27 @@ int velocityValue (int x, int y) {
         comboBall.physicsBody.dynamic = YES;
         comboBall.physicsBody.mass = 10000;
         comboBall.physicsBody.PPBallPhysicsBodyStatus = [NSNumber numberWithInt:i];
+        comboBall.PPBallSkillStatus = 0;
         [self addChild:comboBall];
         [self.ballsCombos addObject:comboBall];
     }
 }
-
+-(void)setComboBallSkillStatusOrigin
+{
+    
+    [self enumerateChildNodesWithName:PP_BALL_TYPE_COMBO_NAME usingBlock:^(SKNode *node,BOOL * stop){
+        
+        battleSkillInfo.rattanTwineState = 0;
+        node.PPBallSkillStatus = 0;
+        
+        SKNode *nodeShowBuff=[node childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillRattanTwine]];
+        if (nodeShowBuff) {
+            [nodeShowBuff removeFromParent];
+        }
+    
+    }];
+    
+}
 #pragma mark BallAnimation
 
 -(void)addBallMoveAnimation:(CGPoint)positionAni
@@ -284,7 +301,7 @@ int velocityValue (int x, int y) {
     for (int i=0; i<4; i++) {
         if(petSkillBar)
         {
-        PPSpriteButton *spriteBtn = (PPSpriteButton *)[petSkillBar childNodeWithName:[NSString stringWithFormat:@"%d",PP_SKILLS_CHOOSE_BTN_TAG+i]];
+            PPSpriteButton *spriteBtn = (PPSpriteButton *)[petSkillBar childNodeWithName:[NSString stringWithFormat:@"%d",PP_SKILLS_CHOOSE_BTN_TAG+i]];
             if ([spriteBtn.PPBallPhysicsBodyStatus  isEqual: @1]) {
                 SKLabelNode *labelNode = (SKLabelNode *)[spriteBtn childNodeWithName:PP_SKILL_CD_LABEL_NODE_NAME];
                 spriteBtn.PPBallSkillStatus = [NSNumber numberWithInt:[spriteBtn.PPBallSkillStatus intValue] -1];
@@ -299,9 +316,9 @@ int velocityValue (int x, int y) {
             //恶魔重生
             battleSkillInfo.petHitRecoverHP = 0;
             SKNode *node =[self.playerAndEnemySide->ppixiePetBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilRebirth]];
-//            [node removeActionForKey:PP_BUFF_ANIMATION_ACTION_KEY];
+            //            [node removeActionForKey:PP_BUFF_ANIMATION_ACTION_KEY];
             [node removeFromParent];
-
+            
         }
     }
 }
@@ -312,12 +329,12 @@ int velocityValue (int x, int y) {
         
         self.ballEnemy.physicsBody.dynamic = NO;
         self.ballPlayer.physicsBody.dynamic = YES;
-
+        
     }else
     {
         self.ballPlayer.physicsBody.dynamic = NO;
         self.ballEnemy.physicsBody.dynamic = YES;
-
+        
     }
     
 }
@@ -460,9 +477,7 @@ int velocityValue (int x, int y) {
 -(void)backButtonClick:(NSString *)backName
 {
     
-    [(PPFightingMainView *)self.view normalScreenForMenu];
-
-    [self.view presentScene:self.hurdleReady transition:[SKTransition doorsOpenVerticalWithDuration:1]];
+    [self.view presentScene:previousScene transition:[SKTransition doorsOpenVerticalWithDuration:1]];
     
 }
 
@@ -570,15 +585,15 @@ int velocityValue (int x, int y) {
         {
             
             [self roundRotateMoved:PP_PET_PLAYER_SIDE_NODE_NAME];
-
-//            [self  showPhysicsAttackAnimation:PP_PET_PLAYER_SIDE_NODE_NAME];
+            
+            //            [self  showPhysicsAttackAnimation:PP_PET_PLAYER_SIDE_NODE_NAME];
             
         }else
         {
             
             [self roundRotateMoved:PP_ENEMY_SIDE_NODE_NAME];
-
-//            [self  showPhysicsAttackAnimation:PP_ENEMY_SIDE_NODE_NAME];
+            
+            //            [self  showPhysicsAttackAnimation:PP_ENEMY_SIDE_NODE_NAME];
             
         }
         
@@ -731,13 +746,13 @@ int velocityValue (int x, int y) {
             [self addChild:hitAniNode];
             
             [hitAniNode runAction:[[PPAtlasManager battle_field_ball] getAnimation:@"ball_pixie_wall"]
-                                 completion:^{[hitAniNode removeFromParent];}];
+                       completion:^{[hitAniNode removeFromParent];}];
             
             
             
         }
             break;
-            case kEnemyHitWallTypeValue:
+        case kEnemyHitWallTypeValue:
         {
             
             SKSpriteNode *hitAniNode=[[SKSpriteNode alloc] init];
@@ -767,7 +782,7 @@ int velocityValue (int x, int y) {
             [self addChild:hitFiledAniNode];
             
             [hitFiledAniNode runAction:[[PPAtlasManager battle_fight_effect] getAnimation:@"shield_break"]
-                       completion:^{[hitFiledAniNode removeFromParent];}];
+                            completion:^{[hitFiledAniNode removeFromParent];}];
             
         }
             break;
@@ -779,7 +794,7 @@ int velocityValue (int x, int y) {
 -(void)addPetSkillBar
 {
     
-//    [self removeSkillBar];
+    //    [self removeSkillBar];
     
     if (petSkillBar) {
         petSkillBar.zPosition = 1;
@@ -788,9 +803,9 @@ int velocityValue (int x, int y) {
     }
     
     petSkillBar = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(self.size.width, self.size.height)];
-//    petSkillBar.color =[UIColor blackColor];
-//    petSkillBar.colorBlendFactor = 0.6;
-
+    //    petSkillBar.color =[UIColor blackColor];
+    //    petSkillBar.colorBlendFactor = 0.6;
+    
     // 添加技能槽
     for (int i = 0; i < 4; i++) {
         
@@ -815,7 +830,7 @@ int velocityValue (int x, int y) {
             passButton.userInteractionEnabled = YES;
             [passButton addTarget:self selector:@selector(skillInvalidBtnClick:)
                        withObject:passButton forControlEvent:PPButtonControlEventTouchUp];
-
+            
             
         } else {
             
@@ -824,13 +839,13 @@ int velocityValue (int x, int y) {
             [passButton addTarget:self selector:@selector(skillPlayerShowBegin:)
                        withObject:passButton forControlEvent:PPButtonControlEventTouchUp];
             
-//            SKLabelNode *cdLabel = [SKLabelNode labelNodeWithFontNamed:PP_WORDS_FONT_NAME];
-//            cdLabel.fontSize = 10;
-//            cdLabel.name = PP_SKILL_CD_LABEL_NODE_NAME;
-//            cdLabel.position = CGPointMake(0,0.0f);
-//            [cdLabel setColor:[UIColor orangeColor]];
-//            [cdLabel setText:[NSString stringWithFormat:@"%@",[dictSkill objectForKey:@"skillcdrounds"]]];
-//            [passButton addChild:cdLabel];
+            //            SKLabelNode *cdLabel = [SKLabelNode labelNodeWithFontNamed:PP_WORDS_FONT_NAME];
+            //            cdLabel.fontSize = 10;
+            //            cdLabel.name = PP_SKILL_CD_LABEL_NODE_NAME;
+            //            cdLabel.position = CGPointMake(0,0.0f);
+            //            [cdLabel setColor:[UIColor orangeColor]];
+            //            [cdLabel setText:[NSString stringWithFormat:@"%@",[dictSkill objectForKey:@"skillcdrounds"]]];
+            //            [passButton addChild:cdLabel];
         }
         passButton.color = [UIColor blackColor];
         passButton.colorBlendFactor = 0.0;
@@ -845,7 +860,7 @@ int velocityValue (int x, int y) {
         cdLabel.fontSize = 19;
         cdLabel.name = PP_SKILL_CD_LABEL_NODE_NAME;
         cdLabel.position = CGPointMake(passButton.size.width/2.0f,10.0f);
-//        cdLabel.position = passButton.position;
+        //        cdLabel.position = passButton.position;
         [cdLabel setColor:[UIColor orangeColor]];
         [cdLabel setFontColor:[UIColor redColor]];
         NSString *cdString = [NSString stringWithFormat:@"%@",[dictSkill objectForKey:@"skillcdrounds"]];
@@ -854,12 +869,12 @@ int velocityValue (int x, int y) {
         NSLog(@"cdString=%@",cdString);
         [passButton addChild:cdLabel];
         
- 
+        
     }
     
     petSkillBar.position = CGPointMake(self.size.width/2.0f, self.ballPlayer.position.y+50);
     [self addChild:petSkillBar];
-
+    
     isShowingSkillBar = YES;
     
     [self setPlayerSideRoundRunState];
@@ -870,7 +885,7 @@ int velocityValue (int x, int y) {
         petSkillBar.zPosition = -5;
         petSkillBar.hidden = YES;
         [self setPlayerSideRoundEndState];
-
+        
     }
     isShowingSkillBar = NO;
 }
@@ -1248,20 +1263,20 @@ int velocityValue (int x, int y) {
 {
     
     [self changeBallStatus:PP_ENEMY_SIDE_NODE_NAME];
-
+    
     
     currentPhysicsAttack = 2;
     float randomX = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
     float randomY = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
     [self.ballEnemy.physicsBody applyImpulse:CGVectorMake(randomX, randomY)];
     [self addBallMoveAnimation:self.ballEnemy.position];
-
+    
     [self.ballEnemy startPixieAccelerateAnimation:CGVectorMake(randomX, randomY) andType:@"step"];
     [self setPlayerSideRoundRunState];
     _isBallRolling = YES;
     
     
-
+    
 }
 
 //增加连击数显示
@@ -1356,7 +1371,8 @@ int velocityValue (int x, int y) {
         
         
         [self changeBallsRoundsEnd];
-
+        [self setComboBallSkillStatusOrigin];
+        
         
     } else {
         
@@ -1401,8 +1417,8 @@ int velocityValue (int x, int y) {
 {
     isNotSkillRun = YES;
     [self.ballPlayer closeActiveStatus];
-
-//    [self.playerSkillSide setSideSkillButtonDisable];
+    
+    //    [self.playerSkillSide setSideSkillButtonDisable];
 }
 
 //回合结束状态 玩家可进行操作
@@ -1411,8 +1427,8 @@ int velocityValue (int x, int y) {
     
     isNotSkillRun = NO;
     [self.ballPlayer startActiveStatus];
-
-//    [self.playerSkillSide setSideSkillButtonEnable];
+    
+    //    [self.playerSkillSide setSideSkillButtonEnable];
     
 }
 
@@ -1474,7 +1490,7 @@ int velocityValue (int x, int y) {
 -(void)skillInvalidBtnClick:(PPSpriteButton *)skillInvalidButton
 {
     
-//       NSDictionary *skillChoosed = [self.ballPlayer.pixie.pixieSkills objectAtIndex:[skillInvalidButton.name intValue] - PP_SKILLS_CHOOSE_BTN_TAG];
+    //       NSDictionary *skillChoosed = [self.ballPlayer.pixie.pixieSkills objectAtIndex:[skillInvalidButton.name intValue] - PP_SKILLS_CHOOSE_BTN_TAG];
     
     
     
@@ -1494,11 +1510,13 @@ int velocityValue (int x, int y) {
         isNotSkillShowTime = NO;
         [self setPlayerSideRoundEndState];
     }];
+    
 }
 
 //技能动画展示开始
 -(void)skillPlayerShowBegin:(PPSpriteButton *)skillButton
 {
+    
     
     NSDictionary *skillInfo = [self.ballPlayer.pixie.pixieSkills objectAtIndex:[skillButton.name intValue] - PP_SKILLS_CHOOSE_BTN_TAG];
     
@@ -1508,8 +1526,8 @@ int velocityValue (int x, int y) {
     [self setPlayerSideRoundRunState];
     
     
-    
     if (self.playerAndEnemySide.currentPPPixie.currentMP < fabsf(mpToConsume)) {
+        
         SKLabelNode * labelNode = (SKLabelNode *)[self childNodeWithName:@"mpisnotenough"];
         if (labelNode) [labelNode removeFromParent];
         
@@ -1519,24 +1537,37 @@ int velocityValue (int x, int y) {
         additonLabel.position = CGPointMake(160.0f, 200.0f);
         [self addChild:additonLabel];
         
-         [additonLabel setText:[NSString stringWithFormat:@"%@已释放",[skillInfo objectForKey:@"skillname"]]];
+        
+        [additonLabel setText:[NSString stringWithFormat:@"%@已释放",[skillInfo objectForKey:@"skillname"]]];
         [self removeSkillBar];
+        
         
         switch ([[skillInfo objectForKey:@"skillid"] intValue]) {
             case kPPPetSkillDevilRebirth:
             {
+                
                 battleSkillInfo.petHitRecoverHP = 10;
-              
+                
                 [self addBuffAnimation:kPPPetSkillDevilRebirth];
-              
+                
             }
                 break;
             case kPPPetSkillDevilBreath:
             {
+                
                 [self addBuffAnimation:kPPPetSkillDevilBreath];
-
+                
                 [self addSkillBuff:kPPPetSkillDevilBreath skillInfo:skillInfo];
-
+                
+            }
+                break;
+            case kPPPetSkillRattanTwine:
+            {
+                
+                [self addBuffAnimation:kPPPetSkillRattanTwine];
+                
+                [self addSkillBuff:kPPPetSkillRattanTwine skillInfo:skillInfo];
+                
             }
                 break;
                 
@@ -1644,19 +1675,19 @@ int velocityValue (int x, int y) {
         case kPPPetSkillDevilRebirth:
         {
             
-//            SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"01_devilrebirth.png"]];
+            //            SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"01_devilrebirth.png"]];
             SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
             buffShowNode.size = CGSizeMake(115.0f, 107.0f);
-//            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
+            //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
             [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
-
+            
             buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilRebirth];
             
             [self.playerAndEnemySide->ppixiePetBtn addChild:buffShowNode];
             
-//            SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_table_skill] getAnimation:@"01_devilrebirth"] count:0];
+            //            SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_table_skill] getAnimation:@"01_devilrebirth"] count:0];
             SKAction *actionRep = [SKAction repeatActionForever:[[PPAtlasManager battle_table_skill] getAnimation:@"01_devilrebirth"]];
-
+            
             [buffShowNode runAction:actionRep];
             
             
@@ -1665,7 +1696,7 @@ int velocityValue (int x, int y) {
         case kPPPetSkillDevilBreath:
         {
             
-//            SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"02_devilbreath.png"]];
+            //            SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"02_devilbreath.png"]];
             
             SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
             buffShowNode.size = CGSizeMake(115.0f, 107.0f);
@@ -1680,21 +1711,71 @@ int velocityValue (int x, int y) {
             SKAction *actionRep = [SKAction repeatActionForever:[[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreath"]];
             
             [buffShowNode runAction:actionRep];
-
             
+            
+            
+            //            SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
+            //            buffShowNode.size = CGSizeMake(115.0f, 107.0f);
+            //            [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
+            //            [self.ballPlayer addChild:buffShowNode];
+            //            SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreath"] count:10];
+            //
+            //            [buffShowNode runAction:actionRep completion:^{
+            //                //                if (buffShowNode) {
+            //                //                    [buffShowNode removeFromParent];
+            //                //                }
+            //
+            //            }];
+            
+            
+        }
+            break;
+        case kPPPetSkillRattanTwine:
+        {
+            
+            currentPhysicsAttack = 1;
+            float randomX = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
+            float randomY = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
+            [self.ballPlayer.physicsBody applyImpulse:CGVectorMake(randomX+20, randomY+20)];
+            [self addBallMoveAnimation:self.ballPlayer.position];
+            
+            [self.ballPlayer startPixieAccelerateAnimation:CGVectorMake(randomX, randomY) andType:@"step"];
+            [self setPlayerSideRoundRunState];
+            _isBallRolling = YES;
+            
+            battleSkillInfo.rattanTwineState = 1;
+            
+            //            SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"02_devilbreath.png"]];
             
 //            SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
 //            buffShowNode.size = CGSizeMake(115.0f, 107.0f);
+//            //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
 //            [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
-//            [self.ballPlayer addChild:buffShowNode];
-//            SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreath"] count:10];
-//
-//            [buffShowNode runAction:actionRep completion:^{
-//                //                if (buffShowNode) {
-//                //                    [buffShowNode removeFromParent];
-//                //                }
-//                
-//            }];
+//            buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilBreath];
+//            
+//            
+//            
+//            [self.playerAndEnemySide->ppixiePetBtn addChild:buffShowNode];
+//            
+//            //            SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_table_skill] getAnimation:@"01_devilrebirth"] count:0];
+//            SKAction *actionRep = [SKAction repeatActionForever:[[PPAtlasManager ball_elements] getAnimation:@"plant_aura"]];
+//            
+//            [buffShowNode runAction:actionRep];
+            
+            
+            
+            //            SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
+            //            buffShowNode.size = CGSizeMake(115.0f, 107.0f);
+            //            [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
+            //            [self.ballPlayer addChild:buffShowNode];
+            //            SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreath"] count:10];
+            //
+            //            [buffShowNode runAction:actionRep completion:^{
+            //                //                if (buffShowNode) {
+            //                //                    [buffShowNode removeFromParent];
+            //                //                }
+            //
+            //            }];
             
             
         }
@@ -1713,12 +1794,12 @@ int velocityValue (int x, int y) {
         case 1:
         {
             
-           
             
         }
             break;
         case kPPPetSkillDevilBreath:
         {
+            
             
             battleSkillInfo.enemyPoisoningHP = 50;
             PPBuff *buffId1 = [[PPBuff alloc] init];
@@ -1729,11 +1810,24 @@ int velocityValue (int x, int y) {
             
         }
             break;
+        case kPPPetSkillRattanTwine:
+        {
+            
+            
+            battleSkillInfo.enemyPoisoningHP = 50;
+            PPBuff *buffId1 = [[PPBuff alloc] init];
+            buffId1.continueRound = [[skillInfo objectForKey:@"skillcontinue"] intValue];
+            buffId1.buffId =[NSString stringWithFormat:@"%d",kPPPetSkillRattanTwine];
+            [self.battleBuffArray addObject:buffId1];
+            
+            
+        }
+            break;
             
         default:
             break;
     }
-  
+    
     
 }
 
@@ -1757,7 +1851,7 @@ int velocityValue (int x, int y) {
             SKNode *buffshowNode = [self.playerAndEnemySide->ppixieEnemyBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilBreath]];
             
             [buffshowNode runAction:[[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreathEffect"] completion:^{
-            
+                
                 [buffshowNode removeFromParent];
                 
                 
@@ -1781,7 +1875,7 @@ int velocityValue (int x, int y) {
             
             [[self.playerAndEnemySide->ppixieEnemyBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilBreath]] removeFromParent];
             battleSkillInfo.enemyPoisoningHP = 0;
-           
+            
         }
             break;
             
@@ -1946,7 +2040,7 @@ int velocityValue (int x, int y) {
                 SKSpriteNode *addHPAnimation = [self  getNumber:battleSkillInfo.petHitRecoverHP AndColor:@"green"];
                 [addHPAnimation setPosition:CGPointMake(20.0f, 20.0f)];
                 [self.playerAndEnemySide->ppixiePetBtn addChild:addHPAnimation];
-//                SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"01_devilrebirth.png"]];
+                //                SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"01_devilrebirth.png"]];
                 
                 
                 SKSpriteNode *nodeSkillBuffer=[SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"01_devilrebirth.png"]];
@@ -1956,9 +2050,9 @@ int velocityValue (int x, int y) {
                 
                 
                 SKAction *actionRemove = [SKAction fadeAlphaTo:1.0f duration:2];
-            
-                [nodeSkillBuffer runAction:actionRemove completion:^{
                 
+                [nodeSkillBuffer runAction:actionRemove completion:^{
+                    
                     [nodeSkillBuffer removeFromParent];
                     
                 }];
@@ -1971,26 +2065,24 @@ int velocityValue (int x, int y) {
                 }];
                 
             }
-            
+            PPBall *ballCombo = nil;
             if (contact.bodyA == self.ballPlayer.physicsBody) {
                 
-            
-                PPBall *ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
+                
+               ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
                 [ballCombo startComboAnimation:CGVectorMake(self.ballPlayer.position.x-ballCombo.position.x,self.ballPlayer.position.y-ballCombo.position.y)];
                 
-               
+                
                 
             } else {
                 
-                PPBall *ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
+                ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
                 [ballCombo startComboAnimation:CGVectorMake(self.ballPlayer.position.x-ballCombo.position.x,self.ballPlayer.position.y-ballCombo.position.y)];
                 
             }
             
             petCombos++;
-            [self.playerAndEnemySide setComboLabelText:petCombos withEnemy:enemyCombos];
-            [self.playerAndEnemySide startAttackAnimation:YES];
-            [self dealPixieBallContactComboBall:contact andPetBall:self.ballPlayer];
+            
             
             
             //恶魔重生
@@ -2005,6 +2097,45 @@ int velocityValue (int x, int y) {
                 battleSkillInfo.enemyPoisoningHP *=(1.1) ;
             }
             
+            if (battleSkillInfo.rattanTwineState ==1) {
+                
+                SKAction *actionRep = [[PPAtlasManager ball_elements] getAnimation:@"plant_aura"];
+                
+                SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] initWithImageNamed:@"plant_aura_0000"];
+                buffShowNode.size = CGSizeMake(115.0f, 107.0f);
+                //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
+                [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
+                
+                buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillRattanTwine];
+                
+                [ballCombo addChild:buffShowNode];
+                
+                [buffShowNode runAction:actionRep completion:^{
+                
+                
+                    SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
+                    buffShowNode.size = CGSizeMake(115.0f, 107.0f);
+                    //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
+                    [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
+                    buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillRattanTwine];
+                    
+                    
+                    [self.playerAndEnemySide->ppixiePetBtn addChild:buffShowNode];
+                    
+                    SKAction *actionRep = [SKAction repeatActionForever:[[PPAtlasManager ball_elements] getAnimation:@"plant_aura"]];
+                    [buffShowNode runAction:actionRep];
+                    
+                    [self.playerAndEnemySide startAttackShowAnimation:YES];
+                    
+                    return ;
+                
+                }];
+                
+                [self.playerAndEnemySide setComboLabelText:petCombos withEnemy:enemyCombos];
+                [self.playerAndEnemySide startAttackAnimation:YES];
+                [self dealPixieBallContactComboBall:contact andPetBall:self.ballPlayer];
+                
+            }
             
             [self addComboValueChangeCombos:petCombos position:self.ballPlayer.position];
             
