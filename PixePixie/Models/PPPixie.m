@@ -48,6 +48,55 @@
     return 350;
 }
 
+// 手动创建宠物
++(PPPixie *)birthPixieWithHPmax:(CGFloat)hpmax MPmax:(CGFloat)mpmax
+{
+    PPPixie * tPixie = [[PPPixie alloc] init];
+    
+    tPixie.pixieName = @"Name";
+    tPixie.pixieHPmax = 1000;
+    tPixie.pixieMPmax = 1000;
+    tPixie.currentHP = 100;
+    tPixie.currentMP = 100;
+    
+    tPixie.pixieAP = 10;
+    tPixie.pixieDP = 1;
+    tPixie.pixieDEX = 10;
+    tPixie.pixieDEF = 10;
+    
+    tPixie.pixieElement = PPElementTypeFire;
+    tPixie.pixieGeneration = 1;
+    
+    return tPixie;
+}
+
+// 自动创建宠物
++(PPPixie *)birthPixieWithData:(NSDictionary *)pixieDict
+{
+    PPPixie * tPixie = [[PPPixie alloc] init];
+    
+    tPixie.pixieName = [pixieDict objectForKey:@"name"];
+    
+    tPixie.pixieGeneration = [[pixieDict objectForKey:@"generation"] intValue];
+    tPixie.pixieLEVEL = [[pixieDict objectForKey:@"level"] intValue];
+    tPixie.pixieHPmax = [[pixieDict objectForKey:@"hpmax"] intValue];
+    tPixie.pixieMPmax = [[pixieDict objectForKey:@"mpmax"] intValue];
+    tPixie.currentHP = tPixie.pixieHPmax;
+    tPixie.currentMP = tPixie.pixieMPmax;
+    
+    tPixie.pixieAP = [[pixieDict objectForKey:@"ap"] intValue];
+    tPixie.pixieDP = [[pixieDict objectForKey:@"dp"] intValue];
+    tPixie.pixieDEX = [[pixieDict objectForKey:@"dex"] intValue];
+    tPixie.pixieDEF = [[pixieDict objectForKey:@"def"] intValue];
+    
+    tPixie.pixieElement = [[pixieDict objectForKey:@"element"] intValue];
+    tPixie.pixieSkills = [NSArray array];
+    tPixie.pixieBuffs = [NSMutableArray array];
+    tPixie.pixieBall = [PPBall ballWithPixie:tPixie];
+    
+    return tPixie;
+}
+
 
 // 创建新的宠物
 +(PPPixie *)birthPixieWithPetsInfo:(NSDictionary *)petsDict
@@ -68,28 +117,6 @@
     tPixie.pixieSkills = [NSArray arrayWithArray:[petsDict objectForKey:@"pixieSkills"]];
     tPixie.pixieBuffs = [[NSMutableArray alloc] initWithObjects:@"buff1", @"buff2", @"buff3", nil];
     tPixie.pixieBall = [PPBall ballWithPixie:tPixie];
-    
-    return tPixie;
-}
-
-// 创建宠物模型
-+(PPPixie *)birthPixieWithHPmax:(CGFloat)hpmax MPmax:(CGFloat)mpmax
-{
-    PPPixie * tPixie = [[PPPixie alloc] init];
-    
-    tPixie.pixieName = @"Name";
-    tPixie.pixieHPmax = 1000;
-    tPixie.pixieMPmax = 1000;
-    tPixie.currentHP = 100;
-    tPixie.currentMP = 100;
-    
-    tPixie.pixieAP = 10;
-    tPixie.pixieDP = 1;
-    tPixie.pixieDEX = 10;
-    tPixie.pixieDEF = 10;
-    
-    tPixie.pixieElement = PPElementTypeFire;
-    tPixie.pixieGeneration = 1;
     
     return tPixie;
 }

@@ -19,24 +19,19 @@
     [labelConfrimInfo setTextAlignment:NSTextAlignmentCenter];
     [self addSubview:labelConfrimInfo];
     
-    
     // 添加宠物
-//    NSDictionary * dictUserPets = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PetsChooseInfo"
-//                                                                                                             ofType:@"plist"]];
-//    
-//    NSArray * petsInfoArray = [[NSArray alloc] initWithArray:[dictUserPets objectForKey:@"userpetinfo"]];
-//    NSArray * petsArray = [NSArray arrayWithArray:petsInfoArray];
-    
-    NSArray * pixies = [NSArray arrayWithObjects:
-                        [PPPixie birthPixieWithHPmax:1000.0f MPmax:1000.0f],
-                        [PPPixie birthPixieWithHPmax:1500 MPmax:1500], nil];
+    NSArray * pixiesData = [[NSDictionary dictionaryWithContentsOfFile:
+                             [[NSBundle mainBundle] pathForResource:@"InitPixies" ofType:@"plist"]] objectForKey:@"startpets"];
+    NSMutableArray * pixies = [NSMutableArray array];
+    for (NSDictionary * tPixie in pixiesData) [pixies addObject:[PPPixie birthPixieWithData:tPixie]];
     
     PPChoosePetScrollView * petsScroll = [[PPChoosePetScrollView alloc] initWithFrame:CGRectMake(0, 60, 320, 200)
                                                                                Pixies:pixies];
     [self addSubview:petsScroll];
     
-    
-    PPInfoView * infoView = [[PPInfoView alloc] initWithFrame:CGRectMake(10, 300, 300, 160)];
+    // 添加信息栏
+    PPInfoView * infoView = [[PPInfoView alloc] initWithFrame:CGRectMake(10, 260, 300, 210)];
+    [infoView updateInfo:[pixies objectAtIndex:1]];
     [self addSubview:infoView];
     
     // 添加确定按钮
@@ -49,9 +44,6 @@
             forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:buttonConfirm];
     
-    
-    
-
 }
 
 @end

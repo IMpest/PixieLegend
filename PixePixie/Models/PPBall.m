@@ -44,8 +44,6 @@
     
     
     [showSpriteNode runAction:[SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_stop",kElementTypeString[pixie.pixieElement]]]]];
-    NSLog(@"plantname=%@",[NSString stringWithFormat:@"%@3_stop",kElementTypeString[pixie.pixieElement]]);
-    
     
     if (tBall){
         tBall.ballType = PPBallTypePlayer;
