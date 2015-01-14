@@ -38,6 +38,7 @@ typedef NS_ENUM(int, PPPetSkillId)
     kPPPetSkillDevilRebirth,        // 恶魔重生
     kPPPetSkillDevilBreath,         // 恶魔呼吸
     kPPPetSkillRattanTwine,         // 魔藤缠绕
+    kPPPetSkillRattanTwineEffect,   // 魔藤缠绕状态效果
     kPPPetSkillNightJudge,          // 黑夜审判
     kPPPetSkillDevilGrill,          // 恶魔拷问
     kPPPetSkillDevilSkin,           // 恶魔之肤

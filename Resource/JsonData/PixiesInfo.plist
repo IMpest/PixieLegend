@@ -451,7 +451,7 @@
 					<key>skillcdrounds</key>
 					<integer>4</integer>
 					<key>skillcontinue</key>
-					<integer>0</integer>
+					<integer>2</integer>
 				</dict>
 				<dict>
 					<key>skillid</key>
@@ -835,9 +835,9 @@
 					<key>skillname</key>
 					<string>魔藤缠绕</string>
 					<key>skillcdrounds</key>
-					<integer>4</integer>
+					<integer>5</integer>
 					<key>skillcontinue</key>
-					<integer>0</integer>
+					<integer>2</integer>
 				</dict>
 				<dict>
 					<key>skillid</key>
