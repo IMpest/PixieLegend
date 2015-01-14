@@ -49,7 +49,7 @@
 }
 
 // 手动创建宠物
-+(PPPixie *)birthPixieWithHPmax:(CGFloat)hpmax MPmax:(CGFloat)mpmax
++(PPPixie *)pixieWithHPmax:(CGFloat)hpmax MPmax:(CGFloat)mpmax
 {
     PPPixie * tPixie = [[PPPixie alloc] init];
     
@@ -71,7 +71,7 @@
 }
 
 // 自动创建宠物
-+(PPPixie *)birthPixieWithData:(NSDictionary *)pixieDict
++(PPPixie *)pixieWithData:(NSDictionary *)pixieDict
 {
     PPPixie * tPixie = [[PPPixie alloc] init];
     
@@ -90,59 +90,57 @@
     tPixie.pixieDEF = [[pixieDict objectForKey:@"def"] intValue];
     
     tPixie.pixieElement = [[pixieDict objectForKey:@"element"] intValue];
-    tPixie.pixieSkills = [NSArray array];
-    tPixie.pixieBuffs = [NSMutableArray array];
-    tPixie.pixieBall = [PPBall ballWithPixie:tPixie];
-    
-    return tPixie;
-}
-
-
-// 创建新的宠物
-+(PPPixie *)birthPixieWithPetsInfo:(NSDictionary *)petsDict
-{
-    PPPixie * tPixie = [[PPPixie alloc] init];
-    
-    tPixie.pixieHPmax = 1000*[[petsDict objectForKey:@"petstatus"] intValue];
-    tPixie.pixieMPmax = 1000*[[petsDict objectForKey:@"petstatus"] intValue];
-    tPixie.pixieName = [petsDict objectForKey:@"petname"];
-    tPixie.currentHP = tPixie.pixieHPmax;
-    tPixie.currentMP = 0.0f;
-    
-    tPixie.currentAP = 10;
-    tPixie.currentDP = 1;
-    tPixie.pixieGeneration = [[petsDict objectForKey:@"petstatus"] intValue];
-    
-    tPixie.pixieElement = [[petsDict objectForKey:@"petelementtype"] intValue];
-    tPixie.pixieSkills = [NSArray arrayWithArray:[petsDict objectForKey:@"pixieSkills"]];
+    tPixie.pixieSkills = [NSArray arrayWithArray:[pixieDict objectForKey:@"skills"]];
     tPixie.pixieBuffs = [[NSMutableArray alloc] initWithObjects:@"buff1", @"buff2", @"buff3", nil];
     tPixie.pixieBall = [PPBall ballWithPixie:tPixie];
     
     return tPixie;
 }
 
+//// 创建新的宠物（旧版）
+//+(PPPixie *)birthPixieWithPetsInfo:(NSDictionary *)petsDict
+//{
+//    PPPixie * tPixie = [[PPPixie alloc] init];
+//    
+//    tPixie.pixieHPmax = 1000*[[petsDict objectForKey:@"petstatus"] intValue];
+//    tPixie.pixieMPmax = 1000*[[petsDict objectForKey:@"petstatus"] intValue];
+//    tPixie.pixieName = [petsDict objectForKey:@"petname"];
+//    tPixie.currentHP = tPixie.pixieHPmax;
+//    tPixie.currentMP = 0.0f;
+//    
+//    tPixie.currentAP = 10;
+//    tPixie.currentDP = 1;
+//    tPixie.pixieGeneration = [[petsDict objectForKey:@"petstatus"] intValue];
+//    
+//    tPixie.pixieElement = [[petsDict objectForKey:@"petelementtype"] intValue];
+//    tPixie.pixieSkills = [NSArray arrayWithArray:[petsDict objectForKey:@"pixieSkills"]];
+//    tPixie.pixieBuffs = [[NSMutableArray alloc] initWithObjects:@"buff1", @"buff2", @"buff3", nil];
+//    tPixie.pixieBall = [PPBall ballWithPixie:tPixie];
+//    
+//    return tPixie;
+//}
 
-// 创建新的敌方宠物
-+(PPPixie *)birthEnemyPixieWithPetsInfo:(NSDictionary *)petsDict;
-{
-    PPPixie * tPixie = [[PPPixie alloc] init];
-    
-    tPixie.pixieHPmax = 1000*[[petsDict objectForKey:@"enemystatus"] intValue];
-    tPixie.pixieMPmax = 1000*[[petsDict objectForKey:@"enemystatus"] intValue];
-    tPixie.pixieName = [petsDict objectForKey:@"enemyname"];
-    tPixie.currentHP = tPixie.pixieHPmax;
-    tPixie.currentMP = 0.0f;
-    tPixie.pixieAP = 10;
-    tPixie.pixieDP = 1;
-    tPixie.pixieGeneration = [[petsDict objectForKey:@"enemystatus"] intValue];
-    tPixie.pixieBall.ballElementType = [[petsDict objectForKey:@"enemyelementtype"] intValue];
-    tPixie.pixieElement = [[petsDict objectForKey:@"enemyelementtype"] intValue];
-    tPixie.pixieSkills = [NSArray arrayWithArray:[petsDict objectForKey:@"enemySkills"]];
-    
-    tPixie.pixieBuffs = [[NSMutableArray alloc] initWithObjects:@"buff1",@"buff2",@"buff3", nil];
-    tPixie.pixieBall = [PPBall ballWithPixieEnemy:tPixie];
-    
-    return tPixie;
-}
+//// 创建新的敌方宠物（旧版）
+//+(PPPixie *)birthEnemyPixieWithPetsInfo:(NSDictionary *)petsDict;
+//{
+//    PPPixie * tPixie = [[PPPixie alloc] init];
+//    
+//    tPixie.pixieHPmax = 1000*[[petsDict objectForKey:@"enemystatus"] intValue];
+//    tPixie.pixieMPmax = 1000*[[petsDict objectForKey:@"enemystatus"] intValue];
+//    tPixie.pixieName = [petsDict objectForKey:@"enemyname"];
+//    tPixie.currentHP = tPixie.pixieHPmax;
+//    tPixie.currentMP = 0.0f;
+//    tPixie.pixieAP = 10;
+//    tPixie.pixieDP = 1;
+//    tPixie.pixieGeneration = [[petsDict objectForKey:@"enemystatus"] intValue];
+//    tPixie.pixieBall.ballElementType = [[petsDict objectForKey:@"enemyelementtype"] intValue];
+//    tPixie.pixieElement = [[petsDict objectForKey:@"enemyelementtype"] intValue];
+//    tPixie.pixieSkills = [NSArray arrayWithArray:[petsDict objectForKey:@"enemySkills"]];
+//    
+//    tPixie.pixieBuffs = [[NSMutableArray alloc] initWithObjects:@"buff1",@"buff2",@"buff3", nil];
+//    tPixie.pixieBall = [PPBall ballWithPixieEnemy:tPixie];
+//    
+//    return tPixie;
+//}
 
 @end

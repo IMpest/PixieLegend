@@ -11,14 +11,13 @@
         currentElementType = elementType;
         [self setBackgroundColor:[UIColor purpleColor]];
         NSString * mapName = [NSString stringWithFormat:@"map_scene_%@.png", kElementTypeString[elementType]];
-        SKSpriteNode *spriteBackNode=[SKSpriteNode spriteNodeWithImageNamed:mapName];
+        SKSpriteNode * spriteBackNode = [SKSpriteNode spriteNodeWithImageNamed:mapName];
         spriteBackNode.position = CGPointMake(self.size.width/2.0f, self.size.height/2.0f);
         spriteBackNode.size = CGSizeMake(320.0f, 480.0f);
         [self addChild:spriteBackNode];
         [self addPassChoose];
         
         [self setBackTitleText:@"小场景" andPositionY:420.0f];
-
     }
     return self;
 }
@@ -89,17 +88,41 @@
     }
 }
 
-//
+
+// 直接进入战斗场景
 -(void)menuDungeonGoForward:(NSString *)stringName
 {
-    [self enterHurdleReady];
+    NSDictionary * pixiesInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PixiesInfo"
+                                                                                                            ofType:@"plist"]];
     
+    NSDictionary * petsChoosedInfo = [[pixiesInfo objectForKey:@"userpetinfo"] objectAtIndex:0];
+    PPPixie * playerPixie = [PPPixie pixieWithData:petsChoosedInfo];
+    
+    NSDictionary * enemyDicInfo = [[pixiesInfo objectForKey:@"enemysinfo"] objectAtIndex:0];
+    PPPixie * enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
+    
+    NSLog(@"petsChoosedInfo=%@,enemyDicInfo=%@",petsChoosedInfo,enemyDicInfo);
+    
+    //    PPPixie * playerPixie = [PPPixie birthPixieWithPetsInfo:petsChoosedInfo];
+    //    PPPixie * enemyPixie = [PPPixie birthEnemyPixieWithPetsInfo:enemyDicInfo];
+    
+    if (playerPixie == nil || enemyPixie == nil) return;
+    
+    // 创建战斗场景并显示
+    PPBallBattleScene * ballScene = [[PPBallBattleScene alloc] initWithSize:CurrentDeviceRealSize
+                                                                PixiePlayer:playerPixie
+                                                                 PixieEnemy:enemyPixie  andSceneType:currentElementType];
+    ballScene.scaleMode = SKSceneScaleModeAspectFill;
+    //    ballScene.hurdleReady = self;
+    ballScene->previousScene = self;
+    [ballScene setEnemyAtIndex:0];
+    [self.view presentScene:ballScene];
+//    [self enterHurdleReady];
 }
 
-// 这里直接进入战斗画面
--(void)spriteChooseClick
-{
-    
+// 这里直接进入战斗画面（旧版）
+//-(void)spriteChooseClick
+//{
 //    NSArray * petsArray = nil;
 //    NSArray * enemysArray = nil;
 //
@@ -120,48 +143,11 @@
 //    ballScene.hurdleReady = self;
 //    [ballScene setEnemyAtIndex:currentEnemyIndex];
 //    [self.view presentScene:ballScene];
-    
-}
-
-
+//}
+//
 // 进入推进场景（旧版）
--(void)enterHurdleReady
-{
-
-    NSDictionary * dictUserPets = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"UserPetInfo"
-                                                                                                             ofType:@"plist"]];
-    NSArray * petsInfoArray = [[NSArray alloc] initWithArray:[dictUserPets objectForKey:@"userpetinfo"]];
-    
-    NSDictionary * petsChoosedInfo = [petsInfoArray objectAtIndex:2];
-    
-    
-    
-    // 初始化 ballScene
-    PPPixie * playerPixie = [PPPixie birthPixieWithPetsInfo:petsChoosedInfo];
-    NSDictionary *allEnemys = [NSDictionary dictionaryWithContentsOfFile:
-                               [[NSBundle mainBundle]pathForResource:@"EnemyInfo" ofType:@"plist"]];
-    NSDictionary *enemyDicInfo=[[[NSArray alloc] initWithArray:[allEnemys objectForKey:@"EnemysInfo"]] objectAtIndex:0];
-    NSLog(@"petsChoosedInfo=%@,enemyDicInfo=%@",petsChoosedInfo,enemyDicInfo);
-
-    PPPixie * enemyPixie = [PPPixie birthEnemyPixieWithPetsInfo:enemyDicInfo];
-    if (playerPixie == nil || enemyPixie == nil) return;
-    
-    // 创建战斗场景并显示
-    PPBallBattleScene * ballScene = [[PPBallBattleScene alloc] initWithSize:CurrentDeviceRealSize
-                                                                PixiePlayer:playerPixie
-                                                                 PixieEnemy:enemyPixie  andSceneType:currentElementType];
-    
-    ballScene.scaleMode = SKSceneScaleModeAspectFill;
-//    ballScene.hurdleReady = self;
-    ballScene->previousScene = self;
-    [ballScene setEnemyAtIndex:0];
-    [self.view presentScene:ballScene];
-
-    
-    
-    
-    
-//    
+//-(void)enterHurdleReady
+//{
 //    SKNode * spriteNode = [self childNodeWithName:PP_GOFORWARD_MENU_DUNGEON_FIGHTING];
 //    if (spriteNode) [spriteNode removeFromParent];
 //    
@@ -175,29 +161,21 @@
 //    [battleScene setEnemysArray];
 //    [battleScene setCurrentHurdle:0];
 //    [self.view presentScene:battleScene];
-    
-}
+//}
 
-//返回到世界地图首页
-
+// 返回到世界地图首页
 -(void)backButtonClick:(NSString *)backName
 {
-    
 //    backBtn.hidden = YES;
 //    [[NSNotificationCenter defaultCenter] postNotificationName:PP_BACK_TO_MAIN_VIEW object:PP_BACK_TO_MAIN_VIEW_FIGHTING];
-    [(PPFightingMainView *)self.view normalScreenForMenu];
-
     
+    [(PPFightingMainView *)self.view normalScreenForMenu];
     [self.view presentScene:nil];
     [preiviousView setMenuContentScrollView];
-    
-//    [(PPFightingMainView)self.view cont
-    
 }
 
 -(void)didMoveToView:(SKView *)view
 {
-
 }
 
 @end

@@ -668,8 +668,10 @@ int velocityValue (int x, int y) {
 //进入下一怪物遭遇动画
 -(void)goNextEnemy
 {
-    [self.hurdleReady setCurrentHurdle:currentEnemyIndex];
-    [self.view presentScene:self.hurdleReady transition:[SKTransition doorwayWithDuration:1]];
+#warning TODO 这里现在改成上边推进进入下一个战斗画面或者结算画面
+    
+//    [self.hurdleReady setCurrentHurdle:currentEnemyIndex];
+//    [self.view presentScene:self.hurdleReady transition:[SKTransition doorwayWithDuration:1]];
 }
 
 // 添加敌方单位各个元素

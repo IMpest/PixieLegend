@@ -214,8 +214,6 @@
 		19F6EDA818C6C09900BFFF9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19F6EDA618C6C09900BFFF9A /* InfoPlist.strings */; };
 		19F6EDAA18C6C09900BFFF9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F6EDA918C6C09900BFFF9A /* main.m */; };
 		D413CB611945FF62004B4FDE /* PPSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = D413CB601945FF62004B4FDE /* PPSkill.m */; };
-		D44935C41948B52E00F3B5B9 /* UserPetInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = D44935C31948B52E00F3B5B9 /* UserPetInfo.plist */; };
-		D457012D194F430700C2EFCE /* EnemyInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = D457012C194F430700C2EFCE /* EnemyInfo.plist */; };
 		D48312C61A41BE9600C82302 /* PPBallBattleSkillInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D48312C51A41BE9600C82302 /* PPBallBattleSkillInfo.m */; };
 		D4877A40196C314E009509E5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4877A3F196C314E009509E5 /* Images.xcassets */; };
 		D48C1B001A2467EC00566DF6 /* pixie_action.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D48C1AFF1A2467EC00566DF6 /* pixie_action.atlas */; };
@@ -223,7 +221,7 @@
 		D498442D1A0A14EA008A2175 /* UserBasicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D498442C1A0A14EA008A2175 /* UserBasicInfo.m */; };
 		D49844301A0A1527008A2175 /* UserInfo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D498442E1A0A1527008A2175 /* UserInfo.xcdatamodeld */; };
 		D4A073811A0B7E97006CD8F8 /* PPDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A073801A0B7E97006CD8F8 /* PPDataManager.m */; };
-		D4AE4CB0196ED1D100FC24EF /* InitPixies.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4AE4CAF196ED1D100FC24EF /* InitPixies.plist */; };
+		D4AE4CB0196ED1D100FC24EF /* PixiesInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4AE4CAF196ED1D100FC24EF /* PixiesInfo.plist */; };
 		D4BE5ABF19513FFD001F72DE /* PPBuff.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BE5ABE19513FFD001F72DE /* PPBuff.m */; };
 		D4BF767E19E6928D003CFFAB /* ball_elements.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D4BF767119E6928D003CFFAB /* ball_elements.atlas */; };
 		D4BF767F19E6928D003CFFAB /* ball_magic.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D4BF767219E6928D003CFFAB /* ball_magic.atlas */; };
@@ -494,8 +492,6 @@
 		19F6EDC118C6C09900BFFF9A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D413CB5F1945FF62004B4FDE /* PPSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPSkill.h; path = Models/PPSkill.h; sourceTree = "<group>"; };
 		D413CB601945FF62004B4FDE /* PPSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPSkill.m; path = Models/PPSkill.m; sourceTree = "<group>"; };
-		D44935C31948B52E00F3B5B9 /* UserPetInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserPetInfo.plist; sourceTree = "<group>"; };
-		D457012C194F430700C2EFCE /* EnemyInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EnemyInfo.plist; sourceTree = "<group>"; };
 		D48312C41A41BE9600C82302 /* PPBallBattleSkillInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPBallBattleSkillInfo.h; path = PixePixie/Models/PPBallBattleSkillInfo.h; sourceTree = SOURCE_ROOT; };
 		D48312C51A41BE9600C82302 /* PPBallBattleSkillInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPBallBattleSkillInfo.m; path = PixePixie/Models/PPBallBattleSkillInfo.m; sourceTree = SOURCE_ROOT; };
 		D4877A3F196C314E009509E5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -506,7 +502,7 @@
 		D498442F1A0A1527008A2175 /* UserInfo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserInfo.xcdatamodel; sourceTree = "<group>"; };
 		D4A0737F1A0B7E97006CD8F8 /* PPDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPDataManager.h; sourceTree = "<group>"; };
 		D4A073801A0B7E97006CD8F8 /* PPDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPDataManager.m; sourceTree = "<group>"; };
-		D4AE4CAF196ED1D100FC24EF /* InitPixies.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InitPixies.plist; sourceTree = "<group>"; };
+		D4AE4CAF196ED1D100FC24EF /* PixiesInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PixiesInfo.plist; sourceTree = "<group>"; };
 		D4BE5ABD19513FFD001F72DE /* PPBuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPBuff.h; path = Models/PPBuff.h; sourceTree = "<group>"; };
 		D4BE5ABE19513FFD001F72DE /* PPBuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPBuff.m; path = Models/PPBuff.m; sourceTree = "<group>"; };
 		D4BF767119E6928D003CFFAB /* ball_elements.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = ball_elements.atlas; path = Resource/Images/ball_elements.atlas; sourceTree = "<group>"; };
@@ -606,7 +602,7 @@
 				193F96AA1A2EF69000F266A6 /* PPFightingMainView.m */,
 				1927DE681A53B1020098501C /* PPMenuScene.h */,
 				1927DE691A53B1020098501C /* PPMenuScene.m */,
-				1933E7191A2F09E700E8C5BF /* Menu */,
+				1933E7191A2F09E700E8C5BF /* Menu (Abondend) */,
 				1933E7231A2F0A4D00E8C5BF /* Field */,
 			);
 			name = Battle;
@@ -667,7 +663,7 @@
 			name = Basic;
 			sourceTree = "<group>";
 		};
-		1933E7191A2F09E700E8C5BF /* Menu */ = {
+		1933E7191A2F09E700E8C5BF /* Menu (Abondend) */ = {
 			isa = PBXGroup;
 			children = (
 				1933E71E1A2F0A3300E8C5BF /* PPMenuThemeScene.h */,
@@ -675,7 +671,7 @@
 				1933E71A1A2F0A3300E8C5BF /* PPHurdleReadyScene.h */,
 				1933E71B1A2F0A3300E8C5BF /* PPHurdleReadyScene.m */,
 			);
-			name = Menu;
+			name = "Menu (Abondend)";
 			sourceTree = "<group>";
 		};
 		1933E7231A2F0A4D00E8C5BF /* Field */ = {
@@ -1073,9 +1069,7 @@
 		D4916A15193F62CF00662F88 /* JsonData */ = {
 			isa = PBXGroup;
 			children = (
-				D4AE4CAF196ED1D100FC24EF /* InitPixies.plist */,
-				D457012C194F430700C2EFCE /* EnemyInfo.plist */,
-				D44935C31948B52E00F3B5B9 /* UserPetInfo.plist */,
+				D4AE4CAF196ED1D100FC24EF /* PixiesInfo.plist */,
 				D4916A16193F636C00662F88 /* PassInfo.plist */,
 			);
 			name = JsonData;
@@ -1170,11 +1164,9 @@
 				1999AC6B19EE64D500B25ED2 /* fire_shield_cast_0012.png in Resources */,
 				1999AC3319EE64D500B25ED2 /* plant_forward_0012.png in Resources */,
 				1999AC1519EE64D500B25ED2 /* fire_forward_0003.png in Resources */,
-				D44935C41948B52E00F3B5B9 /* UserPetInfo.plist in Resources */,
 				19A8ED501A52977600EFEA7A /* info_name.png in Resources */,
 				1992B3EE19E9269C00BFE51E /* FrameCount.plist in Resources */,
 				1999AC7019EE64D500B25ED2 /* fire_shield_cast_0017.png in Resources */,
-				D457012D194F430700C2EFCE /* EnemyInfo.plist in Resources */,
 				1999AC4119EE64D500B25ED2 /* map_icon_plant.png in Resources */,
 				19A8ED4F1A52977600EFEA7A /* info_mail.png in Resources */,
 				19C8BE051A4821AE00872CE9 /* battle_table_skill_icon.atlas in Resources */,
@@ -1199,7 +1191,7 @@
 				1999AC4E19EE64D500B25ED2 /* fire_blade_cast_0007.png in Resources */,
 				1999AC2D19EE64D500B25ED2 /* plant_forward_0006.png in Resources */,
 				1999AC7819EE64D500B25ED2 /* fire_shield_cast_0025.png in Resources */,
-				D4AE4CB0196ED1D100FC24EF /* InitPixies.plist in Resources */,
+				D4AE4CB0196ED1D100FC24EF /* PixiesInfo.plist in Resources */,
 				197358881A44181A008F0B4A /* battle_fight_ui.atlas in Resources */,
 				1999AC7519EE64D500B25ED2 /* fire_shield_cast_0022.png in Resources */,
 				D4BF767E19E6928D003CFFAB /* ball_elements.atlas in Resources */,

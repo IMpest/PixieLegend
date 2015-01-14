@@ -40,10 +40,10 @@
 -(CGFloat)countMagicalDamageTo:(PPPixie *)targetPixie
                      WithSkill:(PPSkill *)usingSkill;
 
-+(PPPixie *)birthPixieWithHPmax:(CGFloat)hpmax MPmax:(CGFloat)mpmax;
-+(PPPixie *)birthPixieWithData:(NSDictionary *)pixieDict;
++(PPPixie *)pixieWithHPmax:(CGFloat)hpmax MPmax:(CGFloat)mpmax;
++(PPPixie *)pixieWithData:(NSDictionary *)pixieDict;
 
-+(PPPixie *)birthPixieWithPetsInfo:(NSDictionary *)petsDict;
-+(PPPixie *)birthEnemyPixieWithPetsInfo:(NSDictionary *)petsDict;
+//+(PPPixie *)birthPixieWithPetsInfo:(NSDictionary *)petsDict;
+//+(PPPixie *)birthEnemyPixieWithPetsInfo:(NSDictionary *)petsDict;
 
 @end
