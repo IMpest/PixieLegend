@@ -41,6 +41,10 @@
 
 
 @interface PPAtlasManager : NSObject
+
++(SKSpriteNode *)createSpriteImageName:(NSString *)imageName withPos:(CGPoint)pos withSize:(CGSize)size withName:(NSString *)nodeName;
+
+
 +(SKTextureAtlas *)battle_field_ball;
 +(SKTextureAtlas *)battle_field_ui;
 +(SKTextureAtlas *)battle_fight_effect;

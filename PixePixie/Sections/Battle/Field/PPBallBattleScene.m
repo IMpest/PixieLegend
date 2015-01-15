@@ -1675,22 +1675,24 @@ int velocityValue (int x, int y) {
     }
 }
 
+
+
 -(void)addBuffAnimation:(int)skillID
 {
-    
-    
     
     switch (skillID) {
         case kPPPetSkillDevilRebirth:
         {
             
             //            SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"01_devilrebirth.png"]];
-            SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
-            buffShowNode.size = CGSizeMake(115.0f, 107.0f);
-            //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
-            [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
+//            SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
+//            buffShowNode.size = CGSizeMake(115.0f, 107.0f);
+//            //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
+//            [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
+//            
+//            buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilRebirth];
             
-            buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilRebirth];
+           SKSpriteNode *buffShowNode = [PPAtlasManager createSpriteImageName:nil withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilRebirth]];
             
             [self.playerAndEnemySide->ppixiePetBtn addChild:buffShowNode];
             
@@ -1707,16 +1709,14 @@ int velocityValue (int x, int y) {
             
             //            SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"02_devilbreath.png"]];
             
-            SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
-            buffShowNode.size = CGSizeMake(115.0f, 107.0f);
-            //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
-            [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
-            
-            buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilBreath];
-            
+//            SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
+//            buffShowNode.size = CGSizeMake(115.0f, 107.0f);
+//            //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
+//            [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
+//            
+//            buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilBreath];
+            SKSpriteNode *buffShowNode = [PPAtlasManager createSpriteImageName:nil withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilBreath]];
             [self.playerAndEnemySide->ppixieEnemyBtn addChild:buffShowNode];
-            
-            //            SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_table_skill] getAnimation:@"01_devilrebirth"] count:0];
             SKAction *actionRep = [SKAction repeatActionForever:[[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreath"]];
             
             [buffShowNode runAction:actionRep];

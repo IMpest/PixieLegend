@@ -216,4 +216,23 @@
     return tAtlas;
 }
 
++(SKSpriteNode *)createSpriteImageName:(NSString *)imageName withPos:(CGPoint)pos withSize:(CGSize)size withName:(NSString *)nodeName
+{
+    
+    SKSpriteNode *spriteTmp = nil;
+    if (imageName == nil) {
+        
+        spriteTmp = [[SKSpriteNode alloc] init];
+        
+    }else
+    {
+        spriteTmp = [SKSpriteNode spriteNodeWithImageNamed:imageName];
+    }
+    spriteTmp.name =nodeName;
+    spriteTmp.position = pos;
+    spriteTmp.name = nodeName;
+    spriteTmp.size = size;
+    return spriteTmp;
+}
+
 @end
