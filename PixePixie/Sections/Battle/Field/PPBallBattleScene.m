@@ -1745,17 +1745,19 @@ int velocityValue (int x, int y) {
             [self changeBallStatus:PP_PET_PLAYER_SIDE_NODE_NAME];
             
             
-            currentPhysicsAttack = 1;
-            float randomX = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
-            float randomY = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
-            NSLog(@"randomX=%f randomY=%f",randomX,randomY);
+//            currentPhysicsAttack = 1;
+//            float randomX = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
+//            float randomY = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
+//            NSLog(@"randomX=%f randomY=%f",randomX,randomY);
+//            
+//            [self.ballPlayer.physicsBody applyImpulse:CGVectorMake(30, 30)];
+//            [self addBallMoveAnimation:self.ballPlayer.position];
+//            
+//            [self.ballPlayer startPixieAccelerateAnimation:CGVectorMake(randomX, randomY) andType:@"step"];
+//            [self setPlayerSideRoundRunState];
+//            _isBallRolling = YES;
             
-            [self.ballPlayer.physicsBody applyImpulse:CGVectorMake(30, 30)];
-            [self addBallMoveAnimation:self.ballPlayer.position];
             
-            [self.ballPlayer startPixieAccelerateAnimation:CGVectorMake(randomX, randomY) andType:@"step"];
-            [self setPlayerSideRoundRunState];
-            _isBallRolling = YES;
             
             battleSkillInfo.rattanTwineState = 1;
             
@@ -2149,6 +2151,8 @@ int velocityValue (int x, int y) {
                 
                 
                 SKAction *actionRep = [[PPAtlasManager ball_elements] getAnimation:@"plant_aura"];
+                SKAction  *actionRepForever =[SKAction repeatActionForever:actionRep];
+
                 
                 SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] initWithImageNamed:@"plant_aura_0000"];
                 buffShowNode.size = CGSizeMake(115.0f, 107.0f);
@@ -2159,7 +2163,7 @@ int velocityValue (int x, int y) {
                 ballCombo.PPBallSkillStatus =[NSNumber numberWithInt:kPPPetSkillRattanTwine];
                 [ballCombo addChild:buffShowNode];
                 
-                [buffShowNode runAction:actionRep completion:^{
+                [buffShowNode runAction:actionRepForever completion:^{
                     
                     
                     SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
@@ -2228,13 +2232,16 @@ int velocityValue (int x, int y) {
                 
                 [self changeBallStatus:PP_PET_PLAYER_SIDE_NODE_NAME];
                 SKAction *actionRep = [[PPAtlasManager ball_buff] getAnimation:@"plant_root_appear"];
+//                SKAction  *actionRepForever =[SKAction repeatActionForever:actionRep];
                 
-                SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] initWithImageNamed:@"plant_root_appear_0012"];
-                buffShowNode.size = CGSizeMake(115.0f, 107.0f);
-                //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
-                [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
+//                SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] initWithImageNamed:@"plant_root_appear_0012"];
+//                buffShowNode.size = CGSizeMake(115.0f, 107.0f);
+//                //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
+//                [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
+//                
+//                buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillRattanTwine];
+               SKSpriteNode *buffShowNode= [PPAtlasManager createSpriteImageName:@"plant_root_appear_0012" withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillRattanTwine]];
                 
-                buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillRattanTwine];
                 ballCombo.PPBallSkillStatus =[NSNumber numberWithInt:kPPPetSkillRattanTwine];
                 [self.ballEnemy addChild:buffShowNode];
                 
@@ -2252,8 +2259,6 @@ int velocityValue (int x, int y) {
                 self.ballEnemy.PPBallSkillStatus = [NSNumber numberWithInt:kPPPetSkillRattanTwineEffect];
                 
                 [self setComboBallSkillStatusOrigin];
-                
-                return;
                 
             }
             
