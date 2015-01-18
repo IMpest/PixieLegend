@@ -2091,7 +2091,7 @@ int velocityValue (int x, int y) {
                 [self addChild:nodeSkillBuffer];
                 
                 
-                SKAction *actionRemove = [SKAction fadeAlphaTo:1.0f duration:2];
+                SKAction *actionRemove = [SKAction fadeAlphaTo:1.0f duration:0.5];
                 
                 [nodeSkillBuffer runAction:actionRemove completion:^{
                     
