@@ -2,6 +2,6 @@
 
 @interface PPMonsterInfoNode : SKSpriteNode
 
--(void)initMonsterInfo:(NSDictionary *)monsterInfo;
+-(void)initMonsterInfo:(PPPixie *)pixie;
 
 @end

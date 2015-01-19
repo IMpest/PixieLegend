@@ -3,15 +3,15 @@
 
 @implementation PPMonsterInfoNode
 
--(void)initMonsterInfo:(NSDictionary *)monsterInfo
+-(void)initMonsterInfo:(PPPixie *)pixie
 {
-    PPSpriteButton * monsterTexture = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"plant3_temp.png"]
-                                                                andSize:CGSizeMake(180, 180)];
-    monsterTexture.position = CGPointMake(0, 10);
-    monsterTexture.name = @"pixie_plant3_battle0";
-    [monsterTexture addTarget:self selector:@selector(monsterTextureClick:)
-                   withObject:monsterTexture.name forControlEvent:PPButtonControlEventTouchUpInside];
-    [self addChild:monsterTexture];
+    SKSpriteNode * pixieNode = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(100, 100)];
+    pixieNode.position = CGPointMake(0, 0);
+    [self addChild:pixieNode];
+    
+    NSString * str = [NSString stringWithFormat:@"%@_stop", pixie.getTextureName];
+    SKAction * stand = [SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:str]];
+    [pixieNode runAction:stand];
     
     for (int i = 0; i < 3; i++) {
         PPSpriteButton * buffButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(30, 30)];
@@ -42,23 +42,18 @@
 }
 
 -(void)feedButtonClick:(NSString *)stringName
-{
-}
+{}
 
 -(void)hungryButtonClick:(NSString *)stringName
-{
-}
+{}
 
 -(void)moodButtonClick:(NSString *)stringName
-{
-}
+{}
 
 -(void)monsterTextureClick:(NSString *)stringName
-{
-}
+{}
 
 -(void)buffButtonClick:(NSString *)stringName
-{
-}
+{}
 
 @end

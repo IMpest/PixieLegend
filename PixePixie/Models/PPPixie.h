@@ -8,6 +8,7 @@
 @property (nonatomic, retain) NSString * pixieName;
 
 // 宠物的静态属性
+@property (nonatomic) PPElementType pixieElement;       // 宠物的元素属性
 @property (nonatomic, assign) int pixieGeneration;      // 第几个进化态
 @property (nonatomic, assign) int pixieLEVEL;           // 等级
 @property (nonatomic, assign) CGFloat pixieHPmax;       // 生命值上限 HealthPointMax
@@ -29,21 +30,17 @@
 
 @property (nonatomic, assign) int pixieStatus;          // 活动状态
 @property (nonatomic, assign) CGFloat pixieIntimate;    // 亲密度
-@property (nonatomic) PPElementType pixieElement;       // 宠物的元素属性
 @property (nonatomic, retain) NSArray * pixieSkills;    // 技能
 @property (nonatomic, retain) NSMutableArray * pixieBuffs;     // 附加状态
 @property (nonatomic) PPBall * pixieBall;               // 小球
 
 -(void)outputInfo;
-
+-(NSString *)getTextureName;
 -(CGFloat)countPhysicalDamageTo:(PPPixie *)targetPixie;
 -(CGFloat)countMagicalDamageTo:(PPPixie *)targetPixie
                      WithSkill:(PPSkill *)usingSkill;
 
-+(PPPixie *)pixieWithHPmax:(CGFloat)hpmax MPmax:(CGFloat)mpmax;
++(PPPixie *)pixieWithElement:(PPElementType)element Generation:(int)generation HPmax:(CGFloat)hpmax MPmax:(CGFloat)mpmax;
 +(PPPixie *)pixieWithData:(NSDictionary *)pixieDict;
-
-//+(PPPixie *)birthPixieWithPetsInfo:(NSDictionary *)petsDict;
-//+(PPPixie *)birthEnemyPixieWithPetsInfo:(NSDictionary *)petsDict;
 
 @end

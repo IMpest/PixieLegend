@@ -34,7 +34,7 @@ static NSString *monsterBtnTitle[]={
         
         
         PPMonsterInfoNode * monsterInfo = [[PPMonsterInfoNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(320, 260)];
-        [monsterInfo initMonsterInfo:nil];
+        [monsterInfo initMonsterInfo:[PPPixie pixieWithElement:PPElementTypePlant Generation:3 HPmax:1000 MPmax:1000]];
         monsterInfo.position = CGPointMake(160, 170);
         [self addChild:monsterInfo];
         
