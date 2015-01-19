@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1927DE6A1A53B1020098501C /* PPMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1927DE691A53B1020098501C /* PPMenuScene.m */; };
-		1927DE6F1A53B38C0098501C /* plant3_temp.png in Resources */ = {isa = PBXBuildFile; fileRef = 1927DE6C1A53B38C0098501C /* plant3_temp.png */; };
 		1927DE701A53B38C0098501C /* skill_plant.png in Resources */ = {isa = PBXBuildFile; fileRef = 1927DE6D1A53B38C0098501C /* skill_plant.png */; };
 		1927DE711A53B38C0098501C /* theme_forest.png in Resources */ = {isa = PBXBuildFile; fileRef = 1927DE6E1A53B38C0098501C /* theme_forest.png */; };
 		1933E70E1A2F088100E8C5BF /* PPBasicScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1933E70D1A2F088100E8C5BF /* PPBasicScene.m */; };
@@ -236,7 +235,6 @@
 		191863411A42CE25001F6F09 /* ConstantData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ConstantData.h; path = PixePixie/Header/ConstantData.h; sourceTree = "<group>"; };
 		1927DE681A53B1020098501C /* PPMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPMenuScene.h; path = PixePixie/Sections/Battle/PPMenuScene.h; sourceTree = SOURCE_ROOT; };
 		1927DE691A53B1020098501C /* PPMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPMenuScene.m; path = PixePixie/Sections/Battle/PPMenuScene.m; sourceTree = SOURCE_ROOT; };
-		1927DE6C1A53B38C0098501C /* plant3_temp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plant3_temp.png; sourceTree = "<group>"; };
 		1927DE6D1A53B38C0098501C /* skill_plant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skill_plant.png; sourceTree = "<group>"; };
 		1927DE6E1A53B38C0098501C /* theme_forest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = theme_forest.png; sourceTree = "<group>"; };
 		1933E70C1A2F088100E8C5BF /* PPBasicScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPBasicScene.h; path = PixePixie/General/Basic/PPBasicScene.h; sourceTree = "<group>"; };
@@ -553,7 +551,6 @@
 				194D46B41A650D3B00FDBDD0 /* bg_pet_1.png */,
 				194D46B51A650D3B00FDBDD0 /* bg_pet_2.png */,
 				194D46B11A650A4200FDBDD0 /* bg_menu.png */,
-				1927DE6C1A53B38C0098501C /* plant3_temp.png */,
 				1927DE6D1A53B38C0098501C /* skill_plant.png */,
 				1927DE6E1A53B38C0098501C /* theme_forest.png */,
 			);
@@ -1301,7 +1298,6 @@
 				19A8ED551A52977600EFEA7A /* tab_btn4.png in Resources */,
 				19A445381A6A71B20016FAA6 /* fit_bottom.png in Resources */,
 				1999AC4919EE64D500B25ED2 /* fire_blade_cast_0002.png in Resources */,
-				1927DE6F1A53B38C0098501C /* plant3_temp.png in Resources */,
 				194D46AC1A6509A500FDBDD0 /* info_ap.png in Resources */,
 				1999AC5F19EE64D500B25ED2 /* fire_shield_cast_0000.png in Resources */,
 				193D9F381A5BCFBD005762D6 /* ui_number.atlas in Resources */,
