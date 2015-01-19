@@ -62,20 +62,20 @@
 	<integer>4</integer>
 	<key>plant3_beated</key>
 	<integer>4</integer>
-	<key>___battle_field_ball____</key>
-	<string>0</string>
+	<key>___battle_table_ball____</key>
+	<string></string>
 	<key>ball_pixie_active</key>
 	<integer>14</integer>
 	<key>ball_pixie_choose</key>
 	<integer>4</integer>
 	<key>ball_pixie_hit</key>
-	<integer>5</integer>
+	<integer>6</integer>
 	<key>ball_pixie_start</key>
 	<integer>3</integer>
 	<key>ball_pixie_wall</key>
 	<integer>4</integer>
 	<key>___pixie_battle_effect____ </key>
-	<string>0</string>
+	<string></string>
 	<key>defend</key>
 	<integer>7</integer>
 	<key>moving</key>

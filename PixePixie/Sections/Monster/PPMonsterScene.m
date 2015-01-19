@@ -32,6 +32,13 @@ static NSString *monsterBtnTitle[]={
         [showMonsterBtn addTarget:self selector:@selector(showMonsterBtnClick:)
                        withObject:showMonsterBtn forControlEvent:PPButtonControlEventTouchUpInside];
         
+        
+        PPMonsterInfoNode * monsterInfo = [[PPMonsterInfoNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(320, 260)];
+        [monsterInfo initMonsterInfo:nil];
+        monsterInfo.position = CGPointMake(160, 170);
+        [self addChild:monsterInfo];
+        
+        
         [self showPetInfo];
         [self addChild:showMonsterBtn];
     }
@@ -82,11 +89,6 @@ static NSString *monsterBtnTitle[]={
     [worldBossButton addTarget:self selector:@selector(worldBossButtonClick:)
                     withObject:feedFromFriendButton.name forControlEvent:PPButtonControlEventTouchUpInside];
     [self addChild:worldBossButton];
-    
-    PPMonsterInfoNode * monsterInfo = [[PPMonsterInfoNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(320, 260)];
-    [monsterInfo initMonsterInfo:nil];
-    monsterInfo.position = CGPointMake(160, 170);
-    [self addChild:monsterInfo];
 }
 
 -(void)feedButtonClick:(NSString *)nameString

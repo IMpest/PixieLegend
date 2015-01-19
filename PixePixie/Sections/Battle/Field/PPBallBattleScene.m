@@ -33,10 +33,11 @@ CGFloat vectorLength (CGVector vector) {
     return sqrt( vector.dx * vector.dx + vector.dy * vector.dy );
 };
 
-// 计算向量长度
-int velocityValue (int x, int y) {
-    return (int)sqrtf( x * x + y * y );
-};
+// 向量角度计算
+double vector2angel(CGVector vector){
+    double rotation = atan(vector.dy / vector.dx);
+    return vector.dx > 0 ? rotation : rotation + 3.1415926;
+}
 
 @interface PPBallBattleScene () < SKPhysicsContactDelegate, UIAlertViewDelegate >
 {
@@ -585,36 +586,26 @@ int velocityValue (int x, int y) {
         
         if(currentPhysicsAttack == 1)
         {
-            
             [self roundRotateMoved:PP_PET_PLAYER_SIDE_NODE_NAME];
-            
             //            [self  showPhysicsAttackAnimation:PP_PET_PLAYER_SIDE_NODE_NAME];
-            
-        }else
+        } else
         {
-            
             [self roundRotateMoved:PP_ENEMY_SIDE_NODE_NAME];
-            
             //            [self  showPhysicsAttackAnimation:PP_ENEMY_SIDE_NODE_NAME];
-            
         }
-        
-    }else
+    } else
         //速度小于临界点 停止
     {
-        if (velocityValue((int)self.ballPlayer.physicsBody.velocity.dx,
-                          (int)self.ballPlayer.physicsBody.velocity.dy) < kStopThreshold) {
+        if (vectorLength(self.ballPlayer.physicsBody.velocity) < kStopThreshold) {
             self.ballPlayer.physicsBody.velocity = CGVectorMake(0.0f, 0.0f);
         }
         
-        if (velocityValue((int)self.ballEnemy.physicsBody.velocity.dx,
-                          (int)self.ballEnemy.physicsBody.velocity.dy) < kStopThreshold) {
+        if (vectorLength(self.ballEnemy.physicsBody.velocity) < kStopThreshold) {
             self.ballEnemy.physicsBody.velocity = CGVectorMake(0.0f, 0.0f);
         }
         
         for (SKNode *obj in self.ballsCombos) {
-            if (velocityValue((int)obj.physicsBody.velocity.dx,
-                              (int)obj.physicsBody.velocity.dy) < kStopThreshold)
+            if (vectorLength(obj.physicsBody.velocity) < kStopThreshold)
             {
                 obj.physicsBody.velocity = CGVectorMake(0.0f, 0.0f);
             }
@@ -2444,8 +2435,6 @@ int velocityValue (int x, int y) {
         CGVector angleVector=CGVectorMake((origtinTouchPoint.x - _ballShadow.position.x) * kBounceReduce,
                                           (origtinTouchPoint.y - _ballShadow.position.y) * kBounceReduce);
         
-        double rotation = atan(angleVector.dy/angleVector.dx);
-        rotation = angleVector.dx > 0 ? rotation : rotation + 3.1415926;
         //        if (!spriteArrow) {
         //            spriteArrow = [[SKSpriteNode alloc] initWithImageNamed:@"table_arrow"];
         //            spriteArrow.size = CGSizeMake(spriteArrow.size.width/2.0f, spriteArrow.size.height/2.0f);
@@ -2458,7 +2447,8 @@ int velocityValue (int x, int y) {
         //            [self addChild:spriteArrow];
         //        }
         //        spriteArrow.zRotation = rotation-3.1415926/2.0;
-        spriteArrow.zRotation = rotation;
+        
+        spriteArrow.zRotation = vectorLength(angleVector);
         spriteArrow.hidden = NO;
         double scaleFactor = sqrt(angleVector.dx * angleVector.dx + angleVector.dy * angleVector.dy );
         float scaleChange = scaleFactor/20;

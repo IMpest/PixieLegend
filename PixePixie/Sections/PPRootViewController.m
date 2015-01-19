@@ -282,7 +282,7 @@ NSString * userInfo[] =
 // 改变tab提示
 -(void)changeMenuState:(int)index
 {
-    tabLight.frame = CGRectMake(index * skViewMain.frame.size.width/PP_MENU_COUNT+(64-36)/2, 5, 36, 36);
+    tabLight.frame = CGRectMake(index * skViewMain.frame.size.width / PP_MENU_COUNT + (64-36)/2, 5, 36, 36);
 //    for (int i = 0; i < PP_MENU_COUNT; i++) {
 //        UIButton * buttonMenuTmp = (UIButton *)[menuInfoBar viewWithTag:PP_MENU_BUTON_TAG + i];
 //        if (i == index) {
@@ -375,7 +375,7 @@ NSString * userInfo[] =
             [self performSelector:@selector(menuUpAnimation) withObject:nil];
             return ;
         }
-        menuAnimationTag=0;
+        menuAnimationTag = 0;
      }];
     
 }

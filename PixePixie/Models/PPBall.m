@@ -305,7 +305,7 @@
     // 调整方向
     if (self.comboBallSprite != nil){
         double rotation = atan(velocity.dy/velocity.dx);
-        rotation = velocity.dx > 0 ? rotation : rotation + 3.1415926;
+        rotation = velocity.dx > 0 ? rotation : rotation + 3.14159;
         self.comboBallSprite.zRotation = rotation;
     }
 }

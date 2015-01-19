@@ -3,14 +3,6 @@
 
 @implementation PPMonsterInfoNode
 
--(id)init
-{
-    self = [super init];
-    if (self) {
-    }
-    return self;
-}
-
 -(void)initMonsterInfo:(NSDictionary *)monsterInfo
 {
     PPSpriteButton * monsterTexture = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"plant3_temp.png"]
@@ -20,7 +12,6 @@
     [monsterTexture addTarget:self selector:@selector(monsterTextureClick:)
                    withObject:monsterTexture.name forControlEvent:PPButtonControlEventTouchUpInside];
     [self addChild:monsterTexture];
-    
     
     for (int i = 0; i < 3; i++) {
         PPSpriteButton * buffButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(30, 30)];
@@ -44,8 +35,10 @@
     feedButton.position = CGPointMake(130, -125);
     feedButton.name = @"喂食";
     [feedButton setLabelWithText:@"喂食" andFont:[UIFont systemFontOfSize:15] withColor:nil];
-    [feedButton addTarget:self selector:@selector(feedButtonClick:) withObject:feedButton.name forControlEvent:PPButtonControlEventTouchUpInside];
+    [feedButton addTarget:self selector:@selector(feedButtonClick:) withObject:feedButton.name
+          forControlEvent:PPButtonControlEventTouchUpInside];
     [self addChild:feedButton];
+
 }
 
 -(void)feedButtonClick:(NSString *)stringName
