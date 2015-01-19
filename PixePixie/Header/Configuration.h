@@ -4,8 +4,9 @@
 
 #define PP_FIT_TOP_SIZE     ((CurrentDeviceRealSize.height > 500) ? 44.0f : 0.0f)
 #define PP_FIRST_LOG_IN     @"firstenter"
-#define PP_WORDS_FONT_NAME @"Chalkduster"
+#define PP_WORDS_FONT_NAME  @"Chalkduster"
 
+// string
 #define PP_PET_SKILL_SHOW_NODE_NAME     @"petskillshow"
 #define PP_ENEMY_SKILL_SHOW_NODE_NAME   @"enemyskillshow"
 #define PP_PET_PLAYER_SIDE_NODE_NAME    @"petsidename"
@@ -23,24 +24,45 @@
 
 #define PP_PET_COMBOS_NAME      @"petcombos"
 #define PP_ENEMY_COMBOS_NAME    @"enemycombos"
-#define PP_TOUCH_NODE_BALL_NAME    @"touchballnamepet"
+#define PP_TOUCH_NODE_BALL_NAME @"touchballnamepet"
 
-#define PP_SKILL_CD_LABEL_NODE_NAME    @"skillcdlabelname"
-
+#define PP_SKILL_CD_LABEL_NODE_NAME @"skillcdlabelname"
 #define PP_BUFF_ANIMATION_NODE_NAME @"buffanimationname"
 
-#define PP_BACK_BUTTON_ZPOSITION 100
-
+// tags
 #define PP_MENU_START 0
 #define PP_MENU_COUNT 5
 
-#define PP_USER_BUTON_TAG 50
-#define PP_MENU_BUTON_TAG 100
-#define PP_PASSNUM_CHOOSE_TABLE_TAG 200
-#define PP_SECONDARY_PASSNUM_BTN_TAG 220
-#define PP_PETS_CHOOSE_BTN_TAG 300
-#define PP_SKILLS_CHOOSE_BTN_TAG 400
-#define PP_SKILLS_VALUE_LAEBEL_TAG 500
+#define PP_USER_BUTON_TAG               50
+#define PP_MENU_BUTON_TAG               100
+#define PP_PASSNUM_CHOOSE_TABLE_TAG     200
+#define PP_SECONDARY_PASSNUM_BTN_TAG    220
+#define PP_PETS_CHOOSE_BTN_TAG          300
+#define PP_SKILLS_CHOOSE_BTN_TAG        400
+#define PP_SKILLS_VALUE_LAEBEL_TAG      500
+#define PP_ELEMENT_NAME_TAG             700
+#define PP_BUFF_SHOW_BTN_TAG            800
 
-#define PP_ELEMENT_NAME_TAG 700
-#define PP_BUFF_SHOW_BTN_TAG 900
+// zPosition
+
+#define PP_BACK_BUTTON_ZPOSITION 100
+
+#define PPZ_FIGHT               0
+#define PPZ_FIGHT_BG            10
+#define PPZ_FIGHT_ROLE          20
+#define PPZ_FIGHT_BUFF          19
+#define PPZ_FIGHT_EFFECT        29
+#define PPZ_FIGHT_EFFECT_DEF    30
+#define PPZ_FIGHT_EFFECT_ATT    31
+
+#define PPZ_TABLE               1000
+#define PPZ_TABLE_BG            1010
+#define PPZ_TABLE_BGWALL        1011
+#define PPZ_TABLE_BALL          1020
+#define PPZ_TABLE_BALL_ROLE     1019
+#define PPZ_TABLE_BALL_BUFF     1018
+#define PPZ_TABLE_BALL_LIGHT    1021
+#define PPZ_TABLE_EFFECT        1030
+#define PPZ_TABLE_BUTTON        1040
+
+#define PPZ_FLYUP               2000
