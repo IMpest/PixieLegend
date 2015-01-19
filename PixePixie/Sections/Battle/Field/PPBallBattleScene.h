@@ -3,8 +3,6 @@
 #import "PPPixie.h"
 #import "PPBuff.h"
 
-@class PPHurdleReadyScene;
-
 @interface PPBallBattleScene : PPBasicScene < SkillShowEndDelegate >
 {
     int roundIndex;
@@ -24,8 +22,8 @@
 @public
     int currentEnemyIndex;
 }
+@property (nonatomic,retain)NSArray *enmeysArray;
 
-@property(strong) PPHurdleReadyScene *hurdleReady;
 /**
  * @brief 初始化场景
  * @param pixieA 我方战斗宠物

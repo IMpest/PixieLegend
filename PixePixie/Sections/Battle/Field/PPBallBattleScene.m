@@ -72,8 +72,8 @@ double vector2angel(CGVector vector){
 @end
 
 @implementation PPBallBattleScene
-@synthesize hurdleReady;
 @synthesize ballsCombos;
+@synthesize enmeysArray;
 @synthesize battleBuffArray;
 
 #pragma mark Initilization
@@ -88,7 +88,6 @@ double vector2angel(CGVector vector){
         // 处理参数
         self.pixiePlayer = pixieA;
         self.ballPlayer = pixieA.pixieBall;
-        
         self.pixieEnemy = pixieB;
         sceneTypeString = kElementTypeString[sceneType];
         
@@ -364,7 +363,7 @@ double vector2angel(CGVector vector){
     
     if (self.ballPlayer == pixieball) {
         
-        [self.playerAndEnemySide changeEnemyHPValue:-50];
+        [self.playerAndEnemySide changeEnemyHPValue:-250];
         [self.playerAndEnemySide startAttackShowAnimation:YES];
         [self.playerAndEnemySide changePetMPValue:200];
         
@@ -665,6 +664,14 @@ double vector2angel(CGVector vector){
     
     //    [self.hurdleReady setCurrentHurdle:currentEnemyIndex];
     //    [self.view presentScene:self.hurdleReady transition:[SKTransition doorwayWithDuration:1]];
+    
+    NSDictionary * enemyDicInfo = [self.enmeysArray objectAtIndex:currentEnemyIndex];
+    PPPixie * enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
+    self.pixieEnemy = enemyPixie;
+    
+    
+    [self setEnemyAtIndex:currentEnemyIndex += 1];
+    
 }
 
 // 添加敌方单位各个元素
@@ -695,6 +702,8 @@ double vector2angel(CGVector vector){
     self.ballEnemy.physicsBody.contactTestBitMask = EntityCategoryBall;
     [self addChild:self.ballEnemy];
     
+    
+    
     self.playerAndEnemySide = [[PPBattleInfoLayer alloc] init];
     [self.playerAndEnemySide setColor:[UIColor purpleColor]];
     self.playerAndEnemySide.position = CGPointMake(CGRectGetMidX(self.frame), self.size.height-80-direct);
@@ -709,7 +718,6 @@ double vector2angel(CGVector vector){
     [self.playerAndEnemySide setSideElements:self.pixiePlayer andEnemy:self.pixieEnemy andSceneString:sceneTypeString];
     [self addChild:self.playerAndEnemySide];
     
-    currentEnemyIndex += 1;
 }
 
 // 添加四周的墙
@@ -1363,7 +1371,12 @@ double vector2angel(CGVector vector){
         
         [roundLabelContent runAction:actionResult completion:^{
             [roundLabelContent removeFromParent];
-            [self enemyAttackDecision];
+//            [self enemyAttackDecision];
+            
+            
+            [self setPlayerSideRoundEndState];
+            [self creatCombosTotal:PP_BALL_TYPE_PET_ELEMENT_NAME];
+            
         }];
         
         
@@ -2171,15 +2184,15 @@ double vector2angel(CGVector vector){
                     
                     [self.playerAndEnemySide startAttackShowAnimation:YES];
                     
-                    return ;
-                    
                 }];
                 
-                [self.playerAndEnemySide setComboLabelText:petCombos withEnemy:enemyCombos];
-                [self.playerAndEnemySide startAttackAnimation:YES];
-                [self dealPixieBallContactComboBall:contact andPetBall:self.ballPlayer];
+             
                 
             }
+            
+            [self.playerAndEnemySide setComboLabelText:petCombos withEnemy:enemyCombos];
+            [self.playerAndEnemySide startAttackAnimation:YES];
+            [self dealPixieBallContactComboBall:contact andPetBall:self.ballPlayer];
             
             [self addComboValueChangeCombos:petCombos position:self.ballPlayer.position];
             
@@ -2435,20 +2448,21 @@ double vector2angel(CGVector vector){
         CGVector angleVector=CGVectorMake((origtinTouchPoint.x - _ballShadow.position.x) * kBounceReduce,
                                           (origtinTouchPoint.y - _ballShadow.position.y) * kBounceReduce);
         
-        //        if (!spriteArrow) {
-        //            spriteArrow = [[SKSpriteNode alloc] initWithImageNamed:@"table_arrow"];
-        //            spriteArrow.size = CGSizeMake(spriteArrow.size.width/2.0f, spriteArrow.size.height/2.0f);
-        //            spriteArrow.xScale = 0.2;
-        //            spriteArrow.yScale = 0.2;
-        //            if (isTouchPetBall) {
-        //                spriteArrow.hidden=YES;
-        //            }
-        //            spriteArrow.position = self.ballPlayer.position;
-        //            [self addChild:spriteArrow];
-        //        }
-        //        spriteArrow.zRotation = rotation-3.1415926/2.0;
-        
+        if (!spriteArrow) {
+            spriteArrow = [[SKSpriteNode alloc] initWithImageNamed:@"table_arrow"];
+            spriteArrow.size = CGSizeMake(spriteArrow.size.width/2.0f, spriteArrow.size.height/2.0f);
+            spriteArrow.xScale = 0.2;
+            spriteArrow.yScale = 0.2;
+            if (isTouchPetBall) {
+                spriteArrow.hidden=YES;
+            }
+            spriteArrow.position = self.ballPlayer.position;
+            [self addChild:spriteArrow];
+        }
         spriteArrow.zRotation = vectorLength(angleVector);
+
+//        spriteArrow.zRotation = rotation-3.1415926/2.0;
+        
         spriteArrow.hidden = NO;
         double scaleFactor = sqrt(angleVector.dx * angleVector.dx + angleVector.dy * angleVector.dy );
         float scaleChange = scaleFactor/20;

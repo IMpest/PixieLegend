@@ -27,20 +27,24 @@
     
     SKTexture *comboBallBack = [[PPAtlasManager battle_field_ball] textureNamed:@"ball_all"];
     SKSpriteNode *nodeBack=[SKSpriteNode spriteNodeWithTexture:comboBallBack];
+    nodeBack.zPosition = PPZ_FIGHT;
     nodeBack.size = CGSizeMake(50.0f, 50.0f);
+//    [tBall insertChild:nodeBack atIndex:0];
     [tBall addChild:nodeBack];
     
     
     SKSpriteNode *touchBallNode = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(50.0f, 50.0)];
     touchBallNode.name = PP_TOUCH_NODE_BALL_NAME;
-    touchBallNode.zPosition = 1;
+    touchBallNode.zPosition = PPZ_FIGHT_EFFECT;
     [tBall addChild:touchBallNode];
     
     
     SKSpriteNode *showSpriteNode = [[SKSpriteNode alloc] init];
     showSpriteNode.size = CGSizeMake(50.0f, 50.0f);
     [showSpriteNode setPosition: CGPointMake(0.0f, 10.0f)];
+    showSpriteNode.zPosition = PPZ_FIGHT_BUFF;
     [tBall addChild:showSpriteNode];
+//    [tBall insertChild:showSpriteNode atIndex:1];
     
     
     [showSpriteNode runAction:[SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_stop",kElementTypeString[pixie.pixieElement]]]]];
@@ -508,8 +512,10 @@
     spriteNodeActive =[[SKSpriteNode alloc] init];
     spriteNodeActive.size = CGSizeMake(50.0f, 50.0f);
     [spriteNodeActive setPosition:CGPointMake(0.0f, 0.0f)];
+    spriteNodeActive.zPosition = PPZ_FIGHT_BG;
     [self addChild:spriteNodeActive];
     
+//    [self insertChild:spriteNodeActive atIndex:0];
     
     SKAction *activieAct = [SKAction repeatActionForever:[[PPAtlasManager battle_field_ball] getAnimation:@"ball_pixie_active"]];
     

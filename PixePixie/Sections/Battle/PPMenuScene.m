@@ -10,7 +10,10 @@
     if (self = [super initWithSize:size]) {
         currentElementType = elementType;
         [self setBackgroundColor:[UIColor purpleColor]];
-        NSString * mapName = [NSString stringWithFormat:@"map_scene_%@.png", kElementTypeString[elementType]];
+//        NSString * mapName = [NSString stringWithFormat:@"map_scene_%@.png", kElementTypeString[elementType]];
+        NSString * mapName = [NSString stringWithFormat:@"%@.png", @"bg_menu"];
+
+        
         SKSpriteNode * spriteBackNode = [SKSpriteNode spriteNodeWithImageNamed:mapName];
         spriteBackNode.position = CGPointMake(self.size.width/2.0f, self.size.height/2.0f);
         spriteBackNode.size = CGSizeMake(320.0f, 480.0f);
@@ -101,6 +104,8 @@
     NSDictionary * enemyDicInfo = [[pixiesInfo objectForKey:@"enemysinfo"] objectAtIndex:0];
     PPPixie * enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
     
+    
+    
     NSLog(@"petsChoosedInfo=%@,enemyDicInfo=%@",petsChoosedInfo,enemyDicInfo);
     
     //    PPPixie * playerPixie = [PPPixie birthPixieWithPetsInfo:petsChoosedInfo];
@@ -114,6 +119,7 @@
                                                                  PixieEnemy:enemyPixie  andSceneType:currentElementType];
     ballScene.scaleMode = SKSceneScaleModeAspectFill;
     //    ballScene.hurdleReady = self;
+    ballScene.enmeysArray = [pixiesInfo objectForKey:@"enemysinfo"];
     ballScene->previousScene = self;
     [ballScene setEnemyAtIndex:0];
     [self.view presentScene:ballScene];
