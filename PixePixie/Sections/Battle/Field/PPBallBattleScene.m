@@ -1797,14 +1797,11 @@ double vector2angel(CGVector vector){
             //
             //            }];
             
-            
         }
             break;
         default:
             break;
     }
-    
-    
 }
 
 
@@ -1813,85 +1810,60 @@ double vector2angel(CGVector vector){
     switch (buffId) {
         case 1:
         {
-            
-            
         }
             break;
+            
         case kPPPetSkillDevilBreath:
         {
-            
-            
             battleSkillInfo.enemyPoisoningHP = 50;
             PPBuff *buffId1 = [[PPBuff alloc] init];
             buffId1.continueRound = [[skillInfo objectForKey:@"skillcontinue"] intValue];
             buffId1.buffId =[NSString stringWithFormat:@"%d",kPPPetSkillDevilBreath];
             [self.battleBuffArray addObject:buffId1];
-            
-            
         }
             break;
+            
         case kPPPetSkillRattanTwine:
         {
-            
-            
             battleSkillInfo.enemyPoisoningHP = 50;
-            
-            PPBuff *buffId1 = [[PPBuff alloc] init];
-            
+            PPBuff * buffId1 = [[PPBuff alloc] init];
             buffId1.continueRound = [[skillInfo objectForKey:@"skillcontinue"] intValue];
             NSLog(@"buff.continueRound=%d skill=%@",buffId1.continueRound,skillInfo);
             buffId1.buffId =[NSString stringWithFormat:@"%d",kPPPetSkillRattanTwine];
             [self.battleBuffArray addObject:buffId1];
-            
-            
         }
             break;
             
         default:
             break;
     }
-    
-    
 }
 
 -(void)changeBuffRound
 {
-    
-    for (int i=0;i<[self.battleBuffArray count]; i++) {
-        PPBuff *buff = [self.battleBuffArray objectAtIndex:i];
+    for (int i = 0; i < [self.battleBuffArray count]; i++) {
+        PPBuff * buff = [self.battleBuffArray objectAtIndex:i];
         buff.continueRound--;
         NSLog(@"continueRound =%d",buff.continueRound);
         
-        if (buff.continueRound<=0) {
-            
+        if (buff.continueRound <= 0) {
             [self removeBuff:buff];
-            
-        }else
-        {
-            
+        } else {
             [self.playerAndEnemySide startAttackShowAnimation:YES];
             
-            SKNode *buffshowNode = [self.playerAndEnemySide->ppixieEnemyBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilBreath]];
+            SKNode * buffshowNode = [self.playerAndEnemySide->ppixieEnemyBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilBreath]];
             
             [buffshowNode runAction:[[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreathEffect"] completion:^{
-                
                 [buffshowNode removeFromParent];
-                
-                
                 [self addBuffAnimation:kPPPetSkillDevilBreath];
-                
             }];
             [self.playerAndEnemySide changeEnemyHPValue:battleSkillInfo.enemyPoisoningHP];
-            
-            
         }
-        
-        
     }
 }
+
 -(void)removeBuff:(PPBuff *)buff
 {
-    
     switch ([buff.buffId intValue]) {
         case kPPPetSkillDevilBreath:
         {

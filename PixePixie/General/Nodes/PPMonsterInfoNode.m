@@ -13,6 +13,7 @@
     SKAction * stand = [SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:str]];
     [pixieNode runAction:stand];
     
+    
     for (int i = 0; i < 3; i++) {
         PPSpriteButton * buffButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(30, 30)];
         buffButton.position = CGPointMake(130, i * 40 + 20);
@@ -22,14 +23,6 @@
                    withObject:buffButton.name forControlEvent:PPButtonControlEventTouchUpInside];
         [self addChild:buffButton];
     }
-    
-//    PPSpriteButton * moodButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(30, 30)];
-//    moodButton.position = CGPointMake(130, -85);
-//    moodButton.name = @"心情";
-//    [moodButton setLabelWithText:@"心情" andFont:[UIFont systemFontOfSize:15] withColor:nil];
-//    [moodButton addTarget:self selector:@selector(moodButtonClick:)
-//               withObject:moodButton.name forControlEvent:PPButtonControlEventTouchUpInside];
-//    [self addChild:moodButton];
     
     PPSpriteButton * feedButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(30, 30)];
     feedButton.position = CGPointMake(130, -125);

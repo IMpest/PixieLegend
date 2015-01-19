@@ -36,14 +36,22 @@
 	<integer>25</integer>
 	<key>element_birth</key>
 	<integer>24</integer>
-	<key>pixie_heal</key>
-	<integer>15</integer>
 	<key>____const_skill____</key>
 	<string></string>
 	<key>fire_blade_cast</key>
 	<integer>24</integer>
 	<key>fire_shield_cast</key>
 	<integer>27</integer>
+	<key>___battle_fight_effect____ </key>
+	<string></string>
+	<key>defend</key>
+	<integer>7</integer>
+	<key>heal</key>
+	<integer>13</integer>
+	<key>moving</key>
+	<integer>4</integer>
+	<key>shield_break</key>
+	<integer>2</integer>
 	<key>____pixie_battle_action____</key>
 	<string></string>
 	<key>fire3_beated</key>
@@ -54,13 +62,13 @@
 	<integer>4</integer>
 	<key>fire3_stop</key>
 	<integer>4</integer>
-	<key>plant3_stop</key>
-	<integer>4</integer>
-	<key>plant3_move</key>
+	<key>plant3_beated</key>
 	<integer>4</integer>
 	<key>plant3_hit</key>
 	<integer>4</integer>
-	<key>plant3_beated</key>
+	<key>plant3_move</key>
+	<integer>4</integer>
+	<key>plant3_stop</key>
 	<integer>4</integer>
 	<key>___battle_table_ball____</key>
 	<string></string>
@@ -74,22 +82,6 @@
 	<integer>3</integer>
 	<key>ball_pixie_wall</key>
 	<integer>4</integer>
-	<key>___pixie_battle_effect____ </key>
-	<string></string>
-	<key>defend</key>
-	<integer>7</integer>
-	<key>moving</key>
-	<integer>4</integer>
-	<key>fire3_attack</key>
-	<integer>5</integer>
-	<key>plant3_attack</key>
-	<integer>4</integer>
-	<key>fire3_bash</key>
-	<integer>6</integer>
-	<key>plant3_bash</key>
-	<integer>5</integer>
-	<key>shield_break</key>
-	<integer>2</integer>
 	<key>_____battle_table_skill___</key>
 	<string></string>
 	<key>01_devilrebirth</key>

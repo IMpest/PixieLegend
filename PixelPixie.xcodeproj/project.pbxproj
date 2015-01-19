@@ -708,6 +708,7 @@
 		1933E7441A2F11B200E8C5BF /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				198654D41A6D15FF001A5095 /* FrameCount.plist */,
 				197358891A441E2E008F0B4A /* battle_fight_effect.atlas */,
 				198D051E1A515CE800D7244F /* battle_fight_pixie.atlas */,
 				197358871A44181A008F0B4A /* battle_fight_ui.atlas */,
@@ -722,7 +723,6 @@
 				193D9F301A5BCFAA005762D6 /* ui_general */,
 				19A8ED2D1A52977600EFEA7A /* ui_bar */,
 				19A8ED3B1A52977600EFEA7A /* ui_start */,
-				198654D41A6D15FF001A5095 /* FrameCount.plist */,
 			);
 			name = Image;
 			sourceTree = "<group>";
