@@ -1,4 +1,4 @@
-@class PPElement;
+
 @class PPSkill;
 @class PPBuff;
 @class PPBall;

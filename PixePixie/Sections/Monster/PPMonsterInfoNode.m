@@ -5,6 +5,9 @@
 
 -(void)initMonsterInfo:(PPPixie *)pixie
 {
+    if (pixie == nil) return;
+    
+    // 添加宠物
     SKSpriteNode * pixieNode = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(100, 100)];
     pixieNode.position = CGPointMake(0, 0);
     [self addChild:pixieNode];
@@ -13,7 +16,7 @@
     SKAction * stand = [SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:str]];
     [pixieNode runAction:stand];
     
-    
+    // 添加状态
     for (int i = 0; i < 3; i++) {
         PPSpriteButton * buffButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(30, 30)];
         buffButton.position = CGPointMake(130, i * 40 + 20);
@@ -24,6 +27,7 @@
         [self addChild:buffButton];
     }
     
+    // 添加喂食按钮
     PPSpriteButton * feedButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(30, 30)];
     feedButton.position = CGPointMake(130, -125);
     feedButton.name = @"喂食";
@@ -31,7 +35,6 @@
     [feedButton addTarget:self selector:@selector(feedButtonClick:) withObject:feedButton.name
           forControlEvent:PPButtonControlEventTouchUpInside];
     [self addChild:feedButton];
-
 }
 
 -(void)feedButtonClick:(NSString *)stringName

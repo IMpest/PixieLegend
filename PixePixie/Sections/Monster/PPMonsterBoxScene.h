@@ -1,13 +1,13 @@
+////
+////  PPMonsterBoxScene.h
+////  PixelPixie
+////
+////  Created by xiefei on 7/7/14.
+////  Copyright (c) 2014 Psyches. All rights reserved.
+////
 //
-//  PPMonsterBoxScene.h
-//  PixelPixie
+//#import "PPBasicScene.h"
 //
-//  Created by xiefei on 7/7/14.
-//  Copyright (c) 2014 Psyches. All rights reserved.
+//@interface PPMonsterBoxScene : PPBasicScene
 //
-
-#import "PPBasicScene.h"
-
-@interface PPMonsterBoxScene : PPBasicScene
-
-@end
+//@end

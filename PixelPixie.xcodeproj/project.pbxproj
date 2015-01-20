@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		191B9FEB1A6DF6A8005136AC /* PPMonsterInfoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 191B9FEA1A6DF6A8005136AC /* PPMonsterInfoNode.m */; };
 		1927DE6A1A53B1020098501C /* PPMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1927DE691A53B1020098501C /* PPMenuScene.m */; };
 		1927DE701A53B38C0098501C /* skill_plant.png in Resources */ = {isa = PBXBuildFile; fileRef = 1927DE6D1A53B38C0098501C /* skill_plant.png */; };
 		1927DE711A53B38C0098501C /* theme_forest.png in Resources */ = {isa = PBXBuildFile; fileRef = 1927DE6E1A53B38C0098501C /* theme_forest.png */; };
@@ -23,7 +24,6 @@
 		1933E7351A2F0D4800E8C5BF /* PPValueShowNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1933E7311A2F0D4800E8C5BF /* PPValueShowNode.m */; };
 		1933E73F1A2F0D8100E8C5BF /* PPCustomAlertNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1933E7381A2F0D8100E8C5BF /* PPCustomAlertNode.m */; };
 		1933E7401A2F0D8100E8C5BF /* PPCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1933E73A1A2F0D8100E8C5BF /* PPCustomButton.m */; };
-		1933E7411A2F0D8100E8C5BF /* PPMonsterInfoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1933E73C1A2F0D8100E8C5BF /* PPMonsterInfoNode.m */; };
 		1933E7421A2F0D8100E8C5BF /* PPSpriteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1933E73E1A2F0D8100E8C5BF /* PPSpriteButton.m */; };
 		1933E74C1A2F11F100E8C5BF /* pixie_battle_action.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1933E7481A2F11F100E8C5BF /* pixie_battle_action.atlas */; };
 		193D9F341A5BCFAA005762D6 /* bt_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 193D9F311A5BCFAA005762D6 /* bt_back.png */; };
@@ -233,6 +233,8 @@
 
 /* Begin PBXFileReference section */
 		191863411A42CE25001F6F09 /* ConstantData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ConstantData.h; path = PixePixie/Header/ConstantData.h; sourceTree = "<group>"; };
+		191B9FE91A6DF6A8005136AC /* PPMonsterInfoNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPMonsterInfoNode.h; path = PixePixie/Sections/Monster/PPMonsterInfoNode.h; sourceTree = SOURCE_ROOT; };
+		191B9FEA1A6DF6A8005136AC /* PPMonsterInfoNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPMonsterInfoNode.m; path = PixePixie/Sections/Monster/PPMonsterInfoNode.m; sourceTree = SOURCE_ROOT; };
 		1927DE681A53B1020098501C /* PPMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPMenuScene.h; path = PixePixie/Sections/Battle/PPMenuScene.h; sourceTree = SOURCE_ROOT; };
 		1927DE691A53B1020098501C /* PPMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPMenuScene.m; path = PixePixie/Sections/Battle/PPMenuScene.m; sourceTree = SOURCE_ROOT; };
 		1927DE6D1A53B38C0098501C /* skill_plant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skill_plant.png; sourceTree = "<group>"; };
@@ -263,8 +265,6 @@
 		1933E7381A2F0D8100E8C5BF /* PPCustomAlertNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPCustomAlertNode.m; path = PixePixie/General/Nodes/PPCustomAlertNode.m; sourceTree = "<group>"; };
 		1933E7391A2F0D8100E8C5BF /* PPCustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPCustomButton.h; path = PixePixie/General/Nodes/PPCustomButton.h; sourceTree = "<group>"; };
 		1933E73A1A2F0D8100E8C5BF /* PPCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPCustomButton.m; path = PixePixie/General/Nodes/PPCustomButton.m; sourceTree = "<group>"; };
-		1933E73B1A2F0D8100E8C5BF /* PPMonsterInfoNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPMonsterInfoNode.h; path = PixePixie/General/Nodes/PPMonsterInfoNode.h; sourceTree = "<group>"; };
-		1933E73C1A2F0D8100E8C5BF /* PPMonsterInfoNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPMonsterInfoNode.m; path = PixePixie/General/Nodes/PPMonsterInfoNode.m; sourceTree = "<group>"; };
 		1933E73D1A2F0D8100E8C5BF /* PPSpriteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPSpriteButton.h; path = PixePixie/General/Nodes/PPSpriteButton.h; sourceTree = "<group>"; };
 		1933E73E1A2F0D8100E8C5BF /* PPSpriteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPSpriteButton.m; path = PixePixie/General/Nodes/PPSpriteButton.m; sourceTree = "<group>"; };
 		1933E7431A2F0DF700E8C5BF /* Importation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Importation.h; path = PixePixie/Header/Importation.h; sourceTree = "<group>"; };
@@ -565,14 +565,16 @@
 				193F96921A2EF53000F266A6 /* PPMonsterMainView.m */,
 				193F96931A2EF53000F266A6 /* PPMonsterScene.h */,
 				193F96941A2EF53000F266A6 /* PPMonsterScene.m */,
-				193F968F1A2EF53000F266A6 /* PPMonsterBoxScene.h */,
-				193F96901A2EF53000F266A6 /* PPMonsterBoxScene.m */,
+				191B9FE91A6DF6A8005136AC /* PPMonsterInfoNode.h */,
+				191B9FEA1A6DF6A8005136AC /* PPMonsterInfoNode.m */,
 				193F968B1A2EF53000F266A6 /* PPEuoFusionScene.h */,
 				193F968C1A2EF53000F266A6 /* PPEuoFusionScene.m */,
 				193F96951A2EF53000F266A6 /* PPSellMonsterScene.h */,
 				193F96961A2EF53000F266A6 /* PPSellMonsterScene.m */,
 				193F96971A2EF53000F266A6 /* PPTalentTreeScene.h */,
 				193F96981A2EF53000F266A6 /* PPTalentTreeScene.m */,
+				193F968F1A2EF53000F266A6 /* PPMonsterBoxScene.h */,
+				193F96901A2EF53000F266A6 /* PPMonsterBoxScene.m */,
 			);
 			name = Monster;
 			path = Views;
@@ -697,8 +699,6 @@
 				1933E7381A2F0D8100E8C5BF /* PPCustomAlertNode.m */,
 				1933E7391A2F0D8100E8C5BF /* PPCustomButton.h */,
 				1933E73A1A2F0D8100E8C5BF /* PPCustomButton.m */,
-				1933E73B1A2F0D8100E8C5BF /* PPMonsterInfoNode.h */,
-				1933E73C1A2F0D8100E8C5BF /* PPMonsterInfoNode.m */,
 				1933E73D1A2F0D8100E8C5BF /* PPSpriteButton.h */,
 				1933E73E1A2F0D8100E8C5BF /* PPSpriteButton.m */,
 			);
@@ -1328,7 +1328,7 @@
 				D4A073811A0B7E97006CD8F8 /* PPDataManager.m in Sources */,
 				193F96D81A2EF93E00F266A6 /* PPMonsterBookScene.m in Sources */,
 				D4BE5ABF19513FFD001F72DE /* PPBuff.m in Sources */,
-				1933E7411A2F0D8100E8C5BF /* PPMonsterInfoNode.m in Sources */,
+				191B9FEB1A6DF6A8005136AC /* PPMonsterInfoNode.m in Sources */,
 				1933E7421A2F0D8100E8C5BF /* PPSpriteButton.m in Sources */,
 				1933E7341A2F0D4800E8C5BF /* PPSkillNode.m in Sources */,
 				193F96D71A2EF93E00F266A6 /* PPHelpScene.m in Sources */,

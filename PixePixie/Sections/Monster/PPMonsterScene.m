@@ -1,14 +1,7 @@
-//
-//  PPMonsterScene.m
-//  PixelPixie
-//
-//  Created by xiefei on 5/21/14.
-//  Copyright (c) 2014 Psyches. All rights reserved.
-//
 
 #import "PPMonsterScene.h"
 
-static NSString *monsterBtnTitle[]={
+static NSString * monsterBtnTitle[] = {
     @"变卖",
     @"强化",
     @"天赋"
@@ -34,7 +27,7 @@ static NSString *monsterBtnTitle[]={
         
         
         PPMonsterInfoNode * monsterInfo = [[PPMonsterInfoNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(320, 260)];
-        [monsterInfo initMonsterInfo:nil];
+        [monsterInfo initMonsterInfo:[PPPixie pixieWithElement:PPElementTypePlant Generation:3 HPmax:1000 MPmax:1000]];
         monsterInfo.position = CGPointMake(160, 170);
         [self addChild:monsterInfo];
         
@@ -108,16 +101,16 @@ static NSString *monsterBtnTitle[]={
     switch ([name intValue]) {
         case 0:
         {
-            PPSellMonsterScene *sellMonster=[[PPSellMonsterScene alloc] initWithSize:self.view.frame.size];
-            sellMonster->previousScene=self;
+            PPSellMonsterScene * sellMonster = [[PPSellMonsterScene alloc] initWithSize:self.view.frame.size];
+            sellMonster->previousScene = self;
             [self.view presentScene:sellMonster transition:[SKTransition doorsOpenVerticalWithDuration:0.5]];
             
         }
             break;
         case 1:
         {
-            PPEuoFusionScene *euoFusion=[[PPEuoFusionScene alloc] initWithSize:self.view.frame.size];
-            euoFusion->previousScene=self;
+            PPEuoFusionScene * euoFusion = [[PPEuoFusionScene alloc] initWithSize:self.view.frame.size];
+            euoFusion->previousScene = self;
             [self.view presentScene:euoFusion transition:[SKTransition doorsOpenVerticalWithDuration:0.5]];
         }
             break;
@@ -128,13 +121,13 @@ static NSString *monsterBtnTitle[]={
             [self.view presentScene:talentTree transition:[SKTransition doorsOpenVerticalWithDuration:0.5]];
         }
             break;
-        case 3:
-        {
-            PPMonsterBoxScene *monsterBox=[[PPMonsterBoxScene alloc] initWithSize:self.view.frame.size];
-            monsterBox->previousScene=self;
-            [self.view presentScene:monsterBox transition:[SKTransition doorsOpenVerticalWithDuration:0.5]];
-        }
-            break;
+//        case 3:
+//        {
+//            PPMonsterBoxScene *monsterBox=[[PPMonsterBoxScene alloc] initWithSize:self.view.frame.size];
+//            monsterBox->previousScene=self;
+//            [self.view presentScene:monsterBox transition:[SKTransition doorsOpenVerticalWithDuration:0.5]];
+//        }
+//            break;
             
         default:
             break;
