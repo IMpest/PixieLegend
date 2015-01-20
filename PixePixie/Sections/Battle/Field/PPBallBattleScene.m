@@ -1853,7 +1853,7 @@ double vector2angel(CGVector vector){
             
             SKNode * buffshowNode = [self.playerAndEnemySide->ppixieEnemyBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilBreath]];
             
-            [buffshowNode runAction:[[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreathEffect"] completion:^{
+            [buffshowNode runAction:[[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreath_buff"] completion:^{
                 [buffshowNode removeFromParent];
                 [self addBuffAnimation:kPPPetSkillDevilBreath];
             }];

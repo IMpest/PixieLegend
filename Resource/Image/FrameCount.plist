@@ -88,7 +88,7 @@
 	<integer>8</integer>
 	<key>02_devilbreath</key>
 	<integer>10</integer>
-	<key>02_devilbreathEffect</key>
+	<key>02_devilbreath_buff</key>
 	<integer>11</integer>
 </dict>
 </plist>
