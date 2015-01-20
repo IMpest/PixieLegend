@@ -5,6 +5,6 @@
 
 @interface PPInfoView : UIView
 
--(void)updateInfo:(PPPixie *)pixie;
+-(void)updatePixie:(PPPixie *)pixie;
 
 @end

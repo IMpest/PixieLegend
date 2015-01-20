@@ -67,7 +67,6 @@ UIScrollView * contentScrollView;
     contentScrollView.bounces = NO;
     contentScrollView.contentSize = CGSizeMake(self.frame.size.width * 4, self.frame.size.height);
     contentScrollView.userInteractionEnabled = YES;
-    contentScrollView.decelerationRate = 0.0;
     
     for (int i = 0; i < 4; i++) {
         UIImageView * themeImageContent = [[UIImageView alloc] initWithFrame:CGRectMake(i * self.frame.size.width,

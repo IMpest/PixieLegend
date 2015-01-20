@@ -30,9 +30,9 @@
     [self addSubview:petsScroll];
     
     // 添加信息栏
-    PPInfoView * infoView = [[PPInfoView alloc] initWithFrame:CGRectMake(10, 260, 300, 210)];
-    [infoView updateInfo:[pixies objectAtIndex:1]];
-    [self addSubview:infoView];
+    self.infoView = [[PPInfoView alloc] initWithFrame:CGRectMake(10, 260, 300, 210)];
+    [self.infoView updatePixie:[pixies objectAtIndex:0]];
+    [self addSubview:self.infoView];
     
     // 添加确定按钮
     UIButton * buttonConfirm = [UIButton buttonWithType:UIButtonTypeCustom];

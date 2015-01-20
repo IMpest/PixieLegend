@@ -2,7 +2,7 @@
 
 #import "PPChoosePetScrollView.h"
 
-static NSString *typeString[]={
+static NSString * typeString[] = {
     @"金",
     @"木",
     @"水",
@@ -12,16 +12,21 @@ static NSString *typeString[]={
 
 @implementation PPChoosePetScrollView
 
+NSArray * myPixies;
+
 -(id)initWithFrame:(CGRect)frame
             Pixies:(NSArray *)pixies
 {
     self = [super initWithFrame:frame];
     if (self) {
         
+        myPixies = pixies;
+        
         self.pagingEnabled = YES;
         self.bounces = YES;
         self.showsHorizontalScrollIndicator = NO;
         self.contentSize = CGSizeMake(320 * [pixies count], self.frame.size.height);
+        self.delegate = self;
         
         for (int i = 0; i < [pixies count]; i++) {
             
@@ -86,6 +91,13 @@ static NSString *typeString[]={
 
 -(void)petsTypeBtnClick:(UIButton *)sender
 {
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    int num = (int)self.contentOffset.x/320;
+    PPChoosePetView * tView = (PPChoosePetView *)self.superview;
+    [tView.infoView updatePixie:[myPixies objectAtIndex:num]];
 }
 
 @end

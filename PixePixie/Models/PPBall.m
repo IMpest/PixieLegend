@@ -188,18 +188,14 @@
 }
 -(void)changeBuffRound
 {
-    
-    
-    for (int i=0;i<[self.ballBuffs count]; i++) {
+    for (int i = 0; i < [self.ballBuffs count]; i++) {
         PPBuff *buff = [self.ballBuffs objectAtIndex:i];
         buff.continueRound--;
         NSLog(@"continueRound =%d",buff.continueRound);
-        
-        if (buff.continueRound<0) {
+        if (buff.continueRound < 0) {
             [self removeBuff:buff];
         }
     }
-    
 }
 
 -(void)removeBuff:(PPBuff *)buff
@@ -207,23 +203,19 @@
     switch ([buff.buffId intValue]) {
         case 2:
         {
-            
-            self.physicsBody.PPBallSkillStatus=0;
-            [self startPlantrootAppearOrDisappear:NO];
+            self.physicsBody.PPBallSkillStatus = 0;
             self.physicsBody.density = 1.0f;
             self.physicsBody.dynamic = YES;
+            [self startPlantrootAppearOrDisappear:NO];
             
             [battleCurrentScene removeBuff:buff andSide:PP_ENEMY_SIDE_NODE_NAME];
-            
         }
             break;
             
         default:
             break;
     }
-    
     [self.ballBuffs removeObject:buff];
-    
 }
 
 #pragma mark Animation  球体各种动画

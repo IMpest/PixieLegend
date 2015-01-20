@@ -6,12 +6,12 @@
 -(PPLocalData *)getInstance;
 +(NSString *)getUserInfoPath;
 
-// json 数据转换
+// JSON 数据转换
 +(NSData *)directoryToJSONData:(NSDictionary *)dict;
 +(NSDictionary *)JSONDataTodirectory:(NSData *)dict;
 
 // UserDefault
-+(id)contentFromUserDefaultKey:(NSString *) keyString;
-+(void)setContent:(id)content forContentKey:(NSString *) keyString;
++(id)contentFromUserDefaultKey:(NSString *)keyString;
++(void)setContent:(id)content forContentKey:(NSString *)keyString;
 
 @end

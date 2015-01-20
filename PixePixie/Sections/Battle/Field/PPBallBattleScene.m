@@ -2395,7 +2395,6 @@ double vector2angel(CGVector vector){
     
     if (_isBallDragging && !_isBallRolling) {
         
-        
         UITouch * touch = [touches anyObject];
         CGPoint location = [touch locationInNode:self];
         SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
@@ -2408,17 +2407,15 @@ double vector2angel(CGVector vector){
         if(distanceBetweenPoints(location, origtinTouchPoint)>3)
         {
             spriteArrow.hidden = NO;
-            
-        }else{
+        } else {
             if (isTouchPetBall) {
                 spriteArrow.hidden = YES;
-                
             }
         }
         
         _ballShadow.position = location;
-        CGVector angleVector=CGVectorMake((origtinTouchPoint.x - _ballShadow.position.x) * kBounceReduce,
-                                          (origtinTouchPoint.y - _ballShadow.position.y) * kBounceReduce);
+        CGVector angleVector = CGVectorMake((origtinTouchPoint.x - _ballShadow.position.x) * kBounceReduce,
+                                            (origtinTouchPoint.y - _ballShadow.position.y) * kBounceReduce);
         
         if (!spriteArrow) {
             spriteArrow = [[SKSpriteNode alloc] initWithImageNamed:@"table_arrow"];
@@ -2431,9 +2428,7 @@ double vector2angel(CGVector vector){
             spriteArrow.position = self.ballPlayer.position;
             [self addChild:spriteArrow];
         }
-        spriteArrow.zRotation = vectorLength(angleVector);
-
-//        spriteArrow.zRotation = rotation-3.1415926/2.0;
+        spriteArrow.zRotation = vector2angel(angleVector);
         
         spriteArrow.hidden = NO;
         double scaleFactor = sqrt(angleVector.dx * angleVector.dx + angleVector.dy * angleVector.dy );

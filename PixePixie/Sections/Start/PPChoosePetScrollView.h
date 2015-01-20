@@ -1,7 +1,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PPChoosePetScrollView : UIScrollView
+@interface PPChoosePetScrollView : UIScrollView < UIScrollViewDelegate >
 
 -(id)initWithFrame:(CGRect)frame
             Pixies:(NSArray *)pixies;
