@@ -42,7 +42,6 @@
 #define PP_SKILLS_VALUE_LAEBEL_TAG      500
 #define PP_ELEMENT_NAME_TAG             700
 #define PP_BUFF_SHOW_BTN_TAG            800
-
 // zPosition
 
 #define PP_BACK_BUTTON_ZPOSITION 100

@@ -3,6 +3,8 @@
 #import "PPBallBattleSkillInfo.h"
 #include"stdio.h"
 
+#define PP_ENEMY_DEAD_CONTENT_NAME       @"enemydeadcontent"
+
 #define SPACE_BOTTOM 0
 #define BALL_RANDOM_X (kBallSize / 2 + arc4random() % (int)(320 - kBallSizePixie))
 #define BALL_RANDOM_Y (kBallSize / 2 + arc4random() % (int)(320 - kBallSizePixie) + SPACE_BOTTOM)
@@ -615,8 +617,9 @@ double vector2angel(CGVector vector){
 // 设置战斗对象
 -(void)setEnemyAtIndex:(int)index
 {
-    currentEnemyIndex = index;
     [self addEnemySide:PP_FIT_TOP_SIZE];
+    currentEnemyIndex +=1;
+
 }
 
 // 战斗结束过程
@@ -626,6 +629,8 @@ double vector2angel(CGVector vector){
     {
         SKSpriteNode *enemyDeadContent=[[SKSpriteNode alloc] initWithColor:[UIColor orangeColor] size:CGSizeMake(320, 240)];
         [enemyDeadContent setPosition:CGPointMake(160.0f, 300)];
+        enemyDeadContent.zPosition =  PPZ_FIGHT_EFFECT_ATT;
+        enemyDeadContent.name = PP_ENEMY_DEAD_CONTENT_NAME;
         [self addChild:enemyDeadContent];
         
         NSDictionary *alertInfo = @{@"title":[NSString stringWithFormat:@"打倒怪物%d号",currentEnemyIndex], @"context":@"下一个怪物"};
@@ -665,12 +670,19 @@ double vector2angel(CGVector vector){
     //    [self.hurdleReady setCurrentHurdle:currentEnemyIndex];
     //    [self.view presentScene:self.hurdleReady transition:[SKTransition doorwayWithDuration:1]];
     
+    SKNode *node=[self childNodeWithName:PP_ENEMY_DEAD_CONTENT_NAME];
+    if (node) {
+        [node removeFromParent];
+    }
+    
+    NSLog(@"count =%lu,current=%d",(unsigned long)[self.enmeysArray count],currentEnemyIndex);
+    
     NSDictionary * enemyDicInfo = [self.enmeysArray objectAtIndex:currentEnemyIndex];
     PPPixie * enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
     self.pixieEnemy = enemyPixie;
     
     
-    [self setEnemyAtIndex:currentEnemyIndex += 1];
+    [self setEnemyAtIndex:currentEnemyIndex + 1];
     
 }
 
@@ -715,8 +727,10 @@ double vector2angel(CGVector vector){
     self.playerAndEnemySide.skillSelector = @selector(skillPlayerShowBegin:);
     self.playerAndEnemySide.pauseSelector = @selector(pauseBtnClick:);
     //    self.playerAndEnemySide.showInfoSelector = @selector(showCurrentEnemyInfo:);
-    [self.playerAndEnemySide setSideElements:self.pixiePlayer andEnemy:self.pixieEnemy andSceneString:sceneTypeString];
+    [self.playerAndEnemySide setSideElements:self.pixiePlayer andEnemy:self.pixieEnemy andSceneString:sceneTypeString andIndex:currentEnemyIndex];
     [self addChild:self.playerAndEnemySide];
+    
+    
     
 }
 
@@ -1344,6 +1358,7 @@ double vector2angel(CGVector vector){
         
         SKSpriteNode *roundLabelContent=[[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(320, 240)];
         [roundLabelContent setPosition:CGPointMake(160.0f, 300)];
+        roundLabelContent.zPosition =  PPZ_FIGHT_EFFECT_ATT;
         [self addChild:roundLabelContent];
         roundLabelContent.alpha = 0.0f;
         

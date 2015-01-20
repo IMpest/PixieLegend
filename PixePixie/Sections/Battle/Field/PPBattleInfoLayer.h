@@ -10,6 +10,7 @@
     PPValueShowNode *enemyPlayerMP;
     BOOL isHaveDead;
     
+    CGFloat originX;
     @public
     SKSpriteNode * ppixiePetBtn;
     SKSpriteNode * ppixieEnemyBtn;
@@ -49,7 +50,7 @@
  * @param enemyppixie 敌方怪物
  * @param sceneString 场景属性
  */
--(void)setSideElements:(PPPixie *)petppixie andEnemy:(PPPixie *)enemyppixie andSceneString:(NSString *)sceneString;
+-(void)setSideElements:(PPPixie *)petppixie andEnemy:(PPPixie *)enemyppixie andSceneString:(NSString *)sceneString andIndex:(int) index;
 
 /**
  * @brief 改变我方HP值
