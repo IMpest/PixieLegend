@@ -112,7 +112,7 @@
     // 创建战斗场景并显示
     PPBallBattleScene * ballScene = [[PPBallBattleScene alloc] initWithSize:CurrentDeviceRealSize
                                                                 PixiePlayer:playerPixie
-                                                                 PixieEnemy:enemyPixie  andSceneType:currentElementType];
+                                                                 PixieEnemy:enemyPixie  andSceneType:currentElementType andIndex:0];
     ballScene.scaleMode = SKSceneScaleModeAspectFill;
     //    ballScene.hurdleReady = self;
     ballScene.enmeysArray = [pixiesInfo objectForKey:@"enemysinfo"];

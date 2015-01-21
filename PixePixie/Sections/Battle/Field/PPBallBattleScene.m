@@ -52,6 +52,7 @@ double vector2angel(CGVector vector){
     SKSpriteNode *spriteArrow;
     SKSpriteNode *petSkillBar;
     PPBallBattleSkillInfo *battleSkillInfo;
+    PPElementType currentElementType;
 }
 
 @property (nonatomic, retain) PPPixie * pixiePlayer;
@@ -83,7 +84,7 @@ double vector2angel(CGVector vector){
 -(id)initWithSize:(CGSize)size
       PixiePlayer:(PPPixie *)pixieA
        PixieEnemy:(PPPixie *)pixieB
-     andSceneType:(PPElementType)sceneType{
+     andSceneType:(PPElementType)sceneType andIndex:(int)enemyIndex{
     
     if (self = [super initWithSize:size]) {
         
@@ -92,10 +93,11 @@ double vector2angel(CGVector vector){
         self.ballPlayer = pixieA.pixieBall;
         self.pixieEnemy = pixieB;
         sceneTypeString = kElementTypeString[sceneType];
-        
+        currentElementType = sceneType;
         _isTrapEnable = NO;
         isTouchPetBall = NO;
         isShowingSkillBar = NO;
+        currentEnemyIndex = enemyIndex;
         
         // 帧数间隔计数
         frameFlag = 0;
@@ -617,7 +619,7 @@ double vector2angel(CGVector vector){
 -(void)setEnemyAtIndex:(int)index
 {
     [self addEnemySide:PP_FIT_TOP_SIZE];
-    currentEnemyIndex +=1;
+    currentEnemyIndex =index;
 
 }
 
@@ -649,7 +651,10 @@ double vector2angel(CGVector vector){
         textContentLabel.position = CGPointMake(0.0f,-50);
         [enemyDeadContent addChild:textContentLabel];
         
+        
+       
         [self performSelectorOnMainThread:@selector(goNextEnemy) withObject:nil afterDelay:2];
+            
         
     } else {
         
@@ -669,19 +674,57 @@ double vector2angel(CGVector vector){
     //    [self.hurdleReady setCurrentHurdle:currentEnemyIndex];
     //    [self.view presentScene:self.hurdleReady transition:[SKTransition doorwayWithDuration:1]];
     
-    SKNode *node=[self childNodeWithName:PP_ENEMY_DEAD_CONTENT_NAME];
-    if (node) {
-        [node removeFromParent];
+    
+    if ([self.enmeysArray count]<=currentEnemyIndex+1) {
+        
+        
+        [self.view presentScene:previousScene];
+        
+        return ;
     }
     
-    NSLog(@"count =%lu,current=%d",(unsigned long)[self.enmeysArray count],currentEnemyIndex);
+    NSDictionary * pixiesInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PixiesInfo"
+                                                                                                           ofType:@"plist"]];
     
-    NSDictionary * enemyDicInfo = [self.enmeysArray objectAtIndex:currentEnemyIndex];
+    NSDictionary * petsChoosedInfo = [[pixiesInfo objectForKey:@"userpetinfo"] objectAtIndex:0];
+    PPPixie * playerPixie = [PPPixie pixieWithData:petsChoosedInfo];
+    
+//    if ([self.enmeysArray count]<=currentEnemyIndex) {
+//        
+//        
+//        
+//        [self.view presentScene:previousScene];
+//        
+//        
+//    }
+    
+    NSDictionary * enemyDicInfo = [self.enmeysArray objectAtIndex:currentEnemyIndex + 1];
     PPPixie * enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
-    self.pixieEnemy = enemyPixie;
     
+    // 创建战斗场景并显示
+    PPBallBattleScene * ballScene = [[PPBallBattleScene alloc] initWithSize:CurrentDeviceRealSize
+                                                                PixiePlayer:playerPixie
+                                                                 PixieEnemy:enemyPixie  andSceneType:currentElementType andIndex:currentEnemyIndex+1];
+    ballScene.scaleMode = SKSceneScaleModeAspectFill;
+    //    ballScene.hurdleReady = self;
+    ballScene.enmeysArray = self.enmeysArray;
+    ballScene->previousScene = previousScene;
+    [ballScene setEnemyAtIndex:currentEnemyIndex + 1];
+    [self.view presentScene:ballScene transition:[SKTransition doorsOpenHorizontalWithDuration:1]];
     
-    [self setEnemyAtIndex:currentEnemyIndex + 1];
+//    SKNode *node=[self childNodeWithName:PP_ENEMY_DEAD_CONTENT_NAME];
+//    if (node) {
+//        [node removeFromParent];
+//    }
+//    
+//    NSLog(@"count =%lu,current=%d",(unsigned long)[self.enmeysArray count],currentEnemyIndex);
+//    
+//    NSDictionary * enemyDicInfo = [self.enmeysArray objectAtIndex:currentEnemyIndex];
+//    PPPixie * enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
+//    self.pixieEnemy = enemyPixie;
+//    
+//    
+//    [self setEnemyAtIndex:currentEnemyIndex + 1];
     
 }
 

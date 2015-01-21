@@ -33,7 +33,7 @@
 -(id)initWithSize:(CGSize)size
       PixiePlayer:(PPPixie *)pixieA
        PixieEnemy:(PPPixie *)pixieB
-     andSceneType:(PPElementType)sceneType;
+     andSceneType:(PPElementType)sceneType andIndex:(int)enemyIndex;
 /**
  * @brief 设置本次战斗怪物。
  */

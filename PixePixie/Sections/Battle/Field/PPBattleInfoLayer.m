@@ -119,6 +119,9 @@
         case 2:
             originX = 0.0f;
             break;
+        case 3:
+            originX = 35.0f;
+            break;
             
         default:
             break;
@@ -202,7 +205,7 @@
     // 敌方头像
     ppixieEnemyBtn = [[SKSpriteNode alloc] init];
     ppixieEnemyBtn.size = CGSizeMake(50.0f, 50.0f);
-    [ppixieEnemyBtn setPosition:CGPointMake(ppixiePetBtn.position.x+150,ppixiePetBtn.position.y)];
+    [ppixieEnemyBtn setPosition:CGPointMake(90.0f,ppixiePetBtn.position.y)];
     ppixieEnemyBtn.xScale = -1;
     
     [self addChild:ppixieEnemyBtn];
@@ -702,7 +705,7 @@
 //            [spriteNodeMoving removeFromParent];
 //        }];
         
-        ppixiePetBtn.position = CGPointMake(60.0f, ppixiePetBtn.position.y);
+        ppixiePetBtn.position = CGPointMake(70.0f, ppixiePetBtn.position.y);
         
         
 //        SKAction *action11=[[PPAtlasManager ball_action] getAnimation:[NSString stringWithFormat:@"%@3attack",kElementTypeString[currentPPPixie.pixieElement]]];
@@ -752,7 +755,7 @@
 //        }];
         
         
-        ppixieEnemyBtn.position = CGPointMake(-30.0f, ppixieEnemyBtn.position.y);
+        ppixieEnemyBtn.position = CGPointMake(originX+20, ppixieEnemyBtn.position.y);
 
         
 //        SKAction *action1=[SKAction moveToX:-30 duration:0.1];
