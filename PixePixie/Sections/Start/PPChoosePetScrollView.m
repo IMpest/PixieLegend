@@ -40,7 +40,7 @@ NSArray * myPixies;
             PPPixie * tpixie = (PPPixie *)[pixies objectAtIndex:i];
         
             UIImageView * cardView = [[UIImageView alloc] initWithImage:
-                                           [UIImage imageNamed:[NSString stringWithFormat: @"bg_pet_%d", i]]];
+                                           [UIImage imageNamed:[NSString stringWithFormat: @"bg_pet_0", i]]];
             cardView.frame = CGRectMake(i * self.frame.size.width + 122, 0, 75, 200);
             [self addSubview:cardView];
             

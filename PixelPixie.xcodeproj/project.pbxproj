@@ -208,6 +208,9 @@
 		19CBA8C61907C7D000A249AB /* PPPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CBA8C51907C7D000A249AB /* PPPlayer.m */; };
 		19DDAC971A6F9FFA00315A66 /* fire3_card.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DDAC951A6F9FFA00315A66 /* fire3_card.png */; };
 		19DDAC981A6F9FFA00315A66 /* plant3_card.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DDAC961A6F9FFA00315A66 /* plant3_card.png */; };
+		19DDAC9C1A6FB86A00315A66 /* earth3_card.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DDAC991A6FB86A00315A66 /* earth3_card.png */; };
+		19DDAC9D1A6FB86A00315A66 /* metal3_card.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DDAC9A1A6FB86A00315A66 /* metal3_card.png */; };
+		19DDAC9E1A6FB86A00315A66 /* water3_card.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DDAC9B1A6FB86A00315A66 /* water3_card.png */; };
 		19F6ED9C18C6C09900BFFF9A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6ED9B18C6C09900BFFF9A /* Foundation.framework */; };
 		19F6ED9E18C6C09900BFFF9A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6ED9D18C6C09900BFFF9A /* CoreGraphics.framework */; };
 		19F6EDA018C6C09900BFFF9A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6ED9F18C6C09900BFFF9A /* UIKit.framework */; };
@@ -482,6 +485,9 @@
 		19CBA8C51907C7D000A249AB /* PPPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPPlayer.m; path = Models/PPPlayer.m; sourceTree = "<group>"; };
 		19DDAC951A6F9FFA00315A66 /* fire3_card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire3_card.png; sourceTree = "<group>"; };
 		19DDAC961A6F9FFA00315A66 /* plant3_card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plant3_card.png; sourceTree = "<group>"; };
+		19DDAC991A6FB86A00315A66 /* earth3_card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = earth3_card.png; sourceTree = "<group>"; };
+		19DDAC9A1A6FB86A00315A66 /* metal3_card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metal3_card.png; sourceTree = "<group>"; };
+		19DDAC9B1A6FB86A00315A66 /* water3_card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water3_card.png; sourceTree = "<group>"; };
 		19F6ED9818C6C09900BFFF9A /* PixelPixie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixelPixie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19F6ED9B18C6C09900BFFF9A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		19F6ED9D18C6C09900BFFF9A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -973,6 +979,9 @@
 		19DDAC941A6F9FFA00315A66 /* pixie_static */ = {
 			isa = PBXGroup;
 			children = (
+				19DDAC991A6FB86A00315A66 /* earth3_card.png */,
+				19DDAC9A1A6FB86A00315A66 /* metal3_card.png */,
+				19DDAC9B1A6FB86A00315A66 /* water3_card.png */,
 				19DDAC951A6F9FFA00315A66 /* fire3_card.png */,
 				19DDAC961A6F9FFA00315A66 /* plant3_card.png */,
 			);
@@ -1163,6 +1172,7 @@
 				1933E74C1A2F11F100E8C5BF /* pixie_battle_action.atlas in Resources */,
 				1999AC1A19EE64D500B25ED2 /* fire_forward_0008.png in Resources */,
 				1999AC6A19EE64D500B25ED2 /* fire_shield_cast_0011.png in Resources */,
+				19DDAC9E1A6FB86A00315A66 /* water3_card.png in Resources */,
 				19A445471A6A71C20016FAA6 /* map_all_02.png in Resources */,
 				19A8ED611A52977600EFEA7A /* element_metal.png in Resources */,
 				1999AC5619EE64D500B25ED2 /* fire_blade_cast_0015.png in Resources */,
@@ -1220,7 +1230,9 @@
 				1999AC1819EE64D500B25ED2 /* fire_forward_0006.png in Resources */,
 				1999AC2319EE64D500B25ED2 /* fire_forward_0017.png in Resources */,
 				19A445461A6A71C20016FAA6 /* map_all_01.png in Resources */,
+				19DDAC9C1A6FB86A00315A66 /* earth3_card.png in Resources */,
 				1992B3F419E926FB00BFE51E /* ball_buff.atlas in Resources */,
+				19DDAC9D1A6FB86A00315A66 /* metal3_card.png in Resources */,
 				19C8BE061A4821AE00872CE9 /* battle_table_skill.atlas in Resources */,
 				1999AC3219EE64D500B25ED2 /* plant_forward_0011.png in Resources */,
 				194D46AA1A6509A500FDBDD0 /* bg_alert.png in Resources */,

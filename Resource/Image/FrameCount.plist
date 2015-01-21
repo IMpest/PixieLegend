@@ -54,6 +54,30 @@
 	<integer>2</integer>
 	<key>____pixie_battle_action____</key>
 	<string></string>
+	<key>metal3_beated</key>
+	<integer>4</integer>
+	<key>metal3_hit</key>
+	<integer>4</integer>
+	<key>metal3_move</key>
+	<integer>4</integer>
+	<key>metal3_stop</key>
+	<integer>4</integer>
+	<key>water3_beated</key>
+	<integer>4</integer>
+	<key>water3_hit</key>
+	<integer>4</integer>
+	<key>water3_move</key>
+	<integer>4</integer>
+	<key>water3_stop</key>
+	<integer>4</integer>
+	<key>earth3_beated</key>
+	<integer>4</integer>
+	<key>earth3_hit</key>
+	<integer>4</integer>
+	<key>earth3_move</key>
+	<integer>4</integer>
+	<key>earth3_stop</key>
+	<integer>4</integer>
 	<key>fire3_beated</key>
 	<integer>4</integer>
 	<key>fire3_hit</key>
