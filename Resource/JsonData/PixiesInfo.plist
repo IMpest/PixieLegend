@@ -6,7 +6,7 @@
 	<array>
 		<dict>
 			<key>name</key>
-			<string>金刚</string>
+			<string>史莱姆</string>
 			<key>generation</key>
 			<integer>3</integer>
 			<key>level</key>
@@ -121,7 +121,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>妙蛙种纸</string>
+			<string>地狱犬</string>
 			<key>generation</key>
 			<integer>3</integer>
 			<key>level</key>
@@ -139,7 +139,7 @@
 			<key>def</key>
 			<integer>1</integer>
 			<key>element</key>
-			<integer>2</integer>
+			<integer>4</integer>
 			<key>skill</key>
 			<array>
 				<dict>

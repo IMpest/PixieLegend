@@ -46,22 +46,22 @@
 
 #define PP_BACK_BUTTON_ZPOSITION 100
 
-#define PPZ_FIGHT               0
-#define PPZ_FIGHT_BG            10
-#define PPZ_FIGHT_ROLE          20
-#define PPZ_FIGHT_BUFF          19
-#define PPZ_FIGHT_EFFECT        29
-#define PPZ_FIGHT_EFFECT_DEF    30
-#define PPZ_FIGHT_EFFECT_ATT    31
+#define PPZ_FIGHT               1000
+#define PPZ_FIGHT_BG            1010
+#define PPZ_FIGHT_ROLE          1020
+#define PPZ_FIGHT_BUFF          1019
+#define PPZ_FIGHT_EFFECT        1029
+#define PPZ_FIGHT_EFFECT_DEF    1030
+#define PPZ_FIGHT_EFFECT_ATT    1031
 
-#define PPZ_TABLE               1000
-#define PPZ_TABLE_BG            1010
-#define PPZ_TABLE_BGWALL        1011
-#define PPZ_TABLE_BALL          1020
-#define PPZ_TABLE_BALL_ROLE     1019
-#define PPZ_TABLE_BALL_BUFF     1018
-#define PPZ_TABLE_BALL_LIGHT    1021
-#define PPZ_TABLE_EFFECT        1030
-#define PPZ_TABLE_BUTTON        1040
+#define PPZ_TABLE               2000
+#define PPZ_TABLE_BG            2010
+#define PPZ_TABLE_BGWALL        2011
+#define PPZ_TABLE_BALL          2020
+#define PPZ_TABLE_BALL_ROLE     2019
+#define PPZ_TABLE_BALL_BUFF     2018
+#define PPZ_TABLE_BALL_LIGHT    2021
+#define PPZ_TABLE_EFFECT        2030
+#define PPZ_TABLE_BUTTON        2040
 
-#define PPZ_FLYUP               2000
+#define PPZ_FLYUP               3000

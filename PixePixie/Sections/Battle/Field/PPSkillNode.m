@@ -20,7 +20,6 @@
     
     self.skill.skillName = [skillInfo objectForKey:@"skillname"];
     self.skill.HPChangeValue = [[skillInfo objectForKey:@"skillhpchange"] floatValue];
-    self.skill.MPChangeValue = [[skillInfo objectForKey:@"skillmpchange"] floatValue];
     self.skill.skillObject = [[skillInfo objectForKey:@"skillobject"] floatValue];
     
     

@@ -1,7 +1,7 @@
 
+#include"stdio.h"
 #import "PPBallBattleScene.h"
 #import "PPBallBattleSkillInfo.h"
-#include"stdio.h"
 
 #define PP_ENEMY_DEAD_CONTENT_NAME       @"enemydeadcontent"
 
@@ -455,7 +455,6 @@ double vector2angel(CGVector vector){
             }
         }
     }
-    
     return elementBodyStatus;
 }
 
@@ -1776,7 +1775,7 @@ double vector2angel(CGVector vector){
 //            [self setPlayerSideRoundRunState];
 //            _isBallRolling = YES;
             
-            
+
             
             battleSkillInfo.rattanTwineState = 1;
             

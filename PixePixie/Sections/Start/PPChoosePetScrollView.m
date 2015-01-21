@@ -12,7 +12,13 @@ static NSString * typeString[] = {
 
 @implementation PPChoosePetScrollView
 
+int currentIndex;
 NSArray * myPixies;
+
+-(PPPixie *)getCurrentPixie
+{
+    return [myPixies objectAtIndex:currentIndex];
+}
 
 -(id)initWithFrame:(CGRect)frame
             Pixies:(NSArray *)pixies
@@ -20,6 +26,7 @@ NSArray * myPixies;
     self = [super initWithFrame:frame];
     if (self) {
         
+        currentIndex = 0;
         myPixies = pixies;
         
         self.pagingEnabled = YES;
@@ -32,10 +39,10 @@ NSArray * myPixies;
             
             PPPixie * tpixie = (PPPixie *)[pixies objectAtIndex:i];
         
-            UIImageView * petsImageView = [[UIImageView alloc] initWithImage:
+            UIImageView * cardView = [[UIImageView alloc] initWithImage:
                                            [UIImage imageNamed:[NSString stringWithFormat: @"bg_pet_%d", i]]];
-            petsImageView.frame = CGRectMake(i * self.frame.size.width + 122, 0, 75, 200);
-            [self addSubview:petsImageView];
+            cardView.frame = CGRectMake(i * self.frame.size.width + 122, 0, 75, 200);
+            [self addSubview:cardView];
             
             UIButton * petsTypeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             [petsTypeBtn setFrame:CGRectMake(i * self.frame.size.width + 165, 0, 40, 40)];
@@ -73,13 +80,15 @@ NSArray * myPixies;
             }
             [self addSubview:petsTypeBtn];
             
-//            UIButton * petsNameBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//            [petsNameBtn setTitle:tpixie.pixieName forState:UIControlStateNormal];
-//            [petsNameBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//            [petsNameBtn setBackgroundImage:[UIImage imageNamed:@"pet_name"] forState:UIControlStateNormal];
-//            [petsNameBtn setFrame:CGRectMake(i * self.frame.size.width + 110, 10, 100, 40)];
-//            [petsNameBtn addTarget:self action:@selector(petsNameBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-//            [self addSubview:petsNameBtn];
+            NSString * imgName = [NSString stringWithFormat: @"%@_card.png", [tpixie getTextureName]];
+            UIImageView * petsView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imgName]];
+            petsView.frame = CGRectMake(i * self.frame.size.width + 110, 40, 100, 100);
+            [self addSubview:petsView];
+            
+            UILabel * petName = [[UILabel alloc] initWithFrame:CGRectMake(i * self.frame.size.width + 110, 170, 100, 20)];
+            petName.textAlignment = NSTextAlignmentCenter;
+            petName.text = tpixie.pixieName;
+            [self addSubview:petName];
         }
     }
     return self;
@@ -93,11 +102,12 @@ NSArray * myPixies;
 {
 }
 
+
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    int num = (int)self.contentOffset.x/320;
+    currentIndex = (int)self.contentOffset.x/320;
     PPChoosePetView * tView = (PPChoosePetView *)self.superview;
-    [tView.infoView updatePixie:[myPixies objectAtIndex:num]];
+    [tView.infoView updatePixie:[myPixies objectAtIndex:currentIndex]];
 }
 
 @end

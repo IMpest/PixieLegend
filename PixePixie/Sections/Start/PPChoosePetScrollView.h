@@ -6,4 +6,6 @@
 -(id)initWithFrame:(CGRect)frame
             Pixies:(NSArray *)pixies;
 
+-(PPPixie *)getCurrentPixie;
+
 @end

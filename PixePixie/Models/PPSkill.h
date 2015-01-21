@@ -18,17 +18,17 @@ static const int kSkillCountTotal = 10;
 // 技能名（与图片名对应）
 static NSString * kSkillName[kSkillCountTotal+1] =
 {
-    @"00_NONE",
-    @"01_devilrebirth",
-    @"02_devilbreath",
-    @"03_rattantwine",
-    @"04_nightjudge",
-    @"05_devilgrill",
-    @"06_devilskin",
-    @"07_devilanger",
-    @"08_devilextinction",
-    @"09_",
-    @"10_"
+    @"NONE",
+    
+    @"devilrebirth",
+    @"devilbreath",
+    @"rattantwine",
+    @"nightjudge",
+    @"devilgrill",
+    
+    @"devilskin",
+    @"devilanger",
+    @"devilextinction"
 };
 
 // 技能id
@@ -57,21 +57,21 @@ typedef NS_ENUM(NSInteger, PPSkillUniversalType)
     PPSkillTypeAppendDefense,          // 增加本体防御
 };
 
-
 @interface PPSkill : NSObject
 
+@property (nonatomic, assign) NSInteger skillId;
 @property (nonatomic, retain) NSString * skillName;
 @property (nonatomic, retain) NSMutableArray * animateTextures;
 @property (nonatomic, assign) CGFloat HPChangeValue;
 
 @property (nonatomic, assign) int skillType;    // 0:被动 1:主动
+@property (nonatomic, assign) int skillObject;  // 0:作用于自身 1:作用于对方
 @property (nonatomic, assign) int skillLevel;   // 技能等级
 @property (nonatomic, assign) int skillCD;      // 技能固有CD
 @property (nonatomic, assign) int currentCD;    // 技能当前剩余CD
 
-
-// 旧版逻辑
-@property (nonatomic, assign) int skillObject;  // 0:作用于自身 1:作用于对方
-@property (nonatomic, assign) CGFloat MPChangeValue;
+-(NSString *)getSkillPicName;
++(PPSkill *)skillWithId;
++(PPSkill *)skillWithName;
 
 @end
