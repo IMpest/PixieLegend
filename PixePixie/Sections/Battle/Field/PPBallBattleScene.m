@@ -99,6 +99,7 @@ double vector2angel(CGVector vector){
         isShowingSkillBar = NO;
         currentEnemyIndex = enemyIndex;
         
+        
         // 帧数间隔计数
         frameFlag = 0;
         
@@ -106,6 +107,7 @@ double vector2angel(CGVector vector){
         battleSkillInfo.enemyPoisoningHP = 0;
         battleSkillInfo.petHitRecoverHP = 0;
         battleSkillInfo.rattanTwineState = 0;
+        battleSkillInfo.nightJudgeValue = 0.0f;
         
         
         self.battleBuffArray = [[NSMutableArray alloc] init];
@@ -367,7 +369,7 @@ double vector2angel(CGVector vector){
     
     if (self.ballPlayer == pixieball) {
         
-        [self.playerAndEnemySide changeEnemyHPValue:-250];
+        [self.playerAndEnemySide changeEnemyHPValue:-150];
         [self.playerAndEnemySide startAttackShowAnimation:YES];
         [self.playerAndEnemySide changePetMPValue:200];
         
@@ -665,7 +667,11 @@ double vector2angel(CGVector vector){
         
     }
 }
+-(void)goNextScene
+{
+    [self.view presentScene:previousScene];
 
+}
 //进入下一怪物遭遇动画
 -(void)goNextEnemy
 {
@@ -678,7 +684,40 @@ double vector2angel(CGVector vector){
     if ([self.enmeysArray count]<=currentEnemyIndex+1) {
         
         
-        [self.view presentScene:previousScene];
+        
+        SKSpriteNode *enemyDeadContent=[[SKSpriteNode alloc] initWithColor:[UIColor orangeColor] size:CGSizeMake(320, 240)];
+        [enemyDeadContent setPosition:CGPointMake(160.0f, 300)];
+        enemyDeadContent.zPosition =  PPZ_FIGHT_EFFECT_ATT;
+        enemyDeadContent.name = PP_ENEMY_DEAD_CONTENT_NAME;
+        [self addChild:enemyDeadContent];
+        
+        NSDictionary *alertInfo = @{@"title":@"所有怪物都已打完", @"context":@""};
+        
+        SKLabelNode * titleNameLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+        titleNameLabel.fontSize = 13;
+        titleNameLabel.fontColor = [UIColor blueColor];
+        titleNameLabel.text = [alertInfo objectForKey:@"title"];
+        titleNameLabel.position = CGPointMake(0.0f,50);
+        [enemyDeadContent addChild:titleNameLabel];
+        
+        
+//        SKLabelNode * textContentLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+//        textContentLabel.fontColor = [UIColor blueColor];
+//        textContentLabel.text = [alertInfo objectForKey:@"context"];
+//        textContentLabel.fontSize = 13;
+//        textContentLabel.position = CGPointMake(0.0f,-50);
+//        [enemyDeadContent addChild:textContentLabel];
+        
+        
+        PPSpriteButton *goButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(45, 30)];
+        [goButton setLabelWithText:@"确定" andFont:[UIFont systemFontOfSize:15] withColor:nil];
+        goButton.zPosition = PP_BACK_BUTTON_ZPOSITION;
+        goButton.position = CGPointMake(0.0f,-60);
+        [goButton addTarget:self selector:@selector(goNextScene)
+                   withObject:nil forControlEvent:PPButtonControlEventTouchUpInside];
+        [enemyDeadContent addChild:goButton];
+        
+        
         
         return ;
     }
@@ -1640,6 +1679,15 @@ double vector2angel(CGVector vector){
                 
             }
                 break;
+            case kPPPetSkillNightJudge:
+            {
+                
+                [self addBuffAnimation:kPPPetSkillNightJudge];
+                
+                [self addSkillBuff:kPPPetSkillNightJudge skillInfo:skillInfo];
+                
+            }
+                break;
                 
             default:
                 break;
@@ -1856,6 +1904,19 @@ double vector2angel(CGVector vector){
             
         }
             break;
+            case kPPPetSkillNightJudge:
+        {
+        
+            SKSpriteNode *buffShowNode = [PPAtlasManager createSpriteImageName:nil withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillNightJudge]];
+            [self.playerAndEnemySide->ppixiePetBtn addChild:buffShowNode];
+            SKAction *actionRep = [SKAction repeatActionForever:[[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreath"]];
+            
+            [buffShowNode runAction:actionRep];
+        
+        
+        
+        }
+            break;
         default:
             break;
     }
@@ -1864,6 +1925,8 @@ double vector2angel(CGVector vector){
 
 -(void)addSkillBuff:(int) buffId skillInfo:(NSDictionary *)skillInfo
 {
+    
+    
     switch (buffId) {
         case 1:
         {
@@ -1890,7 +1953,17 @@ double vector2angel(CGVector vector){
             [self.battleBuffArray addObject:buffId1];
         }
             break;
+            case kPPPetSkillNightJudge:
+        {
             
+            battleSkillInfo.nightJudgeValue = 1.5;
+            PPBuff * buffId1 = [[PPBuff alloc] init];
+            buffId1.continueRound = [[skillInfo objectForKey:@"skillcontinue"] intValue];
+            NSLog(@"buff.continueRound=%d skill=%@",buffId1.continueRound,skillInfo);
+            buffId1.buffId =[NSString stringWithFormat:@"%d",kPPPetSkillNightJudge];
+            [self.battleBuffArray addObject:buffId1];
+            
+        }
         default:
             break;
     }
@@ -1947,6 +2020,14 @@ double vector2angel(CGVector vector){
                 [nodeBuff removeFromParent];
             }
                                 
+            
+        }
+            break;
+            case kPPPetSkillNightJudge:
+        {
+            
+            battleSkillInfo.nightJudgeValue = 0.0f;
+            [[self.playerAndEnemySide->ppixiePetBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillNightJudge]] removeFromParent];
             
         }
             break;
@@ -2217,6 +2298,26 @@ double vector2angel(CGVector vector){
                 
              
                 
+            }
+            
+            if (battleSkillInfo.nightJudgeValue != 0.0f) {
+                [self.playerAndEnemySide changeEnemyHPValue:-250*battleSkillInfo.nightJudgeValue];
+                
+                SKSpriteNode *nodeSkillBuffer=[SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"04_nightjudge.png"]];
+                nodeSkillBuffer.position = contact.contactPoint;
+                nodeSkillBuffer.size = CGSizeMake(nodeSkillBuffer.size.width/2.0f, nodeSkillBuffer.size.height/2.0f);
+                [self addChild:nodeSkillBuffer];
+                
+                
+                SKAction *actionRemove = [SKAction fadeAlphaTo:1.0f duration:0.5];
+                
+                [nodeSkillBuffer runAction:actionRemove completion:^{
+                    
+                    [nodeSkillBuffer removeFromParent];
+                    
+                }];
+//                battleSkillInfo.nightJudgeValue= 0.0f;
+
             }
             
             [self.playerAndEnemySide setComboLabelText:petCombos withEnemy:enemyCombos];
