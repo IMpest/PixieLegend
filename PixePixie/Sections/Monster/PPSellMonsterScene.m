@@ -98,7 +98,7 @@ static NSString *monsterBtnTitle[] = {
 
 -(void)backButtonClick:(NSString *)backName
 {
-    [self.view presentScene:previousScene transition:[SKTransition doorwayWithDuration:1.0]];
+    [self.view presentScene:previousScene];
 }
 
 @end

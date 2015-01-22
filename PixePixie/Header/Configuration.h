@@ -42,26 +42,29 @@
 #define PP_SKILLS_VALUE_LAEBEL_TAG      500
 #define PP_ELEMENT_NAME_TAG             700
 #define PP_BUFF_SHOW_BTN_TAG            800
-// zPosition
 
+// zPosition
 #define PP_BACK_BUTTON_ZPOSITION 100
 
-#define PPZ_FIGHT               1000
-#define PPZ_FIGHT_BG            1010
-#define PPZ_FIGHT_ROLE          1020
-#define PPZ_FIGHT_BUFF          1019
-#define PPZ_FIGHT_EFFECT        1029
-#define PPZ_FIGHT_EFFECT_DEF    1030
-#define PPZ_FIGHT_EFFECT_ATT    1031
+#define PPZ_FIGHT               1000 // 上方战斗区基准
+#define PPZ_FIGHT_BG            1010 // 战斗区背景
+#define PPZ_FIGHT_BUFF          1019 // 战斗角色Buff
+#define PPZ_FIGHT_ROLE          1020 // 战斗角色
+#define PPZ_FIGHT_EFFECT_DEF    1030 // 战斗角色防御特效
+#define PPZ_FIGHT_EFFECT_ATT    1031 // 战斗角色攻击特效
+#define PPZ_FIGHT_EFFECT        1032 // 战斗角色特效（比如技能）
 
-#define PPZ_TABLE               2000
-#define PPZ_TABLE_BG            2010
-#define PPZ_TABLE_BGWALL        2011
-#define PPZ_TABLE_BALL          2020
-#define PPZ_TABLE_BALL_ROLE     2019
-#define PPZ_TABLE_BALL_BUFF     2018
-#define PPZ_TABLE_BALL_LIGHT    2021
-#define PPZ_TABLE_EFFECT        2030
-#define PPZ_TABLE_BUTTON        2040
+#define PPZ_TABLE               2000 // 下方弹珠台基准
+#define PPZ_TABLE_BG            2010 // 弹珠台背景
+#define PPZ_TABLE_BGWALL        2011 // 弹珠台外框
+#define PPZ_TABLE_BALL_BUFF     2018 // 弹珠附带的Buff
+#define PPZ_TABLE_BALL_ROLE     2019 // 弹珠里边的内容（人物或者连击内容）
+#define PPZ_TABLE_BALL          2020 // 弹珠外圈
+#define PPZ_TABLE_BALL_LIGHT    2021 // 弹珠飞奔的火焰
+#define PPZ_TABLE_EFFECT        2030 // 弹珠效果（撞击产生的火花）
+#define PPZ_TABLE_BUTTON        2040 // 技能按钮
 
-#define PPZ_FLYUP               3000
+#define PPZ_FLYUP               3000 // 飞向人物的拳头之类的道具
+#define PPZ_NUMBER              3010 // 飞出的数字
+#define PPZ_HINT                3011 // 文字提示（第几回合等）
+#define PPZ_ALERT               3020 // 弹出框（暂停或者结算界面使用）

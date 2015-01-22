@@ -1,10 +1,3 @@
-//
-//  PPActivityDetailScene.m
-//  PixelPixie
-//
-//  Created by xiefei on 7/9/14.
-//  Copyright (c) 2014 Psyches. All rights reserved.
-//
 
 #import "PPActivityDetailScene.h"
 
@@ -21,7 +14,7 @@
 -(void)backButtonClick:(NSString *)backName
 {
     
-    [self.view presentScene:previousScene transition:[SKTransition doorsCloseVerticalWithDuration:1.0]];
+    [self.view presentScene:previousScene];
     
     
 }

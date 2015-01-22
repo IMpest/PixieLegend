@@ -2,10 +2,10 @@
 #import "PPSettingScene.h"
 
 static NSString * monsterBtnTitle[] = {
-    @"help",
-    @"options",
-    @"monster book",
-    @"news"
+    @"帮助",
+    @"设置",
+    @"图鉴",
+    @"新闻"
 };
 
 @implementation PPSettingScene
@@ -14,11 +14,11 @@ static NSString * monsterBtnTitle[] = {
     if (self = [super initWithSize:size]) {
 
         self.backgroundColor = [UIColor purpleColor];
-        [self setBackTitleText:@"Other" andPositionY:360.0f];
+        [self setBackTitleText:@"选项" andPositionY:360];
         
         for (int i = 0; i < 4; i++) {
-            PPSpriteButton *monsterButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(200.0f, 40.0f)];
-            monsterButton.position = CGPointMake(160, i * 80 + 80);
+            PPSpriteButton * monsterButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(200, 40)];
+            monsterButton.position = CGPointMake(160, i * 60 + 120);
             monsterButton.name = [NSString stringWithFormat:@"%d",i];
             [monsterButton setLabelWithText:monsterBtnTitle[i] andFont:[UIFont systemFontOfSize:15] withColor:nil];
             [monsterButton addTarget:self selector:@selector(monsterButtonClick:)
@@ -36,28 +36,28 @@ static NSString * monsterBtnTitle[] = {
         {
             PPHelpScene * helpScene = [[PPHelpScene alloc] initWithSize:self.view.bounds.size];
             helpScene->previousScene = self;
-            [self.view presentScene:helpScene transition:[SKTransition flipHorizontalWithDuration:1.0]];
+            [self.view presentScene:helpScene];
         }
             break;
         case 1:
         {
             PPOptionsScene * optionScene = [[PPOptionsScene alloc] initWithSize:self.view.bounds.size];
             optionScene->previousScene = self;
-            [self.view presentScene:optionScene transition:[SKTransition flipHorizontalWithDuration:1.0]];
+            [self.view presentScene:optionScene];
         }
             break;
         case 2:
         {
             PPMonsterBookScene * monstorBookScene = [[PPMonsterBookScene alloc] initWithSize:self.view.bounds.size];
             monstorBookScene->previousScene = self;
-            [self.view presentScene:monstorBookScene transition:[SKTransition flipHorizontalWithDuration:1.0]];
+            [self.view presentScene:monstorBookScene];
         }
             break;
         case 3:
         {
             PPNewsScene * newsScene = [[PPNewsScene alloc] initWithSize:self.view.bounds.size];
             newsScene->previousScene = self;
-            [self.view presentScene:newsScene transition:[SKTransition flipHorizontalWithDuration:1.0]];
+            [self.view presentScene:newsScene];
         }
             break;
             

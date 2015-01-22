@@ -6,7 +6,7 @@
 - (id)initWithSize:(CGSize)size
 {
     if (self=[super initWithSize:size]) {
-        self.backgroundColor = [UIColor grayColor];
+//        self.backgroundColor = [UIColor grayColor];
         [self setBackTitleText:@"Talent Tree" andPositionY:360.0f];
         [self creatTreeWith:PPElementTypeFire];
     }
@@ -38,7 +38,7 @@
 
 -(void)backButtonClick:(NSString *)backName
 {
-    [self.view presentScene:previousScene transition:[SKTransition doorwayWithDuration:1.0]];
+    [self.view presentScene:previousScene];
 }
 
 @end

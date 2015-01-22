@@ -1,9 +1,6 @@
 
 #import "PPRootViewController.h"
 
-@interface PPRootViewController ()
-@end
-
 @implementation PPRootViewController
 
 //int menuAnimationTag;

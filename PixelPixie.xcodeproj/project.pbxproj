@@ -577,12 +577,12 @@
 				193F96941A2EF53000F266A6 /* PPMonsterScene.m */,
 				191B9FE91A6DF6A8005136AC /* PPMonsterInfoNode.h */,
 				191B9FEA1A6DF6A8005136AC /* PPMonsterInfoNode.m */,
+				193F96971A2EF53000F266A6 /* PPTalentTreeScene.h */,
+				193F96981A2EF53000F266A6 /* PPTalentTreeScene.m */,
 				193F968B1A2EF53000F266A6 /* PPEuoFusionScene.h */,
 				193F968C1A2EF53000F266A6 /* PPEuoFusionScene.m */,
 				193F96951A2EF53000F266A6 /* PPSellMonsterScene.h */,
 				193F96961A2EF53000F266A6 /* PPSellMonsterScene.m */,
-				193F96971A2EF53000F266A6 /* PPTalentTreeScene.h */,
-				193F96981A2EF53000F266A6 /* PPTalentTreeScene.m */,
 				193F968F1A2EF53000F266A6 /* PPMonsterBoxScene.h */,
 				193F96901A2EF53000F266A6 /* PPMonsterBoxScene.m */,
 			);
@@ -623,10 +623,10 @@
 			children = (
 				193F96C11A2EF8B300F266A6 /* PPScheduleMainView.h */,
 				193F96C21A2EF8B300F266A6 /* PPScheduleMainView.m */,
-				193F96C41A2EF8E300F266A6 /* PPActivityDetailScene.h */,
-				193F96C51A2EF8E300F266A6 /* PPActivityDetailScene.m */,
 				193F96C61A2EF8E300F266A6 /* PPScheduleScene.h */,
 				193F96C71A2EF8E300F266A6 /* PPScheduleScene.m */,
+				193F96C41A2EF8E300F266A6 /* PPActivityDetailScene.h */,
+				193F96C51A2EF8E300F266A6 /* PPActivityDetailScene.m */,
 			);
 			name = Schedule;
 			path = Views;
@@ -637,16 +637,16 @@
 			children = (
 				193F96CA1A2EF91000F266A6 /* PPOthersMainView.h */,
 				193F96CB1A2EF91000F266A6 /* PPOthersMainView.m */,
+				193F96D51A2EF93E00F266A6 /* PPSettingScene.h */,
+				193F96D61A2EF93E00F266A6 /* PPSettingScene.m */,
 				193F96CD1A2EF93E00F266A6 /* PPHelpScene.h */,
 				193F96CE1A2EF93E00F266A6 /* PPHelpScene.m */,
+				193F96D31A2EF93E00F266A6 /* PPOptionsScene.h */,
+				193F96D41A2EF93E00F266A6 /* PPOptionsScene.m */,
 				193F96CF1A2EF93E00F266A6 /* PPMonsterBookScene.h */,
 				193F96D01A2EF93E00F266A6 /* PPMonsterBookScene.m */,
 				193F96D11A2EF93E00F266A6 /* PPNewsScene.h */,
 				193F96D21A2EF93E00F266A6 /* PPNewsScene.m */,
-				193F96D31A2EF93E00F266A6 /* PPOptionsScene.h */,
-				193F96D41A2EF93E00F266A6 /* PPOptionsScene.m */,
-				193F96D51A2EF93E00F266A6 /* PPSettingScene.h */,
-				193F96D61A2EF93E00F266A6 /* PPSettingScene.m */,
 			);
 			name = Others;
 			path = Views;

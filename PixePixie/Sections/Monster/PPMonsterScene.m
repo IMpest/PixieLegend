@@ -72,7 +72,8 @@ static NSString * monsterBtnTitle[] = {
             monsterButton.position = CGPointMake(160,i * 100 + 80);
             monsterButton.name = [NSString stringWithFormat:@"%d",i];
             [monsterButton setLabelWithText:monsterBtnTitle[i] andFont:[UIFont systemFontOfSize:15] withColor:nil];
-            [monsterButton addTarget:self selector:@selector(monsterButtonClick:) withObject:monsterButton.name forControlEvent:PPButtonControlEventTouchUpInside];
+            [monsterButton addTarget:self selector:@selector(monsterButtonClick:)
+                          withObject:monsterButton.name forControlEvent:PPButtonControlEventTouchUpInside];
             [self addChild:monsterButton];
         }
     } else {
@@ -100,7 +101,7 @@ static NSString * monsterBtnTitle[] = {
         {
             PPSellMonsterScene * sellMonster = [[PPSellMonsterScene alloc] initWithSize:self.view.frame.size];
             sellMonster->previousScene = self;
-            [self.view presentScene:sellMonster transition:[SKTransition doorsOpenVerticalWithDuration:0.5]];
+            [self.view presentScene:sellMonster];
             
         }
             break;
@@ -108,23 +109,16 @@ static NSString * monsterBtnTitle[] = {
         {
             PPEuoFusionScene * euoFusion = [[PPEuoFusionScene alloc] initWithSize:self.view.frame.size];
             euoFusion->previousScene = self;
-            [self.view presentScene:euoFusion transition:[SKTransition doorsOpenVerticalWithDuration:0.5]];
+            [self.view presentScene:euoFusion];
         }
             break;
         case 2:
         {
-            PPTalentTreeScene *talentTree=[[PPTalentTreeScene alloc] initWithSize:self.view.frame.size];
+            PPTalentTreeScene * talentTree = [[PPTalentTreeScene alloc] initWithSize:self.view.frame.size];
             talentTree->previousScene = self;
-            [self.view presentScene:talentTree transition:[SKTransition doorsOpenVerticalWithDuration:0.5]];
+            [self.view presentScene:talentTree];
         }
             break;
-//        case 3:
-//        {
-//            PPMonsterBoxScene *monsterBox=[[PPMonsterBoxScene alloc] initWithSize:self.view.frame.size];
-//            monsterBox->previousScene=self;
-//            [self.view presentScene:monsterBox transition:[SKTransition doorsOpenVerticalWithDuration:0.5]];
-//        }
-//            break;
             
         default:
             break;
