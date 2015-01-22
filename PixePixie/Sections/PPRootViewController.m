@@ -6,8 +6,8 @@
 
 @implementation PPRootViewController
 
-int menuAnimationTag;
-UIButton * backToMain;
+//int menuAnimationTag;
+//UIButton * backToMain;
 
 PPPlayerNameView * skViewName;
 PPChoosePetView * skViewPixie;
@@ -76,6 +76,7 @@ NSString * userInfo[] =
 -(void)textInputConfirmClick:(UIButton *)sender
 {
     skViewPixie = [[PPChoosePetView alloc] initWithFrame:CGRectMake(0, PP_FIT_TOP_SIZE, 320, 480)];
+    skViewPixie.rootVC = self;
     [self.view addSubview:skViewPixie];
     
     if (skViewName != nil)
@@ -198,35 +199,27 @@ NSString * userInfo[] =
     [self changeMenuState:PP_MENU_START];
 }
 
-//上方按钮点击
--(void)userBtnClick:(UIButton *)sender
+// 改变tab提示框位置
+-(void)changeMenuState:(int)index
 {
-    
+    tabLight.frame = CGRectMake(index * skViewMain.frame.size.width / PP_MENU_COUNT + (64-36)/2, 5, 36, 36);
 }
 
-//下方按钮点击
+// 上方按钮点击
+-(void)userBtnClick:(UIButton *)sender
+{
+    NSLog(@"up btn clicked");
+}
+
+// 下方按钮点击
 -(void)menuBtnClick:(UIButton *)sender
 {
-//    [UIView animateWithDuration:0.2
-//                     animations:^{
-//                         [backToMain setFrame:CGRectMake(0,
-//                                                         backToMain.frame.origin.y,
-//                                                         backToMain.frame.size.width,
-//                                                         backToMain.frame.size.height)];
-//                     }
-//                     completion:^(BOOL finished){
-//                     }];
-   
-    [self changeMenuState:(int)sender.tag - PP_MENU_BUTON_TAG];
-    
     if (sender == nil) {
-//        CGRect NormalViewRect = CGRectMake(0, 44, skViewMain.frame.size.width, skViewMain.frame.size.height - 44 * 2);
-//        fightingMainView = nil;
-//        fightingMainView = [[PPFightingMainView alloc] initWithFrame:NormalViewRect];
-        
-         [skViewMain bringSubviewToFront:monsterMainView];
+        [skViewMain bringSubviewToFront:monsterMainView];
         return ;
     }
+    
+    [self changeMenuState:(int)sender.tag - PP_MENU_BUTON_TAG];
     
     switch (sender.tag - PP_MENU_BUTON_TAG) {
         case 0:
@@ -242,7 +235,6 @@ NSString * userInfo[] =
         case 2:
         {
             [skViewMain bringSubviewToFront:fightingMainView];
-//            fightingMainView->mainScene->backButton.hidden = NO;
         }
             break;
         case 3:
@@ -255,148 +247,59 @@ NSString * userInfo[] =
             [skViewMain bringSubviewToFront:othersMainView];
         }
             break;
-            
+
         default:
             break;
     }
-    
     [monsterMainView hideMonstorShowBtns];
-    
 }
 
--(void)backToMonsterScene:(NSNotification *)notifi
-{
-    
-    //    [skViewMain bringSubviewToFront:monsterMainView];
-    [self menuBtnClick:nil];
-    [self changeMenuState:3];
-    
-//    if ([[notifi object] isEqualToString:PP_BACK_TO_MAIN_VIEW_FIGHTING]) {
-//        
-//        [skViewMain bringSubviewToFront:menuInfoBar];
-//        [skViewMain bringSubviewToFront:userInfoBar];
-//        
-//    }
-}
-
-// 改变tab提示
--(void)changeMenuState:(int)index
-{
-    tabLight.frame = CGRectMake(index * skViewMain.frame.size.width / PP_MENU_COUNT + (64-36)/2, 5, 36, 36);
-//    for (int i = 0; i < PP_MENU_COUNT; i++) {
-//        UIButton * buttonMenuTmp = (UIButton *)[menuInfoBar viewWithTag:PP_MENU_BUTON_TAG + i];
-//        if (i == index) {
-//            [buttonMenuTmp setBackgroundColor:[UIColor blueColor]];
-//        } else {
-//            [buttonMenuTmp setBackgroundColor:[UIColor clearColor]];
+//-(void)menuUpAnimation
+//{
+//    [self performSelector:@selector(upMenuBtn) withObject:nil];
+//}
+//
+//-(void)menuDownAnimation
+//{
+//    [self performSelector:@selector(downMenuBtn) withObject:nil];
+//}
+//
+//-(void)upMenuBtn
+//{
+//    [UIView animateWithDuration:0.05
+//                     animations:
+//     ^{
+//        UIButton *buttonTmp=(UIButton *)[skViewMain viewWithTag:PP_MENU_BUTON_TAG+menuAnimationTag];
+//        NSLog(@"height=%f",skViewMain.frame.size.height);
+//        [buttonTmp setFrame:CGRectMake(buttonTmp.frame.origin.x,2, buttonTmp.frame.size.width, buttonTmp.frame.size.height)];
+//     }
+//                     completion:
+//     ^(BOOL finished) {
+//        menuAnimationTag++;
+//        if (menuAnimationTag < PP_MENU_COUNT) {
+//            [self performSelector:@selector(menuUpAnimation) withObject:nil];
+//            return ;
 //        }
-//    }
-}
-
-//// Todo 加注释
-//-(void)counterpartEnter:(id)obj
-//{
-//    PPTableView * ppTable1 = [[PPTableView alloc] initWithFrame:CGRectMake(0, 80, 320, 200)];
-//    ppTable1.tag = PP_PASSNUM_CHOOSE_TABLE_TAG;
-//    ppTable1.choosePassNumber = self;
-//    ppTable1.choosePassNumberSel = @selector(enterBattle:);
-//    NSArray * productInfoArray = [NSArray arrayWithObjects:@"关卡1",@"关卡2",@"关卡3",@"关卡4",@"关卡5",@"关卡6", nil];
-//    [ppTable1 ppsetTableViewWithData:productInfoArray];
-//    [self.view addSubview:ppTable1];
+//        menuAnimationTag = 0;
+//     }];
 //}
 //
-// Todo 加注释
-//-(void)enterBattle:(NSNumber *)passNumber
+//-(void)downMenuBtn
 //{
-//    UIView * passNumView = [self.view viewWithTag:PP_PASSNUM_CHOOSE_TABLE_TAG];
-//    [passNumView removeFromSuperview];
-//    passNumber = nil;
-//    
-//    [UIView animateWithDuration:0.1 animations:^{
-//        [backToMain setFrame:CGRectMake(0, backToMain.frame.origin.y,
-//                                        backToMain.frame.size.width, backToMain.frame.size.height)];
-//    } completion:^(BOOL finished){}];
-//    
-//    //    [self menuDownAnimation];
-//    
-//    PPHurdleReadyScene * battleScene;
-//    battleScene = [[PPHurdleReadyScene alloc] initWithSize:CurrentDeviceRealSize];
-//    battleScene.scaleMode = SKSceneScaleModeAspectFill;
-//    
-//    [skViewMain presentScene:battleScene];
-//}
-
-
-
-//-(void)backToMainClick
-//{
-//    
-//    if ([UIScreen mainScreen].bounds.size.height > 500) {
+//    [UIView animateWithDuration:0.05 animations:^{
+//        
+//        UIButton * buttonTmp = (UIButton *)[skViewMain viewWithTag:PP_MENU_BUTON_TAG + menuAnimationTag];
+//        [buttonTmp setFrame:CGRectMake(buttonTmp.frame.origin.x, buttonTmp.frame.size.height,
+//                                       buttonTmp.frame.size.width, buttonTmp.frame.size.height)];
 //
-//    [skViewMain setFrame:CGRectMake(0, 44, 320, 480)];
-//        
-//    }
-//    
-//    [skViewMain presentScene:mainScene];
-//    [UIView animateWithDuration:0.1 animations:^{
-//        
-//        [backToMain setFrame:CGRectMake(-backToMain.frame.size.width, backToMain.frame.origin.y,
-//                                        backToMain.frame.size.width, backToMain.frame.size.height)];
-//        
-//    } completion:^(BOOL finished){}];
-//    [self menuUpAnimation];
-//    
+//    } completion:^(BOOL finished){
+//        menuAnimationTag++;
+//        if (menuAnimationTag < PP_MENU_COUNT) {
+//            [self performSelector:@selector(menuDownAnimation) withObject:nil];
+//            return ;
+//        }
+//        menuAnimationTag = 0;
+//    }];
 //}
-
--(void)menuUpAnimation
-{
-    [self performSelector:@selector(upMenuBtn) withObject:nil];
-}
-
--(void)menuDownAnimation
-{
-    [self performSelector:@selector(downMenuBtn) withObject:nil];
-}
-
--(void)upMenuBtn
-{
-    
-    [UIView animateWithDuration:0.05
-                     animations:
-     ^{
-        UIButton *buttonTmp=(UIButton *)[skViewMain viewWithTag:PP_MENU_BUTON_TAG+menuAnimationTag];
-        NSLog(@"height=%f",skViewMain.frame.size.height);
-        [buttonTmp setFrame:CGRectMake(buttonTmp.frame.origin.x,2, buttonTmp.frame.size.width, buttonTmp.frame.size.height)];
-     }
-                     completion:
-     ^(BOOL finished) {
-        menuAnimationTag++;
-        if (menuAnimationTag < PP_MENU_COUNT) {
-            [self performSelector:@selector(menuUpAnimation) withObject:nil];
-            return ;
-        }
-        menuAnimationTag = 0;
-     }];
-    
-}
-
--(void)downMenuBtn
-{
-    [UIView animateWithDuration:0.05 animations:^{
-        
-        UIButton * buttonTmp = (UIButton *)[skViewMain viewWithTag:PP_MENU_BUTON_TAG + menuAnimationTag];
-        [buttonTmp setFrame:CGRectMake(buttonTmp.frame.origin.x, buttonTmp.frame.size.height,
-                                       buttonTmp.frame.size.width, buttonTmp.frame.size.height)];
-
-    } completion:^(BOOL finished){
-        menuAnimationTag++;
-        if (menuAnimationTag < PP_MENU_COUNT) {
-            [self performSelector:@selector(menuDownAnimation) withObject:nil];
-            return ;
-        }
-        menuAnimationTag = 0;
-    }];
-
-}
 
 @end

@@ -1,9 +1,11 @@
 
-#import <Foundation/Foundation.h>
+@class PPPixie;
 
 @interface PPLocalData : NSObject
 
--(PPLocalData *)getInstance;
+@property (nonatomic, retain) PPPixie * firstPixie;
+
++(PPLocalData *)getInstance;
 +(NSString *)getUserInfoPath;
 
 // JSON 数据转换

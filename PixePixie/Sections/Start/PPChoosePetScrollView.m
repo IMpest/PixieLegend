@@ -39,8 +39,7 @@ NSArray * myPixies;
             
             PPPixie * tpixie = (PPPixie *)[pixies objectAtIndex:i];
         
-            UIImageView * cardView = [[UIImageView alloc] initWithImage:
-                                           [UIImage imageNamed:[NSString stringWithFormat: @"bg_pet_0", i]]];
+            UIImageView * cardView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_pet_0"]];
             cardView.frame = CGRectMake(i * self.frame.size.width + 122, 0, 75, 200);
             [self addSubview:cardView];
             
@@ -73,8 +72,7 @@ NSArray * myPixies;
                 {
                     [petsTypeBtn setImage:[UIImage imageNamed:@"element_earth.png"] forState:UIControlStateNormal];
                 }
-                    break;
-                    
+                    break;                    
                 default:
                     break;
             }
@@ -95,13 +93,10 @@ NSArray * myPixies;
 }
 
 -(void)petsNameBtnClick:(UIButton *)sender
-{
-}
+{}
 
 -(void)petsTypeBtnClick:(UIButton *)sender
-{
-}
-
+{}
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {

@@ -3,6 +3,8 @@
 
 @implementation PPChoosePetView
 
+PPChoosePetScrollView * petsScroll;
+
 -(void)layoutSubviews
 {
     [super layoutSubviews];
@@ -25,8 +27,7 @@
     NSMutableArray * pixies = [NSMutableArray array];
     for (NSDictionary * tPixie in pixiesData) [pixies addObject:[PPPixie pixieWithData:tPixie]];
     
-    PPChoosePetScrollView * petsScroll = [[PPChoosePetScrollView alloc] initWithFrame:CGRectMake(0, 60, 320, 200)
-                                                                               Pixies:pixies];
+    petsScroll = [[PPChoosePetScrollView alloc] initWithFrame:CGRectMake(0, 60, 320, 200) Pixies:pixies];
     [self addSubview:petsScroll];
     
     // 添加信息栏
@@ -40,10 +41,14 @@
     [buttonConfirm setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonConfirm setTitle:@"确定" forState:UIControlStateNormal];
     [buttonConfirm setBackgroundImage:[UIImage imageNamed:@"bt_ok.png"] forState:UIControlStateNormal];
-    [buttonConfirm addTarget:self.rootVC action:@selector(petsChooseCofirmBtnClick:)
-            forControlEvents:UIControlEventTouchUpInside];
+    [buttonConfirm addTarget:self action:@selector(clickOK:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:buttonConfirm];
-    
+}
+
+-(void)clickOK:(UIButton *)sender
+{
+    [PPLocalData getInstance].firstPixie = [petsScroll getCurrentPixie];
+    [self.rootVC petsChooseCofirmBtnClick:sender];
 }
 
 @end

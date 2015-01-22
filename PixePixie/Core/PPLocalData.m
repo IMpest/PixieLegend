@@ -1,18 +1,18 @@
 #import "PPLocalData.h"
 #import <objc/runtime.h>
 
-static PPLocalData * commonTool = nil;
+static PPLocalData * localData = nil;
 
 @implementation PPLocalData
 
--(PPLocalData *)getInstance
++(PPLocalData *)getInstance
 {
     @synchronized(self){
-        if (commonTool == nil) {
-            commonTool = [[PPLocalData alloc] init];
+        if (localData == nil) {
+            localData = [[PPLocalData alloc] init];
         }
     }
-    return commonTool;
+    return localData;
 }
 
 //得到应用程序Documents文件夹下的目标路径
