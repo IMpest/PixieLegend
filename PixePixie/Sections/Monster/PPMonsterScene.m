@@ -51,15 +51,25 @@ static NSString * monsterBtnTitle[] = {
         [self addChild:worldBossButton];
         
         // 侧边菜单
-        PPSpriteButton * showMonsterBtn = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(40.0f, 100.0f)];
-        [showMonsterBtn setLabelWithText:@"show" andFont:[UIFont systemFontOfSize:15] withColor:nil];
-        showMonsterBtn.name = @"showMonsterName";
-        showMonsterBtn.position = CGPointMake(22.0f,180.0f);
+        PPSpriteButton * showMonsterBtn = [PPSpriteButton buttonWithImageNamed:@"bt_detail.png"];
+        showMonsterBtn.name = @"pixieMenu";
+        showMonsterBtn.size = CGSizeMake(25, 50);
+        showMonsterBtn.position = CGPointMake(22,180);
+//        [showMonsterBtn setLabelWithText:@"show" andFont:[UIFont systemFontOfSize:15] withColor:[UIColor blackColor]];
         [showMonsterBtn addTarget:self selector:@selector(showMonsterBtnClick:)
                        withObject:showMonsterBtn forControlEvent:PPButtonControlEventTouchUpInside];
         [self addChild:showMonsterBtn];
     }
     return self;
+}
+
+-(void)didMoveToView:(SKView *)view
+{
+}
+
+- (void)willMoveFromView:(SKView *)view
+{
+    [self hideShowbtns];
 }
 
 -(void)showMonsterBtnClick:(PPSpriteButton *)showBtn
@@ -68,10 +78,12 @@ static NSString * monsterBtnTitle[] = {
         showBtn.color = [UIColor blueColor];
 
         for (int i = 0; i < 3; i++) {
-            PPSpriteButton * monsterButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(200, 40)];
+            PPSpriteButton * monsterButton = [PPSpriteButton buttonWithImageNamed:@"bt_menu.png"];
             monsterButton.position = CGPointMake(160,i * 100 + 80);
+            monsterButton.size = CGSizeMake(150, 30);
             monsterButton.name = [NSString stringWithFormat:@"%d",i];
-            [monsterButton setLabelWithText:monsterBtnTitle[i] andFont:[UIFont systemFontOfSize:15] withColor:nil];
+            [monsterButton setLabelWithText:monsterBtnTitle[i]
+                                    andFont:[UIFont systemFontOfSize:15] withColor:[UIColor blackColor]];
             [monsterButton addTarget:self selector:@selector(monsterButtonClick:)
                           withObject:monsterButton.name forControlEvent:PPButtonControlEventTouchUpInside];
             [self addChild:monsterButton];
@@ -79,7 +91,16 @@ static NSString * monsterBtnTitle[] = {
     } else {
         [self hideShowbtns];
     }
-    
+}
+
+-(void)hideShowbtns
+{
+    PPSpriteButton * btn = (PPSpriteButton *)[self childNodeWithName:@"pixieMenu"];
+    btn.color = [UIColor orangeColor];
+    for (int i = 0; i < 3; i++) {
+        SKNode * monsterButton = [self childNodeWithName:[NSString stringWithFormat:@"%d",i]];
+        [monsterButton removeFromParent];
+    }
 }
 
 -(void)feedButtonClick:(NSString *)nameString
@@ -102,7 +123,6 @@ static NSString * monsterBtnTitle[] = {
             PPSellMonsterScene * sellMonster = [[PPSellMonsterScene alloc] initWithSize:self.view.frame.size];
             sellMonster->previousScene = self;
             [self.view presentScene:sellMonster];
-            
         }
             break;
         case 1:
@@ -130,23 +150,5 @@ static NSString * monsterBtnTitle[] = {
     [[NSNotificationCenter defaultCenter] postNotificationName:PP_BACK_TO_MAIN_VIEW object:nil];
 }
 
--(void)didMoveToView:(SKView *)view
-{
-}
-
-- (void)willMoveFromView:(SKView *)view
-{
-    [self hideShowbtns];
-}
-
--(void)hideShowbtns
-{
-    PPSpriteButton * btn = (PPSpriteButton *)[self childNodeWithName:@"showMonsterName"];
-    btn.color = [UIColor orangeColor];
-    for (int i = 0; i < 3; i++) {
-        SKNode * monsterButton = [self childNodeWithName:[NSString stringWithFormat:@"%d",i]];
-        [monsterButton removeFromParent];
-    }
-}
 
 @end

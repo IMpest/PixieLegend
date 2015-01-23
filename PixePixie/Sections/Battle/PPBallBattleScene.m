@@ -907,11 +907,9 @@ double vector2angel(CGVector vector){
     // 添加技能槽
     for (int i = 0; i < 4; i++) {
         
-        NSDictionary *dictSkill=nil;
-        if ([self.pixiePlayer.pixieSkills count]>i) {
-            
+        NSDictionary * dictSkill = nil;
+        if ([self.pixiePlayer.pixieSkills count] > i) {
             dictSkill=[self.pixiePlayer.pixieSkills objectAtIndex:i];
-            
         }
         
         NSString * stringSkillStatus = [dictSkill objectForKey:@"skillstatus"];
@@ -928,7 +926,6 @@ double vector2angel(CGVector vector){
             passButton.userInteractionEnabled = YES;
             [passButton addTarget:self selector:@selector(skillInvalidBtnClick:)
                        withObject:passButton forControlEvent:PPButtonControlEventTouchUp];
-            
             
         } else {
             
@@ -952,8 +949,6 @@ double vector2angel(CGVector vector){
         passButton.position = CGPointMake(65*i - 112.0f, 0.0f);
         [petSkillBar addChild:passButton];
         
-        
-        
         SKLabelNode *cdLabel = [SKLabelNode labelNodeWithFontNamed:PP_WORDS_FONT_NAME];
         cdLabel.fontSize = 19;
         cdLabel.name = PP_SKILL_CD_LABEL_NODE_NAME;
@@ -966,8 +961,6 @@ double vector2angel(CGVector vector){
         [cdLabel setText:cdString];
         NSLog(@"cdString=%@",cdString);
         [passButton addChild:cdLabel];
-        
-        
     }
     
     petSkillBar.position = CGPointMake(self.size.width/2.0f, self.ballPlayer.position.y+50);

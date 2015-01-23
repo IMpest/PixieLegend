@@ -18,10 +18,9 @@
     
     // 添加状态
     for (int i = 0; i < 3; i++) {
-        PPSpriteButton * buffButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(30, 30)];
+        PPSpriteButton * buffButton = [PPSpriteButton buttonWithImageNamed:@"buff_exp"];
         buffButton.position = CGPointMake(130, i * 40 + 20);
-        buffButton.name = [NSString stringWithFormat:@"%d",i];
-        [buffButton setLabelWithText:@"状态" andFont:[UIFont systemFontOfSize:15] withColor:nil];
+        buffButton.size = CGSizeMake(25, 25);
         [buffButton addTarget:self selector:@selector(buffButtonClick:)
                    withObject:buffButton.name forControlEvent:PPButtonControlEventTouchUpInside];
         [self addChild:buffButton];

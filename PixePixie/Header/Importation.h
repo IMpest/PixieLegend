@@ -26,6 +26,14 @@
 #import "PPChoosePetView.h"
 #import "PPChoosePetScrollView.h"
 
+// Battle
+#import "PPBallBattleScene.h"
+#import "PPBattleInfoLayer.h"
+#import "PPBallBattleSkillInfo.h"
+#import "PPValueShowNode.h"
+#import "PPSkillNode.h"
+#import "PPSkillButtonNode.h"
+
 // Monster
 #import "PPMonsterMainView.h"
 #import "PPMonsterScene.h"
@@ -39,15 +47,9 @@
 #import "PPPacksackScene.h"
 #import "PPCookingScene.h"
 
-// Battle
+// Fight
 #import "PPFightingMainView.h"
 #import "PPMenuScene.h"
-#import "PPHurdleReadyScene.h"
-#import "PPBallBattleScene.h"
-#import "PPBattleInfoLayer.h"
-#import "PPValueShowNode.h"
-#import "PPSkillNode.h"
-#import "PPSkillButtonNode.h"
 
 // Schedule
 #import "PPScheduleMainView.h"

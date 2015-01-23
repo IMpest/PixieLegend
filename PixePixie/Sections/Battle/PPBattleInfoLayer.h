@@ -4,10 +4,10 @@
 
 @interface PPBattleInfoLayer : SKSpriteNode
 {
-    PPValueShowNode *petPlayerHP;
-    PPValueShowNode *enemyPlayerHP;
-    PPValueShowNode *petPlayerMP;
-    PPValueShowNode *enemyPlayerMP;
+    PPValueShowNode * petPlayerHP;
+    PPValueShowNode * enemyPlayerHP;
+    PPValueShowNode * petPlayerMP;
+    PPValueShowNode * enemyPlayerMP;
     BOOL isHaveDead;
     
     CGFloat originX;
