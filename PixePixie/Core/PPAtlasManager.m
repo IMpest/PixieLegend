@@ -137,7 +137,7 @@
     __strong static SKTextureAtlas * tAtlas = nil;
     static dispatch_once_t pred;
     dispatch_once(&pred, ^{
-        tAtlas = [SKTextureAtlas atlasNamed:@"battle_table_skill"];
+        tAtlas = [SKTextureAtlas atlasNamed:@"battle_fight_skill"];
     });
     return tAtlas;
 }

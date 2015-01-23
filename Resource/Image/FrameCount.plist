@@ -114,5 +114,7 @@
 	<integer>10</integer>
 	<key>02_devilbreath_buff</key>
 	<integer>11</integer>
+	<key>04_nightjudge</key>
+	<string>6</string>
 </dict>
 </plist>
