@@ -89,6 +89,7 @@ double vector2angel(CGVector vector){
     if (self = [super initWithSize:size]) {
         
         // 处理参数
+        
         self.pixiePlayer = pixieA;
         self.ballPlayer = pixieA.pixieBall;
         self.pixieEnemy = pixieB;
@@ -630,6 +631,9 @@ double vector2angel(CGVector vector){
 {
     if ([battlesideName isEqualToString:PP_ENEMY_SIDE_NODE_NAME])
     {
+        
+        self.paused = YES;
+        
         SKSpriteNode *enemyDeadContent=[[SKSpriteNode alloc] initWithColor:[UIColor orangeColor] size:CGSizeMake(320, 240)];
         [enemyDeadContent setPosition:CGPointMake(160.0f, 300)];
         enemyDeadContent.zPosition =  PPZ_FIGHT_EFFECT_ATT;
@@ -650,13 +654,22 @@ double vector2angel(CGVector vector){
         textContentLabel.fontColor = [UIColor blueColor];
         textContentLabel.text = [alertInfo objectForKey:@"context"];
         textContentLabel.fontSize = 13;
-        textContentLabel.position = CGPointMake(0.0f,-50);
+        textContentLabel.position = CGPointMake(0.0f,-20);
         [enemyDeadContent addChild:textContentLabel];
         
         
+        
+        PPSpriteButton *goButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(45, 30)];
+        [goButton setLabelWithText:@"下一个" andFont:[UIFont systemFontOfSize:15] withColor:nil];
+        goButton.zPosition = PP_BACK_BUTTON_ZPOSITION;
+        goButton.position = CGPointMake(0.0f,-60);
+        [goButton addTarget:self selector:@selector(goNextEnemy)
+                 withObject:nil forControlEvent:PPButtonControlEventTouchUpInside];
+        [enemyDeadContent addChild:goButton];
+        
        
-        [self performSelectorOnMainThread:@selector(goNextEnemy) withObject:nil afterDelay:2];
-            
+//        [self performSelectorOnMainThread:@selector(goNextEnemy) withObject:nil afterDelay:2];
+//            
         
     } else {
         
