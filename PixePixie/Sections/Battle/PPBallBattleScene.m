@@ -1915,7 +1915,7 @@ double vector2angel(CGVector vector){
         
             SKSpriteNode *buffShowNode = [PPAtlasManager createSpriteImageName:nil withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillNightJudge]];
             [self.playerAndEnemySide->ppixiePetBtn addChild:buffShowNode];
-            SKAction *actionRep = [SKAction repeatActionForever:[[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreath"]];
+            SKAction *actionRep = [SKAction repeatActionForever:[[PPAtlasManager battle_table_skill] getAnimation:@"04_nightjudge"]];
             
             [buffShowNode runAction:actionRep];
         
