@@ -1993,6 +1993,7 @@ double vector2angel(CGVector vector){
                 [buffshowNode removeFromParent];
                 [self addBuffAnimation:kPPPetSkillDevilBreath];
             }];
+            
             [self.playerAndEnemySide changeEnemyHPValue:battleSkillInfo.enemyPoisoningHP];
         }
     }
@@ -2227,6 +2228,42 @@ double vector2angel(CGVector vector){
                 }];
                 
             }
+            
+            if (battleSkillInfo.nightJudgeValue != 0.0f) {
+                
+                SKSpriteNode *nodeSkillBuffer=[SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"04_nightjudge.png"]];
+                nodeSkillBuffer.position = contact.contactPoint;
+                nodeSkillBuffer.size = CGSizeMake(nodeSkillBuffer.size.width/2.0f, nodeSkillBuffer.size.height/2.0f);
+                [self addChild:nodeSkillBuffer];
+                
+                
+                SKAction *actionRemove = [SKAction fadeAlphaTo:1.0f duration:0.5];
+                
+                [nodeSkillBuffer runAction:actionRemove completion:^{
+                    
+                    [nodeSkillBuffer removeFromParent];
+                    
+                }];
+                
+                
+                
+                SKSpriteNode *buffShowNode = [PPAtlasManager createSpriteImageName:nil withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillNightJudge]];
+                [self.playerAndEnemySide->ppixieEnemyBtn addChild:buffShowNode];
+                //                SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreath"] count:1:];
+                
+                [buffShowNode runAction:[[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreath"] completion:^{
+                    [buffShowNode removeFromParent];
+                    
+                }];
+                
+                [self.playerAndEnemySide startAttackShowAnimation:YES];
+                
+                return;
+                //                battleSkillInfo.nightJudgeValue= 0.0f;
+                
+            }
+
+            
             PPBall *ballCombo = nil;
             if (contact.bodyA == self.ballPlayer.physicsBody) {
                 
@@ -2306,25 +2343,6 @@ double vector2angel(CGVector vector){
                 
             }
             
-            if (battleSkillInfo.nightJudgeValue != 0.0f) {
-                [self.playerAndEnemySide changeEnemyHPValue:-250*battleSkillInfo.nightJudgeValue];
-                
-                SKSpriteNode *nodeSkillBuffer=[SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"04_nightjudge.png"]];
-                nodeSkillBuffer.position = contact.contactPoint;
-                nodeSkillBuffer.size = CGSizeMake(nodeSkillBuffer.size.width/2.0f, nodeSkillBuffer.size.height/2.0f);
-                [self addChild:nodeSkillBuffer];
-                
-                
-                SKAction *actionRemove = [SKAction fadeAlphaTo:1.0f duration:0.5];
-                
-                [nodeSkillBuffer runAction:actionRemove completion:^{
-                    
-                    [nodeSkillBuffer removeFromParent];
-                    
-                }];
-//                battleSkillInfo.nightJudgeValue= 0.0f;
-
-            }
             
             [self.playerAndEnemySide setComboLabelText:petCombos withEnemy:enemyCombos];
             [self.playerAndEnemySide startAttackAnimation:YES];

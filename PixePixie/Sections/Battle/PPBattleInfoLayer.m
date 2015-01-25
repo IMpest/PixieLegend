@@ -806,26 +806,30 @@
     }else
     {
         
-        if (attackShowNode) {
-            [attackShowNode removeFromParent];
-            attackShowNode = nil;
-        }
+//        if (attackShowNode) {
+//            [attackShowNode removeFromParent];
+//            attackShowNode = nil;
+//        }
+//        
+//        attackShowNode =[[SKSpriteNode alloc] init];
+//        attackShowNode.size = CGSizeMake(50.0f, 50.0f);
+//        [attackShowNode setPosition:CGPointMake(-30, 20.0f)];
+//        attackShowNode.xScale = -1;
+//        [self addChild:attackShowNode];
         
-        attackShowNode =[[SKSpriteNode alloc] init];
-        attackShowNode.size = CGSizeMake(50.0f, 50.0f);
-        [attackShowNode setPosition:CGPointMake(-30, 20.0f)];
-        attackShowNode.xScale = -1;
-        [self addChild:attackShowNode];
-        
-        
-        [attackShowNode runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"fire3_hit"] completion:^{
-            if (attackShowNode) {
-                [attackShowNode removeFromParent];
-                attackShowNode = nil;
-            }
+        [ppixieEnemyBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"fire3_hit"] completion:^{
             
             
         }];
+        
+//        [attackShowNode runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"fire3_hit"] completion:^{
+//            if (attackShowNode) {
+//                [attackShowNode removeFromParent];
+//                attackShowNode = nil;
+//            }
+//            
+//            
+//        }];
         
     }
 
