@@ -2248,12 +2248,15 @@ double vector2angel(CGVector vector){
                 
                 
                 SKSpriteNode *buffShowNode = [PPAtlasManager createSpriteImageName:nil withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillNightJudge]];
-                [self.playerAndEnemySide->ppixieEnemyBtn addChild:buffShowNode];
+                [self.playerAndEnemySide->ppixiePetBtn addChild:buffShowNode];
                 //                SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreath"] count:1:];
+                SKAction *windEffect = [[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreath"];
+                SKAction *moveAction=[SKAction moveByX:self.playerAndEnemySide->ppixieEnemyBtn.position.x-self.playerAndEnemySide->ppixiePetBtn.position.x  y:0 duration:1];
+                SKAction *groupAct=[SKAction group:@[windEffect,moveAction]];
                 
-                [buffShowNode runAction:[[PPAtlasManager battle_table_skill] getAnimation:@"02_devilbreath"] completion:^{
+                
+                [buffShowNode runAction:groupAct completion:^{
                     [buffShowNode removeFromParent];
-                    
                 }];
                 
                 [self.playerAndEnemySide startAttackShowAnimation:YES];
