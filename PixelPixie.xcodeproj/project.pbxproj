@@ -215,6 +215,8 @@
 		19CFACFD1A77976C00126D75 /* 06_devilskin.png in Resources */ = {isa = PBXBuildFile; fileRef = 19CFACF51A77976C00126D75 /* 06_devilskin.png */; };
 		19CFACFE1A77976C00126D75 /* 07_devilanger.png in Resources */ = {isa = PBXBuildFile; fileRef = 19CFACF61A77976C00126D75 /* 07_devilanger.png */; };
 		19CFACFF1A77976C00126D75 /* 08_devilextinction.png in Resources */ = {isa = PBXBuildFile; fileRef = 19CFACF71A77976C00126D75 /* 08_devilextinction.png */; };
+		19CFAD021A779CD300126D75 /* bt_dungeon.png in Resources */ = {isa = PBXBuildFile; fileRef = 19CFAD001A779CD300126D75 /* bt_dungeon.png */; };
+		19CFAD031A779CD300126D75 /* bt_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 19CFAD011A779CD300126D75 /* bt_info.png */; };
 		19DB5D751A7252FD003EFEE3 /* bt_detail.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DB5D731A7252FD003EFEE3 /* bt_detail.png */; };
 		19DB5D761A7252FD003EFEE3 /* bt_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DB5D741A7252FD003EFEE3 /* bt_menu.png */; };
 		19DB5D7A1A725882003EFEE3 /* buff_exp.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DB5D781A725882003EFEE3 /* buff_exp.png */; };
@@ -505,6 +507,8 @@
 		19CFACF51A77976C00126D75 /* 06_devilskin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 06_devilskin.png; sourceTree = "<group>"; };
 		19CFACF61A77976C00126D75 /* 07_devilanger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 07_devilanger.png; sourceTree = "<group>"; };
 		19CFACF71A77976C00126D75 /* 08_devilextinction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 08_devilextinction.png; sourceTree = "<group>"; };
+		19CFAD001A779CD300126D75 /* bt_dungeon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_dungeon.png; sourceTree = "<group>"; };
+		19CFAD011A779CD300126D75 /* bt_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_info.png; sourceTree = "<group>"; };
 		19DB5D731A7252FD003EFEE3 /* bt_detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_detail.png; sourceTree = "<group>"; };
 		19DB5D741A7252FD003EFEE3 /* bt_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_menu.png; sourceTree = "<group>"; };
 		19DB5D781A725882003EFEE3 /* buff_exp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buff_exp.png; sourceTree = "<group>"; };
@@ -941,6 +945,8 @@
 		19A4453A1A6A71C20016FAA6 /* ui_map */ = {
 			isa = PBXGroup;
 			children = (
+				19CFAD001A779CD300126D75 /* bt_dungeon.png */,
+				19CFAD011A779CD300126D75 /* bt_info.png */,
 				19A4453B1A6A71C20016FAA6 /* map_all_00.png */,
 				19A4453C1A6A71C20016FAA6 /* map_all_01.png */,
 				19A4453D1A6A71C20016FAA6 /* map_all_02.png */,
@@ -1298,6 +1304,7 @@
 				1999AC3719EE64D500B25ED2 /* plant_forward_0016.png in Resources */,
 				1999AC6119EE64D500B25ED2 /* fire_shield_cast_0002.png in Resources */,
 				19CFACFA1A77976C00126D75 /* 03_rattantwine.png in Resources */,
+				19CFAD031A779CD300126D75 /* bt_info.png in Resources */,
 				1999AC4F19EE64D500B25ED2 /* fire_blade_cast_0008.png in Resources */,
 				D48C1B001A2467EC00566DF6 /* pixie_action.atlas in Resources */,
 				1999AC7619EE64D500B25ED2 /* fire_shield_cast_0023.png in Resources */,
@@ -1310,6 +1317,7 @@
 				1999AC5219EE64D500B25ED2 /* fire_blade_cast_0011.png in Resources */,
 				19CFACFF1A77976C00126D75 /* 08_devilextinction.png in Resources */,
 				1999AC3819EE64D500B25ED2 /* plant_forward_0017.png in Resources */,
+				19CFAD021A779CD300126D75 /* bt_dungeon.png in Resources */,
 				19A8ED651A52977600EFEA7A /* pet_name.png in Resources */,
 				19A8ED621A52977600EFEA7A /* element_plant.png in Resources */,
 				1999AC5019EE64D500B25ED2 /* fire_blade_cast_0009.png in Resources */,

@@ -6,15 +6,38 @@
 
 -(id)initWithSize:(CGSize)size andElement:(PPElementType)elementType{
     if (self = [super initWithSize:size]) {
+        
         currentElementType = elementType;
-        [self setBackgroundColor:[UIColor purpleColor]];
-        NSString * mapName = [NSString stringWithFormat:@"%@.png", @"bg_menu"];
 
+        // 添加背景
+        NSString * mapName = [NSString stringWithFormat:@"%@.png", @"bg_menu"];
         SKSpriteNode * spriteBackNode = [SKSpriteNode spriteNodeWithImageNamed:mapName];
         spriteBackNode.position = CGPointMake(self.size.width/2.0f, self.size.height/2.0f);
         spriteBackNode.size = CGSizeMake(320.0f, 480.0f);
         [self addChild:spriteBackNode];
-        [self addPassChoose];
+        
+        // 添加按钮
+        for (int i = 0; i < 5; i++) {
+            
+            PPSpriteButton *  passButton = [PPSpriteButton  buttonWithImageNamed:@"bt_dungeon"];
+            [passButton setLabelWithText:[NSString stringWithFormat:@"关卡 %d", 5-i]
+                                 andFont:[UIFont systemFontOfSize:15] withColor:nil];
+            passButton.size = CGSizeMake(160, 40);
+            passButton.position = CGPointMake(160, i * 70 + 80);
+            passButton.name = [NSString stringWithFormat:@"%d",i+PP_SECONDARY_PASSNUM_BTN_TAG];
+            [passButton addTarget:self selector:@selector(menuDungeonGoForward:)
+                       withObject:passButton.name forControlEvent:PPButtonControlEventTouchUpInside];
+            [self addChild:passButton];
+            
+            PPSpriteButton * passIntroduceButton = [PPSpriteButton buttonWithImageNamed:@"bt_info"];
+            passIntroduceButton.position = CGPointMake(passButton.position.x + 60, passButton.position.y + 10);
+            passIntroduceButton.size = CGSizeMake(30, 30);
+            passIntroduceButton.name = [NSString stringWithFormat:@"副本%d介绍",5 - i];
+            [passIntroduceButton addTarget:self selector:@selector(introduceInfoLabel:)
+                                withObject:passIntroduceButton.name
+                           forControlEvent:PPButtonControlEventTouchUpInside];
+            [self addChild:passIntroduceButton];
+        }
         
         [self setBackTitleText:@"小场景" andPositionY:420.0f];
     }
@@ -61,32 +84,6 @@
         contentNode = nil;
     }
 }
-
-// 添加按钮
--(void)addPassChoose
-{
-    for (int i = 0; i < 5; i++) {
-        
-        PPSpriteButton *  passButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(90, 50)];
-        [passButton setLabelWithText:[NSString stringWithFormat:@"副本 %d",5-i] andFont:[UIFont systemFontOfSize:15] withColor:nil];
-        passButton.position = CGPointMake(160, i * 70 + 80);
-        passButton.name = [NSString stringWithFormat:@"%d",i+PP_SECONDARY_PASSNUM_BTN_TAG];
-        [passButton addTarget:self selector:@selector(menuDungeonGoForward:)
-                   withObject:passButton.name forControlEvent:PPButtonControlEventTouchUpInside];
-        [self addChild:passButton];
-        
-        PPSpriteButton * passIntroduceButton = [PPSpriteButton buttonWithColor:[UIColor redColor] andSize:CGSizeMake(30, 30)];
-        [passIntroduceButton setLabelWithText:[NSString stringWithFormat:@"%d信息",5 - i]
-                                      andFont:[UIFont systemFontOfSize:11] withColor:nil];
-        passIntroduceButton.position = CGPointMake(passButton.position.x + 60, passButton.position.y + 10);
-        passIntroduceButton.name = [NSString stringWithFormat:@"副本%d介绍",5 - i];
-        [passIntroduceButton addTarget:self selector:@selector(introduceInfoLabel:)
-                            withObject:passIntroduceButton.name
-                       forControlEvent:PPButtonControlEventTouchUpInside];
-        [self addChild:passIntroduceButton];
-    }
-}
-
 
 // 直接进入战斗场景
 -(void)menuDungeonGoForward:(NSString *)stringName
