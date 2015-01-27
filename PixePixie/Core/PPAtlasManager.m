@@ -141,17 +141,18 @@
     });
     return tAtlas;
 }
+
+/*
 +(SKTextureAtlas *)battle_table_skill_icon
 {
-    
     __strong static SKTextureAtlas * tAtlas = nil;
     static dispatch_once_t pred;
     dispatch_once(&pred, ^{
         tAtlas = [SKTextureAtlas atlasNamed:@"battle_table_skill_icon"];
     });
     return tAtlas;
-    
 }
+*/
 
 +(SKTextureAtlas *)battle_fight_effect
 {

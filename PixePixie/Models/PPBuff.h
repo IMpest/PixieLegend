@@ -1,24 +1,29 @@
 
 // buff名称
-static NSString * kBuffNameList[10] ={
+static NSString * kBuffNameList[10] =
+{
     @"none",
-    @"fire_burn",  //buffid  1为灼烧
-    @"plant_root", //buffid  2为缠绕
+    @"fire_burn",  // buffid  1为灼烧
+    @"plant_root", // buffid  2为缠绕
     @"stone"
 };
 
 // buff类型定义
-typedef NS_ENUM(NSInteger, PPBuffUniversalType){
+typedef NS_ENUM(NSInteger, PPBuffUniversalType)
+{
     PPBuffTypeAttackAddition = 0,              // 伤害加成
 };
 
 // buff作用归类定义
-typedef NS_ENUM(NSInteger, PPBuffFunction){
+typedef NS_ENUM(NSInteger, PPBuffFunction)
+{
     PPBuffFunctionBenefit = 0,              // 伤害加成
 };
 
-
 @interface PPBuff : NSObject
+
+@property (nonatomic, assign) BOOL isOverRole;   // 是否覆盖角色（涉及图层问题）
+@property (nonatomic, assign) BOOL isBallBuff;   // 是否是球上的Buff
 
 @property (nonatomic, retain) NSString * buffName;   // buff名称
 @property (nonatomic, retain) NSString * buffId;     // buff的id标识
@@ -26,9 +31,9 @@ typedef NS_ENUM(NSInteger, PPBuffFunction){
 
 @property (nonatomic, assign) int continueRound;     // 持续回合
 
-@property (nonatomic, assign) NSInteger cdRoundsAttAdd;  //伤害加成回合数
-@property (nonatomic, assign) NSInteger cdRoundsDefAdd;  //防御加成回合数
-@property (nonatomic, assign) CGFloat attackAddition;    //伤害加成
-@property (nonatomic, assign) CGFloat defenseAddition;   //防御加成
+@property (nonatomic, assign) NSInteger cdRoundsAttAdd;  // 伤害加成回合数
+@property (nonatomic, assign) NSInteger cdRoundsDefAdd;  // 防御加成回合数
+@property (nonatomic, assign) CGFloat attackAddition;    // 伤害加成
+@property (nonatomic, assign) CGFloat defenseAddition;   // 防御加成
 
 @end

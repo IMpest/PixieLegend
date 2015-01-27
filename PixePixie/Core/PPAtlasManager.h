@@ -50,7 +50,7 @@
 +(SKTextureAtlas *)battle_fight_effect;
 +(SKTextureAtlas *)battle_table_ball;
 +(SKTextureAtlas *)battle_table_skill;
-+(SKTextureAtlas *)battle_table_skill_icon;
+//+(SKTextureAtlas *)battle_table_skill_icon;
 
 +(SKTextureAtlas *)pixie_battle_action;
 

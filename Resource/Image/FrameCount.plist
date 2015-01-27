@@ -42,17 +42,19 @@
 	<integer>24</integer>
 	<key>fire_shield_cast</key>
 	<integer>27</integer>
-	<key>___battle_fight_effect____ </key>
+	<key>===battle_table_ball===</key>
 	<string></string>
-	<key>defend</key>
-	<integer>7</integer>
-	<key>heal</key>
-	<integer>13</integer>
-	<key>moving</key>
+	<key>ball_pixie_active</key>
+	<integer>14</integer>
+	<key>ball_pixie_choose</key>
 	<integer>4</integer>
-	<key>shield_break</key>
-	<integer>2</integer>
-	<key>____pixie_battle_action____</key>
+	<key>ball_pixie_hit</key>
+	<integer>6</integer>
+	<key>ball_pixie_start</key>
+	<integer>3</integer>
+	<key>ball_pixie_wall</key>
+	<integer>4</integer>
+	<key>===battle_fight_pixie===</key>
 	<string></string>
 	<key>metal3_beated</key>
 	<integer>4</integer>
@@ -94,19 +96,21 @@
 	<integer>4</integer>
 	<key>plant3_stop</key>
 	<integer>4</integer>
-	<key>___battle_table_ball____</key>
+	<key>===battle_fight_effect===</key>
 	<string></string>
-	<key>ball_pixie_active</key>
-	<integer>14</integer>
-	<key>ball_pixie_choose</key>
+	<key>defend</key>
+	<integer>7</integer>
+	<key>heal</key>
+	<integer>13</integer>
+	<key>moving</key>
 	<integer>4</integer>
-	<key>ball_pixie_hit</key>
-	<integer>6</integer>
-	<key>ball_pixie_start</key>
-	<integer>3</integer>
-	<key>ball_pixie_wall</key>
-	<integer>4</integer>
-	<key>_____battle_table_skill___</key>
+	<key>shield_break</key>
+	<integer>2</integer>
+	<key>===battle_fight_missile===</key>
+	<string></string>
+	<key>01_tornado</key>
+	<integer>10</integer>
+	<key>===battle_fight_skill===</key>
 	<string></string>
 	<key>01_devilrebirth</key>
 	<integer>8</integer>
@@ -114,7 +118,11 @@
 	<integer>10</integer>
 	<key>02_devilbreath_buff</key>
 	<integer>11</integer>
+	<key>03_rattantwine</key>
+	<integer>15</integer>
 	<key>04_nightjudge</key>
+	<integer>10</integer>
+	<key>04_nightjudge_hit</key>
 	<integer>6</integer>
 </dict>
 </plist>

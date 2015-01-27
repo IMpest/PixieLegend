@@ -922,19 +922,19 @@ double vector2angel(CGVector vector){
         
         NSDictionary * dictSkill = nil;
         if ([self.pixiePlayer.pixieSkills count] > i) {
-            dictSkill=[self.pixiePlayer.pixieSkills objectAtIndex:i];
+            dictSkill = [self.pixiePlayer.pixieSkills objectAtIndex:i];
         }
         
         NSString * stringSkillStatus = [dictSkill objectForKey:@"skillstatus"];
-        
         NSString * stringSkillBtn = [dictSkill objectForKey:@"skillbtntexture"];
-        PPSpriteButton * passButton = nil;
+        
+#warning 这里改了技能图标
+        PPSpriteButton *  passButton = [PPSpriteButton buttonWithImageNamed:stringSkillBtn];
+        passButton.size = CGSizeMake(50, 50);
+        passButton.zPosition = PPZ_TABLE_BUTTON;
         
         if (![stringSkillStatus isEqualToString:@"valid"]) {
             stringSkillBtn = [NSString stringWithFormat:@"%@_none",kElementTypeString[self.pixiePlayer.pixieElement]];
-            passButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager battle_table_skill_icon] textureNamed:stringSkillBtn]
-                                                   andSize:CGSizeMake(50.0f, 50.0f)];
-            //            [passButton setLabelWithText:@"不可用" andFont:[UIFont boldSystemFontOfSize:14.0f] withColor:[UIColor whiteColor]];
             
             passButton.userInteractionEnabled = YES;
             [passButton addTarget:self selector:@selector(skillInvalidBtnClick:)
@@ -942,8 +942,6 @@ double vector2angel(CGVector vector){
             
         } else {
             
-            passButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager battle_table_skill_icon] textureNamed:stringSkillBtn]
-                                                   andSize:CGSizeMake(50.0f, 50.0f)];
             [passButton addTarget:self selector:@selector(skillPlayerShowBegin:)
                        withObject:passButton forControlEvent:PPButtonControlEventTouchUp];
             
@@ -955,6 +953,7 @@ double vector2angel(CGVector vector){
             //            [cdLabel setText:[NSString stringWithFormat:@"%@",[dictSkill objectForKey:@"skillcdrounds"]]];
             //            [passButton addChild:cdLabel];
         }
+        
         passButton.color = [UIColor blackColor];
         passButton.colorBlendFactor = 0.0;
         passButton.userInteractionEnabled = YES;
@@ -980,9 +979,9 @@ double vector2angel(CGVector vector){
     [self addChild:petSkillBar];
     
     isShowingSkillBar = YES;
-    
     [self setPlayerSideRoundRunState];
 }
+
 -(void)removeSkillBar
 {
     if (petSkillBar) {
@@ -993,10 +992,10 @@ double vector2angel(CGVector vector){
     }
     isShowingSkillBar = NO;
 }
+
 // 结算combo添加元素球
 -(void)creatCombosTotal:(NSString *)stringSide
 {
-    
     //    if ([stringSide isEqualToString:PP_BALL_TYPE_PET_ELEMENT_NAME]) {
     //        [self addRandomBalls:petCombos
     //                 withElement:self.pixiePlayer.pixieBall.ballElementType
@@ -1012,7 +1011,6 @@ double vector2angel(CGVector vector){
     //    }
     //
     
-    
     /*
      NSLog(@"pet element=%ld combos=%d  enemy element=%ld combos=%d",
      self.pixiePlayer.pixieBall.ballElementType,
@@ -1020,8 +1018,6 @@ double vector2angel(CGVector vector){
      self.pixieEnemy.pixieBall.ballElementType,
      enemyCombos);
      */
-    
-    
     
     [self.playerAndEnemySide setComboLabelText:petCombos withEnemy:enemyCombos];
 }

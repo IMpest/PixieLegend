@@ -48,8 +48,10 @@
 
 #define PPZ_FIGHT               1000 // 上方战斗区基准
 #define PPZ_FIGHT_BG            1010 // 战斗区背景
-#define PPZ_FIGHT_BUFF          1019 // 战斗角色Buff
+#define PPZ_FIGHT_BUFF          1019 // 战斗角色Buff（底层）
 #define PPZ_FIGHT_ROLE          1020 // 战斗角色
+#define PPZ_FIGHT_BUFF2         1021 // 战斗角色Buff（表层）
+
 #define PPZ_FIGHT_EFFECT_DEF    1030 // 战斗角色防御特效
 #define PPZ_FIGHT_EFFECT_ATT    1031 // 战斗角色攻击特效
 #define PPZ_FIGHT_EFFECT        1032 // 战斗角色特效（比如技能）
@@ -57,10 +59,12 @@
 #define PPZ_TABLE               2000 // 下方弹珠台基准
 #define PPZ_TABLE_BG            2010 // 弹珠台背景
 #define PPZ_TABLE_BGWALL        2011 // 弹珠台外框
-#define PPZ_TABLE_BALL_BUFF     2018 // 弹珠附带的Buff
+#define PPZ_TABLE_BALL_BUFF     2018 // 弹珠附带的Buff(底层)
 #define PPZ_TABLE_BALL_ROLE     2019 // 弹珠里边的内容（人物或者连击内容）
 #define PPZ_TABLE_BALL          2020 // 弹珠外圈
-#define PPZ_TABLE_BALL_LIGHT    2021 // 弹珠飞奔的火焰
+#define PPZ_TABLE_BALL_BUFF2    2021 // 弹珠附带的Buff(表层)
+
+#define PPZ_TABLE_BALL_LIGHT    2022 // 弹珠飞奔的火焰
 #define PPZ_TABLE_EFFECT        2030 // 弹珠效果（撞击产生的火花）
 #define PPZ_TABLE_BUTTON        2040 // 技能按钮
 
