@@ -15,10 +15,10 @@ static NSString *monsterBtnTitle[]={
         self.backgroundColor = [UIColor cyanColor];
         [self setBackTitleText:@"Cooking" andPositionY:360.0f];
         
-        SKSpriteNode *contentSpriteNode = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(280, 200)];
+        SKSpriteNode * contentSpriteNode = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(280, 200)];
         contentSpriteNode.position = CGPointMake(160.0f, 220);
         contentSpriteNode.name = @"contentMonsterBox";
-        SKTexture *boxTexture=nil;
+        SKTexture * boxTexture = nil;
         switch (0) {
             case 0:
             {

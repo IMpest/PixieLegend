@@ -1,6 +1,5 @@
 
-
-static const int kWallThick = 15.0f;                // 墙的厚度
+static const int kWallThick = 15;                   // 墙的厚度
 static const int kBallNumberMax = 15;               // 球的最大数量
 static const int kBallSize = 40;                    // 默认球的直径
 static const int kBallSizePixie = 50;               // 宠物球的直径
@@ -16,11 +15,9 @@ static const float kBounceReduce = 0.4f;            // 弹出去的按距离比�
 static const float kVelocityAddition = 1.1f;        // 撞击加速系数
 static const float kStopThreshold = 5.0f;           // 球速度停止阈值
 static const float kBallAccelerateMin = 15.0f;      // 速度发光最小的阈值
-
 static const float kFrameInterval = 0.10f;          // FPS默认10
 
-static const int kHurtBasicValue = 200.0f;          // 物理攻击基础伤害值
-
+static const int kHurtBasicValue = 200;             // 物理攻击基础伤害值
 static const int kElementTypeMax = 10;              // 最大元素类型个数
 
 // 元素对应字符串
@@ -37,7 +34,6 @@ static  NSString * kElementTypeString[kElementTypeMax+1] = {
     @"blaze",
     @"stone"
 };
-
 
 // 元素类型定义
 typedef NS_ENUM(int, PPElementType)
@@ -57,7 +53,6 @@ typedef NS_ENUM(int, PPElementType)
     PPElementTypeStone        // 岩
 };
 
-
 // 属性相克数值策划表
 static const float kElementInhibition[kElementTypeMax + 1][kElementTypeMax + 1] = {
     {0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f},
@@ -72,18 +67,3 @@ static const float kElementInhibition[kElementTypeMax + 1][kElementTypeMax + 1] 
     {0.00f, 1.45f, 1.30f, 0.85f, 1.15f, 1.15f, 1.30f, 1.15f, 0.70f, 1.00f, 1.00f},
     {0.00f, 1.15f, 0.85f, 1.45f, 1.30f, 1.15f, 1.00f, 0.70f, 1.30f, 1.15f, 1.00f}
 };
-
-// 属性融合策划表
-//static const int kElementMix[kElementTypeMax + 1][kElementTypeMax + 1] = {
-//    {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-//    {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-//    {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-//    {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-//    {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-//    {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-//    {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-//    {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-//    {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-//    {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-//    {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
-//};

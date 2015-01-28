@@ -9,6 +9,8 @@ static NSString * monsterBtnTitle[] = {
 
 @implementation PPMonsterScene
 
+BOOL menuIsHidden;
+
 - (id)initWithSize:(CGSize)size
 {
     if (self = [super initWithSize:size]) {
@@ -51,11 +53,12 @@ static NSString * monsterBtnTitle[] = {
         [self addChild:worldBossButton];
         
         // 侧边菜单
+        menuIsHidden = YES;
+        
         PPSpriteButton * showMonsterBtn = [PPSpriteButton buttonWithImageNamed:@"bt_detail.png"];
         showMonsterBtn.name = @"pixieMenu";
         showMonsterBtn.size = CGSizeMake(25, 50);
         showMonsterBtn.position = CGPointMake(22,180);
-//        [showMonsterBtn setLabelWithText:@"show" andFont:[UIFont systemFontOfSize:15] withColor:[UIColor blackColor]];
         [showMonsterBtn addTarget:self selector:@selector(showMonsterBtnClick:)
                        withObject:showMonsterBtn forControlEvent:PPButtonControlEventTouchUpInside];
         [self addChild:showMonsterBtn];
@@ -72,15 +75,14 @@ static NSString * monsterBtnTitle[] = {
     [self hideShowbtns];
 }
 
+// 子菜单
 -(void)showMonsterBtnClick:(PPSpriteButton *)showBtn
 {
-    if ([showBtn.color isEqual:[UIColor orangeColor]]) {
-        showBtn.color = [UIColor blueColor];
-
+    if (menuIsHidden) {
         for (int i = 0; i < 3; i++) {
             PPSpriteButton * monsterButton = [PPSpriteButton buttonWithImageNamed:@"bt_menu.png"];
             monsterButton.position = CGPointMake(160,i * 100 + 80);
-            monsterButton.size = CGSizeMake(150, 30);
+            monsterButton.size = CGSizeMake(150, 60);
             monsterButton.name = [NSString stringWithFormat:@"%d",i];
             [monsterButton setLabelWithText:monsterBtnTitle[i]
                                     andFont:[UIFont systemFontOfSize:15] withColor:[UIColor blackColor]];
@@ -88,6 +90,7 @@ static NSString * monsterBtnTitle[] = {
                           withObject:monsterButton.name forControlEvent:PPButtonControlEventTouchUpInside];
             [self addChild:monsterButton];
         }
+        menuIsHidden = NO;
     } else {
         [self hideShowbtns];
     }
@@ -101,6 +104,7 @@ static NSString * monsterBtnTitle[] = {
         SKNode * monsterButton = [self childNodeWithName:[NSString stringWithFormat:@"%d",i]];
         [monsterButton removeFromParent];
     }
+    menuIsHidden = YES;
 }
 
 -(void)feedButtonClick:(NSString *)nameString

@@ -6,7 +6,6 @@
 - (id)initWithSize:(CGSize)size
 {
     if (self=[super initWithSize:size]) {
-//        self.backgroundColor = [UIColor grayColor];
         [self setBackTitleText:@"Talent Tree" andPositionY:360.0f];
         [self creatTreeWith:PPElementTypeFire];
     }

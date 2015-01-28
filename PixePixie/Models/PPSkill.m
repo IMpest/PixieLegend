@@ -15,7 +15,6 @@
 
 +(PPSkill *)skillWithId
 {
-    
     return nil;
 }
 

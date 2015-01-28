@@ -19,13 +19,13 @@ static const int kSkillCountTotal = 10;
 static NSString * kSkillName[kSkillCountTotal+1] =
 {
     @"NONE",
-    
+
     @"devilrebirth",
     @"devilbreath",
     @"rattantwine",
     @"nightjudge",
-    @"devilgrill",
     
+    @"devilgrill",
     @"devilskin",
     @"devilanger",
     @"devilextinction"
@@ -47,15 +47,15 @@ typedef NS_ENUM(int, PPPetSkillId)
 };
 
 // 技能类型定义
-typedef NS_ENUM(NSInteger, PPSkillUniversalType)
-{
-    PPSkillTypePhysicalAttack = 0,     // 物理攻击
-    PPSkillTypeBallAttack,             // 弹球攻击
-    PPSkillTypeSubtractBlood,          // 耗血技能
-    PPSkillTypeAppendBlood,            // 补血技能
-    PPSkillTypeSubtractDefense,        // 削减对方防御
-    PPSkillTypeAppendDefense,          // 增加本体防御
-};
+//typedef NS_ENUM(NSInteger, PPSkillUniversalType)
+//{
+//    PPSkillTypePhysicalAttack = 0,     // 物理攻击
+//    PPSkillTypeBallAttack,             // 弹球攻击
+//    PPSkillTypeSubtractBlood,          // 耗血技能
+//    PPSkillTypeAppendBlood,            // 补血技能
+//    PPSkillTypeSubtractDefense,        // 削减对方防御
+//    PPSkillTypeAppendDefense,          // 增加本体防御
+//};
 
 @interface PPSkill : NSObject
 
