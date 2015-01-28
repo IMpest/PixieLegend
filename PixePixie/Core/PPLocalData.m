@@ -73,7 +73,7 @@ static PPLocalData * localData = nil;
      nil];
     
     if ([dictPass writeToFile:[[self getPersonalSetTargetPath] stringByAppendingPathComponent:@"userinfo.plist"] atomically:YES]) {
-        NSLog(@"sucess!");
+        NSLog(@"success!");
     } else {
         NSLog(@"fail！");
     }

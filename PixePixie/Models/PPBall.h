@@ -137,6 +137,7 @@ static void * MyObjectMyCustomPorpertyKey1 = (void *) @"MyObjectMyCustomPorperty
  * @brief 元素球生成动画
  */
 -(void)startElementBirthAnimation;
+
 /**
  * @brief 元素球变身陷阱动画
 */

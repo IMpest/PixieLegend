@@ -43,7 +43,6 @@
 @interface PPAtlasManager : NSObject
 
 // ==== v2.0 ====
-+(SKTextureAtlas *)ball_action;
 +(SKTextureAtlas *)ball_buff;
 +(SKTextureAtlas *)ball_elements;
 +(SKTextureAtlas *)ball_magic;

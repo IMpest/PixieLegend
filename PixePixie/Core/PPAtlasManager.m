@@ -6,16 +6,6 @@
 
 #pragma mark demo v2.0
 
-+(SKTextureAtlas *)ball_action
-{
-    __strong static SKTextureAtlas * tAtlas = nil;
-    static dispatch_once_t pred;
-    dispatch_once(&pred, ^{
-        tAtlas = [SKTextureAtlas atlasNamed:@"pixie_action"];
-    });
-    return tAtlas;
-}
-
 +(SKTextureAtlas *)ball_buff
 {
     __strong static SKTextureAtlas * tAtlas = nil;
