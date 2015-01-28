@@ -1,23 +1,23 @@
 
-// buff名称
-static NSString * kBuffNameList[10] =
-{
-    @"none",
-    @"fire_burn",  // buffid  1为灼烧
-    @"plant_root", // buffid  2为缠绕
-    @"stone"
-};
+//buff名称
+//static NSString * kBuffNameList[10] =
+//{
+//    @"none",
+//    @"fire_burn",  // buffid  1为灼烧
+//    @"plant_root", // buffid  2为缠绕
+//    @"stone"
+//};
 
-// buff类型定义
-typedef NS_ENUM(NSInteger, PPBuffUniversalType)
-{
-    PPBuffTypeAttackAddition = 0,              // 伤害加成
-};
 
-// buff作用归类定义
-typedef NS_ENUM(NSInteger, PPBuffFunction)
+// 技能Buff标记常量组
+typedef NS_ENUM(int, PPPetSkillBuffFlag)
 {
-    PPBuffFunctionBenefit = 0,              // 伤害加成
+    kPPPetSkillNone = 0,
+    kPPPetSkillDevilRebirth,        // 恶魔重生
+    kPPPetSkillDevilBreath,         // 恶魔呼吸
+    kPPPetSkillRattanTwine,         // 魔藤缠绕
+    kPPPetSkillRattanTwineEffect,   // 魔藤缠绕被缠绕状态效果
+    kPPPetSkillNightJudge,          // 黑夜审判
 };
 
 @interface PPBuff : NSObject

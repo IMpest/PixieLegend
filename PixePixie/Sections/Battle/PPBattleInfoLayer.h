@@ -99,6 +99,7 @@
  
  */
 -(void)shakeHeadPortrait:(NSString *)stringSide andCompletion:(PPBallBattleScene *)sceneBattle;
+
 /**
  * @brief 增加buff显示
  * @param buffShow   buff信息
@@ -113,6 +114,7 @@
  
  */
 -(void)removeBuffShow:(PPBuff *)buffShow andSide:(NSString *)stringSide;
+
 /**
  * @brief 显示攻击动画
  * @param stringSide   战斗来源

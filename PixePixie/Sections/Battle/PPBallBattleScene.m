@@ -764,28 +764,25 @@ double vector2angel(CGVector vector){
     // 创建战斗场景并显示
     PPBallBattleScene * ballScene = [[PPBallBattleScene alloc] initWithSize:CurrentDeviceRealSize
                                                                 PixiePlayer:playerPixie
-                                                                 PixieEnemy:enemyPixie  andSceneType:currentElementType andIndex:currentEnemyIndex+1];
+                                                                 PixieEnemy:enemyPixie
+                                                               andSceneType:currentElementType
+                                                                   andIndex:currentEnemyIndex+1];
     ballScene.scaleMode = SKSceneScaleModeAspectFill;
-    //    ballScene.hurdleReady = self;
     ballScene.enmeysArray = self.enmeysArray;
     ballScene->previousScene = previousScene;
     [ballScene setEnemyAtIndex:currentEnemyIndex + 1];
     [self.view presentScene:ballScene transition:[SKTransition doorsOpenHorizontalWithDuration:1]];
     
-//    SKNode *node=[self childNodeWithName:PP_ENEMY_DEAD_CONTENT_NAME];
-//    if (node) {
-//        [node removeFromParent];
-//    }
+//    SKNode * node = [self childNodeWithName:PP_ENEMY_DEAD_CONTENT_NAME];
+//    if (node) [node removeFromParent];
 //    
-//    NSLog(@"count =%lu,current=%d",(unsigned long)[self.enmeysArray count],currentEnemyIndex);
+//    NSLog(@"count =%lu,current=%d", (unsigned long)[self.enmeysArray count], currentEnemyIndex);
 //    
 //    NSDictionary * enemyDicInfo = [self.enmeysArray objectAtIndex:currentEnemyIndex];
 //    PPPixie * enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
 //    self.pixieEnemy = enemyPixie;
 //    
-//    
 //    [self setEnemyAtIndex:currentEnemyIndex + 1];
-    
 }
 
 // 添加敌方单位各个元素
@@ -805,21 +802,18 @@ double vector2angel(CGVector vector){
     self.ballEnemy = self.pixieEnemy.pixieBall;
     self.ballEnemy.position = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y + PP_FIT_TOP_SIZE);
     self.ballEnemy->battleCurrentScene = self;
-    if (fabsf(self.ballEnemy.position.x)>=290) {
+    if (fabsf(self.ballEnemy.position.x) >= 290) {
         self.ballEnemy.position = CGPointMake(290.0f, self.ballPlayer.position.y);
     }
-    if (fabsf(self.ballEnemy.position.y)>380) {
+    if (fabsf(self.ballEnemy.position.y) > 380) {
         self.ballEnemy.position = CGPointMake(self.ballPlayer.position.x, 380);
-        
     }
     self.ballEnemy.physicsBody.categoryBitMask = EntityCategoryBall;
     self.ballEnemy.physicsBody.contactTestBitMask = EntityCategoryBall;
     [self addChild:self.ballEnemy];
     
-    
-    
     self.playerAndEnemySide = [[PPBattleInfoLayer alloc] init];
-    [self.playerAndEnemySide setColor:[UIColor purpleColor]];
+    self.playerAndEnemySide.color = [UIColor purpleColor];
     self.playerAndEnemySide.position = CGPointMake(CGRectGetMidX(self.frame), self.size.height-80-direct);
     self.playerAndEnemySide.name = PP_ENEMY_SIDE_NODE_NAME;
     self.playerAndEnemySide.size = CGSizeMake(self.size.width, 160.0f);
@@ -829,11 +823,9 @@ double vector2angel(CGVector vector){
     self.playerAndEnemySide.skillSelector = @selector(skillPlayerShowBegin:);
     self.playerAndEnemySide.pauseSelector = @selector(pauseBtnClick:);
     //    self.playerAndEnemySide.showInfoSelector = @selector(showCurrentEnemyInfo:);
-    [self.playerAndEnemySide setSideElements:self.pixiePlayer andEnemy:self.pixieEnemy andSceneString:sceneTypeString andIndex:currentEnemyIndex];
+    [self.playerAndEnemySide setSideElements:self.pixiePlayer andEnemy:self.pixieEnemy
+                              andSceneString:sceneTypeString andIndex:currentEnemyIndex];
     [self addChild:self.playerAndEnemySide];
-    
-    
-    
 }
 
 // 添加四周的墙
@@ -2128,9 +2120,10 @@ double vector2angel(CGVector vector){
         [self roundRotateMoved:PP_ENEMY_SIDE_NODE_NAME];
     } else {
         if (skillInfo.skillObject == 1) {
-            if ([skillInfo.skillName isEqualToString:@"狼焰斩"]) {
-                [self.playerAndEnemySide addBuffShow:[self getBuff:@"1"] andSide:PP_ENEMY_SIDE_NODE_NAME];
-            }
+#warning 去掉旧版的技能Buff
+//            if ([skillInfo.skillName isEqualToString:@"狼焰斩"]) {
+//                [self.playerAndEnemySide addBuffShow:[self getBuff:@"1"] andSide:PP_ENEMY_SIDE_NODE_NAME];
+//            }
             [self.playerAndEnemySide changeEnemyHPValue:skillInfo.HPChangeValue];
         } else {
             [self.playerAndEnemySide changePetHPValue:skillInfo.HPChangeValue];
@@ -2148,6 +2141,7 @@ double vector2angel(CGVector vector){
     //    ball = nil;
 }
 #pragma mark SKScene  delegate
+
 // 开始碰撞事件监测
 -(void)didBeginContact:(SKPhysicsContact *)contact
 {

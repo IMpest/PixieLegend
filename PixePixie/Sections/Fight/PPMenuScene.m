@@ -97,8 +97,6 @@
     NSDictionary * enemyDicInfo = [[pixiesInfo objectForKey:@"enemysinfo"] objectAtIndex:0];
     PPPixie * enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
     
-    
-    
     NSLog(@"petsChoosedInfo=%@,enemyDicInfo=%@",petsChoosedInfo,enemyDicInfo);
     
     //    PPPixie * playerPixie = [PPPixie birthPixieWithPetsInfo:petsChoosedInfo];
@@ -110,13 +108,12 @@
     PPBallBattleScene * ballScene = [[PPBallBattleScene alloc] initWithSize:CurrentDeviceRealSize
                                                                 PixiePlayer:playerPixie
                                                                  PixieEnemy:enemyPixie  andSceneType:currentElementType andIndex:0];
+//    ballScene.hurdleReady = self;
     ballScene.scaleMode = SKSceneScaleModeAspectFill;
-    //    ballScene.hurdleReady = self;
     ballScene.enmeysArray = [pixiesInfo objectForKey:@"enemysinfo"];
     ballScene->previousScene = self;
     [ballScene setEnemyAtIndex:0];
     [self.view presentScene:ballScene];
-//    [self enterHurdleReady];
 }
 
 

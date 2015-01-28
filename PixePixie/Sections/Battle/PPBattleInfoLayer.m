@@ -2,12 +2,6 @@
 #import "PPBattleInfoLayer.h"
 #import "PPAtlasManager.h"
 
-
-@interface PPBattleInfoLayer()
-{
-   
-}
-@end
 @implementation PPBattleInfoLayer
 
 @synthesize target = _target;
@@ -570,107 +564,94 @@
     return tNode;
 }
 
--(void)addBuffShow:(PPBuff *)buffShow andSide:(NSString *)stringSide
-{
-    
-    if ([stringSide isEqualToString:PP_PET_PLAYER_SIDE_NODE_NAME]) {
-        PPSpriteButton *buffBtnFirstEmpty=nil;
-        
-        for (int i=0; i<3; i++) {
-            PPSpriteButton *petBuffBtn=(PPSpriteButton *)[self childNodeWithName:[NSString stringWithFormat:@"%d",PP_BUFF_SHOW_BTN_TAG + i]];
-            if ([petBuffBtn.PPBallSkillStatus isEqualToString:buffShow.buffId]) {
-                return;
-            }else if([petBuffBtn.PPBallSkillStatus isEqualToString:@"0"])
-            {
-                
-                if (buffBtnFirstEmpty==nil) {
-                    buffBtnFirstEmpty = petBuffBtn;
-                    
-                }
-                break;
-            }else
-            {
-                continue;
-            }
-            
-        }
-        
-        [buffBtnFirstEmpty runAction:[SKAction setTexture:[[PPAtlasManager skill_buff] textureNamed:kBuffNameList[[buffShow.buffId intValue]]]]];
-        buffBtnFirstEmpty.PPBallSkillStatus = buffShow.buffId;
-        
-    }else
-    {
-        PPSpriteButton *buffBtnFirstEmpty=nil;
-        for (int i=0; i<3; i++) {
-            
-            PPSpriteButton *enemyBuffBtn=(PPSpriteButton *)[self childNodeWithName:[NSString stringWithFormat:@"%d",PP_BUFF_SHOW_BTN_TAG + i +10]];
-            if ([enemyBuffBtn.PPBallSkillStatus isEqualToString:buffShow.buffId]) {
-                return;
-            }else if([enemyBuffBtn.PPBallSkillStatus isEqualToString:@"0"])
-            {
-                
-                if (buffBtnFirstEmpty==nil) {
-                    buffBtnFirstEmpty = enemyBuffBtn;
-                }
-                break;
-            }else
-            {
-                continue;
-            }
-        }
-        
-        //        [buffBtnFirstEmpty addChild:[SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager skill_buff] textureNamed:kBuffNameList[[buffShow.buffId intValue]]]]];
-        
-        [buffBtnFirstEmpty runAction:[SKAction setTexture:[[PPAtlasManager skill_buff] textureNamed:kBuffNameList[[buffShow.buffId intValue]]]]];
-        buffBtnFirstEmpty.PPBallSkillStatus = buffShow.buffId;
-        
-    }
-    
-    
+-(void)addBuffShow:(PPBuff *)buffShow andSide:(NSString *)stringSide{
+//    if ([stringSide isEqualToString:PP_PET_PLAYER_SIDE_NODE_NAME]) {
+//        PPSpriteButton * buffBtnFirstEmpty = nil;
+//        for (int i = 0; i < 3; i++) {
+//            PPSpriteButton * petBuffBtn = (PPSpriteButton *)[self childNodeWithName:[NSString stringWithFormat:@"%d",PP_BUFF_SHOW_BTN_TAG + i]];
+//            if ([petBuffBtn.PPBallSkillStatus isEqualToString:buffShow.buffId]) {
+//                return;
+//            } else if([petBuffBtn.PPBallSkillStatus isEqualToString:@"0"]) {
+//                if (buffBtnFirstEmpty==nil) {
+//                    buffBtnFirstEmpty = petBuffBtn;
+//                }
+//                break;
+//            } else {
+//                continue;
+//            }
+//        }
+//        [buffBtnFirstEmpty runAction:[SKAction setTexture:[[PPAtlasManager skill_buff] textureNamed:kBuffNameList[[buffShow.buffId intValue]]]]];
+//        buffBtnFirstEmpty.PPBallSkillStatus = buffShow.buffId;
+//    } else {
+//        PPSpriteButton *buffBtnFirstEmpty=nil;
+//        for (int i = 0; i < 3; i++) {
+//            PPSpriteButton *enemyBuffBtn=(PPSpriteButton *)[self childNodeWithName:[NSString stringWithFormat:@"%d",PP_BUFF_SHOW_BTN_TAG + i +10]];
+//            if ([enemyBuffBtn.PPBallSkillStatus isEqualToString:buffShow.buffId]) {
+//                return;
+//            }else if([enemyBuffBtn.PPBallSkillStatus isEqualToString:@"0"])
+//            {
+//                
+//                if (buffBtnFirstEmpty==nil) {
+//                    buffBtnFirstEmpty = enemyBuffBtn;
+//                }
+//                break;
+//            }else
+//            {
+//                continue;
+//            }
+//        }
+//        
+//        //        [buffBtnFirstEmpty addChild:[SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager skill_buff] textureNamed:kBuffNameList[[buffShow.buffId intValue]]]]];
+//        
+//        [buffBtnFirstEmpty runAction:[SKAction setTexture:[[PPAtlasManager skill_buff] textureNamed:kBuffNameList[[buffShow.buffId intValue]]]]];
+//        buffBtnFirstEmpty.PPBallSkillStatus = buffShow.buffId;
+//        
+//    }
+//    
+//    
 }
 
--(void)removeBuffShow:(PPBuff *)buffShow andSide:(NSString *)stringSide
-{
-    
-    
-    if ([stringSide isEqualToString:PP_PET_PLAYER_SIDE_NODE_NAME]) {
-        PPSpriteButton *buffBtnFirstEmpty=nil;
-        
-        for (int i=0; i<3; i++) {
-            PPSpriteButton *petBuffBtn=(PPSpriteButton *)[self childNodeWithName:[NSString stringWithFormat:@"%d",PP_BUFF_SHOW_BTN_TAG + i]];
-            
-            SKTexture *defaultTexture=[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_buffbar%d",kElementTypeString[currentPPPixie.pixieElement],i+1]];
-            
-            if (defaultTexture) {
-                
-                [petBuffBtn runAction:[SKAction setTexture:defaultTexture]];
-                petBuffBtn.PPBallSkillStatus = @"0";
-            }
-        }
-        
-        [buffBtnFirstEmpty runAction:[SKAction setTexture:[[PPAtlasManager skill_buff] textureNamed:kBuffNameList[[buffShow.buffId intValue]]]]];
-        buffBtnFirstEmpty.PPBallSkillStatus = buffShow.buffId;
-        
-    }else
-    {
-        
-        for (int i=0; i<3; i++) {
-            
-            PPSpriteButton *enemyBuffBtn=(PPSpriteButton *)[self childNodeWithName:[NSString stringWithFormat:@"%d",PP_BUFF_SHOW_BTN_TAG + i +10]];
-            if ([enemyBuffBtn.PPBallSkillStatus isEqualToString:buffShow.buffId]) {
-                SKTexture *defaultTexture=[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_buffbar%d",kElementTypeString[currentPPPixieEnemy.pixieElement],i+1]];
-                
-                if (defaultTexture) {
-                    
-                    [enemyBuffBtn runAction:[SKAction setTexture:defaultTexture]];
-                    enemyBuffBtn.PPBallSkillStatus = @"0";
-                }
-                
-                
-                return;
-            }
-        }
-    }    
+-(void)removeBuffShow:(PPBuff *)buffShow andSide:(NSString *)stringSide{
+//
+//    
+//    if ([stringSide isEqualToString:PP_PET_PLAYER_SIDE_NODE_NAME]) {
+//        PPSpriteButton *buffBtnFirstEmpty=nil;
+//        
+//        for (int i=0; i<3; i++) {
+//            PPSpriteButton *petBuffBtn=(PPSpriteButton *)[self childNodeWithName:[NSString stringWithFormat:@"%d",PP_BUFF_SHOW_BTN_TAG + i]];
+//            
+//            SKTexture *defaultTexture=[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_buffbar%d",kElementTypeString[currentPPPixie.pixieElement],i+1]];
+//            
+//            if (defaultTexture) {
+//                
+//                [petBuffBtn runAction:[SKAction setTexture:defaultTexture]];
+//                petBuffBtn.PPBallSkillStatus = @"0";
+//            }
+//        }
+//        
+//        [buffBtnFirstEmpty runAction:[SKAction setTexture:[[PPAtlasManager skill_buff] textureNamed:kBuffNameList[[buffShow.buffId intValue]]]]];
+//        buffBtnFirstEmpty.PPBallSkillStatus = buffShow.buffId;
+//        
+//    }else
+//    {
+//        
+//        for (int i=0; i<3; i++) {
+//            
+//            PPSpriteButton *enemyBuffBtn=(PPSpriteButton *)[self childNodeWithName:[NSString stringWithFormat:@"%d",PP_BUFF_SHOW_BTN_TAG + i +10]];
+//            if ([enemyBuffBtn.PPBallSkillStatus isEqualToString:buffShow.buffId]) {
+//                SKTexture *defaultTexture=[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_buffbar%d",kElementTypeString[currentPPPixieEnemy.pixieElement],i+1]];
+//                
+//                if (defaultTexture) {
+//                    
+//                    [enemyBuffBtn runAction:[SKAction setTexture:defaultTexture]];
+//                    enemyBuffBtn.PPBallSkillStatus = @"0";
+//                }
+//                
+//                
+//                return;
+//            }
+//        }
+//    }    
 }
 
 -(void)startAttackAnimation:(BOOL)isPetAttack
