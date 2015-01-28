@@ -12,12 +12,12 @@
 // 技能Buff标记常量组
 typedef NS_ENUM(int, PPPetSkillBuffFlag)
 {
-    kPPPetSkillNone = 0,
-    kPPPetSkillDevilRebirth,        // 恶魔重生
-    kPPPetSkillDevilBreath,         // 恶魔呼吸
-    kPPPetSkillRattanTwine,         // 魔藤缠绕
-    kPPPetSkillRattanTwineEffect,   // 魔藤缠绕被缠绕状态效果
-    kPPPetSkillNightJudge,          // 黑夜审判
+    PPBuffTypeNone = 0,
+    PPBuffTypeDevilRebirth,        // 恶魔重生
+    PPBuffTypeDevilBreath,         // 恶魔呼吸
+    PPBuffTypeRattanTwine,         // 魔藤缠绕
+    PPBuffTypeRattanTwineEffect,   // 魔藤缠绕被缠绕状态效果
+    PPBuffTypeNightJudge,          // 黑夜审判
 };
 
 @interface PPBuff : NSObject

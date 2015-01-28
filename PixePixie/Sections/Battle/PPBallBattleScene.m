@@ -36,8 +36,8 @@ CGFloat vectorLength (CGVector vector) {
 };
 
 // 向量角度计算
-double vector2angel(CGVector vector){
-    double rotation = atan(vector.dy / vector.dx);
+CGFloat vector2angel(CGVector vector){
+    CGFloat rotation = atan(vector.dy / vector.dx);
     return vector.dx > 0 ? rotation : rotation + 3.1415926;
 }
 
@@ -89,7 +89,6 @@ double vector2angel(CGVector vector){
     if (self = [super initWithSize:size]) {
         
         // 处理参数
-        
         self.pixiePlayer = pixieA;
         self.ballPlayer = pixieA.pixieBall;
         self.pixieEnemy = pixieB;
@@ -100,7 +99,6 @@ double vector2angel(CGVector vector){
         isShowingSkillBar = NO;
         currentEnemyIndex = enemyIndex;
         
-        
         // 帧数间隔计数
         frameFlag = 0;
         
@@ -109,7 +107,6 @@ double vector2angel(CGVector vector){
         battleSkillInfo.petHitRecoverHP = 0;
         battleSkillInfo.rattanTwineState = 0;
         battleSkillInfo.nightJudgeValue = 0.0f;
-        
         
         self.battleBuffArray = [[NSMutableArray alloc] init];
         
@@ -163,8 +160,8 @@ double vector2angel(CGVector vector){
         CGFloat tHeight = 320.0f;
         [self addWalls:CGSizeMake(tWidth, kWallThick) atPosition:CGPointMake(tWidth / 2, tHeight + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
         [self addWalls:CGSizeMake(tWidth, kWallThick) atPosition:CGPointMake(tWidth / 2, 0 + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
-        [self addWalls:CGSizeMake(kWallThick,tWidth) atPosition:CGPointMake(0.0f, tHeight/2.0f + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
-        [self addWalls:CGSizeMake(kWallThick,tWidth) atPosition:CGPointMake(self.size.width, tHeight/2.0f + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
+        [self addWalls:CGSizeMake(kWallThick,tWidth) atPosition:CGPointMake(0, tHeight / 2 + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
+        [self addWalls:CGSizeMake(kWallThick,tWidth) atPosition:CGPointMake(self.size.width, tHeight / 2 + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
         
         [self initComboBalls];
         [self initPlayerBalls];
@@ -273,23 +270,19 @@ double vector2angel(CGVector vector){
         
     }
 }
+
 -(void)setComboBallSkillStatusOrigin
 {
-    
     [self enumerateChildNodesWithName:PP_BALL_TYPE_COMBO_NAME usingBlock:^(SKNode *node,BOOL * stop){
         
         node.PPBallSkillStatus = 0;
         //        [node removeAllChildren];
         
-        SKNode *nodeShowBuff=[node childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillRattanTwine]];
-        if (nodeShowBuff) {
-            [nodeShowBuff removeFromParent];
-        }
-        //
+        SKNode * nodeShowBuff = [node childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine]];
+        if (nodeShowBuff) [nodeShowBuff removeFromParent];
     }];
-    
-    
 }
+
 #pragma mark BallAnimation
 
 -(void)addBallMoveAnimation:(CGPoint)positionAni
@@ -297,22 +290,23 @@ double vector2angel(CGVector vector){
     SKSpriteNode * actionNode = [SKSpriteNode spriteNodeWithImageNamed:@"ball_pixie_start_0000"];
     actionNode.position = self.ballPlayer.position;
     [self addChild:actionNode];
-    SKAction * action1=[SKAction repeatAction:[[PPAtlasManager battle_table_ball] getAnimation:@"ball_pixie_start"] count:5];
-    SKAction * action2=[SKAction group:[NSArray arrayWithObjects:action1, [SKAction fadeAlphaTo:0 duration:2], nil]];
+    SKAction * action1 = [SKAction repeatAction:[[PPAtlasManager battle_table_ball] getAnimation:@"ball_pixie_start"] count:5];
+    SKAction * action2 = [SKAction group:[NSArray arrayWithObjects:action1, [SKAction fadeAlphaTo:0 duration:2], nil]];
     [actionNode runAction:action2 completion:^{
         [actionNode removeFromParent];
     }];
 }
+
 //更新技能CD回合
 -(void)changeSkillBtnCdRounds
 {
-    
-    for (int i=0; i<4; i++) {
+    for (int i = 0; i < 4; i++) {
         if(petSkillBar)
         {
-            PPSpriteButton *spriteBtn = (PPSpriteButton *)[petSkillBar childNodeWithName:[NSString stringWithFormat:@"%d",PP_SKILLS_CHOOSE_BTN_TAG+i]];
-        NSLog(@"PPBallPhysicsBodyStatus=%@",spriteBtn.PPBallPhysicsBodyStatus);
-        
+            PPSpriteButton * spriteBtn = (PPSpriteButton *)
+            [petSkillBar childNodeWithName:[NSString stringWithFormat:@"%d",PP_SKILLS_CHOOSE_BTN_TAG+i]];
+            NSLog(@"PPBallPhysicsBodyStatus=%@",spriteBtn.PPBallPhysicsBodyStatus);
+            
             if ([spriteBtn.PPBallPhysicsBodyStatus  isEqual: @1]) {
                 SKLabelNode *labelNode = (SKLabelNode *)[spriteBtn childNodeWithName:PP_SKILL_CD_LABEL_NODE_NAME];
                 spriteBtn.PPBallSkillStatus = [NSNumber numberWithInt:[spriteBtn.PPBallSkillStatus intValue] -1];
@@ -327,15 +321,17 @@ double vector2angel(CGVector vector){
                         
                     }
                 }
-               
+                
             }
             
             //恶魔重生
             battleSkillInfo.petHitRecoverHP = 0;
-            SKNode *node =[self.playerAndEnemySide->ppixiePetBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilRebirth]];
+            SKNode * node = [self.playerAndEnemySide->ppixiePetBtn childNodeWithName:[NSString stringWithFormat:
+                                                                                      @"%@%d",
+                                                                                      PP_BUFF_ANIMATION_NODE_NAME,
+                                                                                      PPBuffTypeDevilRebirth]];
             //            [node removeActionForKey:PP_BUFF_ANIMATION_ACTION_KEY];
             [node removeFromParent];
-            
         }
     }
 }
@@ -343,17 +339,12 @@ double vector2angel(CGVector vector){
 -(void)changeBallStatus:(NSString *)stringSide
 {
     if ([stringSide isEqualToString:PP_PET_PLAYER_SIDE_NODE_NAME]) {
-        
         self.ballEnemy.physicsBody.dynamic = NO;
         self.ballPlayer.physicsBody.dynamic = YES;
-        
-    }else
-    {
+    } else {
         self.ballPlayer.physicsBody.dynamic = NO;
         self.ballEnemy.physicsBody.dynamic = YES;
-        
     }
-    
 }
 
 #pragma mark Deal ball contact
@@ -366,30 +357,21 @@ double vector2angel(CGVector vector){
     if (contact.bodyA == pixieball.physicsBody) {
         elementBodyStatus = contact.bodyB.PPBallPhysicsBodyStatus;
         elementBallTmp = (PPBall *)contact.bodyB.node ;
-        
     } else {
-        
         elementBodyStatus = contact.bodyA.PPBallPhysicsBodyStatus;
         elementBallTmp = (PPBall *)contact.bodyA.node ;
-        
     }
     NSLog(@"elementBodyStatus=%@",elementBodyStatus);
     
-    
     if (self.ballPlayer == pixieball) {
-        
         [self.playerAndEnemySide changeEnemyHPValue:-50];
         [self.playerAndEnemySide startAttackShowAnimation:YES];
         [self.playerAndEnemySide changePetMPValue:200];
-        
     } else {
-        
         [self.playerAndEnemySide changePetHPValue:-100];
         [self.playerAndEnemySide startAttackShowAnimation:NO];
         [self.playerAndEnemySide changeEnemyMPValue:200];
-        
     }
-    
     return elementBodyStatus;
     
 }
@@ -1340,7 +1322,7 @@ double vector2angel(CGVector vector){
     NSLog(@"ppballskillStatus=%d",[self.ballEnemy.physicsBody.PPBallSkillStatus intValue]);
     
     switch ([self.ballEnemy.PPBallSkillStatus intValue]) {
-        case kPPPetSkillRattanTwineEffect:
+        case PPBuffTypeRattanTwineEffect:
         {
             [self roundRotateMoved:PP_ENEMY_SIDE_NODE_NAME];
         }
@@ -1647,28 +1629,28 @@ double vector2angel(CGVector vector){
         
         
         switch ([[skillInfo objectForKey:@"skillid"] intValue]) {
-            case kPPPetSkillDevilRebirth:
+            case PPBuffTypeDevilRebirth:
             {
                 battleSkillInfo.petHitRecoverHP = 10;
-                [self addBuffAnimation:kPPPetSkillDevilRebirth];
+                [self addBuffAnimation:PPBuffTypeDevilRebirth];
             }
                 break;
-            case kPPPetSkillDevilBreath:
+            case PPBuffTypeDevilBreath:
             {
-                [self addBuffAnimation:kPPPetSkillDevilBreath];
-                [self addSkillBuff:kPPPetSkillDevilBreath skillInfo:skillInfo];
+                [self addBuffAnimation:PPBuffTypeDevilBreath];
+                [self addSkillBuff:PPBuffTypeDevilBreath skillInfo:skillInfo];
             }
                 break;
-            case kPPPetSkillRattanTwine:
+            case PPBuffTypeRattanTwine:
             {
-                [self addBuffAnimation:kPPPetSkillRattanTwine];
-                [self addSkillBuff:kPPPetSkillRattanTwine skillInfo:skillInfo];
+                [self addBuffAnimation:PPBuffTypeRattanTwine];
+                [self addSkillBuff:PPBuffTypeRattanTwine skillInfo:skillInfo];
             }
                 break;
-            case kPPPetSkillNightJudge:
+            case PPBuffTypeNightJudge:
             {
-                [self addBuffAnimation:kPPPetSkillNightJudge];
-                [self addSkillBuff:kPPPetSkillNightJudge skillInfo:skillInfo];
+                [self addBuffAnimation:PPBuffTypeNightJudge];
+                [self addSkillBuff:PPBuffTypeNightJudge skillInfo:skillInfo];
             }
                 break;
                 
@@ -1769,7 +1751,7 @@ double vector2angel(CGVector vector){
 {
     
     switch (skillID) {
-        case kPPPetSkillDevilRebirth:
+        case PPBuffTypeDevilRebirth:
         {
             
 //            SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"01_devilrebirth.png"]];
@@ -1778,12 +1760,12 @@ double vector2angel(CGVector vector){
 //            //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
 //            [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
 //            
-//            buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilRebirth];
+//            buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeDevilRebirth];
             
            SKSpriteNode * buffShowNode = [PPAtlasManager createSpriteImageName:nil
                                                                        withPos:CGPointMake(0.0f, 0.0f)
                                                                       withSize:CGSizeMake(115.0f, 107.0f)
-                                                                      withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilRebirth]];
+                                                                      withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeDevilRebirth]];
             [self.playerAndEnemySide->ppixiePetBtn addChild:buffShowNode];
             
 //            SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_fight_skill] getAnimation:@"01_devilrebirth"] count:0];
@@ -1792,7 +1774,7 @@ double vector2angel(CGVector vector){
             [buffShowNode runAction:actionRep];
         }
             break;
-        case kPPPetSkillDevilBreath:
+        case PPBuffTypeDevilBreath:
         {
             
             //            SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"02_devilbreath.png"]];
@@ -1802,12 +1784,12 @@ double vector2angel(CGVector vector){
 //            //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
 //            [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
 //            
-            //            buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilBreath];
+            //            buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeDevilBreath];
             
             SKSpriteNode * buffShowNode = [PPAtlasManager createSpriteImageName:nil
                                                                         withPos:CGPointMake(0.0f, 0.0f)
                                                                        withSize:CGSizeMake(115.0f, 107.0f)
-                                                                       withName:[NSString stringWithFormat:@"%@%d", PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilBreath]];
+                                                                       withName:[NSString stringWithFormat:@"%@%d", PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeDevilBreath]];
             [self.playerAndEnemySide->ppixieEnemyBtn addChild:buffShowNode];
             SKAction *actionRep = [SKAction repeatActionForever:[[PPAtlasManager battle_fight_skill] getAnimation:@"02_devilbreath"]];
             
@@ -1831,7 +1813,7 @@ double vector2angel(CGVector vector){
             
         }
             break;
-        case kPPPetSkillRattanTwine:
+        case PPBuffTypeRattanTwine:
         {
             
             [self changeBallStatus:PP_PET_PLAYER_SIDE_NODE_NAME];
@@ -1859,7 +1841,7 @@ double vector2angel(CGVector vector){
             //            buffShowNode.size = CGSizeMake(115.0f, 107.0f);
             //            //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
             //            [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
-            //            buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilBreath];
+            //            buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeDevilBreath];
             //
             //
             //
@@ -1887,10 +1869,10 @@ double vector2angel(CGVector vector){
             
         }
             break;
-            case kPPPetSkillNightJudge:
+            case PPBuffTypeNightJudge:
         {
         
-            SKSpriteNode *buffShowNode = [PPAtlasManager createSpriteImageName:nil withPos:CGPointMake(0.0f, 30.0f) withSize:CGSizeMake(300.0f, 50.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillNightJudge]];
+            SKSpriteNode *buffShowNode = [PPAtlasManager createSpriteImageName:nil withPos:CGPointMake(0.0f, 30.0f) withSize:CGSizeMake(300.0f, 50.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeNightJudge]];
             [self.playerAndEnemySide->ppixiePetBtn addChild:buffShowNode];
             SKAction *actionRep = [SKAction repeatActionForever:[[PPAtlasManager battle_fight_skill] getAnimation:@"04_nightjudge"]];
             
@@ -1916,34 +1898,34 @@ double vector2angel(CGVector vector){
         }
             break;
             
-        case kPPPetSkillDevilBreath:
+        case PPBuffTypeDevilBreath:
         {
             battleSkillInfo.enemyPoisoningHP = 50;
             PPBuff *buffId1 = [[PPBuff alloc] init];
             buffId1.continueRound = [[skillInfo objectForKey:@"skillcontinue"] intValue];
-            buffId1.buffId =[NSString stringWithFormat:@"%d",kPPPetSkillDevilBreath];
+            buffId1.buffId =[NSString stringWithFormat:@"%d",PPBuffTypeDevilBreath];
             [self.battleBuffArray addObject:buffId1];
         }
             break;
             
-        case kPPPetSkillRattanTwine:
+        case PPBuffTypeRattanTwine:
         {
             battleSkillInfo.enemyPoisoningHP = 50;
             PPBuff * buffId1 = [[PPBuff alloc] init];
             buffId1.continueRound = [[skillInfo objectForKey:@"skillcontinue"] intValue];
             NSLog(@"buff.continueRound=%d skill=%@",buffId1.continueRound,skillInfo);
-            buffId1.buffId =[NSString stringWithFormat:@"%d",kPPPetSkillRattanTwine];
+            buffId1.buffId =[NSString stringWithFormat:@"%d",PPBuffTypeRattanTwine];
             [self.battleBuffArray addObject:buffId1];
         }
             break;
-            case kPPPetSkillNightJudge:
+            case PPBuffTypeNightJudge:
         {
             
             battleSkillInfo.nightJudgeValue = 1.5;
             PPBuff * buffId1 = [[PPBuff alloc] init];
             buffId1.continueRound = [[skillInfo objectForKey:@"skillcontinue"] intValue];
             NSLog(@"buff.continueRound=%d skill=%@",buffId1.continueRound,skillInfo);
-            buffId1.buffId =[NSString stringWithFormat:@"%d",kPPPetSkillNightJudge];
+            buffId1.buffId =[NSString stringWithFormat:@"%d",PPBuffTypeNightJudge];
             [self.battleBuffArray addObject:buffId1];
             
         }
@@ -1964,11 +1946,11 @@ double vector2angel(CGVector vector){
         } else {
             [self.playerAndEnemySide startAttackShowAnimation:YES];
             
-            SKNode * buffshowNode = [self.playerAndEnemySide->ppixieEnemyBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilBreath]];
+            SKNode * buffshowNode = [self.playerAndEnemySide->ppixieEnemyBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeDevilBreath]];
             
             [buffshowNode runAction:[[PPAtlasManager battle_fight_skill] getAnimation:@"02_devilbreath_buff"] completion:^{
                 [buffshowNode removeFromParent];
-                [self addBuffAnimation:kPPPetSkillDevilBreath];
+                [self addBuffAnimation:PPBuffTypeDevilBreath];
             }];
             
             [self.playerAndEnemySide changeEnemyHPValue:battleSkillInfo.enemyPoisoningHP];
@@ -1979,15 +1961,15 @@ double vector2angel(CGVector vector){
 -(void)removeBuff:(PPBuff *)buff
 {
     switch ([buff.buffId intValue]) {
-        case kPPPetSkillDevilBreath:
+        case PPBuffTypeDevilBreath:
         {
             
-            [[self.playerAndEnemySide->ppixieEnemyBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillDevilBreath]] removeFromParent];
+            [[self.playerAndEnemySide->ppixieEnemyBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeDevilBreath]] removeFromParent];
             battleSkillInfo.enemyPoisoningHP = 0;
             
         }
             break;
-        case kPPPetSkillRattanTwine:
+        case PPBuffTypeRattanTwine:
         {
             
             [self setComboBallSkillStatusOrigin];
@@ -1995,11 +1977,11 @@ double vector2angel(CGVector vector){
             
         }
             break;
-        case kPPPetSkillRattanTwineEffect:
+        case PPBuffTypeRattanTwineEffect:
         {
             
             self.ballEnemy.PPBallSkillStatus = 0;
-            SKNode *nodeBuff = [self.ballEnemy childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillRattanTwine]];
+            SKNode *nodeBuff = [self.ballEnemy childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine]];
             if (nodeBuff) {
                 [nodeBuff removeFromParent];
             }
@@ -2007,11 +1989,11 @@ double vector2angel(CGVector vector){
             
         }
             break;
-            case kPPPetSkillNightJudge:
+            case PPBuffTypeNightJudge:
         {
             
             battleSkillInfo.nightJudgeValue = 0.0f;
-            [[self.playerAndEnemySide->ppixiePetBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillNightJudge]] removeFromParent];
+            [[self.playerAndEnemySide->ppixiePetBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeNightJudge]] removeFromParent];
             
         }
             break;
@@ -2232,7 +2214,7 @@ double vector2angel(CGVector vector){
                 
                 
                 
-                SKSpriteNode *buffShowNode = [PPAtlasManager createSpriteImageName:nil withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillNightJudge]];
+                SKSpriteNode *buffShowNode = [PPAtlasManager createSpriteImageName:nil withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeNightJudge]];
                 [self.playerAndEnemySide->ppixiePetBtn addChild:buffShowNode];
                 //                SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_fight_skill] getAnimation:@"02_devilbreath"] count:1:];
                 SKAction *windEffect = [[PPAtlasManager battle_fight_skill] getAnimation:@"04_nightjudge_hit"];
@@ -2282,7 +2264,7 @@ double vector2angel(CGVector vector){
             
             if (battleSkillInfo.rattanTwineState == 1) {
                 
-                SKNode * node = [ballCombo childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillRattanTwine]];
+                SKNode * node = [ballCombo childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine]];
                 if (node) {
                     [node removeFromParent];
                 }
@@ -2295,8 +2277,8 @@ double vector2angel(CGVector vector){
                 //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
                 [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
                 
-                buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillRattanTwine];
-                ballCombo.PPBallSkillStatus =[NSNumber numberWithInt:kPPPetSkillRattanTwine];
+                buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine];
+                ballCombo.PPBallSkillStatus =[NSNumber numberWithInt:PPBuffTypeRattanTwine];
                 [ballCombo addChild:buffShowNode];
                 
                 [buffShowNode runAction:actionRepForever completion:^{
@@ -2311,7 +2293,7 @@ double vector2angel(CGVector vector){
                 buffRatShowNode.size = CGSizeMake(50.0f, 50.0f);
                 //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
                 [buffRatShowNode setPosition:CGPointMake(-25.0f, 0.0f)];
-                buffRatShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillRattanTwine];
+                buffRatShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine];
                 
                 
                 [self.playerAndEnemySide->ppixiePetBtn addChild:buffRatShowNode];
@@ -2374,7 +2356,7 @@ double vector2angel(CGVector vector){
                 ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
 //                [ballCombo startComboAnimation:CGVectorMake(self.ballEnemy.position.x-ballCombo.position.x,self.ballEnemy.position.y-ballCombo.position.y)];
             }
-            if ([ballCombo.PPBallSkillStatus intValue] == kPPPetSkillRattanTwine) {
+            if ([ballCombo.PPBallSkillStatus intValue] == PPBuffTypeRattanTwine) {
                 
                 [self changeBallStatus:PP_PET_PLAYER_SIDE_NODE_NAME];
                 SKAction *actionRep = [[PPAtlasManager ball_buff] getAnimation:@"plant_root_appear"];
@@ -2385,10 +2367,10 @@ double vector2angel(CGVector vector){
 //                //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
 //                [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
 //                
-//                buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillRattanTwine];
-               SKSpriteNode *buffShowNode= [PPAtlasManager createSpriteImageName:@"plant_root_appear_0012" withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,kPPPetSkillRattanTwine]];
+//                buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine];
+               SKSpriteNode *buffShowNode= [PPAtlasManager createSpriteImageName:@"plant_root_appear_0012" withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine]];
                 
-                ballCombo.PPBallSkillStatus =[NSNumber numberWithInt:kPPPetSkillRattanTwine];
+                ballCombo.PPBallSkillStatus =[NSNumber numberWithInt:PPBuffTypeRattanTwine];
                 [self.ballEnemy addChild:buffShowNode];
                 
                 [buffShowNode runAction:actionRep completion:^{
@@ -2399,10 +2381,10 @@ double vector2angel(CGVector vector){
                 
                 PPBuff *buffId1 = [[PPBuff alloc] init];
                 buffId1.continueRound = 2;
-                buffId1.buffId =[NSString stringWithFormat:@"%d",kPPPetSkillRattanTwineEffect];
+                buffId1.buffId =[NSString stringWithFormat:@"%d",PPBuffTypeRattanTwineEffect];
                 [self.battleBuffArray addObject:buffId1];
                 
-                self.ballEnemy.PPBallSkillStatus = [NSNumber numberWithInt:kPPPetSkillRattanTwineEffect];
+                self.ballEnemy.PPBallSkillStatus = [NSNumber numberWithInt:PPBuffTypeRattanTwineEffect];
                 
                 [self setComboBallSkillStatusOrigin];
                 
