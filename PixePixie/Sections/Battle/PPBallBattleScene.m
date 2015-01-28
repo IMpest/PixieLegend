@@ -1617,14 +1617,14 @@ CGFloat vector2angel(CGVector vector){
         SKLabelNode * labelNode = (SKLabelNode *)[self childNodeWithName:@"mpisnotenough"];
         if (labelNode) [labelNode removeFromParent];
         
-        SKLabelNode * additonLabel = [[SKLabelNode alloc] init];
-        additonLabel.name  = @"mpisnotenough";
-        additonLabel.fontColor = [UIColor redColor];
-        additonLabel.position = CGPointMake(160.0f, 200.0f);
-        [self addChild:additonLabel];
-        
-        
-        [additonLabel setText:[NSString stringWithFormat:@"%@已释放",[skillInfo objectForKey:@"skillname"]]];
+//        SKLabelNode * additonLabel = [[SKLabelNode alloc] init];
+//        additonLabel.name  = @"mpisnotenough";
+//        additonLabel.fontColor = [UIColor redColor];
+//        additonLabel.position = CGPointMake(160.0f, 200.0f);
+//        [self addChild:additonLabel];
+//        
+//        
+//        [additonLabel setText:[NSString stringWithFormat:@"%@已释放",[skillInfo objectForKey:@"skillname"]]];
         [self removeSkillBar];
         
         
@@ -1659,12 +1659,13 @@ CGFloat vector2angel(CGVector vector){
         }
         
         SKAction * actionScale = [SKAction scaleBy:2.0 duration:1];
-        [additonLabel runAction:actionScale completion:^{
-            [additonLabel removeFromParent];
-            isNotSkillShowTime = NO;
-            [self setPlayerSideRoundEndState];
-        }];
-        
+//        [additonLabel runAction:actionScale completion:^{
+//            [additonLabel removeFromParent];
+//            isNotSkillShowTime = NO;
+//            [self setPlayerSideRoundEndState];
+//        }];
+        isNotSkillShowTime = NO;
+        [self setPlayerSideRoundEndState];
         skillButton.color = [UIColor blackColor];
         skillButton.colorBlendFactor = 0.6;
         skillButton.userInteractionEnabled = NO;
@@ -1693,6 +1694,7 @@ CGFloat vector2angel(CGVector vector){
             isNotSkillRun = NO;
             
             if ([[skillInfo objectForKey:@"skillname"] isEqualToString:@"森林瞬起"]) {
+                
                 
                 //                NSMutableArray *animanArryay = [[NSMutableArray alloc] init];
                 //
@@ -2175,7 +2177,7 @@ CGFloat vector2angel(CGVector vector){
                 
                 SKSpriteNode *nodeSkillBuffer=[SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"01_devilrebirth.png"]];
                 nodeSkillBuffer.position = contact.contactPoint;
-                nodeSkillBuffer.size = CGSizeMake(nodeSkillBuffer.size.width/2.0f, nodeSkillBuffer.size.height/2.0f);
+                nodeSkillBuffer.size = CGSizeMake(nodeSkillBuffer.size.width/4.0f, nodeSkillBuffer.size.height/4.0f);
                 [self addChild:nodeSkillBuffer];
                 
                 
@@ -2200,7 +2202,7 @@ CGFloat vector2angel(CGVector vector){
                 
                 SKSpriteNode *nodeSkillBuffer=[SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"02_devilbreath.png"]];
                 nodeSkillBuffer.position = contact.contactPoint;
-                nodeSkillBuffer.size = CGSizeMake(50.0f, 50.0f);
+                nodeSkillBuffer.size = CGSizeMake(25.0f, 25.0f);
                 [self addChild:nodeSkillBuffer];
                 
                 

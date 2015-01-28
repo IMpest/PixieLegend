@@ -681,7 +681,7 @@
 					<key>skillcdrounds</key>
 					<integer>4</integer>
 					<key>skillcontinue</key>
-					<integer>2</integer>
+					<integer>1</integer>
 				</dict>
 				<dict>
 					<key>skillid</key>
