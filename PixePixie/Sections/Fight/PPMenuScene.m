@@ -20,17 +20,17 @@
         for (int i = 0; i < 5; i++) {
             
             PPSpriteButton *  passButton = [PPSpriteButton  buttonWithImageNamed:@"bt_dungeon"];
-            [passButton setLabelWithText:[NSString stringWithFormat:@"关卡 %d", 5-i]
-                                 andFont:[UIFont systemFontOfSize:15] withColor:nil];
-            passButton.size = CGSizeMake(160, 40);
+            [passButton setLabelWithText:[NSString stringWithFormat:@"关卡 %d", 5 - i]
+                                 andFont:[UIFont systemFontOfSize:15] withColor:[UIColor blackColor]];
+            passButton.size = CGSizeMake(120, 40);
             passButton.position = CGPointMake(160, i * 70 + 80);
             passButton.name = [NSString stringWithFormat:@"%d",i+PP_SECONDARY_PASSNUM_BTN_TAG];
             [passButton addTarget:self selector:@selector(menuDungeonGoForward:)
                        withObject:passButton.name forControlEvent:PPButtonControlEventTouchUpInside];
             [self addChild:passButton];
             
-            PPSpriteButton * passIntroduceButton = [PPSpriteButton buttonWithImageNamed:@"bt_info"];
-            passIntroduceButton.position = CGPointMake(passButton.position.x + 60, passButton.position.y + 10);
+            PPSpriteButton * passIntroduceButton = [PPSpriteButton buttonWithImageNamed:@"bt_preview"];
+            passIntroduceButton.position = CGPointMake(passButton.position.x + 60, passButton.position.y + 20);
             passIntroduceButton.size = CGSizeMake(30, 30);
             passIntroduceButton.name = [NSString stringWithFormat:@"副本%d介绍",5 - i];
             [passIntroduceButton addTarget:self selector:@selector(introduceInfoLabel:)
@@ -39,7 +39,7 @@
             [self addChild:passIntroduceButton];
         }
         
-        [self setBackTitleText:@"小场景" andPositionY:420.0f];
+        [self setBackTitleText:@"小场景" andPositionY:420];
     }
     return self;
 }

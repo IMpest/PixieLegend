@@ -42,36 +42,30 @@
 
 @interface PPAtlasManager : NSObject
 
-+(SKSpriteNode *)createSpriteImageName:(NSString *)imageName withPos:(CGPoint)pos withSize:(CGSize)size withName:(NSString *)nodeName;
-
-
-+(SKTextureAtlas *)battle_field_ball;
-+(SKTextureAtlas *)battle_field_ui;
-+(SKTextureAtlas *)battle_fight_effect;
-+(SKTextureAtlas *)battle_table_ball;
-+(SKTextureAtlas *)battle_table_skill;
-//+(SKTextureAtlas *)battle_table_skill_icon;
-
-+(SKTextureAtlas *)pixie_battle_action;
-
-/////////////////////////////////////////
-+(SKTextureAtlas *)pixie_battle_effect;
-+(SKTextureAtlas *)pixie_battle_skill;
-+(SKTextureAtlas *)pixie_fight_ui;
-
+// ==== v2.0 ====
++(SKTextureAtlas *)ball_action;
 +(SKTextureAtlas *)ball_buff;
 +(SKTextureAtlas *)ball_elements;
 +(SKTextureAtlas *)ball_magic;
 +(SKTextureAtlas *)ball_table;
-+(SKTextureAtlas *)ball_action;
-
-+(SKTextureAtlas *)pixie_info;
-
 +(SKTextureAtlas *)skill_buff;
 +(SKTextureAtlas *)skill_icon;
-
 +(SKTextureAtlas *)ui_fighting;
 +(SKTextureAtlas *)ui_number;
 +(SKTextureAtlas *)ui_talent;
++(SKTextureAtlas *)pixie_info;
++(SKTextureAtlas *)pixie_battle_effect;
++(SKTextureAtlas *)pixie_battle_skill;
+
+// ==== v3.0 ====
++(SKTextureAtlas *)battle_fight_missile;
++(SKTextureAtlas *)battle_fight_effect;
++(SKTextureAtlas *)battle_fight_skill;
++(SKTextureAtlas *)battle_table_ball;
++(SKTextureAtlas *)pixie_battle_action;
+
+// ==== custom ====
++(SKSpriteNode *)createSpriteImageName:(NSString *)imageName withPos:(CGPoint)pos
+                              withSize:(CGSize)size withName:(NSString *)nodeName;
 
 @end

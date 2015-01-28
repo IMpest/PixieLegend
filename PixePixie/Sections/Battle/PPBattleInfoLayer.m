@@ -133,22 +133,16 @@
     isHaveDead = NO;
     
     // 添加上方背景图片
-//    SKSpriteNode * bgSprite = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_back",sceneString]]];
-    
-    
-    SKSpriteNode * bgSprite = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager pixie_fight_ui] textureNamed:[NSString stringWithFormat:@"%@",@"fight_back"]]];
+    SKSpriteNode * bgSprite = [SKSpriteNode spriteNodeWithImageNamed:@"fight_back"];
     bgSprite.size = CGSizeMake(320.0f, 160.0f);
     bgSprite.position = CGPointMake(0.0f,0.0f);
     [self addChild:bgSprite];
-
     
     // 己方头像
     ppixiePetBtn = [[SKSpriteNode alloc] init];
     ppixiePetBtn.size = CGSizeMake(50.0f, 50.0f);
     [ppixiePetBtn setPosition: CGPointMake(originX, 20.0f)];
     [self addChild:ppixiePetBtn];
-    
-    
     
     [ppixiePetBtn runAction:[SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_stop",kElementTypeString[petppixie.pixieElement]]]]];
     NSLog(@"plantname=%@",[NSString stringWithFormat:@"%@3_stop",kElementTypeString[enemyppixie.pixieElement]]);

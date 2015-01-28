@@ -25,7 +25,7 @@
     
     
     
-    SKTexture *comboBallBack = [[PPAtlasManager battle_field_ball] textureNamed:@"ball_all"];
+    SKTexture *comboBallBack = [[PPAtlasManager battle_table_ball] textureNamed:@"ball_all"];
     SKSpriteNode *nodeBack=[SKSpriteNode spriteNodeWithTexture:comboBallBack];
     nodeBack.zPosition = PPZ_FIGHT;
     nodeBack.size = CGSizeMake(50.0f, 50.0f);
@@ -72,7 +72,7 @@
     PPBall * tBall = [PPBall spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(50.0f, 50.0f)];
 
     
-    SKTexture *comboBallBack = [[PPAtlasManager battle_field_ball] textureNamed:@"ball_all"];
+    SKTexture *comboBallBack = [[PPAtlasManager battle_table_ball] textureNamed:@"ball_all"];
     SKSpriteNode *nodeBack=[SKSpriteNode spriteNodeWithTexture:comboBallBack];
     nodeBack.size = CGSizeMake(50.0f, 50.0f);
     [tBall addChild:nodeBack];
@@ -141,7 +141,7 @@
     SKTexture * tTexture = [SKTexture textureWithImageNamed:imageName];
     PPBall * tBall = [PPBall spriteNodeWithTexture:tTexture];
     
-    SKTexture *comboBallBack = [[PPAtlasManager battle_field_ball] textureNamed:@"ball_all"];
+    SKTexture *comboBallBack = [[PPAtlasManager battle_table_ball] textureNamed:@"ball_all"];
     SKSpriteNode *nodeBack=[SKSpriteNode spriteNodeWithTexture:comboBallBack];
     nodeBack.size = CGSizeMake(50.0f, 50.0f);
     [tBall addChild:nodeBack];
@@ -346,7 +346,7 @@
     [self.comboBallSprite setPosition:CGPointMake(vectorValue.dx/2.0f, vectorValue.dy/2.0f)];
     [self addChild:self.comboBallSprite];
     
-    [self.comboBallSprite runAction:[[PPAtlasManager battle_field_ball] getAnimation:@"ball_pixie_hit"]
+    [self.comboBallSprite runAction:[[PPAtlasManager battle_table_ball] getAnimation:@"ball_pixie_hit"]
                          completion:^{[self.comboBallSprite removeFromParent];}];
 }
 
@@ -509,7 +509,7 @@
     
 //    [self insertChild:spriteNodeActive atIndex:0];
     
-    SKAction *activieAct = [SKAction repeatActionForever:[[PPAtlasManager battle_field_ball] getAnimation:@"ball_pixie_active"]];
+    SKAction *activieAct = [SKAction repeatActionForever:[[PPAtlasManager battle_table_ball] getAnimation:@"ball_pixie_active"]];
     
     [spriteNodeActive runAction:activieAct];
     
