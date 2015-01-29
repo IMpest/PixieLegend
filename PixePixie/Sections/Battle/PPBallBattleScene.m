@@ -288,7 +288,7 @@ CGFloat vector2angel(CGVector vector){
 -(void)addBallMoveAnimation:(CGPoint)positionAni
 {
     SKSpriteNode * actionNode = [SKSpriteNode spriteNodeWithImageNamed:@"ball_pixie_start_0000"];
-    actionNode.position = self.ballPlayer.position;
+    actionNode.position = positionAni;
     [self addChild:actionNode];
     SKAction * action1 = [SKAction repeatAction:[[PPAtlasManager battle_table_ball] getAnimation:@"ball_pixie_start"] count:5];
     SKAction * action2 = [SKAction group:[NSArray arrayWithObjects:action1, [SKAction fadeAlphaTo:0 duration:2], nil]];
@@ -888,6 +888,7 @@ CGFloat vector2angel(CGVector vector){
     
     if (petSkillBar) {
         petSkillBar.zPosition = 1;
+        petSkillBar.position = CGPointMake(self.size.width/2.0f, self.ballPlayer.position.y+50);
         petSkillBar.hidden = NO;
         for (int i=0; i<4; i++) {
             NSDictionary * dictSkill = nil;
@@ -1943,19 +1944,33 @@ CGFloat vector2angel(CGVector vector){
         buff.continueRound--;
         NSLog(@"continueRound =%d",buff.continueRound);
         
-        if (buff.continueRound <= 0) {
+        if (buff.continueRound < 0) {
             [self removeBuff:buff];
         } else {
-            [self.playerAndEnemySide startAttackShowAnimation:YES];
             
-            SKNode * buffshowNode = [self.playerAndEnemySide->ppixieEnemyBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeDevilBreath]];
-            
-            [buffshowNode runAction:[[PPAtlasManager battle_fight_skill] getAnimation:@"02_devilbreath_buff"] completion:^{
-                [buffshowNode removeFromParent];
-                [self addBuffAnimation:PPBuffTypeDevilBreath];
-            }];
-            
-            [self.playerAndEnemySide changeEnemyHPValue:battleSkillInfo.enemyPoisoningHP];
+            NSLog(@"buff id =%@",buff.buffId);
+            switch ([buff.buffId intValue]) {
+                case PPBuffTypeRattanTwine:
+                {
+                    
+                    [self.playerAndEnemySide startAttackShowAnimation:YES];
+                    
+                    SKNode * buffshowNode = [self.playerAndEnemySide->ppixieEnemyBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeDevilBreath]];
+                    
+                    [buffshowNode runAction:[[PPAtlasManager battle_fight_skill] getAnimation:@"02_devilbreath_buff"] completion:^{
+                        [buffshowNode removeFromParent];
+                        [self addBuffAnimation:PPBuffTypeDevilBreath];
+                    }];
+                    
+                    [self.playerAndEnemySide changeEnemyHPValue:-battleSkillInfo.enemyPoisoningHP];
+                
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+           
         }
     }
 }

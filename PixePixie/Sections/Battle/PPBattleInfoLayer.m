@@ -105,24 +105,25 @@
 -(void)setSideElements:(PPPixie *)petppixie andEnemy:(PPPixie *)enemyppixie andSceneString:(NSString *)sceneString andIndex:(int)index
 {
     
-    switch (index) {
-        case 0:
-            originX = -65.0f;
-            break;
-        case 1:
-            originX = -35.0f;
-            break;
-        case 2:
-            originX = 0.0f;
-            break;
-        case 3:
-            originX = 35.0f;
-            break;
-            
-        default:
-            break;
-    }
-    
+//    switch (index) {
+//        case 0:
+//            originX = -65.0f;
+//            break;
+//        case 1:
+//            originX = -35.0f;
+//            break;
+//        case 2:
+//            originX = 0.0f;
+//            break;
+//        case 3:
+//            originX = 35.0f;
+//            break;
+//            
+//        default:
+//            break;
+//    }
+    originX = -65.0f;
+
     
     self.currentPPPixie = petppixie;
     self.currentPPPixieEnemy = enemyppixie;
