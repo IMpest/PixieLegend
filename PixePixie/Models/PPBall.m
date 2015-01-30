@@ -23,10 +23,8 @@
 //    PPBall * tBall = [PPBall spriteNodeWithTexture:[SKTexture textureWithImageNamed:imageName]];
     PPBall * tBall = [PPBall spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(50.0f, 50.0f)];
     
-    
-    
-    SKTexture *comboBallBack = [[PPAtlasManager battle_table_ball] textureNamed:@"ball_all"];
-    SKSpriteNode *nodeBack=[SKSpriteNode spriteNodeWithTexture:comboBallBack];
+    SKTexture * comboBallBack = [[PPAtlasManager battle_table_ball] textureNamed:@"ball_all"];
+    SKSpriteNode * nodeBack = [SKSpriteNode spriteNodeWithTexture:comboBallBack];
     nodeBack.zPosition = PPZ_FIGHT;
     nodeBack.size = CGSizeMake(50.0f, 50.0f);
 //    [tBall insertChild:nodeBack atIndex:0];
@@ -46,7 +44,6 @@
     [tBall addChild:showSpriteNode];
 //    [tBall insertChild:showSpriteNode atIndex:1];
     
-    
     [showSpriteNode runAction:[SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_stop",kElementTypeString[pixie.pixieElement]]]]];
     
     if (tBall){
@@ -56,9 +53,7 @@
         [PPBall defaultBallPhysicsBody:tBall];
         tBall.pixie = pixie;
     }
-    
     return tBall;
-    
 }
 
 // 创建敌人宠物的球
@@ -178,7 +173,7 @@
 -(void)addBuffWithName:(NSString *)buffName andRoundNum:(int)continueRound
 {
     
-    PPBuff *buff=[[PPBuff alloc] init];
+    PPBuff * buff = [[PPBuff alloc] init];
     buff.buffName = buffName;
     buff.continueRound = continueRound;
     buff.buffId = @"2";

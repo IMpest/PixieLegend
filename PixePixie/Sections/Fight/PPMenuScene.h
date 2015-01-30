@@ -4,7 +4,7 @@
 {
     PPElementType currentElementType;
     @public
-    PPFightingMainView * preiviousView; //战斗主View
+    PPFightingMainView * preiviousView; // 战斗主View
 }
 @property (nonatomic, retain) NSDictionary * passDictInfo;
 

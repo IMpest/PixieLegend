@@ -3,9 +3,6 @@
 
 @implementation PPRootViewController
 
-//int menuAnimationTag;
-//UIButton * backToMain;
-
 PPPlayerNameView * skViewName;
 PPChoosePetView * skViewPixie;
 UIView * userInfoBar;
@@ -127,11 +124,11 @@ NSString * userInfo[] =
     [userInfoBar setBackgroundColor:[UIColor clearColor]];
     
     CGRect barPos[5] = {
-        CGRectMake(30, 2, 80, 18),
-        CGRectMake(140, 2, 80, 18),
-        CGRectMake(30, 23, 80, 18),
+        CGRectMake(30,  2,  80, 18),
+        CGRectMake(140, 2,  80, 18),
+        CGRectMake(30,  23, 80, 18),
         CGRectMake(140, 23, 80, 18),
-        CGRectMake(245, 2, 50, 40)
+        CGRectMake(245, 2,  50, 40)
     };
     
     UIImageView * imgvBgTop = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_bar_top.png"]];
@@ -250,53 +247,5 @@ NSString * userInfo[] =
     }
     [monsterMainView hideMonstorShowBtns];
 }
-
-//-(void)menuUpAnimation
-//{
-//    [self performSelector:@selector(upMenuBtn) withObject:nil];
-//}
-//
-//-(void)menuDownAnimation
-//{
-//    [self performSelector:@selector(downMenuBtn) withObject:nil];
-//}
-//
-//-(void)upMenuBtn
-//{
-//    [UIView animateWithDuration:0.05
-//                     animations:
-//     ^{
-//        UIButton *buttonTmp=(UIButton *)[skViewMain viewWithTag:PP_MENU_BUTON_TAG+menuAnimationTag];
-//        NSLog(@"height=%f",skViewMain.frame.size.height);
-//        [buttonTmp setFrame:CGRectMake(buttonTmp.frame.origin.x,2, buttonTmp.frame.size.width, buttonTmp.frame.size.height)];
-//     }
-//                     completion:
-//     ^(BOOL finished) {
-//        menuAnimationTag++;
-//        if (menuAnimationTag < PP_MENU_COUNT) {
-//            [self performSelector:@selector(menuUpAnimation) withObject:nil];
-//            return ;
-//        }
-//        menuAnimationTag = 0;
-//     }];
-//}
-//
-//-(void)downMenuBtn
-//{
-//    [UIView animateWithDuration:0.05 animations:^{
-//        
-//        UIButton * buttonTmp = (UIButton *)[skViewMain viewWithTag:PP_MENU_BUTON_TAG + menuAnimationTag];
-//        [buttonTmp setFrame:CGRectMake(buttonTmp.frame.origin.x, buttonTmp.frame.size.height,
-//                                       buttonTmp.frame.size.width, buttonTmp.frame.size.height)];
-//
-//    } completion:^(BOOL finished){
-//        menuAnimationTag++;
-//        if (menuAnimationTag < PP_MENU_COUNT) {
-//            [self performSelector:@selector(menuDownAnimation) withObject:nil];
-//            return ;
-//        }
-//        menuAnimationTag = 0;
-//    }];
-//}
 
 @end

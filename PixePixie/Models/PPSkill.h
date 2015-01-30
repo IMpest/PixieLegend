@@ -13,7 +13,7 @@ static NSString * kSkillEnglishName[kElementTypeMax+1][kSkillCountMax+1] =
 };
 
 // 总共技能数
-static const int kSkillCountTotal = 10;
+static const int kSkillCountTotal = 8;
 
 // 技能名（与图片名对应）
 static NSString * kSkillName[kSkillCountTotal+1] =
@@ -55,8 +55,9 @@ static NSString * kSkillName[kSkillCountTotal+1] =
 @property (nonatomic, assign) int skillCD;      // 技能固有CD
 @property (nonatomic, assign) int currentCD;    // 技能当前剩余CD
 
--(NSString *)getSkillPicName;
-+(PPSkill *)skillWithId;
-+(PPSkill *)skillWithName;
+-(NSString *)getSkillImageName;
+
++(PPSkill *)skillWithName:(NSString *)skillName AndLevel:(int)skillLevel;
++(PPSkill *)skillWithId:(int)skillID AndLevel:(int)skillLevel;
 
 @end

@@ -28,94 +28,28 @@
 			<key>skill</key>
 			<array>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>156</integer>
-					<key>skillmpchange</key>
-					<integer>-109</integer>
-					<key>skilltype</key>
-					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>0</integer>
-					<key>skillname</key>
-					<string>发芽</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
+					<key>id</key>
+					<integer>1</integer>
+					<key>level</key>
+					<integer>2</integer>
 				</dict>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-178</integer>
-					<key>skillmpchange</key>
-					<integer>-139</integer>
-					<key>skilltype</key>
+					<key>id</key>
+					<integer>2</integer>
+					<key>level</key>
 					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木防加成</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
 				</dict>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-244</integer>
-					<key>skillmpchange</key>
-					<integer>-123</integer>
-					<key>skilltype</key>
-					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木系掌控</string>
-					<key>skillcdrounds</key>
+					<key>id</key>
 					<integer>3</integer>
+					<key>level</key>
+					<integer>0</integer>
 				</dict>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-244</integer>
-					<key>skillmpchange</key>
-					<integer>-123</integer>
-					<key>skilltype</key>
+					<key>id</key>
+					<integer>4</integer>
+					<key>level</key>
 					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木系掌控</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
-				</dict>
-				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-244</integer>
-					<key>skillmpchange</key>
-					<integer>-123</integer>
-					<key>skilltype</key>
-					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木系掌控</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
 				</dict>
 			</array>
 		</dict>
@@ -143,94 +77,28 @@
 			<key>skill</key>
 			<array>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>156</integer>
-					<key>skillmpchange</key>
-					<integer>-109</integer>
-					<key>skilltype</key>
-					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>0</integer>
-					<key>skillname</key>
-					<string>发芽</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
+					<key>id</key>
+					<integer>1</integer>
+					<key>level</key>
+					<integer>2</integer>
 				</dict>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-178</integer>
-					<key>skillmpchange</key>
-					<integer>-139</integer>
-					<key>skilltype</key>
+					<key>id</key>
+					<integer>2</integer>
+					<key>level</key>
 					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木防加成</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
 				</dict>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-244</integer>
-					<key>skillmpchange</key>
-					<integer>-123</integer>
-					<key>skilltype</key>
-					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木系掌控</string>
-					<key>skillcdrounds</key>
+					<key>id</key>
 					<integer>3</integer>
+					<key>level</key>
+					<integer>0</integer>
 				</dict>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-244</integer>
-					<key>skillmpchange</key>
-					<integer>-123</integer>
-					<key>skilltype</key>
+					<key>id</key>
+					<integer>4</integer>
+					<key>level</key>
 					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木系掌控</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
-				</dict>
-				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-244</integer>
-					<key>skillmpchange</key>
-					<integer>-123</integer>
-					<key>skilltype</key>
-					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木系掌控</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
 				</dict>
 			</array>
 		</dict>
@@ -258,94 +126,28 @@
 			<key>skill</key>
 			<array>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>156</integer>
-					<key>skillmpchange</key>
-					<integer>-109</integer>
-					<key>skilltype</key>
-					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>0</integer>
-					<key>skillname</key>
-					<string>发芽</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
+					<key>id</key>
+					<integer>1</integer>
+					<key>level</key>
+					<integer>2</integer>
 				</dict>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-178</integer>
-					<key>skillmpchange</key>
-					<integer>-139</integer>
-					<key>skilltype</key>
+					<key>id</key>
+					<integer>2</integer>
+					<key>level</key>
 					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木防加成</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
 				</dict>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-244</integer>
-					<key>skillmpchange</key>
-					<integer>-123</integer>
-					<key>skilltype</key>
-					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木系掌控</string>
-					<key>skillcdrounds</key>
+					<key>id</key>
 					<integer>3</integer>
+					<key>level</key>
+					<integer>0</integer>
 				</dict>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-244</integer>
-					<key>skillmpchange</key>
-					<integer>-123</integer>
-					<key>skilltype</key>
+					<key>id</key>
+					<integer>4</integer>
+					<key>level</key>
 					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木系掌控</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
-				</dict>
-				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-244</integer>
-					<key>skillmpchange</key>
-					<integer>-123</integer>
-					<key>skilltype</key>
-					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木系掌控</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
 				</dict>
 			</array>
 		</dict>
@@ -373,94 +175,28 @@
 			<key>skill</key>
 			<array>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>156</integer>
-					<key>skillmpchange</key>
-					<integer>-109</integer>
-					<key>skilltype</key>
-					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>0</integer>
-					<key>skillname</key>
-					<string>发芽</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
+					<key>id</key>
+					<integer>1</integer>
+					<key>level</key>
+					<integer>2</integer>
 				</dict>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-178</integer>
-					<key>skillmpchange</key>
-					<integer>-139</integer>
-					<key>skilltype</key>
+					<key>id</key>
+					<integer>2</integer>
+					<key>level</key>
 					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木防加成</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
 				</dict>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-244</integer>
-					<key>skillmpchange</key>
-					<integer>-123</integer>
-					<key>skilltype</key>
-					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木系掌控</string>
-					<key>skillcdrounds</key>
+					<key>id</key>
 					<integer>3</integer>
+					<key>level</key>
+					<integer>0</integer>
 				</dict>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-244</integer>
-					<key>skillmpchange</key>
-					<integer>-123</integer>
-					<key>skilltype</key>
+					<key>id</key>
+					<integer>4</integer>
+					<key>level</key>
 					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木系掌控</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
-				</dict>
-				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-244</integer>
-					<key>skillmpchange</key>
-					<integer>-123</integer>
-					<key>skilltype</key>
-					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木系掌控</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
 				</dict>
 			</array>
 		</dict>
@@ -488,94 +224,28 @@
 			<key>skill</key>
 			<array>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>156</integer>
-					<key>skillmpchange</key>
-					<integer>-109</integer>
-					<key>skilltype</key>
-					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>0</integer>
-					<key>skillname</key>
-					<string>发芽</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
+					<key>id</key>
+					<integer>1</integer>
+					<key>level</key>
+					<integer>2</integer>
 				</dict>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-178</integer>
-					<key>skillmpchange</key>
-					<integer>-139</integer>
-					<key>skilltype</key>
+					<key>id</key>
+					<integer>2</integer>
+					<key>level</key>
 					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木防加成</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
 				</dict>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-244</integer>
-					<key>skillmpchange</key>
-					<integer>-123</integer>
-					<key>skilltype</key>
-					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木系掌控</string>
-					<key>skillcdrounds</key>
+					<key>id</key>
 					<integer>3</integer>
+					<key>level</key>
+					<integer>0</integer>
 				</dict>
 				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-244</integer>
-					<key>skillmpchange</key>
-					<integer>-123</integer>
-					<key>skilltype</key>
+					<key>id</key>
+					<integer>4</integer>
+					<key>level</key>
 					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木系掌控</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
-				</dict>
-				<dict>
-					<key>animateTexturename</key>
-					<string>imagename</string>
-					<key>animatetexturecount</key>
-					<integer>20</integer>
-					<key>skillhpchange</key>
-					<integer>-244</integer>
-					<key>skillmpchange</key>
-					<integer>-123</integer>
-					<key>skilltype</key>
-					<integer>0</integer>
-					<key>skillobject</key>
-					<integer>1</integer>
-					<key>skillname</key>
-					<string>木系掌控</string>
-					<key>skillcdrounds</key>
-					<integer>3</integer>
 				</dict>
 			</array>
 		</dict>

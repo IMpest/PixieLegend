@@ -474,15 +474,12 @@ CGFloat vector2angel(CGVector vector){
 //返回按钮
 -(void)backButtonClick:(NSString *)backName
 {
-    
     [self.view presentScene:previousScene transition:[SKTransition doorsOpenVerticalWithDuration:1]];
-    
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        [(PPFightingMainView *)self.view changeToPassScene];
         [[NSNotificationCenter defaultCenter] postNotificationName:PP_BACK_TO_MAIN_VIEW object:PP_BACK_TO_MAIN_VIEW_FIGHTING];
     }
 }
@@ -492,8 +489,6 @@ CGFloat vector2angel(CGVector vector){
 //暂停游戏按钮点击事件
 -(void)pauseBtnClick:(NSString *)stringName
 {
-    
-    
     self.paused = YES;
     
     PPCustomAlertNode *alertNode = [[PPCustomAlertNode alloc] initWithFrame:CGRectMake(self.size.width / 2,
@@ -502,7 +497,7 @@ CGFloat vector2angel(CGVector vector){
     alertNode->target = self;
     alertNode->btnClickSel = @selector(pauseMenuBtnClick:);
     [alertNode setColor:[UIColor yellowColor]];
-    alertNode.zPosition = 10;
+    alertNode.zPosition = PPZ_ALERT;
     [alertNode showPauseMenuAlertWithTitle:@"游戏暂停" andMessage:nil];
     [self addChild:alertNode];
 }
@@ -1174,7 +1169,7 @@ CGFloat vector2angel(CGVector vector){
     }
 }
 
-//改变元素球持续回合数
+// 改变元素球持续回合数
 -(void)changeBallsRoundsEnd
 {
     
@@ -1210,7 +1205,7 @@ CGFloat vector2angel(CGVector vector){
     [self changeBuffRound];
 }
 
-//设置元素球标记值
+// 设置元素球标记值
 -(void)setPhysicsTagValue
 {
     
@@ -1226,7 +1221,7 @@ CGFloat vector2angel(CGVector vector){
     return buffTmp;
 }
 
-//获取图片拼接node
+// 获取数字图片拼接node
 -(SKSpriteNode *)getNumber:(int)number AndColor:(NSString *)color {
     
     NSLog(@"color=%@ number=%d",color,number);
@@ -1260,7 +1255,7 @@ CGFloat vector2angel(CGVector vector){
 
 #pragma mark Rounds and Turns
 
-//回合开始
+// 回合开始
 -(void)roundRotateBegin
 {
     roundActionNum = 0;
@@ -1271,29 +1266,23 @@ CGFloat vector2angel(CGVector vector){
     
 }
 
-//回合推进
+// 回合推进
 -(void)roundRotateMoved:(NSString *)nodeName
 {
     [self setPlayerSideRoundRunState];
     
     roundActionNum += 1;
     
-    //如果回合的一半
+    // 如果回合的一半
     if(roundActionNum==1)
     {
         if ([nodeName isEqualToString:PP_PET_PLAYER_SIDE_NODE_NAME]) {
-            
             [self enemyAttackDecision];
-        }else
-        {
-            
+        } else {
             [self setPlayerSideRoundEndState];
             [self creatCombosTotal:PP_BALL_TYPE_PET_ELEMENT_NAME];
-            
-            
         }
-    }else
-    {
+    } else {
         [self roundRotateEnd];
     }
 }
@@ -1307,7 +1296,6 @@ CGFloat vector2angel(CGVector vector){
     [self changeSkillBtnCdRounds];
     
     [self performSelectorOnMainThread:@selector(roundRotateBegin) withObject:nil afterDelay:3];
-    
 }
 
 #pragma mark Battle Procceed
@@ -1315,7 +1303,6 @@ CGFloat vector2angel(CGVector vector){
 //敌方攻击方式AI
 -(void)enemyAttackDecision
 {
-    
     int decision = 0;
 //    int decision = arc4random() % 2;
     [self setPlayerSideRoundRunState];
@@ -1340,10 +1327,9 @@ CGFloat vector2angel(CGVector vector){
     }
 }
 
-//进行敌方攻击
+// 进行敌方攻击
 -(void)executeEnemyRoundAction:(NSNumber *)decision
 {
-    
     switch ([decision intValue]) {
         case 0:
         {
@@ -1360,14 +1346,12 @@ CGFloat vector2angel(CGVector vector){
         {
         }
     }
-    
 }
-//敌方弹球攻击
+
+// 敌方弹球攻击
 -(void)enemyDoPhysicsAttack
 {
-    
     [self changeBallStatus:PP_ENEMY_SIDE_NODE_NAME];
-    
     
     currentPhysicsAttack = 2;
     float randomX = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
@@ -1378,34 +1362,30 @@ CGFloat vector2angel(CGVector vector){
     [self.ballEnemy startPixieAccelerateAnimation:CGVectorMake(randomX, randomY) andType:@"step"];
     [self setPlayerSideRoundRunState];
     _isBallRolling = YES;
-    
-    
-    
 }
 
-//增加连击数显示
+// 增加连击数显示
 -(void)addComboValueChangeCombos:(int)value position:(CGPoint)labelPosition
 {
     SKSpriteNode *contentSprite= [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(30, 30)];
     contentSprite.position = labelPosition;
     
     SKSpriteNode *xSpriteNode=[SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_number] textureNamed:@"orange_x"]];
-    xSpriteNode.position = CGPointMake(-7.5, 0.0f);
-    xSpriteNode.size = CGSizeMake(14.0f, 13.0f);
+    xSpriteNode.position = CGPointMake(-7.5, 0.0);
+    xSpriteNode.size = CGSizeMake(14.0, 13.0);
     
     [contentSprite addChild:xSpriteNode];
     
     SKSpriteNode *labelCombos=[self getNumber:value AndColor:@"orange"];
-    labelCombos.position=CGPointMake(7.5, 0.0f);
-    labelCombos.size = CGSizeMake(14.0f, 13.0f);
+    labelCombos.position=CGPointMake(7.5, 0.0);
+    labelCombos.size = CGSizeMake(14.0, 13.0);
     [contentSprite addChild:labelCombos];
     
     [self addChild:contentSprite];
     
-    
-    SKAction *actionScale = [SKAction scaleBy:1.5 duration:0.2];
-    SKAction *actionFade = [SKAction fadeAlphaTo:0.0f duration:0.3];
-    SKAction *showAction = [SKAction sequence:[NSArray arrayWithObjects:actionScale, actionFade, nil]];
+    SKAction * actionScale = [SKAction scaleBy:1.5 duration:0.2];
+    SKAction * actionFade = [SKAction fadeAlphaTo:0.0 duration:0.3];
+    SKAction * showAction = [SKAction sequence:[NSArray arrayWithObjects:actionScale, actionFade, nil]];
     
     [contentSprite runAction:showAction completion:^{
         [contentSprite removeFromParent];
@@ -1415,7 +1395,6 @@ CGFloat vector2angel(CGVector vector){
 //增加血量变化显示
 -(void)addValueChangeLabel:(int)value position:(CGPoint)labelPosition andColor:(NSString *)string
 {
-    
     //    SKLabelNode *additonLabel= [[SKLabelNode alloc] init];
     SKSpriteNode * additonLabel = [self getNumber:value AndColor:string];
     additonLabel.name  = @"hpchange";
@@ -1514,28 +1493,24 @@ CGFloat vector2angel(CGVector vector){
 {
     isNotSkillRun = YES;
     [self.ballPlayer closeActiveStatus];
-    
     //    [self.playerSkillSide setSideSkillButtonDisable];
 }
 
-//回合结束状态 玩家可进行操作
+// 回合结束状态 玩家可进行操作
 -(void)setPlayerSideRoundEndState
 {
     isNotSkillRun = NO;
     [self.ballPlayer startActiveStatus];
-    
     //    [self.playerSkillSide setSideSkillButtonEnable];
 }
 
-//物理攻击开始提示
+// 物理攻击开始提示
 -(void)physicsAttackBegin:(NSString *)nodeName
 {
-    NSLog(@"nodeName=%@",nodeName);
+    NSLog(@"nodeName=%@", nodeName);
     
     if ([nodeName isEqual:PP_PET_PLAYER_SIDE_NODE_NAME]) {
-        
     } else {
-        
         SKLabelNode * labelNode = (SKLabelNode *)[self childNodeWithName:@"EnemyPhysics"];
         if (labelNode) [labelNode removeFromParent];
         
@@ -1553,7 +1528,7 @@ CGFloat vector2angel(CGVector vector){
     }
 }
 
-//物理攻击技术（暂废弃）
+// 物理攻击技术（暂废弃）
 -(void)ballAttackEnd:(NSInteger)ballsCount
 {
     [self physicsAttackBegin:PP_PET_PLAYER_SIDE_NODE_NAME];
@@ -1579,7 +1554,7 @@ CGFloat vector2angel(CGVector vector){
 
 #pragma mark skill btn click
 
-//技能不可用按钮点击
+// 技能不可用按钮点击
 -(void)skillInvalidBtnClick:(PPSpriteButton *)skillInvalidButton
 {
     
@@ -1603,7 +1578,7 @@ CGFloat vector2angel(CGVector vector){
     }];
 }
 
-//技能动画展示开始
+// 技能动画展示开始
 -(void)skillPlayerShowBegin:(PPSpriteButton *)skillButton
 {
     NSDictionary * skillInfo = [self.ballPlayer.pixie.pixieSkills objectAtIndex:
@@ -1875,7 +1850,7 @@ CGFloat vector2angel(CGVector vector){
             case PPBuffTypeNightJudge:
         {
         
-            SKSpriteNode *buffShowNode = [PPAtlasManager createSpriteImageName:nil withPos:CGPointMake(0.0f, 30.0f) withSize:CGSizeMake(300.0f, 50.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeNightJudge]];
+            SKSpriteNode * buffShowNode = [PPAtlasManager createSpriteImageName:nil withPos:CGPointMake(0.0f, 30.0f) withSize:CGSizeMake(300.0f, 50.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeNightJudge]];
             [self.playerAndEnemySide->ppixiePetBtn addChild:buffShowNode];
             SKAction *actionRep = [SKAction repeatActionForever:[[PPAtlasManager battle_fight_skill] getAnimation:@"04_nightjudge"]];
             

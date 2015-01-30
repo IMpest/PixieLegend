@@ -15,16 +15,12 @@ UIScrollView * contentScrollView;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-//        [self changeToPassScene];
-        //初始化世界地图
-        
         [self setMenuContentScrollView];
-
     }
     return self;
 }
-//世界大地图战斗选择
+
+// 世界大地图战斗选择
 -(void)passChoose:(UIButton *)passBtn
 {
     [contentScrollView removeFromSuperview];
@@ -40,8 +36,8 @@ UIScrollView * contentScrollView;
         passDictInfo = [NSDictionary dictionaryWithDictionary:[passArray objectAtIndex:index]];
     }
     
-    if (index == 0) index = 4; // 火属性hardCode
-    
+#warning 火属性hardCode
+    if (index == 0) index = 4;
     
     [self fullScreenForBattleScene];
 
@@ -51,14 +47,11 @@ UIScrollView * contentScrollView;
     menuScene.scaleMode = SKSceneScaleModeAspectFill;
     
     [self presentScene:menuScene];
-    
-    
 }
 
 -(void)setMenuContentScrollView
 {
-    
-    if (contentScrollView!=nil) {
+    if (contentScrollView != nil) {
         [contentScrollView removeFromSuperview];
         contentScrollView = nil;
     }
@@ -107,30 +100,23 @@ UIScrollView * contentScrollView;
     [self addSubview:contentScrollView];
 }
 
-//战斗界面全屏
+// 战斗界面全屏
 -(void)fullScreenForBattleScene
 {
     [self setFrame:CGRectMake(0.0f, 0.0f,
-                             rootViewControl->skViewMain.frame.size.width,
+                              rootViewControl->skViewMain.frame.size.width,
                               rootViewControl->skViewMain.frame.size.height)];
     [rootViewControl->skViewMain bringSubviewToFront:self];
-    
 }
 
-//正常屏幕大小
+// 正常屏幕大小
 -(void)normalScreenForMenu
 {
-    
-    [self setFrame:CGRectMake(0.0f, 44.0f, rootViewControl->skViewMain.frame.size.width, rootViewControl->skViewMain.frame.size.height - 44.0f*2)];
+    [self setFrame:CGRectMake(0.0f, 44.0f,
+                              rootViewControl->skViewMain.frame.size.width,
+                              rootViewControl->skViewMain.frame.size.height - 44 * 2)];
     [rootViewControl->skViewMain bringSubviewToFront:self];
-    
-    
 }
--(void)changeToPassScene
-{
-//    mainScene = [[PPMenuThemeScene alloc] initWithSize:self.bounds.size];
-//    mainScene.scaleMode = SKSceneScaleModeAspectFit;
-//    [self presentScene:mainScene];
-}
+
 
 @end
