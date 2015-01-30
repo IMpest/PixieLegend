@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>startpets</key>
+	<key>start_pixies</key>
 	<array>
 		<dict>
 			<key>name</key>
@@ -25,7 +25,7 @@
 			<integer>0</integer>
 			<key>element</key>
 			<integer>5</integer>
-			<key>skill</key>
+			<key>skill_list</key>
 			<array>
 				<dict>
 					<key>id</key>
@@ -74,7 +74,7 @@
 			<integer>1</integer>
 			<key>element</key>
 			<integer>4</integer>
-			<key>skill</key>
+			<key>skill_list</key>
 			<array>
 				<dict>
 					<key>id</key>
@@ -123,7 +123,7 @@
 			<integer>0</integer>
 			<key>element</key>
 			<integer>3</integer>
-			<key>skill</key>
+			<key>skill_list</key>
 			<array>
 				<dict>
 					<key>id</key>
@@ -172,7 +172,7 @@
 			<integer>1</integer>
 			<key>element</key>
 			<integer>2</integer>
-			<key>skill</key>
+			<key>skill_list</key>
 			<array>
 				<dict>
 					<key>id</key>
@@ -221,7 +221,7 @@
 			<integer>0</integer>
 			<key>element</key>
 			<integer>1</integer>
-			<key>skill</key>
+			<key>skill_list</key>
 			<array>
 				<dict>
 					<key>id</key>

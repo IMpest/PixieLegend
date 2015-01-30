@@ -99,6 +99,18 @@
     tPixie.pixieBuffs = [[NSMutableArray alloc] initWithObjects:@"buff1", @"buff2", @"buff3", nil];
     tPixie.pixieBall = [PPBall ballWithPixie:tPixie];
     
+    // 创建宠物技能列表
+    NSMutableArray * tSkillList = [NSMutableArray array];
+    for (NSDictionary * tSkillInfo in [NSArray arrayWithArray:[pixieDict objectForKey:@"skill_list"]])
+    {
+        id skillId = [tSkillInfo objectForKey:@"id"];
+        id skillLevel = [tSkillInfo objectForKey:@"level"];
+        if (skillId == nil || skillLevel == nil) break;
+        PPSkill * tSkill = [PPSkill skillWithId:[skillId intValue] AndLevel:[skillLevel intValue]];
+        if (tSkill != nil) [tSkillList addObject:tSkill];
+    }
+    tPixie.skillList = tSkillList;
+    
     return tPixie;
 }
 

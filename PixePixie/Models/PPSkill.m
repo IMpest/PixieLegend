@@ -8,7 +8,7 @@
 @synthesize skillType;
 @synthesize skillObject;
 
--(NSString *)getSkillImageName
+-(NSString *)getIconImageName
 {
     return [NSString stringWithFormat:@"%02d_%@", self.skillId, self.skillName];
 }
@@ -26,9 +26,11 @@
 +(PPSkill *)skillWithId:(int)skillID AndLevel:(int)skillLevel
 {
     PPSkill * tSkill = [[PPSkill alloc] init];
+    tSkill.skillId = skillID;
+    tSkill.skillName = kSkillName[skillID];
     tSkill.skillLevel = skillLevel;
     
-    return nil;
+    return tSkill;
 }
 
 @end

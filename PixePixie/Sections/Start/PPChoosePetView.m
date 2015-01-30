@@ -23,7 +23,7 @@ PPChoosePetScrollView * petsScroll;
     
     // 添加宠物
     NSArray * pixiesData = [[NSDictionary dictionaryWithContentsOfFile:
-                             [[NSBundle mainBundle] pathForResource:@"PixiesInfo" ofType:@"plist"]] objectForKey:@"startpets"];
+                             [[NSBundle mainBundle] pathForResource:@"PixiesInfo" ofType:@"plist"]] objectForKey:@"start_pixies"];
     NSMutableArray * pixies = [NSMutableArray array];
     for (NSDictionary * tPixie in pixiesData) [pixies addObject:[PPPixie pixieWithData:tPixie]];
     
