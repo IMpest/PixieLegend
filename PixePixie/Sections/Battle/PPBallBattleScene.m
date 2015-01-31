@@ -2209,7 +2209,7 @@ CGFloat vector2angel(CGVector vector){
                 SKSpriteNode *buffShowNode = [PPAtlasManager createSpriteImageName:nil withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeNightJudge]];
                 [self.playerAndEnemySide->ppixiePetBtn addChild:buffShowNode];
                 //                SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_fight_skill] getAnimation:@"02_devilbreath"] count:1:];
-                SKAction *windEffect = [[PPAtlasManager battle_fight_skill] getAnimation:@"04_nightjudge_hit"];
+                SKAction *windEffect = [[PPAtlasManager battle_fight_missile] getAnimation:@"01_tornado"];
                 SKAction *moveAction=[SKAction moveByX:self.playerAndEnemySide->ppixieEnemyBtn.position.x-self.playerAndEnemySide->ppixiePetBtn.position.x  y:0 duration:1];
                 SKAction *groupAct=[SKAction group:@[windEffect,moveAction]];
                 
