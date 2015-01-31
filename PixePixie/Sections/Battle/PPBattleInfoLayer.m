@@ -409,7 +409,7 @@
 -(void)animatePetHPEnd:(NSNumber *)currentHp
 {
     
-    if (petPlayerHP->currentValue <= 0.0f) {
+    if ([currentHp intValue] <= 0.0f) {
         if (!isHaveDead) {
             if (self.target != nil && self.hpBeenZeroSel != nil && [self.target respondsToSelector:self.hpBeenZeroSel]) {
                 isHaveDead = YES;
@@ -428,7 +428,7 @@
 
 -(void)animateEnemyHPEnd:(NSNumber *)currentHp
 {
-    if (enemyPlayerHP->currentValue <= 0.0f) {
+    if ([currentHp intValue] <= 0.0f) {
         if (!isHaveDead) {
             
             if (self.target != nil && self.hpBeenZeroSel != nil && [self.target respondsToSelector:self.hpBeenZeroSel]) {

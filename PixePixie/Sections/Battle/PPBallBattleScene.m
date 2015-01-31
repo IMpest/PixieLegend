@@ -180,8 +180,10 @@ CGFloat vector2angel(CGVector vector){
     // 修正位置防止越界
     if (xPlayer < 20) xPlayer = 20;
     if (xPlayer > self.size.width - 20) xPlayer = self.size.width - 20;
-    if (yPlayer < 64) yPlayer = 64;
-    if (yPlayer > 344) yPlayer = 344;
+    if (yPlayer < 64) yPlayer = 64 + self.ballPlayer.size.height/2.0f;
+
+    if (yPlayer > 344) yPlayer = 344 - self.ballPlayer.size.height/2.0f;
+
     
     self.ballPlayer.name = @"ball_player";
     self.ballPlayer.position = CGPointMake(xPlayer, yPlayer);
@@ -205,13 +207,22 @@ CGFloat vector2angel(CGVector vector){
     self.ballEnemy = self.pixieEnemy.pixieBall;
     self.ballEnemy.position = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y + PP_FIT_TOP_SIZE);
     self.ballEnemy->battleCurrentScene = self;
-    if (fabsf(self.ballEnemy.position.x)>=290) {
+    if (self.ballEnemy.position.x>=290) {
         self.ballEnemy.position = CGPointMake(290.0f, self.ballPlayer.position.y);
     }
-    if (fabsf(self.ballEnemy.position.y)>380) {
-        self.ballEnemy.position = CGPointMake(self.ballPlayer.position.x, 380);
+    if (self.ballEnemy.position.x<=30) {
+        self.ballEnemy.position = CGPointMake(30.0f, self.ballPlayer.position.y);
+    }
+    
+    if (self.ballEnemy.position.y>380) {
+        self.ballEnemy.position = CGPointMake(self.ballPlayer.position.x, 380-self.ballEnemy.size.height/2.0f);
         
     }
+    if (self.ballEnemy.position.y<64) {
+        self.ballEnemy.position = CGPointMake(self.ballPlayer.position.x, 64+self.ballEnemy.size.height/2.0f);
+        
+    }
+    
     self.ballEnemy.physicsBody.categoryBitMask = EntityCategoryBall;
     self.ballEnemy.physicsBody.contactTestBitMask = EntityCategoryBall;
     [self addChild:self.ballEnemy];
