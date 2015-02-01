@@ -41,6 +41,7 @@
 -(CGFloat)countPhysicalDamageTo:(PPPixie *)targetPixie;
 -(CGFloat)countMagicalDamageTo:(PPPixie *)targetPixie
                      WithSkill:(PPSkill *)usingSkill;
+-(void)setPetSkillList:(NSDictionary *)petDict;
 
 +(PPPixie *)pixieWithElement:(PPElementType)element Generation:(int)generation HPmax:(CGFloat)hpmax MPmax:(CGFloat)mpmax;
 +(PPPixie *)pixieWithData:(NSDictionary *)pixieDict;

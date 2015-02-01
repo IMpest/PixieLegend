@@ -93,8 +93,9 @@
     
     NSDictionary * petsChoosedInfo = [[pixiesInfo objectForKey:@"userpetinfo"] objectAtIndex:0];
     PPPixie * playerPixie = [PPPixie pixieWithData:petsChoosedInfo];
-    
+    [playerPixie setPetSkillList:petsChoosedInfo];
     NSDictionary * enemyDicInfo = [[pixiesInfo objectForKey:@"enemysinfo"] objectAtIndex:0];
+    NSLog(@"playerPixie=%lu",(unsigned long)[playerPixie.skillList count]);
     PPPixie * enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
     
     NSLog(@"petsChoosedInfo=%@,enemyDicInfo=%@",petsChoosedInfo,enemyDicInfo);

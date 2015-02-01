@@ -898,8 +898,12 @@ CGFloat vector2angel(CGVector vector){
         petSkillBar.hidden = NO;
         for (int i=0; i<4; i++) {
             NSDictionary * dictSkill = nil;
+            PPSkill *perSkill = nil;
             if ([self.pixiePlayer.pixieSkills count] > i) {
                 dictSkill = [self.pixiePlayer.pixieSkills objectAtIndex:i];
+                NSLog(@"self.pixiePlayer.skillList=%d",[self.pixiePlayer.skillList count]);
+                
+                perSkill = [self.pixiePlayer.skillList objectAtIndex:i];
             }
            
             if(petSkillBar)
@@ -907,7 +911,9 @@ CGFloat vector2angel(CGVector vector){
                 PPSpriteButton *spriteBtn = (PPSpriteButton *)[petSkillBar childNodeWithName:[NSString stringWithFormat:@"%d",PP_SKILLS_CHOOSE_BTN_TAG+i]];
                 if ([spriteBtn.PPBallSkillStatus intValue]<=0) {
                     
-                    spriteBtn.PPBallSkillStatus = [dictSkill objectForKey:@"skillcdrounds"];
+//                    spriteBtn.PPBallSkillStatus = [dictSkill objectForKey:@"skillcdrounds"];
+                    spriteBtn.PPBallSkillStatus = [NSNumber numberWithInt:perSkill.skillCD];
+
                     spriteBtn.color = [UIColor blackColor];
                     spriteBtn.colorBlendFactor = 0.0;
                     spriteBtn.userInteractionEnabled = YES;

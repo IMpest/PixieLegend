@@ -380,6 +380,33 @@
 					<integer>0</integer>
 				</dict>
 			</array>
+			<key>skill_list</key>
+			<array>
+				<dict>
+					<key>id</key>
+					<string>01</string>
+					<key>level</key>
+					<integer>1</integer>
+				</dict>
+				<dict>
+					<key>id</key>
+					<string>02</string>
+					<key>level</key>
+					<integer>1</integer>
+				</dict>
+				<dict>
+					<key>id</key>
+					<string>03</string>
+					<key>level</key>
+					<integer>1</integer>
+				</dict>
+				<dict>
+					<key>id</key>
+					<string>04</string>
+					<key>level</key>
+					<integer>1</integer>
+				</dict>
+			</array>
 		</dict>
 	</array>
 	<key>enemysinfo</key>
