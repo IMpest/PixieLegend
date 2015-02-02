@@ -816,4 +816,48 @@
     [ppixiePetBtn setPosition:CGPointMake(originX, 20.0f)];
     [ppixieEnemyBtn setPosition:CGPointMake(ppixiePetBtn.position.x+150,ppixiePetBtn.position.y)];
 }
+-(void)showRattanTwineAnimation:(BOOL)isPetShow
+{
+    
+    if (isPetShow) {
+        SKSpriteNode *buffRatShowNode =[[SKSpriteNode alloc] init];
+        buffRatShowNode.size = CGSizeMake(50.0f, 50.0f);
+        //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
+        
+        [buffRatShowNode setPosition:CGPointMake(-25.0f, 0.0f)];
+        buffRatShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine];
+        
+        
+        [ppixiePetBtn addChild:buffRatShowNode];
+        
+        SKAction *actionReprat = [SKAction repeatActionForever:[[PPAtlasManager battle_fight_skill] getAnimation:@"03_rattantwine"]];
+        [buffRatShowNode runAction:actionReprat];
+    }else
+    {
+        
+        
+        SKSpriteNode *buffShowNode= [PPAtlasManager createSpriteImageName:@"plant_root_appear_0012" withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine]];
+        SKAction *actionRep = [[PPAtlasManager ball_buff] getAnimation:@"plant_root_appear"];
+        [ppixieEnemyBtn addChild:buffShowNode];
+
+        [buffShowNode runAction:actionRep completion:^{
+            
+            
+        }];
+        
+//        SKSpriteNode *buffRatShowNodeEnemy =[[SKSpriteNode alloc] init];
+//        buffRatShowNodeEnemy.size = CGSizeMake(50.0f, 50.0f);
+//        //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
+//        [buffRatShowNodeEnemy setPosition:CGPointMake(-25.0f, 0.0f)];
+//        buffRatShowNodeEnemy.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine];
+//        
+//        
+//        [ppixieEnemyBtn addChild:buffRatShowNodeEnemy];
+//        
+//        SKAction *actionRepratEnemy = [SKAction repeatActionForever:[[PPAtlasManager battle_fight_skill] getAnimation:@"03_rattantwine"]];
+//        [buffRatShowNodeEnemy runAction:actionRepratEnemy];
+
+    }
+    
+}
 @end

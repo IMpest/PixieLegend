@@ -131,7 +131,9 @@
  * @brief 重置头像位置
  */
 -(void)resetPetAndEnemyPosition;
-
-
+/**
+ * @brief
+ */
+-(void)showRattanTwineAnimation:(BOOL)isPetShow;
 
 @end
