@@ -9,12 +9,17 @@
     
     // 添加宠物
     SKSpriteNode * pixieNode = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(100, 100)];
-    pixieNode.position = CGPointMake(0, 0);
+    pixieNode.position = CGPointMake(-75, 0);
     [self addChild:pixieNode];
     
-    NSString * str = [NSString stringWithFormat:@"%@_stop", pixie.getTextureName];
+    NSString * str = [NSString stringWithFormat:@"%@_move", pixie.getTextureName];
     SKAction * stand = [SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:str]];
+    SKAction * walk = [SKAction sequence:@[[SKAction moveByX:150 y:0 duration:10.0f],
+                                           [SKAction scaleXTo:-1 duration:0.0f],
+                                           [SKAction moveByX:-150 y:0 duration:10.0f],
+                                           [SKAction scaleXTo:1 duration:0.0f]]];
     [pixieNode runAction:stand];
+    [pixieNode runAction:[SKAction repeatActionForever:walk]];
     
     // 添加状态
     for (int i = 0; i < 3; i++) {
