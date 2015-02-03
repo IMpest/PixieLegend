@@ -118,6 +118,9 @@
 {
     NSLog(@"petDict=%@",petDict);
     
+   
+    
+    
     // 创建宠物技能列表
     NSMutableArray * tSkillList = [[NSMutableArray alloc] init];
     for (NSDictionary * tSkillInfo in [petDict objectForKey:@"skill_list"])
@@ -125,6 +128,9 @@
         id skillId = [tSkillInfo objectForKey:@"id"];
         id skillLevel = [tSkillInfo objectForKey:@"level"];
         if (skillId == nil || skillLevel == nil) break;
+        
+        NSLog(@"");
+        
         PPSkill * tSkill = [PPSkill skillWithId:[skillId intValue] AndLevel:[skillLevel intValue]];
         
         if (tSkill != nil)

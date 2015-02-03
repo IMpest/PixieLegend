@@ -91,6 +91,9 @@ CGFloat vector2angel(CGVector vector){
         // 处理参数
         self.pixiePlayer = pixieA;
         self.ballPlayer = pixieA.pixieBall;
+        
+        NSLog(@"count=%lu",(unsigned long)[self.pixiePlayer.skillList count]);
+        
         self.pixieEnemy = pixieB;
         sceneTypeString = kElementTypeString[sceneType];
         currentElementType = sceneType;
@@ -892,6 +895,8 @@ CGFloat vector2angel(CGVector vector){
 {
     
     //    [self removeSkillBar];
+    NSLog(@"self.pixiePlayer.skillList=%lu",(unsigned long)[self.pixiePlayer.skillList count]);
+    
     
     if (petSkillBar) {
         petSkillBar.zPosition = 1;
@@ -902,7 +907,8 @@ CGFloat vector2angel(CGVector vector){
             PPSkill *perSkill = nil;
             if ([self.pixiePlayer.pixieSkills count] > i) {
                 dictSkill = [self.pixiePlayer.pixieSkills objectAtIndex:i];
-                NSLog(@"self.pixiePlayer.skillList=%d",[self.pixiePlayer.skillList count]);
+                
+                
                 
                 perSkill = [self.pixiePlayer.skillList objectAtIndex:i];
             }
@@ -934,9 +940,13 @@ CGFloat vector2angel(CGVector vector){
     for (int i = 0; i < 4; i++) {
         
         NSDictionary * dictSkill = nil;
+        PPSkill *perSkill = nil;
+
         if ([self.pixiePlayer.pixieSkills count] > i) {
             dictSkill = [self.pixiePlayer.pixieSkills objectAtIndex:i];
+            perSkill = [self.pixiePlayer.skillList objectAtIndex:i];
         }
+        
         
         NSString * stringSkillStatus = [dictSkill objectForKey:@"skillstatus"];
         NSString * stringSkillBtn = [dictSkill objectForKey:@"skillbtntexture"];
