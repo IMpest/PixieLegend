@@ -128,6 +128,7 @@
 		19DDAC9C1A6FB86A00315A66 /* earth3_card.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DDAC991A6FB86A00315A66 /* earth3_card.png */; };
 		19DDAC9D1A6FB86A00315A66 /* metal3_card.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DDAC9A1A6FB86A00315A66 /* metal3_card.png */; };
 		19DDAC9E1A6FB86A00315A66 /* water3_card.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DDAC9B1A6FB86A00315A66 /* water3_card.png */; };
+		19EC0FFF1A807D7C00655BB5 /* bg_tree.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EC0FFE1A807D7C00655BB5 /* bg_tree.png */; };
 		19F2085E1A78D0F700B3FB9C /* bt_preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 19F2085D1A78D0F700B3FB9C /* bt_preview.png */; };
 		19F208611A78D12000B3FB9C /* title_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 19F2085F1A78D12000B3FB9C /* title_menu.png */; };
 		19F208621A78D12000B3FB9C /* title_section.png in Resources */ = {isa = PBXBuildFile; fileRef = 19F208601A78D12000B3FB9C /* title_section.png */; };
@@ -161,7 +162,6 @@
 		D4BF768219E6928D003CFFAB /* pixie_info.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D4BF767519E6928D003CFFAB /* pixie_info.atlas */; };
 		D4BF768519E6928D003CFFAB /* skill_icon.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D4BF767919E6928D003CFFAB /* skill_icon.atlas */; };
 		D4BF768719E6928D003CFFAB /* ui_fighting.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D4BF767B19E6928D003CFFAB /* ui_fighting.atlas */; };
-		D4BF768819E6928D003CFFAB /* ui_talent.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D4BF767C19E6928D003CFFAB /* ui_talent.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -334,6 +334,7 @@
 		19DDAC991A6FB86A00315A66 /* earth3_card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = earth3_card.png; sourceTree = "<group>"; };
 		19DDAC9A1A6FB86A00315A66 /* metal3_card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = metal3_card.png; sourceTree = "<group>"; };
 		19DDAC9B1A6FB86A00315A66 /* water3_card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water3_card.png; sourceTree = "<group>"; };
+		19EC0FFE1A807D7C00655BB5 /* bg_tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_tree.png; sourceTree = "<group>"; };
 		19F2085D1A78D0F700B3FB9C /* bt_preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_preview.png; sourceTree = "<group>"; };
 		19F2085F1A78D12000B3FB9C /* title_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title_menu.png; sourceTree = "<group>"; };
 		19F208601A78D12000B3FB9C /* title_section.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title_section.png; sourceTree = "<group>"; };
@@ -374,7 +375,6 @@
 		D4BF767519E6928D003CFFAB /* pixie_info.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = pixie_info.atlas; path = Resource/Images/pixie_info.atlas; sourceTree = "<group>"; };
 		D4BF767919E6928D003CFFAB /* skill_icon.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = skill_icon.atlas; path = Resource/Images/skill_icon.atlas; sourceTree = "<group>"; };
 		D4BF767B19E6928D003CFFAB /* ui_fighting.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = ui_fighting.atlas; path = Resource/Images/ui_fighting.atlas; sourceTree = "<group>"; };
-		D4BF767C19E6928D003CFFAB /* ui_talent.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = ui_talent.atlas; path = Resource/Images/ui_talent.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -415,6 +415,7 @@
 				194D46B31A650D3B00FDBDD0 /* bg_pet_0.png */,
 				194D46B41A650D3B00FDBDD0 /* bg_pet_1.png */,
 				194D46B51A650D3B00FDBDD0 /* bg_pet_2.png */,
+				19EC0FFE1A807D7C00655BB5 /* bg_tree.png */,
 				194D46B11A650A4200FDBDD0 /* bg_menu.png */,
 				1927DE6D1A53B38C0098501C /* skill_plant.png */,
 				1927DE6E1A53B38C0098501C /* theme_forest.png */,
@@ -637,7 +638,6 @@
 				1992B3F119E926E600BFE51E /* skill_buff.atlas */,
 				D4BF767919E6928D003CFFAB /* skill_icon.atlas */,
 				D4BF767B19E6928D003CFFAB /* ui_fighting.atlas */,
-				D4BF767C19E6928D003CFFAB /* ui_talent.atlas */,
 			);
 			name = "Images（旧版）";
 			sourceTree = "<group>";
@@ -952,7 +952,6 @@
 				1927DE711A53B38C0098501C /* theme_forest.png in Resources */,
 				194D46B21A650A4200FDBDD0 /* bg_menu.png in Resources */,
 				19A8ED4E1A52977600EFEA7A /* info_energy.png in Resources */,
-				D4BF768819E6928D003CFFAB /* ui_talent.atlas in Resources */,
 				19F208751A78D71000B3FB9C /* word_warning.png in Resources */,
 				19A8ED501A52977600EFEA7A /* info_name.png in Resources */,
 				19A8ED4F1A52977600EFEA7A /* info_mail.png in Resources */,
@@ -1018,6 +1017,7 @@
 				19A8ED631A52977600EFEA7A /* element_water.png in Resources */,
 				19A8ED521A52977600EFEA7A /* tab_btn2.png in Resources */,
 				D4877A40196C314E009509E5 /* Images.xcassets in Resources */,
+				19EC0FFF1A807D7C00655BB5 /* bg_tree.png in Resources */,
 				D4BF768719E6928D003CFFAB /* ui_fighting.atlas in Resources */,
 				194D46B01A6509A500FDBDD0 /* info_txt.png in Resources */,
 				D4BF768019E6928D003CFFAB /* ball_table.atlas in Resources */,

@@ -138,7 +138,8 @@ BOOL menuIsHidden;
             break;
         case 2:
         {
-            PPTalentTreeScene * talentTree = [[PPTalentTreeScene alloc] initWithSize:self.view.frame.size];
+            PPTalentTreeScene * talentTree = [[PPTalentTreeScene alloc] initWithPixie:[PPLocalData getInstance].firstPixie];
+            talentTree.size = self.view.frame.size;
             talentTree->previousScene = self;
             [self.view presentScene:talentTree];
         }

@@ -3,8 +3,10 @@
 
 @interface PPLocalData : NSObject
 
+// 公共数据
 @property (nonatomic, retain) PPPixie * firstPixie;
 
+// 单例方法
 +(PPLocalData *)getInstance;
 +(NSString *)getUserInfoPath;
 

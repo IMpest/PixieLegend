@@ -50,11 +50,10 @@
 +(SKTextureAtlas *)skill_buff;
 +(SKTextureAtlas *)skill_icon;
 +(SKTextureAtlas *)ui_fighting;
-+(SKTextureAtlas *)ui_number;
-+(SKTextureAtlas *)ui_talent;
+//+(SKTextureAtlas *)ui_talent;
 +(SKTextureAtlas *)pixie_info;
-+(SKTextureAtlas *)pixie_battle_effect;
-+(SKTextureAtlas *)pixie_battle_skill;
+//+(SKTextureAtlas *)pixie_battle_effect;
+//+(SKTextureAtlas *)pixie_battle_skill;
 
 // ==== v3.0 ====
 +(SKTextureAtlas *)battle_fight_missile;
@@ -62,6 +61,7 @@
 +(SKTextureAtlas *)battle_fight_skill;
 +(SKTextureAtlas *)battle_table_ball;
 +(SKTextureAtlas *)pixie_battle_action;
++(SKTextureAtlas *)ui_number;
 
 // ==== custom ====
 +(SKSpriteNode *)createSpriteImageName:(NSString *)imageName withPos:(CGPoint)pos

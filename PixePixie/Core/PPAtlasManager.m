@@ -76,52 +76,12 @@
     return tAtlas;
 }
 
-+(SKTextureAtlas *)ui_number
-{
-    __strong static SKTextureAtlas * tAtlas = nil;
-    static dispatch_once_t pred;
-    dispatch_once(&pred, ^{
-        tAtlas = [SKTextureAtlas atlasNamed:@"ui_number"];
-    });
-    return tAtlas;
-}
-
-+(SKTextureAtlas *)ui_talent
-{
-    __strong static SKTextureAtlas * tAtlas = nil;
-    static dispatch_once_t pred;
-    dispatch_once(&pred, ^{
-        tAtlas = [SKTextureAtlas atlasNamed:@"ui_talent"];
-    });
-    return tAtlas;
-}
-
 +(SKTextureAtlas *)pixie_info
 {
     __strong static SKTextureAtlas * tAtlas = nil;
     static dispatch_once_t pred;
     dispatch_once(&pred, ^{
         tAtlas = [SKTextureAtlas atlasNamed:@"pixie_info"];
-    });
-    return tAtlas;
-}
-
-+(SKTextureAtlas *)pixie_battle_effect
-{
-    __strong static SKTextureAtlas * tAtlas = nil;
-    static dispatch_once_t pred;
-    dispatch_once(&pred, ^{
-        tAtlas = [SKTextureAtlas atlasNamed:@"pixie_battle_effect"];
-    });
-    return tAtlas;
-}
-
-+(SKTextureAtlas *)pixie_battle_skill
-{
-    __strong static SKTextureAtlas * tAtlas = nil;
-    static dispatch_once_t pred;
-    dispatch_once(&pred, ^{
-        tAtlas = [SKTextureAtlas atlasNamed:@"pixie_battle_skill"];
     });
     return tAtlas;
 }
@@ -174,6 +134,16 @@
     static dispatch_once_t pred;
     dispatch_once(&pred, ^{
         tAtlas = [SKTextureAtlas atlasNamed:@"pixie_battle_action"];
+    });
+    return tAtlas;
+}
+
++(SKTextureAtlas *)ui_number
+{
+    __strong static SKTextureAtlas * tAtlas = nil;
+    static dispatch_once_t pred;
+    dispatch_once(&pred, ^{
+        tAtlas = [SKTextureAtlas atlasNamed:@"ui_number"];
     });
     return tAtlas;
 }

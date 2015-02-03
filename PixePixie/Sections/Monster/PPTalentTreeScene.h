@@ -1,6 +1,7 @@
 
-#import "PPBasicScene.h"
 
 @interface PPTalentTreeScene : PPBasicScene
+
+-(id)initWithPixie:(PPPixie *)pixie;
 
 @end

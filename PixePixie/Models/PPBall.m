@@ -8,7 +8,9 @@
 @end
 
 @implementation PPBall
-@synthesize sustainRounds,pixie, ballElementType, pixieEnemy, ballStatus, comboBallTexture, comboBallSprite,ballBuffs,plantrootAnimationNode;
+@synthesize
+sustainRounds, pixie, ballElementType, pixieEnemy, ballStatus, ballBuffs,
+comboBallTexture, comboBallSprite, plantrootAnimationNode;
 
 #pragma mark Factory Method
 
@@ -16,11 +18,6 @@
 +(PPBall *)ballWithPixie:(PPPixie *)pixie
 {
     if (pixie == nil) return nil;
-//    NSString * imageName = [NSString stringWithFormat:@"%@%d_ball.png",
-//                            kElementTypeString[pixie.pixieElement],pixie.pixieGeneration];
-    
-    
-//    PPBall * tBall = [PPBall spriteNodeWithTexture:[SKTexture textureWithImageNamed:imageName]];
     PPBall * tBall = [PPBall spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(50.0f, 50.0f)];
     
     SKTexture * comboBallBack = [[PPAtlasManager battle_table_ball] textureNamed:@"ball_all"];
@@ -30,14 +27,13 @@
 //    [tBall insertChild:nodeBack atIndex:0];
     [tBall addChild:nodeBack];
     
-    
-    SKSpriteNode *touchBallNode = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(50.0f, 50.0)];
+    SKSpriteNode * touchBallNode = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(50.0f, 50.0)];
     touchBallNode.name = PP_TOUCH_NODE_BALL_NAME;
     touchBallNode.zPosition = PPZ_FIGHT_EFFECT;
     [tBall addChild:touchBallNode];
     
     
-    SKSpriteNode *showSpriteNode = [[SKSpriteNode alloc] init];
+    SKSpriteNode * showSpriteNode = [[SKSpriteNode alloc] init];
     showSpriteNode.size = CGSizeMake(50.0f, 50.0f);
     [showSpriteNode setPosition: CGPointMake(0.0f, 10.0f)];
     showSpriteNode.zPosition = PPZ_FIGHT_BUFF;
@@ -184,7 +180,7 @@
 -(void)changeBuffRound
 {
     for (int i = 0; i < [self.ballBuffs count]; i++) {
-        PPBuff *buff = [self.ballBuffs objectAtIndex:i];
+        PPBuff * buff = [self.ballBuffs objectAtIndex:i];
         buff.continueRound--;
         NSLog(@"continueRound =%d",buff.continueRound);
         if (buff.continueRound < 0) {
@@ -416,12 +412,10 @@
                                  self.plantrootAnimationNode = nil;
                              }];
     }
-    
 }
 
 -(void)startElementBirthAnimation
 {
-    
     if (self.comboBallSprite != nil) {
         [self.comboBallSprite removeFromParent];
         self.comboBallSprite = nil;
@@ -437,8 +431,6 @@
                          completion:^{
                              [self.comboBallSprite removeFromParent];
                              [self startAuraAnimation];
-                             
-                             
                          }];
 }
 
@@ -496,7 +488,7 @@
         spriteNodeActive = nil;
     }
     
-    spriteNodeActive =[[SKSpriteNode alloc] init];
+    spriteNodeActive = [[SKSpriteNode alloc] init];
     spriteNodeActive.size = CGSizeMake(50.0f, 50.0f);
     [spriteNodeActive setPosition:CGPointMake(0.0f, 0.0f)];
     spriteNodeActive.zPosition = PPZ_FIGHT_BG;
@@ -504,7 +496,7 @@
     
 //    [self insertChild:spriteNodeActive atIndex:0];
     
-    SKAction *activieAct = [SKAction repeatActionForever:[[PPAtlasManager battle_table_ball] getAnimation:@"ball_pixie_active"]];
+    SKAction * activieAct = [SKAction repeatActionForever:[[PPAtlasManager battle_table_ball] getAnimation:@"ball_pixie_active"]];
     
     [spriteNodeActive runAction:activieAct];
     
