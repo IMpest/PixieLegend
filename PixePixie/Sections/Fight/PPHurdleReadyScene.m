@@ -229,7 +229,6 @@
 //选择宠物之后 开始战斗
 //-(void)spriteChooseClick:(NSString *)spriteName
 //{
-//    NSLog(@"aaa%@ %lu",spriteName,(unsigned long)[self.enemysArray count]);
 //    
 //    
 //    NSDictionary * petsChoosedInfo = [self.petsArray objectAtIndex:[spriteName integerValue] - PP_PETS_CHOOSE_BTN_TAG];

@@ -7,7 +7,6 @@
 -(id)initWithPixie:(PPPixie *)pixie
 {
     if (self = [super init]) {
-        NSLog(@"aaa");
         [self setBackTitleText:@"天赋树" andPositionY:360.0f];
         
         SKSpriteNode * backTree = [[SKSpriteNode alloc] initWithImageNamed:@"bg_tree"];
@@ -16,6 +15,11 @@
         [self addChild:backTree];
     }
     return self;
+}
+
+-(void)backButtonClick:(NSString *)backName
+{
+    [self.view presentScene:previousScene];
 }
 
 //- (id)initWithSize:(CGSize)size
@@ -48,10 +52,5 @@
 //
 //-(void)monstersButtonClick:(NSString *)stringName
 //{}
-
--(void)backButtonClick:(NSString *)backName
-{
-    [self.view presentScene:previousScene];
-}
 
 @end

@@ -81,6 +81,7 @@ PPPixie * pixieCurrent;
     wordsFrame.xScale = 0.5f;
     wordsFrame.yScale = 0.5f;
     [self addChild:wordsFrame];
+    
     // 添加文字内容
     SKLabelNode * wordsContent = [[SKLabelNode alloc] init];
     wordsContent.position = CGPointMake(0, 0);
@@ -88,7 +89,7 @@ PPPixie * pixieCurrent;
     wordsContent.fontColor = [UIColor blackColor];
     [wordsFrame addChild:wordsContent];
     
-    SKAction * show = [SKAction sequence:@[[SKAction fadeInWithDuration:0.5f],
+    SKAction * show = [SKAction sequence:@[[SKAction fadeAlphaTo:0.8f duration:0.5f],
                                            [SKAction waitForDuration:time - 1.0f],
                                            [SKAction fadeOutWithDuration:0.5f]]];
     [wordsFrame runAction:show completion:^{[wordsFrame removeFromParent];}];
