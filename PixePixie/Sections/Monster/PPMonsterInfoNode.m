@@ -3,6 +3,7 @@
 
 @implementation PPMonsterInfoNode
 
+BOOL isAction;
 PPSpriteButton * pixieNode;
 PPPixie * pixieCurrent;
 
@@ -10,12 +11,13 @@ PPPixie * pixieCurrent;
 {
     if (pixie == nil) return;
     pixieCurrent = pixie;
+    isAction = NO;
     
     // 添加宠物
     pixieNode = [PPSpriteButton buttonWithImageNamed:[NSString stringWithFormat:@"%@_card", pixie.getTextureName]];
     pixieNode.size = CGSizeMake(100, 100);
     pixieNode.position = CGPointMake(0, 0);
-    [pixieNode addTarget:self selector:@selector(clickPixie:) withObject:@"pixie" forControlEvent:PPButtonControlEventTouchUpInside];
+    [pixieNode addTarget:self selector:@selector(clickPixie:) withObject:@"=w=凸" forControlEvent:PPButtonControlEventTouchUpInside];
     [self addChild:pixieNode];
     
     NSString * str = [NSString stringWithFormat:@"%@_stop", pixie.getTextureName];
@@ -42,8 +44,31 @@ PPPixie * pixieCurrent;
     [self addChild:feedButton];
 }
 
--(void)clickPixie:(NSString *)name{
+-(void)clickPixie:(NSString *)words{
     
+    if (isAction) return;
+    isAction = YES;
+    
+    // 添加文字
+    SKSpriteNode * wordsFrame = [[SKSpriteNode alloc] initWithImageNamed:@"bg_words.png"];
+    wordsFrame.position = CGPointMake(0, 90);
+    wordsFrame.alpha = 0.0f;
+    wordsFrame.xScale = 0.5f;
+    wordsFrame.yScale = 0.5f;
+    [self addChild:wordsFrame];
+    
+    SKLabelNode * wordsContent = [[SKLabelNode alloc] init];
+    wordsContent.position = CGPointMake(0, 0);
+    wordsContent.text = words;
+    wordsContent.fontColor = [UIColor blackColor];
+    [wordsFrame addChild:wordsContent];
+    
+    SKAction * show = [SKAction sequence:@[[SKAction fadeInWithDuration:0.5f],
+                                           [SKAction waitForDuration:3.0f],
+                                           [SKAction fadeOutWithDuration:0.5f]]];
+    [wordsFrame runAction:show completion:^{[wordsFrame removeFromParent];}];
+    
+    // 添加宠物跑步动画
     NSString * str = [NSString stringWithFormat:@"%@_move", pixieCurrent.getTextureName];
     SKAction * move = [SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:str]];
     [pixieNode runAction:move];
@@ -51,14 +76,17 @@ PPPixie * pixieCurrent;
     SKAction * walk = [SKAction sequence:@[[SKAction moveByX:50 y:0 duration:1.0f],
                                            [SKAction waitForDuration:0.1f],
                                            [SKAction scaleXTo:-1 duration:0.0f],
-                                           [SKAction moveByX:-50 y:0 duration:1.0f],
+                                           [SKAction moveByX:-100 y:0 duration:2.0f],
                                            [SKAction waitForDuration:0.1f],
-                                           [SKAction scaleXTo:1 duration:0.0f]]];
+                                           [SKAction scaleXTo:1 duration:0.0f],
+                                           [SKAction moveByX:50 y:0 duration:1.0f]]];
     [pixieNode runAction:walk completion:^{
+        // 恢复正常的站立动作
         [pixieNode removeAllActions];
         NSString * str = [NSString stringWithFormat:@"%@_stop", pixieCurrent.getTextureName];
         SKAction * stand = [SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:str]];
         [pixieNode runAction:stand];
+        isAction = NO;
     }];
     
 }
