@@ -8,6 +8,8 @@
 @synthesize skillType;
 @synthesize skillObject;
 @synthesize skillstatus;
+@synthesize skillcontinue;
+@synthesize skillbtntexture;
 
 -(NSString *)getIconImageName
 {
@@ -18,9 +20,8 @@
 {
     
     
-    NSDictionary * pixiesInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PixiesInfo"
-                                                                                                           ofType:@"plist"]];
-    NSDictionary * skillInfo = [[pixiesInfo objectForKey:@"skills"] objectForKey:[NSNumber numberWithInt:skillID]];
+    NSDictionary *skillInfo = [[PPLocalData getInstance].allSkillsInfo objectForKey:[NSString stringWithFormat:@"%02d",skillID]];
+    NSLog(@"skillInfo=%@ allinfo=%@",skillInfo,[PPLocalData getInstance].allSkillsInfo);
     
     
     PPSkill * tSkill = [[PPSkill alloc] init];
@@ -32,8 +33,9 @@
     tSkill.skillObject =[[skillInfo objectForKey:@"skillobject"] intValue];
     tSkill.skillType =[[skillInfo objectForKey:@"skilltype"] intValue];
     tSkill.skillstatus = [[skillInfo objectForKey:@"skillstatus"] intValue];
-
-
+    tSkill.skillCD = [[skillInfo objectForKey:@"skillcdrounds"] intValue];
+    tSkill.skillcontinue = [[skillInfo objectForKey:@"skillcontinue"] intValue];
+    tSkill.skillbtntexture =[skillInfo objectForKey:@"skillbtntexture"];
     return tSkill;
 }
 

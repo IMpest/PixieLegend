@@ -948,15 +948,18 @@ CGFloat vector2angel(CGVector vector){
         }
         
         
-        NSString * stringSkillStatus = [dictSkill objectForKey:@"skillstatus"];
-        NSString * stringSkillBtn = [dictSkill objectForKey:@"skillbtntexture"];
+//        NSString * stringSkillStatus = [dictSkill objectForKey:@"skillstatus"];
+
+//        NSString * stringSkillBtn = [dictSkill objectForKey:@"skillbtntexture"];
+        NSString * stringSkillBtn = perSkill.skillbtntexture;
+
         
 #warning 这里改了技能图标
         PPSpriteButton *  passButton = [PPSpriteButton buttonWithImageNamed:stringSkillBtn];
         passButton.size = CGSizeMake(50, 50);
         passButton.zPosition = PPZ_TABLE_BUTTON;
         
-        if (![stringSkillStatus isEqualToString:@"valid"]) {
+        if (perSkill.skillstatus == PP_SKILL_STATUS_INVALID) {
             stringSkillBtn = [NSString stringWithFormat:@"%@_none",kElementTypeString[self.pixiePlayer.pixieElement]];
             
             passButton.userInteractionEnabled = YES;
@@ -993,8 +996,11 @@ CGFloat vector2angel(CGVector vector){
         //        cdLabel.position = passButton.position;
         [cdLabel setColor:[UIColor orangeColor]];
         [cdLabel setFontColor:[UIColor redColor]];
-        NSString *cdString = [NSString stringWithFormat:@"%@",[dictSkill objectForKey:@"skillcdrounds"]];
-        passButton.PPBallSkillStatus = [dictSkill objectForKey:@"skillcdrounds"];
+//        NSString *cdString = [NSString stringWithFormat:@"%@",[dictSkill objectForKey:@"skillcdrounds"]];
+        NSString *cdString = [NSString stringWithFormat:@"%d",perSkill.skillCD];
+        
+
+        passButton.PPBallSkillStatus = cdString;
         [cdLabel setText:cdString];
         NSLog(@"cdString=%@",cdString);
         [passButton addChild:cdLabel];

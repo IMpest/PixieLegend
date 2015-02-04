@@ -33,6 +33,10 @@ static NSString * kSkillName[kSkillCountTotal+1] =
 @property (nonatomic, assign) int skillCD;      // 技能固有CD
 @property (nonatomic, assign) int currentCD;    // 技能当前剩余CD
 @property (nonatomic, assign) int skillstatus;    // 技能状态 0不可用 1可用
+@property (nonatomic, assign) int skillcontinue;    // 技能状态 0不可用 1可用
+@property (nonatomic, retain) NSString * skillbtntexture;
+
+
 
 
 

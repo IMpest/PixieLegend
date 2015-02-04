@@ -29,6 +29,9 @@
 #define PP_SKILL_CD_LABEL_NODE_NAME @"skillcdlabelname"
 #define PP_BUFF_ANIMATION_NODE_NAME @"buffanimationname"
 
+#define PP_SKILL_STATUS_VALID 1
+#define PP_SKILL_STATUS_INVALID 0
+
 // tags
 #define PP_MENU_START 0
 #define PP_MENU_COUNT 5

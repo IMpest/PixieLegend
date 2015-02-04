@@ -211,13 +211,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PixePixie/Models/PPPixie.m"
-            timestampString = "444669516.26951"
+            filePath = "PixePixie/Sections/Battle/PPBallBattleScene.m"
+            timestampString = "444754389.797842"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "-setPetSkillList:"
+            startingLineNumber = "956"
+            endingLineNumber = "956"
+            landmarkName = "-addPetSkillBar"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
