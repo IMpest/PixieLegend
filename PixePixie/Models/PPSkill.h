@@ -23,10 +23,10 @@ static NSString * kSkillName[kSkillCountTotal+1] =
 // 旧版参数
 @property (nonatomic, retain) NSMutableArray * animateTextures;
 @property (nonatomic, assign) CGFloat HPChangeValue;
+@property (nonatomic, retain) NSString * skillName;
 
 // 基础参数
 @property (nonatomic, assign) NSInteger skillId;
-@property (nonatomic, retain) NSString * skillName;
 @property (nonatomic, assign) int skillType;    // 0:被动 1:主动
 @property (nonatomic, assign) int skillObject;  // 0:作用于自身 1:作用于对方
 @property (nonatomic, assign) int skillLevel;   // 技能等级
@@ -35,9 +35,9 @@ static NSString * kSkillName[kSkillCountTotal+1] =
 @property (nonatomic, assign) int skillstatus;    // 技能状态 0不可用 1可用
 
 
+
 -(NSString *)getIconImageName;
 
-+(PPSkill *)skillWithName:(NSString *)skillName AndLevel:(int)skillLevel;
 +(PPSkill *)skillWithId:(int)skillID AndLevel:(int)skillLevel;
 
 @end

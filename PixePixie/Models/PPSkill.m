@@ -11,17 +11,7 @@
 
 -(NSString *)getIconImageName
 {
-    return [NSString stringWithFormat:@"%02d_%@", self.skillId, self.skillName];
-}
-
-+(PPSkill *)skillWithName:(NSString *)skillName AndLevel:(int)skillLevel
-{
-    for (int i = 1; i <= kSkillCountTotal; i++) {
-        if ([skillName isEqualToString:kSkillName[i]]) {
-            return [PPSkill skillWithId:i AndLevel:skillLevel];
-        }
-    }
-    return nil;
+    return [NSString stringWithFormat:@"%02d_%@", self.skillId, kSkillName[self.skillId]];
 }
 
 +(PPSkill *)skillWithId:(int)skillID AndLevel:(int)skillLevel
@@ -35,6 +25,7 @@
     
     PPSkill * tSkill = [[PPSkill alloc] init];
     tSkill.skillId = skillID;
+    
     tSkill.skillName = kSkillName[skillID];
     tSkill.skillLevel = skillLevel;
     tSkill.skillName = [skillInfo objectForKey:@"skillname"];

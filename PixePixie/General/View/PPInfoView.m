@@ -5,6 +5,7 @@
 
 UIImageView *imgvHP, *imgvAP,*imgvDP;
 UILabel *lbHP, *lbAP, *lbDP;
+UIView * skillIcon;
 
 -(id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
@@ -19,6 +20,8 @@ UILabel *lbHP, *lbAP, *lbDP;
 
 -(void)updatePixie:(PPPixie *)pixie
 {
+    if (pixie == nil) return;
+    
     int left = 140, top = 27;
     
     if (imgvHP == nil) {
@@ -55,6 +58,29 @@ UILabel *lbHP, *lbAP, *lbDP;
     lbHP.text = [NSString stringWithFormat:@"%.0f", pixie.pixieHPmax];
     lbAP.text = [NSString stringWithFormat:@"%.0f", pixie.pixieAP];
     lbDP.text = [NSString stringWithFormat:@"%.0f", pixie.pixieDP];
+    
+    
+    if (skillIcon != nil) {
+        [skillIcon removeFromSuperview];
+        skillIcon = nil;
+    }
+    
+    skillIcon = [[UIView alloc] initWithFrame:CGRectMake(30, 30, 110, 110)];
+    [self addSubview:skillIcon];
+    
+    // 最多显示四个技能
+    const int tmax = 4;
+    int x[tmax] = {0, 55, 0, 55};
+    int y[tmax] = {0, 0, 55, 55};
+    
+    for (int i = 0; i < tmax; i++) {
+        if (i < [pixie.skillList count] ) {
+            PPSkill * tSkill = (PPSkill *)[pixie.skillList objectAtIndex:i];
+            UIImageView * icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[tSkill getIconImageName]]];
+            icon.frame = CGRectMake(x[i], y[i], 50, 50);
+            [skillIcon addSubview:icon];
+        }
+    }
     
 }
 
