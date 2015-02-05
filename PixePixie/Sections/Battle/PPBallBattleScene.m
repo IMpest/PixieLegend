@@ -1027,28 +1027,7 @@ CGFloat vector2angel(CGVector vector){
 // 结算combo添加元素球
 -(void)creatCombosTotal:(NSString *)stringSide
 {
-    //    if ([stringSide isEqualToString:PP_BALL_TYPE_PET_ELEMENT_NAME]) {
-    //        [self addRandomBalls:petCombos
-    //                 withElement:self.pixiePlayer.pixieBall.ballElementType
-    //                 andNodeName:stringSide];
-    //        petCombos = 0;
-    //
-    //    }else
-    //    {
-    //
-    //         [self addRandomBalls:enemyCombos withElement:self.pixieEnemy.pixieBall.ballElementType andNodeName:stringSide];
-    //        enemyCombos = 0;
-    //
-    //    }
-    //
-    
-    /*
-     NSLog(@"pet element=%ld combos=%d  enemy element=%ld combos=%d",
-     self.pixiePlayer.pixieBall.ballElementType,
-     petCombos,
-     self.pixieEnemy.pixieBall.ballElementType,
-     enemyCombos);
-     */
+
     
     [self.playerAndEnemySide setComboLabelText:petCombos withEnemy:enemyCombos];
 }
