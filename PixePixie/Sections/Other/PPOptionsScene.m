@@ -3,10 +3,10 @@
 
 @implementation PPOptionsScene
 
--(id)initWithSize:(CGSize)size{
-    if (self = [super initWithSize:size])
-    {
-        [self setBackTitleText:@"Options" andPositionY:360.0f];
+-(id)initWithSize:(CGSize)size
+{
+    if (self = [super initWithSize:size]){
+        [self setBackTitleText:@"设置" andPositionY:360];
     }
     return self;
 }

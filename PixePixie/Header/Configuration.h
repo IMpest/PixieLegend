@@ -47,7 +47,8 @@
 #define PP_BUFF_SHOW_BTN_TAG            800
 
 // zPosition
-#define PP_BACK_BUTTON_ZPOSITION 100
+#define PPZ_BACK_GROUND         -10000
+#define PPZ_BACK_BUTTON         100
 
 #define PPZ_FIGHT               1000 // 上方战斗区基准
 #define PPZ_FIGHT_BG            1010 // 战斗区背景

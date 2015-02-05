@@ -24,8 +24,7 @@ static NSString * joinTitle[] = {
     
     if (self = [super initWithSize:size]) {
         
-        self.backgroundColor = [UIColor purpleColor];
-        [self setBackTitleText:@"任务" andPositionY:360];
+        [self setUsingDefaultBackground];
         
         for (int i = 0; i < 5; i++) {
             

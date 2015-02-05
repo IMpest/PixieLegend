@@ -66,7 +66,7 @@ NSString * userInfo[] =
     [self.view addSubview:skViewName];
 }
 
-// 点击跳转确认宠物名字界面
+// 宠物名字界面点击跳转
 -(void)textInputConfirmClick:(UIButton *)sender
 {
     skViewPixie = [[PPChoosePetView alloc] initWithFrame:CGRectMake(0, PP_FIT_TOP_SIZE, 320, 480)];
@@ -80,7 +80,7 @@ NSString * userInfo[] =
     }
 }
 
-// 确认宠物点击
+// 确认已选择的宠物点击进入主界面
 -(void)petsChooseCofirmBtnClick:(UIButton *)sender
 {
     [PPLocalData setContent:@"Logged" forContentKey:PP_FIRST_LOG_IN];

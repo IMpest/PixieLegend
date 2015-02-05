@@ -1,7 +1,7 @@
 
 #import "PPPacksackScene.h"
 
-static NSString *monsterBtnTitle[] = {
+static NSString * monsterBtnTitle[] = {
     @"Clear",
     @"Acquire coins",
     @"Drop box",
@@ -10,11 +10,12 @@ static NSString *monsterBtnTitle[] = {
 };
 
 @implementation PPPacksackScene
+
 - (id)initWithSize:(CGSize)size
 {
-    if (self=[super initWithSize:size]) {
-        self.backgroundColor = [UIColor blueColor];
-        [self setBackTitleText:@"Knapsack" andPositionY:360.0f];
+    if (self = [super initWithSize:size]) {
+        [self setUsingDefaultBackground];
+//        [self setBackTitleText:@"Knapsack" andPositionY:360];
 
         SKSpriteNode * contentSpriteNode = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(280, 200)];
         contentSpriteNode.position = CGPointMake(160, 230);
@@ -43,8 +44,8 @@ static NSString *monsterBtnTitle[] = {
         }
         
         for (int i = 0; i < 15; i++) {
-            PPSpriteButton *monsterButton = [PPSpriteButton buttonWithTexture:boxTexture andSize:CGSizeMake(40.0f, 40.0f)];
-            monsterButton.position = CGPointMake((i%5)*55-110.0f,(i/5)*60-50.0f);
+            PPSpriteButton *monsterButton = [PPSpriteButton buttonWithTexture:boxTexture andSize:CGSizeMake(40, 40)];
+            monsterButton.position = CGPointMake((i % 5) * 55 - 110, (i / 5) * 60 - 50);
             monsterButton.name = [NSString stringWithFormat:@"%d",i];
             [monsterButton addTarget:self selector:@selector(monsterBoxButtonClick:)
                           withObject:monsterButton.name forControlEvent:PPButtonControlEventTouchUpInside];
@@ -53,32 +54,32 @@ static NSString *monsterBtnTitle[] = {
         [self addChild:contentSpriteNode];
         
         for (int i = 0; i < 5; i++) {
-            PPSpriteButton *handleButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(70.0f, 40.0f)];
+            PPSpriteButton * handleButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(70, 40)];
             [handleButton setLabelWithText:monsterBtnTitle[i] andFont:[UIFont systemFontOfSize:11] withColor:nil];
             switch (i) {
                 case 0:
                 {
-                    handleButton.position = CGPointMake(50.0f, 40.0f);
+                    handleButton.position = CGPointMake(50, 40);
                 }
                     break;
                 case 1:
                 {
-                    handleButton.position = CGPointMake(160.0f, 90.0f);
+                    handleButton.position = CGPointMake(160, 90);
                 }
                     break;
                 case 2:
                 {
-                    handleButton.position = CGPointMake(160.0f, 30.0f);
+                    handleButton.position = CGPointMake(160, 30);
                 }
                     break;
                 case 3:
                 {
-                    handleButton.position = CGPointMake(260.0f, 40.0f);
+                    handleButton.position = CGPointMake(260, 40);
                 }
                     break;
                 case 4:
                 {
-                    handleButton.position = CGPointMake(260.0f, 340.0f);
+                    handleButton.position = CGPointMake(260, 360);
                 }
                     break;
                     
@@ -111,9 +112,9 @@ static NSString *monsterBtnTitle[] = {
             break;
         case 4:
         {
-            PPCookingScene* mainScene = [[PPCookingScene alloc] initWithSize:self.view.bounds.size];
+            PPCookingScene * mainScene = [[PPCookingScene alloc] initWithSize:self.view.bounds.size];
             mainScene->previousScene = self;
-            mainScene.scaleMode=SKSceneScaleModeFill;
+            mainScene.scaleMode = SKSceneScaleModeFill;
             [self.view presentScene:mainScene];
         }
             break;

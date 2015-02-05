@@ -1,7 +1,7 @@
 
 #import "PPCookingScene.h"
 
-static NSString *monsterBtnTitle[]={
+static NSString * monsterBtnTitle [] = {
     @"Clear",
     @"Cooking Box",
     @"Cook"
@@ -11,8 +11,8 @@ static NSString *monsterBtnTitle[]={
 
 - (id)initWithSize:(CGSize)size
 {
-    if (self=[super initWithSize:size]) {
-        self.backgroundColor = [UIColor cyanColor];
+    if (self = [super initWithSize:size]) {
+        [self setUsingDefaultBackground];
         [self setBackTitleText:@"Cooking" andPositionY:360.0f];
         
         SKSpriteNode * contentSpriteNode = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(280, 200)];
@@ -93,7 +93,7 @@ static NSString *monsterBtnTitle[]={
 
 -(void)backButtonClick:(NSString *)backName
 {
-    [self.view presentScene:previousScene transition:[SKTransition doorwayWithDuration:1.0]];
+    [self.view presentScene:previousScene];
 }
 
 @end

@@ -48,6 +48,8 @@
     SKScene *previousScene;
 }
 
+
+-(void)setUsingDefaultBackground;
 -(void)setBackTitleText:(NSString *)title andPositionY:(CGFloat)yValue;
 
 @end

@@ -661,7 +661,7 @@ CGFloat vector2angel(CGVector vector){
         
         PPSpriteButton *goButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(45, 30)];
         [goButton setLabelWithText:@"下一个" andFont:[UIFont systemFontOfSize:15] withColor:nil];
-        goButton.zPosition = PP_BACK_BUTTON_ZPOSITION;
+        goButton.zPosition = PPZ_BACK_BUTTON;
         goButton.position = CGPointMake(0.0f,-60);
         [goButton addTarget:self selector:@selector(goNextEnemy)
                  withObject:nil forControlEvent:PPButtonControlEventTouchUpInside];
@@ -724,7 +724,7 @@ CGFloat vector2angel(CGVector vector){
         
         PPSpriteButton *goButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(45, 30)];
         [goButton setLabelWithText:@"确定" andFont:[UIFont systemFontOfSize:15] withColor:nil];
-        goButton.zPosition = PP_BACK_BUTTON_ZPOSITION;
+        goButton.zPosition = PPZ_BACK_BUTTON;
         goButton.position = CGPointMake(0.0f,-60);
         [goButton addTarget:self selector:@selector(goNextScene)
                    withObject:nil forControlEvent:PPButtonControlEventTouchUpInside];

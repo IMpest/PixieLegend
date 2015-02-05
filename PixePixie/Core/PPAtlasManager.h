@@ -50,10 +50,7 @@
 +(SKTextureAtlas *)skill_buff;
 +(SKTextureAtlas *)skill_icon;
 +(SKTextureAtlas *)ui_fighting;
-//+(SKTextureAtlas *)ui_talent;
 +(SKTextureAtlas *)pixie_info;
-//+(SKTextureAtlas *)pixie_battle_effect;
-//+(SKTextureAtlas *)pixie_battle_skill;
 
 // ==== v3.0 ====
 +(SKTextureAtlas *)battle_fight_missile;

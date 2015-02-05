@@ -519,26 +519,10 @@
 		1933E70A1A2F074700E8C5BF /* General */ = {
 			isa = PBXGroup;
 			children = (
-				196202EC1A63B41F008F88C4 /* View */,
-				1933E70B1A2F087500E8C5BF /* Basic */,
-				1933E7361A2F0D7500E8C5BF /* Nodes */,
-			);
-			name = General;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		1933E70B1A2F087500E8C5BF /* Basic */ = {
-			isa = PBXGroup;
-			children = (
+				196202ED1A63B47B008F88C4 /* PPInfoView.h */,
+				196202EE1A63B47B008F88C4 /* PPInfoView.m */,
 				1933E70C1A2F088100E8C5BF /* PPBasicScene.h */,
 				1933E70D1A2F088100E8C5BF /* PPBasicScene.m */,
-			);
-			name = Basic;
-			sourceTree = "<group>";
-		};
-		1933E7361A2F0D7500E8C5BF /* Nodes */ = {
-			isa = PBXGroup;
-			children = (
 				1933E7371A2F0D8100E8C5BF /* PPCustomAlertNode.h */,
 				1933E7381A2F0D8100E8C5BF /* PPCustomAlertNode.m */,
 				1933E7391A2F0D8100E8C5BF /* PPCustomButton.h */,
@@ -546,7 +530,8 @@
 				1933E73D1A2F0D8100E8C5BF /* PPSpriteButton.h */,
 				1933E73E1A2F0D8100E8C5BF /* PPSpriteButton.m */,
 			);
-			name = Nodes;
+			name = General;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		1933E7441A2F11B200E8C5BF /* Image */ = {
@@ -618,16 +603,6 @@
 				193F96BF1A2EF8A400F266A6 /* PPChoosePetScrollView.m */,
 			);
 			name = Start;
-			sourceTree = "<group>";
-		};
-		196202EC1A63B41F008F88C4 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				196202ED1A63B47B008F88C4 /* PPInfoView.h */,
-				196202EE1A63B47B008F88C4 /* PPInfoView.m */,
-			);
-			name = View;
-			path = PixePixie/ViewsAndControllers;
 			sourceTree = "<group>";
 		};
 		196738BC19DA5BD2002C5172 /* Images（旧版） */ = {

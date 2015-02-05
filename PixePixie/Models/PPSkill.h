@@ -37,9 +37,6 @@ static NSString * kSkillName[kSkillCountTotal+1] =
 @property (nonatomic, retain) NSString * skillbtntexture;
 
 
-
-
-
 -(NSString *)getIconImageName;
 
 +(PPSkill *)skillWithId:(int)skillID AndLevel:(int)skillLevel;

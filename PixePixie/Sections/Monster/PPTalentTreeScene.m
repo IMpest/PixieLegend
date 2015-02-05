@@ -7,6 +7,8 @@
 -(id)initWithPixie:(PPPixie *)pixie
 {
     if (self = [super init]) {
+        
+        
         [self setBackTitleText:@"天赋树" andPositionY:360.0f];
         
         SKSpriteNode * backTree = [[SKSpriteNode alloc] initWithImageNamed:@"bg_tree"];

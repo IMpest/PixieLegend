@@ -4,8 +4,9 @@
 @implementation PPMonsterBookScene
 
 -(id)initWithSize:(CGSize)size{
-    if (self = [super initWithSize:size]) {
-        [self setBackTitleText:@"Monster book" andPositionY:360];
+    if (self = [super initWithSize:size])
+    {
+        [self setBackTitleText:@"图鉴" andPositionY:360];
     }
     return self;
 }

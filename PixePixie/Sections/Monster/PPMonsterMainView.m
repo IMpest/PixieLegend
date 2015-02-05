@@ -7,9 +7,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        self.backgroundColor = [UIColor redColor];
-        
         monsterScene = [[PPMonsterScene alloc] initWithSize:self.bounds.size];
         monsterScene.scaleMode = SKSceneScaleModeFill;
         [self presentScene:monsterScene];

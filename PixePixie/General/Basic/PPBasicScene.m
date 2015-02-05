@@ -1,27 +1,24 @@
 #import "PPBasicScene.h"
 
-@interface PPBasicScene()
-{
-    PPSpriteButton *backButtonTitle;
-    PPSpriteButton  *backButton;
-}
-@end
-
 @implementation PPBasicScene
 
-- (id)initWithSize:(CGSize)size
+PPSpriteButton * backButtonTitle;
+PPSpriteButton * backButton;
+
+-(void)setUsingDefaultBackground
 {
-    if (self = [super initWithSize:size]) {
-        self.backgroundColor = [UIColor clearColor];
-    }
-    return self;
+    SKSpriteNode * defaultBg = [[SKSpriteNode alloc] initWithImageNamed:@"bg_start"];
+    defaultBg.size = CGSizeMake(320, 480 - 44 * 2);
+    defaultBg.position = CGPointMake(160, 196);
+    defaultBg.zPosition = PPZ_BACK_GROUND;
+    [self addChild:defaultBg];
 }
 
 -(void)setBackTitleText:(NSString *)title andPositionY:(CGFloat)yValue;
 {
     backButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(45, 30)];
     [backButton setLabelWithText:@"返回" andFont:[UIFont systemFontOfSize:15] withColor:nil];
-    backButton.zPosition = PP_BACK_BUTTON_ZPOSITION;
+    backButton.zPosition = PPZ_BACK_BUTTON;
     backButton.position = CGPointMake(15.0f,yValue);
     [backButton addTarget:self selector:@selector(backButtonClick:)
                withObject:@"返回" forControlEvent:PPButtonControlEventTouchUpInside];

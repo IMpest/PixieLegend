@@ -13,17 +13,14 @@
 
 -(NSString *)getIconImageName
 {
-    return [NSString stringWithFormat:@"%02d_%@", self.skillId, kSkillName[self.skillId]];
+    return [NSString stringWithFormat:@"%02ld_%@", (long)self.skillId, kSkillName[self.skillId]];
 }
 
 +(PPSkill *)skillWithId:(int)skillID AndLevel:(int)skillLevel
 {
-    
-    
     NSDictionary *skillInfo = [[PPLocalData getInstance].allSkillsInfo objectForKey:[NSString stringWithFormat:@"%02d",skillID]];
-    NSLog(@"skillInfo=%@ allinfo=%@",skillInfo,[PPLocalData getInstance].allSkillsInfo);
-    
-    
+//    NSLog(@"skillInfo=%@ allinfo=%@",skillInfo,[PPLocalData getInstance].allSkillsInfo);
+
     PPSkill * tSkill = [[PPSkill alloc] init];
     tSkill.skillId = skillID;
     

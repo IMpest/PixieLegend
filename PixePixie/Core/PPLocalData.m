@@ -4,7 +4,9 @@
 static PPLocalData * localData = nil;
 
 @implementation PPLocalData
-@synthesize allSkillsInfo;
+
+// 这里其实不加也没问题的
+//@synthesize allSkillsInfo;
 
 +(PPLocalData *)getInstance
 {
