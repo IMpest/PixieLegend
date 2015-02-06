@@ -2292,7 +2292,7 @@ CGFloat vector2angel(CGVector vector){
                     [node removeFromParent];
                 }
                 
-                SKAction * actionRep = [[PPAtlasManager ball_elements] getAnimation:@"plant_aura"];
+                SKAction * actionRep = [[PPAtlasManager other_valid_oldImages] getAnimation:@"plant_aura"];
                 SKAction * actionRepForever =[SKAction repeatActionForever:actionRep];
                 
                 SKSpriteNode * buffShowNode =[[SKSpriteNode alloc] initWithImageNamed:@"plant_aura_0000"];

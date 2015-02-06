@@ -148,6 +148,16 @@
     return tAtlas;
 }
 
++(SKTextureAtlas *)other_valid_oldImages
+{
+    __strong static SKTextureAtlas * tAtlas = nil;
+    static dispatch_once_t pred;
+    dispatch_once(&pred, ^{
+        tAtlas = [SKTextureAtlas atlasNamed:@"other_valid_oldImages"];
+    });
+    return tAtlas;
+}
+
 #pragma mark custom
 
 +(SKSpriteNode *)createSpriteImageName:(NSString *)imageName withPos:(CGPoint)pos

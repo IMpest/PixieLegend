@@ -59,6 +59,8 @@
 +(SKTextureAtlas *)battle_table_ball;
 +(SKTextureAtlas *)pixie_battle_action;
 +(SKTextureAtlas *)ui_number;
++(SKTextureAtlas *)other_valid_oldImages;
+
 
 // ==== custom ====
 +(SKSpriteNode *)createSpriteImageName:(NSString *)imageName withPos:(CGPoint)pos
