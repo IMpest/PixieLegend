@@ -12,6 +12,24 @@
 	<integer>25</integer>
 	<key>element_birth</key>
 	<integer>24</integer>
+	<key>===battle_fight_effect===</key>
+	<string></string>
+	<key>debeat</key>
+	<integer>4</integer>
+	<key>defend</key>
+	<integer>7</integer>
+	<key>heal</key>
+	<integer>13</integer>
+	<key>moving</key>
+	<integer>4</integer>
+	<key>shield_break</key>
+	<integer>2</integer>
+	<key>waiting</key>
+	<integer>3</integer>
+	<key>===battle_fight_missile===</key>
+	<string></string>
+	<key>01_tornado</key>
+	<integer>10</integer>
 	<key>===battle_fight_pixie===</key>
 	<string></string>
 	<key>metal3_beated</key>
@@ -54,20 +72,6 @@
 	<integer>4</integer>
 	<key>plant3_stop</key>
 	<integer>4</integer>
-	<key>===battle_fight_effect===</key>
-	<string></string>
-	<key>defend</key>
-	<integer>7</integer>
-	<key>heal</key>
-	<integer>13</integer>
-	<key>moving</key>
-	<integer>4</integer>
-	<key>shield_break</key>
-	<integer>2</integer>
-	<key>===battle_fight_missile===</key>
-	<string></string>
-	<key>01_tornado</key>
-	<integer>10</integer>
 	<key>===battle_fight_skill===</key>
 	<string></string>
 	<key>01_devilrebirth</key>
