@@ -15,7 +15,6 @@
 		1933E7181A2F08AC00E8C5BF /* PPSceneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1933E7151A2F08AC00E8C5BF /* PPSceneManager.m */; };
 		1933E74C1A2F11F100E8C5BF /* pixie_battle_action.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1933E7481A2F11F100E8C5BF /* pixie_battle_action.atlas */; };
 		193D9F341A5BCFAA005762D6 /* bt_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 193D9F311A5BCFAA005762D6 /* bt_back.png */; };
-		193D9F351A5BCFAA005762D6 /* bt_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 193D9F321A5BCFAA005762D6 /* bt_pause.png */; };
 		193D9F381A5BCFBD005762D6 /* ui_number.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 193D9F371A5BCFBD005762D6 /* ui_number.atlas */; };
 		193DC4AD19686162007308C7 /* PPPixie.m in Sources */ = {isa = PBXBuildFile; fileRef = 193DC4AB19686162007308C7 /* PPPixie.m */; };
 		193F96891A2EF49800F266A6 /* PPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 193F96861A2EF49800F266A6 /* PPAppDelegate.m */; };
@@ -73,6 +72,15 @@
 		1971845F1A83755E004A7880 /* PPInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 197184591A83755E004A7880 /* PPInfoView.m */; };
 		197184601A83755E004A7880 /* PPSpriteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1971845B1A83755E004A7880 /* PPSpriteButton.m */; };
 		1973588A1A441E2E008F0B4A /* battle_fight_effect.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 197358891A441E2E008F0B4A /* battle_fight_effect.atlas */; };
+		197C38EE1A888DBF00B6F43A /* bt_monster_boss.png in Resources */ = {isa = PBXBuildFile; fileRef = 197C38EB1A888DBF00B6F43A /* bt_monster_boss.png */; };
+		197C38EF1A888DBF00B6F43A /* bt_monster_friend.png in Resources */ = {isa = PBXBuildFile; fileRef = 197C38EC1A888DBF00B6F43A /* bt_monster_friend.png */; };
+		197C38F01A888DBF00B6F43A /* bt_monster_gift.png in Resources */ = {isa = PBXBuildFile; fileRef = 197C38ED1A888DBF00B6F43A /* bt_monster_gift.png */; };
+		197C38F71A888E9D00B6F43A /* fight_btn_pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 197C38F11A888E9D00B6F43A /* fight_btn_pause.png */; };
+		197C38F81A888E9D00B6F43A /* fight_btn_pausedown.png in Resources */ = {isa = PBXBuildFile; fileRef = 197C38F21A888E9D00B6F43A /* fight_btn_pausedown.png */; };
+		197C38F91A888E9D00B6F43A /* fight_btn_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 197C38F31A888E9D00B6F43A /* fight_btn_play.png */; };
+		197C38FA1A888E9D00B6F43A /* fight_btn_playdown.png in Resources */ = {isa = PBXBuildFile; fileRef = 197C38F41A888E9D00B6F43A /* fight_btn_playdown.png */; };
+		197C38FB1A888E9D00B6F43A /* fight_hp_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 197C38F51A888E9D00B6F43A /* fight_hp_bar.png */; };
+		197C38FC1A888E9D00B6F43A /* fight_hp_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 197C38F61A888E9D00B6F43A /* fight_hp_full.png */; };
 		198D051F1A515CE800D7244F /* battle_fight_pixie.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 198D051E1A515CE800D7244F /* battle_fight_pixie.atlas */; };
 		19A445381A6A71B20016FAA6 /* fit_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A445361A6A71B20016FAA6 /* fit_bottom.png */; };
 		19A445391A6A71B20016FAA6 /* fit_top.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A445371A6A71B20016FAA6 /* fit_top.png */; };
@@ -181,7 +189,6 @@
 		1933E7431A2F0DF700E8C5BF /* Importation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Importation.h; path = PixePixie/Header/Importation.h; sourceTree = "<group>"; };
 		1933E7481A2F11F100E8C5BF /* pixie_battle_action.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = pixie_battle_action.atlas; path = Resource/Image/pixie_battle_action.atlas; sourceTree = "<group>"; };
 		193D9F311A5BCFAA005762D6 /* bt_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_back.png; sourceTree = "<group>"; };
-		193D9F321A5BCFAA005762D6 /* bt_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_pause.png; sourceTree = "<group>"; };
 		193D9F371A5BCFBD005762D6 /* ui_number.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = ui_number.atlas; path = Resource/Image/ui_number.atlas; sourceTree = "<group>"; };
 		193DC48319686054007308C7 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Configuration.h; path = PixePixie/Header/Configuration.h; sourceTree = "<group>"; };
 		193DC4AA19686162007308C7 /* PPPixie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPPixie.h; path = Models/PPPixie.h; sourceTree = "<group>"; };
@@ -279,6 +286,15 @@
 		1971845A1A83755E004A7880 /* PPSpriteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPSpriteButton.h; path = PixePixie/General/PPSpriteButton.h; sourceTree = "<group>"; };
 		1971845B1A83755E004A7880 /* PPSpriteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPSpriteButton.m; path = PixePixie/General/PPSpriteButton.m; sourceTree = "<group>"; };
 		197358891A441E2E008F0B4A /* battle_fight_effect.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_fight_effect.atlas; path = Resource/Image/battle_fight_effect.atlas; sourceTree = "<group>"; };
+		197C38EB1A888DBF00B6F43A /* bt_monster_boss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_monster_boss.png; sourceTree = "<group>"; };
+		197C38EC1A888DBF00B6F43A /* bt_monster_friend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_monster_friend.png; sourceTree = "<group>"; };
+		197C38ED1A888DBF00B6F43A /* bt_monster_gift.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_monster_gift.png; sourceTree = "<group>"; };
+		197C38F11A888E9D00B6F43A /* fight_btn_pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fight_btn_pause.png; sourceTree = "<group>"; };
+		197C38F21A888E9D00B6F43A /* fight_btn_pausedown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fight_btn_pausedown.png; sourceTree = "<group>"; };
+		197C38F31A888E9D00B6F43A /* fight_btn_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fight_btn_play.png; sourceTree = "<group>"; };
+		197C38F41A888E9D00B6F43A /* fight_btn_playdown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fight_btn_playdown.png; sourceTree = "<group>"; };
+		197C38F51A888E9D00B6F43A /* fight_hp_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fight_hp_bar.png; sourceTree = "<group>"; };
+		197C38F61A888E9D00B6F43A /* fight_hp_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fight_hp_full.png; sourceTree = "<group>"; };
 		198D051E1A515CE800D7244F /* battle_fight_pixie.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_fight_pixie.atlas; path = Resource/Image/battle_fight_pixie.atlas; sourceTree = "<group>"; };
 		19A445361A6A71B20016FAA6 /* fit_bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fit_bottom.png; sourceTree = "<group>"; };
 		19A445371A6A71B20016FAA6 /* fit_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fit_top.png; sourceTree = "<group>"; };
@@ -570,7 +586,9 @@
 				193D9F311A5BCFAA005762D6 /* bt_back.png */,
 				19DB5D731A7252FD003EFEE3 /* bt_detail.png */,
 				19DB5D741A7252FD003EFEE3 /* bt_menu.png */,
-				193D9F321A5BCFAA005762D6 /* bt_pause.png */,
+				197C38EB1A888DBF00B6F43A /* bt_monster_boss.png */,
+				197C38EC1A888DBF00B6F43A /* bt_monster_friend.png */,
+				197C38ED1A888DBF00B6F43A /* bt_monster_gift.png */,
 				19A445361A6A71B20016FAA6 /* fit_bottom.png */,
 				19A445371A6A71B20016FAA6 /* fit_top.png */,
 				194D46A51A6509A500FDBDD0 /* info_ap.png */,
@@ -737,6 +755,12 @@
 			children = (
 				19F208641A78D62200B3FB9C /* fight_back.png */,
 				19F208651A78D62200B3FB9C /* fight_info_coin.png */,
+				197C38F11A888E9D00B6F43A /* fight_btn_pause.png */,
+				197C38F21A888E9D00B6F43A /* fight_btn_pausedown.png */,
+				197C38F31A888E9D00B6F43A /* fight_btn_play.png */,
+				197C38F41A888E9D00B6F43A /* fight_btn_playdown.png */,
+				197C38F51A888E9D00B6F43A /* fight_hp_bar.png */,
+				197C38F61A888E9D00B6F43A /* fight_hp_full.png */,
 				19F208681A78D71000B3FB9C /* table_arrow.png */,
 				19F208691A78D71000B3FB9C /* table_back.png */,
 				19F2086A1A78D71000B3FB9C /* table_wall.png */,
@@ -819,8 +843,8 @@
 		19F6EDD718C6C65900BFFF9A /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				D481DFF41A85110B0050E691 /* Images */,
 				1933E7441A2F11B200E8C5BF /* Image */,
+				D481DFF41A85110B0050E691 /* Images */,
 				19F208801A78ECD000B3FB9C /* FrameCount.plist */,
 				19F208811A78ECD000B3FB9C /* PassInfo.plist */,
 				19F208821A78ECD100B3FB9C /* PixiesInfo.plist */,
@@ -936,6 +960,7 @@
 				1933E74C1A2F11F100E8C5BF /* pixie_battle_action.atlas in Resources */,
 				19DDAC9E1A6FB86A00315A66 /* water3_card.png in Resources */,
 				D481DFFB1A85110B0050E691 /* ball_magic.atlas in Resources */,
+				197C38EF1A888DBF00B6F43A /* bt_monster_friend.png in Resources */,
 				19CFACF91A77976C00126D75 /* 02_devilbreath.png in Resources */,
 				1968FE911A71ED1600CE8101 /* battle_fight_skill.atlas in Resources */,
 				19A445471A6A71C20016FAA6 /* map_all_02.png in Resources */,
@@ -950,6 +975,7 @@
 				19A8ED4F1A52977600EFEA7A /* info_mail.png in Resources */,
 				19A8ED4C1A52977600EFEA7A /* bg_bar_top.png in Resources */,
 				19F6EDA818C6C09900BFFF9A /* InfoPlist.strings in Resources */,
+				197C38FA1A888E9D00B6F43A /* fight_btn_playdown.png in Resources */,
 				1973588A1A441E2E008F0B4A /* battle_fight_effect.atlas in Resources */,
 				194D46AD1A6509A500FDBDD0 /* info_dp.png in Resources */,
 				19A445391A6A71B20016FAA6 /* fit_top.png in Resources */,
@@ -957,6 +983,7 @@
 				19A445481A6A71C20016FAA6 /* map_all_03.png in Resources */,
 				19DDAC971A6F9FFA00315A66 /* fire3_card.png in Resources */,
 				19CFACF81A77976C00126D75 /* 01_devilrebirth.png in Resources */,
+				197C38FC1A888E9D00B6F43A /* fight_hp_full.png in Resources */,
 				19DB5D761A7252FD003EFEE3 /* bt_menu.png in Resources */,
 				19F208701A78D71000B3FB9C /* table_back.png in Resources */,
 				194D46AB1A6509A500FDBDD0 /* bg_start.png in Resources */,
@@ -975,7 +1002,9 @@
 				D481DFFE1A8511240050E691 /* ui_fighting.atlas in Resources */,
 				19F208841A78ECD100B3FB9C /* PassInfo.plist in Resources */,
 				194D46AA1A6509A500FDBDD0 /* bg_alert.png in Resources */,
+				197C38F71A888E9D00B6F43A /* fight_btn_pause.png in Resources */,
 				19DB5D7B1A725882003EFEE3 /* buff_hp.png in Resources */,
+				197C38F01A888DBF00B6F43A /* bt_monster_gift.png in Resources */,
 				19A445451A6A71C20016FAA6 /* map_all_00.png in Resources */,
 				194D46B71A650D3B00FDBDD0 /* bg_pet_1.png in Resources */,
 				19CFACFA1A77976C00126D75 /* 03_rattantwine.png in Resources */,
@@ -984,16 +1013,17 @@
 				19A8ED641A52977600EFEA7A /* pet_hint.png in Resources */,
 				19CFACFD1A77976C00126D75 /* 06_devilskin.png in Resources */,
 				196673611A53993900DA0F95 /* tab_light.png in Resources */,
+				197C38EE1A888DBF00B6F43A /* bt_monster_boss.png in Resources */,
 				19CFACFF1A77976C00126D75 /* 08_devilextinction.png in Resources */,
 				19CFAD021A779CD300126D75 /* bt_dungeon.png in Resources */,
 				19A8ED651A52977600EFEA7A /* pet_name.png in Resources */,
 				19A8ED621A52977600EFEA7A /* element_plant.png in Resources */,
 				19F208741A78D71000B3FB9C /* word_start.png in Resources */,
 				197184501A837473004A7880 /* 02_devilbreath_item.png in Resources */,
-				193D9F351A5BCFAA005762D6 /* bt_pause.png in Resources */,
 				194D46AE1A6509A500FDBDD0 /* info_hp.png in Resources */,
 				1971844F1A837473004A7880 /* 01_devilrebirth_item.png in Resources */,
 				D481E0001A8512AB0050E691 /* other_valid_oldImages.atlas in Resources */,
+				197C38FB1A888E9D00B6F43A /* fight_hp_bar.png in Resources */,
 				19A8ED541A52977600EFEA7A /* tab_btn0.png in Resources */,
 				19A8ED531A52977600EFEA7A /* tab_btn1.png in Resources */,
 				19A4454C1A6A71C20016FAA6 /* map_scene_fire.png in Resources */,
@@ -1007,6 +1037,7 @@
 				19DB5D7A1A725882003EFEE3 /* buff_exp.png in Resources */,
 				19CFACFB1A77976C00126D75 /* 04_nightjudge.png in Resources */,
 				19A8ED511A52977600EFEA7A /* info_stone.png in Resources */,
+				197C38F81A888E9D00B6F43A /* fight_btn_pausedown.png in Resources */,
 				19A8ED631A52977600EFEA7A /* element_water.png in Resources */,
 				19A8ED521A52977600EFEA7A /* tab_btn2.png in Resources */,
 				19EC10011A81C71B00655BB5 /* bg_words.png in Resources */,
@@ -1032,6 +1063,7 @@
 				198D051F1A515CE800D7244F /* battle_fight_pixie.atlas in Resources */,
 				D481DFF91A85110B0050E691 /* ball_buff.atlas in Resources */,
 				19F208671A78D62200B3FB9C /* fight_info_coin.png in Resources */,
+				197C38F91A888E9D00B6F43A /* fight_btn_play.png in Resources */,
 				19A8ED4B1A52977600EFEA7A /* bg_bar_bottom.png in Resources */,
 				194D46B61A650D3B00FDBDD0 /* bg_pet_0.png in Resources */,
 			);

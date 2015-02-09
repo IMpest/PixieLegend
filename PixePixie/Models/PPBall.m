@@ -398,14 +398,14 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
         
         [self addChild:self.plantrootAnimationNode];
         
-        SKAction *   action= [[PPAtlasManager ball_buff] getAnimation:@"plant_root_appear"];
+        SKAction * action = [[PPAtlasManager ball_buff] getAnimation:@"plant_root_appear"];
         [self.plantrootAnimationNode runAction:action
                              completion:^{
                                  
                             }];
         
     } else {
-        SKAction *action= [[PPAtlasManager ball_buff] getAnimation:@"plant_root_disappear"];
+        SKAction * action = [[PPAtlasManager ball_buff] getAnimation:@"plant_root_disappear"];
         [self.plantrootAnimationNode runAction:action
                              completion:^{
                                  [self.plantrootAnimationNode removeFromParent];
