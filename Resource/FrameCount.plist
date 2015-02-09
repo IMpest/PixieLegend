@@ -2,30 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>____ball_buff____</key>
-	<string></string>
-	<key>plant_root_appear</key>
-	<integer>13</integer>
-	<key>plant_root_disappear</key>
-	<integer>9</integer>
-	<key>____ball_element____</key>
-	<string></string>
-	<key>fire_aura</key>
-	<integer>15</integer>
-	<key>fire_hit</key>
-	<integer>11</integer>
-	<key>fire_run</key>
-	<integer>15</integer>
-	<key>fire_step</key>
-	<integer>15</integer>
-	<key>plant_aura</key>
-	<integer>15</integer>
-	<key>plant_hit</key>
-	<integer>15</integer>
-	<key>plant_run</key>
-	<integer>15</integer>
-	<key>plant_step</key>
-	<integer>15</integer>
 	<key>____ball_magic____</key>
 	<string></string>
 	<key>magic_ball</key>
@@ -36,24 +12,6 @@
 	<integer>25</integer>
 	<key>element_birth</key>
 	<integer>24</integer>
-	<key>____const_skill____</key>
-	<string></string>
-	<key>fire_blade_cast</key>
-	<integer>24</integer>
-	<key>fire_shield_cast</key>
-	<integer>27</integer>
-	<key>===battle_table_ball===</key>
-	<string></string>
-	<key>ball_pixie_active</key>
-	<integer>14</integer>
-	<key>ball_pixie_choose</key>
-	<integer>4</integer>
-	<key>ball_pixie_hit</key>
-	<integer>6</integer>
-	<key>ball_pixie_start</key>
-	<integer>3</integer>
-	<key>ball_pixie_wall</key>
-	<integer>4</integer>
 	<key>===battle_fight_pixie===</key>
 	<string></string>
 	<key>metal3_beated</key>
@@ -120,9 +78,33 @@
 	<integer>11</integer>
 	<key>03_rattantwine</key>
 	<integer>15</integer>
+	<key>03_rattantwine_buff_apr</key>
+	<integer>13</integer>
+	<key>03_rattantwine_buff_dis</key>
+	<integer>9</integer>
 	<key>04_nightjudge</key>
 	<integer>10</integer>
 	<key>04_nightjudge_hit</key>
 	<integer>6</integer>
+	<key>===battle_table_ball===</key>
+	<string></string>
+	<key>ball_pixie_active</key>
+	<integer>14</integer>
+	<key>ball_pixie_choose</key>
+	<integer>4</integer>
+	<key>ball_pixie_hit</key>
+	<integer>6</integer>
+	<key>ball_pixie_start</key>
+	<integer>3</integer>
+	<key>ball_pixie_wall</key>
+	<integer>4</integer>
+	<key>===battle_table_buff===</key>
+	<string></string>
+	<key>buff_cirrus</key>
+	<integer>15</integer>
+	<key>buff_rooted_apr</key>
+	<integer>13</integer>
+	<key>buff_rooted_dis</key>
+	<integer>9</integer>
 </dict>
 </plist>

@@ -82,6 +82,9 @@
 		197C38FB1A888E9D00B6F43A /* fight_hp_bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 197C38F51A888E9D00B6F43A /* fight_hp_bar.png */; };
 		197C38FC1A888E9D00B6F43A /* fight_hp_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 197C38F61A888E9D00B6F43A /* fight_hp_full.png */; };
 		198D051F1A515CE800D7244F /* battle_fight_pixie.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 198D051E1A515CE800D7244F /* battle_fight_pixie.atlas */; };
+		1992F7D31A88935B008B4E87 /* bt_monster_feed.png in Resources */ = {isa = PBXBuildFile; fileRef = 1992F7D21A88935B008B4E87 /* bt_monster_feed.png */; };
+		1992F7D51A889381008B4E87 /* fight_info_item.png in Resources */ = {isa = PBXBuildFile; fileRef = 1992F7D41A889381008B4E87 /* fight_info_item.png */; };
+		1992F7D71A889710008B4E87 /* battle_table_buff.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1992F7D61A889710008B4E87 /* battle_table_buff.atlas */; };
 		19A445381A6A71B20016FAA6 /* fit_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A445361A6A71B20016FAA6 /* fit_bottom.png */; };
 		19A445391A6A71B20016FAA6 /* fit_top.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A445371A6A71B20016FAA6 /* fit_top.png */; };
 		19A445451A6A71C20016FAA6 /* map_all_00.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A4453B1A6A71C20016FAA6 /* map_all_00.png */; };
@@ -296,6 +299,9 @@
 		197C38F51A888E9D00B6F43A /* fight_hp_bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fight_hp_bar.png; sourceTree = "<group>"; };
 		197C38F61A888E9D00B6F43A /* fight_hp_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fight_hp_full.png; sourceTree = "<group>"; };
 		198D051E1A515CE800D7244F /* battle_fight_pixie.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_fight_pixie.atlas; path = Resource/Image/battle_fight_pixie.atlas; sourceTree = "<group>"; };
+		1992F7D21A88935B008B4E87 /* bt_monster_feed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_monster_feed.png; sourceTree = "<group>"; };
+		1992F7D41A889381008B4E87 /* fight_info_item.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fight_info_item.png; sourceTree = "<group>"; };
+		1992F7D61A889710008B4E87 /* battle_table_buff.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_table_buff.atlas; path = Resource/Image/battle_table_buff.atlas; sourceTree = "<group>"; };
 		19A445361A6A71B20016FAA6 /* fit_bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fit_bottom.png; sourceTree = "<group>"; };
 		19A445371A6A71B20016FAA6 /* fit_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fit_top.png; sourceTree = "<group>"; };
 		19A4453B1A6A71C20016FAA6 /* map_all_00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_all_00.png; sourceTree = "<group>"; };
@@ -561,6 +567,7 @@
 				198D051E1A515CE800D7244F /* battle_fight_pixie.atlas */,
 				1968FE901A71ED1600CE8101 /* battle_fight_skill.atlas */,
 				19C8BE001A4821AE00872CE9 /* battle_table_ball.atlas */,
+				1992F7D61A889710008B4E87 /* battle_table_buff.atlas */,
 				1933E7481A2F11F100E8C5BF /* pixie_battle_action.atlas */,
 				193D9F371A5BCFBD005762D6 /* ui_number.atlas */,
 				19DB5D771A725882003EFEE3 /* pixie_buff */,
@@ -587,6 +594,7 @@
 				19DB5D731A7252FD003EFEE3 /* bt_detail.png */,
 				19DB5D741A7252FD003EFEE3 /* bt_menu.png */,
 				197C38EB1A888DBF00B6F43A /* bt_monster_boss.png */,
+				1992F7D21A88935B008B4E87 /* bt_monster_feed.png */,
 				197C38EC1A888DBF00B6F43A /* bt_monster_friend.png */,
 				197C38ED1A888DBF00B6F43A /* bt_monster_gift.png */,
 				19A445361A6A71B20016FAA6 /* fit_bottom.png */,
@@ -754,13 +762,14 @@
 			isa = PBXGroup;
 			children = (
 				19F208641A78D62200B3FB9C /* fight_back.png */,
-				19F208651A78D62200B3FB9C /* fight_info_coin.png */,
 				197C38F11A888E9D00B6F43A /* fight_btn_pause.png */,
 				197C38F21A888E9D00B6F43A /* fight_btn_pausedown.png */,
 				197C38F31A888E9D00B6F43A /* fight_btn_play.png */,
 				197C38F41A888E9D00B6F43A /* fight_btn_playdown.png */,
 				197C38F51A888E9D00B6F43A /* fight_hp_bar.png */,
 				197C38F61A888E9D00B6F43A /* fight_hp_full.png */,
+				19F208651A78D62200B3FB9C /* fight_info_coin.png */,
+				1992F7D41A889381008B4E87 /* fight_info_item.png */,
 				19F208681A78D71000B3FB9C /* table_arrow.png */,
 				19F208691A78D71000B3FB9C /* table_back.png */,
 				19F2086A1A78D71000B3FB9C /* table_wall.png */,
@@ -973,6 +982,7 @@
 				19F208751A78D71000B3FB9C /* word_warning.png in Resources */,
 				19A8ED501A52977600EFEA7A /* info_name.png in Resources */,
 				19A8ED4F1A52977600EFEA7A /* info_mail.png in Resources */,
+				1992F7D51A889381008B4E87 /* fight_info_item.png in Resources */,
 				19A8ED4C1A52977600EFEA7A /* bg_bar_top.png in Resources */,
 				19F6EDA818C6C09900BFFF9A /* InfoPlist.strings in Resources */,
 				197C38FA1A888E9D00B6F43A /* fight_btn_playdown.png in Resources */,
@@ -1045,6 +1055,7 @@
 				D481DFFC1A85110B0050E691 /* ball_table.atlas in Resources */,
 				19EC0FFF1A807D7C00655BB5 /* bg_tree.png in Resources */,
 				194D46B01A6509A500FDBDD0 /* info_txt.png in Resources */,
+				1992F7D31A88935B008B4E87 /* bt_monster_feed.png in Resources */,
 				19A445491A6A71C20016FAA6 /* map_icon_fire.png in Resources */,
 				194D46B81A650D3B00FDBDD0 /* bg_pet_2.png in Resources */,
 				19C8BE041A4821AE00872CE9 /* battle_table_ball.atlas in Resources */,
@@ -1057,6 +1068,7 @@
 				19A445381A6A71B20016FAA6 /* fit_bottom.png in Resources */,
 				19F2085E1A78D0F700B3FB9C /* bt_preview.png in Resources */,
 				194D46AC1A6509A500FDBDD0 /* info_ap.png in Resources */,
+				1992F7D71A889710008B4E87 /* battle_table_buff.atlas in Resources */,
 				193D9F381A5BCFBD005762D6 /* ui_number.atlas in Resources */,
 				19A4454D1A6A71C20016FAA6 /* map_scene_metal.png in Resources */,
 				19A8ED661A52977600EFEA7A /* pet_card.png in Resources */,

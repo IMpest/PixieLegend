@@ -28,26 +28,27 @@ BOOL menuIsHidden;
         [self addChild:monsterInfo];
         
         // 上方按钮
-        PPSpriteButton * feedFromFriendButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(120.0f, 30.0f)];
-        [feedFromFriendButton setLabelWithText:@"有朋友给你的宠物喂食了!" andFont:[UIFont systemFontOfSize:10] withColor:nil];
-        feedFromFriendButton.position = CGPointMake(60.0f,360.0f);
-        feedFromFriendButton.name = @"";
+        
+        PPSpriteButton * feedFromFriendButton = [PPSpriteButton buttonWithImageNamed:@"bt_monster_gift.png"];
+        feedFromFriendButton.name = @"btFeedFromFriends";
+        feedFromFriendButton.size = CGSizeMake(39, 40);
+        feedFromFriendButton.position = CGPointMake(40, 360);
         [feedFromFriendButton addTarget:self selector:@selector(feedButtonClick:)
                              withObject:feedFromFriendButton.name forControlEvent:PPButtonControlEventTouchUpInside];
         [self addChild:feedFromFriendButton];
         
-        PPSpriteButton * removeToGroupBtn = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(80, 30.0f)];
-        [removeToGroupBtn setLabelWithText:@"remove to Group" andFont:[UIFont systemFontOfSize:10] withColor:nil];
-        removeToGroupBtn.position = CGPointMake(feedFromFriendButton.position.x+120,feedFromFriendButton.position.y);
-        removeToGroupBtn.name = @"removeFromGroupBtn";
+        PPSpriteButton * removeToGroupBtn = [PPSpriteButton buttonWithImageNamed:@"bt_monster_friend.png"];
+        removeToGroupBtn.name = @"btRemoveFromGroup";
+        removeToGroupBtn.size = CGSizeMake(86, 29);
+        removeToGroupBtn.position = CGPointMake(160, feedFromFriendButton.position.y);
         [removeToGroupBtn addTarget:self selector:@selector(removeToGroupBtnClick:)
                          withObject:feedFromFriendButton.name forControlEvent:PPButtonControlEventTouchUpInside];
         [self addChild:removeToGroupBtn];
         
-        PPSpriteButton * worldBossButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(60.0f, 30.0f)];
-        [worldBossButton setLabelWithText:@"world boss" andFont:[UIFont systemFontOfSize:10] withColor:nil];
-        worldBossButton.position = CGPointMake(160.0f+feedFromFriendButton.size.width/2.0f+50.0f,feedFromFriendButton.position.y);
-        worldBossButton.name = @"";
+        PPSpriteButton * worldBossButton = [PPSpriteButton buttonWithImageNamed:@"bt_monster_boss.png"];
+        worldBossButton.name = @"btWorldboss";
+        worldBossButton.size = CGSizeMake(35, 27);
+        worldBossButton.position = CGPointMake(280, feedFromFriendButton.position.y);
         [worldBossButton addTarget:self selector:@selector(worldBossButtonClick:)
                         withObject:feedFromFriendButton.name forControlEvent:PPButtonControlEventTouchUpInside];
         [self addChild:worldBossButton];

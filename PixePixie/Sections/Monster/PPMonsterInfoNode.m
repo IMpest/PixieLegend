@@ -26,19 +26,18 @@ PPPixie * pixieCurrent;
     
     // 添加状态
     for (int i = 0; i < 3; i++) {
-        PPSpriteButton * buffButton = [PPSpriteButton buttonWithImageNamed:@"buff_exp"];
+        SKSpriteNode * buffButton = [[SKSpriteNode alloc] initWithImageNamed:@"buff_exp"];
         buffButton.position = CGPointMake(130, i * 40 + 20);
         buffButton.size = CGSizeMake(25, 25);
-        [buffButton addTarget:self selector:@selector(buffButtonClick:)
-                   withObject:buffButton.name forControlEvent:PPButtonControlEventTouchUpInside];
         [self addChild:buffButton];
     }
     
     // 添加喂食按钮
-    PPSpriteButton * feedButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(30, 30)];
-    feedButton.position = CGPointMake(130, -125);
-    feedButton.name = @"喂食";
-    [feedButton setLabelWithText:@"喂食" andFont:[UIFont systemFontOfSize:15] withColor:nil];
+    PPSpriteButton * feedButton = [PPSpriteButton buttonWithImageNamed:@"bt_monster_feed"];
+    feedButton.name = @"btnFeed";
+    feedButton.size = CGSizeMake(72, 22);
+    feedButton.position = CGPointMake(0, -150);
+    [feedButton setLabelWithText:@"喂食" andFont:[UIFont systemFontOfSize:14] withColor:nil];
     [feedButton addTarget:self selector:@selector(feedButtonClick:) withObject:feedButton.name
           forControlEvent:PPButtonControlEventTouchUpInside];
     [self addChild:feedButton];
@@ -57,19 +56,8 @@ PPPixie * pixieCurrent;
 -(void)feedButtonClick:(NSString *)stringName
 {}
 
--(void)hungryButtonClick:(NSString *)stringName
-{}
 
--(void)moodButtonClick:(NSString *)stringName
-{}
-
--(void)monsterTextureClick:(NSString *)stringName
-{}
-
--(void)buffButtonClick:(NSString *)stringName
-{}
-
-// 显示语言
+// 显示宠物想说的语言
 -(void)showWords:(NSString *)content inSeconds:(float)time
 {
     if (time < 1.0) return;
