@@ -37,8 +37,13 @@ CGFloat vectorLength (CGVector vector) {
 
 // 向量角度计算
 CGFloat vector2angel(CGVector vector){
-    CGFloat rotation = atan(vector.dy / vector.dx);
-    return vector.dx > 0 ? rotation : rotation + 3.1415926;
+    if (vector.dx!=0.0f) {
+        CGFloat rotation = atan(vector.dy / vector.dx);
+        return vector.dx > 0 ? rotation : rotation + 3.1415926;
+    }else
+    {
+        return 0.0f;
+    }
 }
 
 @interface PPBallBattleScene () < SKPhysicsContactDelegate, UIAlertViewDelegate >
@@ -60,9 +65,9 @@ CGFloat vector2angel(CGVector vector){
 
 @property (nonatomic) BOOL isBallDragging;
 @property (nonatomic) BOOL isBallRolling;
-@property (nonatomic) PPBall * ballPlayer;
-@property (nonatomic) PPBall * ballShadow;
-@property (nonatomic) PPBall * ballEnemy;
+@property (nonatomic,retain) PPBall * ballPlayer;
+@property (nonatomic,retain) PPBall * ballShadow;
+@property (nonatomic,retain) PPBall * ballEnemy;
 
 @property (nonatomic, retain) NSMutableArray * ballsElement;
 @property (nonatomic, retain) NSMutableArray * ballsCombos;
@@ -177,8 +182,8 @@ CGFloat vector2angel(CGVector vector){
 // 添加己方玩家球
 -(void)initPlayerBalls{
     
-    float xPlayer = BALL_RANDOM_X;
-    float yPlayer = BALL_RANDOM_Y + PP_FIT_TOP_SIZE;
+    CGFloat xPlayer = BALL_RANDOM_X;
+    CGFloat yPlayer = BALL_RANDOM_Y + PP_FIT_TOP_SIZE;
     
     // 修正位置防止越界
     if (xPlayer < 20) xPlayer = 20;
@@ -208,7 +213,9 @@ CGFloat vector2angel(CGVector vector){
     
     // 添加 Ball of Enemey
     self.ballEnemy = self.pixieEnemy.pixieBall;
-    self.ballEnemy.position = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y + PP_FIT_TOP_SIZE);
+    CGFloat x = BALL_RANDOM_X;
+    CGFloat y = BALL_RANDOM_Y + PP_FIT_TOP_SIZE;
+    self.ballEnemy.position = CGPointMake(100, 100);
     self.ballEnemy->battleCurrentScene = self;
     if (self.ballEnemy.position.x>=290) {
         self.ballEnemy.position = CGPointMake(290.0f, self.ballPlayer.position.y);
@@ -240,8 +247,8 @@ CGFloat vector2angel(CGVector vector){
     // 8选5方式决定位置
     const int tmax = 8;
     BOOL cb[tmax] = {NO, NO, NO, NO, NO, NO, NO, NO};
-    int cx[tmax] = {40, 40, 40, 160, 160, 280, 280, 280};
-    int cy[tmax] = {40, 160, 280, 40, 280, 40, 160, 280};
+    CGFloat cx[tmax] = {40, 40, 40, 160, 160, 280, 280, 280};
+    CGFloat cy[tmax] = {40, 160, 280, 40, 280, 40, 160, 280};
     
     for (int i = 0; i < 5; i++) {
         
@@ -250,7 +257,7 @@ CGFloat vector2angel(CGVector vector){
         int t = arc4random() % tmax;
         while (cb[t] == YES) t = arc4random() % tmax;
         cb[t] = YES;
-        NSLog(@"%d %d %d", t, cx[t], cy[t]);
+        NSLog(@"%d %f %f", t, cx[t], cy[t]);
         comboBall.position = CGPointMake(cx[t], cy[t] + PP_FIT_TOP_SIZE);
         
         // 调整随机尺寸结果防止重叠
@@ -379,7 +386,7 @@ CGFloat vector2angel(CGVector vector){
     NSLog(@"elementBodyStatus=%@",elementBodyStatus);
     
     if (self.ballPlayer == pixieball) {
-        [self.playerAndEnemySide changeEnemyHPValue:-50];
+        [self.playerAndEnemySide changeEnemyHPValue:-10];
         [self.playerAndEnemySide startAttackShowAnimation:YES];
         [self.playerAndEnemySide changePetMPValue:200];
     } else {
@@ -554,14 +561,14 @@ CGFloat vector2angel(CGVector vector){
         self.ballEnemy.physicsBody.resting = YES;
     }
     
-    for (PPBall * tBall in self.ballsElement) {
-        if (vectorLength(tBall.physicsBody.velocity) > kStopThreshold) {
-            return NO;
-        } else {
-            tBall.physicsBody.velocity = CGVectorMake(0.0f, 0.0f);
-            tBall.physicsBody.resting = YES;
-        }
-    }
+//    for (PPBall * tBall in self.ballsElement) {
+//        if (vectorLength(tBall.physicsBody.velocity) > kStopThreshold) {
+//            return NO;
+//        } else {
+//            tBall.physicsBody.velocity = CGVectorMake(0.0f, 0.0f);
+//            tBall.physicsBody.resting = YES;
+//        }
+//    }
     
     for (PPBall * tBall in self.ballsCombos) {
         if (vectorLength(tBall.physicsBody.velocity) > kStopThreshold) {
@@ -585,7 +592,7 @@ CGFloat vector2angel(CGVector vector){
         
         // 刷新技能
         _isTrapEnable = NO;
-        for (PPBall * tBall in self.ballsElement) [tBall setToDefaultTexture];
+//        for (PPBall * tBall in self.ballsElement) [tBall setToDefaultTexture];
         
         [self.playerAndEnemySide resetPetAndEnemyPosition];
         
@@ -1185,8 +1192,7 @@ CGFloat vector2angel(CGVector vector){
 // 改变元素球持续回合数
 -(void)changeBallsRoundsEnd
 {
-    
-    NSLog(@"ballsElement count=%d",(int)[self.ballsElement count]);
+
     
     [self enumerateChildNodesWithName:PP_BALL_TYPE_PET_ELEMENT_NAME usingBlock:^(SKNode *node,BOOL *stop){
         PPBall *tBall=(PPBall *)node;
@@ -1243,7 +1249,7 @@ CGFloat vector2angel(CGVector vector){
     SKSpriteNode * tNode = [[SKSpriteNode alloc] init];
     if (number < 1 || color == nil) return tNode;
     
-    float width = 13.0f;
+    CGFloat width = 13.0f;
     
     // 拼接数字图片
     int i = 0;
@@ -1368,11 +1374,15 @@ CGFloat vector2angel(CGVector vector){
     [self changeBallStatus:PP_ENEMY_SIDE_NODE_NAME];
     
     currentPhysicsAttack = 2;
-    float randomX = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
-    float randomY = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
-    [self.ballEnemy.physicsBody applyImpulse:CGVectorMake(randomX, randomY)];
-    [self addBallMoveAnimation:self.ballEnemy.position];
+    CGFloat randomX = arc4random() %100 - kAutoAttackMax;
+    CGFloat randomY = arc4random() %100 - kAutoAttackMax;
+    NSLog(@"randomX=%f randomY=%f",randomX,randomY);
     
+//    [self.ballEnemy.physicsBody applyImpulse:CGVectorMake(randomX, randomY)];
+    NSLog(@"count =%@",self.ballEnemy);
+    [self.ballEnemy.physicsBody applyImpulse:CGVectorMake(50.0f, 50.0f)];
+    [self addBallMoveAnimation:self.ballEnemy.position];
+//
     [self.ballEnemy startPixieAccelerateAnimation:CGVectorMake(randomX, randomY) andType:@"step"];
     [self setPlayerSideRoundRunState];
     _isBallRolling = YES;
@@ -1671,73 +1681,73 @@ CGFloat vector2angel(CGVector vector){
     
     NSLog(@"skillInfo=%@",skillInfo);
     
-    switch ([[skillInfo objectForKey:@"skilltype"] intValue]) {
-            
-        case 0:
-        {
-            [self showSkillEventBegin:skillInfo];
-        }
-            break;
-            
-        case 1:
-        {
-            isNotSkillShowTime = YES;
-            isNotSkillRun = NO;
-            
-            if ([[skillInfo objectForKey:@"skillname"] isEqualToString:@"森林瞬起"]) {
-                
-                
-                //                NSMutableArray *animanArryay = [[NSMutableArray alloc] init];
-                //
-                //                for (int i=0; i <10; i++) {
-                //                    SKTexture * temp = [[PPAtlasManager ball_magic] textureNamed:[NSString stringWithFormat:@"magic_ball_00%02d",i]];
-                //                    [animanArryay addObject:temp];
-                //                }
-                
-                
-                for (PPBall * tBall in self.ballsElement) {
-                    if (tBall.ballElementType == PPElementTypePlant) {
-                        if ([tBall.physicsBody.PPBallSkillStatus intValue] != 1) {
-                            tBall.physicsBody.PPBallSkillStatus = @1;
-                            [tBall startMagicballAnimation];
-                        }
-                    }
-                }
-            }
-            
-            if ([[skillInfo objectForKey:@"skillname"] isEqualToString:@"木系掌控"]) {
-                for (PPBall * tBall in self.ballsElement) {
-                    if ([tBall.name isEqualToString:@"ball_plant"]) {
-                        
-                        //                    [tBall runAction:[SKAction moveTo:CGPointMake(tBall.position.x-10, tBall.position.y-20) duration:2]];
-                        
-                        [tBall runAction:[SKAction moveBy:CGVectorMake((self.ballPlayer.position.x - tBall.position.x)/2.0f,
-                                                                       (self.ballPlayer.position.y - tBall.position.y)/2.0f)
-                                                 duration:2]];
-                    }
-                }
-            }
-            
-            //            [self roundRotateMoved:PP_PET_PLAYER_SIDE_NODE_NAME];
-            
-        }
-            break;
-            
-        case 2:
-        {
-            [self showSkillEventBegin:skillInfo];
-        }
-            break;
-            
-        case 3:
-        {
-            [self showSkillEventBegin:skillInfo];
-        }
-            break;
-            
-        default:
-            break;
-    }
+//    switch ([[skillInfo objectForKey:@"skilltype"] intValue]) {
+//            
+//        case 0:
+//        {
+//            [self showSkillEventBegin:skillInfo];
+//        }
+//            break;
+//            
+//        case 1:
+//        {
+//            isNotSkillShowTime = YES;
+//            isNotSkillRun = NO;
+//            
+//            if ([[skillInfo objectForKey:@"skillname"] isEqualToString:@"森林瞬起"]) {
+//                
+//                
+//                //                NSMutableArray *animanArryay = [[NSMutableArray alloc] init];
+//                //
+//                //                for (int i=0; i <10; i++) {
+//                //                    SKTexture * temp = [[PPAtlasManager ball_magic] textureNamed:[NSString stringWithFormat:@"magic_ball_00%02d",i]];
+//                //                    [animanArryay addObject:temp];
+//                //                }
+//                
+//                
+//                for (PPBall * tBall in self.ballsElement) {
+//                    if (tBall.ballElementType == PPElementTypePlant) {
+//                        if ([tBall.physicsBody.PPBallSkillStatus intValue] != 1) {
+//                            tBall.physicsBody.PPBallSkillStatus = @1;
+//                            [tBall startMagicballAnimation];
+//                        }
+//                    }
+//                }
+//            }
+//            
+//            if ([[skillInfo objectForKey:@"skillname"] isEqualToString:@"木系掌控"]) {
+//                for (PPBall * tBall in self.ballsElement) {
+//                    if ([tBall.name isEqualToString:@"ball_plant"]) {
+//                        
+//                        //                    [tBall runAction:[SKAction moveTo:CGPointMake(tBall.position.x-10, tBall.position.y-20) duration:2]];
+//                        
+//                        [tBall runAction:[SKAction moveBy:CGVectorMake((self.ballPlayer.position.x - tBall.position.x)/2.0f,
+//                                                                       (self.ballPlayer.position.y - tBall.position.y)/2.0f)
+//                                                 duration:2]];
+//                    }
+//                }
+//            }
+//            
+//            //            [self roundRotateMoved:PP_PET_PLAYER_SIDE_NODE_NAME];
+//            
+//        }
+//            break;
+//            
+//        case 2:
+//        {
+//            [self showSkillEventBegin:skillInfo];
+//        }
+//            break;
+//            
+//        case 3:
+//        {
+//            [self showSkillEventBegin:skillInfo];
+//        }
+//            break;
+//            
+//        default:
+//            break;
+//    }
 }
 
 -(void)addBuffAnimation:(int)skillID
@@ -1813,8 +1823,8 @@ CGFloat vector2angel(CGVector vector){
             
             
 //            currentPhysicsAttack = 1;
-//            float randomX = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
-//            float randomY = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
+//            CGFloat randomX = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
+//            CGFloat randomY = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
 //            NSLog(@"randomX=%f randomY=%f",randomX,randomY);
 //            
 //            [self.ballPlayer.physicsBody applyImpulse:CGVectorMake(30, 30)];
@@ -2032,7 +2042,7 @@ CGFloat vector2angel(CGVector vector){
 //计算物理伤害
 -(int)physicsAttackHPChangeValueCalculate:(NSString *)stringSide
 {
-    float hpChange = 0.0f;
+    CGFloat hpChange = 0.0f;
     if ([stringSide isEqualToString:PP_PET_PLAYER_SIDE_NODE_NAME]) {
         hpChange = kHurtBasicValue * (1.0f + petCombos*petCombos / 100.0f);
     } else {
@@ -2260,14 +2270,14 @@ CGFloat vector2angel(CGVector vector){
                 
                 
                 ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
-                [ballCombo startComboAnimation:CGVectorMake(self.ballPlayer.position.x-ballCombo.position.x,self.ballPlayer.position.y-ballCombo.position.y)];
+                [ballCombo startComboAnimation:CGPointMake(self.ballPlayer.position.x-ballCombo.position.x,self.ballPlayer.position.y-ballCombo.position.y)];
                 
                 
                 
             } else {
                 
                 ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
-                [ballCombo startComboAnimation:CGVectorMake(self.ballPlayer.position.x-ballCombo.position.x,self.ballPlayer.position.y-ballCombo.position.y)];
+                [ballCombo startComboAnimation:CGPointMake(self.ballPlayer.position.x-ballCombo.position.x,self.ballPlayer.position.y-ballCombo.position.y)];
                 
             }
             
@@ -2292,10 +2302,10 @@ CGFloat vector2angel(CGVector vector){
                     [node removeFromParent];
                 }
                 
-                SKAction * actionRep = [[PPAtlasManager other_valid_oldImages] getAnimation:@"plant_aura"];
+                SKAction * actionRep = [[PPAtlasManager battle_table_buff] getAnimation:@"buff_cirrus"];
                 SKAction * actionRepForever =[SKAction repeatActionForever:actionRep];
                 
-                SKSpriteNode * buffShowNode =[[SKSpriteNode alloc] initWithImageNamed:@"plant_aura_0000"];
+                SKSpriteNode * buffShowNode =[[SKSpriteNode alloc] initWithImageNamed:@"buff_cirrus_0000"];
                 buffShowNode.size = CGSizeMake(115.0f, 107.0f);
                 //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
                 [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
@@ -2374,7 +2384,7 @@ CGFloat vector2angel(CGVector vector){
             if ([ballCombo.PPBallSkillStatus intValue] == PPBuffTypeRattanTwine) {
                 
                 [self changeBallStatus:PP_PET_PLAYER_SIDE_NODE_NAME];
-                SKAction *actionRep = [[PPAtlasManager ball_buff] getAnimation:@"plant_root_appear"];
+                SKAction *actionRep = [[PPAtlasManager battle_table_buff] getAnimation:@"buff_rooted_apr"];
 //                SKAction  *actionRepForever =[SKAction repeatActionForever:actionRep];
                 
 //                SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] initWithImageNamed:@"plant_root_appear_0012"];
@@ -2383,7 +2393,7 @@ CGFloat vector2angel(CGVector vector){
 //                [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
 //                
 //                buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine];
-               SKSpriteNode *buffShowNode= [PPAtlasManager createSpriteImageName:@"plant_root_appear_0012" withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine]];
+               SKSpriteNode *buffShowNode= [PPAtlasManager createSpriteImageName:@"buff_rooted_apr_0012" withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine]];
                 
                 ballCombo.PPBallSkillStatus =[NSNumber numberWithInt:PPBuffTypeRattanTwine];
                 [self.ballEnemy addChild:buffShowNode];
@@ -2408,7 +2418,7 @@ CGFloat vector2angel(CGVector vector){
                 
             }
             
-              [ballCombo startComboAnimation:CGVectorMake(self.ballEnemy.position.x-ballCombo.position.x,self.ballEnemy.position.y-ballCombo.position.y)];
+              [ballCombo startComboAnimation:CGPointMake((CGFloat)(self.ballEnemy.position.x-ballCombo.position.x),(CGFloat)(self.ballEnemy.position.y-ballCombo.position.y))];
             
             enemyCombos++;
             [self.playerAndEnemySide startAttackAnimation:NO];
@@ -2529,9 +2539,12 @@ CGFloat vector2angel(CGVector vector){
         isTouchPetBall = YES;
     }
     
+
+    
     if (isNotSkillRun || _isBallDragging) return;
     
     _isBallDragging = YES;
+    
     
     _ballShadow = [PPBall ballWithPixie:self.pixiePlayer];
     _ballShadow.size = CGSizeMake(kBallSize, kBallSize);
@@ -2586,7 +2599,7 @@ CGFloat vector2angel(CGVector vector){
         
         spriteArrow.hidden = NO;
         double scaleFactor = sqrt(angleVector.dx * angleVector.dx + angleVector.dy * angleVector.dy );
-        float scaleChange = scaleFactor/20;
+        CGFloat scaleChange = scaleFactor/20;
         if (scaleChange >=2) {
             scaleChange = 2;
         }
@@ -2640,6 +2653,9 @@ CGFloat vector2angel(CGVector vector){
             [self changeBallStatus:PP_PET_PLAYER_SIDE_NODE_NAME];
             
             _isBallDragging = NO;
+            
+            NSLog(@"x:%f,y:%f,    xx:%f  yy:%f",(origtinTouchPoint.x - _ballShadow.position.x) * kBounceReduce,((origtinTouchPoint.y - _ballShadow.position.y) * kBounceReduce),(origtinTouchPoint.x - _ballShadow.position.x) * kBounceReduce,(origtinTouchPoint.y - _ballShadow.position.y)* kBounceReduce);
+            
             [self.ballPlayer.physicsBody applyImpulse:
              CGVectorMake((origtinTouchPoint.x - _ballShadow.position.x) * kBounceReduce,
                           (origtinTouchPoint.y - _ballShadow.position.y) * kBounceReduce)];

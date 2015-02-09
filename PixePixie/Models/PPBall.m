@@ -18,7 +18,9 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
 +(PPBall *)ballWithPixie:(PPPixie *)pixie
 {
     if (pixie == nil) return nil;
-    PPBall * tBall = [PPBall spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(50.0f, 50.0f)];
+//    PPBall * tBall = [PPBall spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(50.0f, 50.0f)];
+    PPBall * tBall = [[PPBall alloc] init];
+    tBall.size = CGSizeMake(50.0f, 50.0f);
     
     SKTexture * comboBallBack = [[PPAtlasManager battle_table_ball] textureNamed:@"ball_all"];
     SKSpriteNode * nodeBack = [SKSpriteNode spriteNodeWithTexture:comboBallBack];
@@ -264,6 +266,15 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
 -(void)startPixieAccelerateAnimation:(CGVector)velocity andType:(NSString *)pose
 {
     // 速度过低则移除
+    if (velocity.dx<=0.0f) {
+        velocity.dx=0.0f;
+        
+    }
+    if (velocity.dy<=0.0f) {
+        velocity.dy=0.0f;
+        
+    }
+    
     if (sqrt(velocity.dx * velocity.dx + velocity.dy * velocity.dy ) < kBallAccelerateMin) {
         if (self.comboBallSprite != nil) {
             [self.comboBallSprite removeFromParent];
@@ -284,16 +295,24 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
         self.comboBallSprite.size = CGSizeMake(100, 100);
         [self.comboBallSprite setPosition:CGPointMake(0, 0)];
         [self addChild:self.comboBallSprite];
-        NSString * tName = [NSString stringWithFormat:@"%@_%@", kElementTypeString[self.ballElementType], pose];
+//        NSString * tName = [NSString stringWithFormat:@"%@_%@", kElementTypeString[self.ballElementType], pose];
+        NSString * tName = [NSString stringWithFormat:@"%@_%@", @"plant", pose];
+
         SKAction * tAction = [SKAction repeatActionForever:[[PPAtlasManager ball_elements] getAnimation:tName]];
         [self.comboBallSprite runAction:tAction];
     }
     
+    
     // 调整方向
     if (self.comboBallSprite != nil){
-        double rotation = atan(velocity.dy/velocity.dx);
-        rotation = velocity.dx > 0 ? rotation : rotation + 3.14159;
-        self.comboBallSprite.zRotation = rotation;
+        if (velocity.dx!=0.0f) {
+            CGFloat rotation = atan(velocity.dy/velocity.dx);
+            rotation = velocity.dx > 0 ? rotation : rotation + 3.14159;
+            NSLog(@"rotation=%f",rotation);
+            
+            self.comboBallSprite.zRotation = rotation;
+        }
+       
     }
 }
 
@@ -325,7 +344,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
 }
 
 // 连击能量动画
--(void)startComboAnimation:(CGVector)vectorValue
+-(void)startComboAnimation:(CGPoint)vectorValue
 {
     if (self.comboBallSprite != nil) {
         [self.comboBallSprite removeFromParent];
@@ -334,7 +353,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
     
     self.comboBallSprite =[[SKSpriteNode alloc] init];
     self.comboBallSprite.size = CGSizeMake(50.0f, 50.0f);
-    [self.comboBallSprite setPosition:CGPointMake(vectorValue.dx/2.0f, vectorValue.dy/2.0f)];
+    [self.comboBallSprite setPosition:CGPointMake(vectorValue.x/2.0f, vectorValue.y/2.0f)];
     [self addChild:self.comboBallSprite];
     
     [self.comboBallSprite runAction:[[PPAtlasManager battle_table_ball] getAnimation:@"ball_pixie_hit"]

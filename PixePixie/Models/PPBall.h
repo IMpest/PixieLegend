@@ -108,7 +108,7 @@ static void * MyObjectMyCustomPorpertyKey1 = (void *) @"MyObjectMyCustomPorperty
 /**
  * @brief 创建连击球碰撞动画
  */
--(void)startComboAnimation:(CGVector)vectorValue;
+-(void)startComboAnimation:(CGPoint)vectorValue;
 /**
  * @brief 创建治疗动画
  */

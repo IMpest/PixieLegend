@@ -168,11 +168,9 @@
 		19F6EDA818C6C09900BFFF9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19F6EDA618C6C09900BFFF9A /* InfoPlist.strings */; };
 		19F6EDAA18C6C09900BFFF9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F6EDA918C6C09900BFFF9A /* main.m */; };
 		D413CB611945FF62004B4FDE /* PPSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = D413CB601945FF62004B4FDE /* PPSkill.m */; };
-		D481DFF91A85110B0050E691 /* ball_buff.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF51A85110B0050E691 /* ball_buff.atlas */; };
 		D481DFFA1A85110B0050E691 /* ball_elements.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF61A85110B0050E691 /* ball_elements.atlas */; };
 		D481DFFB1A85110B0050E691 /* ball_magic.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF71A85110B0050E691 /* ball_magic.atlas */; };
 		D481DFFC1A85110B0050E691 /* ball_table.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF81A85110B0050E691 /* ball_table.atlas */; };
-		D481DFFE1A8511240050E691 /* ui_fighting.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFFD1A8511240050E691 /* ui_fighting.atlas */; };
 		D481E0001A8512AB0050E691 /* other_valid_oldImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFFF1A8512AB0050E691 /* other_valid_oldImages.atlas */; };
 		D4877A40196C314E009509E5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4877A3F196C314E009509E5 /* Images.xcassets */; };
 		D4BE5ABF19513FFD001F72DE /* PPBuff.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BE5ABE19513FFD001F72DE /* PPBuff.m */; };
@@ -394,11 +392,9 @@
 		19F6EDAB18C6C09900BFFF9A /* PixelPixie-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PixelPixie-Prefix.pch"; sourceTree = "<group>"; };
 		D413CB5F1945FF62004B4FDE /* PPSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPSkill.h; path = Models/PPSkill.h; sourceTree = "<group>"; };
 		D413CB601945FF62004B4FDE /* PPSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPSkill.m; path = Models/PPSkill.m; sourceTree = "<group>"; };
-		D481DFF51A85110B0050E691 /* ball_buff.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ball_buff.atlas; sourceTree = "<group>"; };
 		D481DFF61A85110B0050E691 /* ball_elements.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ball_elements.atlas; sourceTree = "<group>"; };
 		D481DFF71A85110B0050E691 /* ball_magic.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ball_magic.atlas; sourceTree = "<group>"; };
 		D481DFF81A85110B0050E691 /* ball_table.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ball_table.atlas; sourceTree = "<group>"; };
-		D481DFFD1A8511240050E691 /* ui_fighting.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ui_fighting.atlas; sourceTree = "<group>"; };
 		D481DFFF1A8512AB0050E691 /* other_valid_oldImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = other_valid_oldImages.atlas; path = Resource/Image/other_valid_oldImages.atlas; sourceTree = "<group>"; };
 		D4877A3F196C314E009509E5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D4BE5ABD19513FFD001F72DE /* PPBuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPBuff.h; path = Models/PPBuff.h; sourceTree = "<group>"; };
@@ -901,8 +897,6 @@
 		D481DFF41A85110B0050E691 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				D481DFFD1A8511240050E691 /* ui_fighting.atlas */,
-				D481DFF51A85110B0050E691 /* ball_buff.atlas */,
 				D481DFF61A85110B0050E691 /* ball_elements.atlas */,
 				D481DFF71A85110B0050E691 /* ball_magic.atlas */,
 				D481DFF81A85110B0050E691 /* ball_table.atlas */,
@@ -1012,7 +1006,6 @@
 				19DDAC9C1A6FB86A00315A66 /* earth3_card.png in Resources */,
 				19DDAC9D1A6FB86A00315A66 /* metal3_card.png in Resources */,
 				19DB5D751A7252FD003EFEE3 /* bt_detail.png in Resources */,
-				D481DFFE1A8511240050E691 /* ui_fighting.atlas in Resources */,
 				19F208841A78ECD100B3FB9C /* PassInfo.plist in Resources */,
 				194D46AA1A6509A500FDBDD0 /* bg_alert.png in Resources */,
 				197C38F71A888E9D00B6F43A /* fight_btn_pause.png in Resources */,
@@ -1077,7 +1070,6 @@
 				19A4454D1A6A71C20016FAA6 /* map_scene_metal.png in Resources */,
 				19A8ED661A52977600EFEA7A /* pet_card.png in Resources */,
 				198D051F1A515CE800D7244F /* battle_fight_pixie.atlas in Resources */,
-				D481DFF91A85110B0050E691 /* ball_buff.atlas in Resources */,
 				19F208671A78D62200B3FB9C /* fight_info_coin.png in Resources */,
 				197C38F91A888E9D00B6F43A /* fight_btn_play.png in Resources */,
 				19A8ED4B1A52977600EFEA7A /* bg_bar_bottom.png in Resources */,
@@ -1242,7 +1234,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PixePixie/PixelPixie-Prefix.pch";
 				INFOPLIST_FILE = "PixePixie/PixelPixie-Info.plist";
@@ -1263,6 +1255,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PixePixie/PixelPixie-Prefix.pch";
 				INFOPLIST_FILE = "PixePixie/PixelPixie-Info.plist";

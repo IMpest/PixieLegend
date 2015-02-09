@@ -75,6 +75,15 @@
     });
     return tAtlas;
 }
++(SKTextureAtlas *)battle_table_buff
+{
+    __strong static SKTextureAtlas * tAtlas = nil;
+    static dispatch_once_t pred;
+    dispatch_once(&pred, ^{
+        tAtlas = [SKTextureAtlas atlasNamed:@"battle_table_buff"];
+    });
+    return tAtlas;
+}
 
 +(SKTextureAtlas *)pixie_info
 {

@@ -57,6 +57,7 @@
 +(SKTextureAtlas *)battle_fight_effect;
 +(SKTextureAtlas *)battle_fight_skill;
 +(SKTextureAtlas *)battle_table_ball;
++(SKTextureAtlas *)battle_table_buff;
 +(SKTextureAtlas *)pixie_battle_action;
 +(SKTextureAtlas *)ui_number;
 +(SKTextureAtlas *)other_valid_oldImages;

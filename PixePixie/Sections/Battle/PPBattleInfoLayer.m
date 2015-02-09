@@ -92,8 +92,10 @@
     }
     
     //暂停按钮
-    PPSpriteButton *  stopBtn = [PPSpriteButton buttonWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_footer_pause",sceneString]]
-                                                          andSize:CGSizeMake(32.5, 32.5)];
+//    PPSpriteButton *  stopBtn = [PPSpriteButton buttonWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_footer_pause",sceneString]]
+//                                                          andSize:CGSizeMake(32.5, 32.5)];
+    PPSpriteButton *  stopBtn = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"fight_btn_pause"] andSize:CGSizeMake(32.5, 32.5)];
+    //fight_btn_pause
     stopBtn.position = CGPointMake(130.0f, 0.0f);
     stopBtn.name = @"stopBtn";
     [stopBtn addTarget:self selector:@selector(stopBtnClick:)
@@ -227,8 +229,11 @@
     
     
     //暂停按钮
-    PPSpriteButton *  stopBtn = [PPSpriteButton buttonWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_footer_pause",sceneString]]
-                                                          andSize:CGSizeMake(32.5, 32.5)];
+//    PPSpriteButton *  stopBtn = [PPSpriteButton buttonWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_footer_pause",sceneString]]
+//                                                          andSize:CGSizeMake(32.5, 32.5)];
+    PPSpriteButton *  stopBtn = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"fight_btn_pause"] andSize:CGSizeMake(32.5, 32.5)];
+    
+    
     stopBtn.position = CGPointMake(-130.0f, 60.0f);
     stopBtn.name = @"stopBtn";
     [stopBtn addTarget:self selector:@selector(stopBtnClick:)
@@ -820,6 +825,7 @@
 {
     
     if (isPetShow) {
+        
         SKSpriteNode *buffRatShowNode =[[SKSpriteNode alloc] init];
         buffRatShowNode.size = CGSizeMake(50.0f, 50.0f);
         //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
@@ -836,8 +842,8 @@
     {
         
         
-        SKSpriteNode *buffShowNode= [PPAtlasManager createSpriteImageName:@"plant_root_appear_0012" withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine]];
-        SKAction *actionRep = [[PPAtlasManager ball_buff] getAnimation:@"plant_root_appear"];
+        SKSpriteNode *buffShowNode= [PPAtlasManager createSpriteImageName:@"buff_rooted_dis_0000" withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine]];
+        SKAction *actionRep = [[PPAtlasManager battle_table_buff] getAnimation:@"buff_rooted_apr"];
         [ppixieEnemyBtn addChild:buffShowNode];
 
         [buffShowNode runAction:actionRep completion:^{

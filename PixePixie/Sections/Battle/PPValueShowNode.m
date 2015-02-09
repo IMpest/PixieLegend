@@ -21,8 +21,9 @@
     
     if (showType == PP_HPTYPE) {
         // 血条
-        valueShowNode = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_fighting] textureNamed:
-                                                                  [NSString stringWithFormat:@"%@_header_hpbar",typeString]]];
+//        valueShowNode = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_fighting] textureNamed:
+//                                                                  [NSString stringWithFormat:@"%@_header_hpbar",typeString]]];
+        valueShowNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"fight_hp_bar"]];
         valueShowNode.size = CGSizeMake(50, 10);
         valueShowNode.position = CGPointMake(0, 0);
         //        valueShowNode.zPosition = 1.0f;
@@ -32,9 +33,9 @@
         SKCropNode * crop = [[SKCropNode alloc] init];
         //        crop.zPosition = 2.0f;
         
-        SKSpriteNode * spriteHpBar = [SKSpriteNode spriteNodeWithImageNamed:
-                                      [NSString stringWithFormat:@"%@_header_hpfull.png",typeString]];
-        
+//        SKSpriteNode * spriteHpBar = [SKSpriteNode spriteNodeWithImageNamed:
+//                                      [NSString stringWithFormat:@"%@_header_hpfull.png",typeString]];
+           SKSpriteNode * spriteHpBar = [SKSpriteNode spriteNodeWithImageNamed:@"fight_hp_full.png"];
         spriteHpBar.size = CGSizeMake(46, 5);
         NSLog(@"self.size.width=%f,height=%f",self.size.width,self.size.height);
         
