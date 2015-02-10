@@ -6,6 +6,10 @@
 	<string></string>
 	<key>magic_ball</key>
 	<integer>20</integer>
+	<key>plant_run</key>
+	<integer>15</integer>
+	<key>plant_step</key>
+	<integer>15</integer>
 	<key>____ball_table____</key>
 	<string></string>
 	<key>combo_ball</key>
@@ -72,10 +76,6 @@
 	<integer>4</integer>
 	<key>plant3_stop</key>
 	<integer>4</integer>
-	<key>plant_run</key>
-	<integer>15</integer>
-	<key>plant_step</key>
-	<integer>15</integer>
 	<key>===battle_fight_skill===</key>
 	<string></string>
 	<key>01_devilrebirth</key>

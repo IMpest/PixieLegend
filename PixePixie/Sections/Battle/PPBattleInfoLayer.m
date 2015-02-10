@@ -17,92 +17,84 @@
 @synthesize skillInvalidSel;
 
 // 设置技能
--(void)setSideSkillsBtn:(PPPixie *)ppixie andSceneString:(NSString *)sceneString
-{
-    // 添加下方背景图片
-    SKSpriteNode * bgSprite = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_footer_back",sceneString]]];
-    bgSprite.size = CGSizeMake(320.0f, 80.0f);
-    bgSprite.position = CGPointMake(0.0f,0.0f);
-    [self addChild:bgSprite];
-    
-    
-    self.currentPPPixie = ppixie;
-    NSLog(@"pixieSkills count=%lu", (unsigned long)[ppixie.pixieSkills count]);
-    
-    // 添加技能槽
-    for (int i = 0; i < 4; i++) {
-        
-        NSDictionary *dictSkill=nil;
-        if ([ppixie.pixieSkills count]>i) {
-            dictSkill=[ppixie.pixieSkills objectAtIndex:i];
-        }
-        
-        NSString * stringSkillStatus = [dictSkill objectForKey:@"skillstatus"];
-        
-        NSString * stringSkillBtn = [dictSkill objectForKey:@"skillbtntexture"];
-        PPSpriteButton * passButton = nil;
-        
-        if (![stringSkillStatus isEqualToString:@"valid"]) {
-            stringSkillBtn = [NSString stringWithFormat:@"%@_none",kElementTypeString[ppixie.pixieElement]];
-            passButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager skill_icon] textureNamed:stringSkillBtn]
-                                                   andSize:CGSizeMake(50.0f, 50.0f)];
-            //            [passButton setLabelWithText:@"不可用" andFont:[UIFont boldSystemFontOfSize:14.0f] withColor:[UIColor whiteColor]];
-            passButton.PPBallSkillStatus = [dictSkill objectForKey:@"skillcdrounds"];
-            passButton.userInteractionEnabled = NO;
-            [passButton addTarget:self selector:@selector(skillInvalidClick:)
-                       withObject:passButton forControlEvent:PPButtonControlEventTouchUp];
-            
-            
-            SKLabelNode *cdLabel = [SKLabelNode labelNodeWithFontNamed:PP_WORDS_FONT_NAME];
-            cdLabel.fontSize = 10;
-            cdLabel.name = PP_SKILL_CD_LABEL_NODE_NAME;
-            cdLabel.position = CGPointMake(0,0.0f);
-            [cdLabel setColor:[UIColor orangeColor]];
-            [cdLabel setText:[NSString stringWithFormat:@"%@",[dictSkill objectForKey:@"skillcdrounds"]]];
-            [passButton addChild:cdLabel];
-            
-            
-        } else {
-            
-            passButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager skill_icon] textureNamed:stringSkillBtn]
-                                                   andSize:CGSizeMake(80.0f, 80.0f)];
-            [passButton addTarget:self selector:@selector(skillSideClick:)
-                       withObject:passButton forControlEvent:PPButtonControlEventTouchUp];
-            
-          
-            
-            
-        }
-        
-        passButton.name = [NSString stringWithFormat:@"%d",PP_SKILLS_CHOOSE_BTN_TAG+i];
-        passButton.position = CGPointMake(65*i - 112.0f, 0.0f);
-        [self addChild:passButton];
-        
-        
-        if ([ppixie.pixieSkills count] > i && [stringSkillStatus isEqualToString:@"valid"]) {
-            
-            SKLabelNode * skillName = [[SKLabelNode alloc] init];
-            skillName.fontSize = 12;
-            [skillName setText:[[ppixie.pixieSkills objectAtIndex:i] objectForKey:@"skillname"]];
-            [skillName setPosition:CGPointMake(passButton.position.x,
-                                               passButton.position.y-30.0f-skillName.frame.size.height/2.0f)];
-            [self addChild:skillName];
-            
-        }
-    }
-    
-    //暂停按钮
-//    PPSpriteButton *  stopBtn = [PPSpriteButton buttonWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_footer_pause",sceneString]]
-//                                                          andSize:CGSizeMake(32.5, 32.5)];
-    PPSpriteButton *  stopBtn = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"fight_btn_pause"] andSize:CGSizeMake(32.5, 32.5)];
-    //fight_btn_pause
-    stopBtn.position = CGPointMake(130.0f, 0.0f);
-    stopBtn.name = @"stopBtn";
-    [stopBtn addTarget:self selector:@selector(stopBtnClick:)
-            withObject:stopBtn.name forControlEvent:PPButtonControlEventTouchUpInside];
-    [self addChild:stopBtn];
-    
-}
+//-(void)setSideSkillsBtn:(PPPixie *)ppixie andSceneString:(NSString *)sceneString
+//{
+//    self.currentPPPixie = ppixie;
+//    NSLog(@"pixieSkills count=%lu", (unsigned long)[ppixie.pixieSkills count]);
+//    
+//    // 添加技能槽
+////    for (int i = 0; i < 4; i++) {
+////        
+////        NSDictionary * dictSkill = nil;
+////        if ([ppixie.pixieSkills count]>i) {
+////            dictSkill=[ppixie.pixieSkills objectAtIndex:i];
+////        }
+////        
+////        NSString * stringSkillStatus = [dictSkill objectForKey:@"skillstatus"];
+////        
+////        NSString * stringSkillBtn = [dictSkill objectForKey:@"skillbtntexture"];
+////        PPSpriteButton * passButton = nil;
+////        
+////        if (![stringSkillStatus isEqualToString:@"valid"]) {
+////            stringSkillBtn = [NSString stringWithFormat:@"%@_none",kElementTypeString[ppixie.pixieElement]];
+////            passButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager skill_icon] textureNamed:stringSkillBtn]
+////                                                   andSize:CGSizeMake(50.0f, 50.0f)];
+////            //            [passButton setLabelWithText:@"不可用" andFont:[UIFont boldSystemFontOfSize:14.0f] withColor:[UIColor whiteColor]];
+////            passButton.PPBallSkillStatus = [dictSkill objectForKey:@"skillcdrounds"];
+////            passButton.userInteractionEnabled = NO;
+////            [passButton addTarget:self selector:@selector(skillInvalidClick:)
+////                       withObject:passButton forControlEvent:PPButtonControlEventTouchUp];
+////            
+////            
+////            SKLabelNode *cdLabel = [SKLabelNode labelNodeWithFontNamed:PP_WORDS_FONT_NAME];
+////            cdLabel.fontSize = 10;
+////            cdLabel.name = PP_SKILL_CD_LABEL_NODE_NAME;
+////            cdLabel.position = CGPointMake(0,0.0f);
+////            [cdLabel setColor:[UIColor orangeColor]];
+////            [cdLabel setText:[NSString stringWithFormat:@"%@",[dictSkill objectForKey:@"skillcdrounds"]]];
+////            [passButton addChild:cdLabel];
+////            
+////            
+////        } else {
+////            
+////            passButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager skill_icon] textureNamed:stringSkillBtn]
+////                                                   andSize:CGSizeMake(80.0f, 80.0f)];
+////            [passButton addTarget:self selector:@selector(skillSideClick:)
+////                       withObject:passButton forControlEvent:PPButtonControlEventTouchUp];
+////            
+////          
+////            
+////            
+////        }
+////        
+////        passButton.name = [NSString stringWithFormat:@"%d",PP_SKILLS_CHOOSE_BTN_TAG+i];
+////        passButton.position = CGPointMake(65*i - 112.0f, 0.0f);
+////        [self addChild:passButton];
+////        
+////        
+////        if ([ppixie.pixieSkills count] > i && [stringSkillStatus isEqualToString:@"valid"]) {
+////            
+////            SKLabelNode * skillName = [[SKLabelNode alloc] init];
+////            skillName.fontSize = 12;
+////            [skillName setText:[[ppixie.pixieSkills objectAtIndex:i] objectForKey:@"skillname"]];
+////            [skillName setPosition:CGPointMake(passButton.position.x,
+////                                               passButton.position.y-30.0f-skillName.frame.size.height/2.0f)];
+////            [self addChild:skillName];
+////            
+////        }
+////    }
+//    
+//    //暂停按钮
+////    PPSpriteButton *  stopBtn = [PPSpriteButton buttonWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_footer_pause",sceneString]]
+////                                                          andSize:CGSizeMake(32.5, 32.5)];
+//    PPSpriteButton *  stopBtn = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"fight_btn_pause"] andSize:CGSizeMake(32.5, 32.5)];
+//    //fight_btn_pause
+//    stopBtn.position = CGPointMake(130.0f, 0.0f);
+//    stopBtn.name = @"stopBtn";
+//    [stopBtn addTarget:self selector:@selector(stopBtnClick:)
+//            withObject:stopBtn.name forControlEvent:PPButtonControlEventTouchUpInside];
+//    [self addChild:stopBtn];
+//}
 
 -(void)setSideElements:(PPPixie *)petppixie andEnemy:(PPPixie *)enemyppixie andSceneString:(NSString *)sceneString andIndex:(int)index
 {
@@ -168,33 +160,7 @@
     petPlayerHP.position = CGPointMake(ppixiePetBtn.position.x,ppixiePetBtn.position.y-60.0f);
     [self addChild:petPlayerHP];
 
-    // 己方能量条
-//    petPlayerMP = [PPValueShowNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(100, 10)];
-//    [petPlayerMP setMaxValue:petppixie.pixieMPmax andCurrentValue:petppixie.currentMP
-//                 andShowType:PP_MPTYPE andAnchorPoint:CGPointMake(0.0f, 0.5f)
-//        andElementTypeString:kElementTypeString[petppixie.pixieElement]];
-//    petPlayerMP->target = self;
-//    petPlayerMP->animateEnd = @selector(animatePetMPEnd:);
-//    petPlayerMP.anchorPoint = CGPointMake(0.5, 0.5);
-//    petPlayerMP.position = CGPointMake(petPlayerHP.position.x,ppixiePetBtn.position.y-20);
-//    [self addChild:petPlayerMP];
-    
 
-
-    
-//    // 敌方能量条
-//    enemyPlayerMP = [PPValueShowNode spriteNodeWithColor:[UIColor clearColor]
-//                                                    size:CGSizeMake(petPlayerMP.size.width, petPlayerMP.size.height)];
-//    [enemyPlayerMP setMaxValue:enemyppixie.pixieMPmax andCurrentValue:enemyppixie.currentMP
-//                   andShowType:PP_MPTYPE andAnchorPoint:CGPointMake(1.0f, 0.5f) andElementTypeString:kElementTypeString[enemyppixie.pixieElement]];
-//    enemyPlayerMP->target = self;
-//    enemyPlayerMP->animateEnd = @selector(animateEnemyMPEnd:);
-//    enemyPlayerMP.anchorPoint = CGPointMake(0.5, 0.5);
-//    enemyPlayerMP.position = CGPointMake(enemyPlayerHP.position.x,petPlayerMP.position.y);
-//    [self addChild:enemyPlayerMP];
-
-    
-    
     // 敌方头像
     ppixieEnemyBtn = [[SKSpriteNode alloc] init];
     ppixieEnemyBtn.size = CGSizeMake(PP_PET_ENEMY_SIZE_VALUE, PP_PET_ENEMY_SIZE_VALUE);
@@ -206,7 +172,7 @@
 
     
     
-    //    // 敌方生命条
+    // 敌方生命条
     enemyPlayerHP = [PPValueShowNode spriteNodeWithColor:[UIColor clearColor]
                                                     size:CGSizeMake(petPlayerHP.size.width, petPlayerHP.size.height)];
     [enemyPlayerHP setMaxValue:enemyppixie.pixieHPmax andCurrentValue:enemyppixie.currentHP
@@ -240,58 +206,6 @@
             withObject:stopBtn.name forControlEvent:PPButtonControlEventTouchUpInside];
     [self addChild:stopBtn];
     
-    
-    
-//    for (int i = 0; i < [currentPPPixie.pixieBuffs count]; i++)
-//    {
-//        // 添加宠物buff槽
-//        PPSpriteButton * buffButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_buffbar%d",kElementTypeString[currentPPPixie.pixieElement],i+1]]
-//                                                                andSize:CGSizeMake(25.0f, 25.0f)];
-//        buffButton.position = CGPointMake(30*i - 90.0f, petPlayerHP.position.y-40.0f);
-//        buffButton.name =[NSString stringWithFormat:@"%d",PP_BUFF_SHOW_BTN_TAG + i];
-//        buffButton.PPBallSkillStatus = @"0";
-//        [buffButton addTarget:self selector:@selector(buffBtnClick:)
-//                   withObject:buffButton.name forControlEvent:PPButtonControlEventTouchUpInside];
-//        [self addChild:buffButton];
-//        
-//    }
-//    for (int i = (int)[currentPPPixie.pixieBuffs count]-1; i >= 0; i--)
-//    {
-//        // 添加怪物buff槽
-//        PPSpriteButton * buffButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_buffbar%d",kElementTypeString[currentPPPixieEnemy.pixieElement],i+1]]
-//                                                                andSize:CGSizeMake(25.0f, 25.0f)];
-//        buffButton.position = CGPointMake(30*(3-i) -55.0f+enemyPlayerHP.position.x, petPlayerHP.position.y-40.0f);
-//        buffButton.name =[NSString stringWithFormat:@"%d",PP_BUFF_SHOW_BTN_TAG + i + 10];
-//        buffButton.PPBallSkillStatus = @"0";
-//        [buffButton addTarget:self selector:@selector(buffBtnClick:)
-//                   withObject:buffButton.name forControlEvent:PPButtonControlEventTouchUpInside];
-//        [self addChild:buffButton];
-//        
-//        
-//    }
-    
-    //    SKLabelNode *ppixiePetNameLabel=[[SKLabelNode alloc] init];
-    //    ppixiePetNameLabel.fontSize=12;
-    //    [ppixiePetNameLabel setColor:[SKColor blueColor]];
-    //    NSLog(@"pixieName=%@",petppixie.pixieName);
-    //    [ppixiePetNameLabel setText:petppixie.pixieName];
-    //    ppixiePetNameLabel.position = CGPointMake(ppixiePetBtn.position.x, ppixiePetBtn.position.y+15);
-    //    [self addChild:ppixiePetNameLabel];
-    
-    //    PPSpriteButton *  stopBtn = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(40, 30)];
-    //    [stopBtn setLabelWithText:@"暂停" andFont:[UIFont systemFontOfSize:15] withColor:nil];
-    //    stopBtn.position = CGPointMake(0.0f, 10.0f);
-    //    stopBtn.name =@"stopBtn";
-    //    [stopBtn addTarget:self selector:@selector(stopBtnClick:) withObject:stopBtn.name forControlEvent:PPButtonControlEventTouchUpInside];
-    //    [self addChild:stopBtn];
-    
-    //    SKLabelNode *ppixieNameLabel=[[SKLabelNode alloc] init];
-    //    ppixieNameLabel.fontSize=12;
-    //    [ppixieNameLabel setColor:[SKColor redColor]];
-    //    NSLog(@"pixieName=%@",enemyppixie.pixieName);
-    //    [ppixieNameLabel setText:enemyppixie.pixieName];
-    //    ppixieNameLabel.position = CGPointMake(ppixieEnemyBtn.position.x, ppixieEnemyBtn.position.y+15);
-    //    [self addChild:ppixieNameLabel];
 }
 
 -(void)setComboLabelText:(int)petCombos withEnemy:(int)enemyCombos
@@ -366,15 +280,10 @@
 }
 -(void)updateSkllCDStatus
 {
-    
-    
-    
-    
-    
 }
+
 -(void)setSideSkillButtonDisable
 {
-    
     for (int i = 0; i < [currentPPPixie.pixieSkills count]; i++) {
         PPSpriteButton * ppixieSkillBtn  = (PPSpriteButton *)[self childNodeWithName:[NSString stringWithFormat:@"%d",PP_SKILLS_CHOOSE_BTN_TAG+i]];
         
@@ -400,7 +309,6 @@
 
 -(void)setBufferBar:(NSArray *)buffs
 {
-    
 }
 
 -(void)animatePetMPEnd:(NSNumber *)currentMp
@@ -413,7 +321,6 @@
 
 -(void)animatePetHPEnd:(NSNumber *)currentHp
 {
-    
     if ([currentHp intValue] <= 0.0f) {
         if (!isHaveDead) {
             if (self.target != nil && self.hpBeenZeroSel != nil && [self.target respondsToSelector:self.hpBeenZeroSel]) {
@@ -421,10 +328,8 @@
                 [self.target performSelectorInBackground:self.hpBeenZeroSel withObject:PP_PET_PLAYER_SIDE_NODE_NAME];
             }
         }
-        
-    }else{
+    } else {
         isHaveDead = NO;
-        
         if (self.target != nil && self.hpChangeEnd != nil && [self.target respondsToSelector:self.hpChangeEnd]) {
             [self.target performSelectorInBackground:self.hpChangeEnd withObject:PP_PET_PLAYER_SIDE_NODE_NAME];
         }
@@ -435,7 +340,6 @@
 {
     if ([currentHp intValue] <= 0.0f) {
         if (!isHaveDead) {
-            
             if (self.target != nil && self.hpBeenZeroSel != nil && [self.target respondsToSelector:self.hpBeenZeroSel]) {
                 isHaveDead = YES;
                 [self.target performSelectorInBackground:self.hpBeenZeroSel withObject:PP_ENEMY_SIDE_NODE_NAME];
@@ -443,7 +347,6 @@
         }
     } else {
         isHaveDead = NO;
-        
         if (self.target != nil && self.hpChangeEnd != nil && [self.target respondsToSelector:self.hpChangeEnd]) {
             [self.target performSelectorInBackground:self.hpChangeEnd withObject:PP_ENEMY_SIDE_NODE_NAME];
         }
@@ -461,23 +364,20 @@
         
         [self addChild:additonLabel];
         
-        SKAction *actionScale = [SKAction scaleBy:1.5 duration:0.2];
-        SKAction *actionFade = [SKAction fadeAlphaTo:0.0f duration:0.3];
-        SKAction *showAction = [SKAction sequence:[NSArray arrayWithObjects:actionScale, actionFade, nil]];
+        SKAction * actionScale = [SKAction scaleBy:1.5 duration:0.2];
+        SKAction * actionFade = [SKAction fadeAlphaTo:0.0f duration:0.3];
+        SKAction * showAction = [SKAction sequence:[NSArray arrayWithObjects:actionScale, actionFade, nil]];
         
         [additonLabel runAction:showAction completion:^{
             [additonLabel removeFromParent];
         }];
     }
-    
-    
-    
     self.currentPPPixie.currentHP = [petPlayerHP valueShowChangeMaxValue:0 andCurrentValue:HPValue];
 }
 
 -(void)changeEnemyHPValue:(CGFloat)HPValue
 {
-    if (HPValue<0.0f) {
+    if (HPValue < 0.0f) {
         SKSpriteNode * additonLabel = [self getNumber:fabsf(HPValue) AndColor:@"white"];
         //    additonLabel.name  = @"hpchange";
         //    additonLabel.fontColor = [UIColor redColor];
@@ -572,7 +472,7 @@
     return tNode;
 }
 
--(void)addBuffShow:(PPBuff *)buffShow andSide:(NSString *)stringSide{
+//-(void)addBuffShow:(PPBuff *)buffShow andSide:(NSString *)stringSide{
 //    if ([stringSide isEqualToString:PP_PET_PLAYER_SIDE_NODE_NAME]) {
 //        PPSpriteButton * buffBtnFirstEmpty = nil;
 //        for (int i = 0; i < 3; i++) {
@@ -617,9 +517,9 @@
 //    }
 //    
 //    
-}
+//}
 
--(void)removeBuffShow:(PPBuff *)buffShow andSide:(NSString *)stringSide{
+//-(void)removeBuffShow:(PPBuff *)buffShow andSide:(NSString *)stringSide{
 //
 //    
 //    if ([stringSide isEqualToString:PP_PET_PLAYER_SIDE_NODE_NAME]) {
@@ -660,35 +560,29 @@
 //            }
 //        }
 //    }    
-}
+//}
 
 -(void)startAttackAnimation:(BOOL)isPetAttack
 {
-    
-    SKNode *previousNode = [self childNodeWithName:@"spriteNodeMoving"];
+    SKNode * previousNode = [self childNodeWithName:@"spriteNodeMoving"];
     if (previousNode) {
         [previousNode removeFromParent];
         previousNode = nil;
     }
     
-    
     if (isPetAttack) {
-        
-        SKAction *action1=[SKAction moveToX:ppixieEnemyBtn.position.x-30.0f duration:0.1];
-        
-        SKSpriteNode *spriteNodeMoving = [SKSpriteNode spriteNodeWithImageNamed:@"moving_0000"];
+        SKSpriteNode * spriteNodeMoving = [SKSpriteNode spriteNodeWithImageNamed:@"moving_0000"];
         spriteNodeMoving.name = @"spriteNodeMoving";
         spriteNodeMoving.position = ppixiePetBtn.position;
         [self addChild:spriteNodeMoving];
         
-        SKAction *actionMove=[SKAction moveToX:91.5f duration:1];
-        spriteNodeMoving.size = CGSizeMake(spriteNodeMoving.size.width/2.0f, spriteNodeMoving.size.height/2.0f);
-        SKAction *actionEffect = [SKAction repeatAction:[[PPAtlasManager battle_fight_effect] getAnimation:@"moving"] count:2];
+        SKAction * actionMove = [SKAction moveToX:91.5f duration:1];
+        spriteNodeMoving.size = CGSizeMake(spriteNodeMoving.size.width / 2, spriteNodeMoving.size.height / 2);
+        SKAction * actionEffect = [SKAction repeatAction:[[PPAtlasManager battle_fight_effect] getAnimation:@"moving"] count:2];
         [spriteNodeMoving runAction:[SKAction group:[NSArray arrayWithObjects:actionMove,actionEffect, nil]] completion:^{
             [spriteNodeMoving removeFromParent];
         }];
-        
-        ppixiePetBtn.position = CGPointMake(70.0f, ppixiePetBtn.position.y);
+        ppixiePetBtn.position = CGPointMake(70, ppixiePetBtn.position.y);
         
         
 //        SKAction *action11=[[PPAtlasManager ball_action] getAnimation:[NSString stringWithFormat:@"%@3attack",kElementTypeString[currentPPPixie.pixieElement]]];
@@ -707,39 +601,29 @@
         
 //        [ppixiePetBtn runAction:action1Result];
         
-
         [ppixieEnemyBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"fire3_beated"] completion:^{
 //            if (spriteNodeMoving) {
 //                [spriteNodeMoving removeFromParent];
 //
 //            }
-            
         }];
-        
-        
-        
-    }else
-    { 
-        
-        SKSpriteNode *spriteNodeMoving = [SKSpriteNode spriteNodeWithImageNamed:@"moving_0000"];
+    } else {
+        SKSpriteNode * spriteNodeMoving = [SKSpriteNode spriteNodeWithImageNamed:@"moving_0000"];
         spriteNodeMoving.position = ppixieEnemyBtn.position;
         spriteNodeMoving.name = @"spriteNodeMoving";
         spriteNodeMoving.size = CGSizeMake(spriteNodeMoving.size.width/2.0f, spriteNodeMoving.size.height/2.0f);
-        spriteNodeMoving.xScale  = -1;
+        spriteNodeMoving.xScale = -1;
 
         [self addChild:spriteNodeMoving];
         
-        
-        SKAction *actionMove=[SKAction moveToX:-61.5f duration:1];
-        SKAction *actionEffect = [SKAction repeatAction:[[PPAtlasManager battle_fight_effect] getAnimation:@"moving"] count:2];
+        SKAction * actionMove = [SKAction moveToX:-61.5f duration:1];
+        SKAction * actionEffect = [SKAction repeatAction:[[PPAtlasManager battle_fight_effect] getAnimation:@"moving"] count:2];
         [spriteNodeMoving runAction:[SKAction group:[NSArray arrayWithObjects:actionMove,actionEffect, nil]] completion:^{
             [spriteNodeMoving removeFromParent];
         }];
         
-        
-        ppixieEnemyBtn.position = CGPointMake(originX+20, ppixieEnemyBtn.position.y);
+        ppixieEnemyBtn.position = CGPointMake(originX + 20, ppixieEnemyBtn.position.y);
 
-        
 //        SKAction *action1=[SKAction moveToX:-30 duration:0.1];
 //        SKAction *action2=[[PPAtlasManager  ball_action] getAnimation:[NSString stringWithFormat:@"%@3move",kElementTypeString[currentPPPixieEnemy.pixieElement]]];
 //        SKAction *action3=[SKAction repeatActionForever:action2];
@@ -748,22 +632,17 @@
 //        [ppixiePetBtn removeAllActions];
 //        [ppixieEnemyBtn removeAllActions];
         
-        SKAction *actionBeated = [[PPAtlasManager pixie_battle_action] getAnimation:@"plant3_beated"];
-        
+        SKAction * actionBeated = [[PPAtlasManager pixie_battle_action] getAnimation:@"plant3_beated"];
         [ppixiePetBtn runAction:actionBeated completion:^{
-
 //            [ppixiePetBtn removeAllActions];
 //            if (spriteNodeMoving) {
 //                [spriteNodeMoving removeFromParent];
 //
 //            }
-
         }];
-        
-
-        
     }
 }
+
 -(void)startAttackShowAnimation:(BOOL)isPetAttack
 {
     

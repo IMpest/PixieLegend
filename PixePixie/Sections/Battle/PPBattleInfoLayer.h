@@ -43,7 +43,8 @@
  * @param ppixie 我方宠物
  * @param sceneString 场景属性
  */
--(void)setSideSkillsBtn:(PPPixie *)ppixie andSceneString:(NSString *)sceneString;
+//-(void)setSideSkillsBtn:(PPPixie *)ppixie andSceneString:(NSString *)sceneString;
+
 /**
  * @brief 设置战斗场景头像显示条
  * @param petppixie 我方宠物
@@ -100,20 +101,20 @@
  */
 -(void)shakeHeadPortrait:(NSString *)stringSide andCompletion:(PPBallBattleScene *)sceneBattle;
 
-/**
- * @brief 增加buff显示
- * @param buffShow   buff信息
- * @param stringSide   战斗来源
- 
- */
--(void)addBuffShow:(PPBuff *)buffShow andSide:(NSString *)stringSide;
-/**
- * @brief 移除buff显示
- * @param buffShow   buff信息
- * @param stringSide   战斗来源
- 
- */
--(void)removeBuffShow:(PPBuff *)buffShow andSide:(NSString *)stringSide;
+///**
+// * @brief 增加buff显示
+// * @param buffShow   buff信息
+// * @param stringSide   战斗来源
+// 
+// */
+//-(void)addBuffShow:(PPBuff *)buffShow andSide:(NSString *)stringSide;
+///**
+// * @brief 移除buff显示
+// * @param buffShow   buff信息
+// * @param stringSide   战斗来源
+// 
+// */
+//-(void)removeBuffShow:(PPBuff *)buffShow andSide:(NSString *)stringSide;
 
 /**
  * @brief 显示攻击动画

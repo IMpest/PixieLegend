@@ -43,14 +43,9 @@
 @interface PPAtlasManager : NSObject
 
 // ==== v2.0 ====
-+(SKTextureAtlas *)ball_buff;
+
 +(SKTextureAtlas *)ball_elements;
-+(SKTextureAtlas *)ball_magic;
 +(SKTextureAtlas *)ball_table;
-+(SKTextureAtlas *)skill_buff;
-+(SKTextureAtlas *)skill_icon;
-+(SKTextureAtlas *)ui_fighting;
-+(SKTextureAtlas *)pixie_info;
 
 // ==== v3.0 ====
 +(SKTextureAtlas *)battle_fight_missile;
@@ -60,8 +55,6 @@
 +(SKTextureAtlas *)battle_table_buff;
 +(SKTextureAtlas *)pixie_battle_action;
 +(SKTextureAtlas *)ui_number;
-+(SKTextureAtlas *)other_valid_oldImages;
-
 
 // ==== custom ====
 +(SKSpriteNode *)createSpriteImageName:(NSString *)imageName withPos:(CGPoint)pos

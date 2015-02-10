@@ -21,21 +21,14 @@
     
     if (showType == PP_HPTYPE) {
         // 血条
-//        valueShowNode = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_fighting] textureNamed:
-//                                                                  [NSString stringWithFormat:@"%@_header_hpbar",typeString]]];
         valueShowNode = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"fight_hp_bar"]];
         valueShowNode.size = CGSizeMake(50, 10);
         valueShowNode.position = CGPointMake(0, 0);
-        //        valueShowNode.zPosition = 1.0f;
         [self addChild:valueShowNode];
         
-        
         SKCropNode * crop = [[SKCropNode alloc] init];
-        //        crop.zPosition = 2.0f;
         
-//        SKSpriteNode * spriteHpBar = [SKSpriteNode spriteNodeWithImageNamed:
-//                                      [NSString stringWithFormat:@"%@_header_hpfull.png",typeString]];
-           SKSpriteNode * spriteHpBar = [SKSpriteNode spriteNodeWithImageNamed:@"fight_hp_full.png"];
+        SKSpriteNode * spriteHpBar = [SKSpriteNode spriteNodeWithImageNamed:@"fight_hp_full.png"];
         spriteHpBar.size = CGSizeMake(46, 5);
         NSLog(@"self.size.width=%f,height=%f",self.size.width,self.size.height);
         
@@ -48,51 +41,49 @@
         }
         [crop addChild:spriteHpBar];
         
-        maskValueNode = [SKSpriteNode spriteNodeWithTexture:
-                         [[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_hpfull",typeString]]];
+        maskValueNode = [SKSpriteNode spriteNodeWithImageNamed:@"fight_hp_full.png"];
         maskValueNode.size = CGSizeMake(46, 5);
         maskValueNode.position = CGPointMake(0, 1);
         maskValueNode.anchorPoint = anchorPoint;
         crop.maskNode = maskValueNode;
-        
         [valueShowNode addChild:crop];
-        
-    } else {
-        // 能量条
-        valueShowNode = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_mpbar",typeString]]];
-        valueShowNode.size = CGSizeMake(100, 10);
-        valueShowNode.position = CGPointMake(0, 0);
-        //        valueShowNode.zPosition = 1;
-        [self addChild:valueShowNode];
-        
-        SKSpriteNode * spriteMpBar = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_mpfull",typeString]]];
-        spriteMpBar.size = CGSizeMake(96, 7);
-        NSLog(@"self.size.width=%f,height=%f",self.size.width,self.size.height);
-        
-        SKCropNode * crop = [[SKCropNode alloc]init];
-        if (anchorPoint.x == 0.0f) {
-            spriteMpBar.position = CGPointMake(48, 0);
-            crop.position = CGPointMake(-48, 0);
-        } else if (anchorPoint.x == 1.0f) {
-            spriteMpBar.position = CGPointMake(-48, 0);
-            crop.position = CGPointMake(48, 0);
-        }
-        //        crop.zPosition = 2.0f;
-        
-        maskValueNode = [SKSpriteNode  spriteNodeWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_mpfull.png",typeString]]];
-        maskValueNode.size = CGSizeMake(0, 0);
-        maskValueNode.anchorPoint = anchorPoint;
-        crop.maskNode = maskValueNode;
-        [crop addChild:spriteMpBar];
-        [valueShowNode addChild:crop];
-        
-        SKAction * actionChangeHP = [SKAction scaleXTo:0.0f duration:1];
-        [maskValueNode runAction:actionChangeHP completion:^{
-            maskValueNode.size = CGSizeMake(96, 7);
-            
-        }];
     }
     
+//    else {
+//        // 能量条
+//        valueShowNode = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_mpbar",typeString]]];
+//        valueShowNode.size = CGSizeMake(100, 10);
+//        valueShowNode.position = CGPointMake(0, 0);
+//        //        valueShowNode.zPosition = 1;
+//        [self addChild:valueShowNode];
+//        
+//        SKSpriteNode * spriteMpBar = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_mpfull",typeString]]];
+//        spriteMpBar.size = CGSizeMake(96, 7);
+//        NSLog(@"self.size.width=%f,height=%f",self.size.width,self.size.height);
+//        
+//        SKCropNode * crop = [[SKCropNode alloc]init];
+//        if (anchorPoint.x == 0.0f) {
+//            spriteMpBar.position = CGPointMake(48, 0);
+//            crop.position = CGPointMake(-48, 0);
+//        } else if (anchorPoint.x == 1.0f) {
+//            spriteMpBar.position = CGPointMake(-48, 0);
+//            crop.position = CGPointMake(48, 0);
+//        }
+//        //        crop.zPosition = 2.0f;
+//        
+//        maskValueNode = [SKSpriteNode  spriteNodeWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_mpfull.png",typeString]]];
+//        maskValueNode.size = CGSizeMake(0, 0);
+//        maskValueNode.anchorPoint = anchorPoint;
+//        crop.maskNode = maskValueNode;
+//        [crop addChild:spriteMpBar];
+//        [valueShowNode addChild:crop];
+//        
+//        SKAction * actionChangeHP = [SKAction scaleXTo:0.0f duration:1];
+//        [maskValueNode runAction:actionChangeHP completion:^{
+//            maskValueNode.size = CGSizeMake(96, 7);
+//            
+//        }];
+//    }
 }
 
 

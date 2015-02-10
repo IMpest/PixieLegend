@@ -199,9 +199,8 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
             self.physicsBody.PPBallSkillStatus = 0;
             self.physicsBody.density = 1.0f;
             self.physicsBody.dynamic = YES;
-            [self startPlantrootAppearOrDisappear:NO];
-            
-            [battleCurrentScene removeBuff:buff andSide:PP_ENEMY_SIDE_NODE_NAME];
+//            [self startPlantrootAppearOrDisappear:NO];
+//            [battleCurrentScene removeBuff:buff andSide:PP_ENEMY_SIDE_NODE_NAME];
         }
             break;
             
@@ -266,15 +265,6 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
 -(void)startPixieAccelerateAnimation:(CGVector)velocity andType:(NSString *)pose
 {
     // 速度过低则移除
-    if (velocity.dx<=0.0f) {
-        velocity.dx=0.0f;
-        
-    }
-    if (velocity.dy<=0.0f) {
-        velocity.dy=0.0f;
-        
-    }
-    
     if (sqrt(velocity.dx * velocity.dx + velocity.dy * velocity.dy ) < kBallAccelerateMin) {
         if (self.comboBallSprite != nil) {
             [self.comboBallSprite removeFromParent];
@@ -302,17 +292,14 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
         [self.comboBallSprite runAction:tAction];
     }
     
-    
     // 调整方向
     if (self.comboBallSprite != nil){
-        if (velocity.dx!=0.0f) {
-            CGFloat rotation = atan(velocity.dy/velocity.dx);
+        if (velocity.dx != 0.0f) {
+            CGFloat rotation = atan(velocity.dy / velocity.dx);
             rotation = velocity.dx > 0 ? rotation : rotation + 3.14159;
-            NSLog(@"rotation=%f",rotation);
-            
+            NSLog(@"rotation=%f", rotation);
             self.comboBallSprite.zRotation = rotation;
         }
-       
     }
 }
 
@@ -362,96 +349,96 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
 
 
 // 变身陷阱动画
--(void)startMagicballAnimation
-{
-    if (self.comboBallSprite != nil) {
-        [self.comboBallSprite removeFromParent];
-        self.comboBallSprite = nil;
-    }
-    
-    self.comboBallSprite =[[SKSpriteNode alloc] init];
-    self.comboBallSprite.size = CGSizeMake(50.0f, 50.0f);
-    [self.comboBallSprite setPosition:CGPointMake(0.0f, 0.0f)];
-    [self addChild:self.comboBallSprite];
-    
-    //    [self.comboBallSprite runAction:[[PPAtlasManager ball_magic] getAnimation:@"magic_ball"]
-    //                         completion:^{[self.comboBallSprite removeFromParent];}];
-    
-    [self runAction:[[PPAtlasManager ball_magic] getAnimation:@"magic_ball"]
-         completion:^{
-             self.size = CGSizeMake(1.0f, 1.0f);
-             [self.comboBallSprite removeFromParent];
-             [self addStatusBall:@"plant"];
-         }];
-}
+//-(void)startMagicballAnimation
+//{
+//    if (self.comboBallSprite != nil) {
+//        [self.comboBallSprite removeFromParent];
+//        self.comboBallSprite = nil;
+//    }
+//    
+//    self.comboBallSprite =[[SKSpriteNode alloc] init];
+//    self.comboBallSprite.size = CGSizeMake(50.0f, 50.0f);
+//    [self.comboBallSprite setPosition:CGPointMake(0.0f, 0.0f)];
+//    [self addChild:self.comboBallSprite];
+//    
+//    //    [self.comboBallSprite runAction:[[PPAtlasManager ball_magic] getAnimation:@"magic_ball"]
+//    //                         completion:^{[self.comboBallSprite removeFromParent];}];
+//    
+//    [self runAction:[[PPAtlasManager ball_magic] getAnimation:@"magic_ball"]
+//         completion:^{
+//             self.size = CGSizeMake(1.0f, 1.0f);
+//             [self.comboBallSprite removeFromParent];
+//             [self addStatusBall:@"plant"];
+//         }];
+//}
+//
+//-(void)addStatusBall:(NSString *)type
+//{
+//    
+//    if (self.comboBallSprite != nil) {
+//        [self.comboBallSprite removeFromParent];
+//        self.comboBallSprite = nil;
+//    }
+//    
+//    self.comboBallSprite =[[SKSpriteNode alloc] initWithTexture:[[PPAtlasManager ball_magic] textureNamed:@"plant_root"]];
+//    self.comboBallSprite.size = CGSizeMake(50.0f, 50.0f);
+//    [self.comboBallSprite setPosition:CGPointMake(0.0f, 0.0f)];
+//    [self addChild:self.comboBallSprite];
+//}
 
--(void)addStatusBall:(NSString *)type
-{
-    
-    if (self.comboBallSprite != nil) {
-        [self.comboBallSprite removeFromParent];
-        self.comboBallSprite = nil;
-    }
-    
-    self.comboBallSprite =[[SKSpriteNode alloc] initWithTexture:[[PPAtlasManager ball_magic] textureNamed:@"plant_root"]];
-    self.comboBallSprite.size = CGSizeMake(50.0f, 50.0f);
-    [self.comboBallSprite setPosition:CGPointMake(0.0f, 0.0f)];
-    [self addChild:self.comboBallSprite];
-}
+//// 创建被缠绕动画
+//-(void)startPlantrootAppearOrDisappear:(BOOL)isAppear
+//{
+//    
+//    if (isAppear) {
+// 
+//        if (self.plantrootAnimationNode != nil)
+//        {
+//            [self.plantrootAnimationNode removeFromParent];
+//            self.plantrootAnimationNode = nil;
+//        }
+//        
+//        self.plantrootAnimationNode =[[SKSpriteNode alloc] init];
+//        self.plantrootAnimationNode.size = CGSizeMake(50.0f, 50.0f);
+//        [self.plantrootAnimationNode setPosition:CGPointMake(0.0f, 0.0f)];
+//        
+//        [self addChild:self.plantrootAnimationNode];
+//        
+//        SKAction * action = [[PPAtlasManager ball_buff] getAnimation:@"plant_root_appear"];
+//        [self.plantrootAnimationNode runAction:action
+//                             completion:^{
+//                                 
+//                            }];
+//        
+//    } else {
+//        SKAction * action = [[PPAtlasManager ball_buff] getAnimation:@"plant_root_disappear"];
+//        [self.plantrootAnimationNode runAction:action
+//                             completion:^{
+//                                 [self.plantrootAnimationNode removeFromParent];
+//                                 self.plantrootAnimationNode = nil;
+//                             }];
+//    }
+//}
 
-// 创建被缠绕动画
--(void)startPlantrootAppearOrDisappear:(BOOL)isAppear
-{
-    
-    if (isAppear) {
- 
-        if (self.plantrootAnimationNode != nil)
-        {
-            [self.plantrootAnimationNode removeFromParent];
-            self.plantrootAnimationNode = nil;
-        }
-        
-        self.plantrootAnimationNode =[[SKSpriteNode alloc] init];
-        self.plantrootAnimationNode.size = CGSizeMake(50.0f, 50.0f);
-        [self.plantrootAnimationNode setPosition:CGPointMake(0.0f, 0.0f)];
-        
-        [self addChild:self.plantrootAnimationNode];
-        
-        SKAction * action = [[PPAtlasManager ball_buff] getAnimation:@"plant_root_appear"];
-        [self.plantrootAnimationNode runAction:action
-                             completion:^{
-                                 
-                            }];
-        
-    } else {
-        SKAction * action = [[PPAtlasManager ball_buff] getAnimation:@"plant_root_disappear"];
-        [self.plantrootAnimationNode runAction:action
-                             completion:^{
-                                 [self.plantrootAnimationNode removeFromParent];
-                                 self.plantrootAnimationNode = nil;
-                             }];
-    }
-}
-
--(void)startElementBirthAnimation
-{
-    if (self.comboBallSprite != nil) {
-        [self.comboBallSprite removeFromParent];
-        self.comboBallSprite = nil;
-    }
-    
-    self.comboBallSprite =[[SKSpriteNode alloc] init];
-    self.comboBallSprite.size = CGSizeMake(50.0f, 50.0f);
-    [self.comboBallSprite setPosition:CGPointMake(0.0f, 0.0f)];
-    [self addChild:self.comboBallSprite];
-    
-    
-    [self.comboBallSprite runAction:[[PPAtlasManager ball_table] getAnimation:@"element_birth"]
-                         completion:^{
-                             [self.comboBallSprite removeFromParent];
-                             [self startAuraAnimation];
-                         }];
-}
+//-(void)startElementBirthAnimation
+//{
+//    if (self.comboBallSprite != nil) {
+//        [self.comboBallSprite removeFromParent];
+//        self.comboBallSprite = nil;
+//    }
+//    
+//    self.comboBallSprite =[[SKSpriteNode alloc] init];
+//    self.comboBallSprite.size = CGSizeMake(50.0f, 50.0f);
+//    [self.comboBallSprite setPosition:CGPointMake(0.0f, 0.0f)];
+//    [self addChild:self.comboBallSprite];
+//    
+//    
+//    [self.comboBallSprite runAction:[[PPAtlasManager ball_table] getAnimation:@"element_birth"]
+//                         completion:^{
+//                             [self.comboBallSprite removeFromParent];
+//                             [self startAuraAnimation];
+//                         }];
+//}
 
 -(void)startAuraAnimation
 {
@@ -518,17 +505,14 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
     SKAction * activieAct = [SKAction repeatActionForever:[[PPAtlasManager battle_table_ball] getAnimation:@"ball_pixie_active"]];
     
     [spriteNodeActive runAction:activieAct];
-    
 }
 
 -(void)closeActiveStatus
 {
-    
     if (spriteNodeActive) {
         [spriteNodeActive removeFromParent];
         spriteNodeActive = nil;
     }
-    
 }
 
 @end

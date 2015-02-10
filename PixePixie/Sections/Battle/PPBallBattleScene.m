@@ -6,8 +6,8 @@
 #define PP_ENEMY_DEAD_CONTENT_NAME       @"enemydeadcontent"
 
 #define SPACE_BOTTOM 0
-#define BALL_RANDOM_X (kBallSize / 2 + arc4random() % (int)(320 - kBallSizePixie))
-#define BALL_RANDOM_Y (kBallSize / 2 + arc4random() % (int)(320 - kBallSizePixie) + SPACE_BOTTOM)
+#define BALL_RANDOM_X (kBallSizePixie + arc4random() % (int)(320 - kBallSizePixie * 2))
+#define BALL_RANDOM_Y (kBallSizePixie + arc4random() % (int)(320 - kBallSizePixie * 2) + SPACE_BOTTOM)
 
 // 物理实体类型
 typedef NS_OPTIONS (int, EntityCategory)
@@ -37,13 +37,9 @@ CGFloat vectorLength (CGVector vector) {
 
 // 向量角度计算
 CGFloat vector2angel(CGVector vector){
-    if (vector.dx!=0.0f) {
-        CGFloat rotation = atan(vector.dy / vector.dx);
-        return vector.dx > 0 ? rotation : rotation + 3.1415926;
-    }else
-    {
-        return 0.0f;
-    }
+    if (vector.dx == 0.0f) return 0.0f;
+    CGFloat rotation = atan(vector.dy / vector.dx);
+    return vector.dx > 0 ? rotation : rotation + 3.1415926;
 }
 
 @interface PPBallBattleScene () < SKPhysicsContactDelegate, UIAlertViewDelegate >
@@ -215,20 +211,22 @@ CGFloat vector2angel(CGVector vector){
     self.ballEnemy = self.pixieEnemy.pixieBall;
     CGFloat x = BALL_RANDOM_X;
     CGFloat y = BALL_RANDOM_Y + PP_FIT_TOP_SIZE;
-    self.ballEnemy.position = CGPointMake(100, 100);
+    
+    self.ballEnemy.position = CGPointMake(x, y);
     self.ballEnemy->battleCurrentScene = self;
-    if (self.ballEnemy.position.x>=290) {
+    
+    if (self.ballEnemy.position.x >= 290) {
         self.ballEnemy.position = CGPointMake(290.0f, self.ballPlayer.position.y);
     }
-    if (self.ballEnemy.position.x<=30) {
+    if (self.ballEnemy.position.x <= 30) {
         self.ballEnemy.position = CGPointMake(30.0f, self.ballPlayer.position.y);
     }
     
-    if (self.ballEnemy.position.y>380) {
+    if (self.ballEnemy.position.y > 380) {
         self.ballEnemy.position = CGPointMake(self.ballPlayer.position.x, 380-self.ballEnemy.size.height/2.0f);
         
     }
-    if (self.ballEnemy.position.y<64) {
+    if (self.ballEnemy.position.y < 64) {
         self.ballEnemy.position = CGPointMake(self.ballPlayer.position.x, 64+self.ballEnemy.size.height/2.0f);
         
     }
@@ -600,8 +598,7 @@ CGFloat vector2angel(CGVector vector){
         {
             [self roundRotateMoved:PP_PET_PLAYER_SIDE_NODE_NAME];
             //            [self  showPhysicsAttackAnimation:PP_PET_PLAYER_SIDE_NODE_NAME];
-        } else
-        {
+        } else {
             [self roundRotateMoved:PP_ENEMY_SIDE_NODE_NAME];
             //            [self  showPhysicsAttackAnimation:PP_ENEMY_SIDE_NODE_NAME];
         }
@@ -638,7 +635,6 @@ CGFloat vector2angel(CGVector vector){
 {
     if ([battlesideName isEqualToString:PP_ENEMY_SIDE_NODE_NAME])
     {
-        
         self.paused = YES;
         
         SKSpriteNode *enemyDeadContent=[[SKSpriteNode alloc] initWithColor:[UIColor orangeColor] size:CGSizeMake(320, 240)];
@@ -647,7 +643,7 @@ CGFloat vector2angel(CGVector vector){
         enemyDeadContent.name = PP_ENEMY_DEAD_CONTENT_NAME;
         [self addChild:enemyDeadContent];
         
-        NSDictionary *alertInfo = @{@"title":[NSString stringWithFormat:@"打倒怪物%d号",currentEnemyIndex], @"context":@"下一个怪物"};
+        NSDictionary * alertInfo = @{@"title":[NSString stringWithFormat:@"打倒怪物%d号",currentEnemyIndex], @"context":@"下一个怪物"};
         
         SKLabelNode * titleNameLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
         titleNameLabel.fontSize = 13;
@@ -1040,154 +1036,154 @@ CGFloat vector2angel(CGVector vector){
 }
 
 // 添加随机的元素球
--(void)addRandomBalls:(int)number withElement:(PPElementType)element andNodeName:(NSString *)nodeName
-{
-    if (number <= 0) return;
-    
-    int countToGenerate=number/kBallSustainRounds;
-    int lastBallSustainRounds = number%kBallSustainRounds;
-    
-    if (countToGenerate == 0 && lastBallSustainRounds != 0) {
-        
-        PPBall * tBall = [PPBall ballWithElement:element];
-        tBall.position = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y+PP_FIT_TOP_SIZE);
-        
-        if (tBall.position.x >= 290) tBall.position = CGPointMake(290.0f, tBall.position.y);
-        if (fabsf(tBall.position.y) > 380) tBall.position = CGPointMake(tBall.position.x, 380);
-        tBall.ballElementType = element;
-        tBall.name = nodeName;
-        tBall.sustainRounds = lastBallSustainRounds;
-        tBall->target = self;
-        tBall->animationEndSel = @selector(elementBallAnimationEnd:);
-        tBall.physicsBody.categoryBitMask = EntityCategoryBall;
-        tBall.physicsBody.contactTestBitMask = EntityCategoryBall|EntityCategoryWall;
-        tBall.physicsBody.collisionBitMask = EntityCategoryBall|EntityCategoryWall;
-        tBall.physicsBody.PPBallPhysicsBodyStatus = [NSNumber numberWithInt:PP_ELEMENT_NAME_TAG + 1];
-        
-        [self addChild:tBall];
-        [tBall setRoundsLabel:tBall.sustainRounds];
-        [tBall startElementBirthAnimation];
-        [self.ballsElement addObject:tBall];
-        return;
-    }
-    
-    if (lastBallSustainRounds != 0) {
-        countToGenerate++;
-    }
-    
-    if (countToGenerate > 5) {
-        countToGenerate = 5;
-        lastBallSustainRounds = kBallSustainRounds;
-    }
-    
-    if (lastBallSustainRounds != 0) {
-        
-        for (int i = 0; i < countToGenerate; i++) {
-            
-            if (i != countToGenerate-1) {
-                
-                PPBall * tBall = [PPBall ballWithElement:element];
-                tBall.position = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y+PP_FIT_TOP_SIZE);
-                if (tBall.position.x>=290) {
-                    tBall.position = CGPointMake(290.0f, tBall.position.y);
-                }
-                if (fabsf(tBall.position.y)>380) {
-                    tBall.position = CGPointMake(tBall.position.x, 380);
-                    
-                }
-                tBall.ballElementType = element;
-                tBall.physicsBody.node.name = nodeName;
-                tBall.name = nodeName;
-                tBall->target = self;
-                tBall->animationEndSel = @selector(elementBallAnimationEnd:);
-                tBall.physicsBody.categoryBitMask = EntityCategoryBall;
-                tBall.physicsBody.contactTestBitMask = EntityCategoryBall|EntityCategoryWall;
-                tBall.physicsBody.collisionBitMask = EntityCategoryBall|EntityCategoryWall;
-                tBall.sustainRounds = kBallSustainRounds;
-                NSLog(@"kBallSustainRounds = %d",kBallSustainRounds);
-                
-                [tBall setRoundsLabel:tBall.sustainRounds];
-                
-                tBall.physicsBody.contactTestBitMask = EntityCategoryBall;
-                tBall.physicsBody.PPBallPhysicsBodyStatus = [NSNumber numberWithInt:PP_ELEMENT_NAME_TAG+1];
-                [self addChild:tBall];
-                [tBall startElementBirthAnimation];
-                
-                
-                [self.ballsElement addObject:tBall];
-                
-            } else {
-                
-                PPBall * tBall = [PPBall ballWithElement:element];
-                tBall.position = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y+PP_FIT_TOP_SIZE);
-                if (tBall.position.x>=290) {
-                    tBall.position = CGPointMake(290.0f, tBall.position.y);
-                }
-                if (fabsf(tBall.position.y)>=380) {
-                    tBall.position = CGPointMake(tBall.position.x, 380);
-                    
-                }
-                
-                tBall.ballElementType = element;
-                tBall.physicsBody.node.name = nodeName;
-                tBall.name = nodeName;
-                tBall.physicsBody.categoryBitMask = EntityCategoryBall;
-                tBall.physicsBody.contactTestBitMask = EntityCategoryBall|EntityCategoryWall;
-                tBall.physicsBody.collisionBitMask = EntityCategoryBall|EntityCategoryWall;
-                tBall->target = self;
-                tBall->animationEndSel = @selector(elementBallAnimationEnd:);
-                tBall.sustainRounds = lastBallSustainRounds;
-                tBall.physicsBody.contactTestBitMask = EntityCategoryBall;
-                NSLog(@"lastBallSustainRounds = %d",lastBallSustainRounds);
-                
-                [tBall setRoundsLabel:tBall.sustainRounds];
-                tBall.physicsBody.PPBallPhysicsBodyStatus = [NSNumber numberWithInt:PP_ELEMENT_NAME_TAG+1];
-                
-                [self addChild:tBall];
-                [self.ballsElement addObject:tBall];
-                
-                [tBall startElementBirthAnimation];
-                
-                
-                
-            }
-            
-        }
-    } else {
-        for (int i = 0; i < countToGenerate; i++) {
-            
-            PPBall * tBall = [PPBall ballWithElement:element];
-            tBall.position = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y+PP_FIT_TOP_SIZE);
-            if (tBall.position.x>=290) {
-                tBall.position = CGPointMake(290.0f, tBall.position.y);
-            }
-            if (fabsf(tBall.position.y)>380) {
-                tBall.position = CGPointMake(tBall.position.x, 380);
-                
-            }
-            tBall.ballElementType = element;
-            tBall.physicsBody.node.name = nodeName;
-            tBall.name = nodeName;
-            tBall->target = self;
-            tBall->animationEndSel = @selector(elementBallAnimationEnd:);
-            tBall.physicsBody.categoryBitMask = EntityCategoryBall;
-            tBall.physicsBody.contactTestBitMask = EntityCategoryBall|EntityCategoryWall;
-            tBall.physicsBody.collisionBitMask = EntityCategoryBall|EntityCategoryWall;
-            tBall.sustainRounds = kBallSustainRounds;
-            NSLog(@"kBallSustainRounds = %d",kBallSustainRounds);
-            
-            [tBall setRoundsLabel:tBall.sustainRounds];
-            
-            tBall.physicsBody.contactTestBitMask = EntityCategoryBall;
-            tBall.physicsBody.PPBallPhysicsBodyStatus = [NSNumber numberWithInt:PP_ELEMENT_NAME_TAG+1];
-            
-            [self addChild:tBall];
-            [tBall startElementBirthAnimation];
-            
-            [self.ballsElement addObject:tBall];
-        }
-    }
-}
+//-(void)addRandomBalls:(int)number withElement:(PPElementType)element andNodeName:(NSString *)nodeName
+//{
+//    if (number <= 0) return;
+//    
+//    int countToGenerate=number/kBallSustainRounds;
+//    int lastBallSustainRounds = number%kBallSustainRounds;
+//    
+//    if (countToGenerate == 0 && lastBallSustainRounds != 0) {
+//        
+//        PPBall * tBall = [PPBall ballWithElement:element];
+//        tBall.position = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y+PP_FIT_TOP_SIZE);
+//        
+//        if (tBall.position.x >= 290) tBall.position = CGPointMake(290.0f, tBall.position.y);
+//        if (fabsf(tBall.position.y) > 380) tBall.position = CGPointMake(tBall.position.x, 380);
+//        tBall.ballElementType = element;
+//        tBall.name = nodeName;
+//        tBall.sustainRounds = lastBallSustainRounds;
+//        tBall->target = self;
+//        tBall->animationEndSel = @selector(elementBallAnimationEnd:);
+//        tBall.physicsBody.categoryBitMask = EntityCategoryBall;
+//        tBall.physicsBody.contactTestBitMask = EntityCategoryBall|EntityCategoryWall;
+//        tBall.physicsBody.collisionBitMask = EntityCategoryBall|EntityCategoryWall;
+//        tBall.physicsBody.PPBallPhysicsBodyStatus = [NSNumber numberWithInt:PP_ELEMENT_NAME_TAG + 1];
+//        
+//        [self addChild:tBall];
+//        [tBall setRoundsLabel:tBall.sustainRounds];
+//        [tBall startElementBirthAnimation];
+//        [self.ballsElement addObject:tBall];
+//        return;
+//    }
+//    
+//    if (lastBallSustainRounds != 0) {
+//        countToGenerate++;
+//    }
+//    
+//    if (countToGenerate > 5) {
+//        countToGenerate = 5;
+//        lastBallSustainRounds = kBallSustainRounds;
+//    }
+//    
+//    if (lastBallSustainRounds != 0) {
+//        
+//        for (int i = 0; i < countToGenerate; i++) {
+//            
+//            if (i != countToGenerate-1) {
+//                
+//                PPBall * tBall = [PPBall ballWithElement:element];
+//                tBall.position = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y+PP_FIT_TOP_SIZE);
+//                if (tBall.position.x>=290) {
+//                    tBall.position = CGPointMake(290.0f, tBall.position.y);
+//                }
+//                if (fabsf(tBall.position.y)>380) {
+//                    tBall.position = CGPointMake(tBall.position.x, 380);
+//                    
+//                }
+//                tBall.ballElementType = element;
+//                tBall.physicsBody.node.name = nodeName;
+//                tBall.name = nodeName;
+//                tBall->target = self;
+//                tBall->animationEndSel = @selector(elementBallAnimationEnd:);
+//                tBall.physicsBody.categoryBitMask = EntityCategoryBall;
+//                tBall.physicsBody.contactTestBitMask = EntityCategoryBall|EntityCategoryWall;
+//                tBall.physicsBody.collisionBitMask = EntityCategoryBall|EntityCategoryWall;
+//                tBall.sustainRounds = kBallSustainRounds;
+//                NSLog(@"kBallSustainRounds = %d",kBallSustainRounds);
+//                
+//                [tBall setRoundsLabel:tBall.sustainRounds];
+//                
+//                tBall.physicsBody.contactTestBitMask = EntityCategoryBall;
+//                tBall.physicsBody.PPBallPhysicsBodyStatus = [NSNumber numberWithInt:PP_ELEMENT_NAME_TAG+1];
+//                [self addChild:tBall];
+//                [tBall startElementBirthAnimation];
+//                
+//                
+//                [self.ballsElement addObject:tBall];
+//                
+//            } else {
+//                
+//                PPBall * tBall = [PPBall ballWithElement:element];
+//                tBall.position = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y+PP_FIT_TOP_SIZE);
+//                if (tBall.position.x>=290) {
+//                    tBall.position = CGPointMake(290.0f, tBall.position.y);
+//                }
+//                if (fabsf(tBall.position.y)>=380) {
+//                    tBall.position = CGPointMake(tBall.position.x, 380);
+//                    
+//                }
+//                
+//                tBall.ballElementType = element;
+//                tBall.physicsBody.node.name = nodeName;
+//                tBall.name = nodeName;
+//                tBall.physicsBody.categoryBitMask = EntityCategoryBall;
+//                tBall.physicsBody.contactTestBitMask = EntityCategoryBall|EntityCategoryWall;
+//                tBall.physicsBody.collisionBitMask = EntityCategoryBall|EntityCategoryWall;
+//                tBall->target = self;
+//                tBall->animationEndSel = @selector(elementBallAnimationEnd:);
+//                tBall.sustainRounds = lastBallSustainRounds;
+//                tBall.physicsBody.contactTestBitMask = EntityCategoryBall;
+//                NSLog(@"lastBallSustainRounds = %d",lastBallSustainRounds);
+//                
+//                [tBall setRoundsLabel:tBall.sustainRounds];
+//                tBall.physicsBody.PPBallPhysicsBodyStatus = [NSNumber numberWithInt:PP_ELEMENT_NAME_TAG+1];
+//                
+//                [self addChild:tBall];
+//                [self.ballsElement addObject:tBall];
+//                
+//                [tBall startElementBirthAnimation];
+//                
+//                
+//                
+//            }
+//            
+//        }
+//    } else {
+//        for (int i = 0; i < countToGenerate; i++) {
+//            
+//            PPBall * tBall = [PPBall ballWithElement:element];
+//            tBall.position = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y+PP_FIT_TOP_SIZE);
+//            if (tBall.position.x>=290) {
+//                tBall.position = CGPointMake(290.0f, tBall.position.y);
+//            }
+//            if (fabsf(tBall.position.y)>380) {
+//                tBall.position = CGPointMake(tBall.position.x, 380);
+//                
+//            }
+//            tBall.ballElementType = element;
+//            tBall.physicsBody.node.name = nodeName;
+//            tBall.name = nodeName;
+//            tBall->target = self;
+//            tBall->animationEndSel = @selector(elementBallAnimationEnd:);
+//            tBall.physicsBody.categoryBitMask = EntityCategoryBall;
+//            tBall.physicsBody.contactTestBitMask = EntityCategoryBall|EntityCategoryWall;
+//            tBall.physicsBody.collisionBitMask = EntityCategoryBall|EntityCategoryWall;
+//            tBall.sustainRounds = kBallSustainRounds;
+//            NSLog(@"kBallSustainRounds = %d",kBallSustainRounds);
+//            
+//            [tBall setRoundsLabel:tBall.sustainRounds];
+//            
+//            tBall.physicsBody.contactTestBitMask = EntityCategoryBall;
+//            tBall.physicsBody.PPBallPhysicsBodyStatus = [NSNumber numberWithInt:PP_ELEMENT_NAME_TAG+1];
+//            
+//            [self addChild:tBall];
+//            [tBall startElementBirthAnimation];
+//            
+//            [self.ballsElement addObject:tBall];
+//        }
+//    }
+//}
 
 // 改变元素球持续回合数
 -(void)changeBallsRoundsEnd
@@ -1228,15 +1224,14 @@ CGFloat vector2angel(CGVector vector){
 // 设置元素球标记值
 -(void)setPhysicsTagValue
 {
-    
     for (int i = 0; i < [self.ballsElement count]; i++) {
         PPBall * tBall = [self.ballsElement objectAtIndex:i];
         tBall.physicsBody.PPBallPhysicsBodyStatus=[NSNumber numberWithInt:PP_ELEMENT_NAME_TAG+i];
     }
-    
 }
+
 -(PPBuff *)getBuff:(NSString *)buffId{
-    PPBuff *buffTmp=[[PPBuff alloc] init];
+    PPBuff * buffTmp = [[PPBuff alloc] init];
     buffTmp.buffId = buffId;
     return buffTmp;
 }
@@ -1244,7 +1239,7 @@ CGFloat vector2angel(CGVector vector){
 // 获取数字图片拼接node
 -(SKSpriteNode *)getNumber:(int)number AndColor:(NSString *)color {
     
-    NSLog(@"color=%@ number=%d",color,number);
+    NSLog(@"color=%@ number=%d", color, number);
     
     SKSpriteNode * tNode = [[SKSpriteNode alloc] init];
     if (number < 1 || color == nil) return tNode;
@@ -1335,10 +1330,8 @@ CGFloat vector2angel(CGVector vector){
             [self roundRotateMoved:PP_ENEMY_SIDE_NODE_NAME];
         }
             break;
-            
         default:
         {
-            
             [self creatCombosTotal:PP_BALL_TYPE_ENEMY_ELEMENT_NAME];
             [self performSelector:@selector(executeEnemyRoundAction:) withObject:[NSNumber numberWithInt:decision] afterDelay:1];
             
@@ -1623,9 +1616,8 @@ CGFloat vector2angel(CGVector vector){
 //        additonLabel.fontColor = [UIColor redColor];
 //        additonLabel.position = CGPointMake(160.0f, 200.0f);
 //        [self addChild:additonLabel];
-//        
-//        
 //        [additonLabel setText:[NSString stringWithFormat:@"%@已释放",[skillInfo objectForKey:@"skillname"]]];
+        
         [self removeSkillBar];
         
         
@@ -2032,10 +2024,10 @@ CGFloat vector2angel(CGVector vector){
     NSLog(@"battlesideName=%@",battlesideName);
 }
 
--(void)removeBuff:(PPBuff *)buffToRemove andSide:(NSString *)stringSide
-{
-    [self.playerAndEnemySide removeBuffShow:buffToRemove andSide:stringSide];
-}
+//-(void)removeBuff:(PPBuff *)buffToRemove andSide:(NSString *)stringSide
+//{
+//    [self.playerAndEnemySide removeBuffShow:buffToRemove andSide:stringSide];
+//}
 
 #pragma mark Physics Attack show
 
@@ -2147,97 +2139,76 @@ CGFloat vector2angel(CGVector vector){
     
     if (!_isBallRolling) return;
     
-    if((contact.bodyA == self.ballPlayer.physicsBody || contact.bodyB == self.ballPlayer.physicsBody))
+    if((contact.bodyA == self.ballPlayer.physicsBody || contact.bodyB == self.ballPlayer.physicsBody)) {
         //如果我方人物球撞击到物体
-    {
         
-        if ((contact.bodyA == self.ballEnemy.physicsBody || contact.bodyB == self.ballEnemy.physicsBody))
-        {
-            
+        if ((contact.bodyA == self.ballEnemy.physicsBody || contact.bodyB == self.ballEnemy.physicsBody)) {
             [self addHitAnimationNodes:contact.contactPoint andType:kPetAndEnemyHitTypeValue];
-            
             return;
         }
         
-       
-        
         //我方球体撞墙
         if ((contact.bodyA.categoryBitMask == EntityCategoryWall || contact.bodyB.categoryBitMask == EntityCategoryWall)) {
-            
             NSLog(@"ballPlayer vec x=%f y=%f",self.ballPlayer.physicsBody.velocity.dx,self.ballPlayer.physicsBody.velocity.dy);
             NSLog(@"contact x=%f y=%f", contact.contactPoint.x,contact.contactPoint.y);
-            
             [self addHitAnimationNodes:contact.contactPoint andType:kPetHitWallTypeValue];
-            
             return;
-            
         };
         
-        if ([contact.bodyB.node.name isEqualToString:PP_BALL_TYPE_COMBO_NAME]||[contact.bodyA.node.name isEqualToString:PP_BALL_TYPE_COMBO_NAME])
+        if ([contact.bodyB.node.name isEqualToString:PP_BALL_TYPE_COMBO_NAME] ||
+            [contact.bodyA.node.name isEqualToString:PP_BALL_TYPE_COMBO_NAME]) {
             //我方碰到连击球
-        {
             
-            if(currentPhysicsAttack==0||currentPhysicsAttack==2){
-                return ;
-            }
+            if (currentPhysicsAttack == 0 || currentPhysicsAttack == 2) return;
             
-            if (battleSkillInfo.petHitRecoverHP!=0) {
-                
-                
-                SKSpriteNode *addHPAnimation = [self  getNumber:battleSkillInfo.petHitRecoverHP AndColor:@"green"];
+            if (battleSkillInfo.petHitRecoverHP != 0) {
+                SKSpriteNode * addHPAnimation = [self  getNumber:battleSkillInfo.petHitRecoverHP AndColor:@"green"];
                 [addHPAnimation setPosition:CGPointMake(20.0f, 20.0f)];
                 [self.playerAndEnemySide->ppixiePetBtn addChild:addHPAnimation];
-                //                SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"01_devilrebirth.png"]];
                 
-                
-                SKSpriteNode *nodeSkillBuffer=[SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"01_devilrebirth.png"]];
+                SKSpriteNode * nodeSkillBuffer=[SKSpriteNode spriteNodeWithTexture:
+                                                [SKTexture textureWithImageNamed:@"01_devilrebirth.png"]];
                 nodeSkillBuffer.position = contact.contactPoint;
                 nodeSkillBuffer.size = CGSizeMake(nodeSkillBuffer.size.width/4.0f, nodeSkillBuffer.size.height/4.0f);
                 [self addChild:nodeSkillBuffer];
                 
-                
-                SKAction *actionRemove = [SKAction fadeAlphaTo:1.0f duration:0.5];
+                SKAction * actionRemove = [SKAction fadeAlphaTo:1.0f duration:0.5];
                 
                 [nodeSkillBuffer runAction:actionRemove completion:^{
-                    
                     [nodeSkillBuffer removeFromParent];
-                    
                 }];
                 
-                
-                [addHPAnimation runAction:[SKAction scaleTo:2.0f duration:1] completion:^{
-                    
+                [addHPAnimation runAction:[SKAction scaleTo:2 duration:1] completion:^{
                     [addHPAnimation removeFromParent];
-                    
                 }];
-                
             }
             
             if (battleSkillInfo.nightJudgeValue != 0.0f) {
                 
-                SKSpriteNode *nodeSkillBuffer=[SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImageNamed:@"02_devilbreath.png"]];
+                SKSpriteNode * nodeSkillBuffer = [SKSpriteNode spriteNodeWithTexture:
+                                                  [SKTexture textureWithImageNamed:@"02_devilbreath.png"]];
                 nodeSkillBuffer.position = contact.contactPoint;
                 nodeSkillBuffer.size = CGSizeMake(25.0f, 25.0f);
                 [self addChild:nodeSkillBuffer];
                 
-                
-                SKAction *actionRemove = [SKAction fadeAlphaTo:1.0f duration:0.5];
+                SKAction * actionRemove = [SKAction fadeAlphaTo:1.0f duration:0.5];
                 
                 [nodeSkillBuffer runAction:actionRemove completion:^{
-                    
                     [nodeSkillBuffer removeFromParent];
-                    
                 }];
                 
+                SKSpriteNode * buffShowNode = [PPAtlasManager createSpriteImageName:nil
+                                                                            withPos:CGPointMake(0.0f, 0.0f)
+                                                                           withSize:CGSizeMake(115.0f, 107.0f)
+                                                                           withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeNightJudge]];
                 
-                
-                SKSpriteNode *buffShowNode = [PPAtlasManager createSpriteImageName:nil withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeNightJudge]];
                 [self.playerAndEnemySide->ppixiePetBtn addChild:buffShowNode];
                 //                SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_fight_skill] getAnimation:@"02_devilbreath"] count:1:];
-                SKAction *windEffect = [[PPAtlasManager battle_fight_missile] getAnimation:@"01_tornado"];
-                SKAction *moveAction=[SKAction moveByX:self.playerAndEnemySide->ppixieEnemyBtn.position.x-self.playerAndEnemySide->ppixiePetBtn.position.x  y:0 duration:1];
-                SKAction *groupAct=[SKAction group:@[windEffect,moveAction]];
-                
+                SKAction * windEffect = [[PPAtlasManager battle_fight_missile] getAnimation:@"01_tornado"];
+                SKAction * moveAction = [SKAction moveByX:self.playerAndEnemySide->ppixieEnemyBtn.position.x -
+                                         self.playerAndEnemySide->ppixiePetBtn.position.x
+                                                        y:0 duration:1];
+                SKAction * groupAct = [SKAction group:@[windEffect,moveAction]];
                 
                 [buffShowNode runAction:groupAct completion:^{
                     [buffShowNode removeFromParent];
@@ -2245,7 +2216,7 @@ CGFloat vector2angel(CGVector vector){
                     [self.playerAndEnemySide startAttackShowAnimation:YES];
                     [self.playerAndEnemySide changeEnemyHPValue:-100];
                     
-                    SKAction *actionBeated = [[PPAtlasManager pixie_battle_action] getAnimation:@"plant3_beated"];
+                    SKAction * actionBeated = [[PPAtlasManager pixie_battle_action] getAnimation:@"plant3_beated"];
                     
                     [self.playerAndEnemySide->ppixieEnemyBtn runAction:actionBeated completion:^{
                         
@@ -2256,39 +2227,29 @@ CGFloat vector2angel(CGVector vector){
                         //            }
                         
                     }];
-                    
-                    
                 }];
-                
-                
                 return;
                 //                battleSkillInfo.nightJudgeValue= 0.0f;
-                
             }
+            
             PPBall * ballCombo = nil;
             if (contact.bodyA == self.ballPlayer.physicsBody) {
-                
-                
-                ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
-                [ballCombo startComboAnimation:CGPointMake(self.ballPlayer.position.x-ballCombo.position.x,self.ballPlayer.position.y-ballCombo.position.y)];
-                
-                
-                
+                ballCombo = [self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
+                [ballCombo startComboAnimation:CGPointMake(self.ballPlayer.position.x - ballCombo.position.x,
+                                                           self.ballPlayer.position.y - ballCombo.position.y)];
             } else {
-                
-                ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
-                [ballCombo startComboAnimation:CGPointMake(self.ballPlayer.position.x-ballCombo.position.x,self.ballPlayer.position.y-ballCombo.position.y)];
-                
+                ballCombo = [self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
+                [ballCombo startComboAnimation:CGPointMake(self.ballPlayer.position.x - ballCombo.position.x,
+                                                           self.ballPlayer.position.y - ballCombo.position.y)];
             }
             
             petCombos++;
             
-            //恶魔重生
+            // 恶魔重生
             if (battleSkillInfo.petHitRecoverHP != 0) {
                 [self.playerAndEnemySide changePetHPValue:battleSkillInfo.petHitRecoverHP];
                 NSLog(@"恶魔重生=%d",battleSkillInfo.petHitRecoverHP);
                 [self removeSkillBar];
-                
             }
             
             if (battleSkillInfo.enemyPoisoningHP != 0) {
@@ -2315,28 +2276,14 @@ CGFloat vector2angel(CGVector vector){
                 [ballCombo addChild:buffShowNode];
                 
                 [buffShowNode runAction:actionRepForever completion:^{
-                    
-                    
-                   
-                    
                 }];
                 
-                
-                
-                
                 [self.playerAndEnemySide showRattanTwineAnimation:YES];
-                
                 [self.playerAndEnemySide startAttackShowAnimation:YES];
-                
-             
-                
             }
-            
-            
             [self.playerAndEnemySide setComboLabelText:petCombos withEnemy:enemyCombos];
             [self.playerAndEnemySide startAttackAnimation:YES];
             [self dealPixieBallContactComboBall:contact andPetBall:self.ballPlayer];
-            
             [self addComboValueChangeCombos:petCombos position:self.ballPlayer.position];
             
             return;

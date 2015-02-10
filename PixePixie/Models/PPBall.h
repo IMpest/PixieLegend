@@ -133,25 +133,25 @@ static void * MyObjectMyCustomPorpertyKey1 = (void *) @"MyObjectMyCustomPorperty
  
  */
 -(void)startRemoveAnimation:(NSMutableArray *)ballArray  andScene:(PPBasicScene *)battleScene;
-/**
- * @brief 元素球生成动画
- */
--(void)startElementBirthAnimation;
 
-/**
- * @brief 元素球变身陷阱动画
-*/
--(void)startMagicballAnimation;
+///**
+// * @brief 元素球生成动画
+// */
+//-(void)startElementBirthAnimation;
 
-/**
-* @brief 陷阱缠绕动画
-* @param isAppear 是缠绕出现  YES代表缠绕动画   NO代表缠绕消失动画
-* @attention
-* @warning
-* @return
-*/
+///**
+// * @brief 元素球变身陷阱动画
+//*/
+//-(void)startMagicballAnimation;
 
--(void)startPlantrootAppearOrDisappear:(BOOL)isAppear;
+///**
+//* @brief 陷阱缠绕动画
+//* @param isAppear 是缠绕出现  YES代表缠绕动画   NO代表缠绕消失动画
+//* @attention
+//* @warning
+//* @return
+//*/
+//-(void)startPlantrootAppearOrDisappear:(BOOL)isAppear;
 
 /**
  * @brief 人物球激活状态播放

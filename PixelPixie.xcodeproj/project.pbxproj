@@ -169,7 +169,6 @@
 		19F6EDAA18C6C09900BFFF9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F6EDA918C6C09900BFFF9A /* main.m */; };
 		D413CB611945FF62004B4FDE /* PPSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = D413CB601945FF62004B4FDE /* PPSkill.m */; };
 		D481DFFA1A85110B0050E691 /* ball_elements.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF61A85110B0050E691 /* ball_elements.atlas */; };
-		D481DFFB1A85110B0050E691 /* ball_magic.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF71A85110B0050E691 /* ball_magic.atlas */; };
 		D481DFFC1A85110B0050E691 /* ball_table.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF81A85110B0050E691 /* ball_table.atlas */; };
 		D481E0001A8512AB0050E691 /* other_valid_oldImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFFF1A8512AB0050E691 /* other_valid_oldImages.atlas */; };
 		D4877A40196C314E009509E5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4877A3F196C314E009509E5 /* Images.xcassets */; };
@@ -393,7 +392,6 @@
 		D413CB5F1945FF62004B4FDE /* PPSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPSkill.h; path = Models/PPSkill.h; sourceTree = "<group>"; };
 		D413CB601945FF62004B4FDE /* PPSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPSkill.m; path = Models/PPSkill.m; sourceTree = "<group>"; };
 		D481DFF61A85110B0050E691 /* ball_elements.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ball_elements.atlas; sourceTree = "<group>"; };
-		D481DFF71A85110B0050E691 /* ball_magic.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ball_magic.atlas; sourceTree = "<group>"; };
 		D481DFF81A85110B0050E691 /* ball_table.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ball_table.atlas; sourceTree = "<group>"; };
 		D481DFFF1A8512AB0050E691 /* other_valid_oldImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = other_valid_oldImages.atlas; path = Resource/Image/other_valid_oldImages.atlas; sourceTree = "<group>"; };
 		D4877A3F196C314E009509E5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -898,7 +896,6 @@
 			isa = PBXGroup;
 			children = (
 				D481DFF61A85110B0050E691 /* ball_elements.atlas */,
-				D481DFF71A85110B0050E691 /* ball_magic.atlas */,
 				D481DFF81A85110B0050E691 /* ball_table.atlas */,
 			);
 			name = Images;
@@ -965,7 +962,6 @@
 				19CFACFE1A77976C00126D75 /* 07_devilanger.png in Resources */,
 				1933E74C1A2F11F100E8C5BF /* pixie_battle_action.atlas in Resources */,
 				19DDAC9E1A6FB86A00315A66 /* water3_card.png in Resources */,
-				D481DFFB1A85110B0050E691 /* ball_magic.atlas in Resources */,
 				197C38EF1A888DBF00B6F43A /* bt_monster_friend.png in Resources */,
 				19CFACF91A77976C00126D75 /* 02_devilbreath.png in Resources */,
 				1968FE911A71ED1600CE8101 /* battle_fight_skill.atlas in Resources */,
