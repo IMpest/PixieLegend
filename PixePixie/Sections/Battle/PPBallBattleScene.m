@@ -92,7 +92,7 @@ CGFloat vector2angel(CGVector vector){
         // 处理参数
         self.pixiePlayer = pixieA;
         self.ballPlayer = pixieA.pixieBall;
-        
+        isHPZero = NO;
         NSLog(@"count=%lu",(unsigned long)[self.pixiePlayer.skillList count]);
         
         self.pixieEnemy = pixieB;
@@ -384,7 +384,7 @@ CGFloat vector2angel(CGVector vector){
     NSLog(@"elementBodyStatus=%@",elementBodyStatus);
     
     if (self.ballPlayer == pixieball) {
-        [self.playerAndEnemySide changeEnemyHPValue:-10];
+        [self.playerAndEnemySide changeEnemyHPValue:-180];
         [self.playerAndEnemySide startAttackShowAnimation:YES];
         [self.playerAndEnemySide changePetMPValue:200];
     } else {
@@ -635,41 +635,108 @@ CGFloat vector2angel(CGVector vector){
 {
     if ([battlesideName isEqualToString:PP_ENEMY_SIDE_NODE_NAME])
     {
-        self.paused = YES;
         
-        SKSpriteNode *enemyDeadContent=[[SKSpriteNode alloc] initWithColor:[UIColor orangeColor] size:CGSizeMake(320, 240)];
-        [enemyDeadContent setPosition:CGPointMake(160.0f, 300)];
-        enemyDeadContent.zPosition =  PPZ_FIGHT_EFFECT_ATT;
-        enemyDeadContent.name = PP_ENEMY_DEAD_CONTENT_NAME;
-        [self addChild:enemyDeadContent];
-        
-        NSDictionary * alertInfo = @{@"title":[NSString stringWithFormat:@"打倒怪物%d号",currentEnemyIndex], @"context":@"下一个怪物"};
-        
-        SKLabelNode * titleNameLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
-        titleNameLabel.fontSize = 13;
-        titleNameLabel.fontColor = [UIColor blueColor];
-        titleNameLabel.text = [alertInfo objectForKey:@"title"];
-        titleNameLabel.position = CGPointMake(0.0f,50);
-        [enemyDeadContent addChild:titleNameLabel];
-        
-        
-        SKLabelNode * textContentLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
-        textContentLabel.fontColor = [UIColor blueColor];
-        textContentLabel.text = [alertInfo objectForKey:@"context"];
-        textContentLabel.fontSize = 13;
-        textContentLabel.position = CGPointMake(0.0f,-20);
-        [enemyDeadContent addChild:textContentLabel];
+        isHPZero = YES;
+//        self.paused = YES;
+        [self setPlayerSideRoundRunState];
+        self.ballPlayer.physicsBody.velocity = CGVectorMake(0.0f, 0.0);
+        [self.playerAndEnemySide resetPetAndEnemyPosition];
         
         
         
-        PPSpriteButton *goButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(45, 30)];
+        
+        
+        if ([self.enmeysArray count]<=(currentEnemyIndex+1)) {
+            
+            //        self.paused = YES;
+            //
+            //        SKSpriteNode *enemyDeadContent=[[SKSpriteNode alloc] initWithColor:[UIColor orangeColor] size:CGSizeMake(320, 240)];
+            //        [enemyDeadContent setPosition:CGPointMake(160.0f, 300)];
+            //        enemyDeadContent.zPosition =  PPZ_FIGHT_EFFECT_ATT;
+            //        enemyDeadContent.name = PP_ENEMY_DEAD_CONTENT_NAME;
+            //        [self addChild:enemyDeadContent];
+            //
+            //        NSDictionary * alertInfo = @{@"title":[NSString stringWithFormat:@"打倒怪物%d号",currentEnemyIndex], @"context":@"下一个怪物"};
+            //
+            //        SKLabelNode * titleNameLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+            //        titleNameLabel.fontSize = 13;
+            //        titleNameLabel.fontColor = [UIColor blueColor];
+            //        titleNameLabel.text = [alertInfo objectForKey:@"title"];
+            //        titleNameLabel.position = CGPointMake(0.0f,50);
+            //        [enemyDeadContent addChild:titleNameLabel];
+            //
+            //
+            //        SKLabelNode * textContentLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+            //        textContentLabel.fontColor = [UIColor blueColor];
+            //        textContentLabel.text = [alertInfo objectForKey:@"context"];
+            //        textContentLabel.fontSize = 13;
+            //        textContentLabel.position = CGPointMake(0.0f,-20);
+            //        [enemyDeadContent addChild:textContentLabel];
+            //
+            //
+            //
+            //        PPSpriteButton *goButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(45, 30)];
+            //        [goButton setLabelWithText:@"下一个" andFont:[UIFont systemFontOfSize:15] withColor:nil];
+            //        goButton.zPosition = PPZ_BACK_BUTTON;
+            //        goButton.position = CGPointMake(0.0f,-60);
+            //        [goButton addTarget:self selector:@selector(goNextEnemy)
+            //                 withObject:nil forControlEvent:PPButtonControlEventTouchUpInside];
+            //        [enemyDeadContent addChild:goButton];
+            
+            
+            
+            
+            SKSpriteNode *enemyDeadContent=[[SKSpriteNode alloc] initWithColor:[UIColor orangeColor] size:CGSizeMake(320, 240)];
+            [enemyDeadContent setPosition:CGPointMake(160.0f, 300)];
+            enemyDeadContent.zPosition =  PPZ_FIGHT_EFFECT_ATT;
+            enemyDeadContent.name = PP_ENEMY_DEAD_CONTENT_NAME;
+            [self addChild:enemyDeadContent];
+            
+            NSDictionary *alertInfo = @{@"title":@"所有怪物都已打完", @"context":@""};
+            
+            SKLabelNode * titleNameLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+            titleNameLabel.fontSize = 13;
+            titleNameLabel.fontColor = [UIColor blueColor];
+            titleNameLabel.text = [alertInfo objectForKey:@"title"];
+            titleNameLabel.position = CGPointMake(0.0f,50);
+            [enemyDeadContent addChild:titleNameLabel];
+            
+            
+            //        SKLabelNode * textContentLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+            //        textContentLabel.fontColor = [UIColor blueColor];
+            //        textContentLabel.text = [alertInfo objectForKey:@"context"];
+            //        textContentLabel.fontSize = 13;
+            //        textContentLabel.position = CGPointMake(0.0f,-50);
+            //        [enemyDeadContent addChild:textContentLabel];
+            
+            
+            PPSpriteButton *goButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(45, 30)];
+            [goButton setLabelWithText:@"确定" andFont:[UIFont systemFontOfSize:15] withColor:nil];
+            goButton.zPosition = PPZ_BACK_BUTTON;
+            goButton.position = CGPointMake(0.0f,-60);
+            [goButton addTarget:self selector:@selector(goNextScene)
+                     withObject:nil forControlEvent:PPButtonControlEventTouchUpInside];
+            [enemyDeadContent addChild:goButton];
+            
+            
+            
+            return ;
+        }
+        
+        
+        PPSpriteButton *goButton = [PPSpriteButton buttonWithImageNamed:@"fight_btn_next"];
         [goButton setLabelWithText:@"下一个" andFont:[UIFont systemFontOfSize:15] withColor:nil];
         goButton.zPosition = PPZ_BACK_BUTTON;
-        goButton.position = CGPointMake(0.0f,-60);
+        goButton.position = CGPointMake(self.size.width-40,self.size.height/2.0f);
         [goButton addTarget:self selector:@selector(goNextEnemy)
                  withObject:nil forControlEvent:PPButtonControlEventTouchUpInside];
-        [enemyDeadContent addChild:goButton];
+        [self addChild:goButton];
         
+        
+        
+       
+        
+//        fight_btn_next
        
 //        [self performSelectorOnMainThread:@selector(goNextEnemy) withObject:nil afterDelay:2];
 //            
@@ -695,48 +762,7 @@ CGFloat vector2angel(CGVector vector){
     
     //    [self.hurdleReady setCurrentHurdle:currentEnemyIndex];
     //    [self.view presentScene:self.hurdleReady transition:[SKTransition doorwayWithDuration:1]];
-    
-    
-    if ([self.enmeysArray count]<=currentEnemyIndex+1) {
-        
-        
-        
-        SKSpriteNode *enemyDeadContent=[[SKSpriteNode alloc] initWithColor:[UIColor orangeColor] size:CGSizeMake(320, 240)];
-        [enemyDeadContent setPosition:CGPointMake(160.0f, 300)];
-        enemyDeadContent.zPosition =  PPZ_FIGHT_EFFECT_ATT;
-        enemyDeadContent.name = PP_ENEMY_DEAD_CONTENT_NAME;
-        [self addChild:enemyDeadContent];
-        
-        NSDictionary *alertInfo = @{@"title":@"所有怪物都已打完", @"context":@""};
-        
-        SKLabelNode * titleNameLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
-        titleNameLabel.fontSize = 13;
-        titleNameLabel.fontColor = [UIColor blueColor];
-        titleNameLabel.text = [alertInfo objectForKey:@"title"];
-        titleNameLabel.position = CGPointMake(0.0f,50);
-        [enemyDeadContent addChild:titleNameLabel];
-        
-        
-//        SKLabelNode * textContentLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
-//        textContentLabel.fontColor = [UIColor blueColor];
-//        textContentLabel.text = [alertInfo objectForKey:@"context"];
-//        textContentLabel.fontSize = 13;
-//        textContentLabel.position = CGPointMake(0.0f,-50);
-//        [enemyDeadContent addChild:textContentLabel];
-        
-        
-        PPSpriteButton *goButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(45, 30)];
-        [goButton setLabelWithText:@"确定" andFont:[UIFont systemFontOfSize:15] withColor:nil];
-        goButton.zPosition = PPZ_BACK_BUTTON;
-        goButton.position = CGPointMake(0.0f,-60);
-        [goButton addTarget:self selector:@selector(goNextScene)
-                   withObject:nil forControlEvent:PPButtonControlEventTouchUpInside];
-        [enemyDeadContent addChild:goButton];
-        
-        
-        
-        return ;
-    }
+
     
     NSDictionary * pixiesInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PixiesInfo"
                                                                                                            ofType:@"plist"]];
@@ -1286,6 +1312,8 @@ CGFloat vector2angel(CGVector vector){
 {
     [self setPlayerSideRoundRunState];
     
+    if(isHPZero) return;
+    
     roundActionNum += 1;
     
     // 如果回合的一半
@@ -1306,7 +1334,8 @@ CGFloat vector2angel(CGVector vector){
 -(void)roundRotateEnd
 {
     roundActionNum = 0;
-    
+    if(isHPZero) return;
+
 //    [self setRoundNumberLabel:@"回合结束" begin:NO];
     [self changeSkillBtnCdRounds];
     
