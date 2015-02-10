@@ -7,7 +7,7 @@
 {
     if (self = [super initWithSize:size]) {
         self.backgroundColor = [UIColor purpleColor];
-        [self setBackTitleText:@"Euo Fusion" andPositionY:360.0f];
+        [self addTitle:@"强化" andBackButton:360.0f];
 
         SKSpriteNode * contentSpriteNode = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(280, 200)];
         contentSpriteNode.position = CGPointMake(160, 150);

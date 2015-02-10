@@ -6,7 +6,7 @@
 -(id)initWithSize:(CGSize)size
 {
     if (self = [super initWithSize:size]){
-        [self setBackTitleText:@"设置" andPositionY:360];
+        [self addTitle:@"设置" andBackButton:360];
     }
     return self;
 }

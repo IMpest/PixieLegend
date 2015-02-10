@@ -5,7 +5,7 @@
 PPSpriteButton * backButtonTitle;
 PPSpriteButton * backButton;
 
--(void)setUsingDefaultBackground
+-(void)addDefaultBackground
 {
     SKSpriteNode * defaultBg = [[SKSpriteNode alloc] initWithImageNamed:@"bg_start"];
     defaultBg.size = CGSizeMake(320, 480 - 44 * 2);
@@ -14,26 +14,43 @@ PPSpriteButton * backButton;
     [self addChild:defaultBg];
 }
 
--(void)setBackTitleText:(NSString *)title andPositionY:(CGFloat)yValue;
+-(void)addTitle:(NSString *)title
 {
-    backButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(45, 30)];
-    [backButton setLabelWithText:@"返回" andFont:[UIFont systemFontOfSize:15] withColor:nil];
-    backButton.zPosition = PPZ_BACK_BUTTON;
-    backButton.position = CGPointMake(15.0f,yValue);
-    [backButton addTarget:self selector:@selector(backButtonClick:)
-               withObject:@"返回" forControlEvent:PPButtonControlEventTouchUpInside];
-    [self addChild:backButton];
+    if (title == nil)  return;
     
+    backButtonTitle = [PPSpriteButton  buttonWithImageNamed:@"title_section"];
+    backButtonTitle.size = CGSizeMake(107, 22);
+    backButtonTitle.position = CGPointMake(53, 360);
+    backButtonTitle.zPosition = PPZ_BACK_BUTTON;
+    
+    [backButtonTitle setLabelWithText:title andFont:[UIFont systemFontOfSize:12] withColor:nil];
+    [backButtonTitle addTarget:self selector:@selector(backTitleClick:)
+                    withObject:title forControlEvent:PPButtonControlEventTouchUpInside];
+    [self addChild:backButtonTitle];
+}
+
+-(void)addTitle:(NSString *)title andBackButton:(CGFloat)yPostion;
+{
     if (title != nil) {
-        backButtonTitle = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(120, 30)];
-        [backButtonTitle setLabelWithText:title andFont:[UIFont systemFontOfSize:15] withColor:nil];
-        backButtonTitle.position = CGPointMake(backButton.position.x + backButton.size.width/2 + backButtonTitle.size.width/2,
-                                               backButton.position.y);
-        backButtonTitle.zPosition = backButton.zPosition;
+        backButtonTitle = [PPSpriteButton  buttonWithImageNamed:@"title_section"];
+        backButtonTitle.size = CGSizeMake(107, 22);
+        backButtonTitle.position = CGPointMake(60, yPostion);
+        backButtonTitle.zPosition = PPZ_BACK_BUTTON;
+        
+        [backButtonTitle setLabelWithText:title andFont:[UIFont systemFontOfSize:12] withColor:nil];
         [backButtonTitle addTarget:self selector:@selector(backTitleClick:)
                         withObject:title forControlEvent:PPButtonControlEventTouchUpInside];
         [self addChild:backButtonTitle];
     }
+    
+    backButton = [PPSpriteButton buttonWithImageNamed:@"bt_back"];
+    backButton.size = CGSizeMake(29, 29);
+    backButton.position = CGPointMake(15, yPostion);
+    backButton.zPosition = PPZ_BACK_BUTTON;
+    
+    [backButton addTarget:self selector:@selector(backButtonClick:)
+               withObject:@"" forControlEvent:PPButtonControlEventTouchUpInside];
+    [self addChild:backButton];
 }
 
 -(void)backButtonClick:(NSString *)backName

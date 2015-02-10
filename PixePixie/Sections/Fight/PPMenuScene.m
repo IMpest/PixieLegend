@@ -7,8 +7,8 @@
 -(id)initWithSize:(CGSize)size andElement:(PPElementType)elementType{
     if (self = [super initWithSize:size]) {
         
-        currentElementType = elementType;
-
+        [self addTitle:@"场景菜单" andBackButton:440];
+        
         // 添加背景
         NSString * mapName = [NSString stringWithFormat:@"%@.png", @"bg_menu"];
         SKSpriteNode * spriteBackNode = [SKSpriteNode spriteNodeWithImageNamed:mapName];
@@ -39,7 +39,6 @@
             [self addChild:passIntroduceButton];
         }
         
-        [self setBackTitleText:@"小场景" andPositionY:420];
     }
     return self;
 }
@@ -108,7 +107,9 @@
     // 创建战斗场景并显示
     PPBallBattleScene * ballScene = [[PPBallBattleScene alloc] initWithSize:CurrentDeviceRealSize
                                                                 PixiePlayer:playerPixie
-                                                                 PixieEnemy:enemyPixie  andSceneType:currentElementType andIndex:0];
+                                                                 PixieEnemy:enemyPixie
+                                                               andSceneType:PPElementTypeFire
+                                                                   andIndex:0];
 //    ballScene.hurdleReady = self;
     ballScene.scaleMode = SKSceneScaleModeAspectFill;
     ballScene.enmeysArray = [pixiesInfo objectForKey:@"enemysinfo"];

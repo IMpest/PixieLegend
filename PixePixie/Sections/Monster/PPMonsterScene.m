@@ -126,7 +126,7 @@ BOOL menuIsHidden;
         case 0:
         {
             PPSellMonsterScene * sellMonster = [[PPSellMonsterScene alloc] initWithSize:self.view.frame.size];
-            [sellMonster setUsingDefaultBackground];
+            [sellMonster addDefaultBackground];
             sellMonster->previousScene = self;
             [self.view presentScene:sellMonster];
         }
@@ -134,7 +134,7 @@ BOOL menuIsHidden;
         case 1:
         {
             PPEuoFusionScene * euoFusion = [[PPEuoFusionScene alloc] initWithSize:self.view.frame.size];
-            [euoFusion setUsingDefaultBackground];
+            [euoFusion addDefaultBackground];
             euoFusion->previousScene = self;
             [self.view presentScene:euoFusion];
         }
@@ -143,7 +143,7 @@ BOOL menuIsHidden;
         {
             PPTalentTreeScene * talentTree = [[PPTalentTreeScene alloc] initWithPixie:[PPLocalData getInstance].firstPixie];
             talentTree.size = self.view.frame.size;
-            [talentTree setUsingDefaultBackground];
+            [talentTree addDefaultBackground];
             talentTree->previousScene = self;
             [self.view presentScene:talentTree];
         }

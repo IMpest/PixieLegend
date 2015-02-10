@@ -14,8 +14,7 @@ static NSString * monsterBtnTitle[] = {
 - (id)initWithSize:(CGSize)size
 {
     if (self = [super initWithSize:size]) {
-        [self setUsingDefaultBackground];
-//        [self setBackTitleText:@"Knapsack" andPositionY:360];
+        [self addDefaultBackground];
 
         SKSpriteNode * contentSpriteNode = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(280, 200)];
         contentSpriteNode.position = CGPointMake(160, 230);

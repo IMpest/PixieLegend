@@ -12,11 +12,10 @@ static NSString *monsterBtnTitle[] = {
 - (id)initWithSize:(CGSize)size
 {
     if (self = [super initWithSize:size]) {
-        self.backgroundColor = [UIColor yellowColor];
-        [self setBackTitleText:@"SellMonster" andPositionY:360.0f];
+        [self addTitle:@"变卖" andBackButton:360.0f];
 
-        SKSpriteNode *contentSpriteNode = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(280, 200)];
-        contentSpriteNode.position = CGPointMake(160.0f, 230);
+        SKSpriteNode * contentSpriteNode = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(280, 200)];
+        contentSpriteNode.position = CGPointMake(160, 230);
         contentSpriteNode.name = @"contentMonsterBox";
         SKTexture * boxTexture = nil;
         switch (0) {
@@ -42,8 +41,8 @@ static NSString *monsterBtnTitle[] = {
         }
         
         for (int i = 0; i < 15; i++) {
-            PPSpriteButton *monsterButton = [PPSpriteButton buttonWithTexture:boxTexture andSize:CGSizeMake(40.0f, 40.0f)];
-            monsterButton.position = CGPointMake((i%5)*55-110.0f,(i/5)*60-50.0f);
+            PPSpriteButton * monsterButton = [PPSpriteButton buttonWithTexture:boxTexture andSize:CGSizeMake(40.0f, 40.0f)];
+            monsterButton.position = CGPointMake((i % 5) * 55 - 110, (i / 5) * 60 - 50);
             monsterButton.name = [NSString stringWithFormat:@"%d",i];
             [monsterButton addTarget:self selector:@selector(monsterBoxButtonClick:)
                           withObject:monsterButton.name forControlEvent:PPButtonControlEventTouchUpInside];

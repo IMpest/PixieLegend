@@ -6,8 +6,8 @@
 -(id)initWithSize:(CGSize)size{
     
     if (self = [super initWithSize:size]) {
-        [self setUsingDefaultBackground];
-        [self setBackTitleText:@"schedule" andPositionY:360.0f];
+        [self addDefaultBackground];
+        [self addTitle:@"日常任务" andBackButton:360.0f];
     }
     return self;
 }

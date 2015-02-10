@@ -24,7 +24,7 @@ static NSString * joinTitle[] = {
     
     if (self = [super initWithSize:size]) {
         
-        [self setUsingDefaultBackground];
+        [self addDefaultBackground];
         
         for (int i = 0; i < 5; i++) {
             
