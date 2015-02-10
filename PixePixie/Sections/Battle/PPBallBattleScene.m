@@ -1440,27 +1440,25 @@ CGFloat vector2angel(CGVector vector){
         [self addChild:roundLabelContent];
         roundLabelContent.alpha = 0.0f;
         
-        SKSpriteNode *numberNode=[self getNumber:roundIndex AndColor:@"blue"];
+        SKSpriteNode * numberNode = [self getNumber:roundIndex AndColor:@"blue"];
         numberNode.size = CGSizeMake(50.0f, 50.0f);
         numberNode.xScale = 1.0f;
         numberNode.yScale = 1.0f;
         numberNode.position = CGPointMake(-30.0f, 0);
         [roundLabelContent addChild:numberNode];
         
-        SKLabelNode *additonLabel= [[SKLabelNode alloc] init];
+        SKLabelNode * additonLabel= [[SKLabelNode alloc] init];
         additonLabel.name  = @"RoundLabel";
-        additonLabel.fontColor = [UIColor redColor];
-        additonLabel.position = CGPointMake(numberNode.position.x+numberNode.size.width/2.0f+10.0f, -6.0f);
+        additonLabel.fontColor = [UIColor blueColor];
+        additonLabel.position = CGPointMake(numberNode.position.x+numberNode.size.width/2 + 10, -6);
         [additonLabel setFontSize:15];
         [additonLabel setText:text];
         [roundLabelContent addChild:additonLabel];
         
-        SKAction * actionScale1 = [SKAction scaleBy:2.0 duration:0.5];
-        SKAction * actionFade1 = [SKAction fadeAlphaTo:1.0 duration:0.5];
-        SKAction * actionFirst = [SKAction group:[NSArray arrayWithObjects:actionScale1,actionFade1, nil]];
-        SKAction * actionScale2 = [SKAction fadeAlphaTo:1.0 duration:1];
-        SKAction * actionFade2 = [SKAction fadeAlphaTo:0.0 duration:1.0f];
-        SKAction * actionResult = [SKAction sequence:[NSArray arrayWithObjects:actionFirst,actionScale2,actionFade2,nil]];
+        SKAction * actionResult = [SKAction sequence:@[[SKAction group:@[[SKAction scaleBy:2 duration:0.5],
+                                                                         [SKAction fadeAlphaTo:1 duration:0.3]]],
+                                                       [SKAction waitForDuration:1],
+                                                       [SKAction fadeAlphaTo:0 duration:0.5]]];
         
         [roundLabelContent runAction:actionResult completion:^{
             [roundLabelContent removeFromParent];
@@ -1468,7 +1466,6 @@ CGFloat vector2angel(CGVector vector){
             [self setPlayerSideRoundEndState];
             [self creatCombosTotal:PP_BALL_TYPE_PET_ELEMENT_NAME];
             [self changeBallsRoundsEnd];
-
         }];
     } else {
         SKSpriteNode * roundLabelContent = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(320, 240)];
