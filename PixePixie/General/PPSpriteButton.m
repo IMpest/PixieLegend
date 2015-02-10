@@ -95,9 +95,6 @@
     self.exclusiveTouch = YES;
     
     marrSelectors = [[NSMutableArray alloc]init];
-    
-    //    [self setLabelWithText:Nil andFont:Nil withColor:Nil];
-    
 }
 
 #pragma mark - LABEL FOR BUTTON
@@ -217,22 +214,19 @@
 
 -(void)transformForTouchDown
 {
-    //You can define your custom transformation here.
-    
-    [self runAction:[SKAction scaleTo:0.9 duration:0.1]];
+    // You can define your custom transformation here.
+    [self runAction:[SKAction colorizeWithColor:[UIColor blackColor] colorBlendFactor:0.5 duration:0]];
 }
 
 -(void)transformForTouchDrag
 {
-    //You can define your custom transformation here.
-    
+    // You can define your custom transformation here.
 }
 
 -(void)transformForTouchUp
 {
-    //You can define your custom transformation here.
-    
-    [self runAction:[SKAction scaleTo:1.0 duration:0.1]];
+    // You can define your custom transformation here.
+    [self runAction:[SKAction colorizeWithColor:[UIColor blackColor] colorBlendFactor:0.0 duration:0]];
 }
 
 #pragma mark - TARGET/SELECTOR HANDLING
@@ -241,7 +235,7 @@
 {
     //check whether selector is already saved, otherwise it will get called twice
     
-    NSMutableDictionary *mdicSelector = [[NSMutableDictionary alloc]init];
+    NSMutableDictionary * mdicSelector = [[NSMutableDictionary alloc]init];
     
     [mdicSelector setObject:target forKey:@"target"];
     [mdicSelector setObject:[NSValue valueWithPointer:selector] forKey:@"selector"];
@@ -263,7 +257,7 @@
     for (int i = 0; i < [arrSelectors count]; i++)
     {
         
-        NSDictionary *dicSelector = [arrSelectors objectAtIndex: i];
+        NSDictionary * dicSelector = [arrSelectors objectAtIndex: i];
         
         BOOL shouldRemove = NO;
         BOOL shouldCheckSelector = NO;
@@ -271,7 +265,7 @@
         
         id selTarget = [dicSelector objectForKey:@"target"];
         
-        NSValue *valSelector = [dicSelector objectForKey:@"selector"];
+        NSValue * valSelector = [dicSelector objectForKey:@"selector"];
         
         SEL selSelector = nil;
         

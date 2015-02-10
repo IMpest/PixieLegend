@@ -27,7 +27,7 @@ PPPixie * pixieCurrent;
     // 添加状态
     for (int i = 0; i < 3; i++) {
         SKSpriteNode * buffButton = [[SKSpriteNode alloc] initWithImageNamed:@"buff_exp"];
-        buffButton.position = CGPointMake(130, i * 40 + 20);
+        buffButton.position = CGPointMake(140, i * 40 + 20);
         buffButton.size = CGSizeMake(25, 25);
         [self addChild:buffButton];
     }
@@ -37,11 +37,14 @@ PPPixie * pixieCurrent;
     feedButton.name = @"btnFeed";
     feedButton.size = CGSizeMake(72, 22);
     feedButton.position = CGPointMake(0, -150);
-    [feedButton setLabelWithText:@"喂食" andFont:[UIFont systemFontOfSize:14] withColor:nil];
-    [feedButton addTarget:self selector:@selector(feedButtonClick:) withObject:feedButton.name
+    [feedButton setLabelWithText:@"FEED" andFont:[UIFont systemFontOfSize:12] withColor:nil];
+    [feedButton addTarget:self selector:@selector(clickFeed:) withObject:feedButton.name
           forControlEvent:PPButtonControlEventTouchUpInside];
     [self addChild:feedButton];
 }
+
+-(void)clickFeed:(NSString *)stringName
+{}
 
 -(void)clickPixie:(NSString *)words
 {
@@ -51,36 +54,6 @@ PPPixie * pixieCurrent;
     // 开始卖萌
     CGFloat timeCost = [self letPixieDoAction:PPPixieActionTypeRun];
     [self showWords:words inSeconds:timeCost];
-}
-
--(void)feedButtonClick:(NSString *)stringName
-{}
-
-
-// 显示宠物想说的语言
--(void)showWords:(NSString *)content inSeconds:(float)time
-{
-    if (time < 1.0) return;
-    
-    // 添加文字框
-    SKSpriteNode * wordsFrame = [[SKSpriteNode alloc] initWithImageNamed:@"bg_words.png"];
-    wordsFrame.position = CGPointMake(0, 90);
-    wordsFrame.alpha = 0.0f;
-    wordsFrame.xScale = 0.5f;
-    wordsFrame.yScale = 0.5f;
-    [self addChild:wordsFrame];
-    
-    // 添加文字内容
-    SKLabelNode * wordsContent = [[SKLabelNode alloc] init];
-    wordsContent.position = CGPointMake(0, 0);
-    wordsContent.text = content;
-    wordsContent.fontColor = [UIColor blackColor];
-    [wordsFrame addChild:wordsContent];
-    
-    SKAction * show = [SKAction sequence:@[[SKAction fadeAlphaTo:0.8f duration:0.5f],
-                                           [SKAction waitForDuration:time - 1.0f],
-                                           [SKAction fadeOutWithDuration:0.5f]]];
-    [wordsFrame runAction:show completion:^{[wordsFrame removeFromParent];}];
 }
 
 // 让宠物执行动作（返回动作需要花费的时间）
@@ -111,6 +84,33 @@ PPPixie * pixieCurrent;
     }
     return 0.0;
 }
+
+// 显示宠物想说的语言
+-(void)showWords:(NSString *)content inSeconds:(float)time
+{
+    if (time < 1.0) return;
+    
+    // 添加文字框
+    SKSpriteNode * wordsFrame = [[SKSpriteNode alloc] initWithImageNamed:@"bg_words.png"];
+    wordsFrame.position = CGPointMake(0, 90);
+    wordsFrame.alpha = 0.0f;
+    wordsFrame.xScale = 0.5f;
+    wordsFrame.yScale = 0.5f;
+    [self addChild:wordsFrame];
+    
+    // 添加文字内容
+    SKLabelNode * wordsContent = [[SKLabelNode alloc] init];
+    wordsContent.position = CGPointMake(0, 0);
+    wordsContent.text = content;
+    wordsContent.fontColor = [UIColor blackColor];
+    [wordsFrame addChild:wordsContent];
+    
+    SKAction * show = [SKAction sequence:@[[SKAction fadeAlphaTo:0.8f duration:0.5f],
+                                           [SKAction waitForDuration:time - 1.0f],
+                                           [SKAction fadeOutWithDuration:0.5f]]];
+    [wordsFrame runAction:show completion:^{[wordsFrame removeFromParent];}];
+}
+
 
 // 恢复正常的站立动作
 -(void)letPixieStand{

@@ -82,7 +82,7 @@ BOOL menuIsHidden;
     if (menuIsHidden) {
         for (int i = 0; i < 3; i++) {
             PPSpriteButton * monsterButton = [PPSpriteButton buttonWithImageNamed:@"bt_menu.png"];
-            monsterButton.position = CGPointMake(160,i * 100 + 80);
+            monsterButton.position = CGPointMake(160,i * 80 + 120);
             monsterButton.size = CGSizeMake(150, 60);
             monsterButton.name = [NSString stringWithFormat:@"%d",i];
             [monsterButton setLabelWithText:monsterBtnTitle[i]
