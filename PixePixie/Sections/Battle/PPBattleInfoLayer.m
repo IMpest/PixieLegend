@@ -117,7 +117,7 @@
 //            break;
 //    }
     originX = -65.0f;
-
+    originY = 40.0f;
     
     self.currentPPPixie = petppixie;
     self.currentPPPixieEnemy = enemyppixie;
@@ -132,7 +132,7 @@
     // 己方头像
     ppixiePetBtn = [[SKSpriteNode alloc] init];
     ppixiePetBtn.size = CGSizeMake(PP_PET_ENEMY_SIZE_VALUE, PP_PET_ENEMY_SIZE_VALUE);
-    [ppixiePetBtn setPosition: CGPointMake(originX, 40.0f)];
+    [ppixiePetBtn setPosition: CGPointMake(originX, originY)];
     [self addChild:ppixiePetBtn];
     
     [ppixiePetBtn runAction:[SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_stop",kElementTypeString[petppixie.pixieElement]]]]];
@@ -581,9 +581,9 @@
         spriteNodeMoving.size = CGSizeMake(spriteNodeMoving.size.width / 2, spriteNodeMoving.size.height / 2);
         SKAction * actionEffect = [SKAction repeatAction:[[PPAtlasManager battle_fight_effect] getAnimation:@"moving"] count:2];
         [spriteNodeMoving runAction:[SKAction group:[NSArray arrayWithObjects:actionMove,actionEffect, nil]] completion:^{
-            [spriteNodeMoving removeFromParent];
+//            [spriteNodeMoving removeFromParent];
         }];
-        ppixiePetBtn.position = CGPointMake(70, ppixiePetBtn.position.y);
+        ppixiePetBtn.position = CGPointMake(ppixieEnemyBtn.position.x-40.0f, originY);
         
         
 //        SKAction *action11=[[PPAtlasManager ball_action] getAnimation:[NSString stringWithFormat:@"%@3attack",kElementTypeString[currentPPPixie.pixieElement]]];
@@ -602,12 +602,15 @@
         
 //        [ppixiePetBtn runAction:action1Result];
         
-        [ppixieEnemyBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"fire3_beated"] completion:^{
-//            if (spriteNodeMoving) {
-//                [spriteNodeMoving removeFromParent];
-//
-//            }
+//        [ppixieEnemyBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"fire3_beated"] completion:^{
+//        }];
+        
+        [ppixieEnemyBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_beated",kElementTypeString[currentPPPixieEnemy.pixieElement]]] completion:^{
+            
         }];
+        
+        NSLog(@"beated=%@",kElementTypeString[currentPPPixie.pixieElement]);
+        
     } else {
         SKSpriteNode * spriteNodeMoving = [SKSpriteNode spriteNodeWithImageNamed:@"moving_0000"];
         spriteNodeMoving.position = ppixieEnemyBtn.position;
@@ -633,14 +636,18 @@
 //        [ppixiePetBtn removeAllActions];
 //        [ppixieEnemyBtn removeAllActions];
         
-        SKAction * actionBeated = [[PPAtlasManager pixie_battle_action] getAnimation:@"plant3_beated"];
+//        SKAction * actionBeated = [[PPAtlasManager pixie_battle_action] getAnimation:@"plant3_beated"];
+//        [ppixiePetBtn runAction:actionBeated completion:^{
+//        }];
+        SKAction * actionBeated = [[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_beated",kElementTypeString[currentPPPixie.pixieElement]]];
+        
+        NSLog(@"beated=%@",kElementTypeString[currentPPPixie.pixieElement]);
+        
+        
         [ppixiePetBtn runAction:actionBeated completion:^{
-//            [ppixiePetBtn removeAllActions];
-//            if (spriteNodeMoving) {
-//                [spriteNodeMoving removeFromParent];
-//
-//            }
+            
         }];
+        
     }
 }
 
@@ -660,9 +667,14 @@
 //        [self addChild:attackShowNode];
 //        
         
-        [ppixiePetBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"plant3_hit"] completion:^{
-           
+//        [ppixiePetBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"plant3_hit"] completion:^{
+//           
+//        
+//        }];
         
+        [ppixiePetBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_hit",kElementTypeString[currentPPPixie.pixieElement]]] completion:^{
+            
+            
         }];
         
     }else
@@ -679,7 +691,11 @@
 //        attackShowNode.xScale = -1;
 //        [self addChild:attackShowNode];
         
-        [ppixieEnemyBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"fire3_hit"] completion:^{
+//        [ppixieEnemyBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"fire3_hit"] completion:^{
+//            
+//            
+//        }];
+        [ppixieEnemyBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_hit",kElementTypeString[currentPPPixieEnemy.pixieElement]]] completion:^{
             
             
         }];
@@ -698,7 +714,7 @@
 }
 -(void)resetPetAndEnemyPosition
 {
-    [ppixiePetBtn setPosition:CGPointMake(originX, 20.0f)];
+    [ppixiePetBtn setPosition:CGPointMake(originX, originY)];
     [ppixieEnemyBtn setPosition:CGPointMake(ppixiePetBtn.position.x+150,ppixiePetBtn.position.y)];
 }
 -(void)showRattanTwineAnimation:(BOOL)isPetShow

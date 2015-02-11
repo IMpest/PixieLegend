@@ -10,6 +10,8 @@
     BOOL isHaveDead;
     
     CGFloat originX;
+    CGFloat originY;
+
     @public
     SKSpriteNode * ppixiePetBtn;
     SKSpriteNode * ppixieEnemyBtn;
@@ -114,7 +116,7 @@
 //-(void)removeBuffShow:(PPBuff *)buffShow andSide:(NSString *)stringSide;
 
 /**
- * @brief 显示攻击动画
+ * @brief 显示攻击移动动画
  * @param stringSide   战斗来源
  
  */

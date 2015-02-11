@@ -680,13 +680,16 @@ CGFloat vector2angel(CGVector vector){
             //                 withObject:nil forControlEvent:PPButtonControlEventTouchUpInside];
             //        [enemyDeadContent addChild:goButton];
             
+            
             SKSpriteNode * enemyDeadContent=[[SKSpriteNode alloc] initWithColor:[UIColor orangeColor] size:CGSizeMake(320, 240)];
             [enemyDeadContent setPosition:CGPointMake(160.0f, 300)];
             enemyDeadContent.zPosition =  PPZ_FIGHT_EFFECT_ATT;
             enemyDeadContent.name = PP_ENEMY_DEAD_CONTENT_NAME;
             [self addChild:enemyDeadContent];
             
+            
             NSDictionary * alertInfo = @{@"title":@"所有怪物都已打完", @"context":@""};
+            
             
             SKLabelNode * titleNameLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
             titleNameLabel.fontSize = 13;
@@ -695,12 +698,14 @@ CGFloat vector2angel(CGVector vector){
             titleNameLabel.position = CGPointMake(0.0f,50);
             [enemyDeadContent addChild:titleNameLabel];
             
+            
             //        SKLabelNode * textContentLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
             //        textContentLabel.fontColor = [UIColor blueColor];
             //        textContentLabel.text = [alertInfo objectForKey:@"context"];
             //        textContentLabel.fontSize = 13;
             //        textContentLabel.position = CGPointMake(0.0f,-50);
             //        [enemyDeadContent addChild:textContentLabel];
+            
             
             PPSpriteButton * goButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(45, 30)];
             [goButton setLabelWithText:@"确定" andFont:[UIFont systemFontOfSize:15] withColor:nil];
@@ -2374,6 +2379,8 @@ CGFloat vector2angel(CGVector vector){
                                                            self.ballEnemy.physicsBody.velocity.dy * kVelocityAddition);
         return;
     }
+    
+    
 }
 
 #pragma mark SKScene
