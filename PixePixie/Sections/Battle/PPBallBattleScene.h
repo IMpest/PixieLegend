@@ -40,6 +40,6 @@
  */
 -(void)setEnemyAtIndex:(int)index;
 
--(void)physicsAttackAnimationEnd:(NSString *)stringSide;
+//-(void)physicsAttackAnimationEnd:(NSString *)stringSide;
 
 @end

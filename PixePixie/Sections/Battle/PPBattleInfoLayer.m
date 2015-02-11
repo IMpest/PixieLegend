@@ -397,32 +397,33 @@
     self.currentPPPixieEnemy.currentHP =  [enemyPlayerHP valueShowChangeMaxValue:0 andCurrentValue:HPValue];
 }
 
--(void)shakeHeadPortrait:(NSString *)stringSide andCompletion:(PPBallBattleScene *)sceneBattle
-{
-    if ([stringSide isEqualToString:PP_PET_PLAYER_SIDE_NODE_NAME]) {
-        
-        SKAction * actionLeft = [SKAction moveByX:-10 y:0.0f duration:0.1];
-        SKAction * actionRight = [SKAction moveByX:20 y:0.0f duration:0.1];
-        SKAction * actionOrigin = [SKAction moveTo:ppixieEnemyBtn.position duration:0.1];
-        SKAction * actionTotal = [SKAction sequence:[NSArray arrayWithObjects:actionLeft,actionRight,actionOrigin,nil]];
-        
-        [ppixieEnemyBtn runAction:actionTotal completion:^{
-            
-            [sceneBattle physicsAttackAnimationEnd:stringSide];
-            
-        }];
-    } else {
-        SKAction * actionLeft = [SKAction moveByX:-10 y:0.0f duration:0.1];
-        SKAction * actionRight = [SKAction moveByX:20 y:0.0f duration:0.1];
-        SKAction * actionOrigin = [SKAction moveTo:ppixiePetBtn.position duration:0.1];
-        SKAction * actionTotal = [SKAction sequence:[NSArray arrayWithObjects:actionLeft,actionRight,actionOrigin,nil]];
-        
-        [ppixiePetBtn runAction:actionTotal completion:^{
-            [sceneBattle physicsAttackAnimationEnd:stringSide];
-            
-        }];
-    }
-}
+//-(void)shakeHeadPortrait:(NSString *)stringSide andCompletion:(PPBallBattleScene *)sceneBattle
+//{
+//    if ([stringSide isEqualToString:PP_PET_PLAYER_SIDE_NODE_NAME]) {
+//        
+//        SKAction * actionLeft = [SKAction moveByX:-10 y:0.0f duration:0.1];
+//        SKAction * actionRight = [SKAction moveByX:20 y:0.0f duration:0.1];
+//        SKAction * actionOrigin = [SKAction moveTo:ppixieEnemyBtn.position duration:0.1];
+//        SKAction * actionTotal = [SKAction sequence:[NSArray arrayWithObjects:actionLeft,actionRight,actionOrigin,nil]];
+//        
+//        [ppixieEnemyBtn runAction:actionTotal completion:^{
+//            
+//            [sceneBattle physicsAttackAnimationEnd:stringSide];
+//            
+//        }];
+//    } else {
+//        SKAction * actionLeft = [SKAction moveByX:-10 y:0.0f duration:0.1];
+//        SKAction * actionRight = [SKAction moveByX:20 y:0.0f duration:0.1];
+//        SKAction * actionOrigin = [SKAction moveTo:ppixiePetBtn.position duration:0.1];
+//        SKAction * actionTotal = [SKAction sequence:[NSArray arrayWithObjects:actionLeft,actionRight,actionOrigin,nil]];
+//        
+//        [ppixiePetBtn runAction:actionTotal completion:^{
+//            [sceneBattle physicsAttackAnimationEnd:stringSide];
+//            
+//        }];
+//    }
+//}
+
 -(int)physicsAttackHPChangeValueCalculate
 {
     return 300;

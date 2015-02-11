@@ -17,7 +17,8 @@ static const float kStopThreshold = 5.0f;           // 球速度停止阈值
 static const float kBallAccelerateMin = 15.0f;      // 速度发光最小的阈值
 static const float kFrameInterval = 0.10f;          // FPS默认10
 
-static const int kHurtBasicValue = 200;             // 物理攻击基础伤害值
+static const int kHurtBasicValue = 125;             // 物理攻击基础伤害值
+
 static const int kElementTypeMax = 10;              // 最大元素类型个数
 
 // 元素对应字符串
