@@ -2435,7 +2435,7 @@ CGFloat vector2angel(CGVector vector){
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     
-    if (_isBallRolling|| isNotSkillRun) return;
+    if (_isBallRolling) return;
     if (touches.count > 1  || _isBallRolling) return;
     
     
@@ -2463,10 +2463,12 @@ CGFloat vector2angel(CGVector vector){
     
     SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
     
-    //如果点击的是已经出现的技能条，则删除技能条
-    if (isShowingSkillBar==YES) {
+    
+    if(touchedNode == petSkillBar&&isNotSkillRun)
+    {
         [self removeSkillBar];
         return;
+        
     }
     
     
