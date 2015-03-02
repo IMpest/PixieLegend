@@ -2167,7 +2167,7 @@ CGFloat vector2angel(CGVector vector){
                 SKAction * moveAction = [SKAction moveByX:self.playerAndEnemySide->ppixieEnemyBtn.position.x -
                                          self.playerAndEnemySide->ppixiePetBtn.position.x
                                                         y:0 duration:1];
-                SKAction * groupAct = [SKAction group:@[windEffect,moveAction]];
+                SKAction * groupAct = [SKAction group:@[windEffect, moveAction]];
                 
                 [buffShowNode runAction:groupAct completion:^{
                     [buffShowNode removeFromParent];
@@ -2178,13 +2178,11 @@ CGFloat vector2angel(CGVector vector){
                     SKAction * actionBeated = [[PPAtlasManager pixie_battle_action] getAnimation:@"plant3_beated"];
                     
                     [self.playerAndEnemySide->ppixieEnemyBtn runAction:actionBeated completion:^{
-                        
                         //            [ppixiePetBtn removeAllActions];
                         //            if (spriteNodeMoving) {
                         //                [spriteNodeMoving removeFromParent];
                         //
                         //            }
-                        
                     }];
                 }];
                 return;

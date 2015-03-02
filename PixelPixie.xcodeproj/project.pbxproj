@@ -171,7 +171,6 @@
 		D413CB611945FF62004B4FDE /* PPSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = D413CB601945FF62004B4FDE /* PPSkill.m */; };
 		D481DFFA1A85110B0050E691 /* ball_elements.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF61A85110B0050E691 /* ball_elements.atlas */; };
 		D481DFFC1A85110B0050E691 /* ball_table.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF81A85110B0050E691 /* ball_table.atlas */; };
-		D481E0001A8512AB0050E691 /* other_valid_oldImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFFF1A8512AB0050E691 /* other_valid_oldImages.atlas */; };
 		D4877A40196C314E009509E5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4877A3F196C314E009509E5 /* Images.xcassets */; };
 		D4BE5ABF19513FFD001F72DE /* PPBuff.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BE5ABE19513FFD001F72DE /* PPBuff.m */; };
 /* End PBXBuildFile section */
@@ -396,7 +395,6 @@
 		D413CB601945FF62004B4FDE /* PPSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPSkill.m; path = Models/PPSkill.m; sourceTree = "<group>"; };
 		D481DFF61A85110B0050E691 /* ball_elements.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ball_elements.atlas; sourceTree = "<group>"; };
 		D481DFF81A85110B0050E691 /* ball_table.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ball_table.atlas; sourceTree = "<group>"; };
-		D481DFFF1A8512AB0050E691 /* other_valid_oldImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = other_valid_oldImages.atlas; path = Resource/Image/other_valid_oldImages.atlas; sourceTree = "<group>"; };
 		D4877A3F196C314E009509E5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D4BE5ABD19513FFD001F72DE /* PPBuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPBuff.h; path = Models/PPBuff.h; sourceTree = "<group>"; };
 		D4BE5ABE19513FFD001F72DE /* PPBuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPBuff.m; path = Models/PPBuff.m; sourceTree = "<group>"; };
@@ -560,7 +558,6 @@
 		1933E7441A2F11B200E8C5BF /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				D481DFFF1A8512AB0050E691 /* other_valid_oldImages.atlas */,
 				197358891A441E2E008F0B4A /* battle_fight_effect.atlas */,
 				19CFACED1A77937200126D75 /* battle_fight_missile.atlas */,
 				198D051E1A515CE800D7244F /* battle_fight_pixie.atlas */,
@@ -1029,7 +1026,6 @@
 				197184501A837473004A7880 /* 02_devilbreath_item.png in Resources */,
 				194D46AE1A6509A500FDBDD0 /* info_hp.png in Resources */,
 				1971844F1A837473004A7880 /* 01_devilrebirth_item.png in Resources */,
-				D481E0001A8512AB0050E691 /* other_valid_oldImages.atlas in Resources */,
 				197C38FB1A888E9D00B6F43A /* fight_hp_bar.png in Resources */,
 				19A8ED541A52977600EFEA7A /* tab_btn0.png in Resources */,
 				19A8ED531A52977600EFEA7A /* tab_btn1.png in Resources */,
