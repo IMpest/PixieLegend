@@ -18,6 +18,16 @@ UIView * skillIcon;
     return self;
 }
 
+-(void)updateStone
+{
+    for (int i = 0 ; i < 4; i++) {
+        UIButton * btnStone = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnStone setImage:[UIImage imageNamed:[NSString stringWithFormat:@"stone%d.png", i]] forState:UIControlStateNormal];
+        btnStone.frame = CGRectMake(40+i%2*120, 30+i/2*120, 100, 100);
+        [self addSubview:btnStone];
+    }
+}
+
 -(void)updatePixie:(PPPixie *)pixie
 {
     if (pixie == nil) return;

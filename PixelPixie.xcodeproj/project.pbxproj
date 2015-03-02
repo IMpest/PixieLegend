@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		190641D41AA4B072001346B2 /* stone0.png in Resources */ = {isa = PBXBuildFile; fileRef = 190641D01AA4B072001346B2 /* stone0.png */; };
+		190641D51AA4B072001346B2 /* stone1.png in Resources */ = {isa = PBXBuildFile; fileRef = 190641D11AA4B072001346B2 /* stone1.png */; };
+		190641D61AA4B072001346B2 /* stone2.png in Resources */ = {isa = PBXBuildFile; fileRef = 190641D21AA4B072001346B2 /* stone2.png */; };
+		190641D71AA4B072001346B2 /* stone3.png in Resources */ = {isa = PBXBuildFile; fileRef = 190641D31AA4B072001346B2 /* stone3.png */; };
 		191B9FEB1A6DF6A8005136AC /* PPMonsterInfoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 191B9FEA1A6DF6A8005136AC /* PPMonsterInfoNode.m */; };
 		1927DE701A53B38C0098501C /* skill_plant.png in Resources */ = {isa = PBXBuildFile; fileRef = 1927DE6D1A53B38C0098501C /* skill_plant.png */; };
 		1927DE711A53B38C0098501C /* theme_forest.png in Resources */ = {isa = PBXBuildFile; fileRef = 1927DE6E1A53B38C0098501C /* theme_forest.png */; };
@@ -176,6 +180,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		190641D01AA4B072001346B2 /* stone0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stone0.png; sourceTree = "<group>"; };
+		190641D11AA4B072001346B2 /* stone1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stone1.png; sourceTree = "<group>"; };
+		190641D21AA4B072001346B2 /* stone2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stone2.png; sourceTree = "<group>"; };
+		190641D31AA4B072001346B2 /* stone3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stone3.png; sourceTree = "<group>"; };
 		191863411A42CE25001F6F09 /* ConstantData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ConstantData.h; path = PixePixie/Header/ConstantData.h; sourceTree = "<group>"; };
 		191B9FE91A6DF6A8005136AC /* PPMonsterInfoNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPMonsterInfoNode.h; path = PixePixie/Sections/Monster/PPMonsterInfoNode.h; sourceTree = SOURCE_ROOT; };
 		191B9FEA1A6DF6A8005136AC /* PPMonsterInfoNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPMonsterInfoNode.m; path = PixePixie/Sections/Monster/PPMonsterInfoNode.m; sourceTree = SOURCE_ROOT; };
@@ -693,6 +701,10 @@
 				19A8ED391A52977600EFEA7A /* tab_btn3.png */,
 				19A8ED381A52977600EFEA7A /* tab_btn4.png */,
 				196673601A53993900DA0F95 /* tab_light.png */,
+				190641D01AA4B072001346B2 /* stone0.png */,
+				190641D11AA4B072001346B2 /* stone1.png */,
+				190641D21AA4B072001346B2 /* stone2.png */,
+				190641D31AA4B072001346B2 /* stone3.png */,
 			);
 			name = ui_bar;
 			path = Resource/Image/ui_bar;
@@ -966,6 +978,7 @@
 				19DDAC9E1A6FB86A00315A66 /* water3_card.png in Resources */,
 				197C38EF1A888DBF00B6F43A /* bt_monster_friend.png in Resources */,
 				19CFACF91A77976C00126D75 /* 02_devilbreath.png in Resources */,
+				190641D61AA4B072001346B2 /* stone2.png in Resources */,
 				1968FE911A71ED1600CE8101 /* battle_fight_skill.atlas in Resources */,
 				19A445471A6A71C20016FAA6 /* map_all_02.png in Resources */,
 				19A8ED611A52977600EFEA7A /* element_metal.png in Resources */,
@@ -984,6 +997,7 @@
 				1973588A1A441E2E008F0B4A /* battle_fight_effect.atlas in Resources */,
 				194D46AD1A6509A500FDBDD0 /* info_dp.png in Resources */,
 				19A445391A6A71B20016FAA6 /* fit_top.png in Resources */,
+				190641D51AA4B072001346B2 /* stone1.png in Resources */,
 				19A4454A1A6A71C20016FAA6 /* map_icon_metal.png in Resources */,
 				19A445481A6A71C20016FAA6 /* map_all_03.png in Resources */,
 				19DDAC971A6F9FFA00315A66 /* fire3_card.png in Resources */,
@@ -1010,6 +1024,7 @@
 				19DB5D7B1A725882003EFEE3 /* buff_hp.png in Resources */,
 				197C38F01A888DBF00B6F43A /* bt_monster_gift.png in Resources */,
 				19A445451A6A71C20016FAA6 /* map_all_00.png in Resources */,
+				190641D41AA4B072001346B2 /* stone0.png in Resources */,
 				194D46B71A650D3B00FDBDD0 /* bg_pet_1.png in Resources */,
 				19CFACFA1A77976C00126D75 /* 03_rattantwine.png in Resources */,
 				1927DE701A53B38C0098501C /* skill_plant.png in Resources */,
@@ -1049,6 +1064,7 @@
 				1992F7D91A8898EE008B4E87 /* fight_btn_next.png in Resources */,
 				19EC0FFF1A807D7C00655BB5 /* bg_tree.png in Resources */,
 				194D46B01A6509A500FDBDD0 /* info_txt.png in Resources */,
+				190641D71AA4B072001346B2 /* stone3.png in Resources */,
 				1992F7D31A88935B008B4E87 /* bt_monster_feed.png in Resources */,
 				19A445491A6A71C20016FAA6 /* map_icon_fire.png in Resources */,
 				194D46B81A650D3B00FDBDD0 /* bg_pet_2.png in Resources */,

@@ -9,6 +9,8 @@ UIView * userInfoBar;
 UIView * menuInfoBar;
 UIImageView * tabLight;
 
+PPInfoView * stoneView;
+
 PPMonsterMainView * monsterMainView;
 PPKnapsackMainView * knapsackMainView;
 PPFightingMainView * fightingMainView;
@@ -177,7 +179,7 @@ NSString * userInfo[] =
     for (int i = 0; i < PP_MENU_COUNT; i++) {
         UIButton * menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         menuBtn.tag = PP_MENU_BUTON_TAG + i;
-        menuBtn.frame = CGRectMake(i * skViewMain.frame.size.width/PP_MENU_COUNT+(64-38)/2, 5, 38, 38);
+        menuBtn.frame = CGRectMake(i * skViewMain.frame.size.width / PP_MENU_COUNT + ( 64 - 38 ) / 2, 5, 38, 38);
         menuBtn.titleLabel.font = [UIFont systemFontOfSize:8];
         [menuBtn setImage:[UIImage imageNamed:[NSString stringWithFormat:@"tab_btn%d",i]] forState:UIControlStateNormal];
         [menuBtn addTarget:self action:@selector(menuBtnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -202,7 +204,14 @@ NSString * userInfo[] =
 // 上方按钮点击
 -(void)userBtnClick:(UIButton *)sender
 {
-    NSLog(@"up btn clicked");
+    if (!stoneView) {
+        stoneView = [[PPInfoView alloc] initWithFrame:CGRectMake(10, PP_FIT_TOP_SIZE + 40, 300, 300)];
+        [stoneView updateStone];
+        [self.view addSubview:stoneView];
+    } else {
+        [stoneView removeFromSuperview];
+        stoneView = nil;
+    }
 }
 
 // 下方按钮点击
