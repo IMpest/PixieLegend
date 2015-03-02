@@ -117,6 +117,7 @@
 //            break;
 //    }
     originX = -65.0f;
+    originEnemyX = 90.0f;
     originY = 40.0f;
     
     self.currentPPPixie = petppixie;
@@ -164,7 +165,7 @@
     // 敌方头像
     ppixieEnemyBtn = [[SKSpriteNode alloc] init];
     ppixieEnemyBtn.size = CGSizeMake(PP_PET_ENEMY_SIZE_VALUE, PP_PET_ENEMY_SIZE_VALUE);
-    [ppixieEnemyBtn setPosition:CGPointMake(90.0f,ppixiePetBtn.position.y)];
+    [ppixieEnemyBtn setPosition:CGPointMake(originEnemyX,ppixiePetBtn.position.y)];
     ppixieEnemyBtn.xScale = -1;
     
     [self addChild:ppixieEnemyBtn];
@@ -715,7 +716,7 @@
 -(void)resetPetAndEnemyPosition
 {
     [ppixiePetBtn setPosition:CGPointMake(originX, originY)];
-    [ppixieEnemyBtn setPosition:CGPointMake(ppixiePetBtn.position.x+150,ppixiePetBtn.position.y)];
+    [ppixieEnemyBtn setPosition:CGPointMake(originEnemyX,ppixiePetBtn.position.y)];
 }
 -(void)showRattanTwineAnimation:(BOOL)isPetShow
 {

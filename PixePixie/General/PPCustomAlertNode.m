@@ -45,6 +45,18 @@
     [self addChild:backPrivousBtn];
 }
 
+-(void)showGoNextEnemyAlert
+{
+    PPSpriteButton * goButton = [PPSpriteButton buttonWithImageNamed:@"fight_btn_next"];
+    goButton.position = CGPointMake(130.0f, 0.0f);
+    goButton.zPosition = PPZ_ALERT;
+    goButton.name = @"GoNext";
+    [goButton addTarget:self selector:@selector(buttonClick:)
+             withObject:goButton.name forControlEvent:PPButtonControlEventTouchUpInside];
+    [self addChild:goButton];
+    
+}
+
 -(void)buttonClick:(NSString *)btnStr
 {
     [self removeFromParent];

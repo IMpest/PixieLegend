@@ -13,4 +13,6 @@
 -(void)showCustomAlertWithInfo:(NSDictionary *)alertInfo;
 
 -(void)showPauseMenuAlertWithTitle:(NSString *)titleStr andMessage:(NSString *)messageStr;
+
+-(void)showGoNextEnemyAlert;
 @end

@@ -106,10 +106,8 @@ CGFloat vector2angel(CGVector vector){
         frameFlag = 0;
         
         battleSkillInfo = [[PPBallBattleSkillInfo alloc] init];
-        battleSkillInfo.enemyPoisoningHP = 0;
-        battleSkillInfo.petHitRecoverHP = 0;
-        battleSkillInfo.rattanTwineState = 0;
-        battleSkillInfo.nightJudgeValue = 0.0f;
+        [battleSkillInfo resetBattleSkillInfo];
+        
         
         self.battleBuffArray = [[NSMutableArray alloc] init];
         
@@ -170,6 +168,9 @@ CGFloat vector2angel(CGVector vector){
         [self initPlayerBalls];
         [self initEnemyBall];
         
+        
+        [self setPlayerSideRoundRunState];
+
     }
     return self;
 }
@@ -343,6 +344,7 @@ CGFloat vector2angel(CGVector vector){
             [petSkillBar childNodeWithName:[NSString stringWithFormat:@"%d", PP_SKILLS_CHOOSE_BTN_TAG + i]];
             NSLog(@"PPBallPhysicsBodyStatus current=%@",spriteBtn.PPBallPhysicsBodyStatus);
             
+            //如果技能是释放完状态
             if ([spriteBtn.PPBallPhysicsBodyStatus isEqual:@2]) {
                 SKLabelNode *labelNode = (SKLabelNode *)[spriteBtn childNodeWithName:PP_SKILL_CD_LABEL_NODE_NAME];
                 spriteBtn.PPBallSkillStatus = [NSNumber numberWithInt:[spriteBtn.PPBallSkillStatus intValue] - 1];
@@ -640,8 +642,9 @@ CGFloat vector2angel(CGVector vector){
         isHPZero = YES;
 //        self.paused = YES;
         [self setPlayerSideRoundRunState];
-        self.ballPlayer.physicsBody.velocity = CGVectorMake(0.0f, 0.0);
-        [self.playerAndEnemySide resetPetAndEnemyPosition];
+        [battleSkillInfo resetBattleSkillInfo];
+
+        
         
         if ([self.enmeysArray count]<=(currentEnemyIndex+1)) {
             
@@ -719,12 +722,26 @@ CGFloat vector2angel(CGVector vector){
         }
         
         
-        PPSpriteButton * goButton = [PPSpriteButton buttonWithImageNamed:@"fight_btn_next"];
-        goButton.position = CGPointMake(self.size.width - 40, self.size.height / 2);
-        goButton.zPosition = PPZ_ALERT;
-        [goButton addTarget:self selector:@selector(goNextEnemy)
-                 withObject:nil forControlEvent:PPButtonControlEventTouchUpInside];
-        [self addChild:goButton];
+        PPCustomAlertNode *alertNode = [[PPCustomAlertNode alloc] initWithFrame:CGRectMake(self.size.width / 2,
+                                                                                           self.size.height / 2,
+                                                                                           self.size.width, self.size.height)];
+        alertNode->target = self;
+        alertNode->btnClickSel = @selector(goNextEnemy:);
+        [alertNode setColor:[UIColor clearColor]];
+        alertNode.zPosition = PPZ_ALERT;
+        [alertNode showGoNextEnemyAlert];
+        [self addChild:alertNode];
+        
+//        PPSpriteButton * goButton = [PPSpriteButton buttonWithImageNamed:@"fight_btn_next"];
+//        goButton.position = CGPointMake(self.size.width - 40, self.size.height / 2);
+//        goButton.zPosition = PPZ_ALERT;
+//        [goButton addTarget:self selector:@selector(goNextEnemy)
+//                 withObject:nil forControlEvent:PPButtonControlEventTouchUpInside];
+//        [self addChild:goButton];
+        
+        
+        self.ballPlayer.physicsBody.velocity = CGVectorMake(0.0f, 0.0);
+        [self.playerAndEnemySide resetPetAndEnemyPosition];
         
 //        [self performSelectorOnMainThread:@selector(goNextEnemy) withObject:nil afterDelay:2];
 
@@ -742,7 +759,7 @@ CGFloat vector2angel(CGVector vector){
 }
 
 //进入下一怪物遭遇动画
--(void)goNextEnemy
+-(void)goNextEnemy:(NSString *)btnStr
 {
 #warning TODO 这里现在改成上边推进进入下一个战斗画面或者结算画面
     
@@ -886,6 +903,7 @@ CGFloat vector2angel(CGVector vector){
 {
     //    [self removeSkillBar];
     NSLog(@"self.pixiePlayer.skillList=%lu",(unsigned long)[self.pixiePlayer.skillList count]);
+    isShowingSkillBar = YES;
 
     if (petSkillBar) {
         petSkillBar.zPosition = PPZ_TABLE_BUTTON;
@@ -902,6 +920,8 @@ CGFloat vector2angel(CGVector vector){
             if(petSkillBar) {
                 PPSpriteButton * spriteBtn = (PPSpriteButton *)
                 [petSkillBar childNodeWithName:[NSString stringWithFormat:@"%d", PP_SKILLS_CHOOSE_BTN_TAG+i]];
+                NSLog(@"PPBallSkillStatus=%d",[spriteBtn.PPBallSkillStatus intValue]);
+                
                 if ([spriteBtn.PPBallSkillStatus intValue]<=0) {
                     
 //                    spriteBtn.PPBallSkillStatus = [dictSkill objectForKey:@"skillcdrounds"];
@@ -912,9 +932,15 @@ CGFloat vector2angel(CGVector vector){
                     spriteBtn.userInteractionEnabled = YES;
                     SKLabelNode *label=(SKLabelNode *)[spriteBtn childNodeWithName:PP_SKILL_CD_LABEL_NODE_NAME];
                     [label setText:[NSString stringWithFormat:@"%@",spriteBtn.PPBallSkillStatus]];
+                }else if ([spriteBtn.PPBallPhysicsBodyStatus isEqual:@2]){
+                    spriteBtn.color = [UIColor blackColor];
+                    spriteBtn.colorBlendFactor = 0.6;
+                    spriteBtn.userInteractionEnabled = NO;
                 }
             }
         }
+        
+        
         return;
     }
     
@@ -991,14 +1017,13 @@ CGFloat vector2angel(CGVector vector){
     petSkillBar.position = CGPointMake(self.size.width / 2, self.ballPlayer.position.y + 50);
     [self addChild:petSkillBar];
     
-    isShowingSkillBar = YES;
     [self setPlayerSideRoundRunState];
 }
 
 -(void)removeSkillBar
 {
     if (petSkillBar) {
-        petSkillBar.zPosition = -5;
+        petSkillBar.zPosition = PPZ_BACK_GROUND;
         petSkillBar.hidden = YES;
         [self setPlayerSideRoundEndState];
         
@@ -2409,13 +2434,17 @@ CGFloat vector2angel(CGVector vector){
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (_isBallRolling == YES) return;
+    
+    if (_isBallRolling|| isNotSkillRun) return;
     if (touches.count > 1  || _isBallRolling) return;
+    
     
     if (spriteArrow != nil) {
         [spriteArrow removeFromParent];
         spriteArrow = nil;
     }
+    
+    
     
     spriteArrow = [[SKSpriteNode alloc] initWithImageNamed:@"table_arrow"];
     spriteArrow.size = CGSizeMake(spriteArrow.size.width/2.0f, spriteArrow.size.height/2.0f);
@@ -2433,6 +2462,13 @@ CGFloat vector2angel(CGVector vector){
     origtinTouchPoint = location;
     
     SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
+    
+    //如果点击的是已经出现的技能条，则删除技能条
+    if (isShowingSkillBar==YES) {
+        [self removeSkillBar];
+        return;
+    }
+    
     
     if ([touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]) {
         NSLog(@"touched pet begin");

@@ -10,6 +10,8 @@
     BOOL isHaveDead;
     
     CGFloat originX;
+    CGFloat originEnemyX;
+
     CGFloat originY;
 
     @public
