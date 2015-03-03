@@ -573,6 +573,7 @@
     }
     
     if (isPetAttack) {
+        
         SKSpriteNode * spriteNodeMoving = [SKSpriteNode spriteNodeWithImageNamed:@"moving_0000"];
         spriteNodeMoving.name = @"spriteNodeMoving";
         spriteNodeMoving.position = ppixiePetBtn.position;
@@ -582,6 +583,8 @@
         spriteNodeMoving.size = CGSizeMake(spriteNodeMoving.size.width / 2, spriteNodeMoving.size.height / 2);
         SKAction * actionEffect = [SKAction repeatAction:[[PPAtlasManager battle_fight_effect] getAnimation:@"moving"] count:2];
         [spriteNodeMoving runAction:[SKAction group:[NSArray arrayWithObjects:actionMove,actionEffect, nil]] completion:^{
+            spriteNodeMoving.hidden = YES;
+
 //            [spriteNodeMoving removeFromParent];
         }];
         ppixiePetBtn.position = CGPointMake(ppixieEnemyBtn.position.x-40.0f, originY);
@@ -624,7 +627,8 @@
         SKAction * actionMove = [SKAction moveToX:-61.5f duration:1];
         SKAction * actionEffect = [SKAction repeatAction:[[PPAtlasManager battle_fight_effect] getAnimation:@"moving"] count:2];
         [spriteNodeMoving runAction:[SKAction group:[NSArray arrayWithObjects:actionMove,actionEffect, nil]] completion:^{
-            [spriteNodeMoving removeFromParent];
+            spriteNodeMoving.hidden = YES;
+//            [spriteNodeMoving removeFromParent];
         }];
         
         ppixieEnemyBtn.position = CGPointMake(originX + 20, ppixieEnemyBtn.position.y);

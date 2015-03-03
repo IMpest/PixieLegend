@@ -228,26 +228,30 @@ CGFloat vector2angel(CGVector vector){
     // 添加 Ball of Enemey
     self.ballEnemy = self.pixieEnemy.pixieBall;
     CGFloat x = BALL_RANDOM_X;
-    CGFloat y = BALL_RANDOM_Y + PP_FIT_TOP_SIZE;
+    CGFloat y = BALL_RANDOM_Y+PP_FIT_TOP_SIZE;
     
     self.ballEnemy.position = CGPointMake(x, y);
     self.ballEnemy->battleCurrentScene = self;
     
-    if (self.ballEnemy.position.x >= 290) {
-        self.ballEnemy.position = CGPointMake(290.0f, self.ballPlayer.position.y);
+    
+    
+    if (self.ballEnemy.position.x >= 280.0f) {
+        self.ballEnemy.position = CGPointMake(280.0f, self.ballPlayer.position.y);
     }
-    if (self.ballEnemy.position.x <= 30) {
-        self.ballEnemy.position = CGPointMake(30.0f, self.ballPlayer.position.y);
+    if (self.ballEnemy.position.x <= 35) {
+        self.ballEnemy.position = CGPointMake(35.0f, self.ballPlayer.position.y);
     }
     
-    if (self.ballEnemy.position.y > 380) {
-        self.ballEnemy.position = CGPointMake(self.ballPlayer.position.x, 380-self.ballEnemy.size.height/2.0f);
+    if (self.ballEnemy.position.y > 365-self.ballEnemy.size.height/2.0f) {
+        self.ballEnemy.position = CGPointMake(self.ballPlayer.position.x, 365-self.ballEnemy.size.height/2.0f);
         
     }
-    if (self.ballEnemy.position.y < 64) {
-        self.ballEnemy.position = CGPointMake(self.ballPlayer.position.x, 64+self.ballEnemy.size.height/2.0f);
+    if (self.ballEnemy.position.y < 50+self.ballEnemy.size.height/2.0f) {
+        self.ballEnemy.position = CGPointMake(self.ballPlayer.position.x, 50+self.ballEnemy.size.height/2.0f);
         
     }
+    
+    
     
     self.ballEnemy.physicsBody.categoryBitMask = EntityCategoryBall;
     self.ballEnemy.physicsBody.contactTestBitMask = EntityCategoryBall;
@@ -817,14 +821,14 @@ CGFloat vector2angel(CGVector vector){
     
     // 添加 Ball of Enemey
     self.ballEnemy = self.pixieEnemy.pixieBall;
-    self.ballEnemy.position = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y + PP_FIT_TOP_SIZE);
+//    self.ballEnemy.position = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y + PP_FIT_TOP_SIZE);
     self.ballEnemy->battleCurrentScene = self;
-    if (fabsf(self.ballEnemy.position.x) >= 290) {
-        self.ballEnemy.position = CGPointMake(290, self.ballPlayer.position.y);
-    }
-    if (fabsf(self.ballEnemy.position.y) > 380) {
-        self.ballEnemy.position = CGPointMake(self.ballPlayer.position.x, 380);
-    }
+//    if (fabsf(self.ballEnemy.position.x) >= 290) {
+//        self.ballEnemy.position = CGPointMake(290, self.ballPlayer.position.y);
+//    }
+//    if (fabsf(self.ballEnemy.position.y) > 380) {
+//        self.ballEnemy.position = CGPointMake(self.ballPlayer.position.x, 380);
+//    }
     self.ballEnemy.physicsBody.categoryBitMask = EntityCategoryBall;
     self.ballEnemy.physicsBody.contactTestBitMask = EntityCategoryBall;
     [self addChild:self.ballEnemy];
@@ -2147,6 +2151,8 @@ CGFloat vector2angel(CGVector vector){
             if (currentPhysicsAttack == 0 || currentPhysicsAttack == 2) return;
             
             if (battleSkillInfo.petHitRecoverHP != 0) {
+                
+                
                 SKSpriteNode * addHPAnimation = [self  getNumber:battleSkillInfo.petHitRecoverHP AndColor:@"green"];
                 [addHPAnimation setPosition:CGPointMake(20.0f, 20.0f)];
                 [self.playerAndEnemySide->ppixiePetBtn addChild:addHPAnimation];
@@ -2168,10 +2174,27 @@ CGFloat vector2angel(CGVector vector){
                 }];
             }
             
+      
+            
+            PPBall * ballCombo = nil;
+            if (contact.bodyA == self.ballPlayer.physicsBody) {
+                ballCombo = [self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
+                [ballCombo startComboAnimation:CGPointMake(self.ballPlayer.position.x - ballCombo.position.x,
+                                                           self.ballPlayer.position.y - ballCombo.position.y)];
+            } else {
+                ballCombo = [self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
+                [ballCombo startComboAnimation:CGPointMake(self.ballPlayer.position.x - ballCombo.position.x,
+                                                           self.ballPlayer.position.y - ballCombo.position.y)];
+            }
+            
+            petCombos++;
+            
+            
             if (battleSkillInfo.nightJudgeValue != 0.0f) {
                 
                 SKSpriteNode * nodeSkillBuffer = [SKSpriteNode spriteNodeWithTexture:
-                                                  [SKTexture textureWithImageNamed:@"02_devilbreath.png"]];
+                                                  [SKTexture textureWithImageNamed:@"04_nightjudge"]];
+                
                 nodeSkillBuffer.position = contact.contactPoint;
                 nodeSkillBuffer.size = CGSizeMake(25.0f, 25.0f);
                 [self addChild:nodeSkillBuffer];
@@ -2200,7 +2223,9 @@ CGFloat vector2angel(CGVector vector){
                     [self.playerAndEnemySide startAttackShowAnimation:YES];
                     [self.playerAndEnemySide changeEnemyHPValue:-100];
                     
-                    SKAction * actionBeated = [[PPAtlasManager pixie_battle_action] getAnimation:@"plant3_beated"];
+                    
+                    
+                    SKAction * actionBeated = [[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_beated",kElementTypeString[self.playerAndEnemySide.currentPPPixieEnemy.pixieElement]]];
                     
                     [self.playerAndEnemySide->ppixieEnemyBtn runAction:actionBeated completion:^{
                         //            [ppixiePetBtn removeAllActions];
@@ -2210,22 +2235,10 @@ CGFloat vector2angel(CGVector vector){
                         //            }
                     }];
                 }];
+                
                 return;
                 //                battleSkillInfo.nightJudgeValue= 0.0f;
             }
-            
-            PPBall * ballCombo = nil;
-            if (contact.bodyA == self.ballPlayer.physicsBody) {
-                ballCombo = [self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
-                [ballCombo startComboAnimation:CGPointMake(self.ballPlayer.position.x - ballCombo.position.x,
-                                                           self.ballPlayer.position.y - ballCombo.position.y)];
-            } else {
-                ballCombo = [self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
-                [ballCombo startComboAnimation:CGPointMake(self.ballPlayer.position.x - ballCombo.position.x,
-                                                           self.ballPlayer.position.y - ballCombo.position.y)];
-            }
-            
-            petCombos++;
             
             // 恶魔重生
             if (battleSkillInfo.petHitRecoverHP != 0) {
@@ -2236,9 +2249,41 @@ CGFloat vector2angel(CGVector vector){
             
             if (battleSkillInfo.enemyPoisoningHP != 0) {
                 battleSkillInfo.enemyPoisoningHP *= (1.1) ;
+                
+                
+                SKSpriteNode * nodeSkillBuffer = [SKSpriteNode spriteNodeWithTexture:
+                                                  [SKTexture textureWithImageNamed:@"02_devilbreath"]];
+                
+                nodeSkillBuffer.position = contact.contactPoint;
+                nodeSkillBuffer.size = CGSizeMake(25.0f, 25.0f);
+                [self addChild:nodeSkillBuffer];
+                
+                
+                SKAction * actionRemove = [SKAction fadeAlphaTo:1.0f duration:0.5];
+                
+                [nodeSkillBuffer runAction:actionRemove completion:^{
+                    [nodeSkillBuffer removeFromParent];
+                }];
+                
             }
             
             if (battleSkillInfo.rattanTwineState == 1) {
+                
+                
+                SKSpriteNode * nodeSkillBuffer = [SKSpriteNode spriteNodeWithTexture:
+                                                  [SKTexture textureWithImageNamed:@"03_rattantwine"]];
+                
+                nodeSkillBuffer.position = contact.contactPoint;
+                nodeSkillBuffer.size = CGSizeMake(25.0f, 25.0f);
+                [self addChild:nodeSkillBuffer];
+                
+                
+                SKAction * actionRemove = [SKAction fadeAlphaTo:1.0f duration:0.5];
+                
+                [nodeSkillBuffer runAction:actionRemove completion:^{
+                    [nodeSkillBuffer removeFromParent];
+                }];
+                
                 
                 SKNode * node = [ballCombo childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine]];
                 if (node) {
@@ -2253,16 +2298,22 @@ CGFloat vector2angel(CGVector vector){
                 //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
                 [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
                 
+                
                 buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine];
                 ballCombo.PPBallSkillStatus =[NSNumber numberWithInt:PPBuffTypeRattanTwine];
+                buffShowNode.zPosition = PPZ_FIGHT_BUFF;
                 [ballCombo addChild:buffShowNode];
+                
                 
                 [buffShowNode runAction:actionRepForever completion:^{
                 }];
                 
                 [self.playerAndEnemySide showRattanTwineAnimation:YES];
                 [self.playerAndEnemySide startAttackShowAnimation:YES];
+                
             }
+            
+            
             [self.playerAndEnemySide setComboLabelText:petCombos withEnemy:enemyCombos];
             [self.playerAndEnemySide startAttackAnimation:YES];
             [self dealPixieBallContactComboBall:contact andPetBall:self.ballPlayer];

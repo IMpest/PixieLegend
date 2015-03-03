@@ -130,14 +130,18 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
 +(PPBall *)ballWithCombo
 {
     
-    NSString * imageName = @"ball_combo.png";
+//    NSString * imageName = @"ball_combo.png";
+    NSString * imageName = @"ball_all.png";
     SKTexture * tTexture = [SKTexture textureWithImageNamed:imageName];
     PPBall * tBall = [PPBall spriteNodeWithTexture:tTexture];
     
-    SKTexture *comboBallBack = [[PPAtlasManager battle_table_ball] textureNamed:@"ball_all"];
+    
+    SKTexture *comboBallBack = [[PPAtlasManager battle_table_ball] textureNamed:@"ball_combo"];
     SKSpriteNode *nodeBack=[SKSpriteNode spriteNodeWithTexture:comboBallBack];
-    nodeBack.size = CGSizeMake(50.0f, 50.0f);
+    nodeBack.zPosition = PPZ_FIGHT_EFFECT;
+    nodeBack.size = CGSizeMake(25.0f, 25.0f);
     [tBall addChild:nodeBack];
+    
     
     if (tBall)
     {
