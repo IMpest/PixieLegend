@@ -39,9 +39,56 @@
             [self addChild:passIntroduceButton];
         }
         
+        PPSpriteButton *  passButton = [PPSpriteButton  buttonWithImageNamed:@"bt_dungeon"];
+        [passButton setLabelWithText:@"新手教程"
+                             andFont:[UIFont systemFontOfSize:15] withColor:[UIColor blackColor]];
+        passButton.size = CGSizeMake(140, 40);
+        passButton.position = CGPointMake(240, 440);
+        passButton.name =@"newPlayerGuide";
+        [passButton addTarget:self selector:@selector(newPlayerGuide:)
+                   withObject:passButton.name forControlEvent:PPButtonControlEventTouchUpInside];
+        [self addChild:passButton];
+        
+        
     }
     return self;
 }
+-(void)newPlayerGuide:(NSString *)stringName
+{
+    
+    NSDictionary * pixiesInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PixiesInfo"
+                                                                                                           ofType:@"plist"]];
+    
+    NSDictionary * petsChoosedInfo = [[pixiesInfo objectForKey:@"userpetinfo"] objectAtIndex:0];
+    PPPixie * playerPixie = [PPPixie pixieWithData:petsChoosedInfo];
+    [playerPixie setPetSkillList:petsChoosedInfo];
+    NSDictionary * enemyDicInfo = [[pixiesInfo objectForKey:@"enemysinfo"] objectAtIndex:0];
+    NSLog(@"playerPixie=%lu",(unsigned long)[playerPixie.skillList count]);
+    PPPixie * enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
+    
+    NSLog(@"petsChoosedInfo=%@,enemyDicInfo=%@",petsChoosedInfo,enemyDicInfo);
+    
+    //    PPPixie * playerPixie = [PPPixie birthPixieWithPetsInfo:petsChoosedInfo];
+    //    PPPixie * enemyPixie = [PPPixie birthEnemyPixieWithPetsInfo:enemyDicInfo];
+    
+    if (playerPixie == nil || enemyPixie == nil) return;
+    
+    // 创建战斗场景并显示
+    PPBallBattleScene * ballScene = [[PPBallBattleScene alloc] initWithSize:CurrentDeviceRealSize
+                                                                PixiePlayer:playerPixie
+                                                                 PixieEnemy:enemyPixie
+                                                               andSceneType:PPElementTypeFire
+                                                                   andIndex:0];
+    //    ballScene.hurdleReady = self;
+    ballScene.scaleMode = SKSceneScaleModeAspectFill;
+    ballScene.enmeysArray = [pixiesInfo objectForKey:@"enemysinfo"];
+    ballScene->previousScene = self;
+    [ballScene setEnemyAtIndex:0];
+    [self.view presentScene:ballScene];
+    
+    
+}
+
 
 // 介绍窗口
 -(void)introduceInfoLabel:(NSString *)text

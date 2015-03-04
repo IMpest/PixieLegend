@@ -170,6 +170,16 @@ CGFloat vector2angel(CGVector vector){
         
         
         [self setPlayerSideRoundRunState];
+        
+        
+//        PPSpriteButton *  stopBtn = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"fight_btn_pause"] andSize:CGSizeMake(32.5, 32.5)];
+//        
+//        
+//        stopBtn.position = CGPointMake(-130.0f, 60.0f);
+//        stopBtn.name = @"stopBtn";
+//        [stopBtn addTarget:self selector:@selector(pauseBtnClick:)
+//                withObject:stopBtn.name forControlEvent:PPButtonControlEventTouchUpInside];
+//        [self addChild:stopBtn];
 
     }
     return self;
@@ -332,10 +342,13 @@ CGFloat vector2angel(CGVector vector){
     SKSpriteNode * actionNode = [SKSpriteNode spriteNodeWithImageNamed:@"ball_pixie_start_0000"];
     actionNode.position = positionAni;
     [self addChild:actionNode];
-    SKAction * action1 = [SKAction repeatAction:[[PPAtlasManager battle_table_ball] getAnimation:@"ball_pixie_start"] count:5];
+    SKAction * action1 = [SKAction repeatAction:[[PPAtlasManager battle_table_ball] getAnimation:@"ball_pixie_start"] count:2];
     SKAction * action2 = [SKAction group:[NSArray arrayWithObjects:action1, [SKAction fadeAlphaTo:0 duration:2], nil]];
     [actionNode runAction:action2 completion:^{
-        [actionNode removeFromParent];
+        if (actionNode) {
+            [actionNode removeFromParent];
+
+        }
     }];
 }
 
@@ -369,7 +382,10 @@ CGFloat vector2angel(CGVector vector){
                                                                                       PP_BUFF_ANIMATION_NODE_NAME,
                                                                                       PPBuffTypeDevilRebirth]];
             //            [node removeActionForKey:PP_BUFF_ANIMATION_ACTION_KEY];
-            [node removeFromParent];
+            if (node) {
+                [node removeFromParent];
+
+            }
         }
     }
 }
@@ -649,7 +665,6 @@ CGFloat vector2angel(CGVector vector){
         [battleSkillInfo resetBattleSkillInfo];
 
         
-        
         if ([self.enmeysArray count]<=(currentEnemyIndex+1)) {
             
             //        self.paused = YES;
@@ -735,6 +750,7 @@ CGFloat vector2angel(CGVector vector){
         alertNode.zPosition = PPZ_ALERT;
         [alertNode showGoNextEnemyAlert];
         [self addChild:alertNode];
+        
         
 //        PPSpriteButton * goButton = [PPSpriteButton buttonWithImageNamed:@"fight_btn_next"];
 //        goButton.position = CGPointMake(self.size.width - 40, self.size.height / 2);
@@ -860,7 +876,11 @@ CGFloat vector2angel(CGVector vector){
             [self addChild:hitAniNode];
             
             [hitAniNode runAction:[[PPAtlasManager battle_table_ball] getAnimation:@"ball_pixie_wall"]
-                       completion:^{[hitAniNode removeFromParent];}];
+                       completion:^{
+                           if (hitAniNode) {
+                               [hitAniNode removeFromParent];
+                           }
+                       }];
         }
             break;
         case kEnemyHitWallTypeValue:
@@ -872,7 +892,10 @@ CGFloat vector2angel(CGVector vector){
             [self addChild:hitAniNode];
             
             [hitAniNode runAction:[[PPAtlasManager battle_table_ball] getAnimation:@"ball_pixie_wall"]
-                       completion:^{[hitAniNode removeFromParent];}];
+                       completion:^{
+                           if (hitAniNode)
+                           [hitAniNode removeFromParent];
+                       }];
             
         }
             break;
@@ -893,7 +916,10 @@ CGFloat vector2angel(CGVector vector){
             [self addChild:hitFiledAniNode];
             
             [hitFiledAniNode runAction:[[PPAtlasManager battle_fight_effect] getAnimation:@"shield_break"]
-                            completion:^{[hitFiledAniNode removeFromParent];}];
+                            completion:^{
+                                if (hitAniNode)
+                                    [hitFiledAniNode removeFromParent];
+                            }];
             
         }
             break;
@@ -1531,8 +1557,6 @@ CGFloat vector2angel(CGVector vector){
     
     if ([nodeName isEqual:PP_PET_PLAYER_SIDE_NODE_NAME]) {
     } else {
-        SKLabelNode * labelNode = (SKLabelNode *)[self childNodeWithName:@"EnemyPhysics"];
-        if (labelNode) [labelNode removeFromParent];
         
         SKLabelNode * additonLabel= [[SKLabelNode alloc] init];
         additonLabel.name  = @"EnemyPhysics";
@@ -1581,9 +1605,9 @@ CGFloat vector2angel(CGVector vector){
 {
     
     //       NSDictionary *skillChoosed = [self.ballPlayer.pixie.pixieSkills objectAtIndex:[skillInvalidButton.name intValue] - PP_SKILLS_CHOOSE_BTN_TAG];
-    
-    SKLabelNode * labelNode = (SKLabelNode *)[self childNodeWithName:@"mpisnotenough"];
-    if (labelNode) [labelNode removeFromParent];
+//    
+//    SKLabelNode * labelNode = (SKLabelNode *)[self childNodeWithName:@"mpisnotenough"];
+//    if (labelNode) [labelNode removeFromParent];
     
     SKLabelNode * additonLabel= [[SKLabelNode alloc] init];
     additonLabel.name  = @"mpisnotenough";
@@ -1612,8 +1636,8 @@ CGFloat vector2angel(CGVector vector){
     
     if (self.playerAndEnemySide.currentPPPixie.currentMP < fabsf(mpToConsume)) {
         
-        SKLabelNode * labelNode = (SKLabelNode *)[self childNodeWithName:@"mpisnotenough"];
-        if (labelNode) [labelNode removeFromParent];
+//        SKLabelNode * labelNode = (SKLabelNode *)[self childNodeWithName:@"mpisnotenough"];
+//        if (labelNode) [labelNode removeFromParent];
         
 //        SKLabelNode * additonLabel = [[SKLabelNode alloc] init];
 //        additonLabel.name  = @"mpisnotenough";
@@ -2262,6 +2286,7 @@ CGFloat vector2angel(CGVector vector){
                 SKAction * actionRemove = [SKAction fadeAlphaTo:1.0f duration:0.5];
                 
                 [nodeSkillBuffer runAction:actionRemove completion:^{
+                    if(nodeSkillBuffer)
                     [nodeSkillBuffer removeFromParent];
                 }];
                 
@@ -2281,6 +2306,7 @@ CGFloat vector2angel(CGVector vector){
                 SKAction * actionRemove = [SKAction fadeAlphaTo:1.0f duration:0.5];
                 
                 [nodeSkillBuffer runAction:actionRemove completion:^{
+                    if(nodeSkillBuffer)
                     [nodeSkillBuffer removeFromParent];
                 }];
                 
@@ -2288,6 +2314,7 @@ CGFloat vector2angel(CGVector vector){
                 SKNode * node = [ballCombo childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine]];
                 if (node) {
                     [node removeFromParent];
+                    node = nil;
                 }
                 
                 SKAction * actionRep = [[PPAtlasManager battle_table_buff] getAnimation:@"buff_cirrus"];
@@ -2515,7 +2542,7 @@ CGFloat vector2angel(CGVector vector){
     SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
     
     
-    if(touchedNode == petSkillBar&&isNotSkillRun)
+    if(touchedNode == petSkillBar&&isShowingSkillBar)
     {
         [self removeSkillBar];
         return;
@@ -2528,7 +2555,7 @@ CGFloat vector2angel(CGVector vector){
         isTouchPetBall = YES;
     }
     
-    if (isNotSkillRun || _isBallDragging) return;
+    if (isNotSkillRun ||_isBallDragging) return;
     
     _isBallDragging = YES;
     
@@ -2590,12 +2617,13 @@ CGFloat vector2angel(CGVector vector){
         
         spriteArrow.xScale = scaleChange;
         spriteArrow.yScale = scaleChange;
-        NSLog(@"scaleFactor=%f",scaleFactor);
+        NSLog(@"scaleFactor=%f,spriteArrow.zRotation=%f",scaleFactor,spriteArrow.zRotation);
     }
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
     if (touches.count > 1) return;
     //    UITouch * touch = [touches anyObject];
     //    CGPoint location = [touch locationInNode:self];
@@ -2622,6 +2650,8 @@ CGFloat vector2angel(CGVector vector){
         }
         
         NSLog(@"direct=%f",distanceBetweenPoints(location, origtinTouchPoint));
+        _isBallDragging = NO;
+
         
         if ([touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]
             && isTouchPetBall
@@ -2630,13 +2660,30 @@ CGFloat vector2angel(CGVector vector){
             NSLog(@"touched pet end");
             NSLog(@"touchedNode=%@ name =%@",touchedNode,touchedNode.name);
             [_ballShadow removeFromParent];
+            _ballShadow = nil;
             [self addPetSkillBar];
             
-        } else {
+        }else if ((![touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]
+                  || !isTouchPetBall)
+                  && distanceBetweenPoints(location, origtinTouchPoint) < 18){
+            
+            if (spriteArrow) {
+                spriteArrow.hidden = YES;
+                [spriteArrow removeFromParent];
+                spriteArrow = nil;
+            }
+            
+            if (_ballShadow) {
+                [_ballShadow removeFromParent];
+                _ballShadow = nil;
+            }
+            
+            return;
+            
+        }else {
             
             [self changeBallStatus:PP_PET_PLAYER_SIDE_NODE_NAME];
             
-            _isBallDragging = NO;
             
             NSLog(@"x:%f,y:%f,    xx:%f  yy:%f",(origtinTouchPoint.x - _ballShadow.position.x) * kBounceReduce,((origtinTouchPoint.y - _ballShadow.position.y) * kBounceReduce),(origtinTouchPoint.x - _ballShadow.position.x) * kBounceReduce,(origtinTouchPoint.y - _ballShadow.position.y)* kBounceReduce);
             
@@ -2659,6 +2706,8 @@ CGFloat vector2angel(CGVector vector){
             _isBallRolling = YES;
         }
     }
+    
+
     
     if (spriteArrow) {
         spriteArrow.hidden = YES;
