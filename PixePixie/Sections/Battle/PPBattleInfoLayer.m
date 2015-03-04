@@ -371,7 +371,10 @@
         SKAction * showAction = [SKAction sequence:[NSArray arrayWithObjects:actionScale, actionFade, nil]];
         
         [additonLabel runAction:showAction completion:^{
-            [additonLabel removeFromParent];
+            if (additonLabel) {
+                [additonLabel removeFromParent];
+
+            }
         }];
     }
     self.currentPPPixie.currentHP = [petPlayerHP valueShowChangeMaxValue:0 andCurrentValue:HPValue];
@@ -391,7 +394,10 @@
         SKAction * showAction = [SKAction sequence:[NSArray arrayWithObjects:actionScale, actionFade, nil]];
         
         [additonLabel runAction:showAction completion:^{
-            [additonLabel removeFromParent];
+            if (additonLabel) {
+                [additonLabel removeFromParent];
+
+            }
         }];
     }
     
