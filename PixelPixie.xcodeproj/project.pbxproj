@@ -186,6 +186,10 @@
 		19F6EDA818C6C09900BFFF9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19F6EDA618C6C09900BFFF9A /* InfoPlist.strings */; };
 		19F6EDAA18C6C09900BFFF9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F6EDA918C6C09900BFFF9A /* main.m */; };
 		D413CB611945FF62004B4FDE /* PPSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = D413CB601945FF62004B4FDE /* PPSkill.m */; };
+		D46AE8C81AA8937B00AC9E7C /* PPTutorialNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D46AE8C71AA8937B00AC9E7C /* PPTutorialNode.m */; };
+		D46AE8CB1AA896C500AC9E7C /* tutorial_finger.pvr.png in Resources */ = {isa = PBXBuildFile; fileRef = D46AE8C91AA896C500AC9E7C /* tutorial_finger.pvr.png */; };
+		D46AE8CC1AA896C500AC9E7C /* tutorial_circle_big.png in Resources */ = {isa = PBXBuildFile; fileRef = D46AE8CA1AA896C500AC9E7C /* tutorial_circle_big.png */; };
+		D46AE8D11AA89ED500AC9E7C /* tutorial_alert_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D46AE8D01AA89ED500AC9E7C /* tutorial_alert_bg.png */; };
 		D481DFFA1A85110B0050E691 /* ball_elements.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF61A85110B0050E691 /* ball_elements.atlas */; };
 		D481DFFC1A85110B0050E691 /* ball_table.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF81A85110B0050E691 /* ball_table.atlas */; };
 		D4877A40196C314E009509E5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4877A3F196C314E009509E5 /* Images.xcassets */; };
@@ -427,6 +431,11 @@
 		19F6EDAB18C6C09900BFFF9A /* PixelPixie-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PixelPixie-Prefix.pch"; sourceTree = "<group>"; };
 		D413CB5F1945FF62004B4FDE /* PPSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPSkill.h; path = Models/PPSkill.h; sourceTree = "<group>"; };
 		D413CB601945FF62004B4FDE /* PPSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPSkill.m; path = Models/PPSkill.m; sourceTree = "<group>"; };
+		D46AE8C61AA8937B00AC9E7C /* PPTutorialNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPTutorialNode.h; path = PixePixie/Sections/Battle/PPTutorialNode.h; sourceTree = SOURCE_ROOT; };
+		D46AE8C71AA8937B00AC9E7C /* PPTutorialNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPTutorialNode.m; path = PixePixie/Sections/Battle/PPTutorialNode.m; sourceTree = SOURCE_ROOT; };
+		D46AE8C91AA896C500AC9E7C /* tutorial_finger.pvr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial_finger.pvr.png; sourceTree = "<group>"; };
+		D46AE8CA1AA896C500AC9E7C /* tutorial_circle_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial_circle_big.png; sourceTree = "<group>"; };
+		D46AE8D01AA89ED500AC9E7C /* tutorial_alert_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial_alert_bg.png; sourceTree = "<group>"; };
 		D481DFF61A85110B0050E691 /* ball_elements.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ball_elements.atlas; sourceTree = "<group>"; };
 		D481DFF81A85110B0050E691 /* ball_table.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ball_table.atlas; sourceTree = "<group>"; };
 		D4877A3F196C314E009509E5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -543,6 +552,8 @@
 				1968FE7D1A71EA8700CE8101 /* PPValueShowNode.m */,
 				1968FE781A71EA8700CE8101 /* PPSkillButtonNode.h */,
 				1968FE791A71EA8700CE8101 /* PPSkillButtonNode.m */,
+				D46AE8C61AA8937B00AC9E7C /* PPTutorialNode.h */,
+				D46AE8C71AA8937B00AC9E7C /* PPTutorialNode.m */,
 				1968FE7A1A71EA8700CE8101 /* PPSkillNode.h */,
 				1968FE7B1A71EA8700CE8101 /* PPSkillNode.m */,
 			);
@@ -744,6 +755,9 @@
 				190641D11AA4B072001346B2 /* stone1.png */,
 				190641D21AA4B072001346B2 /* stone2.png */,
 				190641D31AA4B072001346B2 /* stone3.png */,
+				D46AE8C91AA896C500AC9E7C /* tutorial_finger.pvr.png */,
+				D46AE8CA1AA896C500AC9E7C /* tutorial_circle_big.png */,
+				D46AE8D01AA89ED500AC9E7C /* tutorial_alert_bg.png */,
 			);
 			name = ui_bar;
 			path = Resource/Image/ui_bar;
@@ -1015,6 +1029,7 @@
 				19CFACFE1A77976C00126D75 /* 07_devilanger.png in Resources */,
 				1933E74C1A2F11F100E8C5BF /* pixie_battle_action.atlas in Resources */,
 				199FEDD31AA83929006D47E4 /* item1.png in Resources */,
+				D46AE8D11AA89ED500AC9E7C /* tutorial_alert_bg.png in Resources */,
 				19DDAC9E1A6FB86A00315A66 /* water3_card.png in Resources */,
 				197C38EF1A888DBF00B6F43A /* bt_monster_friend.png in Resources */,
 				19CFACF91A77976C00126D75 /* 02_devilbreath.png in Resources */,
@@ -1088,6 +1103,7 @@
 				197184501A837473004A7880 /* 02_devilbreath_item.png in Resources */,
 				194D46AE1A6509A500FDBDD0 /* info_hp.png in Resources */,
 				199FEDD61AA83929006D47E4 /* item4.png in Resources */,
+				D46AE8CC1AA896C500AC9E7C /* tutorial_circle_big.png in Resources */,
 				1971844F1A837473004A7880 /* 01_devilrebirth_item.png in Resources */,
 				197C38FB1A888E9D00B6F43A /* fight_hp_bar.png in Resources */,
 				19A8ED541A52977600EFEA7A /* tab_btn0.png in Resources */,
@@ -1106,6 +1122,7 @@
 				19A8ED511A52977600EFEA7A /* info_stone.png in Resources */,
 				197C38F81A888E9D00B6F43A /* fight_btn_pausedown.png in Resources */,
 				19A8ED631A52977600EFEA7A /* element_water.png in Resources */,
+				D46AE8CB1AA896C500AC9E7C /* tutorial_finger.pvr.png in Resources */,
 				19A8ED521A52977600EFEA7A /* tab_btn2.png in Resources */,
 				19EC10011A81C71B00655BB5 /* bg_words.png in Resources */,
 				D4877A40196C314E009509E5 /* Images.xcassets in Resources */,
@@ -1163,6 +1180,7 @@
 				197184601A83755E004A7880 /* PPSpriteButton.m in Sources */,
 				1968FE821A71EA8700CE8101 /* PPSkillNode.m in Sources */,
 				193F969E1A2EF53000F266A6 /* PPSellMonsterScene.m in Sources */,
+				D46AE8C81AA8937B00AC9E7C /* PPTutorialNode.m in Sources */,
 				193F96DA1A2EF93E00F266A6 /* PPOptionsScene.m in Sources */,
 				1933E7161A2F08AC00E8C5BF /* PPAtlasManager.m in Sources */,
 				194692EC1A89F057007E0FDC /* PerformSelector.m in Sources */,

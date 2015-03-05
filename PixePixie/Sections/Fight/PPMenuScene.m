@@ -80,6 +80,7 @@
                                                                andSceneType:PPElementTypeFire
                                                                    andIndex:0];
     //    ballScene.hurdleReady = self;
+    ballScene->isTutorial = YES;
     ballScene.scaleMode = SKSceneScaleModeAspectFill;
     ballScene.enmeysArray = [pixiesInfo objectForKey:@"enemysinfo"];
     ballScene->previousScene = self;

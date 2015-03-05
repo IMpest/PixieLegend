@@ -953,7 +953,6 @@ CGFloat vector2angel(CGVector vector){
                 NSLog(@"PPBallSkillStatus=%d",[spriteBtn.PPBallSkillStatus intValue]);
                 
                 if ([spriteBtn.PPBallSkillStatus intValue]<=0) {
-                    
 //                    spriteBtn.PPBallSkillStatus = [dictSkill objectForKey:@"skillcdrounds"];
                     spriteBtn.PPBallSkillStatus = [NSNumber numberWithInt:perSkill.skillCD];
 
@@ -2488,9 +2487,26 @@ CGFloat vector2angel(CGVector vector){
 
 -(void)didMoveToView:(SKView *)view
 {
-    [(PPFightingMainView *)self.view fullScreenForBattleScene];
-    [self setPlayerSideRoundRunState];
-    [self performSelectorOnMainThread:@selector(roundRotateBegin) withObject:nil afterDelay:1.0f];
+    if (isTutorial) {
+        
+        PPTutorialNode *turial1=[[PPTutorialNode alloc] initWithColor:[UIColor yellowColor] size:self.size];
+        turial1.zPosition = PPZ_ALERT;
+        [turial1 setTutorialFinger:CGPointMake(0.0f, 0.0f)];
+        turial1.position = CGPointMake(self.size.width/2.0f,self.size.height/2.0f);
+        turial1.name = @"turial1";
+        [self addChild:turial1];
+        
+    }else
+    {
+        
+        [(PPFightingMainView *)self.view fullScreenForBattleScene];
+        [self setPlayerSideRoundRunState];
+        [self performSelectorOnMainThread:@selector(roundRotateBegin) withObject:nil afterDelay:1.0f];
+        
+    }
+   
+    
+    
 }
 
 -(void)willMoveFromView:(SKView *)view
