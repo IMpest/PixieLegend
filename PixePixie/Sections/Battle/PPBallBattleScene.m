@@ -2491,7 +2491,7 @@ CGFloat vector2angel(CGVector vector){
         
         PPTutorialNode *turial1=[[PPTutorialNode alloc] initWithColor:[UIColor yellowColor] size:self.size];
         turial1.zPosition = PPZ_ALERT;
-        [turial1 setTutorialFinger:CGPointMake(0.0f, 0.0f)];
+        [turial1 beginBattleGuide:@"battle"];
         turial1.position = CGPointMake(self.size.width/2.0f,self.size.height/2.0f);
         turial1.name = @"turial1";
         [self addChild:turial1];

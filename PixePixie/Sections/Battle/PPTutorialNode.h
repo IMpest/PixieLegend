@@ -9,5 +9,10 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface PPTutorialNode : SKSpriteNode
--(void)setTutorialFinger:(CGPoint)posFinger;
+{
+    int battleGuideIndex;
+}
+@property(nonatomic,retain)NSArray *battleGuideStringArray;
+-(void)setTutorialFinger:(CGPoint)posFinger atIndex:(int)index;
+-(void)beginBattleGuide:(NSString *)guideName;
 @end
