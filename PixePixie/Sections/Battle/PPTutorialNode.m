@@ -61,6 +61,13 @@
 {
     
       self.battleGuideStringArray = [NSArray arrayWithObjects:@"battle guide   test1",@"battle guide   test2",@"battle guide   test3",@"battle guide   test 4",@"battle guide   test 5",@"battle guide   test 6",@"battle guide   test 7",@"battle guide   test 8",@"battle guide   test 9",@"battle guide   test 10", nil];
+    
+    // 添加battleguide数据
+    NSArray * pixiesData = [[NSDictionary dictionaryWithContentsOfFile:
+                             [[NSBundle mainBundle] pathForResource:@"PixiesInfo" ofType:@"plist"]] objectForKey:@"GuideInfo"];
+    NSMutableArray *guideInfo = [[NSMutableArray alloc] init];
+//    self.battleGuideStringArray =guideInfo;
+    
     [self setTutorialFinger:CGPointMake(0.0f, 0.0f) atIndex:0];
 }
 -(void)tutorialBackBtnClick:(NSNumber *)numIndex
