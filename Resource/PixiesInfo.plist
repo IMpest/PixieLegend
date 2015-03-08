@@ -10,7 +10,7 @@
 				<key>type</key>
 				<string>1</string>
 				<key>message</key>
-				<string>主人，这是我们第一次共同作战，下面让我给你讲解一下，如何和我一起战斗吧</string>
+				<string>主人，这是我们第一次共同作战，下面让我给你讲解一下，如何和我一起战斗吧.</string>
 				<key>posx</key>
 				<integer>0</integer>
 				<key>posy</key>
@@ -62,7 +62,7 @@
 				<key>type</key>
 				<string>3</string>
 				<key>message</key>
-				<string></string>
+				<string>无</string>
 				<key>posx</key>
 				<integer>0</integer>
 				<key>posy</key>

@@ -186,6 +186,7 @@
 		19F6EDA818C6C09900BFFF9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19F6EDA618C6C09900BFFF9A /* InfoPlist.strings */; };
 		19F6EDAA18C6C09900BFFF9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F6EDA918C6C09900BFFF9A /* main.m */; };
 		D413CB611945FF62004B4FDE /* PPSkill.m in Sources */ = {isa = PBXBuildFile; fileRef = D413CB601945FF62004B4FDE /* PPSkill.m */; };
+		D42F1E871AACA2A9008A50FA /* PPTextLabelNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D42F1E861AACA2A9008A50FA /* PPTextLabelNode.m */; };
 		D46AE8C81AA8937B00AC9E7C /* PPTutorialNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D46AE8C71AA8937B00AC9E7C /* PPTutorialNode.m */; };
 		D46AE8CB1AA896C500AC9E7C /* tutorial_finger.pvr.png in Resources */ = {isa = PBXBuildFile; fileRef = D46AE8C91AA896C500AC9E7C /* tutorial_finger.pvr.png */; };
 		D46AE8CC1AA896C500AC9E7C /* tutorial_circle_big.png in Resources */ = {isa = PBXBuildFile; fileRef = D46AE8CA1AA896C500AC9E7C /* tutorial_circle_big.png */; };
@@ -431,6 +432,8 @@
 		19F6EDAB18C6C09900BFFF9A /* PixelPixie-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PixelPixie-Prefix.pch"; sourceTree = "<group>"; };
 		D413CB5F1945FF62004B4FDE /* PPSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPSkill.h; path = Models/PPSkill.h; sourceTree = "<group>"; };
 		D413CB601945FF62004B4FDE /* PPSkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPSkill.m; path = Models/PPSkill.m; sourceTree = "<group>"; };
+		D42F1E851AACA2A9008A50FA /* PPTextLabelNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPTextLabelNode.h; path = PixePixie/Sections/Battle/PPTextLabelNode.h; sourceTree = SOURCE_ROOT; };
+		D42F1E861AACA2A9008A50FA /* PPTextLabelNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPTextLabelNode.m; path = PixePixie/Sections/Battle/PPTextLabelNode.m; sourceTree = SOURCE_ROOT; };
 		D46AE8C61AA8937B00AC9E7C /* PPTutorialNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPTutorialNode.h; path = PixePixie/Sections/Battle/PPTutorialNode.h; sourceTree = SOURCE_ROOT; };
 		D46AE8C71AA8937B00AC9E7C /* PPTutorialNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPTutorialNode.m; path = PixePixie/Sections/Battle/PPTutorialNode.m; sourceTree = SOURCE_ROOT; };
 		D46AE8C91AA896C500AC9E7C /* tutorial_finger.pvr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial_finger.pvr.png; sourceTree = "<group>"; };
@@ -554,6 +557,8 @@
 				1968FE791A71EA8700CE8101 /* PPSkillButtonNode.m */,
 				D46AE8C61AA8937B00AC9E7C /* PPTutorialNode.h */,
 				D46AE8C71AA8937B00AC9E7C /* PPTutorialNode.m */,
+				D42F1E851AACA2A9008A50FA /* PPTextLabelNode.h */,
+				D42F1E861AACA2A9008A50FA /* PPTextLabelNode.m */,
 				1968FE7A1A71EA8700CE8101 /* PPSkillNode.h */,
 				1968FE7B1A71EA8700CE8101 /* PPSkillNode.m */,
 			);
@@ -1173,6 +1178,7 @@
 				D4BE5ABF19513FFD001F72DE /* PPBuff.m in Sources */,
 				191B9FEB1A6DF6A8005136AC /* PPMonsterInfoNode.m in Sources */,
 				193F96D71A2EF93E00F266A6 /* PPHelpScene.m in Sources */,
+				D42F1E871AACA2A9008A50FA /* PPTextLabelNode.m in Sources */,
 				1968FE811A71EA8700CE8101 /* PPSkillButtonNode.m in Sources */,
 				19CBA8C61907C7D000A249AB /* PPPlayer.m in Sources */,
 				19F2087D1A78EC7A00B3FB9C /* PPDataManager.m in Sources */,
