@@ -2496,6 +2496,7 @@ CGFloat vector2angel(CGVector vector){
         turial1.name = @"turial1";
         [self addChild:turial1];
         
+        
     }else
     {
         
