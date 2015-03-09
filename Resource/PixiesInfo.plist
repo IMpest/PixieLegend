@@ -14,19 +14,27 @@
 				<key>posx</key>
 				<integer>0</integer>
 				<key>posy</key>
-				<integer>0</integer>
+				<integer>180</integer>
 			</dict>
 			<dict>
 				<key>type</key>
 				<string>2</string>
 				<key>message</key>
 				<string>战斗区域分为两部分，下方方形区域是我的精神区域，主人你通过精神世界的我进行战斗。</string>
-				<key>message1</key>
-				<string>这就是精神世界的我，主人拖动精神世界的的任何区域都可以控制我的行动</string>
 				<key>posx</key>
 				<integer>0</integer>
 				<key>posy</key>
-				<integer>0</integer>
+				<integer>180</integer>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>1</string>
+				<key>message</key>
+				<string>这就是精神世界的我，主人拖动精神世界的的任何区域都可以控制我的行动。</string>
+				<key>posx</key>
+				<integer>-30</integer>
+				<key>posy</key>
+				<integer>-100</integer>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -34,9 +42,9 @@
 				<key>message</key>
 				<string>拖动我并松开将精神世界的我弹出，撞击攻击球我便会做出攻击动作，这个就是攻击球。</string>
 				<key>posx</key>
-				<integer>0</integer>
+				<integer>-30</integer>
 				<key>posy</key>
-				<integer>0</integer>
+				<integer>-100</integer>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -44,9 +52,9 @@
 				<key>message</key>
 				<string>这个是敌方在握精神世界的投影，撞击它，我可以找出敌方的弱点，破除敌方防御。</string>
 				<key>posx</key>
-				<integer>0</integer>
+				<integer>-30</integer>
 				<key>posy</key>
-				<integer>0</integer>
+				<integer>-100</integer>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -54,9 +62,9 @@
 				<key>message</key>
 				<string>现在拖动我，尝试一次攻击。记住撞击越多的攻击球，我会打出更多的攻击哦。</string>
 				<key>posx</key>
-				<integer>0</integer>
+				<integer>-30</integer>
 				<key>posy</key>
-				<integer>0</integer>
+				<integer>-100</integer>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -74,9 +82,9 @@
 				<key>message</key>
 				<string>主人，我现在可以释放技能了，惦记我，选择一个技能释放吧～。</string>
 				<key>posx</key>
-				<integer>0</integer>
+				<integer>-30</integer>
 				<key>posy</key>
-				<integer>0</integer>
+				<integer>-100</integer>
 			</dict>
 			<dict>
 				<key>type</key>
@@ -86,7 +94,7 @@
 				<key>posx</key>
 				<integer>0</integer>
 				<key>posy</key>
-				<integer>0</integer>
+				<integer>180</integer>
 			</dict>
 		</array>
 	</dict>
