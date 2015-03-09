@@ -54,6 +54,7 @@
 		194D46B61A650D3B00FDBDD0 /* bg_pet_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 194D46B31A650D3B00FDBDD0 /* bg_pet_0.png */; };
 		194D46B71A650D3B00FDBDD0 /* bg_pet_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 194D46B41A650D3B00FDBDD0 /* bg_pet_1.png */; };
 		194D46B81A650D3B00FDBDD0 /* bg_pet_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 194D46B51A650D3B00FDBDD0 /* bg_pet_2.png */; };
+		1950EC6D1AADB3BE00A215B1 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1950EC6C1AADB3BE00A215B1 /* arrow.png */; };
 		196202EB1A63ABB8008F88C4 /* PPChoosePetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 196202EA1A63ABB8008F88C4 /* PPChoosePetView.m */; };
 		196673611A53993900DA0F95 /* tab_light.png in Resources */ = {isa = PBXBuildFile; fileRef = 196673601A53993900DA0F95 /* tab_light.png */; };
 		1968FE7E1A71EA8700CE8101 /* PPBallBattleScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968FE731A71EA8700CE8101 /* PPBallBattleScene.m */; };
@@ -275,6 +276,7 @@
 		194D46B31A650D3B00FDBDD0 /* bg_pet_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_pet_0.png; sourceTree = "<group>"; };
 		194D46B41A650D3B00FDBDD0 /* bg_pet_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_pet_1.png; sourceTree = "<group>"; };
 		194D46B51A650D3B00FDBDD0 /* bg_pet_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_pet_2.png; sourceTree = "<group>"; };
+		1950EC6C1AADB3BE00A215B1 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		196202E91A63ABB8008F88C4 /* PPChoosePetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPChoosePetView.h; path = PixePixie/Sections/Start/PPChoosePetView.h; sourceTree = SOURCE_ROOT; };
 		196202EA1A63ABB8008F88C4 /* PPChoosePetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPChoosePetView.m; path = PixePixie/Sections/Start/PPChoosePetView.m; sourceTree = SOURCE_ROOT; };
 		196673601A53993900DA0F95 /* tab_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_light.png; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 		1927DE6B1A53B38C0098501C /* temp */ = {
 			isa = PBXGroup;
 			children = (
+				1950EC6C1AADB3BE00A215B1 /* arrow.png */,
 				194D46B31A650D3B00FDBDD0 /* bg_pet_0.png */,
 				194D46B41A650D3B00FDBDD0 /* bg_pet_1.png */,
 				194D46B51A650D3B00FDBDD0 /* bg_pet_2.png */,
@@ -1124,6 +1127,7 @@
 				19DB5D7A1A725882003EFEE3 /* buff_exp.png in Resources */,
 				199FEDD91AA83929006D47E4 /* item7.png in Resources */,
 				19CFACFB1A77976C00126D75 /* 04_nightjudge.png in Resources */,
+				1950EC6D1AADB3BE00A215B1 /* arrow.png in Resources */,
 				19A8ED511A52977600EFEA7A /* info_stone.png in Resources */,
 				197C38F81A888E9D00B6F43A /* fight_btn_pausedown.png in Resources */,
 				19A8ED631A52977600EFEA7A /* element_water.png in Resources */,
