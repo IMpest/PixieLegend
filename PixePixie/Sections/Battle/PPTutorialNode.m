@@ -164,19 +164,19 @@
             
             
             SKSpriteNode *contentNode = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:self.size];
-            contentNode.position = pos;
+            contentNode.position = CGPointMake(-100.0f, -100.0f);
             contentNode.name = PP_GUIDE_CONTENT_NODE_NAME;
             [self addChild:contentNode];
             
-            NSLog(@"finger x=%f y=%f",posFinger.x,posFinger.y);
-            
-            PPSpriteButton *  tutorialBackBtn = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"tutorial_alert_bg"] andSize:CGSizeMake(241/2.0f,144/2.0f)];
-            //    [tutorialBackBtn setLabelWithText:[[self.battleGuideStringArray objectAtIndex:index] objectForKey:@"message"] andFont:[UIFont boldSystemFontOfSize:10] withColor:[UIColor redColor]];
-            tutorialBackBtn.position = CGPointMake(0.0f, 0.0f);
-            tutorialBackBtn.name = @"tutorial1";
-            [tutorialBackBtn addTarget:self selector:@selector(tutorialBackBtnClick:)
-                            withObject:[NSNumber numberWithInt:index] forControlEvent:PPButtonControlEventTouchUpInside];
-            [contentNode addChild:tutorialBackBtn];
+//            NSLog(@"finger x=%f y=%f",posFinger.x,posFinger.y);
+//            
+//            PPSpriteButton *  tutorialBackBtn = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"tutorial_alert_bg"] andSize:CGSizeMake(241/2.0f,144/2.0f)];
+//            //    [tutorialBackBtn setLabelWithText:[[self.battleGuideStringArray objectAtIndex:index] objectForKey:@"message"] andFont:[UIFont boldSystemFontOfSize:10] withColor:[UIColor redColor]];
+//            tutorialBackBtn.position = CGPointMake(0.0f, 0.0f);
+//            tutorialBackBtn.name = @"tutorial1";
+//            [tutorialBackBtn addTarget:self selector:@selector(tutorialBackBtnClick:)
+//                            withObject:[NSNumber numberWithInt:index] forControlEvent:PPButtonControlEventTouchUpInside];
+//            [contentNode addChild:tutorialBackBtn];
             
             
             //    [contentNode addChild:[self creatLabel:[[self.battleGuideStringArray objectAtIndex:index] objectForKey:@"message"] fontname:@"Arial" fontcolor:[UIColor redColor] fontsize:10 verticalMargin:10 emptylineheight:10]];
@@ -187,20 +187,20 @@
             //    [tutorialLabel setColor:[UIColor redColor]];
             //    [tutorialLabel addChild:tutorialLabel];
             
-            PPTextLabelNode *tutorialText=[PPTextLabelNode labelNodeWithFontNamed:@"Arial"];
-            [tutorialText setText:[[self.battleGuideStringArray objectAtIndex:index] objectForKey:@"message"]];
-            tutorialText.paragraphWidth = tutorialBackBtn.size.width-12;
-            [tutorialText setFontSize:10];
-            [tutorialText setFontColor:[UIColor redColor]];
-            [tutorialText setColor:[UIColor blueColor]];
-            [tutorialBackBtn addChild:tutorialText];
-            tutorialText.position = CGPointMake(0.0f,0.0f);
-            NSLog(@"tutorialText width=%f",tutorialText.size.width);
+//            PPTextLabelNode *tutorialText=[PPTextLabelNode labelNodeWithFontNamed:@"Arial"];
+//            [tutorialText setText:[[self.battleGuideStringArray objectAtIndex:index] objectForKey:@"message"]];
+//            tutorialText.paragraphWidth = tutorialBackBtn.size.width-12;
+//            [tutorialText setFontSize:10];
+//            [tutorialText setFontColor:[UIColor redColor]];
+//            [tutorialText setColor:[UIColor blueColor]];
+//            [tutorialBackBtn addChild:tutorialText];
+//            tutorialText.position = CGPointMake(0.0f,0.0f);
+//            NSLog(@"tutorialText width=%f",tutorialText.size.width);
             
             
             
             SKSpriteNode *spriteCircle=[SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
-            spriteCircle.position = CGPointMake(tutorialBackBtn.position.x, tutorialBackBtn.position.y-20);
+            spriteCircle.position = CGPointMake(0.0f, -20);
             spriteCircle.size = CGSizeMake(spriteCircle.size.width/2.0f, spriteCircle.size.height/2.0f);
             
             [contentNode addChild:spriteCircle];
@@ -218,6 +218,31 @@
             SKAction *actionRepeat=[SKAction repeatAction:actionSeq count:5];
             
             [spriteFinger runAction:actionRepeat];
+            
+            
+//            SKAction *actionMove = [SKAction moveByX:100 y:100 duration:1];
+            SKAction *actionMove = [SKAction moveTo:CGPointMake(-100.0f, -100.0f) duration:1];
+
+            SKAction *actionMove1 = [SKAction moveTo:CGPointMake(150, 150) duration:1];
+            SKAction *actionMove2 = [SKAction moveTo:CGPointMake(-100.0f, -100.0f) duration:0.1];
+
+            
+//            SKAction *actionMove2 = [SKAction fadeAlphaTo:0.0f duration:0.1];
+            
+            SKAction *sequne = [SKAction sequence:[NSArray arrayWithObjects:actionMove,actionMove1,actionMove2, nil]];
+            
+            
+            SKAction *repeat = [SKAction repeatAction:sequne count:3];
+            [contentNode runAction:repeat completion:^{
+              
+                [self stopGuide];
+                if (target!=nil&&stopSel!=nil&&[target respondsToSelector:stopSel]) {
+                    
+                    [target performSelectorOnMainThread:stopSel withObject:nil waitUntilDone:YES];
+                    
+                }
+            }];
+            
             
             
         }
@@ -305,12 +330,45 @@
     
     return spritenode;
 }
+-(void)stopGuide
+{
+    
+    self.hidden = YES;
+    
+}
+-(void)resumeGuide
+{
+    
+    self.hidden = NO;
+    battleGuideIndex++;
+    
+    if (battleGuideIndex>=[self.battleGuideStringArray count]) {
+        [self removeFromParent];
+        if (target!=nil&&completeSel!=nil&&[target respondsToSelector:completeSel]) {
+            [target performSelectorOnMainThread:completeSel withObject:nil waitUntilDone:YES];
+            
+        }
+        
+        return;
+    }
+    
+    [self setTutorialFinger:CGPointMake(arc4random()%160, arc4random()%160) atIndex:battleGuideIndex];
+    
+    
+}
+
 -(void)tutorialBackBtnClick:(NSNumber *)numIndex
 {
     
     battleGuideIndex++;
     
     if (battleGuideIndex>=[self.battleGuideStringArray count]) {
+        [self removeFromParent];
+        if (target!=nil&&completeSel!=nil&&[target respondsToSelector:completeSel]) {
+            [target performSelectorOnMainThread:completeSel withObject:nil waitUntilDone:YES];
+
+        }
+        
         return;
     }
     [self setTutorialFinger:CGPointMake(arc4random()%160, arc4random()%160) atIndex:battleGuideIndex];

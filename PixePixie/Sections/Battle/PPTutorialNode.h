@@ -11,8 +11,15 @@
 @interface PPTutorialNode : SKSpriteNode
 {
     int battleGuideIndex;
+    @public
+    SEL completeSel;
+    SEL stopSel;
+    id  target;
 }
+
 @property(nonatomic,retain)NSArray *battleGuideStringArray;
+-(void)stopGuide;
+-(void)resumeGuide;
 -(void)setTutorialFinger:(CGPoint)posFinger atIndex:(int)index;
 -(void)beginBattleGuide:(NSString *)guideName;
 @end
