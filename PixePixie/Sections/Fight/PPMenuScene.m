@@ -78,9 +78,7 @@
                                                                 PixiePlayer:playerPixie
                                                                  PixieEnemy:enemyPixie
                                                                andSceneType:PPElementTypeFire
-                                                                   andIndex:0];
-    //    ballScene.hurdleReady = self;
-    ballScene->isTutorial = YES;
+andIndex:0 withTutorial:YES];
     ballScene.scaleMode = SKSceneScaleModeAspectFill;
     ballScene.enmeysArray = [pixiesInfo objectForKey:@"enemysinfo"];
     ballScene->previousScene = self;
@@ -157,7 +155,7 @@
                                                                 PixiePlayer:playerPixie
                                                                  PixieEnemy:enemyPixie
                                                                andSceneType:PPElementTypeFire
-                                                                   andIndex:0];
+                                                                   andIndex:0 withTutorial:NO];
 //    ballScene.hurdleReady = self;
     ballScene.scaleMode = SKSceneScaleModeAspectFill;
     ballScene.enmeysArray = [pixiesInfo objectForKey:@"enemysinfo"];

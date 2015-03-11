@@ -54,6 +54,7 @@ CGFloat vector2angel(CGVector vector){
     SKSpriteNode * petSkillBar;
     PPBallBattleSkillInfo *battleSkillInfo;
     PPElementType currentElementType;
+    PPTutorialNode *tutorial1;
 }
 
 @property (nonatomic, retain) PPPixie * pixiePlayer;
@@ -84,20 +85,21 @@ CGFloat vector2angel(CGVector vector){
 -(id)initWithSize:(CGSize)size
       PixiePlayer:(PPPixie *)pixieA
        PixieEnemy:(PPPixie *)pixieB
-     andSceneType:(PPElementType)sceneType andIndex:(int)enemyIndex{
+     andSceneType:(PPElementType)sceneType andIndex:(int)enemyIndex withTutorial:(BOOL)isTutorialValue
+{
     
     if (self = [super initWithSize:size]) {
         
         // 处理参数
         self.pixiePlayer = pixieA;
-        self.ballPlayer = pixieA.pixieBall;
         isHPZero = NO;
         NSLog(@"count=%lu",(unsigned long)[self.pixiePlayer.skillList count]);
-        
+        self.ballPlayer = nil;
         self.pixieEnemy = pixieB;
         sceneTypeString = kElementTypeString[sceneType];
         currentElementType = sceneType;
 //        _isTrapEnable = NO;
+        isTutorial = isTutorialValue;
         isTouchPetBall = NO;
         isShowingSkillBar = NO;
         currentEnemyIndex = enemyIndex;
@@ -204,7 +206,13 @@ CGFloat vector2angel(CGVector vector){
 // 添加己方球
 -(void)initPlayerBalls
 {
+    if (self.ballPlayer!=nil) {
+        [self.ballPlayer removeFromParent];
+        self.ballPlayer = nil;
+    }
     
+    self.ballPlayer = self.pixiePlayer.pixieBall;
+
     CGFloat xPlayer = BALL_RANDOM_X;
     CGFloat yPlayer = BALL_RANDOM_Y + PP_FIT_TOP_SIZE;
     
@@ -219,12 +227,17 @@ CGFloat vector2angel(CGVector vector){
     self.ballPlayer.name = @"ball_player";
     self.ballPlayer.position = CGPointMake(xPlayer, yPlayer);
     //    self.ballPlayer.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:20.0f];
+    if (isTutorial) {
+        self.ballPlayer.position = CGPointMake(50, 200);
+    }
     self.ballPlayer.physicsBody.allowsRotation = NO;
     self.ballPlayer.physicsBody.categoryBitMask = EntityCategoryBall;
     self.ballPlayer.physicsBody.contactTestBitMask = EntityCategoryBall;
     self.ballPlayer.physicsBody.density = 1.0f;
     self.ballPlayer->battleCurrentScene = self;
     [self addChild:self.ballPlayer];
+    
+    
 }
 
 // 添加敌方球
@@ -261,7 +274,10 @@ CGFloat vector2angel(CGVector vector){
         
     }
     
-    
+    if (isTutorial) {
+        self.ballEnemy.position = CGPointMake(200, 300);
+
+    }
     
     self.ballEnemy.physicsBody.categoryBitMask = EntityCategoryBall;
     self.ballEnemy.physicsBody.contactTestBitMask = EntityCategoryBall;
@@ -280,46 +296,79 @@ CGFloat vector2angel(CGVector vector){
     CGFloat cx[tmax] = {40, 40, 40, 160, 160, 280, 280, 280};
     CGFloat cy[tmax] = {40, 160, 280, 40, 280, 40, 160, 280};
     
-    for (int i = 0; i < 5; i++) {
+    if (isTutorial) {
         
-        PPBall * comboBall = [PPBall ballWithCombo];
+        CGPoint points[]={{35,345},{160,345},{300,345},{300,200},{160,50}};
         
-        int t = arc4random() % tmax;
-        while (cb[t] == YES) t = arc4random() % tmax;
-        cb[t] = YES;
-        NSLog(@"%d %f %f", t, cx[t], cy[t]);
-        comboBall.position = CGPointMake(cx[t], cy[t] + PP_FIT_TOP_SIZE);
-        
-        // 调整随机尺寸结果防止重叠
-        //        BOOL isRequred = NO;
-        //        while (!isRequred) {
-        //            isRequred = YES;
-        //            CGPoint pointCombo = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y + PP_FIT_TOP_SIZE);
-        //            for (PPBall * ballAdded in self.ballsCombos) {
-        //                CGFloat distanceValue = distanceBetweenPoints(ballAdded.position,pointCombo);
-        //                if (distanceValue <= 30) {
-        //                    isRequred = NO;
-        //                    break;
-        //                }
-        //            }
-        //            comboBall.position = pointCombo;
-        //            NSLog(@"%f %f", pointCombo.x, pointCombo.y);
-        //        }
-        
-        // 添加连击球
-        comboBall.name = PP_BALL_TYPE_COMBO_NAME;
-        comboBall.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:25];
-        comboBall.physicsBody.categoryBitMask = EntityCategoryBall;
-        comboBall.physicsBody.contactTestBitMask = EntityCategoryBall|EntityCategoryWall;
-        comboBall.physicsBody.collisionBitMask = EntityCategoryBall|EntityCategoryWall;
-        comboBall.physicsBody.dynamic = YES;
-        comboBall.physicsBody.mass = 10000;
-        comboBall.physicsBody.PPBallPhysicsBodyStatus = [NSNumber numberWithInt:i];
-        comboBall.PPBallSkillStatus = 0;
-        [self addChild:comboBall];
-        [self.ballsCombos addObject:comboBall];
-        
+        for (int i = 0; i < 5; i++) {
+            
+            PPBall * comboBall = [PPBall ballWithCombo];
+            
+            int t = arc4random() % tmax;
+            while (cb[t] == YES) t = arc4random() % tmax;
+            cb[t] = YES;
+            NSLog(@"%d %f %f", t, cx[t], cy[t]);
+            comboBall.position = points[i];
+            
+            // 添加连击球
+            comboBall.name = PP_BALL_TYPE_COMBO_NAME;
+            comboBall.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:25];
+            comboBall.physicsBody.categoryBitMask = EntityCategoryBall;
+            comboBall.physicsBody.contactTestBitMask = EntityCategoryBall|EntityCategoryWall;
+            comboBall.physicsBody.collisionBitMask = EntityCategoryBall|EntityCategoryWall;
+            comboBall.physicsBody.dynamic = YES;
+            comboBall.physicsBody.mass = 10000;
+            comboBall.physicsBody.PPBallPhysicsBodyStatus = [NSNumber numberWithInt:i];
+            comboBall.PPBallSkillStatus = 0;
+            [self addChild:comboBall];
+            [self.ballsCombos addObject:comboBall];
+            
+        }
+    }else
+    {
+        for (int i = 0; i < 5; i++) {
+            
+            PPBall * comboBall = [PPBall ballWithCombo];
+            
+            int t = arc4random() % tmax;
+            while (cb[t] == YES) t = arc4random() % tmax;
+            cb[t] = YES;
+            NSLog(@"%d %f %f", t, cx[t], cy[t]);
+            comboBall.position = CGPointMake(cx[t], cy[t] + PP_FIT_TOP_SIZE);
+            
+            // 调整随机尺寸结果防止重叠
+            //        BOOL isRequred = NO;
+            //        while (!isRequred) {
+            //            isRequred = YES;
+            //            CGPoint pointCombo = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y + PP_FIT_TOP_SIZE);
+            //            for (PPBall * ballAdded in self.ballsCombos) {
+            //                CGFloat distanceValue = distanceBetweenPoints(ballAdded.position,pointCombo);
+            //                if (distanceValue <= 30) {
+            //                    isRequred = NO;
+            //                    break;
+            //                }
+            //            }
+            //            comboBall.position = pointCombo;
+            //            NSLog(@"%f %f", pointCombo.x, pointCombo.y);
+            //        }
+            
+            // 添加连击球
+            comboBall.name = PP_BALL_TYPE_COMBO_NAME;
+            comboBall.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:25];
+            comboBall.physicsBody.categoryBitMask = EntityCategoryBall;
+            comboBall.physicsBody.contactTestBitMask = EntityCategoryBall|EntityCategoryWall;
+            comboBall.physicsBody.collisionBitMask = EntityCategoryBall|EntityCategoryWall;
+            comboBall.physicsBody.dynamic = YES;
+            comboBall.physicsBody.mass = 10000;
+            comboBall.physicsBody.PPBallPhysicsBodyStatus = [NSNumber numberWithInt:i];
+            comboBall.PPBallSkillStatus = 0;
+            [self addChild:comboBall];
+            [self.ballsCombos addObject:comboBall];
+            
+        }
     }
+    
+
 }
 
 // 设置连击球的特殊属性
@@ -663,6 +712,8 @@ CGFloat vector2angel(CGVector vector){
 //        self.paused = YES;
         [self setPlayerSideRoundRunState];
         [battleSkillInfo resetBattleSkillInfo];
+        
+       
 
         
         if ([self.enmeysArray count]<=(currentEnemyIndex+1)) {
@@ -762,7 +813,14 @@ CGFloat vector2angel(CGVector vector){
         
         self.ballPlayer.physicsBody.velocity = CGVectorMake(0.0f, 0.0);
         [self.playerAndEnemySide resetPetAndEnemyPosition];
-        
+        if (isTutorial) {
+            
+            [self initPlayerBalls];
+            [tutorial1 resumeGuide];
+            self.ballPlayer.position = CGPointMake(50, 200);
+
+            
+        }
 //        [self performSelectorOnMainThread:@selector(goNextEnemy) withObject:nil afterDelay:2];
 
     } else {
@@ -803,7 +861,7 @@ CGFloat vector2angel(CGVector vector){
                                                                 PixiePlayer:playerPixie
                                                                  PixieEnemy:enemyPixie
                                                                andSceneType:currentElementType
-                                                                   andIndex:currentEnemyIndex+1];
+                                                                   andIndex:currentEnemyIndex+1 withTutorial:NO];
     ballScene.scaleMode = SKSceneScaleModeAspectFill;
     ballScene.enmeysArray = self.enmeysArray;
     ballScene->previousScene = previousScene;
@@ -2489,14 +2547,14 @@ CGFloat vector2angel(CGVector vector){
 {
     if (isTutorial) {
         
-        PPTutorialNode *turial1=[[PPTutorialNode alloc] initWithColor:[UIColor clearColor] size:self.size];
-        turial1.zPosition = PPZ_ALERT;
-        [turial1 beginBattleGuide:@"battle"];
-        turial1->target = self;
-//        target1->stopsel =@selector(<#selector#>)
-        turial1.position = CGPointMake(self.size.width/2.0f,self.size.height/2.0f);
-        turial1.name = @"turial1";
-        [self addChild:turial1];
+        tutorial1=[[PPTutorialNode alloc] initWithColor:[UIColor clearColor] size:self.size];
+        tutorial1.zPosition = PPZ_ALERT;
+        [tutorial1 beginBattleGuide:@"battle"];
+        tutorial1->target = self;
+        tutorial1->stopSel =@selector(setPlayerSideRoundEndState);
+        tutorial1.position = CGPointMake(self.size.width/2.0f,self.size.height/2.0f);
+        tutorial1.name = @"tutorial1";
+        [self addChild:tutorial1];
         
         
     }else
@@ -2533,6 +2591,7 @@ CGFloat vector2angel(CGVector vector){
 {
     
     if (_isBallRolling) return;
+    
     if (touches.count > 1  || _isBallRolling) return;
     
     
@@ -2541,6 +2600,8 @@ CGFloat vector2angel(CGVector vector){
         spriteArrow = nil;
     }
     
+    if (isNotSkillRun ||_isBallDragging) return;
+
     
     
     spriteArrow = [[SKSpriteNode alloc] initWithImageNamed:@"table_arrow"];
@@ -2574,7 +2635,6 @@ CGFloat vector2angel(CGVector vector){
         isTouchPetBall = YES;
     }
     
-    if (isNotSkillRun ||_isBallDragging) return;
     
     _isBallDragging = YES;
     
