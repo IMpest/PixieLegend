@@ -17,6 +17,7 @@
     SEL type4Sel;
     id  target;
     BOOL  isTutorialType4;
+    
 }
 
 @property(nonatomic,retain)NSArray *battleGuideStringArray;
