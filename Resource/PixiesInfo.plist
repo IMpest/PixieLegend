@@ -78,9 +78,9 @@
 			</dict>
 			<dict>
 				<key>type</key>
-				<string>1</string>
+				<string>4</string>
 				<key>message</key>
-				<string>主人，我现在可以释放技能了，惦记我，选择一个技能释放吧～。</string>
+				<string>主人，我现在可以释放技能了，点击我，选择一个技能释放吧～。</string>
 				<key>posx</key>
 				<integer>-30</integer>
 				<key>posy</key>

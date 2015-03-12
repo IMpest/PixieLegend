@@ -257,7 +257,6 @@ CGFloat vector2angel(CGVector vector){
     self.ballEnemy->battleCurrentScene = self;
     
     
-    
     if (self.ballEnemy.position.x >= 280.0f) {
         self.ballEnemy.position = CGPointMake(280.0f, self.ballPlayer.position.y);
     }
@@ -466,9 +465,16 @@ CGFloat vector2angel(CGVector vector){
         elementBallTmp = (PPBall *)contact.bodyA.node ;
     }
     NSLog(@"elementBodyStatus=%@",elementBodyStatus);
-    
+   
     if (self.ballPlayer == pixieball) {
-        [self.playerAndEnemySide changeEnemyHPValue:-kHurtBasicValue];
+        if (isTutorial) {
+            [self.playerAndEnemySide changeEnemyHPValue:-1];
+
+        }else
+        {
+            [self.playerAndEnemySide changeEnemyHPValue:-kHurtBasicValue];
+
+        }
         [self.playerAndEnemySide startAttackShowAnimation:YES];
 //        [self.playerAndEnemySide changePetMPValue:200];
     } else {
@@ -666,7 +672,14 @@ CGFloat vector2angel(CGVector vector){
         _isBallRolling = NO; // 如果球都停止了标记停止
 
 //        for (PPBall * tBall in self.ballsElement) [tBall setToDefaultTexture];
-        
+        if (isTutorial) {
+            
+            [self initPlayerBalls];
+            [tutorial1 resumeGuide];
+            self.ballPlayer.position = CGPointMake(50, 200);
+            
+            
+        }
         [self.playerAndEnemySide resetPetAndEnemyPosition];
         
         if(currentPhysicsAttack == 1) {
@@ -813,15 +826,7 @@ CGFloat vector2angel(CGVector vector){
         
         self.ballPlayer.physicsBody.velocity = CGVectorMake(0.0f, 0.0);
         [self.playerAndEnemySide resetPetAndEnemyPosition];
-        if (isTutorial) {
-            
-            [self initPlayerBalls];
-            [tutorial1 resumeGuide];
-            self.ballPlayer.position = CGPointMake(50, 200);
-
-            
-        }
-//        [self performSelectorOnMainThread:@selector(goNextEnemy) withObject:nil afterDelay:2];
+       //        [self performSelectorOnMainThread:@selector(goNextEnemy) withObject:nil afterDelay:2];
 
     } else {
         NSDictionary * dict = @{@"title":@"您的宠物已被打倒", @"context":@"请选择其他宠物出战"};
@@ -994,7 +999,7 @@ CGFloat vector2angel(CGVector vector){
     isShowingSkillBar = YES;
 
     if (petSkillBar) {
-        petSkillBar.zPosition = PPZ_TABLE_BUTTON;
+        petSkillBar.zPosition = PPZ_ALERT;
         petSkillBar.position = CGPointMake(self.size.width / 2, self.ballPlayer.position.y + 50);
         petSkillBar.hidden = NO;
         for (int i = 0; i < 4; i++) {
@@ -1054,7 +1059,7 @@ CGFloat vector2angel(CGVector vector){
         
         PPSpriteButton * passButton = [PPSpriteButton buttonWithImageNamed:stringSkillBtn];
         passButton.size = CGSizeMake(50, 50);
-        passButton.zPosition = PPZ_TABLE_BUTTON;
+        passButton.zPosition = PPZ_ALERT;
         
         if (perSkill.skillstatus == PP_SKILL_STATUS_INVALID) {
             stringSkillBtn = [NSString stringWithFormat:@"%@_none",kElementTypeString[self.pixiePlayer.pixieElement]];
@@ -1374,6 +1379,11 @@ CGFloat vector2angel(CGVector vector){
 // 回合推进
 -(void)roundRotateMoved:(NSString *)nodeName
 {
+   
+
+    if (isTutorial) {
+        return;
+    }
     [self setPlayerSideRoundRunState];
     
     if(isHPZero) return;
@@ -1661,6 +1671,8 @@ CGFloat vector2angel(CGVector vector){
 -(void)skillInvalidBtnClick:(PPSpriteButton *)skillInvalidButton
 {
     
+   
+    
     //       NSDictionary *skillChoosed = [self.ballPlayer.pixie.pixieSkills objectAtIndex:[skillInvalidButton.name intValue] - PP_SKILLS_CHOOSE_BTN_TAG];
 //    
 //    SKLabelNode * labelNode = (SKLabelNode *)[self childNodeWithName:@"mpisnotenough"];
@@ -1679,6 +1691,9 @@ CGFloat vector2angel(CGVector vector){
         isNotSkillShowTime = NO;
         [self setPlayerSideRoundEndState];
     }];
+    
+    
+    
 }
 
 // 技能动画展示开始
@@ -1690,6 +1705,15 @@ CGFloat vector2angel(CGVector vector){
     NSLog(@"currentMP=%f mptoConsume=%f",self.playerAndEnemySide.currentPPPixie.currentMP,mpToConsume);
     NSLog(@"skillInfo=%@",skillInfo);
     [self setPlayerSideRoundRunState];
+    
+  
+    if(isTutorial)
+    {
+        [self setPlayerSideRoundRunState];
+        tutorial1->isTutorialType4 = YES;
+        [tutorial1 resumeGuide];
+    }
+   
     
     if (self.playerAndEnemySide.currentPPPixie.currentMP < fabsf(mpToConsume)) {
         
@@ -1752,8 +1776,7 @@ CGFloat vector2angel(CGVector vector){
     } else {
         [self.playerAndEnemySide changePetMPValue:mpToConsume];
     }
-    
-    NSLog(@"skillInfo=%@",skillInfo);
+  
     //    if (isNotSkillShowTime) return;
     
 //    switch ([[skillInfo objectForKey:@"skilltype"] intValue]) {
@@ -2540,7 +2563,10 @@ CGFloat vector2angel(CGVector vector){
     
     
 }
-
+-(void)guideComplete
+{
+    [self pauseMenuBtnClick:@"button2"];
+}
 #pragma mark SKScene
 
 -(void)didMoveToView:(SKView *)view
@@ -2552,6 +2578,8 @@ CGFloat vector2angel(CGVector vector){
         [tutorial1 beginBattleGuide:@"battle"];
         tutorial1->target = self;
         tutorial1->stopSel =@selector(setPlayerSideRoundEndState);
+        tutorial1->type4Sel =@selector(addPetSkillBar);
+        tutorial1->completeSel = @selector(guideComplete);
         tutorial1.position = CGPointMake(self.size.width/2.0f,self.size.height/2.0f);
         tutorial1.name = @"tutorial1";
         [self addChild:tutorial1];
@@ -2591,6 +2619,13 @@ CGFloat vector2angel(CGVector vector){
 {
     
     if (_isBallRolling) return;
+    if (isNotSkillRun) {
+        return;
+    }
+    
+    if (tutorial1->isTutorialType4) {
+        return;
+    }
     
     if (touches.count > 1  || _isBallRolling) return;
     

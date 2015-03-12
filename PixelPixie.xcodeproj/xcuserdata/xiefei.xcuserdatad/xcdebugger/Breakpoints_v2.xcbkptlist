@@ -196,11 +196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PixePixie/Sections/Battle/PPBallBattleScene.m"
-            timestampString = "447778813.89288"
+            timestampString = "447856437.293136"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "412"
-            endingLineNumber = "412"
+            startingLineNumber = "411"
+            endingLineNumber = "411"
             landmarkName = "-changeSkillBtnCdRounds"
             landmarkType = "5">
          </BreakpointContent>
@@ -211,13 +211,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PixePixie/Sections/Battle/PPBallBattleScene.m"
-            timestampString = "447779086.867723"
+            filePath = "PixePixie/Sections/Battle/PPTutorialNode.m"
+            timestampString = "447860421.75478"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2639"
-            endingLineNumber = "2639"
-            landmarkName = "-touchesBegan:withEvent:"
+            startingLineNumber = "465"
+            endingLineNumber = "465"
+            landmarkName = "-tutorialBackBtnClick:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -227,13 +227,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PixePixie/Sections/Battle/PPBallBattleScene.m"
-            timestampString = "447779086.867723"
+            filePath = "PixePixie/Sections/Battle/PPTutorialNode.m"
+            timestampString = "447860489.734986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2636"
-            endingLineNumber = "2636"
-            landmarkName = "-touchesBegan:withEvent:"
+            startingLineNumber = "461"
+            endingLineNumber = "461"
+            landmarkName = "-tutorialBackBtnClick:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -243,29 +243,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PixePixie/Sections/Battle/PPBallBattleScene.m"
-            timestampString = "447779086.867723"
+            filePath = "PixePixie/Sections/Battle/PPTutorialNode.m"
+            timestampString = "447860496.16976"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2626"
-            endingLineNumber = "2626"
-            landmarkName = "-touchesBegan:withEvent:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PixePixie/Sections/Battle/PPBallBattleScene.m"
-            timestampString = "447779086.867723"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2643"
-            endingLineNumber = "2643"
-            landmarkName = "-touchesBegan:withEvent:"
+            startingLineNumber = "468"
+            endingLineNumber = "468"
+            landmarkName = "-tutorialBackBtnClick:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
