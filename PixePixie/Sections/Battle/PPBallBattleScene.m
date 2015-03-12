@@ -2561,7 +2561,6 @@ CGFloat vector2angel(CGVector vector){
         return;
     }
     
-    
 }
 -(void)guideComplete
 {
