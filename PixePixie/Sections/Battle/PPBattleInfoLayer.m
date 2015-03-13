@@ -574,10 +574,10 @@
 -(void)startAttackAnimation:(BOOL)isPetAttack
 {
     SKNode * previousNode = [self childNodeWithName:@"spriteNodeMoving"];
-    if (previousNode) {
-        [previousNode removeFromParent];
-        previousNode = nil;
-    }
+//    if (previousNode) {
+//        [previousNode removeFromParent];
+//        previousNode = nil;
+//    }
     
     if (isPetAttack) {
         
@@ -592,7 +592,7 @@
         [spriteNodeMoving runAction:[SKAction group:[NSArray arrayWithObjects:actionMove,actionEffect, nil]] completion:^{
             spriteNodeMoving.hidden = YES;
 
-//            [spriteNodeMoving removeFromParent];
+            [spriteNodeMoving removeFromParent];
         }];
         ppixiePetBtn.position = CGPointMake(ppixieEnemyBtn.position.x-40.0f, originY);
         
@@ -635,7 +635,7 @@
         SKAction * actionEffect = [SKAction repeatAction:[[PPAtlasManager battle_fight_effect] getAnimation:@"moving"] count:2];
         [spriteNodeMoving runAction:[SKAction group:[NSArray arrayWithObjects:actionMove,actionEffect, nil]] completion:^{
             spriteNodeMoving.hidden = YES;
-//            [spriteNodeMoving removeFromParent];
+            [spriteNodeMoving removeFromParent];
         }];
         
         ppixieEnemyBtn.position = CGPointMake(originX + 20, ppixieEnemyBtn.position.y);

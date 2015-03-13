@@ -1424,7 +1424,6 @@ CGFloat vector2angel(CGVector vector){
 //    int decision = arc4random() % 2;
     [self setPlayerSideRoundRunState];
     
-    NSLog(@"ppballskillStatus=%d",[self.ballEnemy.physicsBody.PPBallSkillStatus intValue]);
     
     switch ([self.ballEnemy.PPBallSkillStatus intValue]) {
         case PPBuffTypeRattanTwineEffect:
@@ -1434,7 +1433,7 @@ CGFloat vector2angel(CGVector vector){
             break;
         default:
         {
-            [self creatCombosTotal:PP_BALL_TYPE_ENEMY_ELEMENT_NAME];
+//            [self creatCombosTotal:PP_BALL_TYPE_ENEMY_ELEMENT_NAME];
             [self performSelector:@selector(executeEnemyRoundAction:) withObject:[NSNumber numberWithInt:decision] afterDelay:1];
         }
             break;
@@ -2622,8 +2621,13 @@ CGFloat vector2angel(CGVector vector){
         return;
     }
     
+    if(tutorial1!=nil)
+    {
+    
     if (tutorial1->isTutorialType4) {
         return;
+    }
+        
     }
     
     if (touches.count > 1  || _isBallRolling) return;
