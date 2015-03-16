@@ -39,6 +39,8 @@ static NSString * kSkillName[kSkillCountTotal+1] =
 
 -(NSString *)getIconImageName;
 
++(NSString *)getIconImageNameBySkillId:(int)skillID;
+
 +(PPSkill *)skillWithId:(int)skillID AndLevel:(int)skillLevel;
 
 @end

@@ -16,6 +16,11 @@
     return [NSString stringWithFormat:@"%02ld_%@", (long)self.skillId, kSkillName[self.skillId]];
 }
 
++(NSString *)getIconImageNameBySkillId:(int)skillID
+{
+    return [NSString stringWithFormat:@"%02ld_%@", (long)skillID, kSkillName[skillID]];
+}
+
 +(PPSkill *)skillWithId:(int)skillID AndLevel:(int)skillLevel
 {
     NSDictionary *skillInfo = [[PPLocalData getInstance].allSkillsInfo objectForKey:[NSString stringWithFormat:@"%02d",skillID]];
