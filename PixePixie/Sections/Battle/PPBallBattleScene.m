@@ -1114,6 +1114,16 @@ CGFloat vector2angel(CGVector vector){
 
 -(void)removeSkillBar
 {
+    
+    if(tutorial1!=nil)
+    {
+        
+        if (tutorial1->isTutorialType4) {
+            return;
+        }
+        
+    }
+    
     if (petSkillBar) {
         petSkillBar.zPosition = PPZ_BACK_GROUND;
         petSkillBar.hidden = YES;
@@ -2686,6 +2696,15 @@ CGFloat vector2angel(CGVector vector){
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if(tutorial1!=nil)
+    {
+        
+        if (tutorial1->isTutorialType4) {
+            return;
+        }
+        
+    }
+    
     if (touches.count > 1) return;
     if (isNotSkillRun) return;
     
@@ -2740,6 +2759,15 @@ CGFloat vector2angel(CGVector vector){
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
+    if(tutorial1!=nil)
+    {
+        
+        if (tutorial1->isTutorialType4) {
+            return;
+        }
+        
+    }
     
     if (touches.count > 1) return;
     //    UITouch * touch = [touches anyObject];
