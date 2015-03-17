@@ -845,9 +845,6 @@ CGFloat vector2angel(CGVector vector){
 -(void)goNextEnemy:(NSString *)btnStr
 {
 #warning TODO 这里现在改成上边推进进入下一个战斗画面或者结算画面
-    
-    //    [self.hurdleReady setCurrentHurdle:currentEnemyIndex];
-    //    [self.view presentScene:self.hurdleReady transition:[SKTransition doorwayWithDuration:1]];
 
     NSDictionary * pixiesInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PixiesInfo"
                                                                                                            ofType:@"plist"]];
@@ -1016,7 +1013,6 @@ CGFloat vector2angel(CGVector vector){
                 NSLog(@"PPBallSkillStatus=%d",[spriteBtn.PPBallSkillStatus intValue]);
                 
                 if ([spriteBtn.PPBallSkillStatus intValue]<=0) {
-//                    spriteBtn.PPBallSkillStatus = [dictSkill objectForKey:@"skillcdrounds"];
                     spriteBtn.PPBallSkillStatus = [NSNumber numberWithInt:perSkill.skillCD];
 
                     spriteBtn.color = [UIColor blackColor];
@@ -1037,8 +1033,6 @@ CGFloat vector2angel(CGVector vector){
     }
     
     petSkillBar = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(self.size.width, self.size.height)];
-    //    petSkillBar.color = [UIColor blackColor];
-    //    petSkillBar.colorBlendFactor = 0.6;
     
     // 添加技能槽
     for (int i = 0; i < 4; i++) {
@@ -1050,12 +1044,8 @@ CGFloat vector2angel(CGVector vector){
             dictSkill = [self.pixiePlayer.pixieSkills objectAtIndex:i];
             perSkill = [self.pixiePlayer.skillList objectAtIndex:i];
         }
-        
-//        NSString * stringSkillStatus = [dictSkill objectForKey:@"skillstatus"];
-//        NSString * stringSkillBtn = [dictSkill objectForKey:@"skillbtntexture"];
+
         NSString * stringSkillBtn = perSkill.skillbtntexture;
-        
-#warning 这里改了技能图标
         
         PPSpriteButton * passButton = [PPSpriteButton buttonWithImageNamed:stringSkillBtn];
         passButton.size = CGSizeMake(50, 50);
@@ -1097,7 +1087,6 @@ CGFloat vector2angel(CGVector vector){
         //        cdLabel.position = passButton.position;
         [cdLabel setColor:[UIColor orangeColor]];
         [cdLabel setFontColor:[UIColor redColor]];
-//        NSString *cdString = [NSString stringWithFormat:@"%@",[dictSkill objectForKey:@"skillcdrounds"]];
         NSString * cdString = [NSString stringWithFormat:@"%d", perSkill.skillCD];
 
         passButton.PPBallSkillStatus = cdString;
@@ -1114,16 +1103,6 @@ CGFloat vector2angel(CGVector vector){
 
 -(void)removeSkillBar
 {
-    
-    if(tutorial1!=nil)
-    {
-        
-        if (tutorial1->isTutorialType4) {
-            return;
-        }
-        
-    }
-    
     if (petSkillBar) {
         petSkillBar.zPosition = PPZ_BACK_GROUND;
         petSkillBar.hidden = YES;
@@ -1711,17 +1690,9 @@ CGFloat vector2angel(CGVector vector){
     NSDictionary * skillInfo = [self.ballPlayer.pixie.pixieSkills objectAtIndex:
                                 [skillButton.name intValue] - PP_SKILLS_CHOOSE_BTN_TAG];
     CGFloat mpToConsume = [[skillInfo objectForKey:@"skillmpchange"] floatValue];
-    NSLog(@"currentMP=%f mptoConsume=%f",self.playerAndEnemySide.currentPPPixie.currentMP,mpToConsume);
     NSLog(@"skillInfo=%@",skillInfo);
     [self setPlayerSideRoundRunState];
-    
-  
-    if(isTutorial)
-    {
-        [self setPlayerSideRoundRunState];
-        tutorial1->isTutorialType4 = YES;
-        [tutorial1 resumeGuide];
-    }
+ 
    
     
     if (self.playerAndEnemySide.currentPPPixie.currentMP < fabsf(mpToConsume)) {
@@ -1737,6 +1708,13 @@ CGFloat vector2angel(CGVector vector){
 //        [additonLabel setText:[NSString stringWithFormat:@"%@已释放",[skillInfo objectForKey:@"skillname"]]];
         
         [self removeSkillBar];
+        
+        if(isTutorial)
+        {
+            [self setPlayerSideRoundRunState];
+            tutorial1->isTutorialType4 = YES;
+            [tutorial1 resumeGuide];
+        }
         
         switch ([[skillInfo objectForKey:@"skillid"] intValue]) {
             case PPBuffTypeDevilRebirth:
@@ -1768,12 +1746,6 @@ CGFloat vector2angel(CGVector vector){
                 break;
         }
         
-//        SKAction * actionScale = [SKAction scaleBy:2.0 duration:1];
-//        [additonLabel runAction:actionScale completion:^{
-//            [additonLabel removeFromParent];
-//            isNotSkillShowTime = NO;
-//            [self setPlayerSideRoundEndState];
-//        }];
         isNotSkillShowTime = NO;
         [self setPlayerSideRoundEndState];
         skillButton.color = [UIColor blackColor];
@@ -1786,75 +1758,7 @@ CGFloat vector2angel(CGVector vector){
         [self.playerAndEnemySide changePetMPValue:mpToConsume];
     }
   
-    //    if (isNotSkillShowTime) return;
-    
-//    switch ([[skillInfo objectForKey:@"skilltype"] intValue]) {
-//            
-//        case 0:
-//        {
-//            [self showSkillEventBegin:skillInfo];
-//        }
-//            break;
-//            
-//        case 1:
-//        {
-//            isNotSkillShowTime = YES;
-//            isNotSkillRun = NO;
-//            
-//            if ([[skillInfo objectForKey:@"skillname"] isEqualToString:@"森林瞬起"]) {
-//                
-//                
-//                //                NSMutableArray *animanArryay = [[NSMutableArray alloc] init];
-//                //
-//                //                for (int i=0; i <10; i++) {
-//                //                    SKTexture * temp = [[PPAtlasManager ball_magic] textureNamed:[NSString stringWithFormat:@"magic_ball_00%02d",i]];
-//                //                    [animanArryay addObject:temp];
-//                //                }
-//                
-//                
-//                for (PPBall * tBall in self.ballsElement) {
-//                    if (tBall.ballElementType == PPElementTypePlant) {
-//                        if ([tBall.physicsBody.PPBallSkillStatus intValue] != 1) {
-//                            tBall.physicsBody.PPBallSkillStatus = @1;
-//                            [tBall startMagicballAnimation];
-//                        }
-//                    }
-//                }
-//            }
-//            
-//            if ([[skillInfo objectForKey:@"skillname"] isEqualToString:@"木系掌控"]) {
-//                for (PPBall * tBall in self.ballsElement) {
-//                    if ([tBall.name isEqualToString:@"ball_plant"]) {
-//                        
-//                        //                    [tBall runAction:[SKAction moveTo:CGPointMake(tBall.position.x-10, tBall.position.y-20) duration:2]];
-//                        
-//                        [tBall runAction:[SKAction moveBy:CGVectorMake((self.ballPlayer.position.x - tBall.position.x)/2.0f,
-//                                                                       (self.ballPlayer.position.y - tBall.position.y)/2.0f)
-//                                                 duration:2]];
-//                    }
-//                }
-//            }
-//            
-//            //            [self roundRotateMoved:PP_PET_PLAYER_SIDE_NODE_NAME];
-//            
-//        }
-//            break;
-//            
-//        case 2:
-//        {
-//            [self showSkillEventBegin:skillInfo];
-//        }
-//            break;
-//            
-//        case 3:
-//        {
-//            [self showSkillEventBegin:skillInfo];
-//        }
-//            break;
-//            
-//        default:
-//            break;
-//    }
+   
 }
 
 -(void)addBuffAnimation:(int)skillID
@@ -2213,25 +2117,13 @@ CGFloat vector2angel(CGVector vector){
         [self roundRotateMoved:PP_ENEMY_SIDE_NODE_NAME];
     } else {
         if (skillInfo.skillObject == 1) {
-#warning 去掉旧版的技能Buff
-//            if ([skillInfo.skillName isEqualToString:@"狼焰斩"]) {
-//                [self.playerAndEnemySide addBuffShow:[self getBuff:@"1"] andSide:PP_ENEMY_SIDE_NODE_NAME];
-//            }
+
             [self.playerAndEnemySide changeEnemyHPValue:skillInfo.HPChangeValue];
         } else {
             [self.playerAndEnemySide changePetHPValue:skillInfo.HPChangeValue];
         }
         [self roundRotateMoved:PP_PET_PLAYER_SIDE_NODE_NAME];
     }
-}
-
-#pragma mark ball delegate
-
--(void)elementBallAnimationEnd:(PPBall *)ball
-{
-    //    [ball removeFromParent];
-    //    [self.ballsElement removeObject:ball];
-    //    ball = nil;
 }
 
 #pragma mark SKScene  delegate
@@ -2323,7 +2215,6 @@ CGFloat vector2angel(CGVector vector){
                                                                            withSize:CGSizeMake(115.0f, 107.0f)
                                                                            withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeNightJudge]];
                 [self.playerAndEnemySide->ppixiePetBtn addChild:buffShowNode];
-                //  SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_fight_skill] getAnimation:@"02_devilbreath"] count:1:];
                 SKAction * windEffect = [[PPAtlasManager battle_fight_missile] getAnimation:@"01_tornado"];
                 SKAction * moveAction = [SKAction moveByX:self.playerAndEnemySide->ppixieEnemyBtn.position.x -
                                          self.playerAndEnemySide->ppixiePetBtn.position.x
@@ -2341,11 +2232,7 @@ CGFloat vector2angel(CGVector vector){
                     SKAction * actionBeated = [[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_beated",kElementTypeString[self.playerAndEnemySide.currentPPPixieEnemy.pixieElement]]];
                     
                     [self.playerAndEnemySide->ppixieEnemyBtn runAction:actionBeated completion:^{
-                        //            [ppixiePetBtn removeAllActions];
-                        //            if (spriteNodeMoving) {
-                        //                [spriteNodeMoving removeFromParent];
-                        //
-                        //            }
+                     
                     }];
                 }];
                 
@@ -2762,6 +2649,8 @@ CGFloat vector2angel(CGVector vector){
     
     if(tutorial1!=nil)
     {
+        
+        NSLog(@"isTutorialType4＝%d",tutorial1->isTutorialType4);
         
         if (tutorial1->isTutorialType4) {
             return;

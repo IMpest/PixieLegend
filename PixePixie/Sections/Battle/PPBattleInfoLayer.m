@@ -573,14 +573,8 @@
 
 -(void)startAttackAnimation:(BOOL)isPetAttack
 {
-    SKNode * previousNode = [self childNodeWithName:@"spriteNodeMoving"];
-//    if (previousNode) {
-//        [previousNode removeFromParent];
-//        previousNode = nil;
-//    }
-    
+
     if (isPetAttack) {
-        
         SKSpriteNode * spriteNodeMoving = [SKSpriteNode spriteNodeWithImageNamed:@"moving_0000"];
         spriteNodeMoving.name = @"spriteNodeMoving";
         spriteNodeMoving.position = ppixiePetBtn.position;
@@ -595,26 +589,6 @@
             [spriteNodeMoving removeFromParent];
         }];
         ppixiePetBtn.position = CGPointMake(ppixieEnemyBtn.position.x-40.0f, originY);
-        
-        
-//        SKAction *action11=[[PPAtlasManager ball_action] getAnimation:[NSString stringWithFormat:@"%@3attack",kElementTypeString[currentPPPixie.pixieElement]]];
-//        SKAction *action111=[SKAction moveToX:-61.5f duration:1];
-        
-//        SKAction *action1Result=[SKAction sequence:[NSArray arrayWithObjects:action1, nil]];
-        
-        
-//        SKAction *action2=[[PPAtlasManager  ball_action] getAnimation:[NSString stringWithFormat:@"%@3move",kElementTypeString[currentPPPixie.pixieElement]]];
-//        SKAction *action3=[SKAction repeatActionForever:action2];
-        
-//        SKAction *result=[SKAction group:[NSArray arrayWithObjects:action1Result,action2, nil]];
-        
-//        [ppixieEnemyBtn removeAllActions];
-//        [ppixiePetBtn removeAllActions];
-        
-//        [ppixiePetBtn runAction:action1Result];
-        
-//        [ppixieEnemyBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"fire3_beated"] completion:^{
-//        }];
         
         [ppixieEnemyBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_beated",kElementTypeString[currentPPPixieEnemy.pixieElement]]] completion:^{
             
@@ -640,21 +614,9 @@
         
         ppixieEnemyBtn.position = CGPointMake(originX + 20, ppixieEnemyBtn.position.y);
 
-//        SKAction *action1=[SKAction moveToX:-30 duration:0.1];
-//        SKAction *action2=[[PPAtlasManager  ball_action] getAnimation:[NSString stringWithFormat:@"%@3move",kElementTypeString[currentPPPixieEnemy.pixieElement]]];
-//        SKAction *action3=[SKAction repeatActionForever:action2];
-//        SKAction *result=[SKAction group:[NSArray arrayWithObjects:action1,action3, nil]];
-//        [ppixieEnemyBtn runAction:result];
-//        [ppixiePetBtn removeAllActions];
-//        [ppixieEnemyBtn removeAllActions];
-        
-//        SKAction * actionBeated = [[PPAtlasManager pixie_battle_action] getAnimation:@"plant3_beated"];
-//        [ppixiePetBtn runAction:actionBeated completion:^{
-//        }];
         SKAction * actionBeated = [[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_beated",kElementTypeString[currentPPPixie.pixieElement]]];
         
         NSLog(@"beated=%@",kElementTypeString[currentPPPixie.pixieElement]);
-        
         
         [ppixiePetBtn runAction:actionBeated completion:^{
             
@@ -667,59 +629,17 @@
 {
     
     if (isPetAttack) {
-        
-//        if (attackShowNode) {
-//            [attackShowNode removeFromParent];
-//            attackShowNode = nil;
-//        }
-//        
-//        attackShowNode =[[SKSpriteNode alloc] init];
-//        attackShowNode.size = CGSizeMake(50.0f, 50.0f);
-//        [attackShowNode setPosition:CGPointMake(90.0f, 20.0f)];
-//        [self addChild:attackShowNode];
-//        
-        
-//        [ppixiePetBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"plant3_hit"] completion:^{
-//           
-//        
-//        }];
-        
+
         [ppixiePetBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_hit",kElementTypeString[currentPPPixie.pixieElement]]] completion:^{
-            
             
         }];
         
     }else
     {
-        
-//        if (attackShowNode) {
-//            [attackShowNode removeFromParent];
-//            attackShowNode = nil;
-//        }
-//        
-//        attackShowNode =[[SKSpriteNode alloc] init];
-//        attackShowNode.size = CGSizeMake(50.0f, 50.0f);
-//        [attackShowNode setPosition:CGPointMake(-30, 20.0f)];
-//        attackShowNode.xScale = -1;
-//        [self addChild:attackShowNode];
-        
-//        [ppixieEnemyBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"fire3_hit"] completion:^{
-//            
-//            
-//        }];
+
         [ppixieEnemyBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_hit",kElementTypeString[currentPPPixieEnemy.pixieElement]]] completion:^{
             
-            
         }];
-        
-//        [attackShowNode runAction:[[PPAtlasManager pixie_battle_action] getAnimation:@"fire3_hit"] completion:^{
-//            if (attackShowNode) {
-//                [attackShowNode removeFromParent];
-//                attackShowNode = nil;
-//            }
-//            
-//            
-//        }];
         
     }
 
@@ -736,7 +656,6 @@
         
         SKSpriteNode *buffRatShowNode =[[SKSpriteNode alloc] init];
         buffRatShowNode.size = CGSizeMake(50.0f, 50.0f);
-        //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
         
         [buffRatShowNode setPosition:CGPointMake(-25.0f, 0.0f)];
         buffRatShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine];
@@ -758,18 +677,7 @@
             
             
         }];
-        
-//        SKSpriteNode *buffRatShowNodeEnemy =[[SKSpriteNode alloc] init];
-//        buffRatShowNodeEnemy.size = CGSizeMake(50.0f, 50.0f);
-//        //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
-//        [buffRatShowNodeEnemy setPosition:CGPointMake(-25.0f, 0.0f)];
-//        buffRatShowNodeEnemy.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine];
-//        
-//        
-//        [ppixieEnemyBtn addChild:buffRatShowNodeEnemy];
-//        
-//        SKAction *actionRepratEnemy = [SKAction repeatActionForever:[[PPAtlasManager battle_fight_skill] getAnimation:@"03_rattantwine"]];
-//        [buffRatShowNodeEnemy runAction:actionRepratEnemy];
+
 
     }
     

@@ -323,6 +323,8 @@
                
             }];
             
+            self->isTutorialType4 = YES;
+
             
         }
             
