@@ -198,6 +198,7 @@
     //暂停按钮
 //    PPSpriteButton *  stopBtn = [PPSpriteButton buttonWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_footer_pause",sceneString]]
 //                                                          andSize:CGSizeMake(32.5, 32.5)];
+    
     PPSpriteButton *  stopBtn = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"fight_btn_pause"] andSize:CGSizeMake(32.5, 32.5)];
     
     

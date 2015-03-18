@@ -325,6 +325,7 @@ CGFloat vector2angel(CGVector vector){
         }
     }else
     {
+        
         for (int i = 0; i < 5; i++) {
             
             PPBall * comboBall = [PPBall ballWithCombo];
@@ -455,6 +456,7 @@ CGFloat vector2angel(CGVector vector){
 // 处理人物球与连击球碰撞
 -(NSNumber *)dealPixieBallContactComboBall:(SKPhysicsContact *)contact andPetBall:(PPBall *)pixieball
 {
+    
     NSNumber * elementBodyStatus = nil;
     PPBall * elementBallTmp = nil;
     if (contact.bodyA == pixieball.physicsBody) {
@@ -601,7 +603,7 @@ CGFloat vector2angel(CGVector vector){
     alertNode->target = self;
     alertNode->btnClickSel = @selector(pauseMenuBtnClick:);
     [alertNode setColor:[UIColor yellowColor]];
-    alertNode.zPosition = PPZ_ALERT;
+    alertNode.zPosition = PPZ_PAUSE;
     [alertNode showPauseMenuAlertWithTitle:@"游戏暂停" andMessage:nil];
     [self addChild:alertNode];
 }
@@ -2477,6 +2479,16 @@ CGFloat vector2angel(CGVector vector){
         tutorial1->completeSel = @selector(guideComplete);
         tutorial1.position = CGPointMake(self.size.width/2.0f,self.size.height/2.0f);
         tutorial1.name = @"tutorial1";
+        
+        PPSpriteButton *  stopBtn = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"fight_btn_pause"] andSize:CGSizeMake(32.5, 32.5)];
+        
+        
+        stopBtn.position = CGPointMake(-130.0f, tutorial1.size.height/2.0f - 65.0f);
+        stopBtn.name = @"stopBtn";
+        [stopBtn addTarget:self selector:@selector(pauseBtnClick:)
+                withObject:stopBtn.name forControlEvent:PPButtonControlEventTouchUpInside];
+        [tutorial1 addChild:stopBtn];
+        
         [self addChild:tutorial1];
         
         
@@ -2647,11 +2659,15 @@ CGFloat vector2angel(CGVector vector){
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     
+    UITouch * touch = [touches anyObject];
+    CGPoint location = [touch locationInNode:self];
+    SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
+    
     if(tutorial1!=nil)
     {
         
         NSLog(@"isTutorialType4＝%d",tutorial1->isTutorialType4);
-        
+        //&&![touchedNode.name isEqualToString:@"stopBtn"]
         if (tutorial1->isTutorialType4) {
             return;
         }
@@ -2674,9 +2690,7 @@ CGFloat vector2angel(CGVector vector){
     
     if (_isBallDragging && !_isBallRolling) {
         
-        UITouch * touch = [touches anyObject];
-        CGPoint location = [touch locationInNode:self];
-        SKSpriteNode * touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
+       
         
         if (touchedNode == petSkillBar) {
             [self removeSkillBar];

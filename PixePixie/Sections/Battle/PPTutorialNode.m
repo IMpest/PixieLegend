@@ -126,14 +126,6 @@
             [contentNode addChild:tutorialBackBtn];
             
             
-            //    [contentNode addChild:[self creatLabel:[[self.battleGuideStringArray objectAtIndex:index] objectForKey:@"message"] fontname:@"Arial" fontcolor:[UIColor redColor] fontsize:10 verticalMargin:10 emptylineheight:10]];
-            
-            //    SKLabelNode *tutorialLabel=[[SKLabelNode alloc] init];
-            //    [tutorialLabel setText:[[self.battleGuideStringArray objectAtIndex:index] objectForKey:@"message"]];
-            //    [tutorialLabel setFontSize:10];
-            //    [tutorialLabel setColor:[UIColor redColor]];
-            //    [tutorialLabel addChild:tutorialLabel];
-            
             PPTextLabelNode *tutorialText=[PPTextLabelNode labelNodeWithFontNamed:@"Arial"];
             [tutorialText setText:[[self.battleGuideStringArray objectAtIndex:index] objectForKey:@"message"]];
             tutorialText.paragraphWidth = tutorialBackBtn.size.width-12;
@@ -154,11 +146,6 @@
             
             
             
-            
-//            SKSpriteNode *spriteFinger=[SKSpriteNode spriteNodeWithImageNamed:@"tutorial_finger.pvr.png"];
-//            spriteFinger.position = CGPointMake(spriteCircle.position.x, spriteCircle.position.y-20);
-//            spriteFinger.size = CGSizeMake(spriteFinger.size.width/2.0f, spriteFinger.size.height/2.0f);
-//            [contentNode addChild:spriteFinger];
             PPSpriteButton *  spriteFinger = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"tutorial_finger.pvr.png"] andSize:CGSizeMake(64/2.0f,128/2.0f)];
             [spriteFinger addTarget:self selector:@selector(tutorialBackBtnClick:)
                          withObject:[NSNumber numberWithInt:index] forControlEvent:PPButtonControlEventTouchUpInside];
