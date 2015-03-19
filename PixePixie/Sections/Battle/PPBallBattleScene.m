@@ -597,6 +597,8 @@ CGFloat vector2angel(CGVector vector){
 {
     self.paused = YES;
     
+    [self removeSkillBar];
+    
     PPCustomAlertNode *alertNode = [[PPCustomAlertNode alloc] initWithFrame:CGRectMake(self.size.width / 2,
                                                                                        self.size.height / 2,
                                                                                        self.size.width, self.size.height)];
@@ -606,6 +608,8 @@ CGFloat vector2angel(CGVector vector){
     alertNode.zPosition = PPZ_PAUSE;
     [alertNode showPauseMenuAlertWithTitle:@"游戏暂停" andMessage:nil];
     [self addChild:alertNode];
+    
+    
 }
 
 //
