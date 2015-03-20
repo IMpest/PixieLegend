@@ -597,7 +597,7 @@ CGFloat vector2angel(CGVector vector){
 {
     self.paused = YES;
     
-    [self removeSkillBar];
+//    [self removeSkillBar];
     
     PPCustomAlertNode *alertNode = [[PPCustomAlertNode alloc] initWithFrame:CGRectMake(self.size.width / 2,
                                                                                        self.size.height / 2,
@@ -2489,8 +2489,8 @@ CGFloat vector2angel(CGVector vector){
         
         stopBtn.position = CGPointMake(-130.0f, tutorial1.size.height/2.0f - 65.0f);
         stopBtn.name = @"stopBtn";
-        [stopBtn addTarget:self selector:@selector(pauseBtnClick:)
-                withObject:stopBtn.name forControlEvent:PPButtonControlEventTouchUpInside];
+        [stopBtn addTarget:self selector:@selector(pauseMenuBtnClick:)
+                withObject:@"button2" forControlEvent:PPButtonControlEventTouchUpInside];
         [tutorial1 addChild:stopBtn];
         
         [self addChild:tutorial1];

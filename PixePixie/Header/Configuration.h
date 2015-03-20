@@ -78,4 +78,4 @@
 #define PPZ_NUMBER              3010 // 飞出的数字
 #define PPZ_HINT                3011 // 文字提示（第几回合等）
 #define PPZ_ALERT               3020 // 弹出框（暂停或者结算界面使用）
-#define PPZ_PAUSE               3030 // 弹出框（暂停或者结算界面使用）
+#define PPZ_PAUSE               3030 // 停止（暂停界面使用）
