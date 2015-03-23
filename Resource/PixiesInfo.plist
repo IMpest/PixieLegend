@@ -12,17 +12,17 @@
 				<key>message</key>
 				<string>主人，这是我们第一次共同作战，下面让我给你讲解一下，如何和我一起战斗吧.</string>
 				<key>posx</key>
-				<integer>0</integer>
+				<integer>20</integer>
 				<key>posy</key>
 				<integer>180</integer>
 			</dict>
 			<dict>
 				<key>type</key>
-				<string>2</string>
+				<string>1</string>
 				<key>message</key>
 				<string>战斗区域分为两部分，下方方形区域是我的精神区域，主人你通过精神世界的我进行战斗。</string>
 				<key>posx</key>
-				<integer>0</integer>
+				<integer>20</integer>
 				<key>posy</key>
 				<integer>180</integer>
 			</dict>

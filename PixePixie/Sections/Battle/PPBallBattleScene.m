@@ -286,6 +286,7 @@ CGFloat vector2angel(CGVector vector){
 // 添加连击球
 -(void)initComboBalls
 {
+    
     self.ballsElement = [[NSMutableArray alloc] init];
     self.ballsCombos = [[NSMutableArray alloc] init];
     
@@ -367,8 +368,6 @@ CGFloat vector2angel(CGVector vector){
             
         }
     }
-    
-
 }
 
 // 设置连击球的特殊属性
@@ -2472,6 +2471,7 @@ CGFloat vector2angel(CGVector vector){
 
 -(void)didMoveToView:(SKView *)view
 {
+    
     if (isTutorial) {
         
         tutorial1=[[PPTutorialNode alloc] initWithColor:[UIColor clearColor] size:self.size];
@@ -2504,13 +2504,13 @@ CGFloat vector2angel(CGVector vector){
         [self performSelectorOnMainThread:@selector(roundRotateBegin) withObject:nil afterDelay:1.0f];
         
     }
-   
-    
     
 }
 
 -(void)willMoveFromView:(SKView *)view
 {
+    
+    
 }
 
 -(void)update:(NSTimeInterval)currentTime

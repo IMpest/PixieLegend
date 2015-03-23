@@ -47,6 +47,7 @@ UIScrollView * contentScrollView;
     menuScene.scaleMode = SKSceneScaleModeAspectFill;
     
     [self presentScene:menuScene];
+    
 }
 
 -(void)setMenuContentScrollView

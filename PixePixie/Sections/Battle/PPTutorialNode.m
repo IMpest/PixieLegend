@@ -25,10 +25,9 @@
     switch ([[[self.battleGuideStringArray objectAtIndex:index] objectForKey:@"type"] intValue]) {
         case 1:
         {
-            
+        
             
             CGPoint pos = CGPointMake([[[self.battleGuideStringArray objectAtIndex:index] objectForKey:@"posx"] floatValue], [[[self.battleGuideStringArray objectAtIndex:index] objectForKey:@"posy"] floatValue]);
-            
             
             SKSpriteNode *contentNode = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:self.size];
             contentNode.position = pos;
@@ -81,6 +80,31 @@
             [spriteFinger runAction:actionRepeat];
 
             
+            if (battleGuideIndex==3) {
+                
+                CGPoint points[]={{35,353},{160,353},{288,353},{288,220},{160,97}};
+                
+                for (int i = 0; i < 5; i++) {
+                    
+                    SKSpriteNode *spriteCircleCombo=[SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
+                    spriteCircleCombo.position = CGPointMake(points[i].x-self.size.width/2.0f+30, points[i].y-self.size.height/2.0f+80);
+                    [spriteCircleCombo setScale:0.95];
+                    spriteCircleCombo.size = CGSizeMake(spriteCircleCombo.size.width/2.0f, spriteCircleCombo.size.height/2.0f);
+                    
+                    [contentNode addChild:spriteCircleCombo];
+                    
+                }
+            }else if(battleGuideIndex == 4)
+            {
+                
+                SKSpriteNode *spriteCircleCombo=[SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
+                spriteCircleCombo.position = CGPointMake(70,116);
+                [spriteCircleCombo setScale:1.1];
+                spriteCircleCombo.size = CGSizeMake(spriteCircleCombo.size.width/2.0f, spriteCircleCombo.size.height/2.0f);
+                
+                [contentNode addChild:spriteCircleCombo];
+                
+            }
         }
             break;
             case 2:
@@ -386,6 +410,8 @@
         
         return;
     }
+    
+    
     [self setTutorialFinger:CGPointMake(arc4random()%160, arc4random()%160) atIndex:battleGuideIndex];
     
     
