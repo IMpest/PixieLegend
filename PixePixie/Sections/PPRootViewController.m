@@ -1,21 +1,29 @@
 
 #import "PPRootViewController.h"
 
+@interface PPRootViewController ()
+{
+    PPPlayerNameView * skViewName;
+    PPChoosePetView * skViewPixie;
+    UIView * userInfoBar;
+    UIView * menuInfoBar;
+    UIImageView * tabLight;
+    
+    PPInfoView * stoneView;
+    
+    PPMonsterMainView * monsterMainView;
+    PPKnapsackMainView * knapsackMainView;
+    PPFightingMainView * fightingMainView;
+    PPScheduleMainView * scheduleMainView;
+    PPOthersMainView * othersMainView;
+    
+    UIButton * userInfoBtn[5];
+}
+
+@end
+
+
 @implementation PPRootViewController
-
-PPPlayerNameView * skViewName;
-PPChoosePetView * skViewPixie;
-UIView * userInfoBar;
-UIView * menuInfoBar;
-UIImageView * tabLight;
-
-PPInfoView * stoneView;
-
-PPMonsterMainView * monsterMainView;
-PPKnapsackMainView * knapsackMainView;
-PPFightingMainView * fightingMainView;
-PPScheduleMainView * scheduleMainView;
-PPOthersMainView * othersMainView;
 
 NSString * userInfo[] =
 {
@@ -36,11 +44,14 @@ NSString * userInfo[] =
     [self.view addSubview:imgvBg];
     
     //    if (![[PPLocalData contentFromUserDefaultKey:PP_FIRST_LOG_IN] isEqualToString:@"Logged"]) {
-    if (YES) {
+    if (YES)
+    {
         // 首次启动菜单
         [self loadNameView];
         [self.view addSubview:skViewName];
-    } else {
+    }
+    else
+    {
         [self loadMainView];
         [self.view addSubview:skViewMain];
     }
@@ -50,7 +61,8 @@ NSString * userInfo[] =
 // 添加上下两个适配条
 -(void)addFitSizeBar
 {
-    if (CurrentDeviceRealSize.height > 500) {
+    if (CurrentDeviceRealSize.height > 500)
+    {
         UIImageView * upBlackBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fit_top.png"]];
         upBlackBar.frame = CGRectMake(0, 0, 320, 44);
         [self.view addSubview:upBlackBar];
@@ -89,7 +101,8 @@ NSString * userInfo[] =
     [self loadMainView];
     [self.view addSubview:skViewMain];
     
-    if (skViewPixie) {
+    if (skViewPixie)
+    {
         [skViewPixie removeFromSuperview];
         skViewPixie = nil;
     }
@@ -125,7 +138,8 @@ NSString * userInfo[] =
     userInfoBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     [userInfoBar setBackgroundColor:[UIColor clearColor]];
     
-    CGRect barPos[5] = {
+    CGRect barPos[5] =
+    {
         CGRectMake(30,  2,  80, 18),
         CGRectMake(140, 2,  80, 18),
         CGRectMake(30,  23, 80, 18),
@@ -157,16 +171,17 @@ NSString * userInfo[] =
     imgvMail.frame = barPos[4];
     [userInfoBar addSubview:imgvMail];
     
-    for (int i = 0; i < PP_MENU_COUNT; i++) {
-        UIButton  * userInfoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        userInfoBtn.backgroundColor = [UIColor clearColor];
-        userInfoBtn.frame = barPos[i];
-        userInfoBtn.tag = PP_USER_BUTON_TAG + i;
-        [userInfoBtn.titleLabel setFont:[UIFont systemFontOfSize:8]];
-        [userInfoBtn addTarget:self action:@selector(userBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-        [userInfoBtn setTitle:userInfo[i] forState:UIControlStateNormal];
-        [userInfoBar addSubview:userInfoBtn];
+    for (int i = 0; i < PP_MENU_COUNT; i++)
+    {
+        userInfoBtn[i] = [UIButton buttonWithType:UIButtonTypeCustom];
+        userInfoBtn[i].backgroundColor = [UIColor clearColor];
+        userInfoBtn[i].frame = barPos[i];
+        userInfoBtn[i].tag = PP_USER_BUTON_TAG + i;
+        [userInfoBtn[i].titleLabel setFont:[UIFont systemFontOfSize:8]];
+        [userInfoBtn[i] addTarget:self action:@selector(userBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [userInfoBar addSubview:userInfoBtn[i]];
     }
+    [self refreshLocalPlayerInfo];
     [skViewMain addSubview:userInfoBar];
     
     // 下方一排按钮
@@ -176,7 +191,8 @@ NSString * userInfo[] =
     imgvBgBottom.frame = CGRectMake(0, 0, 320, 44);
     [menuInfoBar addSubview:imgvBgBottom];
     
-    for (int i = 0; i < PP_MENU_COUNT; i++) {
+    for (int i = 0; i < PP_MENU_COUNT; i++)
+    {
         UIButton * menuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         menuBtn.tag = PP_MENU_BUTON_TAG + i;
         menuBtn.frame = CGRectMake(i * skViewMain.frame.size.width / PP_MENU_COUNT + ( 64 - 38 ) / 2, 5, 38, 38);
@@ -193,6 +209,15 @@ NSString * userInfo[] =
     
     [skViewMain bringSubviewToFront:monsterMainView];
     [self changeMenuState:PP_MENU_START];
+}
+
+// 根据本地Player信息更新上方信息栏
+-(void) refreshLocalPlayerInfo
+{
+    [userInfoBtn[0] setTitle:[NSString stringWithFormat:@"%@", [PPPlayer getInstance].playerName] forState:UIControlStateNormal];
+    [userInfoBtn[1] setTitle:[NSString stringWithFormat:@"%ld", [PPPlayer getInstance].playerEnergy] forState:UIControlStateNormal];
+    [userInfoBtn[2] setTitle:[NSString stringWithFormat:@"%ld", [PPPlayer getInstance].playerStone] forState:UIControlStateNormal];
+    [userInfoBtn[3] setTitle:[NSString stringWithFormat:@"%ld", [PPPlayer getInstance].playerGold] forState:UIControlStateNormal];
 }
 
 // 改变tab提示框位置

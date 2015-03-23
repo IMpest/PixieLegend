@@ -28,7 +28,6 @@ BOOL menuIsHidden;
         [self addChild:monsterInfo];
         
         // 上方按钮
-        
         PPSpriteButton * feedFromFriendButton = [PPSpriteButton buttonWithImageNamed:@"bt_monster_gift.png"];
         feedFromFriendButton.name = @"btFeedFromFriends";
         feedFromFriendButton.size = CGSizeMake(39, 40);
