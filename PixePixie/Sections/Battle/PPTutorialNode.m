@@ -26,7 +26,6 @@
         case 1:
         {
         
-            
             CGPoint pos = CGPointMake([[[self.battleGuideStringArray objectAtIndex:index] objectForKey:@"posx"] floatValue], [[[self.battleGuideStringArray objectAtIndex:index] objectForKey:@"posy"] floatValue]);
             
             SKSpriteNode *contentNode = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:self.size];
@@ -207,13 +206,15 @@
             
             SKAction *repeat = [SKAction repeatAction:sequne count:3];
             [contentNode runAction:repeat completion:^{
-              
+                isTutorialType4 = NO;
                 [self stopGuide];
                 if (target!=nil&&stopSel!=nil&&[target respondsToSelector:stopSel]) {
                     
                     [target performSelectorOnMainThread:stopSel withObject:nil waitUntilDone:YES];
                     
                 }
+                
+                
             }];
             
             
