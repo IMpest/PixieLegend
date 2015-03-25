@@ -10,8 +10,8 @@ UIView * skillIcon;
 -(id)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         UIImageView * imgvBg = [[UIImageView alloc] initWithImage:
-                                [[UIImage imageNamed:@"bg_alert"] stretchableImageWithLeftCapWidth:40
-                                                                                      topCapHeight:40]];
+                                [[UIImage imageNamed:@"bg_alert"] stretchableImageWithLeftCapWidth:51
+                                                                                      topCapHeight:51]];
         imgvBg.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
         [self addSubview:imgvBg];
     }

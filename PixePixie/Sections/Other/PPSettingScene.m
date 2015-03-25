@@ -16,13 +16,22 @@ static NSString * monsterBtnTitle[] = {
         [self addDefaultBackground];
         
         for (int i = 0; i < 4; i++) {
-            PPSpriteButton * monsterButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(200, 40)];
+            
+            PPSpriteButton * monsterButton = [PPSpriteButton buttonWithImageNamed:@"bt_normal"];
+            monsterButton.size = CGSizeMake(40, 40);
             monsterButton.position = CGPointMake(160, i * 60 + 120);
             monsterButton.name = [NSString stringWithFormat:@"%d",i];
-            [monsterButton setLabelWithText:monsterBtnTitle[i] andFont:[UIFont systemFontOfSize:15] withColor:nil];
+            monsterButton.centerRect = CGRectMake(26.0/51.0, 26.0/51.0, 1.0/51.0, 1.0/51.0);
+            monsterButton.xScale = 5.0;
             [monsterButton addTarget:self selector:@selector(monsterButtonClick:)
                           withObject:monsterButton.name forControlEvent:PPButtonControlEventTouchUpInside];
             [self addChild:monsterButton];
+            
+            SKLabelNode * btTitle = [SKLabelNode labelNodeWithText:monsterBtnTitle[i]];
+            btTitle.position = CGPointMake(160, i * 60 + 115);
+            btTitle.fontColor = [SKColor blackColor];
+            btTitle.fontSize = 15.0f;
+            [self addChild:btTitle];
         }
     }
     return self;

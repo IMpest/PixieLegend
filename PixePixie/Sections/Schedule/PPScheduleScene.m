@@ -10,13 +10,6 @@ static NSString * activityTitle[] = {
     @"活动图标"
 };
 
-static NSString * joinTitle[] = {
-    @"进入",
-    @"进入",
-    @"进入",
-    @"进入",
-    @"进入"
-};
 
 @implementation PPScheduleScene
 
@@ -43,10 +36,11 @@ static NSString * joinTitle[] = {
             [labalContent setPosition:CGPointMake(0, 0)];
             [activityBarContent addChild:labalContent];
             
-            PPSpriteButton *joinButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(40.0f, 40.0f)];
-            [joinButton setLabelWithText:joinTitle[i] andFont:[UIFont systemFontOfSize:15] withColor:nil];
+            PPSpriteButton *joinButton = [PPSpriteButton buttonWithImageNamed:@"bt_normal"];
+            joinButton.size = CGSizeMake(40, 40);
             joinButton.position = CGPointMake(100, 0);
             joinButton.name = [NSString stringWithFormat:@"%d",i];
+            [joinButton setLabelWithText:@"GO" andFont:[UIFont systemFontOfSize:15] withColor:[UIColor blackColor]];
             [joinButton addTarget:self selector:@selector(joinButtonClick:)
                        withObject:joinButton.name forControlEvent:PPButtonControlEventTouchUpInside];
             [activityBarContent addChild:joinButton];
