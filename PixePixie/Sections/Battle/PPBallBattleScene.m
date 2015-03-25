@@ -1276,7 +1276,7 @@ CGFloat vector2angel(CGVector vector){
 */
 
 // 改变元素球持续回合数
-/*
+
 -(void)changeBallsRoundsEnd
 {
     [self enumerateChildNodesWithName:PP_BALL_TYPE_PET_ELEMENT_NAME usingBlock:^(SKNode * node, BOOL * stop){
@@ -1307,7 +1307,7 @@ CGFloat vector2angel(CGVector vector){
     
     [self changeBuffRound];
 }
-*/
+
 
 // 设置元素球标记值
 /*
@@ -1556,7 +1556,7 @@ CGFloat vector2angel(CGVector vector){
             [self setPlayerSideRoundEndState];
             [self creatCombosTotal:PP_BALL_TYPE_PET_ELEMENT_NAME];
             //            [self enemyAttackDecision];
-            //            [self changeBallsRoundsEnd];
+                        [self changeBallsRoundsEnd];
         }];
     } else {
         

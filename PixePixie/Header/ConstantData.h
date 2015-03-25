@@ -1,7 +1,7 @@
 
 static const int kWallThick = 15;                   // 墙的厚度
 static const int kBallNumberMax = 15;               // 球的最大数量
-static const int kBallSize = 40;                    // 默认球的直径
+static const int kBallSize = 50;                    // 默认球的直径
 static const int kBallSizePixie = 50;               // 宠物球的直径
 static const int kBallSustainRounds = 2;            // 元素球持续回合最大值
 

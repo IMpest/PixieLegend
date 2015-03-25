@@ -139,7 +139,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
     SKTexture *comboBallBack = [[PPAtlasManager battle_table_ball] textureNamed:@"ball_combo"];
     SKSpriteNode *nodeBack=[SKSpriteNode spriteNodeWithTexture:comboBallBack];
     nodeBack.zPosition = PPZ_FIGHT_EFFECT;
-    nodeBack.size = CGSizeMake(25.0f, 25.0f);
+    nodeBack.size = CGSizeMake(30.0f, 30.0f);
     [tBall addChild:nodeBack];
     
     
