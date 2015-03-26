@@ -36,8 +36,8 @@ UIScrollView * contentScrollView;
         passDictInfo = [NSDictionary dictionaryWithDictionary:[passArray objectAtIndex:index]];
     }
     
-#warning 火属性hardCode
-//    if (index == 0) index = 4;
+    // TODO: 火属性hardCode，后期需要改或者删除
+    // if (index == 0) index = 4;
     
     [self fullScreenForBattleScene];
 

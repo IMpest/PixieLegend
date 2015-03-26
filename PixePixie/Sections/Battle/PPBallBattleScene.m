@@ -849,7 +849,7 @@ CGFloat vector2angel(CGVector vector){
 //进入下一怪物遭遇动画
 -(void)goNextEnemy:(NSString *)btnStr
 {
-#warning TODO 这里现在改成上边推进进入下一个战斗画面或者结算画面
+    // TODO: 这里现在改成上边推进进入下一个战斗画面或者结算画面
 
     NSDictionary * pixiesInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PixiesInfo"
                                                                                                            ofType:@"plist"]];
@@ -1326,38 +1326,6 @@ CGFloat vector2angel(CGVector vector){
     return buffTmp;
 }
 
-// 获取数字图片拼接node
--(SKSpriteNode *)getNumber:(int)number AndColor:(NSString *)color {
-    
-    NSLog(@"color=%@ number=%d", color, number);
-    
-    SKSpriteNode * tNode = [[SKSpriteNode alloc] init];
-    if (number < 1 || color == nil) return tNode;
-    
-    CGFloat width = 13.0f;
-    
-    // 拼接数字图片
-    int i = 0;
-    while (number > 0) {
-        i++;
-        int tNum = number % 10;
-        number /= 10;
-        
-        NSString * tNumName = [NSString stringWithFormat:@"%@_%d.png", color, tNum];
-        SKSpriteNode * tNumNode = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_number] textureNamed:tNumName]];
-        tNumNode.position = CGPointMake(-width * i, 0);
-        tNumNode.xScale = 0.5;
-        tNumNode.yScale = 0.5;
-        [tNode addChild:tNumNode];
-    }
-    
-    // 调整位置居中
-    for (SKSpriteNode * numNode in [tNode children]) {
-        numNode.position = CGPointMake(numNode.position.x + (i+1) * width / 2, numNode.position.y);
-    }
-    return tNode;
-}
-
 #pragma mark Rounds and Turns
 
 // 回合开始
@@ -1483,7 +1451,7 @@ CGFloat vector2angel(CGVector vector){
     
     [contentSprite addChild:xSpriteNode];
     
-    SKSpriteNode *labelCombos=[self getNumber:value AndColor:@"orange"];
+    SKSpriteNode *labelCombos=[PPNodeTools getNumber:value AndColor:@"orange"];
     labelCombos.position=CGPointMake(7.5, 0.0);
     labelCombos.size = CGSizeMake(14.0, 13.0);
     [contentSprite addChild:labelCombos];
@@ -1503,7 +1471,7 @@ CGFloat vector2angel(CGVector vector){
 -(void)addValueChangeLabel:(int)value position:(CGPoint)labelPosition andColor:(NSString *)string
 {
     //    SKLabelNode *additonLabel= [[SKLabelNode alloc] init];
-    SKSpriteNode * additonLabel = [self getNumber:value AndColor:string];
+    SKSpriteNode * additonLabel = [PPNodeTools getNumber:value AndColor:string];
     additonLabel.name  = @"hpchange";
     //    additonLabel.fontColor = [UIColor redColor];
     additonLabel.position = labelPosition;
@@ -1531,7 +1499,7 @@ CGFloat vector2angel(CGVector vector){
         [self addChild:roundLabelContent];
         roundLabelContent.alpha = 0.0f;
         
-        SKSpriteNode * numberNode = [self getNumber:roundIndex AndColor:@"blue"];
+        SKSpriteNode * numberNode = [PPNodeTools getNumber:roundIndex AndColor:@"blue"];
         numberNode.size = CGSizeMake(50, 50);
         numberNode.xScale = 1;
         numberNode.yScale = 1;
@@ -1566,7 +1534,7 @@ CGFloat vector2angel(CGVector vector){
         [self addChild:roundLabelContent];
         roundLabelContent.alpha = 0.0f;
         
-        SKSpriteNode * numberNode = [self getNumber:roundIndex AndColor:@"blue"];
+        SKSpriteNode * numberNode = [PPNodeTools getNumber:roundIndex AndColor:@"blue"];
         numberNode.size = CGSizeMake(50, 50);
         numberNode.xScale = 1.0f;
         numberNode.yScale = 1.0f;
@@ -2163,7 +2131,7 @@ CGFloat vector2angel(CGVector vector){
             if (battleSkillInfo.petHitRecoverHP != 0) {
                 
                 
-                SKSpriteNode * addHPAnimation = [self  getNumber:battleSkillInfo.petHitRecoverHP AndColor:@"green"];
+                SKSpriteNode * addHPAnimation = [PPNodeTools getNumber:battleSkillInfo.petHitRecoverHP AndColor:@"green"];
                 [addHPAnimation setPosition:CGPointMake(20.0f, 20.0f)];
                 [self.playerAndEnemySide->ppixiePetBtn addChild:addHPAnimation];
                 

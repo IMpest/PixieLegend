@@ -138,6 +138,7 @@
 		19A8ED641A52977600EFEA7A /* pet_hint.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A8ED481A52977600EFEA7A /* pet_hint.png */; };
 		19A8ED651A52977600EFEA7A /* pet_name.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A8ED491A52977600EFEA7A /* pet_name.png */; };
 		19A8ED661A52977600EFEA7A /* pet_card.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A8ED4A1A52977600EFEA7A /* pet_card.png */; };
+		19C108241AC3E539003E0617 /* PPNodeTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C108231AC3E539003E0617 /* PPNodeTools.m */; };
 		19C488FA1AC2678100C4A859 /* bt_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 19C488F91AC2678100C4A859 /* bt_normal.png */; };
 		19C8BE041A4821AE00872CE9 /* battle_table_ball.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 19C8BE001A4821AE00872CE9 /* battle_table_ball.atlas */; };
 		19CBA8C31907C77600A249AB /* PPBall.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CBA8C21907C77600A249AB /* PPBall.m */; };
@@ -378,6 +379,8 @@
 		19A8ED481A52977600EFEA7A /* pet_hint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pet_hint.png; sourceTree = "<group>"; };
 		19A8ED491A52977600EFEA7A /* pet_name.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pet_name.png; sourceTree = "<group>"; };
 		19A8ED4A1A52977600EFEA7A /* pet_card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pet_card.png; sourceTree = "<group>"; };
+		19C108221AC3E539003E0617 /* PPNodeTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPNodeTools.h; path = PixePixie/General/PPNodeTools.h; sourceTree = "<group>"; };
+		19C108231AC3E539003E0617 /* PPNodeTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPNodeTools.m; path = PixePixie/General/PPNodeTools.m; sourceTree = "<group>"; };
 		19C488F91AC2678100C4A859 /* bt_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_normal.png; sourceTree = "<group>"; };
 		19C8BE001A4821AE00872CE9 /* battle_table_ball.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_table_ball.atlas; path = Resource/Image/battle_table_ball.atlas; sourceTree = "<group>"; };
 		19CBA8C11907C77600A249AB /* PPBall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPBall.h; path = Models/PPBall.h; sourceTree = "<group>"; };
@@ -618,6 +621,8 @@
 				197184591A83755E004A7880 /* PPInfoView.m */,
 				1971845A1A83755E004A7880 /* PPSpriteButton.h */,
 				1971845B1A83755E004A7880 /* PPSpriteButton.m */,
+				19C108221AC3E539003E0617 /* PPNodeTools.h */,
+				19C108231AC3E539003E0617 /* PPNodeTools.m */,
 			);
 			name = General;
 			path = ..;
@@ -1216,6 +1221,7 @@
 				D413CB611945FF62004B4FDE /* PPSkill.m in Sources */,
 				1968FE7F1A71EA8700CE8101 /* PPBallBattleSkillInfo.m in Sources */,
 				1968FE881A71EA9300CE8101 /* PPFightingMainView.m in Sources */,
+				19C108241AC3E539003E0617 /* PPNodeTools.m in Sources */,
 				19CBA8C31907C77600A249AB /* PPBall.m in Sources */,
 				193F96891A2EF49800F266A6 /* PPAppDelegate.m in Sources */,
 				193F96A71A2EF5DD00F266A6 /* PPCookingScene.m in Sources */,
