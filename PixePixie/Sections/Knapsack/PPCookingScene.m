@@ -2,9 +2,9 @@
 #import "PPCookingScene.h"
 
 static NSString * monsterBtnTitle [] = {
-    @"Clear",
-    @"Cooking Box",
-    @"Cook"
+    @"清空",
+    @"食材",
+    @"烹饪"
 };
 
 @implementation PPCookingScene
@@ -16,7 +16,7 @@ static NSString * monsterBtnTitle [] = {
         [self addTitle:@"Cooking" andBackButton:360.0f];
         
         SKSpriteNode * contentSpriteNode = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(280, 200)];
-        contentSpriteNode.position = CGPointMake(160.0f, 220);
+        contentSpriteNode.position = CGPointMake(160, 220);
         contentSpriteNode.name = @"contentMonsterBox";
         SKTexture * boxTexture = nil;
         switch (0) {
@@ -42,8 +42,8 @@ static NSString * monsterBtnTitle [] = {
         }
         
         for (int i = 0; i < 15; i++) {
-            PPSpriteButton *monsterButton = [PPSpriteButton buttonWithTexture:boxTexture andSize:CGSizeMake(40.0f, 40.0f)];
-            monsterButton.position = CGPointMake((i%5)*55-110, (i/5)*60-50);
+            PPSpriteButton *monsterButton = [PPSpriteButton buttonWithTexture:boxTexture andSize:CGSizeMake(40, 40)];
+            monsterButton.position = CGPointMake((i % 5) * 55 - 110, (i / 5) * 60 - 50);
             monsterButton.name = [NSString stringWithFormat:@"%d",i];
             [monsterButton addTarget:self selector:@selector(monsterBoxButtonClick:)
                           withObject:monsterButton.name forControlEvent:PPButtonControlEventTouchUpInside];
@@ -52,23 +52,23 @@ static NSString * monsterBtnTitle [] = {
         [self addChild:contentSpriteNode];
         
         for (int i = 0; i < 3; i++) {
-            PPSpriteButton * handleButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor]
-                                                                    andSize:CGSizeMake(70.0f, 40.0f)];
-            [handleButton setLabelWithText:monsterBtnTitle[i] andFont:[UIFont systemFontOfSize:11] withColor:nil];
+            PPSpriteButton * handleButton = [PPSpriteButton buttonWithColor:[UIColor clearColor] andSize:CGSizeMake(70, 40)];
+            [handleButton addChild:[PPNodeTools getButtonDefault:handleButton.size]];
+            [handleButton setLabelWithText:monsterBtnTitle[i] andFont:[UIFont systemFontOfSize:11] withColor:[UIColor blackColor]];
             switch (i) {
                 case 0:
                 {
-                    handleButton.position = CGPointMake(50.0f,40.0f);
+                    handleButton.position = CGPointMake(50, 40);
                 }
                     break;
                 case 1:
                 {
-                    handleButton.position = CGPointMake(160.0f,90.0f);
+                    handleButton.position = CGPointMake(160, 90);
                 }
                     break;
                 case 2:
                 {
-                    handleButton.position = CGPointMake(260.0f,40.0f);
+                    handleButton.position = CGPointMake(260, 40);
                 }
                     break;
 

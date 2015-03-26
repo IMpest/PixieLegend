@@ -17,29 +17,22 @@ static NSString * monsterBtnTitle[] = {
         
         for (int i = 0; i < 4; i++) {
             
-            
-            PPSpriteButton * monsterButton = [PPSpriteButton buttonWithImageNamed:@"bt_normal"];
-            monsterButton.size = CGSizeMake(200, 40);
-            monsterButton.position = CGPointMake(160, i * 60 + 120);
-            monsterButton.name = [NSString stringWithFormat:@"%d",i];
-            [monsterButton addChild:[PPNodeTools getButtonDefault:monsterButton.size]];
-            [monsterButton setLabelWithText:monsterBtnTitle[i] andFont:[UIFont systemFontOfSize:15.0]
+            PPSpriteButton * btOption = [PPSpriteButton buttonWithColor:[UIColor clearColor] andSize:CGSizeMake(200, 40)];
+            btOption.position = CGPointMake(160, i * 60 + 120);
+            btOption.name = [NSString stringWithFormat:@"%d",i];
+            [btOption addChild:[PPNodeTools getButtonDefault:btOption.size]];
+            [btOption setLabelWithText:monsterBtnTitle[i] andFont:[UIFont systemFontOfSize:15.0]
                                   withColor:[UIColor blackColor]];
-            [monsterButton addTarget:self selector:@selector(monsterButtonClick:)
-                          withObject:monsterButton.name forControlEvent:PPButtonControlEventTouchUpInside];
-            [self addChild:monsterButton];
+            [btOption addTarget:self selector:@selector(btOptionClick:)
+                          withObject:btOption.name forControlEvent:PPButtonControlEventTouchUpInside];
+            [self addChild:btOption];
             
-//            SKLabelNode * btTitle = [SKLabelNode labelNodeWithText:monsterBtnTitle[i]];
-//            btTitle.position = CGPointMake(160, i * 60 + 115);
-//            btTitle.fontColor = [SKColor blackColor];
-//            btTitle.fontSize = 15.0f;
-//            [self addChild:btTitle];
         }
     }
     return self;
 }
 
--(void)monsterButtonClick:(NSString *)name
+-(void)btOptionClick:(NSString *)name
 {
     switch ([name intValue]) {
         case 0:

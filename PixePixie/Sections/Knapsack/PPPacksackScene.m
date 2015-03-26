@@ -2,11 +2,11 @@
 #import "PPPacksackScene.h"
 
 static NSString * monsterBtnTitle[] = {
-    @"Clear",
-    @"Acquire coins",
-    @"Drop box",
-    @"Sell monster",
-    @"Cooking"
+    @"清空",
+    @"消费",
+    @"清单",
+    @"售出",
+    @"进入烹饪"
 };
 
 @implementation PPPacksackScene
@@ -53,8 +53,9 @@ static NSString * monsterBtnTitle[] = {
         [self addChild:contentSpriteNode];
         
         for (int i = 0; i < 5; i++) {
-            PPSpriteButton * handleButton = [PPSpriteButton buttonWithColor:[UIColor orangeColor] andSize:CGSizeMake(70, 40)];
-            [handleButton setLabelWithText:monsterBtnTitle[i] andFont:[UIFont systemFontOfSize:11] withColor:nil];
+            PPSpriteButton * handleButton = [PPSpriteButton buttonWithColor:[UIColor clearColor] andSize:CGSizeMake(70, 40)];
+            [handleButton addChild:[PPNodeTools getButtonDefault:handleButton.size]];
+            [handleButton setLabelWithText:monsterBtnTitle[i] andFont:[UIFont systemFontOfSize:11] withColor:[UIColor blackColor]];
             switch (i) {
                 case 0:
                 {
