@@ -1567,7 +1567,6 @@ CGFloat vector2angel(CGVector vector){
 {
     isNotSkillRun = YES;
     [self.ballPlayer closeActiveStatus];
-    //    [self.playerSkillSide setSideSkillButtonDisable];
 }
 
 // 回合结束状态 玩家可进行操作
