@@ -2,7 +2,7 @@
 #include"stdio.h"
 #import "PPBallBattleScene.h"
 #import "PPBallBattleSkillInfo.h"
-
+#import "PPNodeTools.h"
 #define PP_ENEMY_DEAD_CONTENT_NAME       @"enemydeadcontent"
 
 #define SPACE_BOTTOM 0
@@ -2435,6 +2435,12 @@ CGFloat vector2angel(CGVector vector){
 {
     [self pauseMenuBtnClick:@"button2"];
 }
+#pragma mark addpetskill
+-(void)guideAddPetSkillBar
+{
+//    [self.pixiePlayer.pixieBall startActiveStatus];
+    [self addPetSkillBar];
+}
 #pragma mark SKScene
 
 -(void)didMoveToView:(SKView *)view
@@ -2447,7 +2453,7 @@ CGFloat vector2angel(CGVector vector){
         [tutorial1 beginBattleGuide:@"battle"];
         tutorial1->target = self;
         tutorial1->stopSel =@selector(setPlayerSideRoundEndState);
-        tutorial1->type4Sel =@selector(addPetSkillBar);
+        tutorial1->type4Sel =@selector(guideAddPetSkillBar);
         tutorial1->completeSel = @selector(guideComplete);
         tutorial1.position = CGPointMake(self.size.width/2.0f,self.size.height/2.0f);
         tutorial1.name = @"tutorial1";

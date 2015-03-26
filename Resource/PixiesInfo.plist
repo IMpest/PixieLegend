@@ -88,16 +88,6 @@
 			</dict>
 			<dict>
 				<key>type</key>
-				<string>3</string>
-				<key>message</key>
-				<string>无</string>
-				<key>posx</key>
-				<integer>0</integer>
-				<key>posy</key>
-				<integer>0</integer>
-			</dict>
-			<dict>
-				<key>type</key>
 				<string>1</string>
 				<key>message</key>
 				<string>主人的技能已经成功释放了，接下来，拖动精神世界的我做出的的攻击将附加别的效果喔。</string>
@@ -105,6 +95,16 @@
 				<integer>0</integer>
 				<key>posy</key>
 				<integer>180</integer>
+			</dict>
+			<dict>
+				<key>type</key>
+				<string>3</string>
+				<key>message</key>
+				<string>无</string>
+				<key>posx</key>
+				<integer>0</integer>
+				<key>posy</key>
+				<integer>0</integer>
 			</dict>
 		</array>
 	</dict>

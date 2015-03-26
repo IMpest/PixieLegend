@@ -228,6 +228,7 @@
             
             
             SKSpriteNode *contentNode = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:self.size];
+//            contentNode.alpha = 0.0f;
             contentNode.position = pos;
             contentNode.name = PP_GUIDE_CONTENT_NODE_NAME;
             [self addChild:contentNode];
@@ -236,8 +237,8 @@
             PPSpriteButton *  tutorialBackBtn = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"tutorial_alert_bg"] andSize:CGSizeMake(241/2.0f,144/2.0f)];
             tutorialBackBtn.position = CGPointMake(0.0f, 0.0f);
             tutorialBackBtn.name = @"tutorial1";
-            [tutorialBackBtn addTarget:self selector:@selector(type4Guide)
-                            withObject:[NSNumber numberWithInt:index] forControlEvent:PPButtonControlEventTouchUpInside];
+//            [tutorialBackBtn addTarget:self selector:@selector(type4Guide)
+//                            withObject:[NSNumber numberWithInt:index] forControlEvent:PPButtonControlEventTouchUpInside];
             [contentNode addChild:tutorialBackBtn];
             
             
@@ -254,28 +255,42 @@
             NSLog(@"tutorialText width=%f",tutorialText.size.width);
             
             
-            SKSpriteNode *spriteCircle=[SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
-            spriteCircle.position = CGPointMake(tutorialBackBtn.position.x, tutorialBackBtn.position.y-20);
-            spriteCircle.size = CGSizeMake(spriteCircle.size.width/2.0f, spriteCircle.size.height/2.0f);
+//            SKSpriteNode *spriteCircle=[SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
+//            spriteCircle.position = CGPointMake(tutorialBackBtn.position.x-80, tutorialBackBtn.position.y+16);
+//            spriteCircle.size = CGSizeMake(spriteCircle.size.width/1.7f, spriteCircle.size.height/1.7f);
+//            
+//            [contentNode addChild:spriteCircle];
             
+            PPSpriteButton *  spriteCircle = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"tutorial_circle_big.png"] andSize:CGSizeMake(60,60)];
+            spriteCircle.name = @"tutorial1";
+                        [spriteCircle addTarget:self selector:@selector(type4Guide)
+                                        withObject:[NSNumber numberWithInt:index] forControlEvent:PPButtonControlEventTouchUpInside];
+            spriteCircle.position = CGPointMake(tutorialBackBtn.position.x-80, tutorialBackBtn.position.y+16);
+//            spriteCircle.size = CGSizeMake(spriteCircle.size.width/1.7f, spriteCircle.size.height/1.7f);
             [contentNode addChild:spriteCircle];
-            
-            
 
+            
+            
             PPSpriteButton *  spriteFinger = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"tutorial_finger.pvr.png"] andSize:CGSizeMake(64/2.0f,128/2.0f)];
-            [spriteFinger addTarget:self selector:@selector(type4Guide)
-                         withObject:[NSNumber numberWithInt:index] forControlEvent:PPButtonControlEventTouchUpInside];
-            spriteFinger.position = CGPointMake(spriteCircle.position.x, spriteCircle.position.y-20);
+//            [spriteFinger addTarget:self selector:@selector(type4Guide)
+//                         withObject:[NSNumber numberWithInt:index] forControlEvent:PPButtonControlEventTouchUpInside];
+            spriteFinger.position = CGPointMake(spriteCircle.position.x, spriteCircle.position.y-55);
             [contentNode addChild:spriteFinger];
             
             
             SKAction *actionSeq=[SKAction sequence:[NSArray arrayWithObjects:[SKAction scaleTo:0.5 duration:0.5],[SKAction scaleTo:1.0 duration:0.5], nil]];
             
-            SKAction *actionRepeat=[SKAction repeatAction:actionSeq count:5];
+            SKAction *actionRepeat=[SKAction repeatAction:actionSeq count:15];
             
             [spriteFinger runAction:actionRepeat completion:^{
                
             }];
+            
+            if (target!=nil&&stopSel!=nil&&[target respondsToSelector:stopSel]) {
+                
+                [target performSelectorOnMainThread:stopSel withObject:nil waitUntilDone:YES];
+                
+            }
             
             self->isTutorialType4 = YES;
 
