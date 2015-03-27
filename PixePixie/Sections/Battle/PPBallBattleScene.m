@@ -2557,6 +2557,9 @@ CGFloat vector2angel(CGVector vector){
     if ([touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]) {
         NSLog(@"touched pet begin");
         isTouchPetBall = YES;
+    }else
+    {
+        isTouchPetBall = NO;
     }
     
     
