@@ -2685,7 +2685,6 @@ CGFloat vector2angel(CGVector vector){
             && isTouchPetBall
             && distanceBetweenPoints(location, origtinTouchPoint) < 18)
         {
-            NSLog(@"touched pet end");
             NSLog(@"touchedNode=%@ name =%@",touchedNode,touchedNode.name);
             [_ballShadow removeFromParent];
             _ballShadow = nil;
