@@ -2671,7 +2671,6 @@ CGFloat vector2angel(CGVector vector){
     if (_isBallDragging && !_isBallRolling) {
         
        
-        
         if (touchedNode == petSkillBar) {
             [self removeSkillBar];
             return;
