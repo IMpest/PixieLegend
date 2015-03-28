@@ -135,7 +135,7 @@
 			<key>skillcdrounds</key>
 			<integer>3</integer>
 			<key>skillcontinue</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<key>02</key>
 		<dict>

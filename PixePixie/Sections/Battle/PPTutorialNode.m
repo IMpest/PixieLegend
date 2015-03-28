@@ -16,8 +16,9 @@
 {
     
     SKNode *contentNodePrevious = [self childNodeWithName:PP_GUIDE_CONTENT_NODE_NAME];
-    if (contentNodePrevious) {
-        [contentNodePrevious removeFromParent];
+    if (contentNodePrevious!=nil) {
+        [contentNodePrevious performSelectorOnMainThread:@selector(removeFromParent) withObject:nil afterDelay:0];
+
         contentNodePrevious = nil;
     }
     

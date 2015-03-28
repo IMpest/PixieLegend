@@ -1523,7 +1523,7 @@ CGFloat vector2angel(CGVector vector){
             [roundLabelContent removeFromParent];
             [self setPlayerSideRoundEndState];
             [self creatCombosTotal:PP_BALL_TYPE_PET_ELEMENT_NAME];
-            //            [self enemyAttackDecision];
+//                        [self enemyAttackDecision];
                         [self changeBallsRoundsEnd];
         }];
     } else {
@@ -1591,11 +1591,13 @@ CGFloat vector2angel(CGVector vector){
         [additonLabel setText:@"敌方弹球攻击"];
         [self addChild:additonLabel];
         
-        SKAction * actionScale = [SKAction scaleBy:2.0 duration:1];
+        SKAction * actionScale = [SKAction scaleBy:1.5 duration:1.0];
         [additonLabel runAction:actionScale completion:^{
-            [additonLabel removeFromParent];
+            [additonLabel performSelectorOnMainThread:@selector(removeFromParent) withObject:nil afterDelay:0];
+
             [self enemyDoPhysicsAttack];
         }];
+        
     }
 }
 
@@ -2217,6 +2219,7 @@ CGFloat vector2angel(CGVector vector){
                 [self.playerAndEnemySide changePetHPValue:battleSkillInfo.petHitRecoverHP];
                 NSLog(@"恶魔重生=%d",battleSkillInfo.petHitRecoverHP);
                 [self removeSkillBar];
+                
             }
             
             if (battleSkillInfo.enemyPoisoningHP != 0) {
@@ -2691,7 +2694,7 @@ CGFloat vector2angel(CGVector vector){
             
         }else if ((![touchedNode.name isEqualToString:PP_TOUCH_NODE_BALL_NAME]
                   || !isTouchPetBall)
-                  && distanceBetweenPoints(location, origtinTouchPoint) < 18){
+                  && distanceBetweenPoints(location, origtinTouchPoint) < 10){
             
             if (spriteArrow) {
                 spriteArrow.hidden = YES;
