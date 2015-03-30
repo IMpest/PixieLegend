@@ -1495,7 +1495,7 @@ CGFloat vector2angel(CGVector vector){
         // 回合开始
         SKSpriteNode *roundLabelContent=[[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(320, 240)];
         [roundLabelContent setPosition:CGPointMake(160, 300)];
-        roundLabelContent.zPosition =  PPZ_FIGHT_EFFECT_ATT;
+        roundLabelContent.zPosition =  PPZ_MESSAGE;
         [self addChild:roundLabelContent];
         roundLabelContent.alpha = 0.0f;
         
@@ -1574,7 +1574,6 @@ CGFloat vector2angel(CGVector vector){
 {
     isNotSkillRun = NO;
     [self.ballPlayer startActiveStatus];
-    //    [self.playerSkillSide setSideSkillButtonEnable];
 }
 
 // 物理攻击开始提示
@@ -1587,6 +1586,7 @@ CGFloat vector2angel(CGVector vector){
         
         SKLabelNode * additonLabel= [[SKLabelNode alloc] init];
         additonLabel.name  = @"EnemyPhysics";
+        additonLabel.zPosition = PPZ_MESSAGE;
         additonLabel.position = CGPointMake(160.0f, 200.0f);
         [additonLabel setText:@"敌方弹球攻击"];
         [self addChild:additonLabel];
@@ -1633,13 +1633,6 @@ CGFloat vector2angel(CGVector vector){
 -(void)skillInvalidBtnClick:(PPSpriteButton *)skillInvalidButton
 {
     
-   
-    
-    //       NSDictionary *skillChoosed = [self.ballPlayer.pixie.pixieSkills objectAtIndex:[skillInvalidButton.name intValue] - PP_SKILLS_CHOOSE_BTN_TAG];
-//    
-//    SKLabelNode * labelNode = (SKLabelNode *)[self childNodeWithName:@"mpisnotenough"];
-//    if (labelNode) [labelNode removeFromParent];
-    
     SKLabelNode * additonLabel= [[SKLabelNode alloc] init];
     additonLabel.name  = @"mpisnotenough";
     additonLabel.fontColor = [UIColor redColor];
@@ -1670,16 +1663,6 @@ CGFloat vector2angel(CGVector vector){
    
     
     if (self.playerAndEnemySide.currentPPPixie.currentMP < fabsf(mpToConsume)) {
-        
-//        SKLabelNode * labelNode = (SKLabelNode *)[self childNodeWithName:@"mpisnotenough"];
-//        if (labelNode) [labelNode removeFromParent];
-        
-//        SKLabelNode * additonLabel = [[SKLabelNode alloc] init];
-//        additonLabel.name  = @"mpisnotenough";
-//        additonLabel.fontColor = [UIColor redColor];
-//        additonLabel.position = CGPointMake(160.0f, 200.0f);
-//        [self addChild:additonLabel];
-//        [additonLabel setText:[NSString stringWithFormat:@"%@已释放",[skillInfo objectForKey:@"skillname"]]];
         
         [self removeSkillBar];
         
@@ -1742,37 +1725,21 @@ CGFloat vector2angel(CGVector vector){
         case PPBuffTypeDevilRebirth:
         {
             
-//            SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"01_devilrebirth.png"]];
-//            SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
-//            buffShowNode.size = CGSizeMake(115.0f, 107.0f);
-//            //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
-//            [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
-//            
-//            buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeDevilRebirth];
-            
            SKSpriteNode * buffShowNode = [PPAtlasManager createSpriteImageName:nil
                                                                        withPos:CGPointMake(0.0f, 0.0f)
                                                                       withSize:CGSizeMake(115.0f, 107.0f)
                                                                       withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeDevilRebirth]];
             [self.playerAndEnemySide->ppixiePetBtn addChild:buffShowNode];
             
-//            SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_fight_skill] getAnimation:@"01_devilrebirth"] count:0];
+            
             SKAction *actionRep = [SKAction repeatActionForever:[[PPAtlasManager battle_fight_skill]
                                                                  getAnimation:@"01_devilrebirth"]];
             [buffShowNode runAction:actionRep];
+            
         }
             break;
         case PPBuffTypeDevilBreath:
         {
-            
-            //            SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"02_devilbreath.png"]];
-            
-//            SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
-//            buffShowNode.size = CGSizeMake(115.0f, 107.0f);
-//            //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
-//            [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
-//            
-            //            buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeDevilBreath];
             
             SKSpriteNode * buffShowNode = [PPAtlasManager createSpriteImageName:nil
                                                                         withPos:CGPointMake(0, 0)
@@ -1784,21 +1751,6 @@ CGFloat vector2angel(CGVector vector){
             [buffShowNode runAction:actionRep];
             
             
-            
-            //            SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
-            //            buffShowNode.size = CGSizeMake(115.0f, 107.0f);
-            //            [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
-            //            [self.ballPlayer addChild:buffShowNode];
-            //            SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_fight_skill] getAnimation:@"02_devilbreath"] count:10];
-            //
-            //            [buffShowNode runAction:actionRep completion:^{
-            //                //                if (buffShowNode) {
-            //                //                    [buffShowNode removeFromParent];
-            //                //                }
-            //
-            //            }];
-            
-            
         }
             break;
         case PPBuffTypeRattanTwine:
@@ -1806,54 +1758,8 @@ CGFloat vector2angel(CGVector vector){
             
             [self changeBallStatus:PP_PET_PLAYER_SIDE_NODE_NAME];
             
-            
-//            currentPhysicsAttack = 1;
-//            CGFloat randomX = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
-//            CGFloat randomY = arc4random() % (int)(kAutoAttackMax * 2) - kAutoAttackMax;
-//            NSLog(@"randomX=%f randomY=%f",randomX,randomY);
-//            
-//            [self.ballPlayer.physicsBody applyImpulse:CGVectorMake(30, 30)];
-//            [self addBallMoveAnimation:self.ballPlayer.position];
-//            
-//            [self.ballPlayer startPixieAccelerateAnimation:CGVectorMake(randomX, randomY) andType:@"step"];
-//            [self setPlayerSideRoundRunState];
-//            _isBallRolling = YES;
-            
-
-            
             battleSkillInfo.rattanTwineState = 1;
             
-            //            SKAction *actionDisplaySkill =[SKAction setTexture:[SKTexture textureWithImageNamed:@"02_devilbreath.png"]];
-            
-            //            SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
-            //            buffShowNode.size = CGSizeMake(115.0f, 107.0f);
-            //            //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
-            //            [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
-            //            buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeDevilBreath];
-            //
-            //
-            //
-            //            [self.playerAndEnemySide->ppixiePetBtn addChild:buffShowNode];
-            //
-            //            //            SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_fight_skill] getAnimation:@"01_devilrebirth"] count:0];
-            //            SKAction *actionRep = [SKAction repeatActionForever:[[PPAtlasManager ball_elements] getAnimation:@"plant_aura"]];
-            //
-            //            [buffShowNode runAction:actionRep];
-            
-            
-            
-            //            SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] init];
-            //            buffShowNode.size = CGSizeMake(115.0f, 107.0f);
-            //            [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
-            //            [self.ballPlayer addChild:buffShowNode];
-            //            SKAction *actionRep = [SKAction repeatAction:[[PPAtlasManager battle_fight_skill] getAnimation:@"02_devilbreath"] count:10];
-            //
-            //            [buffShowNode runAction:actionRep completion:^{
-            //                //                if (buffShowNode) {
-            //                //                    [buffShowNode removeFromParent];
-            //                //                }
-            //
-            //            }];
             
         }
             break;
@@ -2211,7 +2117,6 @@ CGFloat vector2angel(CGVector vector){
                 }];
                 
                 return;
-                //                battleSkillInfo.nightJudgeValue= 0.0f;
             }
             
             // 恶魔重生
