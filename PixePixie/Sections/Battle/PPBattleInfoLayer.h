@@ -140,4 +140,8 @@
  */
 -(void)showRattanTwineAnimation:(BOOL)isPetShow;
 
+/**
+ * @brief
+ */
+-(void)beginTheBattle:(void(^)(void))complete;
 @end

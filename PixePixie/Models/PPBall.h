@@ -49,7 +49,6 @@ static void * MyObjectMyCustomPorpertyKey1 = (void *) @"MyObjectMyCustomPorperty
 @class PPBallBattleScene;
 @interface PPBall : SKSpriteNode
 {
-    
     @public
     id target;
     SEL animationEndSel;

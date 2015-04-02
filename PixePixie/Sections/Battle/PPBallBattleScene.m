@@ -1335,6 +1335,8 @@ CGFloat vector2angel(CGVector vector){
     roundIndex += 1;
     petCombos = 0;
     enemyCombos = 0;
+    
+    
     [self setRoundNumberLabel:@"回合开始" begin:YES];
 }
 
@@ -2382,7 +2384,11 @@ CGFloat vector2angel(CGVector vector){
         
         [(PPFightingMainView *)self.view fullScreenForBattleScene];
         [self setPlayerSideRoundRunState];
-        [self performSelectorOnMainThread:@selector(roundRotateBegin) withObject:nil afterDelay:1.0f];
+        [self.playerAndEnemySide beginTheBattle:^{
+            
+            [self performSelectorOnMainThread:@selector(roundRotateBegin) withObject:nil afterDelay:1.0f];
+        }];
+       
         
     }
     

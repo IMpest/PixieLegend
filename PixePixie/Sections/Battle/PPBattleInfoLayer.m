@@ -133,7 +133,7 @@
     // 己方头像
     ppixiePetBtn = [[SKSpriteNode alloc] init];
     ppixiePetBtn.size = CGSizeMake(PP_PET_ENEMY_SIZE_VALUE, PP_PET_ENEMY_SIZE_VALUE);
-    [ppixiePetBtn setPosition: CGPointMake(originX, originY)];
+    [ppixiePetBtn setPosition: CGPointMake(originX-100, originY)];
     [self addChild:ppixiePetBtn];
     
     [ppixiePetBtn runAction:[SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_stop",kElementTypeString[petppixie.pixieElement]]]]];
@@ -147,7 +147,7 @@
     [ppixiePetBtnLabel setColor:[SKColor redColor]];
     NSLog(@"pixieName = %@",petppixie.pixieName);
     [ppixiePetBtnLabel setText:@"连击:0"];
-    ppixiePetBtnLabel.position = CGPointMake(ppixiePetBtn.position.x,ppixiePetBtn.position.y - 80);
+    ppixiePetBtnLabel.position = CGPointMake(originX,ppixiePetBtn.position.y - 80);
     [self addChild:ppixiePetBtnLabel];
 
     // 己方生命条
@@ -158,15 +158,16 @@
     petPlayerHP->target = self;
     petPlayerHP->animateEnd = @selector(animatePetHPEnd:);
     petPlayerHP.anchorPoint = CGPointMake(0.5, 0.5);
-    petPlayerHP.position = CGPointMake(ppixiePetBtn.position.x,ppixiePetBtn.position.y-60.0f);
+    petPlayerHP.position = CGPointMake(originX,ppixiePetBtn.position.y-60.0f);
     [self addChild:petPlayerHP];
 
 
     // 敌方头像
     ppixieEnemyBtn = [[SKSpriteNode alloc] init];
     ppixieEnemyBtn.size = CGSizeMake(PP_PET_ENEMY_SIZE_VALUE, PP_PET_ENEMY_SIZE_VALUE);
-    [ppixieEnemyBtn setPosition:CGPointMake(originEnemyX,ppixiePetBtn.position.y)];
+    [ppixieEnemyBtn setPosition:CGPointMake(originEnemyX+100,ppixiePetBtn.position.y)];
     ppixieEnemyBtn.xScale = -1;
+    
     
     [self addChild:ppixieEnemyBtn];
     [ppixieEnemyBtn runAction:[SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_stop",kElementTypeString[enemyppixie.pixieElement]]]]];
@@ -181,7 +182,7 @@
     enemyPlayerHP->target = self;
     enemyPlayerHP->animateEnd = @selector(animateEnemyHPEnd:);
     enemyPlayerHP.anchorPoint = CGPointMake(0.5, 0.5);
-    enemyPlayerHP.position = CGPointMake(ppixieEnemyBtn.position.x,ppixieEnemyBtn.position.y-60.0f);
+    enemyPlayerHP.position = CGPointMake(originEnemyX,ppixieEnemyBtn.position.y-60.0f);
     [self addChild:enemyPlayerHP];
     
     
@@ -191,13 +192,11 @@
     ppixieBtnLabel.name = PP_ENEMY_COMBOS_NAME;
     NSLog(@"pixieName=%@",enemyppixie.pixieName);
     [ppixieBtnLabel setText:@"连击:0"];
-    ppixieBtnLabel.position = CGPointMake(ppixieEnemyBtn.position.x, ppixiePetBtnLabel.position.y);
+    ppixieBtnLabel.position = CGPointMake(originEnemyX, ppixiePetBtnLabel.position.y);
     [self addChild:ppixieBtnLabel];
     
     
     //暂停按钮
-//    PPSpriteButton *  stopBtn = [PPSpriteButton buttonWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_footer_pause",sceneString]]
-//                                                          andSize:CGSizeMake(32.5, 32.5)];
     
     PPSpriteButton *  stopBtn = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"fight_btn_pause"] andSize:CGSizeMake(32.5, 32.5)];
     
@@ -681,6 +680,28 @@
 
 
     }
+    
+}
+#pragma mark show
+-(void)beginTheBattle:(void(^)(void))complete
+{
+    
+    SKAction *actionPetMove = [SKAction moveToX:originX duration:2];
+    SKAction *actionEnemyMove = [SKAction moveToX:originEnemyX duration:2];
+
+    [ppixiePetBtn runAction:actionPetMove completion:^{
+        
+    
+    }];
+    [ppixieEnemyBtn runAction:actionEnemyMove completion:^{
+    
+        complete();
+    
+    }];
+
+//    [ppixiePetBtn setPosition: CGPointMake(originX, originY)];
+//    [ppixieEnemyBtn setPosition:CGPointMake(originEnemyX,ppixiePetBtn.position.y)];
+
     
 }
 @end
