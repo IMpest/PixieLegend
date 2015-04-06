@@ -130,10 +130,12 @@
     bgSprite.position = CGPointMake(0.0f,0.0f);
     [self addChild:bgSprite];
     
+    
+    
     // 己方头像
     ppixiePetBtn = [[SKSpriteNode alloc] init];
     ppixiePetBtn.size = CGSizeMake(PP_PET_ENEMY_SIZE_VALUE, PP_PET_ENEMY_SIZE_VALUE);
-    [ppixiePetBtn setPosition: CGPointMake(originX-100, originY)];
+    [ppixiePetBtn setPosition: CGPointMake(originX-120, originY)];
     [self addChild:ppixiePetBtn];
     
     [ppixiePetBtn runAction:[SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_stop",kElementTypeString[petppixie.pixieElement]]]]];
@@ -141,14 +143,14 @@
     
     
     // 己方连击数
-    SKLabelNode *ppixiePetBtnLabel = [[SKLabelNode alloc] init];
-    ppixiePetBtnLabel.fontSize = 10;
-    ppixiePetBtnLabel.name = PP_PET_COMBOS_NAME;
-    [ppixiePetBtnLabel setColor:[SKColor redColor]];
-    NSLog(@"pixieName = %@",petppixie.pixieName);
-    [ppixiePetBtnLabel setText:@"连击:0"];
-    ppixiePetBtnLabel.position = CGPointMake(originX,ppixiePetBtn.position.y - 80);
-    [self addChild:ppixiePetBtnLabel];
+//    SKLabelNode *ppixiePetBtnLabel = [[SKLabelNode alloc] init];
+//    ppixiePetBtnLabel.fontSize = 10;
+//    ppixiePetBtnLabel.name = PP_PET_COMBOS_NAME;
+//    [ppixiePetBtnLabel setColor:[SKColor redColor]];
+//    NSLog(@"pixieName = %@",petppixie.pixieName);
+//    [ppixiePetBtnLabel setText:@"连击:0"];
+//    ppixiePetBtnLabel.position = CGPointMake(originX,ppixiePetBtn.position.y - 80);
+//    [ppixiePetBtn addChild:ppixiePetBtnLabel];
 
     // 己方生命条
     petPlayerHP = [PPValueShowNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(50.0f, 10)];
@@ -158,8 +160,8 @@
     petPlayerHP->target = self;
     petPlayerHP->animateEnd = @selector(animatePetHPEnd:);
     petPlayerHP.anchorPoint = CGPointMake(0.5, 0.5);
-    petPlayerHP.position = CGPointMake(originX,ppixiePetBtn.position.y-60.0f);
-    [self addChild:petPlayerHP];
+    petPlayerHP.position = CGPointMake(0.0f,20.0f);
+    [ppixiePetBtn addChild:petPlayerHP];
 
 
     // 敌方头像
@@ -182,18 +184,18 @@
     enemyPlayerHP->target = self;
     enemyPlayerHP->animateEnd = @selector(animateEnemyHPEnd:);
     enemyPlayerHP.anchorPoint = CGPointMake(0.5, 0.5);
-    enemyPlayerHP.position = CGPointMake(originEnemyX,ppixieEnemyBtn.position.y-60.0f);
-    [self addChild:enemyPlayerHP];
+    enemyPlayerHP.position = CGPointMake(0.0f,20.0f);
+    [ppixieEnemyBtn addChild:enemyPlayerHP];
     
     
     // 敌方连击数
-    SKLabelNode *ppixieBtnLabel = [[SKLabelNode alloc] init];
-    ppixieBtnLabel.fontSize = 10;
-    ppixieBtnLabel.name = PP_ENEMY_COMBOS_NAME;
-    NSLog(@"pixieName=%@",enemyppixie.pixieName);
-    [ppixieBtnLabel setText:@"连击:0"];
-    ppixieBtnLabel.position = CGPointMake(originEnemyX, ppixiePetBtnLabel.position.y);
-    [self addChild:ppixieBtnLabel];
+//    SKLabelNode *ppixieBtnLabel = [[SKLabelNode alloc] init];
+//    ppixieBtnLabel.fontSize = 10;
+//    ppixieBtnLabel.name = PP_ENEMY_COMBOS_NAME;
+//    NSLog(@"pixieName=%@",enemyppixie.pixieName);
+//    [ppixieBtnLabel setText:@"连击:0"];
+//    ppixieBtnLabel.position = CGPointMake(originEnemyX, ppixiePetBtnLabel.position.y);
+//    [self addChild:ppixieBtnLabel];
     
     
     //暂停按钮

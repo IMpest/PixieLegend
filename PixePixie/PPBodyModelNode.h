@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+@class PPValueShowNode;
 
 @interface PPBodyModelNode : SKSpriteNode
 {
@@ -15,6 +16,11 @@
     SKSpriteNode *handNode;
     SKSpriteNode *bodyNode;
     SKSpriteNode *legNode;
+    
+    PPValueShowNode * bodyHPBar;
+    PPValueShowNode * bodyMPBar;
+
 
 }
+-(void)initUnitBody:(NSString *)bodyId;
 @end

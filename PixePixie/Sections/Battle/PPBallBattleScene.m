@@ -173,15 +173,6 @@ CGFloat vector2angel(CGVector vector){
         
         [self setPlayerSideRoundRunState];
         
-        
-//        PPSpriteButton *  stopBtn = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"fight_btn_pause"] andSize:CGSizeMake(32.5, 32.5)];
-//        
-//        
-//        stopBtn.position = CGPointMake(-130.0f, 60.0f);
-//        stopBtn.name = @"stopBtn";
-//        [stopBtn addTarget:self selector:@selector(pauseBtnClick:)
-//                withObject:stopBtn.name forControlEvent:PPButtonControlEventTouchUpInside];
-//        [self addChild:stopBtn];
 
     }
     return self;
@@ -337,21 +328,6 @@ CGFloat vector2angel(CGVector vector){
             NSLog(@"%d %f %f", t, cx[t], cy[t]);
             comboBall.position = CGPointMake(cx[t], cy[t] + PP_FIT_TOP_SIZE);
             
-            // 调整随机尺寸结果防止重叠
-            //        BOOL isRequred = NO;
-            //        while (!isRequred) {
-            //            isRequred = YES;
-            //            CGPoint pointCombo = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y + PP_FIT_TOP_SIZE);
-            //            for (PPBall * ballAdded in self.ballsCombos) {
-            //                CGFloat distanceValue = distanceBetweenPoints(ballAdded.position,pointCombo);
-            //                if (distanceValue <= 30) {
-            //                    isRequred = NO;
-            //                    break;
-            //                }
-            //            }
-            //            comboBall.position = pointCombo;
-            //            NSLog(@"%f %f", pointCombo.x, pointCombo.y);
-            //        }
             
             // 添加连击球
             comboBall.name = PP_BALL_TYPE_COMBO_NAME;
