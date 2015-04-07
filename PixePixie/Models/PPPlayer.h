@@ -11,6 +11,7 @@
     
     NSArray * playerFriends;
     NSArray * playerPixies;
+    
 }
 
 @property(nonatomic, retain) NSString * playerName;

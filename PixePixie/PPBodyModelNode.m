@@ -9,6 +9,7 @@
 #import "PPBodyModelNode.h"
 
 @implementation PPBodyModelNode
+
 -(void)setUnitBody:(NSString *)bodyId
 {
     bodyHPBar = [PPValueShowNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(50.0f, 10)];
@@ -31,6 +32,12 @@
     bodyMPBar.anchorPoint = CGPointMake(0.5, 0.5);
     bodyMPBar.position = CGPointMake(0.0f,20.0f);
     [self addChild:bodyMPBar];
+    
+    
+    
+    [self runAction:[SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_stop",kElementTypeString[0]]]]];
+    NSLog(@"plantname=%@",[NSString stringWithFormat:@"%@3_stop",kElementTypeString[0]]);
+    
     
     
     headNode = [[SKSpriteNode alloc] init];

@@ -99,23 +99,6 @@
 -(void)setSideElements:(PPPixie *)petppixie andEnemy:(PPPixie *)enemyppixie andSceneString:(NSString *)sceneString andIndex:(int)index
 {
     
-//    switch (index) {
-//        case 0:
-//            originX = -65.0f;
-//            break;
-//        case 1:
-//            originX = -35.0f;
-//            break;
-//        case 2:
-//            originX = 0.0f;
-//            break;
-//        case 3:
-//            originX = 35.0f;
-//            break;
-//            
-//        default:
-//            break;
-//    }
     originX = -65.0f;
     originEnemyX = 90.0f;
     originY = 40.0f;
@@ -141,16 +124,7 @@
     [ppixiePetBtn runAction:[SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_stop",kElementTypeString[petppixie.pixieElement]]]]];
     NSLog(@"plantname=%@",[NSString stringWithFormat:@"%@3_stop",kElementTypeString[enemyppixie.pixieElement]]);
     
-    
-    // 己方连击数
-//    SKLabelNode *ppixiePetBtnLabel = [[SKLabelNode alloc] init];
-//    ppixiePetBtnLabel.fontSize = 10;
-//    ppixiePetBtnLabel.name = PP_PET_COMBOS_NAME;
-//    [ppixiePetBtnLabel setColor:[SKColor redColor]];
-//    NSLog(@"pixieName = %@",petppixie.pixieName);
-//    [ppixiePetBtnLabel setText:@"连击:0"];
-//    ppixiePetBtnLabel.position = CGPointMake(originX,ppixiePetBtn.position.y - 80);
-//    [ppixiePetBtn addChild:ppixiePetBtnLabel];
+
 
     // 己方生命条
     petPlayerHP = [PPValueShowNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(50.0f, 10)];
@@ -186,17 +160,7 @@
     enemyPlayerHP.anchorPoint = CGPointMake(0.5, 0.5);
     enemyPlayerHP.position = CGPointMake(0.0f,20.0f);
     [ppixieEnemyBtn addChild:enemyPlayerHP];
-    
-    
-    // 敌方连击数
-//    SKLabelNode *ppixieBtnLabel = [[SKLabelNode alloc] init];
-//    ppixieBtnLabel.fontSize = 10;
-//    ppixieBtnLabel.name = PP_ENEMY_COMBOS_NAME;
-//    NSLog(@"pixieName=%@",enemyppixie.pixieName);
-//    [ppixieBtnLabel setText:@"连击:0"];
-//    ppixieBtnLabel.position = CGPointMake(originEnemyX, ppixiePetBtnLabel.position.y);
-//    [self addChild:ppixieBtnLabel];
-    
+
     
     //暂停按钮
     

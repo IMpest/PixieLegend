@@ -195,6 +195,7 @@
 		D46AE8CC1AA896C500AC9E7C /* tutorial_circle_big.png in Resources */ = {isa = PBXBuildFile; fileRef = D46AE8CA1AA896C500AC9E7C /* tutorial_circle_big.png */; };
 		D46AE8D11AA89ED500AC9E7C /* tutorial_alert_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = D46AE8D01AA89ED500AC9E7C /* tutorial_alert_bg.png */; };
 		D46D0D761ACD8C1E00DA236E /* PPBodyModelNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D46D0D751ACD8C1E00DA236E /* PPBodyModelNode.m */; };
+		D47986FD1AD4278500DBD766 /* PPTeamInfoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D47986FC1AD4278500DBD766 /* PPTeamInfoNode.m */; };
 		D481DFFA1A85110B0050E691 /* ball_elements.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF61A85110B0050E691 /* ball_elements.atlas */; };
 		D481DFFC1A85110B0050E691 /* ball_table.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF81A85110B0050E691 /* ball_table.atlas */; };
 		D4877A40196C314E009509E5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4877A3F196C314E009509E5 /* Images.xcassets */; };
@@ -449,6 +450,8 @@
 		D46AE8D01AA89ED500AC9E7C /* tutorial_alert_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorial_alert_bg.png; sourceTree = "<group>"; };
 		D46D0D741ACD8C1E00DA236E /* PPBodyModelNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPBodyModelNode.h; sourceTree = "<group>"; };
 		D46D0D751ACD8C1E00DA236E /* PPBodyModelNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPBodyModelNode.m; sourceTree = "<group>"; };
+		D47986FB1AD4278500DBD766 /* PPTeamInfoNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPTeamInfoNode.h; path = Models/PPTeamInfoNode.h; sourceTree = "<group>"; };
+		D47986FC1AD4278500DBD766 /* PPTeamInfoNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPTeamInfoNode.m; path = Models/PPTeamInfoNode.m; sourceTree = "<group>"; };
 		D481DFF61A85110B0050E691 /* ball_elements.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ball_elements.atlas; sourceTree = "<group>"; };
 		D481DFF81A85110B0050E691 /* ball_table.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ball_table.atlas; sourceTree = "<group>"; };
 		D4877A3F196C314E009509E5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -484,6 +487,8 @@
 				D4BE5ABE19513FFD001F72DE /* PPBuff.m */,
 				19CBA8C11907C77600A249AB /* PPBall.h */,
 				19CBA8C21907C77600A249AB /* PPBall.m */,
+				D47986FB1AD4278500DBD766 /* PPTeamInfoNode.h */,
+				D47986FC1AD4278500DBD766 /* PPTeamInfoNode.m */,
 				D46D0D741ACD8C1E00DA236E /* PPBodyModelNode.h */,
 				D46D0D751ACD8C1E00DA236E /* PPBodyModelNode.m */,
 			);
@@ -1193,6 +1198,7 @@
 				19F6EDAA18C6C09900BFFF9A /* main.m in Sources */,
 				1933E7181A2F08AC00E8C5BF /* PPSceneManager.m in Sources */,
 				193F96D81A2EF93E00F266A6 /* PPMonsterBookScene.m in Sources */,
+				D47986FD1AD4278500DBD766 /* PPTeamInfoNode.m in Sources */,
 				D4BE5ABF19513FFD001F72DE /* PPBuff.m in Sources */,
 				191B9FEB1A6DF6A8005136AC /* PPMonsterInfoNode.m in Sources */,
 				193F96D71A2EF93E00F266A6 /* PPHelpScene.m in Sources */,

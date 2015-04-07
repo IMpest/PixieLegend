@@ -98,7 +98,6 @@ CGFloat vector2angel(CGVector vector){
         self.pixieEnemy = pixieB;
         sceneTypeString = kElementTypeString[sceneType];
         currentElementType = sceneType;
-//        _isTrapEnable = NO;
         isTutorial = isTutorialValue;
         isTouchPetBall = NO;
         isShowingSkillBar = NO;
@@ -141,21 +140,6 @@ CGFloat vector2angel(CGVector vector){
         bgWall.size = CGSizeMake(320, 320);
         bgWall.position = CGPointMake(CGRectGetMidX(self.frame), 160 + SPACE_BOTTOM + PP_FIT_TOP_SIZE);
         [self addChild:bgWall];
-        
-        // 添加状态条
-        
-        //        self.playerSkillSide = [[PPBattleInfoLayer alloc] init];
-        //        self.playerSkillSide.position = CGPointMake(self.size.width/2, 40 + PP_FIT_TOP_SIZE);
-        //        self.playerSkillSide.size =  CGSizeMake(self.size.width, 80);
-        //        self.playerSkillSide.name = PP_PET_PLAYER_SIDE_NODE_NAME;
-        //        self.playerSkillSide.target = self;
-        //        self.playerSkillSide.skillSelector = @selector(skillPlayerShowBegin:);
-        //        self.playerSkillSide.pauseSelector = @selector(pauseBtnClick:);
-        //        self.playerSkillSide.hpBeenZeroSel = @selector(hpBeenZeroMethod:);
-        //        self.playerSkillSide.skillInvalidSel = @selector(skillInvalidBtnClick:);
-        //        [self.playerSkillSide setColor:[UIColor grayColor]];
-        //        [self.playerSkillSide setSideSkillsBtn:pixieA andSceneString:sceneTypeString];
-        //        [self addChild:self.playerSkillSide];
         
         // 添加围墙
         self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
@@ -624,23 +608,6 @@ CGFloat vector2angel(CGVector vector){
         self.ballEnemy.physicsBody.resting = YES;
     }
     
-//    for (PPBall * tBall in self.ballsElement) {
-//        if (vectorLength(tBall.physicsBody.velocity) > kStopThreshold) {
-//            return NO;
-//        } else {
-//            tBall.physicsBody.velocity = CGVectorMake(0.0f, 0.0f);
-//            tBall.physicsBody.resting = YES;
-//        }
-//    }
-
-//    for (PPBall * tBall in self.ballsCombos) {
-//        if (vectorLength(tBall.physicsBody.velocity) > kStopThreshold) {
-//            return NO;
-//        } else {
-//            tBall.physicsBody.velocity = CGVectorMake(0, 0);
-//            tBall.physicsBody.resting = YES;
-//        }
-//    }
     return YES;
 }
 
@@ -652,7 +619,6 @@ CGFloat vector2angel(CGVector vector){
         
         _isBallRolling = NO; // 如果球都停止了标记停止
 
-//        for (PPBall * tBall in self.ballsElement) [tBall setToDefaultTexture];
         if (isTutorial) {
             
             [self initPlayerBalls];
@@ -664,11 +630,11 @@ CGFloat vector2angel(CGVector vector){
         [self.playerAndEnemySide resetPetAndEnemyPosition];
         
         if(currentPhysicsAttack == 1) {
+            
             [self roundRotateMoved:PP_PET_PLAYER_SIDE_NODE_NAME];
-            //            [self  showPhysicsAttackAnimation:PP_PET_PLAYER_SIDE_NODE_NAME];
+            
         } else {
             [self roundRotateMoved:PP_ENEMY_SIDE_NODE_NAME];
-            //            [self  showPhysicsAttackAnimation:PP_ENEMY_SIDE_NODE_NAME];
         }
     } else {
         // 速度小于临界点 停止
@@ -680,13 +646,8 @@ CGFloat vector2angel(CGVector vector){
             self.ballEnemy.physicsBody.velocity = CGVectorMake(0, 0);
         }
         
-//        for (SKNode * obj in self.ballsCombos) {
-//            if (vectorLength(obj.physicsBody.velocity) < kStopThreshold)
-//            {
-//                obj.physicsBody.velocity = CGVectorMake(0, 0);
-//            }
-//        }
     }
+    
 }
 
 // 设置战斗对象
@@ -703,7 +664,6 @@ CGFloat vector2angel(CGVector vector){
     {
         
         isHPZero = YES;
-//        self.paused = YES;
         [self setPlayerSideRoundRunState];
         [battleSkillInfo resetBattleSkillInfo];
         
@@ -808,6 +768,7 @@ CGFloat vector2angel(CGVector vector){
         self.ballPlayer.physicsBody.velocity = CGVectorMake(0.0f, 0.0);
         [self.playerAndEnemySide resetPetAndEnemyPosition];
        //        [self performSelectorOnMainThread:@selector(goNextEnemy) withObject:nil afterDelay:2];
+        
 
     } else {
         NSDictionary * dict = @{@"title":@"您的宠物已被打倒", @"context":@"请选择其他宠物出战"};
@@ -851,16 +812,6 @@ CGFloat vector2angel(CGVector vector){
     [ballScene setEnemyAtIndex:currentEnemyIndex + 1];
     [self.view presentScene:ballScene transition:[SKTransition doorsOpenHorizontalWithDuration:1]];
     
-//    SKNode * node = [self childNodeWithName:PP_ENEMY_DEAD_CONTENT_NAME];
-//    if (node) [node removeFromParent];
-//    
-//    NSLog(@"count =%lu,current=%d", (unsigned long)[self.enmeysArray count], currentEnemyIndex);
-//    
-//    NSDictionary * enemyDicInfo = [self.enmeysArray objectAtIndex:currentEnemyIndex];
-//    PPPixie * enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
-//    self.pixieEnemy = enemyPixie;
-//    
-//    [self setEnemyAtIndex:currentEnemyIndex + 1];
 }
 
 // 添加敌方单位各个元素
