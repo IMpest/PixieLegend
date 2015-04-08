@@ -199,6 +199,10 @@
 		D481DFFA1A85110B0050E691 /* ball_elements.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF61A85110B0050E691 /* ball_elements.atlas */; };
 		D481DFFC1A85110B0050E691 /* ball_table.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF81A85110B0050E691 /* ball_table.atlas */; };
 		D4877A40196C314E009509E5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4877A3F196C314E009509E5 /* Images.xcassets */; };
+		D49601CE1AD5614300FA30B6 /* PPLifeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D49601CD1AD5614300FA30B6 /* PPLifeNode.m */; };
+		D49601D11AD561D200FA30B6 /* PPPetLifeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D49601D01AD561D200FA30B6 /* PPPetLifeNode.m */; };
+		D49601D41AD561F700FA30B6 /* PPEnemyLifeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D49601D31AD561F700FA30B6 /* PPEnemyLifeNode.m */; };
+		D49601D71AD5743400FA30B6 /* PPBattleInfoBgNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D49601D61AD5743400FA30B6 /* PPBattleInfoBgNode.m */; };
 		D4BE5ABF19513FFD001F72DE /* PPBuff.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BE5ABE19513FFD001F72DE /* PPBuff.m */; };
 /* End PBXBuildFile section */
 
@@ -455,6 +459,14 @@
 		D481DFF61A85110B0050E691 /* ball_elements.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ball_elements.atlas; sourceTree = "<group>"; };
 		D481DFF81A85110B0050E691 /* ball_table.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ball_table.atlas; sourceTree = "<group>"; };
 		D4877A3F196C314E009509E5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D49601CC1AD5614300FA30B6 /* PPLifeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPLifeNode.h; path = Models/PPLifeNode.h; sourceTree = "<group>"; };
+		D49601CD1AD5614300FA30B6 /* PPLifeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPLifeNode.m; path = Models/PPLifeNode.m; sourceTree = "<group>"; };
+		D49601CF1AD561D200FA30B6 /* PPPetLifeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPPetLifeNode.h; path = Models/PPPetLifeNode.h; sourceTree = "<group>"; };
+		D49601D01AD561D200FA30B6 /* PPPetLifeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPPetLifeNode.m; path = Models/PPPetLifeNode.m; sourceTree = "<group>"; };
+		D49601D21AD561F700FA30B6 /* PPEnemyLifeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPEnemyLifeNode.h; path = Models/PPEnemyLifeNode.h; sourceTree = "<group>"; };
+		D49601D31AD561F700FA30B6 /* PPEnemyLifeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPEnemyLifeNode.m; path = Models/PPEnemyLifeNode.m; sourceTree = "<group>"; };
+		D49601D51AD5743400FA30B6 /* PPBattleInfoBgNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPBattleInfoBgNode.h; path = PixePixie/Sections/Battle/PPBattleInfoBgNode.h; sourceTree = SOURCE_ROOT; };
+		D49601D61AD5743400FA30B6 /* PPBattleInfoBgNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPBattleInfoBgNode.m; path = PixePixie/Sections/Battle/PPBattleInfoBgNode.m; sourceTree = SOURCE_ROOT; };
 		D4BE5ABD19513FFD001F72DE /* PPBuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPBuff.h; path = Models/PPBuff.h; sourceTree = "<group>"; };
 		D4BE5ABE19513FFD001F72DE /* PPBuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPBuff.m; path = Models/PPBuff.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -487,6 +499,12 @@
 				D4BE5ABE19513FFD001F72DE /* PPBuff.m */,
 				19CBA8C11907C77600A249AB /* PPBall.h */,
 				19CBA8C21907C77600A249AB /* PPBall.m */,
+				D49601CC1AD5614300FA30B6 /* PPLifeNode.h */,
+				D49601CD1AD5614300FA30B6 /* PPLifeNode.m */,
+				D49601CF1AD561D200FA30B6 /* PPPetLifeNode.h */,
+				D49601D01AD561D200FA30B6 /* PPPetLifeNode.m */,
+				D49601D21AD561F700FA30B6 /* PPEnemyLifeNode.h */,
+				D49601D31AD561F700FA30B6 /* PPEnemyLifeNode.m */,
 				D47986FB1AD4278500DBD766 /* PPTeamInfoNode.h */,
 				D47986FC1AD4278500DBD766 /* PPTeamInfoNode.m */,
 				D46D0D741ACD8C1E00DA236E /* PPBodyModelNode.h */,
@@ -569,6 +587,8 @@
 				1968FE751A71EA8700CE8101 /* PPBallBattleSkillInfo.m */,
 				1968FE761A71EA8700CE8101 /* PPBattleInfoLayer.h */,
 				1968FE771A71EA8700CE8101 /* PPBattleInfoLayer.m */,
+				D49601D51AD5743400FA30B6 /* PPBattleInfoBgNode.h */,
+				D49601D61AD5743400FA30B6 /* PPBattleInfoBgNode.m */,
 				1968FE7C1A71EA8700CE8101 /* PPValueShowNode.h */,
 				1968FE7D1A71EA8700CE8101 /* PPValueShowNode.m */,
 				1968FE781A71EA8700CE8101 /* PPSkillButtonNode.h */,
@@ -1194,6 +1214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D49601D41AD561F700FA30B6 /* PPEnemyLifeNode.m in Sources */,
 				193F96C91A2EF8E300F266A6 /* PPScheduleScene.m in Sources */,
 				19F6EDAA18C6C09900BFFF9A /* main.m in Sources */,
 				1933E7181A2F08AC00E8C5BF /* PPSceneManager.m in Sources */,
@@ -1212,9 +1233,11 @@
 				193F969E1A2EF53000F266A6 /* PPSellMonsterScene.m in Sources */,
 				D46AE8C81AA8937B00AC9E7C /* PPTutorialNode.m in Sources */,
 				193F96DA1A2EF93E00F266A6 /* PPOptionsScene.m in Sources */,
+				D49601D71AD5743400FA30B6 /* PPBattleInfoBgNode.m in Sources */,
 				1933E7161A2F08AC00E8C5BF /* PPAtlasManager.m in Sources */,
 				194692EC1A89F057007E0FDC /* PerformSelector.m in Sources */,
 				193F96CC1A2EF91000F266A6 /* PPOthersMainView.m in Sources */,
+				D49601CE1AD5614300FA30B6 /* PPLifeNode.m in Sources */,
 				193F968A1A2EF49800F266A6 /* PPRootViewController.m in Sources */,
 				1968FE831A71EA8700CE8101 /* PPValueShowNode.m in Sources */,
 				196202EB1A63ABB8008F88C4 /* PPChoosePetView.m in Sources */,
@@ -1250,6 +1273,7 @@
 				193F96C01A2EF8A400F266A6 /* PPChoosePetScrollView.m in Sources */,
 				1971845E1A83755E004A7880 /* PPCustomButton.m in Sources */,
 				1971845F1A83755E004A7880 /* PPInfoView.m in Sources */,
+				D49601D11AD561D200FA30B6 /* PPPetLifeNode.m in Sources */,
 				1968FE8C1A71EAAE00CE8101 /* PPMenuThemeScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -793,9 +793,6 @@ CGFloat vector2angel(CGVector vector){
     NSDictionary * petsChoosedInfo = [[pixiesInfo objectForKey:@"userpetinfo"] objectAtIndex:0];
     PPPixie * playerPixie = [PPPixie pixieWithData:petsChoosedInfo];
     
-//    if ([self.enmeysArray count]<=currentEnemyIndex) {
-//        [self.view presentScene:previousScene];
-//    }
     
     NSDictionary * enemyDicInfo = [self.enmeysArray objectAtIndex:currentEnemyIndex + 1];
     PPPixie * enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
@@ -829,14 +826,7 @@ CGFloat vector2angel(CGVector vector){
     
     // 添加 Ball of Enemey
     self.ballEnemy = self.pixieEnemy.pixieBall;
-//    self.ballEnemy.position = CGPointMake(BALL_RANDOM_X, BALL_RANDOM_Y + PP_FIT_TOP_SIZE);
     self.ballEnemy->battleCurrentScene = self;
-//    if (fabsf(self.ballEnemy.position.x) >= 290) {
-//        self.ballEnemy.position = CGPointMake(290, self.ballPlayer.position.y);
-//    }
-//    if (fabsf(self.ballEnemy.position.y) > 380) {
-//        self.ballEnemy.position = CGPointMake(self.ballPlayer.position.x, 380);
-//    }
     self.ballEnemy.physicsBody.categoryBitMask = EntityCategoryBall;
     self.ballEnemy.physicsBody.contactTestBitMask = EntityCategoryBall;
     [self addChild:self.ballEnemy];
