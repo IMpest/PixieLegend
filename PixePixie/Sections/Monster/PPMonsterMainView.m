@@ -6,7 +6,8 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
+    if (self)
+    {
         monsterScene = [[PPMonsterScene alloc] initWithSize:self.bounds.size];
         monsterScene.scaleMode = SKSceneScaleModeFill;
         [self presentScene:monsterScene];

@@ -78,8 +78,10 @@ BOOL menuIsHidden;
 // 子菜单
 -(void)showMonsterBtnClick:(PPSpriteButton *)showBtn
 {
-    if (menuIsHidden) {
-        for (int i = 0; i < 3; i++) {
+    if (menuIsHidden)
+    {
+        for (int i = 0; i < 3; i++)
+        {
             PPSpriteButton * monsterButton = [PPSpriteButton buttonWithImageNamed:@"bt_menu.png"];
             monsterButton.position = CGPointMake(160,i * 80 + 120);
             monsterButton.size = CGSizeMake(150, 60);
@@ -91,7 +93,9 @@ BOOL menuIsHidden;
             [self addChild:monsterButton];
         }
         menuIsHidden = NO;
-    } else {
+    }
+    else
+    {
         [self hideShowbtns];
     }
 }
@@ -100,7 +104,8 @@ BOOL menuIsHidden;
 {
     PPSpriteButton * btn = (PPSpriteButton *)[self childNodeWithName:@"pixieMenu"];
     btn.color = [UIColor orangeColor];
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
+    {
         SKNode * monsterButton = [self childNodeWithName:[NSString stringWithFormat:@"%d",i]];
         [monsterButton removeFromParent];
     }
@@ -121,7 +126,8 @@ BOOL menuIsHidden;
 
 -(void)monsterButtonClick:(NSString *)name
 {
-    switch ([name intValue]) {
+    switch ([name intValue])
+    {
         case 0:
         {
             PPSellMonsterScene * sellMonster = [[PPSellMonsterScene alloc] initWithSize:self.view.frame.size];

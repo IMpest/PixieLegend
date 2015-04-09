@@ -22,7 +22,8 @@ static const int kHurtBasicValue = 125;             // 物理攻击基础伤害�
 static const int kElementTypeMax = 10;              // 最大元素类型个数
 
 // 元素对应字符串
-static  NSString * kElementTypeString[kElementTypeMax+1] = {
+static  NSString *kElementTypeString[kElementTypeMax+1] =
+{
     @"none",
     @"metal",
     @"plant",
@@ -55,7 +56,8 @@ typedef NS_ENUM(int, PPElementType)
 };
 
 // 属性相克数值策划表
-static const float kElementInhibition[kElementTypeMax + 1][kElementTypeMax + 1] = {
+static const float kElementInhibition[kElementTypeMax + 1][kElementTypeMax + 1] =
+{
     {0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f, 0.00f},
     {0.00f, 1.00f, 1.30f, 1.00f, 0.70f, 1.15f, 0.85f, 1.15f, 0.85f, 0.55f, 1.00f},
     {0.00f, 0.70f, 1.00f, 1.15f, 1.00f, 1.30f, 0.55f, 1.15f, 1.00f, 0.85f, 1.15f},

@@ -4,8 +4,8 @@
 @interface PPLocalData : NSObject
 
 // 公共数据
-@property (nonatomic, retain) PPPixie * firstPixie;
-@property (nonatomic, retain) NSDictionary * allSkillsInfo;
+@property (nonatomic, retain) PPPixie *firstPixie;
+@property (nonatomic, retain) NSDictionary *allSkillsInfo;
 
 // 单例方法
 +(PPLocalData *)getInstance;

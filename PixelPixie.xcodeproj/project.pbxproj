@@ -184,6 +184,7 @@
 		197C625A1AD6C73F00DDFD23 /* PPLifeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 197C62541AD6C73F00DDFD23 /* PPLifeNode.m */; };
 		197C625B1AD6C73F00DDFD23 /* PPPetLifeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 197C62561AD6C73F00DDFD23 /* PPPetLifeNode.m */; };
 		197C625C1AD6C73F00DDFD23 /* PPTeamInfoNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 197C62581AD6C73F00DDFD23 /* PPTeamInfoNode.m */; };
+		197C62611AD6CB7900DDFD23 /* Code Guide Line.txt in Resources */ = {isa = PBXBuildFile; fileRef = 197C62601AD6CB7900DDFD23 /* Code Guide Line.txt */; };
 		198D051F1A515CE800D7244F /* battle_fight_pixie.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 198D051E1A515CE800D7244F /* battle_fight_pixie.atlas */; };
 		1992F7D71A889710008B4E87 /* battle_table_buff.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1992F7D61A889710008B4E87 /* battle_table_buff.atlas */; };
 		19C8BE041A4821AE00872CE9 /* battle_table_ball.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 19C8BE001A4821AE00872CE9 /* battle_table_ball.atlas */; };
@@ -439,6 +440,7 @@
 		197C625D1AD6C75D00DDFD23 /* Configuration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
 		197C625E1AD6C75D00DDFD23 /* ConstantData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstantData.h; sourceTree = "<group>"; };
 		197C625F1AD6C75D00DDFD23 /* Importation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Importation.h; sourceTree = "<group>"; };
+		197C62601AD6CB7900DDFD23 /* Code Guide Line.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Code Guide Line.txt"; path = "Header/Code Guide Line.txt"; sourceTree = "<group>"; };
 		198D051E1A515CE800D7244F /* battle_fight_pixie.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_fight_pixie.atlas; path = Resource/Image/battle_fight_pixie.atlas; sourceTree = SOURCE_ROOT; };
 		1992F7D61A889710008B4E87 /* battle_table_buff.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_table_buff.atlas; path = Resource/Image/battle_table_buff.atlas; sourceTree = SOURCE_ROOT; };
 		19C8BE001A4821AE00872CE9 /* battle_table_ball.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_table_ball.atlas; path = Resource/Image/battle_table_ball.atlas; sourceTree = SOURCE_ROOT; };
@@ -933,6 +935,7 @@
 		19F6EDA318C6C09900BFFF9A /* PixePixie */ = {
 			isa = PBXGroup;
 			children = (
+				197C62601AD6CB7900DDFD23 /* Code Guide Line.txt */,
 				193DC47C19685B46007308C7 /* Header */,
 				D43F42351947562A00B19F2F /* Sections */,
 				D449CFD2192BB278007179B1 /* Core */,
@@ -1097,6 +1100,7 @@
 				197C62091AD6C61500DDFD23 /* stone0.png in Resources */,
 				197C62261AD6C61500DDFD23 /* word_warning.png in Resources */,
 				197C62491AD6C61500DDFD23 /* element_fire.png in Resources */,
+				197C62611AD6CB7900DDFD23 /* Code Guide Line.txt in Resources */,
 				19F6EDA818C6C09900BFFF9A /* InfoPlist.strings in Resources */,
 				197C62291AD6C61500DDFD23 /* bg_words.png in Resources */,
 				1973588A1A441E2E008F0B4A /* battle_fight_effect.atlas in Resources */,

@@ -13,8 +13,9 @@ static PPSceneManager *pp_PPSceneManager = nil;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        if (pp_PPSceneManager==nil) {
-            pp_PPSceneManager=[[PPSceneManager alloc] init];
+        if (pp_PPSceneManager == nil)
+        {
+            pp_PPSceneManager = [[PPSceneManager alloc] init];
         }
     });
     return pp_PPSceneManager;
@@ -23,7 +24,8 @@ static PPSceneManager *pp_PPSceneManager = nil;
 -(id)init
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         _sceneInfo = [[NSMutableDictionary alloc] init];
     }
     return self;
@@ -32,7 +34,8 @@ static PPSceneManager *pp_PPSceneManager = nil;
 -(SKScene *)sceneForKey:(NSString *)key with:(CGSize)size
 {
     SKScene *pp_scene = [self.sceneInfo objectForKey:key];
-    if (pp_scene == nil) {
+    if (pp_scene == nil)
+    {
         pp_scene = [[NSClassFromString(key) alloc] initWithSize:size];
         [self.sceneInfo setObject:pp_scene forKey:key];
     }

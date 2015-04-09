@@ -25,7 +25,8 @@ PPPixie * pixieCurrent;
     [pixieNode runAction:stand];
     
     // 添加状态
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
+    {
         SKSpriteNode * buffButton = [[SKSpriteNode alloc] initWithImageNamed:@"buff_exp"];
         buffButton.position = CGPointMake(140, i * 40 + 20);
         buffButton.size = CGSizeMake(25, 25);
@@ -44,7 +45,8 @@ PPPixie * pixieCurrent;
 }
 
 -(void)clickFeed:(NSString *)stringName
-{}
+{
+}
 
 -(void)clickPixie:(NSString *)words
 {
@@ -59,7 +61,8 @@ PPPixie * pixieCurrent;
 // 让宠物执行动作（返回动作需要花费的时间）
 -(CGFloat)letPixieDoAction:(PPPixieActionType)pixieAction
 {
-    switch (pixieAction) {
+    switch (pixieAction)
+    {
         case PPPixieActionTypeRun:
         {
             // 添加宠物跑步动画
@@ -113,7 +116,8 @@ PPPixie * pixieCurrent;
 
 
 // 恢复正常的站立动作
--(void)letPixieStand{
+-(void)letPixieStand
+{    
     [pixieNode removeAllActions];
     NSString * str = [NSString stringWithFormat:@"%@_stop", pixieCurrent.getTextureName];
     SKAction * stand = [SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:str]];
