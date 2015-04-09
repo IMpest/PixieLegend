@@ -14,8 +14,10 @@ static PPPlayer * localPlayer = nil;
 
 +(PPPlayer *)getInstance
 {
-    @synchronized(self){
-        if (localPlayer == nil) {
+    @synchronized(self)
+    {
+        if (localPlayer == nil)
+        {
             localPlayer = [[PPPlayer alloc] init];
             localPlayer.playerName = @"testName";
             localPlayer.playerLevel = 1;
