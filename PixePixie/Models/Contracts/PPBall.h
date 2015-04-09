@@ -12,7 +12,6 @@ typedef NS_ENUM(NSInteger, PPBallType)
     PPBallTypeTrap,         // 陷阱球
 };
 
-
 @interface NSObject (ExtendedProperties)
 @property (nonatomic, strong, readwrite) id PPBallPhysicsBodyStatus;
 @property (nonatomic, strong, readwrite) id PPBallSkillStatus;
@@ -44,8 +43,8 @@ static void * MyObjectMyCustomPorpertyKey1 = (void *) @"MyObjectMyCustomPorperty
 {
     objc_setAssociatedObject(self, MyObjectMyCustomPorpertyKey1, myCustomProperty, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-
 @end
+
 @class PPBallBattleScene;
 @interface PPBall : SKSpriteNode
 {

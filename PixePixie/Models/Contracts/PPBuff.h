@@ -1,14 +1,4 @@
 
-//buff名称
-//static NSString * kBuffNameList[10] =
-//{
-//    @"none",
-//    @"fire_burn",  // buffid  1为灼烧
-//    @"plant_root", // buffid  2为缠绕
-//    @"stone"
-//};
-
-
 // 技能Buff标记常量组
 typedef NS_ENUM(int, PPPetSkillBuffFlag)
 {

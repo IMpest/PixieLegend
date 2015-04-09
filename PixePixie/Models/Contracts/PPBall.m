@@ -1,7 +1,12 @@
 
-#import "PPPixie.h"
-#import "ConstantData.h"
+#import "PPBall.h"
 #import "PPAtlasManager.h"
+#import "ConstantData.h"
+#import "Configuration.h"
+
+@class PPPixie;
+@class PPBuff;
+@class PPBasicScene;
 
 @interface PPBall ()
 @property (nonatomic) SKTexture * defaultTexture;
