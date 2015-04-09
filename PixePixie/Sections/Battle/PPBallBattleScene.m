@@ -2321,6 +2321,7 @@ CGFloat vector2angel(CGVector vector){
 {
     frameFlag++;
     frameFlag %= 30;
+    [self.playerAndEnemySide moveBackGround:5];
 }
 
 -(void)didSimulatePhysics

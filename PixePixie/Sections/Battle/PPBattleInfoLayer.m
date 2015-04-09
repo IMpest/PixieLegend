@@ -1,6 +1,7 @@
 
 #import "PPBattleInfoLayer.h"
 #import "PPAtlasManager.h"
+#import "PPBattleInfoBgNode.h"
 
 #define PP_PET_ENEMY_SIZE_VALUE 80
 
@@ -108,10 +109,16 @@
     isHaveDead = NO;
     
     // 添加上方背景图片
-    SKSpriteNode * bgSprite = [SKSpriteNode spriteNodeWithImageNamed:@"fight_back"];
-    bgSprite.size = CGSizeMake(320.0f, 160.0f);
-    bgSprite.position = CGPointMake(0.0f,0.0f);
-    [self addChild:bgSprite];
+//    SKSpriteNode * bgSprite = [SKSpriteNode spriteNodeWithImageNamed:@"fight_back"];
+//    bgSprite.size = CGSizeMake(320.0f, 160.0f);
+//    bgSprite.position = CGPointMake(0.0f,0.0f);
+//    [self addChild:bgSprite];
+    
+    battleBg = [[PPBattleInfoBgNode alloc] init];
+    battleBg.size = CGSizeMake(320.0f, 160.0f);
+    battleBg.position = CGPointMake(0.0f,0.0f);
+    [battleBg setColor:[UIColor orangeColor]];
+    [self addChild:battleBg];
     
     
     
@@ -669,5 +676,9 @@
 //    [ppixieEnemyBtn setPosition:CGPointMake(originEnemyX,ppixiePetBtn.position.y)];
 
     
+}
+-(void)moveBackGround:(CGFloat)speedValue
+{
+    [battleBg backgroundMove:speedValue];
 }
 @end

@@ -1,6 +1,6 @@
 
 @class PPValueShowNode;
-
+@class PPBattleInfoBgNode;
 @interface PPBattleInfoLayer : SKSpriteNode
 {
     PPValueShowNode * petPlayerHP;
@@ -13,6 +13,8 @@
     CGFloat originEnemyX;
 
     CGFloat originY;
+    
+    PPBattleInfoBgNode *battleBg;
 
     @public
     SKSpriteNode * ppixiePetBtn;
@@ -144,4 +146,9 @@
  * @brief
  */
 -(void)beginTheBattle:(void(^)(void))complete;
+/**
+ * @brief
+ */
+-(void)moveBackGround:(CGFloat)speedValue;
+
 @end
