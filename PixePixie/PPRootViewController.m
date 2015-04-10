@@ -17,7 +17,7 @@
     PPScheduleMainView * scheduleMainView;
     PPOthersMainView * othersMainView;
     
-    UIButton * userInfoBtn[5];
+    UIButton * userInfoBtn[PP_MENU_COUNT];
 }
 
 @end
@@ -242,14 +242,16 @@ NSString * userInfo[] =
 // 下方按钮点击
 -(void)menuBtnClick:(UIButton *)sender
 {
-    if (sender == nil) {
+    if (sender == nil)
+    {
         [skViewMain bringSubviewToFront:monsterMainView];
         return ;
     }
     
     [self changeMenuState:(int)sender.tag - PP_MENU_BUTON_TAG];
     
-    switch (sender.tag - PP_MENU_BUTON_TAG) {
+    switch (sender.tag - PP_MENU_BUTON_TAG)
+    {
         case 0:
         {
             [skViewMain bringSubviewToFront:monsterMainView];

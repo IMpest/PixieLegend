@@ -12,6 +12,7 @@
 
 /* Extensions */
 #import "NSObject+PerformSelectorEx.h"
+#import "SKTextureAtlas+AnimationBuilder.h"
 
 /* View */
 #import "PPPlayerNameView.h"

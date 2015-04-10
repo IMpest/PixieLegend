@@ -5,3 +5,4 @@
 -(SKAction *)getAnimationContrary:(NSString *)name;
 
 @end
+
