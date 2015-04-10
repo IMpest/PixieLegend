@@ -3,7 +3,6 @@
 
 @implementation PPAtlasManager
 
-
 #pragma mark demo v2.0
 
 +(SKTextureAtlas *)ball_elements
