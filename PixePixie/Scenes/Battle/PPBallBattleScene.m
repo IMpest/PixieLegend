@@ -1,10 +1,9 @@
 
-#include"stdio.h"
 #import "PPBallBattleScene.h"
 #import "PPBallBattleSkillInfo.h"
 #import "PPNodeTools.h"
-#define PP_ENEMY_DEAD_CONTENT_NAME       @"enemydeadcontent"
 
+#define PP_ENEMY_DEAD_CONTENT_NAME       @"enemydeadcontent"
 #define SPACE_BOTTOM 0
 #define BALL_RANDOM_X (kBallSizePixie + arc4random() % (int)(320 - kBallSizePixie * 2))
 #define BALL_RANDOM_Y (kBallSizePixie + arc4random() % (int)(320 - kBallSizePixie * 2) + SPACE_BOTTOM)
@@ -87,9 +86,8 @@ CGFloat vector2angel(CGVector vector){
        PixieEnemy:(PPPixie *)pixieB
      andSceneType:(PPElementType)sceneType andIndex:(int)enemyIndex withTutorial:(BOOL)isTutorialValue
 {
-    
-    if (self = [super initWithSize:size]) {
-        
+    if (self = [super initWithSize:size])
+    {
         // 处理参数
         self.pixiePlayer = pixieA;
         isHPZero = NO;
@@ -108,7 +106,6 @@ CGFloat vector2angel(CGVector vector){
         
         battleSkillInfo = [[PPBallBattleSkillInfo alloc] init];
         [battleSkillInfo resetBattleSkillInfo];
-        
         
         self.battleBuffArray = [[NSMutableArray alloc] init];
         
@@ -154,10 +151,7 @@ CGFloat vector2angel(CGVector vector){
         [self initPlayerBalls];
         [self initEnemyBall];
         
-        
         [self setPlayerSideRoundRunState];
-        
-
     }
     return self;
 }
@@ -181,7 +175,8 @@ CGFloat vector2angel(CGVector vector){
 // 添加己方球
 -(void)initPlayerBalls
 {
-    if (self.ballPlayer!=nil) {
+    if (self.ballPlayer!=nil)
+    {
         [self.ballPlayer removeFromParent];
         self.ballPlayer = nil;
     }
@@ -195,14 +190,13 @@ CGFloat vector2angel(CGVector vector){
     if (xPlayer < 20) xPlayer = 20;
     if (xPlayer > self.size.width - 20) xPlayer = self.size.width - 20;
     if (yPlayer < 64) yPlayer = 64 + self.ballPlayer.size.height/2.0f;
-
     if (yPlayer > 344) yPlayer = 344 - self.ballPlayer.size.height/2.0f;
-
     
     self.ballPlayer.name = @"ball_player";
     self.ballPlayer.position = CGPointMake(xPlayer, yPlayer);
     //    self.ballPlayer.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:20.0f];
-    if (isTutorial) {
+    if (isTutorial)
+    {
         self.ballPlayer.position = CGPointMake(50, 200);
     }
     self.ballPlayer.physicsBody.allowsRotation = NO;
@@ -211,8 +205,6 @@ CGFloat vector2angel(CGVector vector){
     self.ballPlayer.physicsBody.density = 1.0f;
     self.ballPlayer->battleCurrentScene = self;
     [self addChild:self.ballPlayer];
-    
-    
 }
 
 // 添加敌方球
@@ -231,26 +223,28 @@ CGFloat vector2angel(CGVector vector){
     self.ballEnemy.position = CGPointMake(x, y);
     self.ballEnemy->battleCurrentScene = self;
     
-    
-    if (self.ballEnemy.position.x >= 280.0f) {
+    if (self.ballEnemy.position.x >= 280.0f)
+    {
         self.ballEnemy.position = CGPointMake(280.0f, self.ballPlayer.position.y);
     }
-    if (self.ballEnemy.position.x <= 35) {
+    if (self.ballEnemy.position.x <= 35)
+    {
         self.ballEnemy.position = CGPointMake(35.0f, self.ballPlayer.position.y);
     }
     
-    if (self.ballEnemy.position.y > 365-self.ballEnemy.size.height/2.0f) {
+    if (self.ballEnemy.position.y > 365-self.ballEnemy.size.height/2.0f)
+    {
         self.ballEnemy.position = CGPointMake(self.ballPlayer.position.x, 365-self.ballEnemy.size.height/2.0f);
         
     }
-    if (self.ballEnemy.position.y < 50+self.ballEnemy.size.height/2.0f) {
+    if (self.ballEnemy.position.y < 50+self.ballEnemy.size.height/2.0f)
+    {
         self.ballEnemy.position = CGPointMake(self.ballPlayer.position.x, 50+self.ballEnemy.size.height/2.0f);
-        
     }
     
-    if (isTutorial) {
+    if (isTutorial)
+    {
         self.ballEnemy.position = CGPointMake(200, 300);
-
     }
     
     self.ballEnemy.physicsBody.categoryBitMask = EntityCategoryBall;
@@ -261,7 +255,6 @@ CGFloat vector2angel(CGVector vector){
 // 添加连击球
 -(void)initComboBalls
 {
-    
     self.ballsElement = [[NSMutableArray alloc] init];
     self.ballsCombos = [[NSMutableArray alloc] init];
     
@@ -271,8 +264,8 @@ CGFloat vector2angel(CGVector vector){
     CGFloat cx[tmax] = {40, 40, 40, 160, 160, 280, 280, 280};
     CGFloat cy[tmax] = {40, 160, 280, 40, 280, 40, 160, 280};
     
-    if (isTutorial) {
-        
+    if (isTutorial)
+    {
         CGPoint points[]={{35,345},{160,345},{300,345},{300,200},{160,50}};
         
         for (int i = 0; i < 5; i++) {
@@ -297,13 +290,12 @@ CGFloat vector2angel(CGVector vector){
             comboBall.PPBallSkillStatus = 0;
             [self addChild:comboBall];
             [self.ballsCombos addObject:comboBall];
-            
         }
-    }else
+    }
+    else
     {
-        
-        for (int i = 0; i < 5; i++) {
-            
+        for (int i = 0; i < 5; i++)
+        {
             PPBall * comboBall = [PPBall ballWithCombo];
             
             int t = arc4random() % tmax;
@@ -311,7 +303,6 @@ CGFloat vector2angel(CGVector vector){
             cb[t] = YES;
             NSLog(@"%d %f %f", t, cx[t], cy[t]);
             comboBall.position = CGPointMake(cx[t], cy[t] + PP_FIT_TOP_SIZE);
-            
             
             // 添加连击球
             comboBall.name = PP_BALL_TYPE_COMBO_NAME;
@@ -325,7 +316,6 @@ CGFloat vector2angel(CGVector vector){
             comboBall.PPBallSkillStatus = 0;
             [self addChild:comboBall];
             [self.ballsCombos addObject:comboBall];
-            
         }
     }
 }
@@ -447,92 +437,7 @@ CGFloat vector2angel(CGVector vector){
     
 }
 
-// 处理人物球与元素球碰撞(暂时废弃）
-/*
--(NSNumber *)dealPixieBallAndElementBall:(SKPhysicsContact *)contact andPetBall:(PPBall *)pixieball
-{
-    NSNumber * elementBodyStatus = nil;
-    PPBall * elementBallTmp = nil;
-    if (contact.bodyA == pixieball.physicsBody) {
-        elementBodyStatus = contact.bodyB.PPBallPhysicsBodyStatus;
-        elementBallTmp = (PPBall *)contact.bodyB.node ;
-    } else {
-        elementBodyStatus = contact.bodyA.PPBallPhysicsBodyStatus;
-        elementBallTmp = (PPBall *)contact.bodyA.node ;
-    }
-    NSLog(@"elementBodyStatus=%@",elementBodyStatus);
-    
-    if ([elementBodyStatus intValue] >= PP_ELEMENT_NAME_TAG) {
-        
-        if (self.ballPlayer == pixieball) {
-            
-            if (self.ballPlayer.ballElementType == elementBallTmp.ballElementType) {
-                
-                if (self.playerAndEnemySide.currentPPPixie.currentHP < self.playerAndEnemySide.currentPPPixie.pixieHPmax) {
-                    [self.playerAndEnemySide changePetHPValue:200];
-                    [self addValueChangeLabel:200 position:pixieball.position andColor:@"green"];
-                    [self.ballPlayer startPixieHealAnimation];
-                    petAssimSameEleNum ++;
-                    [elementBallTmp startElementBallHitAnimation:self.ballsElement isNeedRemove:YES andScene:self];
-                } else {
-                    [elementBallTmp startElementBallHitAnimation:self.ballsElement isNeedRemove:NO andScene:self];
-                }
-            } else {
-                if (self.playerAndEnemySide.currentPPPixie.currentHP >= 0.0f) {
-                    [self.playerAndEnemySide changePetHPValue:-200];
-                    petAssimDiffEleNum ++;
-                    [elementBallTmp startElementBallHitAnimation:self.ballsElement isNeedRemove:YES andScene:self];
-                    [self addValueChangeLabel:200 position:self.ballPlayer.position andColor:@"red"];
-                } else {
-                    [elementBallTmp startElementBallHitAnimation:self.ballsElement isNeedRemove:NO andScene:self];
-                }
-            }
-        } else {
-            if (self.ballEnemy.ballElementType == elementBallTmp.ballElementType) {
-                if (self.playerAndEnemySide.currentPPPixieEnemy.currentHP <self.playerAndEnemySide.currentPPPixieEnemy.pixieHPmax) {
-                    [self.playerAndEnemySide changeEnemyHPValue:200];
-                    [self addValueChangeLabel:200 position:pixieball.position andColor:@"green"];
-                    [self.ballEnemy startPixieHealAnimation];
-                    
-                    enemyAssimSameEleNum ++;
-                    [elementBallTmp startElementBallHitAnimation:self.ballsElement isNeedRemove:YES andScene:self];
-                    
-                }else
-                {
-                    [elementBallTmp startElementBallHitAnimation:self.ballsElement isNeedRemove:NO andScene:self];
-                }
-            } else {
-                if (self.playerAndEnemySide.currentPPPixieEnemy.currentHP >= 0.0f) {
-                    
-                    [self.playerAndEnemySide changeEnemyHPValue:-100];
-                    
-                    enemyAssimDiffEleNum ++;
-                    [elementBallTmp startElementBallHitAnimation:self.ballsElement isNeedRemove:YES andScene:self];
-                    [self addValueChangeLabel:100 position:self.ballEnemy.position andColor:@"red"];
-                } else {
-                    [elementBallTmp startElementBallHitAnimation:self.ballsElement isNeedRemove:YES andScene:self];
-                }
-            }
-        }
-    }
-    return elementBodyStatus;
-}
-*/
 
-// 处理弹珠台技能(暂时废弃)
-/*
--(NSNumber *)dealPallMoveSkillStatus:(SKPhysicsContact *)contact andPetBall:(PPBall *)pixieball
-{
-    NSNumber * skillStatus = nil;
-    
-    if (pixieball.physicsBody == contact.bodyA) {
-        skillStatus = contact.bodyB.PPBallSkillStatus;
-    } else {
-        skillStatus = contact.bodyA.PPBallSkillStatus;
-    }
-    return skillStatus;
-}
-*/
 
 #pragma mark BackAlert
 

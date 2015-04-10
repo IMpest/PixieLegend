@@ -1,6 +1,5 @@
 
-
-#import <UIKit/UIKit.h>
+@class PPInfoView;
 
 @interface PPChoosePetView : UIView
 

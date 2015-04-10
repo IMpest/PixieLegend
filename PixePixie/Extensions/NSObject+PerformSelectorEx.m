@@ -1,7 +1,7 @@
 
-#import "PerformSelector.h"
+#import "NSObject+PerformSelectorEx.h"
 
-@implementation NSObject (performSelectorEx)
+@implementation NSObject (PerformSelectorEx)
 
 - (void)performSelectorOnMainThread:(SEL)aSelector withObject:(id)anArgument afterDelay:(NSTimeInterval)delay
 {

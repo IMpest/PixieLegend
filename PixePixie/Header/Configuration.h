@@ -33,12 +33,15 @@
 
 #define PP_GUIDE_CONTENT_NODE_NAME          @"contentNode"
 
-#define PP_SKILL_STATUS_VALID               1
+// skill
 #define PP_SKILL_STATUS_INVALID             0
+#define PP_SKILL_STATUS_VALID               1
+
+// menu
+#define PP_MENU_START                       0
+#define PP_MENU_COUNT                       5
 
 // tags
-#define PP_MENU_START                       1000
-#define PP_MENU_COUNT                       1010
 #define PP_USER_BUTON_TAG                   1050
 #define PP_MENU_BUTON_TAG                   1100
 #define PP_PASSNUM_CHOOSE_TABLE_TAG         1200

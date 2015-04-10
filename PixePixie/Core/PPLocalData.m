@@ -5,13 +5,13 @@ static PPLocalData * localData = nil;
 
 @implementation PPLocalData
 
-// 这里其实不加也没问题的
-//@synthesize allSkillsInfo;
 
 +(PPLocalData *)getInstance
 {
-    @synchronized(self){
-        if (localData == nil) {
+    @synchronized(self)
+    {
+        if (localData == nil)
+        {
             localData = [[PPLocalData alloc] init];
             NSDictionary * pixiesInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PixiesInfo"
                                                                                                                    ofType:@"plist"]];
