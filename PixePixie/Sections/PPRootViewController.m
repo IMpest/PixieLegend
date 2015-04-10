@@ -61,7 +61,7 @@ NSString * userInfo[] =
 // 添加上下两个适配条
 -(void)addFitSizeBar
 {
-    if (CurrentDeviceRealSize.height > 500)
+    if (CURRENT_DEVICE_REAL_SIZE.height > 500)
     {
         UIImageView * upBlackBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fit_top.png"]];
         upBlackBar.frame = CGRectMake(0, 0, 320, 44);

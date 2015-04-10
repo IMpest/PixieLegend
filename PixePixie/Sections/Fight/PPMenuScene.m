@@ -74,7 +74,7 @@
     if (playerPixie == nil || enemyPixie == nil) return;
     
     // 创建战斗场景并显示
-    PPBallBattleScene * ballScene = [[PPBallBattleScene alloc] initWithSize:CurrentDeviceRealSize
+    PPBallBattleScene * ballScene = [[PPBallBattleScene alloc] initWithSize:CURRENT_DEVICE_REAL_SIZE
                                                                 PixiePlayer:playerPixie
                                                                  PixieEnemy:enemyPixie
                                                                andSceneType:PPElementTypeFire
@@ -151,7 +151,7 @@ andIndex:0 withTutorial:YES];
     if (playerPixie == nil || enemyPixie == nil) return;
     
     // 创建战斗场景并显示
-    PPBallBattleScene * ballScene = [[PPBallBattleScene alloc] initWithSize:CurrentDeviceRealSize
+    PPBallBattleScene * ballScene = [[PPBallBattleScene alloc] initWithSize:CURRENT_DEVICE_REAL_SIZE
                                                                 PixiePlayer:playerPixie
                                                                  PixieEnemy:enemyPixie
                                                                andSceneType:PPElementTypeFire

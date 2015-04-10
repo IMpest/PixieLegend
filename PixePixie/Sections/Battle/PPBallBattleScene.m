@@ -772,7 +772,7 @@ CGFloat vector2angel(CGVector vector){
 
     } else {
         NSDictionary * dict = @{@"title":@"您的宠物已被打倒", @"context":@"请选择其他宠物出战"};
-        PPCustomAlertNode * alertCustom=[[PPCustomAlertNode alloc] initWithFrame:CustomAlertFrame];
+        PPCustomAlertNode * alertCustom = [[PPCustomAlertNode alloc] initWithFrame:CUSTOM_ALERT_FRAME];
         [alertCustom showCustomAlertWithInfo:dict];
         [self addChild:alertCustom];
     }
@@ -798,7 +798,7 @@ CGFloat vector2angel(CGVector vector){
     PPPixie * enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
     
     // 创建战斗场景并显示
-    PPBallBattleScene * ballScene = [[PPBallBattleScene alloc] initWithSize:CurrentDeviceRealSize
+    PPBallBattleScene * ballScene = [[PPBallBattleScene alloc] initWithSize:CURRENT_DEVICE_REAL_SIZE
                                                                 PixiePlayer:playerPixie
                                                                  PixieEnemy:enemyPixie
                                                                andSceneType:currentElementType
