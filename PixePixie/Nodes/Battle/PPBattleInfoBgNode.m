@@ -56,46 +56,44 @@
         for (int i=0; i<2; i++) {
             SKSpriteNode *nearBg0 =[SKSpriteNode spriteNodeWithImageNamed:@"fight_back"];
             nearBg0.anchorPoint = CGPointMake(0.5, 0.5);
-//            nearBg0.zPosition = 10;
             [nearBg0 setColor:[UIColor redColor]];
-             nearBg0.size = CGSizeMake(320.0f, 160.0f);
+            nearBg0.size = CGSizeMake(320.0f, 160.0f);
 
             nearBg0.position = CGPointMake(nearBg0.frame.size.width*i, 0.0);
             [self addChild:nearBg0];
             arryNearBg[i] = nearBg0;
         }
-        
     }
+    
     return self;
 }
+
 -(void)backgroundMove:(CGFloat)speed
 {
-    
     NSLog(@"speed = %f",speed);
     
-    for (int i=0;i<2;i++) {
+    for (int i = 0; i < 2; i++)
+    {
         arryNearBg[i].position = CGPointMake(arryNearBg[i].position.x-speed, arryNearBg[i].position.y);
     }
     
-    if (arryNearBg[0].position.x + arryNearBg[0].frame.size.width < speed ){
-        
+    if (arryNearBg[0].position.x + arryNearBg[0].frame.size.width < speed )
+    {
         arryNearBg[0].position = CGPointMake(0, arryNearBg[0].position.y);
-        
         arryNearBg[1].position = CGPointMake(arryNearBg[0].frame.size.width, arryNearBg[1].position.y);
     }
     
-    for (int i=0; i<3; i++) {
+    for (int i=0; i<3; i++)
+    {
         arryFarBg[i].position =CGPointMake(arryFarBg[i].frame.size.width-speed/4, arryFarBg[i].position.y);
     }
     
-    if (arryFarBg[0].position.x + arryFarBg[0].frame.size.width < speed/4) {
+    if (arryFarBg[0].position.x + arryFarBg[0].frame.size.width < speed/4)
+    {
         arryFarBg[0].position = CGPointMake(0.0, arryFarBg[0].position.y);
         arryFarBg[1].position = CGPointMake(arryFarBg[0].frame.size.width, arryFarBg[1].position.y);
         arryFarBg[2].position = CGPointMake(arryFarBg[0].frame.size.width * 2, arryFarBg[2].position.y);
     }
-    
-    
-    
-    
 }
+
 @end

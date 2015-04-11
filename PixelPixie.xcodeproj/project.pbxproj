@@ -12,6 +12,7 @@
 		1921004D1AD6C57100A17D0B /* PixiesInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1921004A1AD6C57100A17D0B /* PixiesInfo.plist */; };
 		1933E74C1A2F11F100E8C5BF /* pixie_battle_action.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1933E7481A2F11F100E8C5BF /* pixie_battle_action.atlas */; };
 		193D9F381A5BCFBD005762D6 /* ui_number.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 193D9F371A5BCFBD005762D6 /* ui_number.atlas */; };
+		19670B5C1AD8E03000177FB8 /* NSObject+ExtendedProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 19670B5B1AD8E03000177FB8 /* NSObject+ExtendedProperties.m */; };
 		1968FE911A71ED1600CE8101 /* battle_fight_skill.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1968FE901A71ED1600CE8101 /* battle_fight_skill.atlas */; };
 		1973588A1A441E2E008F0B4A /* battle_fight_effect.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 197358891A441E2E008F0B4A /* battle_fight_effect.atlas */; };
 		197C61DB1AD6C61500DDFD23 /* buff_exp.png in Resources */ = {isa = PBXBuildFile; fileRef = 197C615D1AD6C61500DDFD23 /* buff_exp.png */; };
@@ -214,6 +215,8 @@
 		1921004A1AD6C57100A17D0B /* PixiesInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PixiesInfo.plist; sourceTree = "<group>"; };
 		1933E7481A2F11F100E8C5BF /* pixie_battle_action.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = pixie_battle_action.atlas; path = Resource/Image/pixie_battle_action.atlas; sourceTree = SOURCE_ROOT; };
 		193D9F371A5BCFBD005762D6 /* ui_number.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = ui_number.atlas; path = Resource/Image/ui_number.atlas; sourceTree = SOURCE_ROOT; };
+		19670B5A1AD8E03000177FB8 /* NSObject+ExtendedProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ExtendedProperties.h"; sourceTree = "<group>"; };
+		19670B5B1AD8E03000177FB8 /* NSObject+ExtendedProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ExtendedProperties.m"; sourceTree = "<group>"; };
 		1968FE901A71ED1600CE8101 /* battle_fight_skill.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_fight_skill.atlas; path = Resource/Image/battle_fight_skill.atlas; sourceTree = SOURCE_ROOT; };
 		197358891A441E2E008F0B4A /* battle_fight_effect.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = battle_fight_effect.atlas; path = Resource/Image/battle_fight_effect.atlas; sourceTree = SOURCE_ROOT; };
 		197C615D1AD6C61500DDFD23 /* buff_exp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buff_exp.png; sourceTree = "<group>"; };
@@ -1008,6 +1011,8 @@
 				19A29D481AD83B82006E0B35 /* SKTextureAtlas+AnimationBuilder.m */,
 				19A29D4C1AD83F29006E0B35 /* NSObject+PerformSelectorEx.h */,
 				19A29D4D1AD83F29006E0B35 /* NSObject+PerformSelectorEx.m */,
+				19670B5A1AD8E03000177FB8 /* NSObject+ExtendedProperties.h */,
+				19670B5B1AD8E03000177FB8 /* NSObject+ExtendedProperties.m */,
 			);
 			name = Extensions;
 			path = PixePixie/Extensions;
@@ -1346,6 +1351,7 @@
 				D4AE69091AD823090015FD42 /* PPMonsterBookScene.m in Sources */,
 				D4AE69031AD823090015FD42 /* PPMonsterBoxScene.m in Sources */,
 				19A29D0A1AD836D8006E0B35 /* PPFightingMainView.m in Sources */,
+				19670B5C1AD8E03000177FB8 /* NSObject+ExtendedProperties.m in Sources */,
 				D4AE69001AD823090015FD42 /* PPCookingScene.m in Sources */,
 				D4AE69201AD823090015FD42 /* PPSceneManager.m in Sources */,
 				19A29D391AD83AFA006E0B35 /* PPBattleInfoBgNode.m in Sources */,

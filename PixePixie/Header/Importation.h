@@ -11,6 +11,7 @@
 #import "PPSceneManager.h"
 
 /* Extensions */
+#import "NSObject+ExtendedProperties.h"
 #import "NSObject+PerformSelectorEx.h"
 #import "SKTextureAtlas+AnimationBuilder.h"
 
