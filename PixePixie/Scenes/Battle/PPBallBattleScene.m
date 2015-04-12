@@ -94,7 +94,6 @@ CGFloat vector2angel(CGVector vector){
         self.ballPlayer = nil;
         self.pixieEnemy = pixieB;
   
-        
         //设置场景类型
         sceneTypeString = kElementTypeString[sceneType];
         currentElementType = sceneType;
