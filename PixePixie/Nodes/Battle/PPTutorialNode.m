@@ -329,20 +329,20 @@
     
 }
 
--(SKSpriteNode*)creatLabel:(NSString*)text fontname:(NSString*)fontname fontcolor:(UIColor*)colorFont fontsize:(const CGFloat)SIZEFONT verticalMargin:(const CGFloat)VERTICALMARGIN emptylineheight:(const CGFloat)EMPTYLINEHEIGHT {
+-(SKSpriteNode *)creatLabel:(NSString *)text fontname:(NSString *)fontname fontcolor:(UIColor*)colorFont fontsize:(const CGFloat)SIZEFONT verticalMargin:(const CGFloat)VERTICALMARGIN emptylineheight:(const CGFloat)EMPTYLINEHEIGHT {
     NSArray* strings = [text componentsSeparatedByString:@"\n"];
     //DLog(@"string count: %lu", (unsigned long)strings.count);
     
     UIColor* color = UIColor.clearColor;
 //    color = [UIColor redColor];
-    SKSpriteNode* spritenode = [SKSpriteNode spriteNodeWithColor:color size:CGSizeMake(0, 0)];
+    SKSpriteNode * spritenode = [SKSpriteNode spriteNodeWithColor:color size:CGSizeMake(0, 0)];
     
     CGFloat totalheight = 0;
     CGFloat maxwidth = 0;
     
     NSMutableArray* labels = [NSMutableArray array];
     for (NSUInteger i = 0; i < strings.count; i++) {
-        NSString* str = [strings objectAtIndex:i];
+        NSString * str = [strings objectAtIndex:i];
         const BOOL ISEMPTYLINE = [str isEqualToString:@""];
         
         if (!ISEMPTYLINE) {

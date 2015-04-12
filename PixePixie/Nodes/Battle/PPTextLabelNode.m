@@ -106,7 +106,7 @@
     PPMultiLineLabelImage *newTextImage = [self imageFromText:self.text];
     SKTexture *newTexture =[SKTexture textureWithImage:newTextImage];
     
-    SKSpriteNode *selfNode = (SKSpriteNode*) self;
+    SKSpriteNode *selfNode = (SKSpriteNode *) self;
     selfNode.texture = newTexture;
     
     //Resetting the texture also reset the anchorPoint.  Let's recenter it.
@@ -170,7 +170,7 @@
     }
     
     //The size of the bounding rect is going to be the size of our new node, so set the size here.
-    SKSpriteNode *selfNode = (SKSpriteNode*) self;
+    SKSpriteNode *selfNode = (SKSpriteNode *) self;
     selfNode.size = textRect.size;
     
 #if TARGET_OS_IPHONE

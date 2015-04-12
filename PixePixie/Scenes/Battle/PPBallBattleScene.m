@@ -88,76 +88,94 @@ CGFloat vector2angel(CGVector vector){
 {
     if (self = [super initWithSize:size])
     {
+        
         // 处理参数
         self.pixiePlayer = pixieA;
-        isHPZero = NO;
-        NSLog(@"count=%lu",(unsigned long)[self.pixiePlayer.skillList count]);
         self.ballPlayer = nil;
         self.pixieEnemy = pixieB;
+  
+        
+        //设置场景类型
         sceneTypeString = kElementTypeString[sceneType];
         currentElementType = sceneType;
         isTutorial = isTutorialValue;
-        isTouchPetBall = NO;
-        isShowingSkillBar = NO;
         currentEnemyIndex = enemyIndex;
-        
-        // 帧数间隔计数
-        frameFlag = 0;
-        
-        battleSkillInfo = [[PPBallBattleSkillInfo alloc] init];
-        [battleSkillInfo resetBattleSkillInfo];
-        
-        self.battleBuffArray = [[NSMutableArray alloc] init];
-        
-        // 初始化宠物基础数据
-        petCombos = 0;
-        petAssimSameEleNum = 0;
-        petAssimDiffEleNum = 0;
-        enemyCombos = 0;
-        enemyAssimDiffEleNum = 0;
-        enemyAssimSameEleNum = 0;
-        currentPhysicsAttack = 0;
         
         // 设置敌我元素属性
         PPElementType petElement = pixieA.pixieBall.ballElementType;
         PPElementType enemyElement = pixieB.pixieBall.ballElementType;
         interCoefficient = kElementInhibition[petElement][enemyElement];
+  
         
-        // 设置场景物理属性
-        self.physicsWorld.gravity = CGVectorMake(0, 0);
-        self.physicsWorld.contactDelegate = self;
-        
-        // 添加弹珠台图片
-        SKSpriteNode * bg = [SKSpriteNode spriteNodeWithImageNamed:@"table_back"];
-        bg.size = CGSizeMake(320, 320);
-        bg.position = CGPointMake(CGRectGetMidX(self.frame), 160 + SPACE_BOTTOM + PP_FIT_TOP_SIZE);
-        [self addChild:bg];
-        
-        SKSpriteNode * bgWall = [SKSpriteNode spriteNodeWithImageNamed:@"table_wall"];
-        bgWall.size = CGSizeMake(320, 320);
-        bgWall.position = CGPointMake(CGRectGetMidX(self.frame), 160 + SPACE_BOTTOM + PP_FIT_TOP_SIZE);
-        [self addChild:bgWall];
-        
-        // 添加围墙
-        self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
-        CGFloat tWidth = 320.0f;
-        CGFloat tHeight = 320.0f;
-        [self addWalls:CGSizeMake(tWidth, kWallThick) atPosition:CGPointMake(tWidth / 2, tHeight + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
-        [self addWalls:CGSizeMake(tWidth, kWallThick) atPosition:CGPointMake(tWidth / 2, 0 + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
-        [self addWalls:CGSizeMake(kWallThick,tWidth) atPosition:CGPointMake(0, tHeight / 2 + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
-        [self addWalls:CGSizeMake(kWallThick,tWidth) atPosition:CGPointMake(self.size.width, tHeight / 2 + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
-        
+        [self initBattleScene];
+        [self initAllVariable];
         [self initComboBalls];
         [self initPlayerBalls];
         [self initEnemyBall];
         
-        [self setPlayerSideRoundRunState];
     }
     return self;
 }
 
+-(void)initBattleScene
+{
+    
+    // 设置场景物理属性
+    self.physicsWorld.gravity = CGVectorMake(0, 0);
+    self.physicsWorld.contactDelegate = self;
+    
+    // 添加弹珠台图片
+    SKSpriteNode * bg = [SKSpriteNode spriteNodeWithImageNamed:@"table_back"];
+    bg.size = CGSizeMake(320, 320);
+    bg.position = CGPointMake(CGRectGetMidX(self.frame), 160 + SPACE_BOTTOM + PP_FIT_TOP_SIZE);
+    [self addChild:bg];
+    
+    SKSpriteNode * bgWall = [SKSpriteNode spriteNodeWithImageNamed:@"table_wall"];
+    bgWall.size = CGSizeMake(320, 320);
+    bgWall.position = CGPointMake(CGRectGetMidX(self.frame), 160 + SPACE_BOTTOM + PP_FIT_TOP_SIZE);
+    [self addChild:bgWall];
+    
+    // 添加围墙
+    self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
+    CGFloat tWidth = 320.0f;
+    CGFloat tHeight = 320.0f;
+    [self initWalls:CGSizeMake(tWidth, kWallThick) atPosition:CGPointMake(tWidth / 2, tHeight + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
+    [self initWalls:CGSizeMake(tWidth, kWallThick) atPosition:CGPointMake(tWidth / 2, 0 + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
+    [self initWalls:CGSizeMake(kWallThick,tWidth) atPosition:CGPointMake(0, tHeight / 2 + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
+    [self initWalls:CGSizeMake(kWallThick,tWidth) atPosition:CGPointMake(self.size.width, tHeight / 2 + SPACE_BOTTOM + PP_FIT_TOP_SIZE)];
+    
+}
+-(void)initAllVariable
+{
+
+    isTouchPetBall = NO;
+    isShowingSkillBar = NO;
+    isHPZero = NO;
+
+    // 帧数间隔计数
+    frameFlag = 0;
+    
+    
+    self.battleBuffArray = [[NSMutableArray alloc] init];
+    battleSkillInfo = [[PPBallBattleSkillInfo alloc] init];
+    [battleSkillInfo resetBattleSkillInfo];
+
+    
+    // 初始化宠物基础数据
+    petCombos = 0;
+    petAssimSameEleNum = 0;
+    petAssimDiffEleNum = 0;
+    enemyCombos = 0;
+    enemyAssimDiffEleNum = 0;
+    enemyAssimSameEleNum = 0;
+    currentPhysicsAttack = 0;
+    
+    
+    [self setPlayerSideRoundRunState];
+    
+}
 // 添加四周的墙
--(void)addWalls:(CGSize)nodeSize atPosition:(CGPoint)nodePosition
+-(void)initWalls:(CGSize)nodeSize atPosition:(CGPoint)nodePosition
 {
     SKSpriteNode * wall = [SKSpriteNode spriteNodeWithColor:[SKColor clearColor] size:nodeSize];
     wall.position = nodePosition;
@@ -321,7 +339,7 @@ CGFloat vector2angel(CGVector vector){
 }
 
 // 设置连击球的特殊属性
--(void)setComboBallSkillStatusOrigin
+-(void)initComboBallSkillStatusOrigin
 {
     [self enumerateChildNodesWithName:PP_BALL_TYPE_COMBO_NAME usingBlock:^(SKNode * node,BOOL * stop){
         node.PPBallSkillStatus = 0;
@@ -1199,6 +1217,12 @@ CGFloat vector2angel(CGVector vector){
 //    [self setRoundNumberLabel:@"回合结束" begin:NO];
     [self changeSkillBtnCdRounds];
     [self performSelectorOnMainThread:@selector(roundRotateBegin) withObject:nil afterDelay:3];
+    
+    if (battleSkillInfo.rattanTwineState != 0) {
+        battleSkillInfo.rattanTwineState = 0;
+    }
+    
+
 }
 
 #pragma mark Battle Procceed
@@ -1382,7 +1406,6 @@ CGFloat vector2angel(CGVector vector){
             [roundLabelContent removeFromParent];
         }];
         
-        battleSkillInfo.rattanTwineState = 0;
     }
 }
 
@@ -1697,7 +1720,7 @@ CGFloat vector2angel(CGVector vector){
             break;
         case PPBuffTypeRattanTwine:
         {
-            [self setComboBallSkillStatusOrigin];
+            [self initComboBallSkillStatusOrigin];
         }
             break;
         case PPBuffTypeRattanTwineEffect:
@@ -2097,7 +2120,7 @@ CGFloat vector2angel(CGVector vector){
                 [self.battleBuffArray addObject:buffId1];
                 
                 self.ballEnemy.PPBallSkillStatus = [NSNumber numberWithInt:PPBuffTypeRattanTwineEffect];
-                [self setComboBallSkillStatusOrigin];
+                [self initComboBallSkillStatusOrigin];
                 
             }
             

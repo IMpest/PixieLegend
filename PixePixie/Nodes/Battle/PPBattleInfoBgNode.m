@@ -70,7 +70,6 @@
 
 -(void)backgroundMove:(CGFloat)speed
 {
-    NSLog(@"speed = %f",speed);
     
     for (int i = 0; i < 2; i++)
     {

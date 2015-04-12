@@ -14,7 +14,7 @@ typedef NS_OPTIONS(int, PPButtonControlEvent)
 @property (strong, nonatomic) SKLabelNode *label;
 
 // SpriteButton初始化
-+(PPSpriteButton *)buttonWithImageNamed:(NSString*)image;
++(PPSpriteButton *)buttonWithImageNamed:(NSString *)image;
 +(PPSpriteButton *)buttonWithColor:(SKColor*)color andSize:(CGSize)size;
 +(PPSpriteButton *)buttonWithTexture:(SKTexture*)texture andSize:(CGSize)size;
 +(PPSpriteButton *)buttonWithTexture:(SKTexture *)texture;
@@ -25,7 +25,7 @@ typedef NS_OPTIONS(int, PPButtonControlEvent)
 -(void)removeAllTargets;
 
 // 改变LabelText方法
--(void)setLabelWithText:(NSString*)text andFont:(UIFont*)font withColor:(UIColor*)fontColor;
+-(void)setLabelWithText:(NSString *)text andFont:(UIFont*)font withColor:(UIColor*)fontColor;
 
 // 按钮点击变形方法
 -(void)transformForTouchDown;
