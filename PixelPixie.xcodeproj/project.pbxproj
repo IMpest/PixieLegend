@@ -175,6 +175,8 @@
 		D41403131ADAC492002F39D2 /* PPBallBattleSkillInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D41403121ADAC492002F39D2 /* PPBallBattleSkillInfo.m */; };
 		D481DFFA1A85110B0050E691 /* ball_elements.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF61A85110B0050E691 /* ball_elements.atlas */; };
 		D481DFFC1A85110B0050E691 /* ball_table.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF81A85110B0050E691 /* ball_table.atlas */; };
+		D486024A1ADC0E5500C98C67 /* PPPet.m in Sources */ = {isa = PBXBuildFile; fileRef = D48602491ADC0E5500C98C67 /* PPPet.m */; };
+		D486024D1ADC102700C98C67 /* PPEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = D486024C1ADC102700C98C67 /* PPEnemy.m */; };
 		D4877A40196C314E009509E5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4877A3F196C314E009509E5 /* Images.xcassets */; };
 		D4AE68FD1AD823090015FD42 /* PPHurdleReadyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE68811AD823090015FD42 /* PPHurdleReadyScene.m */; };
 		D4AE68FE1AD823090015FD42 /* PPMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AE68831AD823090015FD42 /* PPMenuScene.m */; };
@@ -412,6 +414,10 @@
 		D41403121ADAC492002F39D2 /* PPBallBattleSkillInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPBallBattleSkillInfo.m; sourceTree = "<group>"; };
 		D481DFF61A85110B0050E691 /* ball_elements.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = ball_elements.atlas; path = Resource/Images/ball_elements.atlas; sourceTree = SOURCE_ROOT; };
 		D481DFF81A85110B0050E691 /* ball_table.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = ball_table.atlas; path = Resource/Images/ball_table.atlas; sourceTree = SOURCE_ROOT; };
+		D48602481ADC0E5500C98C67 /* PPPet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPet.h; sourceTree = "<group>"; };
+		D48602491ADC0E5500C98C67 /* PPPet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPet.m; sourceTree = "<group>"; };
+		D486024B1ADC102700C98C67 /* PPEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPEnemy.h; sourceTree = "<group>"; };
+		D486024C1ADC102700C98C67 /* PPEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPEnemy.m; sourceTree = "<group>"; };
 		D4877A3F196C314E009509E5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D4AE68801AD823090015FD42 /* PPHurdleReadyScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPHurdleReadyScene.h; sourceTree = "<group>"; };
 		D4AE68811AD823090015FD42 /* PPHurdleReadyScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPHurdleReadyScene.m; sourceTree = "<group>"; };
@@ -1079,6 +1085,10 @@
 				D4AE68E11AD823090015FD42 /* PPPlayer.m */,
 				D4AE68E21AD823090015FD42 /* PPSkill.h */,
 				D4AE68E31AD823090015FD42 /* PPSkill.m */,
+				D48602481ADC0E5500C98C67 /* PPPet.h */,
+				D48602491ADC0E5500C98C67 /* PPPet.m */,
+				D486024B1ADC102700C98C67 /* PPEnemy.h */,
+				D486024C1ADC102700C98C67 /* PPEnemy.m */,
 			);
 			name = Contracts;
 			path = PixePixie/Models/Contracts;
@@ -1333,10 +1343,12 @@
 				19A29D431AD83AFA006E0B35 /* PPValueShowNode.m in Sources */,
 				19A29D3A1AD83AFA006E0B35 /* PPBattleInfoLayer.m in Sources */,
 				19A29D401AD83AFA006E0B35 /* PPTeamInfoNode.m in Sources */,
+				D486024D1ADC102700C98C67 /* PPEnemy.m in Sources */,
 				19A29D1F1AD83AB6006E0B35 /* PPCustomButton.m in Sources */,
 				D4AE69021AD823090015FD42 /* PPEuoFusionScene.m in Sources */,
 				D4AE69011AD823090015FD42 /* PPPacksackScene.m in Sources */,
 				19A29D0D1AD836D8006E0B35 /* PPOthersMainView.m in Sources */,
+				D486024A1ADC0E5500C98C67 /* PPPet.m in Sources */,
 				19A29D421AD83AFA006E0B35 /* PPTutorialNode.m in Sources */,
 				D4AE69041AD823090015FD42 /* PPMonsterInfoNode.m in Sources */,
 				19A29D3F1AD83AFA006E0B35 /* PPSkillNode.m in Sources */,

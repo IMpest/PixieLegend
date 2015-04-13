@@ -16,6 +16,7 @@
         spriteBackNode.size = CGSizeMake(320.0f, 480.0f);
         [self addChild:spriteBackNode];
         
+        
         // 添加按钮
         for (int i = 0; i < 5; i++) {
             
@@ -29,6 +30,7 @@
                        withObject:passButton.name forControlEvent:PPButtonControlEventTouchUpInside];
             [self addChild:passButton];
             
+            
             PPSpriteButton * passIntroduceButton = [PPSpriteButton buttonWithImageNamed:@"bt_preview"];
             passIntroduceButton.position = CGPointMake(passButton.position.x + 60, passButton.position.y + 20);
             passIntroduceButton.size = CGSizeMake(30, 30);
@@ -38,6 +40,7 @@
                            forControlEvent:PPButtonControlEventTouchUpInside];
             [self addChild:passIntroduceButton];
         }
+        
         
         PPSpriteButton *  passButton = [PPSpriteButton  buttonWithImageNamed:@"bt_dungeon"];
         [passButton setLabelWithText:@"新手教程"
@@ -65,11 +68,6 @@
     NSDictionary * enemyDicInfo = [[pixiesInfo objectForKey:@"enemysinfo"] objectAtIndex:0];
     NSLog(@"playerPixie=%lu",(unsigned long)[playerPixie.skillList count]);
     PPPixie * enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
-    
-    NSLog(@"petsChoosedInfo=%@,enemyDicInfo=%@",petsChoosedInfo,enemyDicInfo);
-    
-    //    PPPixie * playerPixie = [PPPixie birthPixieWithPetsInfo:petsChoosedInfo];
-    //    PPPixie * enemyPixie = [PPPixie birthEnemyPixieWithPetsInfo:enemyDicInfo];
     
     if (playerPixie == nil || enemyPixie == nil) return;
     
