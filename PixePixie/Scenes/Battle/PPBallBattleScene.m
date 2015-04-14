@@ -450,7 +450,7 @@ CGFloat vector2angel(CGVector vector){
     self.playerAndEnemySide.size = CGSizeMake(self.size.width, 160.0f);
     self.playerAndEnemySide.target = self;
     self.playerAndEnemySide.hpBeenZeroSel = @selector(hpBeenZeroMethod:);
-    self.playerAndEnemySide.hpChangeEnd = @selector(hpChangeEndAnimate:);
+    self.playerAndEnemySide.hpChangeEnd = @selector(changeHpEndAnimate:);
     self.playerAndEnemySide.skillSelector = @selector(skillPlayerShowBegin:);
     self.playerAndEnemySide.pauseSelector = @selector(pauseBtnClick:);
     //    self.playerAndEnemySide.showInfoSelector = @selector(showCurrentEnemyInfo:);
@@ -961,6 +961,12 @@ CGFloat vector2angel(CGVector vector){
     [self.ballPlayer startActiveStatus];
 }
 
+//血条动画结束
+-(void)changeHpEndAnimate:(NSString *)battlesideName
+{
+    NSLog(@"battlesideName=%@",battlesideName);
+}
+
 #pragma mark Remove Node
 
 -(void)removeSkillBar
@@ -1018,8 +1024,7 @@ CGFloat vector2angel(CGVector vector){
 }
 
 
-#pragma mark BackAlert
-
+#pragma mark BtnClick
 // 返回按钮
 -(void)backButtonClick:(NSString *)backName
 {
@@ -1032,9 +1037,6 @@ CGFloat vector2angel(CGVector vector){
         [[NSNotificationCenter defaultCenter] postNotificationName:PP_BACK_TO_MAIN_VIEW object:PP_BACK_TO_MAIN_VIEW_FIGHTING];
     }
 }
-
-#pragma mark PauseButton
-
 //暂停游戏按钮点击事件
 -(void)pauseBtnClick:(NSString *)stringName
 {
@@ -1067,10 +1069,64 @@ CGFloat vector2angel(CGVector vector){
     }
 }
 
+// 技能不可用按钮点击
+-(void)skillInvalidBtnClick:(PPSpriteButton *)skillInvalidButton
+{
+    
+    SKLabelNode * additonLabel= [[SKLabelNode alloc] init];
+    additonLabel.name  = @"mpisnotenough";
+    additonLabel.fontColor = [UIColor redColor];
+    additonLabel.position = CGPointMake(160.0f, 200.0f);
+    [additonLabel setText:@"技能不可用"];
+    [self addChild:additonLabel];
+    
+    SKAction * actionScale = [SKAction scaleBy:2.0 duration:1];
+    [additonLabel runAction:actionScale completion:^{
+        [additonLabel removeFromParent];
+        isNotSkillShowTime = NO;
+        [self changePlayerSideRoundEndState];
+    }];
+    
+    
+    
+}
+
+-(void)goNextSceneBtnClick
+{
+    [self.view presentScene:previousScene];
+}
+
+//进入下一怪物遭遇动画
+-(void)goNextEnemyBtnClick:(NSString *)btnStr
+{
+    // TODO: 这里现在改成上边推进进入下一个战斗画面或者结算画面
+    
+    NSDictionary * pixiesInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PixiesInfo"
+                                                                                                           ofType:@"plist"]];
+    NSDictionary * petsChoosedInfo = [[pixiesInfo objectForKey:@"userpetinfo"] objectAtIndex:0];
+    PPPixie * playerPixie = [PPPixie pixieWithData:petsChoosedInfo];
+    
+    
+    NSDictionary * enemyDicInfo = [self.enmeysArray objectAtIndex:currentEnemyIndex + 1];
+    PPPixie * enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
+    
+    // 创建战斗场景并显示
+    PPBallBattleScene * ballScene = [[PPBallBattleScene alloc] initWithSize:CURRENT_DEVICE_REAL_SIZE
+                                                                PixiePlayer:playerPixie
+                                                                 PixieEnemy:enemyPixie
+                                                               andSceneType:currentElementType
+                                                                   andIndex:currentEnemyIndex+1 withTutorial:NO];
+    ballScene.scaleMode = SKSceneScaleModeAspectFill;
+    ballScene.enmeysArray = self.enmeysArray;
+    ballScene->previousScene = previousScene;
+    [ballScene setEnemyAtIndex:currentEnemyIndex + 1];
+    [self.view presentScene:ballScene transition:[SKTransition doorsOpenHorizontalWithDuration:1]];
+    
+}
 #pragma mark Custom Method
 
 // 是否所有的球都停止了滚动
--(BOOL)isAllStopRolling
+-(BOOL)checkAllStopRolling
 {
     // 首先检查是否该停止特效
     [self.ballPlayer startPixieAccelerateAnimation:self.ballPlayer.physicsBody.velocity andType:@"stop"];
@@ -1097,7 +1153,7 @@ CGFloat vector2angel(CGVector vector){
 -(void)checkingBallsMove
 {
     
-    if (_isBallRolling && [self isAllStopRolling]) {
+    if (_isBallRolling && [self checkAllStopRolling]) {
         
         _isBallRolling = NO; // 如果球都停止了标记停止
 
@@ -1148,8 +1204,6 @@ CGFloat vector2angel(CGVector vector){
         isHPZero = YES;
         [self changePlayerSideRoundRunState];
         [battleSkillInfo resetBattleSkillInfo];
-        
-        
         
         if ([self.enmeysArray count]<=(currentEnemyIndex+1)) {
             
@@ -1219,7 +1273,7 @@ CGFloat vector2angel(CGVector vector){
             [goButton setLabelWithText:@"确定" andFont:[UIFont systemFontOfSize:15] withColor:nil];
             goButton.zPosition = PPZ_BACK_BUTTON;
             goButton.position = CGPointMake(0.0f,-60);
-            [goButton addTarget:self selector:@selector(goNextScene)
+            [goButton addTarget:self selector:@selector(goNextSceneBtnClick)
                      withObject:nil forControlEvent:PPButtonControlEventTouchUpInside];
             [enemyDeadContent addChild:goButton];
             
@@ -1231,7 +1285,7 @@ CGFloat vector2angel(CGVector vector){
                                                                                            self.size.height / 2,
                                                                                            self.size.width, self.size.height)];
         alertNode->target = self;
-        alertNode->btnClickSel = @selector(goNextEnemy:);
+        alertNode->btnClickSel = @selector(goNextEnemyBtnClick:);
         [alertNode setColor:[UIColor clearColor]];
         alertNode.zPosition = PPZ_ALERT;
         [alertNode showGoNextEnemyAlert];
@@ -1259,38 +1313,7 @@ CGFloat vector2angel(CGVector vector){
     }
 }
 
--(void)goNextScene
-{
-    [self.view presentScene:previousScene];
-}
 
-//进入下一怪物遭遇动画
--(void)goNextEnemy:(NSString *)btnStr
-{
-    // TODO: 这里现在改成上边推进进入下一个战斗画面或者结算画面
-
-    NSDictionary * pixiesInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PixiesInfo"
-                                                                                                           ofType:@"plist"]];
-    NSDictionary * petsChoosedInfo = [[pixiesInfo objectForKey:@"userpetinfo"] objectAtIndex:0];
-    PPPixie * playerPixie = [PPPixie pixieWithData:petsChoosedInfo];
-    
-    
-    NSDictionary * enemyDicInfo = [self.enmeysArray objectAtIndex:currentEnemyIndex + 1];
-    PPPixie * enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
-    
-    // 创建战斗场景并显示
-    PPBallBattleScene * ballScene = [[PPBallBattleScene alloc] initWithSize:CURRENT_DEVICE_REAL_SIZE
-                                                                PixiePlayer:playerPixie
-                                                                 PixieEnemy:enemyPixie
-                                                               andSceneType:currentElementType
-                                                                   andIndex:currentEnemyIndex+1 withTutorial:NO];
-    ballScene.scaleMode = SKSceneScaleModeAspectFill;
-    ballScene.enmeysArray = self.enmeysArray;
-    ballScene->previousScene = previousScene;
-    [ballScene setEnemyAtIndex:currentEnemyIndex + 1];
-    [self.view presentScene:ballScene transition:[SKTransition doorsOpenHorizontalWithDuration:1]];
-    
-}
 
 
 // 添加随机的元素球(暂时废弃)
@@ -1475,15 +1498,14 @@ CGFloat vector2angel(CGVector vector){
     petCombos = 0;
     enemyCombos = 0;
     
-    
     [self changeRoundNumberLabel:@"回合开始" begin:YES];
+    
 }
 
 // 回合推进
 -(void)roundRotateMoved:(NSString *)nodeName
 {
    
-
     if (isTutorial) {
         return;
     }
@@ -1592,6 +1614,7 @@ CGFloat vector2angel(CGVector vector){
     NSLog(@"nodeName=%@", nodeName);
     
     if ([nodeName isEqual:PP_PET_PLAYER_SIDE_NODE_NAME]) {
+        
     } else {
         
         SKLabelNode * additonLabel= [[SKLabelNode alloc] init];
@@ -1678,27 +1701,6 @@ CGFloat vector2angel(CGVector vector){
 
 #pragma mark skill btn click
 
-// 技能不可用按钮点击
--(void)skillInvalidBtnClick:(PPSpriteButton *)skillInvalidButton
-{
-    
-    SKLabelNode * additonLabel= [[SKLabelNode alloc] init];
-    additonLabel.name  = @"mpisnotenough";
-    additonLabel.fontColor = [UIColor redColor];
-    additonLabel.position = CGPointMake(160.0f, 200.0f);
-    [additonLabel setText:@"技能不可用"];
-    [self addChild:additonLabel];
-    
-    SKAction * actionScale = [SKAction scaleBy:2.0 duration:1];
-    [additonLabel runAction:actionScale completion:^{
-        [additonLabel removeFromParent];
-        isNotSkillShowTime = NO;
-        [self changePlayerSideRoundEndState];
-    }];
-    
-    
-    
-}
 
 // 技能动画展示开始
 -(void)skillPlayerShowBegin:(PPSpriteButton *)skillButton
@@ -1763,15 +1765,8 @@ CGFloat vector2angel(CGVector vector){
     } else {
         [self.playerAndEnemySide changePetMPValue:mpToConsume];
     }
-  
-   
 }
 
-//血条动画结束
--(void)hpChangeEndAnimate:(NSString *)battlesideName
-{
-    NSLog(@"battlesideName=%@",battlesideName);
-}
 
 //-(void)removeBuff:(PPBuff *)buffToRemove andSide:(NSString *)stringSide
 //{

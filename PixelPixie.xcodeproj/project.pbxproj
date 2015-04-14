@@ -173,6 +173,7 @@
 		19F6EDA818C6C09900BFFF9A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19F6EDA618C6C09900BFFF9A /* InfoPlist.strings */; };
 		19F6EDAA18C6C09900BFFF9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F6EDA918C6C09900BFFF9A /* main.m */; };
 		D41403131ADAC492002F39D2 /* PPBallBattleSkillInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D41403121ADAC492002F39D2 /* PPBallBattleSkillInfo.m */; };
+		D46EFD8C1ADD44B1003075ED /* PPPass.m in Sources */ = {isa = PBXBuildFile; fileRef = D46EFD8B1ADD44B1003075ED /* PPPass.m */; };
 		D481DFFA1A85110B0050E691 /* ball_elements.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF61A85110B0050E691 /* ball_elements.atlas */; };
 		D481DFFC1A85110B0050E691 /* ball_table.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D481DFF81A85110B0050E691 /* ball_table.atlas */; };
 		D486024A1ADC0E5500C98C67 /* PPPet.m in Sources */ = {isa = PBXBuildFile; fileRef = D48602491ADC0E5500C98C67 /* PPPet.m */; };
@@ -412,6 +413,8 @@
 		19F6EDAB18C6C09900BFFF9A /* PixelPixie-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PixelPixie-Prefix.pch"; sourceTree = "<group>"; };
 		D41403111ADAC492002F39D2 /* PPBallBattleSkillInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPBallBattleSkillInfo.h; sourceTree = "<group>"; };
 		D41403121ADAC492002F39D2 /* PPBallBattleSkillInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPBallBattleSkillInfo.m; sourceTree = "<group>"; };
+		D46EFD8A1ADD44B1003075ED /* PPPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPass.h; sourceTree = "<group>"; };
+		D46EFD8B1ADD44B1003075ED /* PPPass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPPass.m; sourceTree = "<group>"; };
 		D481DFF61A85110B0050E691 /* ball_elements.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = ball_elements.atlas; path = Resource/Images/ball_elements.atlas; sourceTree = SOURCE_ROOT; };
 		D481DFF81A85110B0050E691 /* ball_table.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = ball_table.atlas; path = Resource/Images/ball_table.atlas; sourceTree = SOURCE_ROOT; };
 		D48602481ADC0E5500C98C67 /* PPPet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPPet.h; sourceTree = "<group>"; };
@@ -1089,6 +1092,8 @@
 				D48602491ADC0E5500C98C67 /* PPPet.m */,
 				D486024B1ADC102700C98C67 /* PPEnemy.h */,
 				D486024C1ADC102700C98C67 /* PPEnemy.m */,
+				D46EFD8A1ADD44B1003075ED /* PPPass.h */,
+				D46EFD8B1ADD44B1003075ED /* PPPass.m */,
 			);
 			name = Contracts;
 			path = PixePixie/Models/Contracts;
@@ -1354,6 +1359,7 @@
 				19A29D3F1AD83AFA006E0B35 /* PPSkillNode.m in Sources */,
 				19A29D211AD83AB6006E0B35 /* PPSpriteButton.m in Sources */,
 				19A29D3D1AD83AFA006E0B35 /* PPPetLifeNode.m in Sources */,
+				D46EFD8C1ADD44B1003075ED /* PPPass.m in Sources */,
 				D4AE68FD1AD823090015FD42 /* PPHurdleReadyScene.m in Sources */,
 				19A29D0E1AD836D8006E0B35 /* PPScheduleMainView.m in Sources */,
 				19A29D3C1AD83AFA006E0B35 /* PPLifeNode.m in Sources */,
