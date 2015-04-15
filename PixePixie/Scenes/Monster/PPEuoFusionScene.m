@@ -9,7 +9,7 @@
         self.backgroundColor = [UIColor purpleColor];
         [self addTitle:@"强化" andBackButton:360.0f];
 
-        SKSpriteNode * contentSpriteNode = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(280, 200)];
+        SKSpriteNode *contentSpriteNode = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(280, 200)];
         contentSpriteNode.position = CGPointMake(160, 150);
         contentSpriteNode.name = @"contentMonsterBox";
         SKTexture * boxTexture = nil;
@@ -52,6 +52,7 @@
 
 -(void)monsterBoxButtonClick:(NSString *)stringName
 {
+    
 }
 
 -(void)backButtonClick:(NSString *)backName

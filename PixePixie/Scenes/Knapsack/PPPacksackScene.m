@@ -16,7 +16,7 @@ static NSString * monsterBtnTitle[] = {
     if (self = [super initWithSize:size]) {
         [self addDefaultBackground];
 
-        SKSpriteNode * contentSpriteNode = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(280, 200)];
+        SKSpriteNode *contentSpriteNode = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(280, 200)];
         contentSpriteNode.position = CGPointMake(160, 230);
         contentSpriteNode.name = @"contentMonsterBox";
         SKTexture * boxTexture = nil;
@@ -125,7 +125,9 @@ static NSString * monsterBtnTitle[] = {
 }
 
 -(void)monsterBoxButtonClick:(NSString *)stringName
-{}
+{
+    
+}
 
 -(void)backButtonClick:(NSString *)backName
 {

@@ -29,7 +29,7 @@
     isHaveDead = NO;
     
     // 添加上方背景图片
-//    SKSpriteNode * bgSprite = [SKSpriteNode spriteNodeWithImageNamed:@"fight_back"];
+//    SKSpriteNode *bgSprite = [SKSpriteNode spriteNodeWithImageNamed:@"fight_back"];
 //    bgSprite.size = CGSizeMake(320.0f, 160.0f);
 //    bgSprite.position = CGPointMake(0.0f,0.0f);
 //    [self addChild:bgSprite];
@@ -252,7 +252,7 @@
 {
     
     if (HPValue<0.0f) {
-        SKSpriteNode * additonLabel = [self getNumber:fabsf(HPValue) AndColor:@"white"];
+        SKSpriteNode *additonLabel = [self getNumber:fabsf(HPValue) AndColor:@"white"];
         //    additonLabel.name  = @"hpchange";
         //    additonLabel.fontColor = [UIColor redColor];
         additonLabel.position = ppixiePetBtn.position;
@@ -276,7 +276,7 @@
 -(void)changeEnemyHPValue:(CGFloat)HPValue
 {
     if (HPValue < 0.0f) {
-        SKSpriteNode * additonLabel = [self getNumber:fabsf(HPValue) AndColor:@"white"];
+        SKSpriteNode *additonLabel = [self getNumber:fabsf(HPValue) AndColor:@"white"];
         //    additonLabel.name  = @"hpchange";
         //    additonLabel.fontColor = [UIColor redColor];
         additonLabel.position = ppixieEnemyBtn.position;
@@ -320,7 +320,7 @@
     
     NSLog(@"color=%@ number=%d",color,number);
     
-    SKSpriteNode * tNode = [[SKSpriteNode alloc] init];
+    SKSpriteNode *tNode = [[SKSpriteNode alloc] init];
     if (number < 1 || color == nil) return tNode;
     
     float width = 13.0f;
@@ -333,7 +333,7 @@
         number /= 10;
         
         NSString * tNumName = [NSString stringWithFormat:@"%@_%d.png", color, tNum];
-        SKSpriteNode * tNumNode = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_number] textureNamed:tNumName]];
+        SKSpriteNode *tNumNode = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_number] textureNamed:tNumName]];
         tNumNode.position = CGPointMake(-width * i, 0);
         tNumNode.xScale = 0.5;
         tNumNode.yScale = 0.5;
@@ -341,7 +341,7 @@
     }
     
     // 调整位置居中
-    for (SKSpriteNode * numNode in [tNode children]) {
+    for (SKSpriteNode *numNode in [tNode children]) {
         numNode.position = CGPointMake(numNode.position.x + (i+1) * width / 2, numNode.position.y);
     }
     return tNode;
@@ -351,7 +351,7 @@
 {
     if (isPetAttack)
     {
-        SKSpriteNode * spriteNodeMoving = [SKSpriteNode spriteNodeWithImageNamed:@"moving_0000"];
+        SKSpriteNode *spriteNodeMoving = [SKSpriteNode spriteNodeWithImageNamed:@"moving_0000"];
         spriteNodeMoving.name = @"spriteNodeMoving";
         spriteNodeMoving.position = ppixiePetBtn.position;
         [self addChild:spriteNodeMoving];
@@ -369,7 +369,7 @@
         
         [ppixieEnemyBtn runAction:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_beated",kElementTypeString[currentPPPixieEnemy.pixieElement]]]];
     } else {
-        SKSpriteNode * spriteNodeMoving = [SKSpriteNode spriteNodeWithImageNamed:@"moving_0000"];
+        SKSpriteNode *spriteNodeMoving = [SKSpriteNode spriteNodeWithImageNamed:@"moving_0000"];
         spriteNodeMoving.position = ppixieEnemyBtn.position;
         spriteNodeMoving.name = @"spriteNodeMoving";
         spriteNodeMoving.size = CGSizeMake(spriteNodeMoving.size.width/2.0f, spriteNodeMoving.size.height/2.0f);

@@ -9,5 +9,12 @@
 #import "PPLifeNode.h"
 
 @implementation PPLifeNode
-
+-(id)init
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
 @end

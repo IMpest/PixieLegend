@@ -5,7 +5,7 @@
 
 BOOL isRolling;
 PPSpriteButton * turnWheel;
-SKSpriteNode * turnArrow;
+SKSpriteNode *turnArrow;
 
 -(id)initWithSize:(CGSize)size
 {

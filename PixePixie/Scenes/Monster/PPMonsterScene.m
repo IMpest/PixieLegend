@@ -16,7 +16,7 @@ BOOL menuIsHidden;
     if (self = [super initWithSize:size]) {
         
         // 添加背景
-        SKSpriteNode * bgImg = [[SKSpriteNode alloc] initWithImageNamed:@"theme_forest.png"];
+        SKSpriteNode *bgImg = [[SKSpriteNode alloc] initWithImageNamed:@"theme_forest.png"];
         bgImg.size = CGSizeMake(320, 392);
         bgImg.position = CGPointMake(160, 196);
         [self addChild:bgImg];

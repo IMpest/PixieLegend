@@ -335,7 +335,7 @@
     
     UIColor* color = UIColor.clearColor;
 //    color = [UIColor redColor];
-    SKSpriteNode * spritenode = [SKSpriteNode spriteNodeWithColor:color size:CGSizeMake(0, 0)];
+    SKSpriteNode *spritenode = [SKSpriteNode spriteNodeWithColor:color size:CGSizeMake(0, 0)];
     
     CGFloat totalheight = 0;
     CGFloat maxwidth = 0;

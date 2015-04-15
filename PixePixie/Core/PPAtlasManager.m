@@ -103,7 +103,7 @@
 +(SKSpriteNode *)createSpriteImageName:(NSString *)imageName withPos:(CGPoint)pos
                               withSize:(CGSize)size withName:(NSString *)nodeName
 {
-    SKSpriteNode * spriteTmp = nil;
+    SKSpriteNode *spriteTmp = nil;
     if (imageName == nil) {
         spriteTmp = [[SKSpriteNode alloc] init];
     } else {

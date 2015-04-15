@@ -28,19 +28,19 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
     tBall.size = CGSizeMake(50.0f, 50.0f);
     
     SKTexture * comboBallBack = [[PPAtlasManager battle_table_ball] textureNamed:@"ball_all"];
-    SKSpriteNode * nodeBack = [SKSpriteNode spriteNodeWithTexture:comboBallBack];
+    SKSpriteNode *nodeBack = [SKSpriteNode spriteNodeWithTexture:comboBallBack];
     nodeBack.zPosition = PPZ_FIGHT;
     nodeBack.size = CGSizeMake(50.0f, 50.0f);
 //    [tBall insertChild:nodeBack atIndex:0];
     [tBall addChild:nodeBack];
     
-    SKSpriteNode * touchBallNode = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(50.0f, 50.0)];
+    SKSpriteNode *touchBallNode = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(50.0f, 50.0)];
     touchBallNode.name = PP_TOUCH_NODE_BALL_NAME;
     touchBallNode.zPosition = PPZ_FIGHT_EFFECT;
     [tBall addChild:touchBallNode];
     
     
-    SKSpriteNode * showSpriteNode = [[SKSpriteNode alloc] init];
+    SKSpriteNode *showSpriteNode = [[SKSpriteNode alloc] init];
     showSpriteNode.size = CGSizeMake(50.0f, 50.0f);
     [showSpriteNode setPosition: CGPointMake(0.0f, 10.0f)];
     showSpriteNode.zPosition = PPZ_FIGHT_BUFF;
@@ -255,7 +255,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
 
 -(void)startRemoveAnimation:(NSMutableArray *)ballArray  andScene:(PPBasicScene *)battleScene
 {
-    NSMutableArray * textureArray = [[NSMutableArray alloc] init];
+    NSMutableArray *textureArray = [[NSMutableArray alloc] init];
     for (int i = 23; i >= 0; i--) {
         
         SKTexture * textureCombo = [[PPAtlasManager ball_table] textureNamed:[NSString stringWithFormat:@"element_birth_%04d",i]];
@@ -315,7 +315,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
 // 治疗动画
 -(void)startPixieHealAnimation
 {
-    NSMutableArray * textureArray = [[NSMutableArray alloc] init];
+    NSMutableArray *textureArray = [[NSMutableArray alloc] init];
     for (int i = 0; i < 15; i++) {
         SKTexture * textureCombo = [[PPAtlasManager ball_table] textureNamed:[NSString stringWithFormat:@"pixie_heal_%04d",i]];
         [textureArray addObject:textureCombo];

@@ -4,7 +4,7 @@
 @implementation PPSpriteButton
 {
     UITouch * currentTouch;
-    NSMutableArray * marrSelectors;
+    NSMutableArray *marrSelectors;
 }
 
 #pragma mark - CLASS METHODS FOR INIT

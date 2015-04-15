@@ -17,9 +17,9 @@
     PPBattleInfoBgNode *battleBg;
 
     @public
-    SKSpriteNode * ppixiePetBtn;
-    SKSpriteNode * ppixieEnemyBtn;
-    SKSpriteNode * attackShowNode;
+    SKSpriteNode *ppixiePetBtn;
+    SKSpriteNode *ppixieEnemyBtn;
+    SKSpriteNode *attackShowNode;
 }
 
 //回调对象
@@ -35,8 +35,8 @@
 @property(nonatomic, assign) SEL hpChangeEnd;
 @property(nonatomic, assign) SEL skillInvalidSel;
 
-@property(nonatomic, retain) PPPixie * currentPPPixie;
-@property(nonatomic, retain) PPPixie * currentPPPixieEnemy;
+@property(nonatomic, retain) PPPixie *currentPPPixie;
+@property(nonatomic, retain) PPPixie *currentPPPixieEnemy;
 
 /**
  * @brief 设置战斗场景技能显示条

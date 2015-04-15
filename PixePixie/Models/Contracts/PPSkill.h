@@ -21,7 +21,7 @@ static NSString * kSkillName[kSkillCountTotal+1] =
 @interface PPSkill : NSObject
 
 // 旧版参数
-@property (nonatomic, retain) NSMutableArray * animateTextures;
+@property (nonatomic, retain) NSMutableArray *animateTextures;
 @property (nonatomic, assign) CGFloat HPChangeValue;
 @property (nonatomic, retain) NSString * skillName;
 

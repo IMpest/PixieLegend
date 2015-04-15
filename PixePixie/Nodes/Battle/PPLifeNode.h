@@ -13,7 +13,6 @@
 {
     PPValueShowNode * bodyHPBar;
     PPValueShowNode * bodyMPBar;
-    
-    
 }
+
 @end

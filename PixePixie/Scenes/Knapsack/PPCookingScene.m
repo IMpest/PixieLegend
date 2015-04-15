@@ -15,7 +15,7 @@ static NSString * monsterBtnTitle [] = {
         [self addDefaultBackground];
         [self addTitle:@"Cooking" andBackButton:360.0f];
         
-        SKSpriteNode * contentSpriteNode = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(280, 200)];
+        SKSpriteNode *contentSpriteNode = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(280, 200)];
         contentSpriteNode.position = CGPointMake(160, 220);
         contentSpriteNode.name = @"contentMonsterBox";
         SKTexture * boxTexture = nil;

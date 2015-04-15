@@ -6,8 +6,8 @@
 //    int currentEnemyIndex;
 //}
 //@property (nonatomic, retain) NSArray * enemysArray;
-//@property (nonatomic) NSMutableArray * pixieAnimation;
-//@property (nonatomic) SKSpriteNode * playerPixie;
+//@property (nonatomic) NSMutableArray *pixieAnimation;
+//@property (nonatomic) SKSpriteNode *playerPixie;
 //@end
 //
 //@implementation PPHurdleReadyScene
@@ -78,7 +78,7 @@
 //    forwardSprite.position = CGPointMake(0.0f, 0.0f);
 //    [hurdleReadyContentNode addChild:forwardSprite];
 //    
-////    NSMutableArray * texturesArray = [[NSMutableArray alloc] initWithCapacity:44];
+////    NSMutableArray *texturesArray = [[NSMutableArray alloc] initWithCapacity:44];
 ////    @synchronized(texturesArray)
 ////    {
 ////        
@@ -148,7 +148,7 @@
 ////    [enemyNode setTexture:[[PPAtlasManager pixie_info] textureNamed:[NSString stringWithFormat:@"%@3_encounter",kElementTypeString[chooseSceneType]]]];
 ////    [self addChild:enemyNode];
 //
-//    SKSpriteNode * spriteContent = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(320, 100)];
+//    SKSpriteNode *spriteContent = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(320, 100)];
 //    spriteContent.name = PP_HURDLE_PETCHOOSE_CONTENT_NAME;
 //    spriteContent.position = CGPointMake(160, -50);
 //    [self addChild:spriteContent];
@@ -197,7 +197,7 @@
 ///*
 //-(void)sceneChooseClick:(PPSpriteButton *)btn
 //{
-//    SKSpriteNode * contentSprite = (SKSpriteNode *)[self childNodeWithName:PP_HURDLE_PETCHOOSE_CONTENT_NAME];
+//    SKSpriteNode *contentSprite = (SKSpriteNode *)[self childNodeWithName:PP_HURDLE_PETCHOOSE_CONTENT_NAME];
 //    
 //    for (int i = 0; i < 5; i++) {
 //        PPSpriteButton * btnObj = (PPSpriteButton *)[contentSprite childNodeWithName:[NSString stringWithFormat:@"%d",i]];
@@ -237,8 +237,8 @@
 //    NSDictionary * choosedPet = [NSDictionary dictionaryWithDictionary:petsChoosedInfo];
 //    
 //    // 初始化 ballScene
-//    PPPixie * playerPixie = [PPPixie birthPixieWithPetsInfo:choosedPet];
-//    PPPixie * enemyPixie = [PPPixie birthEnemyPixieWithPetsInfo:[self.enemysArray objectAtIndex:currentEnemyIndex]];
+//    PPPixie *playerPixie = [PPPixie birthPixieWithPetsInfo:choosedPet];
+//    PPPixie *enemyPixie = [PPPixie birthEnemyPixieWithPetsInfo:[self.enemysArray objectAtIndex:currentEnemyIndex]];
 //    NSLog(@"petsChoosedInfo=%@,enemy=%@",petsChoosedInfo,[self.enemysArray objectAtIndex:currentEnemyIndex]);
 //    if (playerPixie == nil || enemyPixie == nil) return;
 //    

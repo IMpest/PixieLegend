@@ -11,7 +11,7 @@
         
         // 添加背景
         NSString * mapName = [NSString stringWithFormat:@"%@.png", @"bg_menu"];
-        SKSpriteNode * spriteBackNode = [SKSpriteNode spriteNodeWithImageNamed:mapName];
+        SKSpriteNode *spriteBackNode = [SKSpriteNode spriteNodeWithImageNamed:mapName];
         spriteBackNode.position = CGPointMake(self.size.width/2.0f, self.size.height/2.0f);
         spriteBackNode.size = CGSizeMake(320.0f, 480.0f);
         [self addChild:spriteBackNode];
@@ -63,11 +63,11 @@
                                                                                                            ofType:@"plist"]];
     
     NSDictionary * petsChoosedInfo = [[pixiesInfo objectForKey:@"userpetinfo"] objectAtIndex:0];
-    PPPixie * playerPixie = [PPPixie pixieWithData:petsChoosedInfo];
+    PPPixie *playerPixie = [PPPixie pixieWithData:petsChoosedInfo];
     [playerPixie setPetSkillList:petsChoosedInfo];
     NSDictionary * enemyDicInfo = [[pixiesInfo objectForKey:@"enemysinfo"] objectAtIndex:0];
     NSLog(@"playerPixie=%lu",(unsigned long)[playerPixie.skillList count]);
-    PPPixie * enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
+    PPPixie *enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
     
     if (playerPixie == nil || enemyPixie == nil) return;
     
@@ -85,12 +85,10 @@ andIndex:0 withTutorial:YES];
     
     
 }
-
-
 // 介绍窗口
 -(void)introduceInfoLabel:(NSString *)text
 {
-    SKSpriteNode * enemyDeadContent = [[SKSpriteNode alloc] initWithColor:[UIColor orangeColor] size:CGSizeMake(320, 350)];
+    SKSpriteNode *enemyDeadContent = [[SKSpriteNode alloc] initWithColor:[UIColor orangeColor] size:CGSizeMake(320, 350)];
     [enemyDeadContent setPosition:CGPointMake(160, 200)];
     [self addChild:enemyDeadContent];
     
@@ -135,16 +133,16 @@ andIndex:0 withTutorial:YES];
                                                                                                             ofType:@"plist"]];
     
     NSDictionary * petsChoosedInfo = [[pixiesInfo objectForKey:@"userpetinfo"] objectAtIndex:0];
-    PPPixie * playerPixie = [PPPixie pixieWithData:petsChoosedInfo];
+    PPPixie *playerPixie = [PPPixie pixieWithData:petsChoosedInfo];
     [playerPixie setPetSkillList:petsChoosedInfo];
     NSDictionary * enemyDicInfo = [[pixiesInfo objectForKey:@"enemysinfo"] objectAtIndex:0];
     NSLog(@"playerPixie=%lu",(unsigned long)[playerPixie.skillList count]);
-    PPPixie * enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
+    PPPixie *enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
     
     NSLog(@"petsChoosedInfo=%@,enemyDicInfo=%@",petsChoosedInfo,enemyDicInfo);
     
-    //    PPPixie * playerPixie = [PPPixie birthPixieWithPetsInfo:petsChoosedInfo];
-    //    PPPixie * enemyPixie = [PPPixie birthEnemyPixieWithPetsInfo:enemyDicInfo];
+    //    PPPixie *playerPixie = [PPPixie birthPixieWithPetsInfo:petsChoosedInfo];
+    //    PPPixie *enemyPixie = [PPPixie birthEnemyPixieWithPetsInfo:enemyDicInfo];
     
     if (playerPixie == nil || enemyPixie == nil) return;
     
@@ -162,7 +160,6 @@ andIndex:0 withTutorial:YES];
     [self.view presentScene:ballScene];
 }
 
-
 // 返回到世界地图首页
 -(void)backButtonClick:(NSString *)backName
 {
@@ -173,7 +170,6 @@ andIndex:0 withTutorial:YES];
     [self.view presentScene:nil];
     [preiviousView setMenuContentScrollView];
 }
-
 // 这里直接进入战斗画面（旧版）
 //-(void)spriteChooseClick
 //{
@@ -184,8 +180,8 @@ andIndex:0 withTutorial:YES];
 //    NSDictionary * choosedPet = [NSDictionary dictionaryWithDictionary:petsChoosedInfo];
 //
 //    // 初始化 ballScene
-//    PPPixie * playerPixie = [PPPixie birthPixieWithPetsInfo:choosedPet];
-//    PPPixie * enemyPixie = [PPPixie birthEnemyPixieWithPetsInfo:[enemysArray objectAtIndex:currentEnemyIndex]];
+//    PPPixie *playerPixie = [PPPixie birthPixieWithPetsInfo:choosedPet];
+//    PPPixie *enemyPixie = [PPPixie birthEnemyPixieWithPetsInfo:[enemysArray objectAtIndex:currentEnemyIndex]];
 //    if (playerPixie == nil || enemyPixie == nil) return;
 //
 //    // 创建战斗场景并显示

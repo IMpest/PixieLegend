@@ -23,7 +23,7 @@
     self.skill.skillObject = [[skillInfo objectForKey:@"skillobject"] floatValue];
     
     
-    SKSpriteNode * skillAnimate = [SKSpriteNode spriteNodeWithImageNamed:@"fire_blade_cast_0000"];
+    SKSpriteNode *skillAnimate = [SKSpriteNode spriteNodeWithImageNamed:@"fire_blade_cast_0000"];
     skillAnimate.size = CGSizeMake(self.frame.size.width, 150.0f);
     skillAnimate.position = CGPointMake(0.0f,0.0f);
     [self addChild:skillAnimate];
@@ -35,7 +35,7 @@
     NSNumber * frameCount = [plistDic objectForKey:[NSString stringWithFormat:@"%@_%@_cast",kElementTypeString[element],[skillInfo objectForKey:@"animateTexturename"]]];
     
     
-    NSMutableArray * textureArray = [[NSMutableArray alloc] init];
+    NSMutableArray *textureArray = [[NSMutableArray alloc] init];
     for (int i = 0; i < [frameCount intValue]; i++)
     {
         SKTexture * textureCombo = [SKTexture textureWithImageNamed:[NSString stringWithFormat:@"%@_%@_cast_00%02d",kElementTypeString[element],[skillInfo objectForKey:@"animateTexturename"],i]];

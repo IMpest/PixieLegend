@@ -21,7 +21,7 @@ static NSString * activityTitle[] = {
         
         for (int i = 0; i < 5; i++) {
             
-            SKSpriteNode * activityBarContent = [[SKSpriteNode alloc] initWithColor:[UIColor brownColor] size:CGSizeMake(280, 50)];
+            SKSpriteNode *activityBarContent = [[SKSpriteNode alloc] initWithColor:[UIColor brownColor] size:CGSizeMake(280, 50)];
             activityBarContent.position = CGPointMake(160, 60 * i + 60);
             
             SKLabelNode * labalTitle = [[SKLabelNode alloc] init];

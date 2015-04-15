@@ -5,7 +5,7 @@
 
 BOOL isAction;
 PPSpriteButton * pixieNode;
-PPPixie * pixieCurrent;
+PPPixie *pixieCurrent;
 
 -(void)initMonsterInfo:(PPPixie *)pixie
 {
@@ -27,7 +27,7 @@ PPPixie * pixieCurrent;
     // 添加状态
     for (int i = 0; i < 3; i++)
     {
-        SKSpriteNode * buffButton = [[SKSpriteNode alloc] initWithImageNamed:@"buff_exp"];
+        SKSpriteNode *buffButton = [[SKSpriteNode alloc] initWithImageNamed:@"buff_exp"];
         buffButton.position = CGPointMake(140, i * 40 + 20);
         buffButton.size = CGSizeMake(25, 25);
         [self addChild:buffButton];
@@ -94,7 +94,7 @@ PPPixie * pixieCurrent;
     if (time < 1.0) return;
     
     // 添加文字框
-    SKSpriteNode * wordsFrame = [[SKSpriteNode alloc] initWithImageNamed:@"bg_words.png"];
+    SKSpriteNode *wordsFrame = [[SKSpriteNode alloc] initWithImageNamed:@"bg_words.png"];
     wordsFrame.position = CGPointMake(0, 90);
     wordsFrame.alpha = 0.0f;
     wordsFrame.xScale = 0.5f;

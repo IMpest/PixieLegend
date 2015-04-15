@@ -51,7 +51,7 @@
 //
 //-(void)monsterTeamButtonClick:(NSString *)stringName
 //{
-//    SKSpriteNode * spriteContent = (SKSpriteNode *)[self childNodeWithName:@"contentMonsterBox"];
+//    SKSpriteNode *spriteContent = (SKSpriteNode *)[self childNodeWithName:@"contentMonsterBox"];
 //    if (spriteContent != nil) [spriteContent removeFromParent];
 //    
 //    SKSpriteNode *contentSpriteNode = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(280, 200)];

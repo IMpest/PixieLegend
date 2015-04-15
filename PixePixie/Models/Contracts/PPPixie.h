@@ -33,7 +33,7 @@
 
 @property (nonatomic, retain) NSArray * skillList;     // 技能（ PPSkill版本 ）
 @property (nonatomic, retain) NSArray * pixieSkills;    // 技能（ NSDictionary版本 ）
-@property (nonatomic, retain) NSMutableArray * pixieBuffs;     // 附加状态
+@property (nonatomic, retain) NSMutableArray *pixieBuffs;     // 附加状态
 @property (nonatomic) PPBall * pixieBall;               // 小球
 
 -(void)outputInfo;

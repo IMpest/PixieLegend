@@ -24,17 +24,17 @@ typedef NS_ENUM(NSInteger, PPBallType)
     
 }
 
-@property (nonatomic,retain) NSMutableArray * ballBuffs;
+@property (nonatomic,retain) NSMutableArray *ballBuffs;
 @property (nonatomic,assign) int ballStatus;
 @property (nonatomic) int sustainRounds;
 @property (nonatomic) PPBallType ballType;
 @property (nonatomic) PPElementType ballElementType;
-@property (nonatomic) PPPixie * pixie;
-@property (nonatomic) PPPixie * pixieEnemy;
+@property (nonatomic) PPPixie *pixie;
+@property (nonatomic) PPPixie *pixieEnemy;
 
 @property (nonatomic,retain) NSArray * comboBallTexture;
-@property (nonatomic,retain) SKSpriteNode * comboBallSprite;
-@property (nonatomic,retain) SKSpriteNode * plantrootAnimationNode;
+@property (nonatomic,retain) SKSpriteNode *comboBallSprite;
+@property (nonatomic,retain) SKSpriteNode *plantrootAnimationNode;
 
 /**
  * @brief 生成宠物球

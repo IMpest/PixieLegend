@@ -43,7 +43,6 @@ NSString * userInfo[] =
     imgvBg.frame = CGRectMake(0, PP_FIT_TOP_SIZE, 320, 480);
     [self.view addSubview:imgvBg];
     
-    //    if (![[PPLocalData contentFromUserDefaultKey:PP_FIRST_LOG_IN] isEqualToString:@"Logged"]) {
     if (YES)
     {
         // 首次启动菜单

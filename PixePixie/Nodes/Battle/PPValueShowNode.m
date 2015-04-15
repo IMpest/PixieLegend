@@ -2,8 +2,8 @@
 
 @interface PPValueShowNode()
 {
-    SKSpriteNode * maskValueNode;
-    SKSpriteNode * valueShowNode;
+    SKSpriteNode *maskValueNode;
+    SKSpriteNode *valueShowNode;
     SKLabelNode * valueShowLabel;
 }
 @end
@@ -28,7 +28,7 @@
         
         SKCropNode * crop = [[SKCropNode alloc] init];
         
-        SKSpriteNode * spriteHpBar = [SKSpriteNode spriteNodeWithImageNamed:@"fight_hp_full.png"];
+        SKSpriteNode *spriteHpBar = [SKSpriteNode spriteNodeWithImageNamed:@"fight_hp_full.png"];
         spriteHpBar.size = CGSizeMake(46, 5);
         NSLog(@"self.size.width=%f,height=%f",self.size.width,self.size.height);
         
@@ -57,7 +57,7 @@
 //        //        valueShowNode.zPosition = 1;
 //        [self addChild:valueShowNode];
 //        
-//        SKSpriteNode * spriteMpBar = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_mpfull",typeString]]];
+//        SKSpriteNode *spriteMpBar = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_mpfull",typeString]]];
 //        spriteMpBar.size = CGSizeMake(96, 7);
 //        NSLog(@"self.size.width=%f,height=%f",self.size.width,self.size.height);
 //        

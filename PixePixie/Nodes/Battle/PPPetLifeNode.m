@@ -9,5 +9,12 @@
 #import "PPPetLifeNode.h"
 
 @implementation PPPetLifeNode
-
+-(id)init
+{
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
 @end

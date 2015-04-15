@@ -14,7 +14,7 @@ static NSString *monsterBtnTitle[] = {
     if (self = [super initWithSize:size]) {
         [self addTitle:@"变卖" andBackButton:360.0f];
 
-        SKSpriteNode * contentSpriteNode = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(280, 200)];
+        SKSpriteNode *contentSpriteNode = [[SKSpriteNode alloc] initWithColor:[UIColor blueColor] size:CGSizeMake(280, 200)];
         contentSpriteNode.position = CGPointMake(160, 230);
         contentSpriteNode.name = @"contentMonsterBox";
         SKTexture * boxTexture = nil;
