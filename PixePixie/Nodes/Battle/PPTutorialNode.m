@@ -44,7 +44,7 @@
             [contentNode addChild:tutorialBackBtn];
             
             
-            PPTextLabelNode *tutorialText=[PPTextLabelNode labelNodeWithFontNamed:@"Arial"];
+            PPTextLabelNode *tutorialText= [PPTextLabelNode labelNodeWithFontNamed:@"Arial"];
             
             
             [tutorialText setText:[[self.battleGuideStringArray objectAtIndex:index] objectForKey:@"message"]];
@@ -58,7 +58,7 @@
             
             
             
-            SKSpriteNode *spriteCircle=[SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
+            SKSpriteNode *spriteCircle = [SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
             spriteCircle.position = CGPointMake(tutorialBackBtn.position.x, tutorialBackBtn.position.y-20);
             spriteCircle.size = CGSizeMake(spriteCircle.size.width/2.0f, spriteCircle.size.height/2.0f);
             
@@ -73,10 +73,10 @@
             [contentNode addChild:spriteFinger];
             
             
-            SKAction *actionSeq=[SKAction sequence:[NSArray arrayWithObjects:[SKAction scaleTo:0.5 duration:0.5],[SKAction scaleTo:1.0 duration:0.5], nil]];
+            SKAction *actionSeq= [SKAction sequence:[NSArray arrayWithObjects:[SKAction scaleTo:0.5 duration:0.5],[SKAction scaleTo:1.0 duration:0.5], nil]];
             
             
-            SKAction *actionRepeat=[SKAction repeatAction:actionSeq count:5];
+            SKAction *actionRepeat= [SKAction repeatAction:actionSeq count:5];
             
             
             [spriteFinger runAction:actionRepeat];
@@ -88,7 +88,7 @@
                 
                 for (int i = 0; i < 5; i++) {
                     
-                    SKSpriteNode *spriteCircleCombo=[SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
+                    SKSpriteNode *spriteCircleCombo= [SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
                     spriteCircleCombo.position = CGPointMake(points[i].x-self.size.width/2.0f+30, points[i].y-self.size.height/2.0f+80);
                     [spriteCircleCombo setScale:0.95];
                     spriteCircleCombo.size = CGSizeMake(spriteCircleCombo.size.width/1.6f, spriteCircleCombo.size.height/1.6f);
@@ -99,7 +99,7 @@
             }else if(battleGuideIndex == 4)
             {
                 
-                SKSpriteNode *spriteCircleCombo=[SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
+                SKSpriteNode *spriteCircleCombo= [SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
                 spriteCircleCombo.position = CGPointMake(70,116);
                 [spriteCircleCombo setScale:1.1];
                 spriteCircleCombo.size = CGSizeMake(spriteCircleCombo.size.width/2.0f, spriteCircleCombo.size.height/2.0f);
@@ -131,7 +131,7 @@
             [contentNode addChild:tutorialBackBtn];
             
             
-            PPTextLabelNode *tutorialText=[PPTextLabelNode labelNodeWithFontNamed:@"Arial"];
+            PPTextLabelNode *tutorialText= [PPTextLabelNode labelNodeWithFontNamed:@"Arial"];
             [tutorialText setText:[[self.battleGuideStringArray objectAtIndex:index] objectForKey:@"message"]];
             tutorialText.paragraphWidth = tutorialBackBtn.size.width-12;
             [tutorialText setFontSize:10];
@@ -142,7 +142,7 @@
             
             
             
-            SKSpriteNode *spriteCircle=[SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
+            SKSpriteNode *spriteCircle = [SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
             spriteCircle.position = CGPointMake(tutorialBackBtn.position.x, tutorialBackBtn.position.y-20);
             spriteCircle.size = CGSizeMake(spriteCircle.size.width/2.0f, spriteCircle.size.height/2.0f);
             
@@ -157,9 +157,9 @@
             [contentNode addChild:spriteFinger];
             
             
-            SKAction *actionSeq=[SKAction sequence:[NSArray arrayWithObjects:[SKAction scaleTo:0.5 duration:0.5],[SKAction scaleTo:1.0 duration:0.5], nil]];
+            SKAction *actionSeq= [SKAction sequence:[NSArray arrayWithObjects:[SKAction scaleTo:0.5 duration:0.5],[SKAction scaleTo:1.0 duration:0.5], nil]];
             
-            SKAction *actionRepeat=[SKAction repeatAction:actionSeq count:5];
+            SKAction *actionRepeat= [SKAction repeatAction:actionSeq count:5];
             
             [spriteFinger runAction:actionRepeat];
             
@@ -177,7 +177,7 @@
 
             
             
-            SKSpriteNode *spriteCircle=[SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
+            SKSpriteNode *spriteCircle = [SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
             spriteCircle.position = CGPointMake(0.0f, -20);
             spriteCircle.size = CGSizeMake(spriteCircle.size.width/2.0f, spriteCircle.size.height/2.0f);
             
@@ -186,14 +186,14 @@
             
             
             
-            SKSpriteNode *spriteFinger=[SKSpriteNode spriteNodeWithImageNamed:@"tutorial_finger.pvr.png"];
+            SKSpriteNode *spriteFinger= [SKSpriteNode spriteNodeWithImageNamed:@"tutorial_finger.pvr.png"];
             spriteFinger.position = CGPointMake(spriteCircle.position.x, spriteCircle.position.y-20);
             spriteFinger.size = CGSizeMake(spriteFinger.size.width/2.0f, spriteFinger.size.height/2.0f);
             [contentNode addChild:spriteFinger];
             
-            SKAction *actionSeq=[SKAction sequence:[NSArray arrayWithObjects:[SKAction scaleTo:0.5 duration:0.5],[SKAction scaleTo:1.0 duration:0.5], nil]];
+            SKAction *actionSeq= [SKAction sequence:[NSArray arrayWithObjects:[SKAction scaleTo:0.5 duration:0.5],[SKAction scaleTo:1.0 duration:0.5], nil]];
             
-            SKAction *actionRepeat=[SKAction repeatAction:actionSeq count:5];
+            SKAction *actionRepeat= [SKAction repeatAction:actionSeq count:5];
             
             [spriteFinger runAction:actionRepeat];
             
@@ -243,7 +243,7 @@
             [contentNode addChild:tutorialBackBtn];
             
             
-            PPTextLabelNode *tutorialText=[PPTextLabelNode labelNodeWithFontNamed:@"Arial"];
+            PPTextLabelNode *tutorialText= [PPTextLabelNode labelNodeWithFontNamed:@"Arial"];
             
             
             [tutorialText setText:[[self.battleGuideStringArray objectAtIndex:index] objectForKey:@"message"]];
@@ -256,7 +256,7 @@
             NSLog(@"tutorialText width=%f",tutorialText.size.width);
             
             
-//            SKSpriteNode *spriteCircle=[SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
+//            SKSpriteNode *spriteCircle = [SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
 //            spriteCircle.position = CGPointMake(tutorialBackBtn.position.x-80, tutorialBackBtn.position.y+16);
 //            spriteCircle.size = CGSizeMake(spriteCircle.size.width/1.7f, spriteCircle.size.height/1.7f);
 //            
@@ -279,9 +279,9 @@
             [contentNode addChild:spriteFinger];
             
             
-            SKAction *actionSeq=[SKAction sequence:[NSArray arrayWithObjects:[SKAction scaleTo:0.5 duration:0.5],[SKAction scaleTo:1.0 duration:0.5], nil]];
+            SKAction *actionSeq= [SKAction sequence:[NSArray arrayWithObjects:[SKAction scaleTo:0.5 duration:0.5],[SKAction scaleTo:1.0 duration:0.5], nil]];
             
-            SKAction *actionRepeat=[SKAction repeatAction:actionSeq count:15];
+            SKAction *actionRepeat= [SKAction repeatAction:actionSeq count:15];
             
             [spriteFinger runAction:actionRepeat completion:^{
                
@@ -321,8 +321,8 @@
     // 添加battleguide数据
     NSArray * pixiesData = [[[NSDictionary dictionaryWithContentsOfFile:
                              [[NSBundle mainBundle] pathForResource:@"PixiesInfo" ofType:@"plist"]] objectForKey:@"GuideInfo"] objectForKey:@"BattleGuide"];
-//    NSMutableArray *guideInfo = [[NSMutableArray alloc] init];
-    self.battleGuideStringArray =pixiesData;
+//    NSMutableArray *guideInfo = PPInstance(NSMutableArray);
+    self.battleGuideStringArray = pixiesData;
     
     [self setTutorialFinger:CGPointMake(0.0f, 0.0f) atIndex:0];
     
@@ -400,7 +400,7 @@
     self.hidden = NO;
     battleGuideIndex++;
     
-    if (battleGuideIndex>=[self.battleGuideStringArray count]) {
+    if (battleGuideIndex>= [self.battleGuideStringArray count]) {
         [self removeFromParent];
         if (target!=nil&&completeSel!=nil&&[target respondsToSelector:completeSel]) {
             [target performSelectorOnMainThread:completeSel withObject:nil waitUntilDone:YES];
@@ -420,7 +420,7 @@
     
     battleGuideIndex++;
     
-    if (battleGuideIndex>=[self.battleGuideStringArray count]) {
+    if (battleGuideIndex>= [self.battleGuideStringArray count]) {
         [self removeFromParent];
         if (target!=nil&&completeSel!=nil&&[target respondsToSelector:completeSel]) {
             [target performSelectorOnMainThread:completeSel withObject:nil waitUntilDone:YES];

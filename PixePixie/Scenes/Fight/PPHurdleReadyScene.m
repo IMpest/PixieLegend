@@ -66,15 +66,15 @@
 //    
 //    currentEnemyIndex = currentIndex;
 //    
-////    SKSpriteNode *hurdleReadyContentNode=[[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(CurrentDeviceRealSize.width, 480.0f)];
-//    SKSpriteNode *hurdleReadyContentNode=[[SKSpriteNode alloc] initWithTexture:[SKTexture textureWithImageNamed:[NSString stringWithFormat:@"%@_encounter.png",kElementTypeString[chooseSceneType]]]];
+////    SKSpriteNode *hurdleReadyContentNode = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(CurrentDeviceRealSize.width, 480.0f)];
+//    SKSpriteNode *hurdleReadyContentNode = [[SKSpriteNode alloc] initWithTexture:[SKTexture textureWithImageNamed:[NSString stringWithFormat:@"%@_encounter.png",kElementTypeString[chooseSceneType]]]];
 //    hurdleReadyContentNode.name = PP_HURDLE_READY_CONTENT_NAME;
 //    [hurdleReadyContentNode setSize:CGSizeMake(320.0f, 480.0f)];
 //    [hurdleReadyContentNode setPosition:CGPointMake(160.0f, 240)];
 //    [self addChild:hurdleReadyContentNode];
 //    
-////    SKSpriteNode *forwardSprite=[[SKSpriteNode alloc] initWithTexture:[SKTexture textureWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_forward_0000.png",kElementTypeString[chooseSceneType]]]]];
-//    SKSpriteNode *forwardSprite=[[SKSpriteNode alloc] initWithTexture:[SKTexture textureWithImageNamed:[NSString stringWithFormat:@"%@_forward_0000.png",kElementTypeString[chooseSceneType]]]];
+////    SKSpriteNode *forwardSprite = [[SKSpriteNode alloc] initWithTexture:[SKTexture textureWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_forward_0000.png",kElementTypeString[chooseSceneType]]]]];
+//    SKSpriteNode *forwardSprite = [[SKSpriteNode alloc] initWithTexture:[SKTexture textureWithImageNamed:[NSString stringWithFormat:@"%@_forward_0000.png",kElementTypeString[chooseSceneType]]]];
 //    forwardSprite.position = CGPointMake(0.0f, 0.0f);
 //    [hurdleReadyContentNode addChild:forwardSprite];
 //    
@@ -142,7 +142,7 @@
 //-(void)setPetsChooseContent
 //{
 //    
-////    SKSpriteNode *enemyNode = [[SKSpriteNode alloc] init];
+////    SKSpriteNode *enemyNode = PPInstance(SKSpriteNode);
 ////    [enemyNode setSize:CGSizeMake(125, 125)];
 ////    [enemyNode setPosition:CGPointMake(self.size.width/2, self.size.height/2)];
 ////    [enemyNode setTexture:[[PPAtlasManager pixie_info] textureNamed:[NSString stringWithFormat:@"%@3_encounter",kElementTypeString[chooseSceneType]]]];
@@ -164,7 +164,7 @@
 //        
 //        PPSpriteButton * petChooseButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager pixie_info] textureNamed:[[petsInfoArray objectAtIndex:i] objectForKey:@"petimage"]]
 //                                                                     andSize:CGSizeMake(80, 80)];
-//        NSLog(@"petimage=%@",[[petsInfoArray objectAtIndex:i] objectForKey:@"petimage"]);
+//        NSLog(@"petimage =%@",[[petsInfoArray objectAtIndex:i] objectForKey:@"petimage"]);
 //        [petChooseButton setLabelWithText:[[petsInfoArray objectAtIndex:i] objectForKey:@"petname"]
 //                                  andFont:[UIFont systemFontOfSize:15] withColor:nil];
 //        [petChooseButton.label setPosition:CGPointMake(0.0f, -42.0f)];
@@ -189,7 +189,7 @@
 //    [spriteContent addChild:titilePass];
 //    
 //    // 显示精灵选择菜单
-//    SKAction * actionMove=[SKAction moveTo:CGPointMake(160.0, 50) duration:0.5];
+//    SKAction * actionMove = [SKAction moveTo:CGPointMake(160.0, 50) duration:0.5];
 //    [spriteContent runAction:actionMove];
 //    
 //}

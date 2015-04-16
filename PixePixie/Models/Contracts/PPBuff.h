@@ -10,6 +10,14 @@ typedef NS_ENUM(int, PPPetSkillBuffFlag)
     PPBuffTypeNightJudge,          // 黑夜审判
 };
 
+//定义连击类型
+typedef NS_ENUM(int, PPComboBallType)
+{
+    PPComboBallTypeRecover = 1,     //恢复球
+    PPComboBallTypeAccelerate       //加速球
+};
+
+
 @interface PPBuff : NSObject
 
 @property (nonatomic, assign) BOOL isOverRole;   // 是否覆盖角色（涉及图层问题）

@@ -105,7 +105,7 @@
 {
     SKSpriteNode *spriteTmp = nil;
     if (imageName == nil) {
-        spriteTmp = [[SKSpriteNode alloc] init];
+        spriteTmp = PPInstance(SKSpriteNode);
     } else {
         spriteTmp = [SKSpriteNode spriteNodeWithImageNamed:imageName];
     }

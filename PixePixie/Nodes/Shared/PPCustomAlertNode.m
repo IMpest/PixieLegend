@@ -4,7 +4,7 @@
 
 -(id)initWithFrame:(CGRect)frame
 {
-    PPCustomAlertNode * customAlert=[[PPCustomAlertNode alloc] init];
+    PPCustomAlertNode * customAlert= PPInstance(PPCustomAlertNode);
     customAlert.position = frame.origin;
     customAlert.size = frame.size;
     [customAlert setColor:[UIColor whiteColor]];
@@ -13,14 +13,14 @@
 }
 -(void)showPauseMenuAlertWithTitle:(NSString *)titleStr andMessage:(NSString *)messageStr
 {
-    SKLabelNode * titleNameLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+    SKLabelNode * titleNameLabel= [[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
     titleNameLabel.fontColor = [UIColor blueColor];
     titleNameLabel.text = titleStr;
     titleNameLabel.position = CGPointMake(0, 150);
     [self addChild:titleNameLabel];
     
     if ([messageStr length] != 0) {
-        SKLabelNode * textContentLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+        SKLabelNode * textContentLabel= [[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
         textContentLabel.fontColor = [UIColor blueColor];
         textContentLabel.text = messageStr;
         textContentLabel.position = CGPointMake(0.0f,-50);

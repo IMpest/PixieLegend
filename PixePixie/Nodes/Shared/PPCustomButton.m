@@ -11,7 +11,7 @@
                      withSelecter:(SEL)selectorTmp{
     
     CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);
-    PPCustomButton * customBtn=[[PPCustomButton alloc] init];
+    PPCustomButton * customBtn= PPInstance(PPCustomButton);
     customBtn.target = targetTmp;
     customBtn.selector = selectorTmp;
     
@@ -51,7 +51,7 @@
                      withSelecter:(SEL)selectorTmp{
     
     CGRect rect= CGRectMake(0.0f, 0.0f, size.width, size.height);
-    PPCustomButton *customBtn = [[PPCustomButton alloc] init];
+    PPCustomButton *customBtn = PPInstance(PPCustomButton);
     customBtn.target = targetTmp;
     customBtn.selector = selectorTmp;
     
@@ -70,7 +70,7 @@
     CFRelease(path);
     
     //创建文本标签
-    SKLabelNode *label=[[SKLabelNode alloc] initWithFontNamed:@"Avenir"];
+    SKLabelNode *label= [[SKLabelNode alloc] initWithFontNamed:@"Avenir"];
     [label setName:@"label"];
     [label setFontSize:14];
     [label setText:title];
@@ -90,7 +90,7 @@
 {
     
     CGRect rect= CGRectMake(0.0f, 0.0f, size.width, size.height);
-    PPCustomButton *customBtn=[[PPCustomButton alloc] init];
+    PPCustomButton *customBtn= PPInstance(PPCustomButton);
     customBtn.target = targetTmp;
     customBtn.selector = selectorTmp;
     

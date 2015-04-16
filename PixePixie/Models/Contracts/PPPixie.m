@@ -56,7 +56,7 @@
 // 手动创建宠物
 +(PPPixie *)pixieWithElement:(PPElementType)element Generation:(int)generation HPmax:(CGFloat)hpmax MPmax:(CGFloat)mpmax;
 {
-    PPPixie *tPixie = [[PPPixie alloc] init];
+    PPPixie *tPixie = PPInstance(PPPixie);
     
     tPixie.pixieName = @"Name";
     tPixie.pixieHPmax = 1000;
@@ -78,7 +78,7 @@
 // 自动创建宠物
 +(PPPixie *)pixieWithData:(NSDictionary *)pixieDict
 {
-    PPPixie *tPixie = [[PPPixie alloc] init];
+    PPPixie *tPixie = PPInstance(PPPixie);
     
     tPixie.pixieName = [pixieDict objectForKey:@"name"];
     
@@ -122,7 +122,7 @@
     
     
     // 创建宠物技能列表
-    NSMutableArray *tSkillList = [[NSMutableArray alloc] init];
+    NSMutableArray *tSkillList = PPInstance(NSMutableArray);
     for (NSDictionary * tSkillInfo in [petDict objectForKey:@"skill_list"])
     {
         id skillId = [tSkillInfo objectForKey:@"id"];

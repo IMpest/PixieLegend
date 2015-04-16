@@ -37,26 +37,27 @@
     bodyMPBar.position = CGPointMake(0.0f,20.0f);
     [self addChild:bodyMPBar];
     
+    
     [self runAction:[SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_stop",kElementTypeString[0]]]]];
-    NSLog(@"plantname=%@",[NSString stringWithFormat:@"%@3_stop",kElementTypeString[0]]);
+    NSLog(@"plantname =%@",[NSString stringWithFormat:@"%@3_stop",kElementTypeString[0]]);
 
-    headNode = [[SKSpriteNode alloc] init];
+    headNode = PPInstance(SKSpriteNode);
     [headNode setPosition:CGPointMake(0.0f, 20)];
     [headNode setColor:[UIColor blackColor]];
     [self addChild:headNode];
     
-    handNode = [[SKSpriteNode alloc] init];
+    handNode = PPInstance(SKSpriteNode);
     [handNode setPosition:CGPointMake(0.0f, 0.0f)];
     [handNode setColor:[UIColor orangeColor]];
     [self addChild:handNode];
     
-    bodyNode = [[SKSpriteNode alloc] init];
+    bodyNode = PPInstance(SKSpriteNode);
     [bodyNode setPosition:CGPointMake(0.0f, 0.0f)];
     [bodyNode setColor:[UIColor blueColor]];
     [self addChild:bodyNode];
     
     
-    legNode = [[SKSpriteNode alloc] init];
+    legNode = PPInstance(SKSpriteNode);
     [legNode setPosition:CGPointMake(0.0f, -20)];
     [legNode setColor:[UIColor cyanColor]];
     [self addChild:legNode];

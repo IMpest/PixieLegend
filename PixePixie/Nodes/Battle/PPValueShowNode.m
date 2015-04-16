@@ -112,11 +112,11 @@
 //    [self addChild:valueShowNode];
 //
 //
-////    valueShowLabel=[[SKLabelNode alloc] init];
-////    valueShowLabel.text=[NSString stringWithFormat:@"%.f/%.f",currentV,maxV];
+////    valueShowLabel= PPInstance(SKLabelNode);
+////    valueShowLabel.text= [NSString stringWithFormat:@"%.f/%.f",currentV,maxV];
 ////    NSLog(@"currentV=%f,maxV=%f",currentV,maxV);
 ////
-////    valueShowLabel.fontSize=10;
+////    valueShowLabel.fontSize =10;
 ////    valueShowLabel.name = [NSString stringWithFormat:@"%d",PP_SKILLS_VALUE_LAEBEL_TAG];
 ////    valueShowLabel.position = CGPointMake(0,valueShowNode.position.y+5.0f);
 ////    [self addChild:valueShowLabel];

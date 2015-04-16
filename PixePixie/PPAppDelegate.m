@@ -5,7 +5,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[PPRootViewController alloc] init];
+    self.window.rootViewController = PPInstance(PPRootViewController);
     [self.window makeKeyAndVisible];
     
 	return YES;

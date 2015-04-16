@@ -16,18 +16,18 @@
         
         
 
-//        SKSpriteNode *farBg0 =[SKSpriteNode spriteNodeWithImageNamed:@""];
+//        SKSpriteNode *farBg0 = [SKSpriteNode spriteNodeWithImageNamed:@""];
 //        farBg0.anchorPoint = CGPointMake(0, 0);
 //        farBg0.zPosition = 9;
 //        farBg0.position = CGPointMake(0, 150);
 //        
-//        SKSpriteNode *farBg1 =[SKSpriteNode spriteNodeWithImageNamed:@""];
+//        SKSpriteNode *farBg1 = [SKSpriteNode spriteNodeWithImageNamed:@""];
 //        farBg1.anchorPoint = CGPointMake(0, 0);
 //        farBg1.zPosition = 9;
 //        farBg1.position = CGPointMake(0, farBg0.position.y);
 //        
 //        
-//        SKSpriteNode *farBg2 =[SKSpriteNode spriteNodeWithImageNamed:@""];
+//        SKSpriteNode *farBg2 = [SKSpriteNode spriteNodeWithImageNamed:@""];
 //        farBg2.anchorPoint = CGPointMake(0, 0);
 //        farBg2.zPosition = 9;
 //        farBg2.position = CGPointMake(0, 150);
@@ -41,7 +41,7 @@
 //        [arryFarBg addObject:farBg2];
         
         for (int i=0; i<3; i++) {
-            SKSpriteNode *farBg0 =[SKSpriteNode spriteNodeWithImageNamed:@"fight_back"];
+            SKSpriteNode *farBg0 = [SKSpriteNode spriteNodeWithImageNamed:@"fight_back"];
             farBg0.anchorPoint = CGPointMake(0.5, 0.5);
 //            farBg0.zPosition = 9;
             farBg0.size = CGSizeMake(320.0f, 160.0f);
@@ -54,7 +54,7 @@
         }
         
         for (int i=0; i<2; i++) {
-            SKSpriteNode *nearBg0 =[SKSpriteNode spriteNodeWithImageNamed:@"fight_back"];
+            SKSpriteNode *nearBg0 = [SKSpriteNode spriteNodeWithImageNamed:@"fight_back"];
             nearBg0.anchorPoint = CGPointMake(0.5, 0.5);
             [nearBg0 setColor:[UIColor redColor]];
             nearBg0.size = CGSizeMake(320.0f, 160.0f);

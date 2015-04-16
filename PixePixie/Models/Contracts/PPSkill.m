@@ -26,18 +26,18 @@
     NSDictionary *skillInfo = [[PPLocalData getInstance].allSkillsInfo objectForKey:[NSString stringWithFormat:@"%02d",skillID]];
 //    NSLog(@"skillInfo=%@ allinfo=%@",skillInfo,[PPLocalData getInstance].allSkillsInfo);
 
-    PPSkill * tSkill = [[PPSkill alloc] init];
+    PPSkill * tSkill = PPInstance(PPSkill);
     tSkill.skillId = skillID;
     
     tSkill.skillName = kSkillName[skillID];
     tSkill.skillLevel = skillLevel;
     tSkill.skillName = [skillInfo objectForKey:@"skillname"];
-    tSkill.skillObject =[[skillInfo objectForKey:@"skillobject"] intValue];
-    tSkill.skillType =[[skillInfo objectForKey:@"skilltype"] intValue];
+    tSkill.skillObject = [[skillInfo objectForKey:@"skillobject"] intValue];
+    tSkill.skillType = [[skillInfo objectForKey:@"skilltype"] intValue];
     tSkill.skillstatus = [[skillInfo objectForKey:@"skillstatus"] intValue];
     tSkill.skillCD = [[skillInfo objectForKey:@"skillcdrounds"] intValue];
     tSkill.skillcontinue = [[skillInfo objectForKey:@"skillcontinue"] intValue];
-    tSkill.skillbtntexture =[skillInfo objectForKey:@"skillbtntexture"];
+    tSkill.skillbtntexture = [skillInfo objectForKey:@"skillbtntexture"];
     return tSkill;
 }
 

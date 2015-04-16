@@ -34,7 +34,7 @@
 //    bgSprite.position = CGPointMake(0.0f,0.0f);
 //    [self addChild:bgSprite];
     
-    battleBg = [[PPBattleInfoBgNode alloc] init];
+    battleBg = PPInstance(PPBattleInfoBgNode);
     battleBg.size = CGSizeMake(320.0f, 160.0f);
     battleBg.position = CGPointMake(0.0f,0.0f);
     [battleBg setColor:[UIColor orangeColor]];
@@ -43,13 +43,13 @@
     
     
     // 己方头像
-    ppixiePetBtn = [[SKSpriteNode alloc] init];
+    ppixiePetBtn = PPInstance(SKSpriteNode);
     ppixiePetBtn.size = CGSizeMake(PP_PET_ENEMY_SIZE_VALUE, PP_PET_ENEMY_SIZE_VALUE);
     [ppixiePetBtn setPosition: CGPointMake(originX-120, originY)];
     [self addChild:ppixiePetBtn];
     
     [ppixiePetBtn runAction:[SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_stop",kElementTypeString[petppixie.pixieElement]]]]];
-    NSLog(@"plantname=%@",[NSString stringWithFormat:@"%@3_stop",kElementTypeString[enemyppixie.pixieElement]]);
+    NSLog(@"plantname =%@",[NSString stringWithFormat:@"%@3_stop",kElementTypeString[enemyppixie.pixieElement]]);
     
 
 
@@ -66,7 +66,7 @@
 
 
     // 敌方头像
-    ppixieEnemyBtn = [[SKSpriteNode alloc] init];
+    ppixieEnemyBtn = PPInstance(SKSpriteNode);
     ppixieEnemyBtn.size = CGSizeMake(PP_PET_ENEMY_SIZE_VALUE, PP_PET_ENEMY_SIZE_VALUE);
     [ppixieEnemyBtn setPosition:CGPointMake(originEnemyX+100,ppixiePetBtn.position.y)];
     ppixieEnemyBtn.xScale = -1;
@@ -320,7 +320,7 @@
     
     NSLog(@"color=%@ number=%d",color,number);
     
-    SKSpriteNode *tNode = [[SKSpriteNode alloc] init];
+    SKSpriteNode *tNode = PPInstance(SKSpriteNode);
     if (number < 1 || color == nil) return tNode;
     
     float width = 13.0f;
@@ -389,7 +389,7 @@
 
         SKAction * actionBeated = [[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_beated",kElementTypeString[currentPPPixie.pixieElement]]];
         
-        NSLog(@"beated=%@",kElementTypeString[currentPPPixie.pixieElement]);
+        NSLog(@"beated =%@",kElementTypeString[currentPPPixie.pixieElement]);
         
         [ppixiePetBtn runAction:actionBeated completion:^{
             
@@ -425,7 +425,7 @@
 {
     if (isPetShow)
     {
-        SKSpriteNode *buffRatShowNode =[[SKSpriteNode alloc] init];
+        SKSpriteNode *buffRatShowNode = PPInstance(SKSpriteNode);
         buffRatShowNode.size = CGSizeMake(50.0f, 50.0f);
         
         [buffRatShowNode setPosition:CGPointMake(-25.0f, 0.0f)];
@@ -438,7 +438,7 @@
     }
     else
     {
-        SKSpriteNode *buffShowNode= [PPAtlasManager createSpriteImageName:@"buff_rooted_dis_0000" withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine]];
+        SKSpriteNode *buffShowNode = [PPAtlasManager createSpriteImageName:@"buff_rooted_dis_0000" withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine]];
         SKAction *actionRep = [[PPAtlasManager battle_table_buff] getAnimation:@"buff_rooted_apr"];
         [ppixieEnemyBtn addChild:buffShowNode];
         [buffShowNode runAction:actionRep];

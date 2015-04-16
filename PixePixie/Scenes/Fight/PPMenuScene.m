@@ -66,7 +66,7 @@
     PPPixie *playerPixie = [PPPixie pixieWithData:petsChoosedInfo];
     [playerPixie setPetSkillList:petsChoosedInfo];
     NSDictionary * enemyDicInfo = [[pixiesInfo objectForKey:@"enemysinfo"] objectAtIndex:0];
-    NSLog(@"playerPixie=%lu",(unsigned long)[playerPixie.skillList count]);
+    NSLog(@"playerPixie =%lu",(unsigned long)[playerPixie.skillList count]);
     PPPixie *enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
     
     if (playerPixie == nil || enemyPixie == nil) return;
@@ -95,14 +95,14 @@ andIndex:0 withTutorial:YES];
     SKLabelNode * labelNode = (SKLabelNode *)[self childNodeWithName:@"RoundLabel"];
     if (labelNode) [labelNode removeFromParent];
     
-    SKLabelNode * additonLabel = [[SKLabelNode alloc] init];
+    SKLabelNode * additonLabel = PPInstance(SKLabelNode);
     additonLabel.name  = @"titleLabel";
     additonLabel.fontColor = [UIColor redColor];
     additonLabel.position = CGPointMake(0, 100);
     [additonLabel setText:text];
     [enemyDeadContent addChild:additonLabel];
     
-    SKLabelNode * infoContentLabel = [[SKLabelNode alloc] init];
+    SKLabelNode * infoContentLabel = PPInstance(SKLabelNode);
     infoContentLabel.name  = @"contentLabel";
     infoContentLabel.fontColor = [UIColor redColor];
     infoContentLabel.position = CGPointMake(0, 0);
@@ -136,7 +136,7 @@ andIndex:0 withTutorial:YES];
     PPPixie *playerPixie = [PPPixie pixieWithData:petsChoosedInfo];
     [playerPixie setPetSkillList:petsChoosedInfo];
     NSDictionary * enemyDicInfo = [[pixiesInfo objectForKey:@"enemysinfo"] objectAtIndex:0];
-    NSLog(@"playerPixie=%lu",(unsigned long)[playerPixie.skillList count]);
+    NSLog(@"playerPixie =%lu",(unsigned long)[playerPixie.skillList count]);
     PPPixie *enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
     
     NSLog(@"petsChoosedInfo=%@,enemyDicInfo=%@",petsChoosedInfo,enemyDicInfo);

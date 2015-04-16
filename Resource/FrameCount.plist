@@ -30,11 +30,11 @@
 	<integer>2</integer>
 	<key>waiting</key>
 	<integer>3</integer>
-	<key>===battle_fight_missile===</key>
+	<key>===battle_fight_missile ===</key>
 	<string></string>
 	<key>01_tornado</key>
 	<integer>10</integer>
-	<key>===battle_fight_pixie===</key>
+	<key>===battle_fight_pixie ===</key>
 	<string></string>
 	<key>metal3_beated</key>
 	<integer>4</integer>

@@ -152,8 +152,8 @@ CGFloat vector2angel(CGVector vector){
     // 帧数间隔计数
     frameFlag = 0;
     
-    self.battleBuffArray = [[NSMutableArray alloc] init];
-    battleSkillInfo = [[PPBallBattleSkillInfo alloc] init];
+    self.battleBuffArray = PPInstance(NSMutableArray);
+    battleSkillInfo = PPInstance(PPBallBattleSkillInfo);
     [battleSkillInfo resetBattleSkillInfo];
 
     // 初始化宠物基础数据
@@ -164,6 +164,7 @@ CGFloat vector2angel(CGVector vector){
     enemyAssimDiffEleNum = 0;
     enemyAssimSameEleNum = 0;
     currentPhysicsAttack = 0;
+    
     
     [self changePlayerSideRoundRunState];
     
@@ -268,8 +269,8 @@ CGFloat vector2angel(CGVector vector){
 // 添加连击球
 -(void)initComboBalls
 {
-    self.ballsElement = [[NSMutableArray alloc] init];
-    self.ballsCombos = [[NSMutableArray alloc] init];
+    self.ballsElement = PPInstance(NSMutableArray);
+    self.ballsCombos = PPInstance(NSMutableArray);
     
     // 8选5方式决定位置
     const int tmax = 8;
@@ -356,17 +357,17 @@ CGFloat vector2angel(CGVector vector){
 // 增加连击数显示
 -(void)addComboValueChangeCombos:(int)value position:(CGPoint)labelPosition
 {
-    SKSpriteNode *contentSprite= [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(30, 30)];
+    SKSpriteNode *contentSprite = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(30, 30)];
     contentSprite.position = labelPosition;
     
-    SKSpriteNode *xSpriteNode=[SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_number] textureNamed:@"orange_x"]];
+    SKSpriteNode *xSpriteNode = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_number] textureNamed:@"orange_x"]];
     xSpriteNode.position = CGPointMake(-7.5, 0.0);
     xSpriteNode.size = CGSizeMake(14.0, 13.0);
     
     [contentSprite addChild:xSpriteNode];
     
-    SKSpriteNode *labelCombos=[PPNodeTools getNumber:value AndColor:@"orange"];
-    labelCombos.position=CGPointMake(7.5, 0.0);
+    SKSpriteNode *labelCombos = [PPNodeTools getNumber:value AndColor:@"orange"];
+    labelCombos.position = CGPointMake(7.5, 0.0);
     labelCombos.size = CGSizeMake(14.0, 13.0);
     [contentSprite addChild:labelCombos];
     
@@ -383,7 +384,7 @@ CGFloat vector2angel(CGVector vector){
 //增加血量变化显示
 -(void)addValueChangeLabel:(int)value position:(CGPoint)labelPosition andColor:(NSString *)string
 {
-    //    SKLabelNode *additonLabel= [[SKLabelNode alloc] init];
+    //    SKLabelNode *additonLabel= PPInstance(SKLabelNode);
     SKSpriteNode *additonLabel = [PPNodeTools getNumber:value AndColor:string];
     additonLabel.name  = @"hpchange";
     //    additonLabel.fontColor = [UIColor redColor];
@@ -432,7 +433,7 @@ CGFloat vector2angel(CGVector vector){
     self.ballEnemy.physicsBody.contactTestBitMask = EntityCategoryBall;
     [self addChild:self.ballEnemy];
     
-    self.playerAndEnemySide = [[PPBattleInfoLayer alloc] init];
+    self.playerAndEnemySide = PPInstance(PPBattleInfoLayer);
     self.playerAndEnemySide.color = [UIColor purpleColor];
     self.playerAndEnemySide.position = CGPointMake(CGRectGetMidX(self.frame), self.size.height-80-direct);
     self.playerAndEnemySide.name = PP_ENEMY_SIDE_NODE_NAME;
@@ -452,7 +453,7 @@ CGFloat vector2angel(CGVector vector){
     switch (hitType) {
         case kPetHitWallTypeValue:
         {
-            SKSpriteNode *hitAniNode = [[SKSpriteNode alloc] init];
+            SKSpriteNode *hitAniNode = PPInstance(SKSpriteNode);
             hitAniNode.size = CGSizeMake(50, 50);
             [hitAniNode setPosition:pointNode];
             [self addChild:hitAniNode];
@@ -468,7 +469,7 @@ CGFloat vector2angel(CGVector vector){
         case kEnemyHitWallTypeValue:
         {
             
-            SKSpriteNode *hitAniNode = [[SKSpriteNode alloc] init];
+            SKSpriteNode *hitAniNode = PPInstance(SKSpriteNode);
             hitAniNode.size = CGSizeMake(50, 50);
             [hitAniNode setPosition:pointNode];
             [self addChild:hitAniNode];
@@ -484,7 +485,7 @@ CGFloat vector2angel(CGVector vector){
         case kPetAndEnemyHitTypeValue:
         {
             
-            SKSpriteNode *hitAniNode=[[SKSpriteNode alloc] init];
+            SKSpriteNode *hitAniNode = PPInstance(SKSpriteNode);
             hitAniNode.size = CGSizeMake(100, 100);
             [hitAniNode setPosition:pointNode];
             [self addChild:hitAniNode];
@@ -492,7 +493,7 @@ CGFloat vector2angel(CGVector vector){
             [hitAniNode runAction:[[PPAtlasManager battle_table_ball] getAnimation:@"ball_pixie_hit"]
                        completion:^{[hitAniNode removeFromParent];}];
             
-            SKSpriteNode *hitFiledAniNode=[[SKSpriteNode alloc] init];
+            SKSpriteNode *hitFiledAniNode = PPInstance(SKSpriteNode);
             hitFiledAniNode.size = CGSizeMake(50, 50);
             [hitFiledAniNode setPosition:pointNode];
             [self addChild:hitFiledAniNode];
@@ -532,7 +533,7 @@ CGFloat vector2angel(CGVector vector){
             if(petSkillBar) {
                 PPSpriteButton * spriteBtn = (PPSpriteButton *)
                 [petSkillBar childNodeWithName:[NSString stringWithFormat:@"%d", PP_SKILLS_CHOOSE_BTN_TAG+i]];
-                NSLog(@"PPBallSkillStatus=%d",[spriteBtn.PPBallSkillStatus intValue]);
+                NSLog(@"PPBallSkillStatus =%d",[spriteBtn.PPBallSkillStatus intValue]);
                 
                 if ([spriteBtn.PPBallSkillStatus intValue]<=0) {
                     spriteBtn.PPBallSkillStatus = [NSNumber numberWithInt:perSkill.skillCD];
@@ -689,9 +690,9 @@ CGFloat vector2angel(CGVector vector){
         case PPBuffTypeDevilBreath:
         {
             battleSkillInfo.enemyPoisoningHP = 50;
-            PPBuff *buffId1 = [[PPBuff alloc] init];
+            PPBuff *buffId1 = PPInstance(PPBuff);
             buffId1.continueRound = [[skillInfo objectForKey:@"skillcontinue"] intValue];
-            buffId1.buffId =[NSString stringWithFormat:@"%d",PPBuffTypeDevilBreath];
+            buffId1.buffId = [NSString stringWithFormat:@"%d",PPBuffTypeDevilBreath];
             [self.battleBuffArray addObject:buffId1];
         }
             break;
@@ -700,9 +701,9 @@ CGFloat vector2angel(CGVector vector){
         {
             
             battleSkillInfo.enemyPoisoningHP = 50;
-            PPBuff * buffId1 = [[PPBuff alloc] init];
+            PPBuff * buffId1 = PPInstance(PPBuff);
             buffId1.continueRound = [[skillInfo objectForKey:@"skillcontinue"] intValue];
-            buffId1.buffId =[NSString stringWithFormat:@"%d",PPBuffTypeRattanTwine];
+            buffId1.buffId = [NSString stringWithFormat:@"%d",PPBuffTypeRattanTwine];
             [self.battleBuffArray addObject:buffId1];
             
         }
@@ -711,10 +712,10 @@ CGFloat vector2angel(CGVector vector){
         {
             
             battleSkillInfo.nightJudgeValue = 1.5;
-            PPBuff * buffId1 = [[PPBuff alloc] init];
+            PPBuff * buffId1 = PPInstance(PPBuff);
             buffId1.continueRound = [[skillInfo objectForKey:@"skillcontinue"] intValue];
-            NSLog(@"buff.continueRound=%d skill=%@",buffId1.continueRound,skillInfo);
-            buffId1.buffId =[NSString stringWithFormat:@"%d",PPBuffTypeNightJudge];
+            NSLog(@"buff.continueRound =%d skill=%@",buffId1.continueRound,skillInfo);
+            buffId1.buffId = [NSString stringWithFormat:@"%d",PPBuffTypeNightJudge];
             [self.battleBuffArray addObject:buffId1];
             
         }
@@ -815,7 +816,7 @@ CGFloat vector2angel(CGVector vector){
 {
     if (isBegin) {
         // 回合开始
-        SKSpriteNode *roundLabelContent=[[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(320, 240)];
+        SKSpriteNode *roundLabelContent= [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(320, 240)];
         [roundLabelContent setPosition:CGPointMake(160, 300)];
         roundLabelContent.zPosition =  PPZ_MESSAGE;
         [self addChild:roundLabelContent];
@@ -828,7 +829,7 @@ CGFloat vector2angel(CGVector vector){
         numberNode.position = CGPointMake(-30, 0);
         [roundLabelContent addChild:numberNode];
         
-        SKLabelNode * additonLabel= [[SKLabelNode alloc] init];
+        SKLabelNode * additonLabel= PPInstance(SKLabelNode);
         additonLabel.name  = @"RoundLabel";
         additonLabel.fontColor = [UIColor blueColor];
         additonLabel.position = CGPointMake(numberNode.position.x+numberNode.size.width / 2 + 10, -6);
@@ -863,7 +864,7 @@ CGFloat vector2angel(CGVector vector){
         numberNode.position = CGPointMake(-30, 0);
         [roundLabelContent addChild:numberNode];
         
-        SKLabelNode * additonLabel= [[SKLabelNode alloc] init];
+        SKLabelNode * additonLabel= PPInstance(SKLabelNode);
         additonLabel.name  = @"RoundLabel";
         additonLabel.fontColor = [UIColor redColor];
         additonLabel.position = CGPointMake(numberNode.position.x+numberNode.size.width/2.0f+10.0f, -6.0f);
@@ -927,7 +928,7 @@ CGFloat vector2angel(CGVector vector){
 //血条动画结束
 -(void)changeHpEndAnimate:(NSString *)battlesideName
 {
-    NSLog(@"battlesideName=%@",battlesideName);
+    NSLog(@"battlesideName =%@",battlesideName);
 }
 #pragma mark Remove Node
 
@@ -1025,7 +1026,7 @@ CGFloat vector2angel(CGVector vector){
 // 技能不可用按钮点击
 -(void)skillInvalidBtnClick:(PPSpriteButton *)skillInvalidButton
 {
-    SKLabelNode * additonLabel= [[SKLabelNode alloc] init];
+    SKLabelNode * additonLabel= PPInstance(SKLabelNode);
     additonLabel.name  = @"mpisnotenough";
     additonLabel.fontColor = [UIColor redColor];
     additonLabel.position = CGPointMake(160.0f, 200.0f);
@@ -1148,7 +1149,7 @@ CGFloat vector2angel(CGVector vector){
             
             //        self.paused = YES;
             //
-            //        SKSpriteNode *enemyDeadContent=[[SKSpriteNode alloc] initWithColor:[UIColor orangeColor] size:CGSizeMake(320, 240)];
+            //        SKSpriteNode *enemyDeadContent= [[SKSpriteNode alloc] initWithColor:[UIColor orangeColor] size:CGSizeMake(320, 240)];
             //        [enemyDeadContent setPosition:CGPointMake(160.0f, 300)];
             //        enemyDeadContent.zPosition =  PPZ_FIGHT_EFFECT_ATT;
             //        enemyDeadContent.name = PP_ENEMY_DEAD_CONTENT_NAME;
@@ -1156,7 +1157,7 @@ CGFloat vector2angel(CGVector vector){
             //
             //        NSDictionary * alertInfo = @{@"title":[NSString stringWithFormat:@"打倒怪物%d号",currentEnemyIndex], @"context":@"下一个怪物"};
             //
-            //        SKLabelNode * titleNameLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+            //        SKLabelNode * titleNameLabel= [[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
             //        titleNameLabel.fontSize = 13;
             //        titleNameLabel.fontColor = [UIColor blueColor];
             //        titleNameLabel.text = [alertInfo objectForKey:@"title"];
@@ -1164,7 +1165,7 @@ CGFloat vector2angel(CGVector vector){
             //        [enemyDeadContent addChild:titleNameLabel];
             //
             //
-            //        SKLabelNode * textContentLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+            //        SKLabelNode * textContentLabel= [[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
             //        textContentLabel.fontColor = [UIColor blueColor];
             //        textContentLabel.text = [alertInfo objectForKey:@"context"];
             //        textContentLabel.fontSize = 13;
@@ -1182,7 +1183,7 @@ CGFloat vector2angel(CGVector vector){
             //        [enemyDeadContent addChild:goButton];
             
             
-            SKSpriteNode *enemyDeadContent=[[SKSpriteNode alloc] initWithColor:[UIColor orangeColor] size:CGSizeMake(320, 240)];
+            SKSpriteNode *enemyDeadContent= [[SKSpriteNode alloc] initWithColor:[UIColor orangeColor] size:CGSizeMake(320, 240)];
             [enemyDeadContent setPosition:CGPointMake(160.0f, 300)];
             enemyDeadContent.zPosition =  PPZ_FIGHT_EFFECT_ATT;
             enemyDeadContent.name = PP_ENEMY_DEAD_CONTENT_NAME;
@@ -1191,7 +1192,7 @@ CGFloat vector2angel(CGVector vector){
             
             NSDictionary * alertInfo = @{@"title":@"所有怪物都已打完", @"context":@""};
             
-            SKLabelNode * titleNameLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+            SKLabelNode * titleNameLabel= [[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
             titleNameLabel.fontSize = 13;
             titleNameLabel.fontColor = [UIColor blueColor];
             titleNameLabel.text = [alertInfo objectForKey:@"title"];
@@ -1199,7 +1200,7 @@ CGFloat vector2angel(CGVector vector){
             [enemyDeadContent addChild:titleNameLabel];
             
             
-            //        SKLabelNode * textContentLabel=[[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
+            //        SKLabelNode * textContentLabel= [[SKLabelNode alloc] initWithFontNamed:@"Chalkduster"];
             //        textContentLabel.fontColor = [UIColor blueColor];
             //        textContentLabel.text = [alertInfo objectForKey:@"context"];
             //        textContentLabel.fontSize = 13;
@@ -1251,7 +1252,7 @@ CGFloat vector2angel(CGVector vector){
 {
     if (number <= 0) return;
     
-    int countToGenerate=number/kBallSustainRounds;
+    int countToGenerate =number/kBallSustainRounds;
     int lastBallSustainRounds = number%kBallSustainRounds;
     
     if (countToGenerate == 0 && lastBallSustainRounds != 0) {
@@ -1406,13 +1407,13 @@ CGFloat vector2angel(CGVector vector){
 {
     for (int i = 0; i < [self.ballsElement count]; i++) {
         PPBall * tBall = [self.ballsElement objectAtIndex:i];
-        tBall.physicsBody.PPBallPhysicsBodyStatus=[NSNumber numberWithInt:PP_ELEMENT_NAME_TAG+i];
+        tBall.physicsBody.PPBallPhysicsBodyStatus = [NSNumber numberWithInt:PP_ELEMENT_NAME_TAG+i];
     }
 }
 */
 
 -(PPBuff *)getBuff:(NSString *)buffId{
-    PPBuff * buffTmp = [[PPBuff alloc] init];
+    PPBuff * buffTmp = PPInstance(PPBuff);
     buffTmp.buffId = buffId;
     return buffTmp;
 }
@@ -1535,13 +1536,13 @@ CGFloat vector2angel(CGVector vector){
 // 物理攻击开始提示
 -(void)physicsAttackBegin:(NSString *)nodeName
 {
-    NSLog(@"nodeName=%@", nodeName);
+    NSLog(@"nodeName =%@", nodeName);
     
     if ([nodeName isEqual:PP_PET_PLAYER_SIDE_NODE_NAME]) {
         
     } else {
         
-        SKLabelNode * additonLabel= [[SKLabelNode alloc] init];
+        SKLabelNode * additonLabel= PPInstance(SKLabelNode);
         additonLabel.name  = @"EnemyPhysics";
         additonLabel.zPosition = PPZ_MESSAGE;
         additonLabel.position = CGPointMake(160.0f, 200.0f);
@@ -1710,7 +1711,7 @@ CGFloat vector2angel(CGVector vector){
 //    } else {
 //        hpChange = kHurtBasicValue * (1.0f + enemyCombos*enemyCombos / 100.0f);
 //    }
-//    NSLog(@"hpChange=%f petCombos=%d  enemyCombos=%d",hpChange,petCombos,enemyCombos);
+//    NSLog(@"hpChange =%f petCombos =%d  enemyCombos =%d",hpChange,petCombos,enemyCombos);
 //    
 //    return (int)hpChange;
 //}
@@ -1829,7 +1830,7 @@ CGFloat vector2angel(CGVector vector){
                 [addHPAnimation setPosition:CGPointMake(20.0f, 20.0f)];
                 [self.playerAndEnemySide->ppixiePetBtn addChild:addHPAnimation];
                 
-                SKSpriteNode *nodeSkillBuffer=[SKSpriteNode spriteNodeWithTexture:
+                SKSpriteNode *nodeSkillBuffer= [SKSpriteNode spriteNodeWithTexture:
                                                 [SKTexture textureWithImageNamed:@"01_devilrebirth.png"]];
                 nodeSkillBuffer.position = contact.contactPoint;
                 nodeSkillBuffer.size = CGSizeMake(nodeSkillBuffer.size.width/4.0f, nodeSkillBuffer.size.height/4.0f);
@@ -1957,16 +1958,16 @@ CGFloat vector2angel(CGVector vector){
                 }
                 
                 SKAction * actionRep = [[PPAtlasManager battle_table_buff] getAnimation:@"buff_cirrus"];
-                SKAction * actionRepForever =[SKAction repeatActionForever:actionRep];
+                SKAction * actionRepForever = [SKAction repeatActionForever:actionRep];
                 
-                SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] initWithImageNamed:@"buff_cirrus_0000"];
+                SKSpriteNode *buffShowNode = [[SKSpriteNode alloc] initWithImageNamed:@"buff_cirrus_0000"];
                 buffShowNode.size = CGSizeMake(115.0f, 107.0f);
                 //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
                 [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
                 
                 
                 buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine];
-                ballCombo.PPBallSkillStatus =[NSNumber numberWithInt:PPBuffTypeRattanTwine];
+                ballCombo.PPBallSkillStatus = [NSNumber numberWithInt:PPBuffTypeRattanTwine];
                 buffShowNode.zPosition = PPZ_FIGHT_BUFF;
                 [ballCombo addChild:buffShowNode];
                 
@@ -2016,32 +2017,32 @@ CGFloat vector2angel(CGVector vector){
                 return ;
             }
             
-            NSLog(@"bodyStatus=%d",[contact.bodyB.PPBallPhysicsBodyStatus intValue]);
+            NSLog(@"bodyStatus =%d",[contact.bodyB.PPBallPhysicsBodyStatus intValue]);
             [self.playerAndEnemySide resetPetAndEnemyPosition];
             PPBall *ballCombo = nil;
             
             if (contact.bodyA == self.ballEnemy.physicsBody) {
-                ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
+                ballCombo= [self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
               
             } else {
-                ballCombo=[self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
+                ballCombo= [self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
 //                [ballCombo startComboAnimation:CGVectorMake(self.ballEnemy.position.x-ballCombo.position.x,self.ballEnemy.position.y-ballCombo.position.y)];
             }
             if ([ballCombo.PPBallSkillStatus intValue] == PPBuffTypeRattanTwine) {
                 
                 [self changeBallStatus:PP_PET_PLAYER_SIDE_NODE_NAME];
                 SKAction *actionRep = [[PPAtlasManager battle_table_buff] getAnimation:@"buff_rooted_apr"];
-//                SKAction  *actionRepForever =[SKAction repeatActionForever:actionRep];
+//                SKAction  *actionRepForever = [SKAction repeatActionForever:actionRep];
                 
-//                SKSpriteNode *buffShowNode =[[SKSpriteNode alloc] initWithImageNamed:@"plant_root_appear_0012"];
+//                SKSpriteNode *buffShowNode = [[SKSpriteNode alloc] initWithImageNamed:@"plant_root_appear_0012"];
 //                buffShowNode.size = CGSizeMake(115.0f, 107.0f);
 //                //            [buffShowNode setPosition:self.playerAndEnemySide->ppixiePetBtn.position];
 //                [buffShowNode setPosition:CGPointMake(0.0f, 0.0f)];
 //                
 //                buffShowNode.name = [NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine];
-               SKSpriteNode *buffShowNode= [PPAtlasManager createSpriteImageName:@"buff_rooted_apr_0012" withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine]];
+               SKSpriteNode *buffShowNode = [PPAtlasManager createSpriteImageName:@"buff_rooted_apr_0012" withPos:CGPointMake(0.0f, 0.0f) withSize:CGSizeMake(115.0f, 107.0f) withName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeRattanTwine]];
                 
-                ballCombo.PPBallSkillStatus =[NSNumber numberWithInt:PPBuffTypeRattanTwine];
+                ballCombo.PPBallSkillStatus = [NSNumber numberWithInt:PPBuffTypeRattanTwine];
                 [self.ballEnemy addChild:buffShowNode];
                 
                 [buffShowNode runAction:actionRep completion:^{
@@ -2050,9 +2051,9 @@ CGFloat vector2angel(CGVector vector){
                 [self.playerAndEnemySide showRattanTwineAnimation:NO];
 
                 
-                PPBuff *buffId1 = [[PPBuff alloc] init];
+                PPBuff *buffId1 = PPInstance(PPBuff);
                 buffId1.continueRound = 2;
-                buffId1.buffId =[NSString stringWithFormat:@"%d",PPBuffTypeRattanTwineEffect];
+                buffId1.buffId = [NSString stringWithFormat:@"%d",PPBuffTypeRattanTwineEffect];
                 [self.battleBuffArray addObject:buffId1];
                 
                 self.ballEnemy.PPBallSkillStatus = [NSNumber numberWithInt:PPBuffTypeRattanTwineEffect];
@@ -2127,7 +2128,7 @@ CGFloat vector2angel(CGVector vector){
     
     if (isTutorial) {
         
-        tutorial1=[[PPTutorialNode alloc] initWithColor:[UIColor clearColor] size:self.size];
+        tutorial1= [[PPTutorialNode alloc] initWithColor:[UIColor clearColor] size:self.size];
         tutorial1.zPosition = PPZ_ALERT;
         [tutorial1 beginBattleGuide:@"battle"];
         tutorial1->target = self;
@@ -2360,7 +2361,7 @@ CGFloat vector2angel(CGVector vector){
             && isTouchPetBall
             && distanceBetweenPoints(location, origtinTouchPoint) < 18)
         {
-            NSLog(@"touchedNode=%@ name =%@",touchedNode,touchedNode.name);
+            NSLog(@"touchedNode =%@ name =%@",touchedNode,touchedNode.name);
             [_ballShadow removeFromParent];
             _ballShadow = nil;
             [self addPetSkillBar];

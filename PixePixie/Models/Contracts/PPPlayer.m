@@ -18,7 +18,7 @@ static PPPlayer * localPlayer = nil;
     {
         if (localPlayer == nil)
         {
-            localPlayer = [[PPPlayer alloc] init];
+            localPlayer = PPInstance(PPPlayer);
             localPlayer.playerName = @"testName";
             localPlayer.playerLevel = 1;
             localPlayer.playerEnergy = 150;

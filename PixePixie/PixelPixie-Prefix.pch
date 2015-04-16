@@ -12,6 +12,9 @@
 
 #ifdef __OBJC__
 
+#define PPInstance(ClassName) [[ClassName alloc] init];
+
+
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import <SpriteKit/SpriteKit.h>
