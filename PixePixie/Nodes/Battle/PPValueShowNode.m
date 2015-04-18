@@ -30,7 +30,7 @@
         
         SKSpriteNode *spriteHpBar = [SKSpriteNode spriteNodeWithImageNamed:@"fight_hp_full.png"];
         spriteHpBar.size = CGSizeMake(46, 5);
-        NSLog(@"self.size.width=%f,height=%f",self.size.width,self.size.height);
+        NSLog(@"self.size.width = %f,height= %f",self.size.width,self.size.height);
         
         if (anchorPoint.x == 0.0f) {
             spriteHpBar.position = CGPointMake(23, 1);
@@ -59,7 +59,7 @@
 //        
 //        SKSpriteNode *spriteMpBar = [SKSpriteNode spriteNodeWithTexture:[[PPAtlasManager ui_fighting] textureNamed:[NSString stringWithFormat:@"%@_header_mpfull",typeString]]];
 //        spriteMpBar.size = CGSizeMake(96, 7);
-//        NSLog(@"self.size.width=%f,height=%f",self.size.width,self.size.height);
+//        NSLog(@"self.size.width = %f,height= %f",self.size.width,self.size.height);
 //        
 //        SKCropNode * crop = [[SKCropNode alloc]init];
 //        if (anchorPoint.x == 0.0f) {
@@ -104,7 +104,7 @@
 //    }
 //    valueShowNode.anchorPoint = anchorPoint;
 //    valueShowNode.position = CGPointMake(-50.0f,0.0f);
-//    if (anchorPoint.x==1.0f) {
+//    if (anchorPoint.x ==1.0f) {
 //
 //        valueShowNode.position = CGPointMake(50.0f,0.0f);
 //
@@ -114,7 +114,7 @@
 //
 ////    valueShowLabel= PPInstance(SKLabelNode);
 ////    valueShowLabel.text= [NSString stringWithFormat:@"%.f/%.f",currentV,maxV];
-////    NSLog(@"currentV=%f,maxV=%f",currentV,maxV);
+////    NSLog(@"currentV= %f,maxV= %f",currentV,maxV);
 ////
 ////    valueShowLabel.fontSize =10;
 ////    valueShowLabel.name = [NSString stringWithFormat:@"%d",PP_SKILLS_VALUE_LAEBEL_TAG];

@@ -116,7 +116,7 @@
 
 -(void)setPetSkillList:(NSDictionary *)petDict;
 {
-    NSLog(@"petDict=%@",petDict);
+    NSLog(@"petDict= %@",petDict);
     
    
     

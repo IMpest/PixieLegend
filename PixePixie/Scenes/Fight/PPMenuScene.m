@@ -66,7 +66,7 @@
     PPPixie *playerPixie = [PPPixie pixieWithData:petsChoosedInfo];
     [playerPixie setPetSkillList:petsChoosedInfo];
     NSDictionary * enemyDicInfo = [[pixiesInfo objectForKey:@"enemysinfo"] objectAtIndex:0];
-    NSLog(@"playerPixie =%lu",(unsigned long)[playerPixie.skillList count]);
+    NSLog(@"playerPixie = %lu",(unsigned long)[playerPixie.skillList count]);
     PPPixie *enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
     
     if (playerPixie == nil || enemyPixie == nil) return;
@@ -136,10 +136,10 @@ andIndex:0 withTutorial:YES];
     PPPixie *playerPixie = [PPPixie pixieWithData:petsChoosedInfo];
     [playerPixie setPetSkillList:petsChoosedInfo];
     NSDictionary * enemyDicInfo = [[pixiesInfo objectForKey:@"enemysinfo"] objectAtIndex:0];
-    NSLog(@"playerPixie =%lu",(unsigned long)[playerPixie.skillList count]);
+    NSLog(@"playerPixie = %lu",(unsigned long)[playerPixie.skillList count]);
     PPPixie *enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
     
-    NSLog(@"petsChoosedInfo=%@,enemyDicInfo=%@",petsChoosedInfo,enemyDicInfo);
+    NSLog(@"petsChoosedInfo= %@,enemyDicInfo= %@",petsChoosedInfo,enemyDicInfo);
     
     //    PPPixie *playerPixie = [PPPixie birthPixieWithPetsInfo:petsChoosedInfo];
     //    PPPixie *enemyPixie = [PPPixie birthEnemyPixieWithPetsInfo:enemyDicInfo];

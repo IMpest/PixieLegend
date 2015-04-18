@@ -165,7 +165,7 @@ CGFloat vector2angel(CGVector vector){
     enemyAssimSameEleNum = 0;
     currentPhysicsAttack = 0;
     
-    
+        
     [self changePlayerSideRoundRunState];
     
 }
@@ -188,7 +188,7 @@ CGFloat vector2angel(CGVector vector){
 // 添加己方球
 -(void)initPlayerBalls
 {
-    if (self.ballPlayer!=nil)
+    if (self.ballPlayer!= nil)
     {
         [self.ballPlayer removeFromParent];
         self.ballPlayer = nil;
@@ -316,6 +316,8 @@ CGFloat vector2angel(CGVector vector){
         {
             
             PPBall * comboBall = [PPBall ballWithCombo];
+            petCombosCount[i]=0;
+            enemyCombosCount[i]=0;
             
             int t = arc4random() % tmax;
             while (cb[t] == YES) t = arc4random() % tmax;
@@ -515,7 +517,7 @@ CGFloat vector2angel(CGVector vector){
 -(void)addPetSkillBar
 {
     //    [self removeSkillBar];
-    NSLog(@"self.pixiePlayer.skillList=%lu",(unsigned long)[self.pixiePlayer.skillList count]);
+    NSLog(@"self.pixiePlayer.skillList= %lu",(unsigned long)[self.pixiePlayer.skillList count]);
     isShowingSkillBar = YES;
     
     if (petSkillBar) {
@@ -533,7 +535,7 @@ CGFloat vector2angel(CGVector vector){
             if(petSkillBar) {
                 PPSpriteButton * spriteBtn = (PPSpriteButton *)
                 [petSkillBar childNodeWithName:[NSString stringWithFormat:@"%d", PP_SKILLS_CHOOSE_BTN_TAG+i]];
-                NSLog(@"PPBallSkillStatus =%d",[spriteBtn.PPBallSkillStatus intValue]);
+                NSLog(@"PPBallSkillStatus = %d",[spriteBtn.PPBallSkillStatus intValue]);
                 
                 if ([spriteBtn.PPBallSkillStatus intValue]<=0) {
                     spriteBtn.PPBallSkillStatus = [NSNumber numberWithInt:perSkill.skillCD];
@@ -614,7 +616,7 @@ CGFloat vector2angel(CGVector vector){
         
         passButton.PPBallSkillStatus = cdString;
         [cdLabel setText:cdString];
-        NSLog(@"cdString=%@",cdString);
+        NSLog(@"cdString= %@",cdString);
         [passButton addChild:cdLabel];
     }
     
@@ -714,7 +716,7 @@ CGFloat vector2angel(CGVector vector){
             battleSkillInfo.nightJudgeValue = 1.5;
             PPBuff * buffId1 = PPInstance(PPBuff);
             buffId1.continueRound = [[skillInfo objectForKey:@"skillcontinue"] intValue];
-            NSLog(@"buff.continueRound =%d skill=%@",buffId1.continueRound,skillInfo);
+            NSLog(@"buff.continueRound = %d skill= %@",buffId1.continueRound,skillInfo);
             buffId1.buffId = [NSString stringWithFormat:@"%d",PPBuffTypeNightJudge];
             [self.battleBuffArray addObject:buffId1];
             
@@ -744,7 +746,7 @@ CGFloat vector2angel(CGVector vector){
         if(petSkillBar){
             PPSpriteButton * spriteBtn = (PPSpriteButton *)
             [petSkillBar childNodeWithName:[NSString stringWithFormat:@"%d", PP_SKILLS_CHOOSE_BTN_TAG + i]];
-            NSLog(@"PPBallPhysicsBodyStatus current=%@",spriteBtn.PPBallPhysicsBodyStatus);
+            NSLog(@"PPBallPhysicsBodyStatus current= %@",spriteBtn.PPBallPhysicsBodyStatus);
             
             //如果技能是释放完状态
             if ([spriteBtn.PPBallPhysicsBodyStatus isEqual:@2]) {
@@ -887,11 +889,11 @@ CGFloat vector2angel(CGVector vector){
     for (int i = 0; i < [self.battleBuffArray count]; i++) {
         PPBuff * buff = [self.battleBuffArray objectAtIndex:i];
         buff.continueRound--;
-        NSLog(@"continueRound =%d",buff.continueRound);
+        NSLog(@"continueRound = %d",buff.continueRound);
         if (buff.continueRound < 0) {
             [self removeBuff:buff];
         } else {
-            NSLog(@"buff id =%@",buff.buffId);
+            NSLog(@"buff id = %@",buff.buffId);
             switch ([buff.buffId intValue]) {
                 case PPBuffTypeDevilBreath:
                 {
@@ -928,7 +930,7 @@ CGFloat vector2angel(CGVector vector){
 //血条动画结束
 -(void)changeHpEndAnimate:(NSString *)battlesideName
 {
-    NSLog(@"battlesideName =%@",battlesideName);
+    NSLog(@"battlesideName = %@",battlesideName);
 }
 #pragma mark Remove Node
 
@@ -1252,7 +1254,7 @@ CGFloat vector2angel(CGVector vector){
 {
     if (number <= 0) return;
     
-    int countToGenerate =number/kBallSustainRounds;
+    int countToGenerate = number/kBallSustainRounds;
     int lastBallSustainRounds = number%kBallSustainRounds;
     
     if (countToGenerate == 0 && lastBallSustainRounds != 0) {
@@ -1521,10 +1523,10 @@ CGFloat vector2angel(CGVector vector){
     currentPhysicsAttack = 2;
     CGFloat randomX = arc4random() %100 - kAutoAttackMax;
     CGFloat randomY = arc4random() %100 - kAutoAttackMax;
-    NSLog(@"randomX=%f randomY=%f",randomX,randomY);
+    NSLog(@"randomx = %f randomy = %f",randomX,randomY);
     
 //    [self.ballEnemy.physicsBody applyImpulse:CGVectorMake(randomX, randomY)];
-    NSLog(@"count =%@",self.ballEnemy);
+    NSLog(@"count = %@",self.ballEnemy);
     [self.ballEnemy.physicsBody applyImpulse:CGVectorMake(50.0f, 50.0f)];
     [self addBallMoveAnimation:self.ballEnemy.position];
 //
@@ -1536,7 +1538,7 @@ CGFloat vector2angel(CGVector vector){
 // 物理攻击开始提示
 -(void)physicsAttackBegin:(NSString *)nodeName
 {
-    NSLog(@"nodeName =%@", nodeName);
+    NSLog(@"nodeName = %@", nodeName);
     
     if ([nodeName isEqual:PP_PET_PLAYER_SIDE_NODE_NAME]) {
         
@@ -1580,6 +1582,25 @@ CGFloat vector2angel(CGVector vector){
             
         }else
         {
+            
+            switch ([elementBallTmp.PPBallPhysicsBodyStatus intValue]) {
+                case PPComboBallTypeRecover:
+                {
+                    [self.playerAndEnemySide changePetHPValue:self.playerAndEnemySide.currentPPPixie.pixieHPmax*0.3];
+
+                }
+                    break;
+                    case PPComboBallTypeAccelerate:
+                {
+                    
+                    self.ballPlayer.physicsBody.velocity = CGVectorMake(self.ballPlayer.physicsBody.velocity.dx*2, self.ballPlayer.physicsBody.velocity.dy*2);
+                }
+                    
+                default:
+                    break;
+            }
+        
+            
             [self.playerAndEnemySide changeEnemyHPValue:-kHurtBasicValue];
         }
         
@@ -1626,13 +1647,13 @@ CGFloat vector2angel(CGVector vector){
 -(void)skillPlayerShowBegin:(PPSpriteButton *)skillButton
 {
     
-    NSDictionary * skillInfo =nil;
+    NSDictionary * skillInfo = nil;
     CGFloat mpToConsume;
     if ([self.ballPlayer.pixie.pixieSkills count]>[skillButton.name intValue] - PP_SKILLS_CHOOSE_BTN_TAG) {
         skillInfo = [self.ballPlayer.pixie.pixieSkills objectAtIndex:
                                     [skillButton.name intValue] - PP_SKILLS_CHOOSE_BTN_TAG];
         mpToConsume = [[skillInfo objectForKey:@"skillmpchange"] floatValue];
-        NSLog(@"skillInfo=%@",skillInfo);
+        NSLog(@"skillInfo= %@",skillInfo);
         [self changePlayerSideRoundRunState];
     }else
     {
@@ -1711,7 +1732,7 @@ CGFloat vector2angel(CGVector vector){
 //    } else {
 //        hpChange = kHurtBasicValue * (1.0f + enemyCombos*enemyCombos / 100.0f);
 //    }
-//    NSLog(@"hpChange =%f petCombos =%d  enemyCombos =%d",hpChange,petCombos,enemyCombos);
+//    NSLog(@"hpChange = %f petCombos = %d  enemyCombos = %d",hpChange,petCombos,enemyCombos);
 //    
 //    return (int)hpChange;
 //}
@@ -1812,8 +1833,8 @@ CGFloat vector2angel(CGVector vector){
         
         // 我方球体撞墙
         if ((contact.bodyA.categoryBitMask == EntityCategoryWall || contact.bodyB.categoryBitMask == EntityCategoryWall)) {
-            NSLog(@"ballPlayer vec x=%f y=%f",self.ballPlayer.physicsBody.velocity.dx,self.ballPlayer.physicsBody.velocity.dy);
-            NSLog(@"contact x=%f y=%f", contact.contactPoint.x,contact.contactPoint.y);
+            NSLog(@"ballPlayer vec x = %f y = %f",self.ballPlayer.physicsBody.velocity.dx,self.ballPlayer.physicsBody.velocity.dy);
+            NSLog(@"contact x = %f y = %f", contact.contactPoint.x,contact.contactPoint.y);
             [self addHitAnimationNodes:contact.contactPoint andType:kPetHitWallTypeValue];
             return;
         };
@@ -1850,10 +1871,12 @@ CGFloat vector2angel(CGVector vector){
             PPBall * ballCombo = nil;
             if (contact.bodyA == self.ballPlayer.physicsBody) {
                 ballCombo = [self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
+                petCombosCount[[contact.bodyB.PPBallPhysicsBodyStatus intValue]] +=1;
                 [ballCombo startComboAnimation:CGPointMake(self.ballPlayer.position.x - ballCombo.position.x,
                                                            self.ballPlayer.position.y - ballCombo.position.y)];
             } else {
                 ballCombo = [self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
+                petCombosCount[[contact.bodyA.PPBallPhysicsBodyStatus intValue]] +=1;
                 [ballCombo startComboAnimation:CGPointMake(self.ballPlayer.position.x - ballCombo.position.x,
                                                            self.ballPlayer.position.y - ballCombo.position.y)];
             }
@@ -1906,7 +1929,7 @@ CGFloat vector2angel(CGVector vector){
             // 恶魔重生
             if (battleSkillInfo.petHitRecoverHP != 0) {
                 [self.playerAndEnemySide changePetHPValue:battleSkillInfo.petHitRecoverHP];
-                NSLog(@"恶魔重生=%d",battleSkillInfo.petHitRecoverHP);
+                NSLog(@"恶魔重生= %d",battleSkillInfo.petHitRecoverHP);
                 [self removeSkillBar];
                 
             }
@@ -2003,7 +2026,7 @@ CGFloat vector2angel(CGVector vector){
         //敌方球体撞墙
         if ((contact.bodyA.categoryBitMask == EntityCategoryWall || contact.bodyB.categoryBitMask == EntityCategoryWall)) {
             
-            NSLog(@"ballEnemy vec x=%f y=%f",self.ballEnemy.physicsBody.velocity.dx,self.ballEnemy.physicsBody.velocity.dy);
+            NSLog(@"ballEnemy vec x = %f y = %f",self.ballEnemy.physicsBody.velocity.dx,self.ballEnemy.physicsBody.velocity.dy);
             
             [self addHitAnimationNodes:contact.contactPoint andType:kEnemyHitWallTypeValue];
         };
@@ -2017,15 +2040,18 @@ CGFloat vector2angel(CGVector vector){
                 return ;
             }
             
-            NSLog(@"bodyStatus =%d",[contact.bodyB.PPBallPhysicsBodyStatus intValue]);
+            NSLog(@"bodyStatus = %d",[contact.bodyB.PPBallPhysicsBodyStatus intValue]);
             [self.playerAndEnemySide resetPetAndEnemyPosition];
             PPBall *ballCombo = nil;
             
             if (contact.bodyA == self.ballEnemy.physicsBody) {
                 ballCombo= [self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
+                enemyCombosCount[[contact.bodyB.PPBallPhysicsBodyStatus intValue]]+=1;
               
             } else {
                 ballCombo= [self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
+                enemyCombosCount[[contact.bodyA.PPBallPhysicsBodyStatus intValue]]+=1;
+
 //                [ballCombo startComboAnimation:CGVectorMake(self.ballEnemy.position.x-ballCombo.position.x,self.ballEnemy.position.y-ballCombo.position.y)];
             }
             if ([ballCombo.PPBallSkillStatus intValue] == PPBuffTypeRattanTwine) {
@@ -2190,7 +2216,7 @@ CGFloat vector2angel(CGVector vector){
         return;
     }
     
-    if(tutorial1!=nil)
+    if(tutorial1!= nil)
     {
     
         if (tutorial1->isTutorialType4) {
@@ -2255,7 +2281,7 @@ CGFloat vector2angel(CGVector vector){
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if(tutorial1!=nil)
+    if(tutorial1!= nil)
     {
         if (tutorial1->isTutorialType4) {
             return;
@@ -2295,7 +2321,7 @@ CGFloat vector2angel(CGVector vector){
             spriteArrow.xScale = 0.2;
             spriteArrow.yScale = 0.2;
             if (isTouchPetBall) {
-                spriteArrow.hidden=YES;
+                spriteArrow.hidden = YES;
             }
             spriteArrow.position = self.ballPlayer.position;
             [self addChild:spriteArrow];
@@ -2311,7 +2337,7 @@ CGFloat vector2angel(CGVector vector){
         
         spriteArrow.xScale = scaleChange;
         spriteArrow.yScale = scaleChange;
-        NSLog(@"scaleFactor=%f,spriteArrow.zRotation=%f",scaleFactor,spriteArrow.zRotation);
+        NSLog(@"scaleFactor= %f,spriteArrow.zRotation = %f",scaleFactor,spriteArrow.zRotation);
     }
 }
 
@@ -2322,7 +2348,7 @@ CGFloat vector2angel(CGVector vector){
     CGPoint location = [touch locationInNode:self];
     SKSpriteNode *touchedNode = (SKSpriteNode *)[self nodeAtPoint:location];
     
-    if(tutorial1!=nil)
+    if(tutorial1!= nil)
     {
         
         NSLog(@"isTutorialType4＝%d",tutorial1->isTutorialType4);
@@ -2353,7 +2379,7 @@ CGFloat vector2angel(CGVector vector){
             return;
         }
         
-        NSLog(@"direct=%f",distanceBetweenPoints(location, origtinTouchPoint));
+        NSLog(@"direct= %f",distanceBetweenPoints(location, origtinTouchPoint));
         _isBallDragging = NO;
 
         
@@ -2361,7 +2387,7 @@ CGFloat vector2angel(CGVector vector){
             && isTouchPetBall
             && distanceBetweenPoints(location, origtinTouchPoint) < 18)
         {
-            NSLog(@"touchedNode =%@ name =%@",touchedNode,touchedNode.name);
+            NSLog(@"touchedNode = %@ name = %@",touchedNode,touchedNode.name);
             [_ballShadow removeFromParent];
             _ballShadow = nil;
             [self addPetSkillBar];

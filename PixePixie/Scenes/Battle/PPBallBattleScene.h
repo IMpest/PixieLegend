@@ -20,6 +20,10 @@
     BOOL isHPZero;
     CGPoint origtinTouchPoint;
     CGFloat interCoefficient;   // 宠物与对手之间属性克制关系
+    
+    int petCombosCount[5];
+    int enemyCombosCount[5];
+    
 @public
     int currentEnemyIndex;
     BOOL isTutorial;

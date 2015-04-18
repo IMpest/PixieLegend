@@ -164,7 +164,7 @@
 //        
 //        PPSpriteButton * petChooseButton = [PPSpriteButton buttonWithTexture:[[PPAtlasManager pixie_info] textureNamed:[[petsInfoArray objectAtIndex:i] objectForKey:@"petimage"]]
 //                                                                     andSize:CGSizeMake(80, 80)];
-//        NSLog(@"petimage =%@",[[petsInfoArray objectAtIndex:i] objectForKey:@"petimage"]);
+//        NSLog(@"petimage = %@",[[petsInfoArray objectAtIndex:i] objectForKey:@"petimage"]);
 //        [petChooseButton setLabelWithText:[[petsInfoArray objectAtIndex:i] objectForKey:@"petname"]
 //                                  andFont:[UIFont systemFontOfSize:15] withColor:nil];
 //        [petChooseButton.label setPosition:CGPointMake(0.0f, -42.0f)];
@@ -239,7 +239,7 @@
 //    // 初始化 ballScene
 //    PPPixie *playerPixie = [PPPixie birthPixieWithPetsInfo:choosedPet];
 //    PPPixie *enemyPixie = [PPPixie birthEnemyPixieWithPetsInfo:[self.enemysArray objectAtIndex:currentEnemyIndex]];
-//    NSLog(@"petsChoosedInfo=%@,enemy=%@",petsChoosedInfo,[self.enemysArray objectAtIndex:currentEnemyIndex]);
+//    NSLog(@"petsChoosedInfo= %@,enemy = %@",petsChoosedInfo,[self.enemysArray objectAtIndex:currentEnemyIndex]);
 //    if (playerPixie == nil || enemyPixie == nil) return;
 //    
 //    // 创建战斗场景并显示

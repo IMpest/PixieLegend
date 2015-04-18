@@ -39,7 +39,7 @@
     
     
     [self runAction:[SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_stop",kElementTypeString[0]]]]];
-    NSLog(@"plantname =%@",[NSString stringWithFormat:@"%@3_stop",kElementTypeString[0]]);
+    NSLog(@"plantname = %@",[NSString stringWithFormat:@"%@3_stop",kElementTypeString[0]]);
 
     headNode = PPInstance(SKSpriteNode);
     [headNode setPosition:CGPointMake(0.0f, 20)];

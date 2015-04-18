@@ -16,7 +16,7 @@
 {
     
     SKNode *contentNodePrevious = [self childNodeWithName:PP_GUIDE_CONTENT_NODE_NAME];
-    if (contentNodePrevious!=nil) {
+    if (contentNodePrevious!= nil) {
         [contentNodePrevious performSelectorOnMainThread:@selector(removeFromParent) withObject:nil afterDelay:0];
 
         contentNodePrevious = nil;
@@ -34,7 +34,7 @@
             contentNode.name = PP_GUIDE_CONTENT_NODE_NAME;
             [self addChild:contentNode];
             
-            NSLog(@"finger x=%f y=%f",posFinger.x,posFinger.y);
+            NSLog(@"finger x = %f y = %f",posFinger.x,posFinger.y);
             
             PPSpriteButton *  tutorialBackBtn = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"tutorial_alert_bg"] andSize:CGSizeMake(241/2.0f,144/2.0f)];
             tutorialBackBtn.position = CGPointMake(0.0f, 0.0f);
@@ -54,7 +54,7 @@
             [tutorialText setColor:[UIColor blueColor]];
             [tutorialBackBtn addChild:tutorialText];
             tutorialText.position = CGPointMake(0.0f,0.0f);
-            NSLog(@"tutorialText width=%f",tutorialText.size.width);
+            NSLog(@"tutorialText width = %f",tutorialText.size.width);
             
             
             
@@ -82,7 +82,7 @@
             [spriteFinger runAction:actionRepeat];
 
             
-            if (battleGuideIndex==3) {
+            if (battleGuideIndex ==3) {
                 
                 CGPoint points[]={{35,353},{160,353},{288,353},{288,220},{160,97}};
                 
@@ -121,7 +121,7 @@
             contentNode.name = PP_GUIDE_CONTENT_NODE_NAME;
             [self addChild:contentNode];
             
-            NSLog(@"finger x=%f y=%f",posFinger.x,posFinger.y);
+            NSLog(@"finger x = %f y = %f",posFinger.x,posFinger.y);
             
             PPSpriteButton *  tutorialBackBtn = [PPSpriteButton buttonWithTexture:[SKTexture textureWithImageNamed:@"tutorial_alert_bg"] andSize:CGSizeMake(241/2.0f,144/2.0f)];
             tutorialBackBtn.position = CGPointMake(0.0f, 0.0f);
@@ -211,7 +211,7 @@
             [contentNode runAction:repeat completion:^{
                 isTutorialType4 = NO;
                 [self stopGuide];
-                if (target!=nil&&stopSel!=nil&&[target respondsToSelector:stopSel]) {
+                if (target!= nil&&stopSel!= nil&&[target respondsToSelector:stopSel]) {
                     
                     [target performSelectorOnMainThread:stopSel withObject:nil waitUntilDone:YES];
                     
@@ -253,7 +253,7 @@
             [tutorialText setColor:[UIColor blueColor]];
             [tutorialBackBtn addChild:tutorialText];
             tutorialText.position = CGPointMake(0.0f,0.0f);
-            NSLog(@"tutorialText width=%f",tutorialText.size.width);
+            NSLog(@"tutorialText width = %f",tutorialText.size.width);
             
             
 //            SKSpriteNode *spriteCircle = [SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
@@ -287,7 +287,7 @@
                
             }];
             
-            if (target!=nil&&stopSel!=nil&&[target respondsToSelector:stopSel]) {
+            if (target!= nil&&stopSel!= nil&&[target respondsToSelector:stopSel]) {
                 
                 [target performSelectorOnMainThread:stopSel withObject:nil waitUntilDone:YES];
                 
@@ -309,7 +309,7 @@
     
     [self stopGuide];
     
-    if (target!=nil&&type4Sel!=nil&&[target respondsToSelector:type4Sel]) {
+    if (target!= nil&&type4Sel!= nil&&[target respondsToSelector:type4Sel]) {
         [target performSelectorOnMainThread:type4Sel withObject:nil waitUntilDone:YES];
         
     }
@@ -402,7 +402,7 @@
     
     if (battleGuideIndex>= [self.battleGuideStringArray count]) {
         [self removeFromParent];
-        if (target!=nil&&completeSel!=nil&&[target respondsToSelector:completeSel]) {
+        if (target!= nil&&completeSel!= nil&&[target respondsToSelector:completeSel]) {
             [target performSelectorOnMainThread:completeSel withObject:nil waitUntilDone:YES];
             
         }
@@ -422,7 +422,7 @@
     
     if (battleGuideIndex>= [self.battleGuideStringArray count]) {
         [self removeFromParent];
-        if (target!=nil&&completeSel!=nil&&[target respondsToSelector:completeSel]) {
+        if (target!= nil&&completeSel!= nil&&[target respondsToSelector:completeSel]) {
             [target performSelectorOnMainThread:completeSel withObject:nil waitUntilDone:YES];
 
         }

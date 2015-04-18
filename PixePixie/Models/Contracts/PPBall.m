@@ -83,7 +83,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
     
     
     [showSpriteNode runAction:[SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_stop",kElementTypeString[pixieEnemy.pixieElement]]]]];
-    NSLog(@"plantname =%@",[NSString stringWithFormat:@"%@3_stop",kElementTypeString[pixieEnemy.pixieElement]]);
+    NSLog(@"plantname = %@",[NSString stringWithFormat:@"%@3_stop",kElementTypeString[pixieEnemy.pixieElement]]);
 
     
     tBall.ballBuffs = PPInstance(NSMutableArray);
@@ -194,7 +194,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
     for (int i = 0; i < [self.ballBuffs count]; i++) {
         PPBuff * buff = [self.ballBuffs objectAtIndex:i];
         buff.continueRound--;
-        NSLog(@"continueRound =%d",buff.continueRound);
+        NSLog(@"continueRound = %d",buff.continueRound);
         if (buff.continueRound < 0) {
             [self removeBuff:buff];
         }
@@ -307,7 +307,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
         if (velocity.dx != 0.0f) {
             CGFloat rotation = atan(velocity.dy / velocity.dx);
             rotation = velocity.dx > 0 ? rotation : rotation + 3.14159;
-            NSLog(@"rotation=%f", rotation);
+            NSLog(@"rotation = %f", rotation);
             self.comboBallSprite.zRotation = rotation;
         }
     }

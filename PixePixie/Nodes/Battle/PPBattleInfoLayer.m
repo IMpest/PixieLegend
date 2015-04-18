@@ -49,7 +49,7 @@
     [self addChild:ppixiePetBtn];
     
     [ppixiePetBtn runAction:[SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_stop",kElementTypeString[petppixie.pixieElement]]]]];
-    NSLog(@"plantname =%@",[NSString stringWithFormat:@"%@3_stop",kElementTypeString[enemyppixie.pixieElement]]);
+    NSLog(@"plantname = %@",[NSString stringWithFormat:@"%@3_stop",kElementTypeString[enemyppixie.pixieElement]]);
     
 
 
@@ -144,7 +144,7 @@
     
     NSDictionary *skillChoosed = [self.currentPPPixie.pixieSkills objectAtIndex:[sender.name intValue] - PP_SKILLS_CHOOSE_BTN_TAG];
     
-    if (self.target!=nil && self.skillInvalidSel!=nil && [self.target respondsToSelector:self.skillInvalidSel])
+    if (self.target!= nil && self.skillInvalidSel!= nil && [self.target respondsToSelector:self.skillInvalidSel])
     {
         [self.target performSelectorInBackground:self.skillInvalidSel withObject:skillChoosed];
     }
@@ -156,7 +156,7 @@
     NSDictionary *skillChoosed = [self.currentPPPixie.pixieSkills objectAtIndex:[sender.name intValue] - PP_SKILLS_CHOOSE_BTN_TAG];
     
     
-    if (self.target!=nil && self.skillSelector!=nil && [self.target respondsToSelector:self.skillSelector])
+    if (self.target!= nil && self.skillSelector!= nil && [self.target respondsToSelector:self.skillSelector])
     {
         [self.target performSelectorInBackground:self.skillSelector withObject:skillChoosed];
         
@@ -318,7 +318,7 @@
 
 -(SKSpriteNode *)getNumber:(int)number AndColor:(NSString *)color {
     
-    NSLog(@"color=%@ number=%d",color,number);
+    NSLog(@"color= %@ number= %d",color,number);
     
     SKSpriteNode *tNode = PPInstance(SKSpriteNode);
     if (number < 1 || color == nil) return tNode;
@@ -389,7 +389,7 @@
 
         SKAction * actionBeated = [[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_beated",kElementTypeString[currentPPPixie.pixieElement]]];
         
-        NSLog(@"beated =%@",kElementTypeString[currentPPPixie.pixieElement]);
+        NSLog(@"beated = %@",kElementTypeString[currentPPPixie.pixieElement]);
         
         [ppixiePetBtn runAction:actionBeated completion:^{
             

@@ -109,7 +109,7 @@
     } else {
         spriteTmp = [SKSpriteNode spriteNodeWithImageNamed:imageName];
     }
-    spriteTmp.name =nodeName;
+    spriteTmp.name = nodeName;
     spriteTmp.position = pos;
     spriteTmp.name = nodeName;
     spriteTmp.size = size;
