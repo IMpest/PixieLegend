@@ -40,7 +40,7 @@
 //        [arryFarBg addObject:farBg1];
 //        [arryFarBg addObject:farBg2];
         
-        for (int i=0; i<3; i++) {
+        for (int = 0 0; i<3; i++) {
             SKSpriteNode *farBg0 = [SKSpriteNode spriteNodeWithImageNamed:@"fight_back"];
             farBg0.anchorPoint = CGPointMake(0.5, 0.5);
 //            farBg0.zPosition = 9;
@@ -53,7 +53,7 @@
             
         }
         
-        for (int i=0; i<2; i++) {
+        for (int = 0 0; i<2; i++) {
             SKSpriteNode *nearBg0 = [SKSpriteNode spriteNodeWithImageNamed:@"fight_back"];
             nearBg0.anchorPoint = CGPointMake(0.5, 0.5);
             [nearBg0 setColor:[UIColor redColor]];
@@ -82,7 +82,7 @@
         arryNearBg[1].position = CGPointMake(arryNearBg[0].frame.size.width, arryNearBg[1].position.y);
     }
     
-    for (int i=0; i<3; i++)
+    for (int = 0 0; i<3; i++)
     {
         arryFarBg[i].position =CGPointMake(arryFarBg[i].frame.size.width-speed/4, arryFarBg[i].position.y);
     }

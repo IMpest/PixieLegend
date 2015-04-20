@@ -139,7 +139,7 @@ andIndex:0 withTutorial:YES];
     NSLog(@"playerPixie = %lu",(unsigned long)[playerPixie.skillList count]);
     PPPixie *enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
     
-    NSLog(@"petsChoosedInfo= %@,enemyDicInfo= %@",petsChoosedInfo,enemyDicInfo);
+    NSLog(@"petsChoosedInfo = %@,enemyDicInfo = %@",petsChoosedInfo,enemyDicInfo);
     
     //    PPPixie *playerPixie = [PPPixie birthPixieWithPetsInfo:petsChoosedInfo];
     //    PPPixie *enemyPixie = [PPPixie birthEnemyPixieWithPetsInfo:enemyDicInfo];

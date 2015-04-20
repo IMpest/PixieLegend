@@ -24,7 +24,7 @@
 +(PPSkill *)skillWithId:(int)skillID AndLevel:(int)skillLevel
 {
     NSDictionary *skillInfo = [[PPLocalData getInstance].allSkillsInfo objectForKey:[NSString stringWithFormat:@"%02d",skillID]];
-//    NSLog(@"skillInfo= %@ allinfo= %@",skillInfo,[PPLocalData getInstance].allSkillsInfo);
+//    NSLog(@"skillInfo = %@ allinfo = %@",skillInfo,[PPLocalData getInstance].allSkillsInfo);
 
     PPSkill * tSkill = PPInstance(PPSkill);
     tSkill.skillId = skillID;

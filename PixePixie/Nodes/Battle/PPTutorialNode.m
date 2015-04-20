@@ -73,7 +73,7 @@
             [contentNode addChild:spriteFinger];
             
             
-            SKAction *actionSeq= [SKAction sequence:[NSArray arrayWithObjects:[SKAction scaleTo:0.5 duration:0.5],[SKAction scaleTo:1.0 duration:0.5], nil]];
+            SKAction *actionSeq = [SKAction sequence:[NSArray arrayWithObjects:[SKAction scaleTo:0.5 duration:0.5],[SKAction scaleTo:1.0 duration:0.5], nil]];
             
             
             SKAction *actionRepeat= [SKAction repeatAction:actionSeq count:5];
@@ -88,7 +88,7 @@
                 
                 for (int i = 0; i < 5; i++) {
                     
-                    SKSpriteNode *spriteCircleCombo= [SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
+                    SKSpriteNode *spriteCircleCombo = [SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
                     spriteCircleCombo.position = CGPointMake(points[i].x-self.size.width/2.0f+30, points[i].y-self.size.height/2.0f+80);
                     [spriteCircleCombo setScale:0.95];
                     spriteCircleCombo.size = CGSizeMake(spriteCircleCombo.size.width/1.6f, spriteCircleCombo.size.height/1.6f);
@@ -99,7 +99,7 @@
             }else if(battleGuideIndex == 4)
             {
                 
-                SKSpriteNode *spriteCircleCombo= [SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
+                SKSpriteNode *spriteCircleCombo = [SKSpriteNode spriteNodeWithImageNamed:@"tutorial_circle_big.png"];
                 spriteCircleCombo.position = CGPointMake(70,116);
                 [spriteCircleCombo setScale:1.1];
                 spriteCircleCombo.size = CGSizeMake(spriteCircleCombo.size.width/2.0f, spriteCircleCombo.size.height/2.0f);
@@ -157,7 +157,7 @@
             [contentNode addChild:spriteFinger];
             
             
-            SKAction *actionSeq= [SKAction sequence:[NSArray arrayWithObjects:[SKAction scaleTo:0.5 duration:0.5],[SKAction scaleTo:1.0 duration:0.5], nil]];
+            SKAction *actionSeq = [SKAction sequence:[NSArray arrayWithObjects:[SKAction scaleTo:0.5 duration:0.5],[SKAction scaleTo:1.0 duration:0.5], nil]];
             
             SKAction *actionRepeat= [SKAction repeatAction:actionSeq count:5];
             
@@ -191,7 +191,7 @@
             spriteFinger.size = CGSizeMake(spriteFinger.size.width/2.0f, spriteFinger.size.height/2.0f);
             [contentNode addChild:spriteFinger];
             
-            SKAction *actionSeq= [SKAction sequence:[NSArray arrayWithObjects:[SKAction scaleTo:0.5 duration:0.5],[SKAction scaleTo:1.0 duration:0.5], nil]];
+            SKAction *actionSeq = [SKAction sequence:[NSArray arrayWithObjects:[SKAction scaleTo:0.5 duration:0.5],[SKAction scaleTo:1.0 duration:0.5], nil]];
             
             SKAction *actionRepeat= [SKAction repeatAction:actionSeq count:5];
             
@@ -279,7 +279,7 @@
             [contentNode addChild:spriteFinger];
             
             
-            SKAction *actionSeq= [SKAction sequence:[NSArray arrayWithObjects:[SKAction scaleTo:0.5 duration:0.5],[SKAction scaleTo:1.0 duration:0.5], nil]];
+            SKAction *actionSeq = [SKAction sequence:[NSArray arrayWithObjects:[SKAction scaleTo:0.5 duration:0.5],[SKAction scaleTo:1.0 duration:0.5], nil]];
             
             SKAction *actionRepeat= [SKAction repeatAction:actionSeq count:15];
             

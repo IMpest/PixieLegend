@@ -239,7 +239,7 @@
 //    // 初始化 ballScene
 //    PPPixie *playerPixie = [PPPixie birthPixieWithPetsInfo:choosedPet];
 //    PPPixie *enemyPixie = [PPPixie birthEnemyPixieWithPetsInfo:[self.enemysArray objectAtIndex:currentEnemyIndex]];
-//    NSLog(@"petsChoosedInfo= %@,enemy = %@",petsChoosedInfo,[self.enemysArray objectAtIndex:currentEnemyIndex]);
+//    NSLog(@"petsChoosedInfo = %@,enemy = %@",petsChoosedInfo,[self.enemysArray objectAtIndex:currentEnemyIndex]);
 //    if (playerPixie == nil || enemyPixie == nil) return;
 //    
 //    // 创建战斗场景并显示

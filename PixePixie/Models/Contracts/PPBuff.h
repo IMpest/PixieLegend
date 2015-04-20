@@ -13,8 +13,9 @@ typedef NS_ENUM(int, PPPetSkillBuffFlag)
 //定义连击类型
 typedef NS_ENUM(int, PPComboBallType)
 {
-    PPComboBallTypeRecover = 1,     //恢复球
-    PPComboBallTypeAccelerate       //加速球
+    PPComboBallTypeRecover = 1,      //恢复球
+    PPComboBallTypeAccelerate,       //加速球
+    PPComboBallTypeDef        //破防球
 };
 
 

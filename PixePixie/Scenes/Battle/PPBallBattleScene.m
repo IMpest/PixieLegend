@@ -316,8 +316,8 @@ CGFloat vector2angel(CGVector vector){
         {
             
             PPBall * comboBall = [PPBall ballWithCombo];
-            petCombosCount[i]=0;
-            enemyCombosCount[i]=0;
+            petCombosCount[i]= 0;
+            enemyCombosCount[i]= 0;
             
             int t = arc4random() % tmax;
             while (cb[t] == YES) t = arc4random() % tmax;
@@ -537,7 +537,7 @@ CGFloat vector2angel(CGVector vector){
                 [petSkillBar childNodeWithName:[NSString stringWithFormat:@"%d", PP_SKILLS_CHOOSE_BTN_TAG+i]];
                 NSLog(@"PPBallSkillStatus = %d",[spriteBtn.PPBallSkillStatus intValue]);
                 
-                if ([spriteBtn.PPBallSkillStatus intValue]<=0) {
+                if ([spriteBtn.PPBallSkillStatus intValue]<= 0) {
                     spriteBtn.PPBallSkillStatus = [NSNumber numberWithInt:perSkill.skillCD];
                     
                     spriteBtn.color = [UIColor blackColor];
@@ -1595,12 +1595,19 @@ CGFloat vector2angel(CGVector vector){
                     
                     self.ballPlayer.physicsBody.velocity = CGVectorMake(self.ballPlayer.physicsBody.velocity.dx*2, self.ballPlayer.physicsBody.velocity.dy*2);
                 }
+                    break;
+                case PPComboBallTypeDef:
+                {
+                   
+                    self.ballEnemy.pixie.currentDP -= 20;
                     
+                }
+                    
+                    break;
                 default:
                     break;
+
             }
-        
-            
             [self.playerAndEnemySide changeEnemyHPValue:-kHurtBasicValue];
         }
         
@@ -1653,15 +1660,13 @@ CGFloat vector2angel(CGVector vector){
         skillInfo = [self.ballPlayer.pixie.pixieSkills objectAtIndex:
                                     [skillButton.name intValue] - PP_SKILLS_CHOOSE_BTN_TAG];
         mpToConsume = [[skillInfo objectForKey:@"skillmpchange"] floatValue];
-        NSLog(@"skillInfo= %@",skillInfo);
+        NSLog(@"skillInfo = %@",skillInfo);
         [self changePlayerSideRoundRunState];
     }else
     {
         return;
     }
-    
- 
-    
+        
     if (self.playerAndEnemySide.currentPPPixie.currentMP < fabsf(mpToConsume)) {
         
         [self removeSkillBar];
@@ -2036,7 +2041,7 @@ CGFloat vector2angel(CGVector vector){
             //敌方碰到连击球
         {
             
-            if(currentPhysicsAttack==0||currentPhysicsAttack==1){
+            if(currentPhysicsAttack== 0||currentPhysicsAttack==1){
                 return ;
             }
             
@@ -2045,11 +2050,11 @@ CGFloat vector2angel(CGVector vector){
             PPBall *ballCombo = nil;
             
             if (contact.bodyA == self.ballEnemy.physicsBody) {
-                ballCombo= [self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
+                ballCombo = [self.ballsCombos objectAtIndex:[contact.bodyB.PPBallPhysicsBodyStatus intValue]];
                 enemyCombosCount[[contact.bodyB.PPBallPhysicsBodyStatus intValue]]+=1;
               
             } else {
-                ballCombo= [self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
+                ballCombo = [self.ballsCombos objectAtIndex:[contact.bodyA.PPBallPhysicsBodyStatus intValue]];
                 enemyCombosCount[[contact.bodyA.PPBallPhysicsBodyStatus intValue]]+=1;
 
 //                [ballCombo startComboAnimation:CGVectorMake(self.ballEnemy.position.x-ballCombo.position.x,self.ballEnemy.position.y-ballCombo.position.y)];
