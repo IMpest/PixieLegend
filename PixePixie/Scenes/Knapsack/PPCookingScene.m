@@ -11,6 +11,7 @@ static NSString * monsterBtnTitle [] = {
 
 - (id)initWithSize:(CGSize)size
 {
+    
     if (self = [super initWithSize:size]) {
         [self addDefaultBackground];
         [self addTitle:@"Cooking" andBackButton:360.0f];
@@ -83,13 +84,18 @@ static NSString * monsterBtnTitle [] = {
         }
     }
     return self;
+    
 }
 
 -(void)handleButtonClick:(NSString *)stringName
-{}
+{
+    
+}
 
 -(void)monsterBoxButtonClick:(NSString *)stringName
-{}
+{
+    
+}
 
 -(void)backButtonClick:(NSString *)backName
 {

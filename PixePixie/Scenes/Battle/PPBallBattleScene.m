@@ -275,6 +275,7 @@ CGFloat vector2angel(CGVector vector){
     // 8选5方式决定位置
     const int tmax = 8;
     BOOL cb[tmax] = {NO, NO, NO, NO, NO, NO, NO, NO};
+    
     CGFloat cx[tmax] = {40, 40, 40, 160, 160, 280, 280, 280};
     CGFloat cy[tmax] = {40, 160, 280, 40, 280, 40, 160, 280};
     
@@ -336,7 +337,10 @@ CGFloat vector2angel(CGVector vector){
             comboBall.physicsBody.PPBallPhysicsBodyStatus = [NSNumber numberWithInt:i];
             comboBall.PPBallSkillStatus = 0;
             [self addChild:comboBall];
+            
             [self.ballsCombos addObject:comboBall];
+            
+            
         }
     }
 }
@@ -738,21 +742,76 @@ CGFloat vector2angel(CGVector vector){
     [self addPetSkillBar];
 }
 
+-(void)addRandomStatusBall
+{
+    
+//    SKNode *tmpComboNode = [self nodesAtPoint:<#(CGPoint)#>]
+    int randomBallShow = arc4random()%2;
+    int randomBallType = arc4random()%3;
+
+    
+    
+    PPBall * statusBall = [PPBall ballWithCombo];
+    statusBall.position = CGPointMake(100, 100);
+    // 添加连击球
+    statusBall.name = PP_BALL_TYPE_COMBO_NAME;
+    statusBall.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:25];
+    statusBall.physicsBody.categoryBitMask = EntityCategoryBall;
+    statusBall.physicsBody.contactTestBitMask = EntityCategoryBall|EntityCategoryWall;
+    statusBall.physicsBody.collisionBitMask = EntityCategoryBall|EntityCategoryWall;
+    statusBall.physicsBody.dynamic = YES;
+    statusBall.physicsBody.mass = 10000;
+    
+    
+    [self addChild:statusBall];
+    
+    
+    if (randomBallShow) {
+        switch (randomBallType) {
+                
+            case PPComboBallTypeRecover:
+            {
+                
+                
+            }
+                break;
+            case PPComboBallTypeAccelerate:
+            {
+                
+                
+            }
+                break;
+            case PPComboBallTypeDef:
+            {
+                
+
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+
 #pragma mark Change Node
 // 更新技能CD回合
 -(void)changeSkillBtnCdRounds
 {
     for (int i = 0; i < 4; i++) {
         if(petSkillBar){
+            
             PPSpriteButton * spriteBtn = (PPSpriteButton *)
             [petSkillBar childNodeWithName:[NSString stringWithFormat:@"%d", PP_SKILLS_CHOOSE_BTN_TAG + i]];
             NSLog(@"PPBallPhysicsBodyStatus current= %@",spriteBtn.PPBallPhysicsBodyStatus);
             
             //如果技能是释放完状态
             if ([spriteBtn.PPBallPhysicsBodyStatus isEqual:@2]) {
+                
                 SKLabelNode *labelNode = (SKLabelNode *)[spriteBtn childNodeWithName:PP_SKILL_CD_LABEL_NODE_NAME];
                 spriteBtn.PPBallSkillStatus = [NSNumber numberWithInt:[spriteBtn.PPBallSkillStatus intValue] - 1];
                 [labelNode setText:[NSString stringWithFormat:@"%@", spriteBtn.PPBallSkillStatus]];
+                
                 if (petSkillBar.hidden == NO) {
                     if ([spriteBtn.PPBallSkillStatus intValue] <= 0) {
                         spriteBtn.color = [UIColor blackColor];
@@ -760,18 +819,16 @@ CGFloat vector2angel(CGVector vector){
                         spriteBtn.userInteractionEnabled = YES;
                     }
                 }
+                
             }
             
             // 恶魔重生
             battleSkillInfo.petHitRecoverHP = 0;
-            SKNode * node = [self.playerAndEnemySide->ppixiePetBtn childNodeWithName:[NSString stringWithFormat:
-                                                                                      @"%@%d",
-                                                                                      PP_BUFF_ANIMATION_NODE_NAME,
-                                                                                      PPBuffTypeDevilRebirth]];
+            SKNode * node = [self.playerAndEnemySide->ppixiePetBtn childNodeWithName:[NSString stringWithFormat:@"%@%d",PP_BUFF_ANIMATION_NODE_NAME,PPBuffTypeDevilRebirth]];
             if (node) {
                 [node removeFromParent];
-
             }
+            
         }
     }
 }
@@ -817,6 +874,7 @@ CGFloat vector2angel(CGVector vector){
 -(void)changeRoundNumberLabel:(NSString *)text begin:(BOOL)isBegin
 {
     if (isBegin) {
+        
         // 回合开始
         SKSpriteNode *roundLabelContent= [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(320, 240)];
         [roundLabelContent setPosition:CGPointMake(160, 300)];
@@ -850,7 +908,9 @@ CGFloat vector2angel(CGVector vector){
             [self addCombosTotal:PP_BALL_TYPE_PET_ELEMENT_NAME];
             //                        [self enemyAttackDecision];
             [self changeBallsRoundsEnd];
+            
         }];
+        
     } else {
         
         // 回合结束

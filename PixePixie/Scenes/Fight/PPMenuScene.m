@@ -83,7 +83,6 @@ andIndex:0 withTutorial:YES];
     [ballScene setEnemyAtIndex:0];
     [self.view presentScene:ballScene];
     
-    
 }
 // 介绍窗口
 -(void)introduceInfoLabel:(NSString *)text
