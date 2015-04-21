@@ -24,13 +24,13 @@ static NSString * activityTitle[] = {
             SKSpriteNode *activityBarContent = [[SKSpriteNode alloc] initWithColor:[UIColor brownColor] size:CGSizeMake(280, 50)];
             activityBarContent.position = CGPointMake(160, 60 * i + 60);
             
-            SKLabelNode * labalTitle = PPInstance(SKLabelNode);
+            SKLabelNode * labalTitle = PP_INSTANCE(SKLabelNode);
             labalTitle.fontSize = 12;
             [labalTitle setText:activityTitle[i]];
             [labalTitle setPosition:CGPointMake(-100, 0)];
             [activityBarContent addChild:labalTitle];
             
-            SKLabelNode * labalContent = PPInstance(SKLabelNode);
+            SKLabelNode * labalContent = PP_INSTANCE(SKLabelNode);
             labalContent.fontSize = 12;
             [labalContent setText:@"活动信息"];
             [labalContent setPosition:CGPointMake(0, 0)];

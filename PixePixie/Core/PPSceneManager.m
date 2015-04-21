@@ -15,7 +15,7 @@ static PPSceneManager *pp_PPSceneManager = nil;
     dispatch_once(&onceToken, ^{
         if (pp_PPSceneManager == nil)
         {
-            pp_PPSceneManager = PPInstance(PPSceneManager);
+            pp_PPSceneManager = PP_INSTANCE(PPSceneManager);
         }
     });
     return pp_PPSceneManager;

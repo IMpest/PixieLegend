@@ -24,7 +24,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
 {
     if (pixie == nil) return nil;
 //    PPBall * tBall = [PPBall spriteNodeWithColor:[UIColor clearColor] size:CGSizeMake(50.0f, 50.0f)];
-    PPBall * tBall = PPInstance(PPBall);
+    PPBall * tBall = PP_INSTANCE(PPBall);
     tBall.size = CGSizeMake(50.0f, 50.0f);
     
     SKTexture * comboBallBack = [[PPAtlasManager battle_table_ball] textureNamed:@"ball_all"];
@@ -40,7 +40,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
     [tBall addChild:touchBallNode];
     
     
-    SKSpriteNode *showSpriteNode = PPInstance(SKSpriteNode);
+    SKSpriteNode *showSpriteNode = PP_INSTANCE(SKSpriteNode);
     showSpriteNode.size = CGSizeMake(50.0f, 50.0f);
     [showSpriteNode setPosition: CGPointMake(0.0f, 10.0f)];
     showSpriteNode.zPosition = PPZ_FIGHT_BUFF;
@@ -76,7 +76,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
     [tBall addChild:nodeBack];
     
     
-    SKSpriteNode *showSpriteNode = PPInstance(SKSpriteNode);
+    SKSpriteNode *showSpriteNode = PP_INSTANCE(SKSpriteNode);
     showSpriteNode.size = CGSizeMake(50.0f, 50.0f);
     [showSpriteNode setPosition: CGPointMake(5.0f, 5.0f)];
     [tBall addChild:showSpriteNode];
@@ -86,7 +86,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
     NSLog(@"plantname = %@",[NSString stringWithFormat:@"%@3_stop",kElementTypeString[pixieEnemy.pixieElement]]);
 
     
-    tBall.ballBuffs = PPInstance(NSMutableArray);
+    tBall.ballBuffs = PP_INSTANCE(NSMutableArray);
     
     if (tBall){
         tBall.ballType = PPBallTypeEnemy;
@@ -119,7 +119,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
     }
     
     
-    SKLabelNode * roundsLabel = PPInstance(SKLabelNode);
+    SKLabelNode * roundsLabel = PP_INSTANCE(SKLabelNode);
     roundsLabel.name = @"roundsLabel";
     roundsLabel.fontColor = [UIColor redColor];
     roundsLabel.position = CGPointMake(10, 10);
@@ -181,7 +181,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
 -(void)addBuffWithName:(NSString *)buffName andRoundNum:(int)continueRound
 {
     
-    PPBuff * buff = PPInstance(PPBuff);
+    PPBuff * buff = PP_INSTANCE(PPBuff);
     buff.buffName = buffName;
     buff.continueRound = continueRound;
     buff.buffId = @"2";
@@ -232,7 +232,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
         self.comboBallSprite = nil;
     }
     
-    self.comboBallSprite = PPInstance(SKSpriteNode);
+    self.comboBallSprite = PP_INSTANCE(SKSpriteNode);
     self.comboBallSprite.size = CGSizeMake(50.0f, 50.0f);
     [self.comboBallSprite setPosition:CGPointMake(0.0f, 0.0f)];
     if (isNeed) {
@@ -256,7 +256,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
 
 -(void)startRemoveAnimation:(NSMutableArray *)ballArray  andScene:(PPBasicScene *)battleScene
 {
-    NSMutableArray *textureArray = PPInstance(NSMutableArray);
+    NSMutableArray *textureArray = PP_INSTANCE(NSMutableArray);
     for (int i = 23; i >= 0; i--) {
         
         SKTexture * textureCombo = [[PPAtlasManager ball_table] textureNamed:[NSString stringWithFormat:@"element_birth_%04d",i]];
@@ -291,7 +291,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
     
     // 如果特效不在则创建
     if (self.comboBallSprite == nil && ([pose isEqualToString:@"run"] || [pose isEqualToString:@"step"])) {
-        self.comboBallSprite = PPInstance(SKSpriteNode);
+        self.comboBallSprite = PP_INSTANCE(SKSpriteNode);
         self.comboBallSprite.size = CGSizeMake(100, 100);
         [self.comboBallSprite setPosition:CGPointMake(0, 0)];
         [self addChild:self.comboBallSprite];
@@ -316,7 +316,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
 // 治疗动画
 -(void)startPixieHealAnimation
 {
-    NSMutableArray *textureArray = PPInstance(NSMutableArray);
+    NSMutableArray *textureArray = PP_INSTANCE(NSMutableArray);
     for (int i = 0; i < 15; i++) {
         SKTexture * textureCombo = [[PPAtlasManager ball_table] textureNamed:[NSString stringWithFormat:@"pixie_heal_%04d",i]];
         [textureArray addObject:textureCombo];
@@ -329,7 +329,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
         self.comboBallSprite = nil;
     }
     
-    self.comboBallSprite = PPInstance(SKSpriteNode);
+    self.comboBallSprite = PP_INSTANCE(SKSpriteNode);
     self.comboBallSprite.size = CGSizeMake(50.0f, 50.0f);
     [self.comboBallSprite setPosition:CGPointMake(0.0f, 0.0f)];
     [self addChild:self.comboBallSprite];
@@ -348,7 +348,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
         self.comboBallSprite = nil;
     }
     
-    self.comboBallSprite = PPInstance(SKSpriteNode);
+    self.comboBallSprite = PP_INSTANCE(SKSpriteNode);
     self.comboBallSprite.size = CGSizeMake(50.0f, 50.0f);
     [self.comboBallSprite setPosition:CGPointMake(vectorValue.x/2.0f, vectorValue.y/2.0f)];
     [self addChild:self.comboBallSprite];
@@ -366,7 +366,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
 //        self.comboBallSprite = nil;
 //    }
 //    
-//    self.comboBallSprite = PPInstance(SKSpriteNode);
+//    self.comboBallSprite = PP_INSTANCE(SKSpriteNode);
 //    self.comboBallSprite.size = CGSizeMake(50.0f, 50.0f);
 //    [self.comboBallSprite setPosition:CGPointMake(0.0f, 0.0f)];
 //    [self addChild:self.comboBallSprite];
@@ -408,7 +408,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
 //            self.plantrootAnimationNode = nil;
 //        }
 //        
-//        self.plantrootAnimationNode = PPInstance(SKSpriteNode);
+//        self.plantrootAnimationNode = PP_INSTANCE(SKSpriteNode);
 //        self.plantrootAnimationNode.size = CGSizeMake(50.0f, 50.0f);
 //        [self.plantrootAnimationNode setPosition:CGPointMake(0.0f, 0.0f)];
 //        
@@ -437,7 +437,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
 //        self.comboBallSprite = nil;
 //    }
 //    
-//    self.comboBallSprite = PPInstance(SKSpriteNode);
+//    self.comboBallSprite = PP_INSTANCE(SKSpriteNode);
 //    self.comboBallSprite.size = CGSizeMake(50.0f, 50.0f);
 //    [self.comboBallSprite setPosition:CGPointMake(0.0f, 0.0f)];
 //    [self addChild:self.comboBallSprite];
@@ -458,7 +458,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
         self.comboBallSprite = nil;
     }
     
-    self.comboBallSprite = PPInstance(SKSpriteNode);
+    self.comboBallSprite = PP_INSTANCE(SKSpriteNode);
     self.comboBallSprite.size = CGSizeMake(50.0f, 50.0f);
     [self.comboBallSprite setPosition:CGPointMake(0.0f, 0.0f)];
     [self addChild:self.comboBallSprite];
@@ -504,7 +504,7 @@ comboBallTexture, comboBallSprite, plantrootAnimationNode;
         spriteNodeActive = nil;
     }
     
-    spriteNodeActive = PPInstance(SKSpriteNode);
+    spriteNodeActive = PP_INSTANCE(SKSpriteNode);
     spriteNodeActive.size = CGSizeMake(50.0f, 50.0f);
     [spriteNodeActive setPosition:CGPointMake(0.0f, 0.0f)];
     spriteNodeActive.zPosition = PPZ_FIGHT_BG;

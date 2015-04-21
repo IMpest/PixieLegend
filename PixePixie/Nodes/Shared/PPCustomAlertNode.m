@@ -4,7 +4,7 @@
 
 -(id)initWithFrame:(CGRect)frame
 {
-    PPCustomAlertNode * customAlert= PPInstance(PPCustomAlertNode);
+    PPCustomAlertNode * customAlert= PP_INSTANCE(PPCustomAlertNode);
     customAlert.position = frame.origin;
     customAlert.size = frame.size;
     [customAlert setColor:[UIColor whiteColor]];

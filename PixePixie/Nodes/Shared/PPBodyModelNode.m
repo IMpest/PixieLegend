@@ -41,23 +41,23 @@
     [self runAction:[SKAction repeatActionForever:[[PPAtlasManager pixie_battle_action] getAnimation:[NSString stringWithFormat:@"%@3_stop",kElementTypeString[0]]]]];
     NSLog(@"plantname = %@",[NSString stringWithFormat:@"%@3_stop",kElementTypeString[0]]);
 
-    headNode = PPInstance(SKSpriteNode);
+    headNode = PP_INSTANCE(SKSpriteNode);
     [headNode setPosition:CGPointMake(0.0f, 20)];
     [headNode setColor:[UIColor blackColor]];
     [self addChild:headNode];
     
-    handNode = PPInstance(SKSpriteNode);
+    handNode = PP_INSTANCE(SKSpriteNode);
     [handNode setPosition:CGPointMake(0.0f, 0.0f)];
     [handNode setColor:[UIColor orangeColor]];
     [self addChild:handNode];
     
-    bodyNode = PPInstance(SKSpriteNode);
+    bodyNode = PP_INSTANCE(SKSpriteNode);
     [bodyNode setPosition:CGPointMake(0.0f, 0.0f)];
     [bodyNode setColor:[UIColor blueColor]];
     [self addChild:bodyNode];
     
     
-    legNode = PPInstance(SKSpriteNode);
+    legNode = PP_INSTANCE(SKSpriteNode);
     [legNode setPosition:CGPointMake(0.0f, -20)];
     [legNode setColor:[UIColor cyanColor]];
     [self addChild:legNode];

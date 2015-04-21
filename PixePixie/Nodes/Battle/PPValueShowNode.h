@@ -1,5 +1,6 @@
 
-typedef enum {
+typedef enum
+{
     PP_HPTYPE,
     PP_MPTYPE
 }VALUESHOWTYPE;
@@ -7,14 +8,12 @@ typedef enum {
 
 @interface PPValueShowNode : SKSpriteNode
 {
-    
 @public
     CGFloat maxValue;
     CGFloat currentValue;
     id target;
     SEL animateEnd;
     CGFloat originalMax;
-    
 }
 
 /**

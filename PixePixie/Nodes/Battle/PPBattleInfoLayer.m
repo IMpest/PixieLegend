@@ -34,7 +34,7 @@
 //    bgSprite.position = CGPointMake(0.0f,0.0f);
 //    [self addChild:bgSprite];
     
-    battleBg = PPInstance(PPBattleInfoBgNode);
+    battleBg = PP_INSTANCE(PPBattleInfoBgNode);
     battleBg.size = CGSizeMake(320.0f, 160.0f);
     battleBg.position = CGPointMake(0.0f,0.0f);
     [battleBg setColor:[UIColor orangeColor]];
@@ -43,7 +43,7 @@
     
     
     // 己方头像
-    ppixiePetBtn = PPInstance(SKSpriteNode);
+    ppixiePetBtn = PP_INSTANCE(SKSpriteNode);
     ppixiePetBtn.size = CGSizeMake(PP_PET_ENEMY_SIZE_VALUE, PP_PET_ENEMY_SIZE_VALUE);
     [ppixiePetBtn setPosition: CGPointMake(originX-120, originY)];
     [self addChild:ppixiePetBtn];
@@ -66,7 +66,7 @@
 
 
     // 敌方头像
-    ppixieEnemyBtn = PPInstance(SKSpriteNode);
+    ppixieEnemyBtn = PP_INSTANCE(SKSpriteNode);
     ppixieEnemyBtn.size = CGSizeMake(PP_PET_ENEMY_SIZE_VALUE, PP_PET_ENEMY_SIZE_VALUE);
     [ppixieEnemyBtn setPosition:CGPointMake(originEnemyX+100,ppixiePetBtn.position.y)];
     ppixieEnemyBtn.xScale = -1;
@@ -320,7 +320,7 @@
     
     NSLog(@"color= %@ number= %d",color,number);
     
-    SKSpriteNode *tNode = PPInstance(SKSpriteNode);
+    SKSpriteNode *tNode = PP_INSTANCE(SKSpriteNode);
     if (number < 1 || color == nil) return tNode;
     
     float width = 13.0f;
@@ -425,7 +425,7 @@
 {
     if (isPetShow)
     {
-        SKSpriteNode *buffRatShowNode = PPInstance(SKSpriteNode);
+        SKSpriteNode *buffRatShowNode = PP_INSTANCE(SKSpriteNode);
         buffRatShowNode.size = CGSizeMake(50.0f, 50.0f);
         
         [buffRatShowNode setPosition:CGPointMake(-25.0f, 0.0f)];

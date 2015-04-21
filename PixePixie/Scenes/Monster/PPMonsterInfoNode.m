@@ -102,7 +102,7 @@ PPPixie *pixieCurrent;
     [self addChild:wordsFrame];
     
     // 添加文字内容
-    SKLabelNode * wordsContent = PPInstance(SKLabelNode);
+    SKLabelNode * wordsContent = PP_INSTANCE(SKLabelNode);
     wordsContent.position = CGPointMake(0, 0);
     wordsContent.text = content;
     wordsContent.fontColor = [UIColor blackColor];

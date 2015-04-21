@@ -4,7 +4,7 @@
 {
     SKSpriteNode *maskValueNode;
     SKSpriteNode *valueShowNode;
-    SKLabelNode * valueShowLabel;
+    SKLabelNode *valueShowLabel;
 }
 @end
 
@@ -112,7 +112,7 @@
 //    [self addChild:valueShowNode];
 //
 //
-////    valueShowLabel= PPInstance(SKLabelNode);
+////    valueShowLabel= PP_INSTANCE(SKLabelNode);
 ////    valueShowLabel.text= [NSString stringWithFormat:@"%.f/%.f",currentV,maxV];
 ////    NSLog(@"currentV= %f,maxV= %f",currentV,maxV);
 ////

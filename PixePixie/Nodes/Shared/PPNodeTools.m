@@ -21,7 +21,7 @@
 // 获取数字图片拼接node
 + (SKSpriteNode *)getNumber:(int)number AndColor:(NSString *)color
 {
-    SKSpriteNode *tNode = PPInstance(SKSpriteNode);
+    SKSpriteNode *tNode = PP_INSTANCE(SKSpriteNode);
     if (number < 1 || color == nil) return tNode;
     
     CGFloat width = 13.0f;

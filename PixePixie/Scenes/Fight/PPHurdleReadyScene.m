@@ -142,7 +142,7 @@
 //-(void)setPetsChooseContent
 //{
 //    
-////    SKSpriteNode *enemyNode = PPInstance(SKSpriteNode);
+////    SKSpriteNode *enemyNode = PP_INSTANCE(SKSpriteNode);
 ////    [enemyNode setSize:CGSizeMake(125, 125)];
 ////    [enemyNode setPosition:CGPointMake(self.size.width/2, self.size.height/2)];
 ////    [enemyNode setTexture:[[PPAtlasManager pixie_info] textureNamed:[NSString stringWithFormat:@"%@3_encounter",kElementTypeString[chooseSceneType]]]];

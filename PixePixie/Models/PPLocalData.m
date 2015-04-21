@@ -12,7 +12,7 @@ static PPLocalData * localData = nil;
     {
         if (localData == nil)
         {
-            localData = PPInstance(PPLocalData);
+            localData = PP_INSTANCE(PPLocalData);
             NSDictionary * pixiesInfo = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PixiesInfo"
                                                                                                                    ofType:@"plist"]];
             NSDictionary * skillInfo = [pixiesInfo objectForKey:@"skills"];

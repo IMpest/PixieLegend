@@ -1,8 +1,9 @@
 
 #define CURRENT_DEVICE_REAL_SIZE            [UIScreen mainScreen].bounds.size
-#define CUSTOM_ALERT_FRAME                  CGRectMake(160, 300, 320, 200)
-
+#define PP_ALERT_FRAME                      CGRectMake(160, 300, 320, 200)
 #define PP_FIT_TOP_SIZE                     ((CURRENT_DEVICE_REAL_SIZE.height > 500) ? 44.0f : 0.0f)
+#define PP_INSTANCE(ClassName)               [[ClassName alloc] init];
+
 #define PP_WORDS_FONT_NAME                  @"Chalkduster"
 
 // local data key

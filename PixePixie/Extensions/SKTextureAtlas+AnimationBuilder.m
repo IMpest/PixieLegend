@@ -9,7 +9,7 @@
     NSDictionary * plistDic = [[NSDictionary alloc] initWithContentsOfFile:plistName];
     NSNumber * frameCount = [plistDic objectForKey:name];
     
-    NSMutableArray *textureArray = PPInstance(NSMutableArray);
+    NSMutableArray *textureArray = PP_INSTANCE(NSMutableArray);
     for (int i = 0; i < [frameCount intValue]; i++)
     {
         SKTexture * textureCombo = [self textureNamed:[NSString stringWithFormat:@"%@_%04d.png",name,i]];
@@ -24,7 +24,7 @@
     NSDictionary * plistDic = [[NSDictionary alloc] initWithContentsOfFile:plistName];
     NSNumber * frameCount = [plistDic objectForKey:name];
     
-    NSMutableArray *textureArray = PPInstance(NSMutableArray);
+    NSMutableArray *textureArray = PP_INSTANCE(NSMutableArray);
     for (int i = [frameCount intValue]-1; i >= 0; i--)
     {
         SKTexture * textureCombo = [self textureNamed:[NSString stringWithFormat:@"%@_%04d.png",name,i]];

@@ -321,7 +321,7 @@
     // 添加battleguide数据
     NSArray * pixiesData = [[[NSDictionary dictionaryWithContentsOfFile:
                              [[NSBundle mainBundle] pathForResource:@"PixiesInfo" ofType:@"plist"]] objectForKey:@"GuideInfo"] objectForKey:@"BattleGuide"];
-//    NSMutableArray *guideInfo = PPInstance(NSMutableArray);
+//    NSMutableArray *guideInfo = PP_INSTANCE(NSMutableArray);
     self.battleGuideStringArray = pixiesData;
     
     [self setTutorialFinger:CGPointMake(0.0f, 0.0f) atIndex:0];

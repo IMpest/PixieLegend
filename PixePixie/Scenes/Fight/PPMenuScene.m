@@ -95,14 +95,14 @@ andIndex:0 withTutorial:YES];
     SKLabelNode * labelNode = (SKLabelNode *)[self childNodeWithName:@"RoundLabel"];
     if (labelNode) [labelNode removeFromParent];
     
-    SKLabelNode * additonLabel = PPInstance(SKLabelNode);
+    SKLabelNode * additonLabel = PP_INSTANCE(SKLabelNode);
     additonLabel.name  = @"titleLabel";
     additonLabel.fontColor = [UIColor redColor];
     additonLabel.position = CGPointMake(0, 100);
     [additonLabel setText:text];
     [enemyDeadContent addChild:additonLabel];
     
-    SKLabelNode * infoContentLabel = PPInstance(SKLabelNode);
+    SKLabelNode * infoContentLabel = PP_INSTANCE(SKLabelNode);
     infoContentLabel.name  = @"contentLabel";
     infoContentLabel.fontColor = [UIColor redColor];
     infoContentLabel.position = CGPointMake(0, 0);
