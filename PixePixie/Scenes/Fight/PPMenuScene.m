@@ -13,7 +13,7 @@
         NSString * mapName = [NSString stringWithFormat:@"%@.png", @"bg_menu"];
         SKSpriteNode *spriteBackNode = [SKSpriteNode spriteNodeWithImageNamed:mapName];
         spriteBackNode.position = CGPointMake(self.size.width/2.0f, self.size.height/2.0f);
-        spriteBackNode.size = CGSizeMake(320.0f, 480.0f);
+        spriteBackNode.size = CGSizeMake(320.0f, 568.0f);
         [self addChild:spriteBackNode];
         
         
@@ -68,6 +68,7 @@
     NSDictionary * enemyDicInfo = [[pixiesInfo objectForKey:@"enemysinfo"] objectAtIndex:0];
     NSLog(@"playerPixie = %lu",(unsigned long)[playerPixie.skillList count]);
     PPPixie *enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
+    
     
     if (playerPixie == nil || enemyPixie == nil) return;
     
@@ -138,6 +139,7 @@ andIndex:0 withTutorial:YES];
     NSLog(@"playerPixie = %lu",(unsigned long)[playerPixie.skillList count]);
     PPPixie *enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
     
+    
     NSLog(@"petsChoosedInfo = %@,enemyDicInfo = %@",petsChoosedInfo,enemyDicInfo);
     
     //    PPPixie *playerPixie = [PPPixie birthPixieWithPetsInfo:petsChoosedInfo];
@@ -157,6 +159,7 @@ andIndex:0 withTutorial:YES];
     ballScene->previousScene = self;
     [ballScene setEnemyAtIndex:0];
     [self.view presentScene:ballScene];
+    
 }
 
 // 返回到世界地图首页
