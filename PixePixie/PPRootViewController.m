@@ -1,6 +1,6 @@
 
 #import "PPRootViewController.h"
-
+#import "Configuration.h"
 @interface PPRootViewController ()
 {
     PPPlayerNameView * skViewName;
@@ -40,7 +40,7 @@ NSString * userInfo[] =
     
     // 添加大背景
     UIImageView * imgvBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_start"]];
-    imgvBg.frame = CGRectMake(0, 0, 320, 568);
+    imgvBg.frame = PP_FULLSCREEN_FRAME;
     [self.view addSubview:imgvBg];
     
     if (YES)
@@ -75,14 +75,14 @@ NSString * userInfo[] =
 // 加载名字输入界面
 -(void)loadNameView
 {
-    skViewName = [[PPPlayerNameView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
+    skViewName = [[PPPlayerNameView alloc] initWithFrame:PP_FULLSCREEN_FRAME];
     [self.view addSubview:skViewName];
 }
 
 // 宠物名字界面点击跳转
 -(void)textInputConfirmClick:(UIButton *)sender
 {
-    skViewPixie = [[PPChoosePetView alloc] initWithFrame:CGRectMake(0, PP_FIT_TOP_SIZE, 320, 568)];
+    skViewPixie = [[PPChoosePetView alloc] initWithFrame:PP_FULLSCREEN_FRAME];
     skViewPixie.rootVC = self;
     [self.view addSubview:skViewPixie];
     
@@ -110,7 +110,7 @@ NSString * userInfo[] =
 // 加载主界面
 -(void)loadMainView
 {
-    skViewMain = [[SKView alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
+    skViewMain = [[SKView alloc] initWithFrame:PP_FULLSCREEN_FRAME];
     
     // 分组界面
     CGRect NormalViewRect = CGRectMake(0, 0, skViewMain.frame.size.width, skViewMain.frame.size.height);
@@ -202,7 +202,9 @@ NSString * userInfo[] =
         [menuBtn addTarget:self action:@selector(menuBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [menuInfoBar addSubview:menuBtn];
     }
-    [skViewMain addSubview:menuInfoBar];
+    
+    
+    [menuInfoBar setBackgroundColor:[UIColor redColor]];
     
     // 设置Monster界面为首页界面
     tabLight = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tab_light.png"]];
@@ -210,6 +212,9 @@ NSString * userInfo[] =
     
     [skViewMain bringSubviewToFront:monsterMainView];
     [self changeMenuState:PP_MENU_START];
+    
+    [skViewMain addSubview:menuInfoBar];
+
 }
 
 // 根据本地Player信息更新上方信息栏

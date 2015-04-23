@@ -13,7 +13,7 @@
         NSString * mapName = [NSString stringWithFormat:@"%@.png", @"bg_menu"];
         SKSpriteNode *spriteBackNode = [SKSpriteNode spriteNodeWithImageNamed:mapName];
         spriteBackNode.position = CGPointMake(self.size.width/2.0f, self.size.height/2.0f);
-        spriteBackNode.size = CGSizeMake(320.0f, 568.0f);
+        spriteBackNode.size = PP_FULLSCREEN_FRAME.size;
         [self addChild:spriteBackNode];
         
         
@@ -108,6 +108,7 @@ andIndex:0 withTutorial:YES];
     infoContentLabel.position = CGPointMake(0, 0);
     [infoContentLabel setText:@"介绍内容"];
     [enemyDeadContent addChild:infoContentLabel];
+    
     
     PPSpriteButton * confirmButton = [PPSpriteButton buttonWithColor:[UIColor blueColor] andSize:CGSizeMake(90, 60)];
     confirmButton.position = CGPointMake(0, -100);

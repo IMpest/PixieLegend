@@ -8,7 +8,7 @@ PPSpriteButton * backButton;
 -(void)addDefaultBackground
 {
     SKSpriteNode *defaultBg = [[SKSpriteNode alloc] initWithImageNamed:@"bg_start"];
-    defaultBg.size = CGSizeMake(320, 568);
+    defaultBg.size = PP_FULLSCREEN_FRAME.size;
     defaultBg.position = CGPointMake(160, 284);
     defaultBg.zPosition = PPZ_BACK_GROUND;
     [self addChild:defaultBg];
