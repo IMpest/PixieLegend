@@ -7,7 +7,7 @@
 -(id)initWithSize:(CGSize)size andElement:(PPElementType)elementType{
     if (self = [super initWithSize:size]) {
         
-        [self addTitle:@"场景菜单" andBackButton:440];
+        [self addTitle:@"场景菜单" andBackButton:528];
         
         // 添加背景
         NSString * mapName = [NSString stringWithFormat:@"%@.png", @"bg_menu"];
@@ -46,7 +46,7 @@
         [passButton setLabelWithText:@"新手教程"
                              andFont:[UIFont systemFontOfSize:15] withColor:[UIColor blackColor]];
         passButton.size = CGSizeMake(140, 40);
-        passButton.position = CGPointMake(240, 440);
+        passButton.position = CGPointMake(240, 500);
         passButton.name =@"newPlayerGuide";
         [passButton addTarget:self selector:@selector(newPlayerGuide:)
                    withObject:passButton.name forControlEvent:PPButtonControlEventTouchUpInside];
