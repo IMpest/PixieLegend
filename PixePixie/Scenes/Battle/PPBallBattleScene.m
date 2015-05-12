@@ -269,7 +269,6 @@ CGFloat vector2angel(CGVector vector){
 // 添加连击球
 -(void)initComboBalls
 {
-    
     self.ballsElement = PP_INSTANCE(NSMutableArray);
     self.ballsCombos = PP_INSTANCE(NSMutableArray);
     
@@ -751,25 +750,9 @@ CGFloat vector2angel(CGVector vector){
     int randomBallType = arc4random()%3;
 
     
-    CGPoint points[]={{35,345},{160,345},{300,345},{300,200},{160,50}};
-    
-    float x = arc4random()%265 + 35;
-    float y = arc4random()%300 + 50;
-    
-    
-    __block BOOL isContain;
-    [self enumerateChildNodesWithName:PP_BALL_TYPE_COMBO_NAME usingBlock:^(SKNode *node,BOOL *stop){
-        if ([node containsPoint:CGPointMake(x, y)]) {
-            isContain = YES;
-        }
-    }];
-    
-    
     
     PPBall * statusBall = [PPBall ballWithCombo];
-    
-    statusBall.position = CGPointMake(x, y);
-    
+    statusBall.position = CGPointMake(100, 100);
     // 添加连击球
     statusBall.name = PP_BALL_TYPE_COMBO_NAME;
     statusBall.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:25];

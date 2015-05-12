@@ -57,7 +57,7 @@ UIScrollView * contentScrollView;
         contentScrollView = nil;
     }
     
-    contentScrollView = [[UIScrollView alloc] initWithFrame:PP_FULLSCREEN_FRAME];
+    contentScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 392)];
     contentScrollView.bounces = NO;
     contentScrollView.contentSize = CGSizeMake(self.frame.size.width * 4, self.frame.size.height);
     contentScrollView.userInteractionEnabled = YES;

@@ -1,6 +1,6 @@
 
 #import "PPRootViewController.h"
-#import "Configuration.h"
+
 @interface PPRootViewController ()
 {
     PPPlayerNameView * skViewName;
@@ -40,7 +40,7 @@ NSString * userInfo[] =
     
     // 添加大背景
     UIImageView * imgvBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_start"]];
-    imgvBg.frame = PP_FULLSCREEN_FRAME;
+    imgvBg.frame = CGRectMake(0, PP_FIT_TOP_SIZE, 320, 480);
     [self.view addSubview:imgvBg];
     
     if (YES)
@@ -60,29 +60,29 @@ NSString * userInfo[] =
 // 添加上下两个适配条
 -(void)addFitSizeBar
 {
-//    if (CURRENT_DEVICE_REAL_SIZE.height > 500)
-//    {
-//        UIImageView * upBlackBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fit_top.png"]];
-//        upBlackBar.frame = CGRectMake(0, 0, 320, 44);
-//        [self.view addSubview:upBlackBar];
-//        
-//        UIImageView * downBlackBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fit_bottom.png"]];
-//        downBlackBar.frame = CGRectMake(0, self.view.frame.size.height - 44, 320, 44);
-//        [self.view addSubview:downBlackBar];
-//    }
+    if (CURRENT_DEVICE_REAL_SIZE.height > 500)
+    {
+        UIImageView * upBlackBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fit_top.png"]];
+        upBlackBar.frame = CGRectMake(0, 0, 320, 44);
+        [self.view addSubview:upBlackBar];
+        
+        UIImageView * downBlackBar = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fit_bottom.png"]];
+        downBlackBar.frame = CGRectMake(0, self.view.frame.size.height - 44, 320, 44);
+        [self.view addSubview:downBlackBar];
+    }
 }
 
 // 加载名字输入界面
 -(void)loadNameView
 {
-    skViewName = [[PPPlayerNameView alloc] initWithFrame:PP_FULLSCREEN_FRAME];
+    skViewName = [[PPPlayerNameView alloc] initWithFrame:CGRectMake(0, PP_FIT_TOP_SIZE, 320, 480)];
     [self.view addSubview:skViewName];
 }
 
 // 宠物名字界面点击跳转
 -(void)textInputConfirmClick:(UIButton *)sender
 {
-    skViewPixie = [[PPChoosePetView alloc] initWithFrame:PP_FULLSCREEN_FRAME];
+    skViewPixie = [[PPChoosePetView alloc] initWithFrame:CGRectMake(0, PP_FIT_TOP_SIZE, 320, 480)];
     skViewPixie.rootVC = self;
     [self.view addSubview:skViewPixie];
     
@@ -110,10 +110,10 @@ NSString * userInfo[] =
 // 加载主界面
 -(void)loadMainView
 {
-    skViewMain = [[SKView alloc] initWithFrame:PP_FULLSCREEN_FRAME];
+    skViewMain = [[SKView alloc] initWithFrame:CGRectMake(0, PP_FIT_TOP_SIZE, 320, 480)];
     
     // 分组界面
-    CGRect NormalViewRect = CGRectMake(0, 0, skViewMain.frame.size.width, skViewMain.frame.size.height);
+    CGRect NormalViewRect = CGRectMake(0, 44, skViewMain.frame.size.width, skViewMain.frame.size.height - 44 * 2);
     
     monsterMainView = [[PPMonsterMainView alloc] initWithFrame:NormalViewRect];
     [skViewMain addSubview:monsterMainView];
@@ -135,7 +135,6 @@ NSString * userInfo[] =
     
     // 上方信息栏
     userInfoBar = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    userInfoBar.hidden = YES;
     [userInfoBar setBackgroundColor:[UIColor clearColor]];
     
     CGRect barPos[5] =
@@ -150,7 +149,6 @@ NSString * userInfo[] =
     UIImageView * imgvBgTop = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_bar_top.png"]];
     imgvBgTop.frame = CGRectMake(0, 0, 320, 44);
     [userInfoBar addSubview:imgvBgTop];
-
 
     UIImageView * imgvName = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"info_name.png"]];
     imgvName.frame = barPos[0];
@@ -202,9 +200,7 @@ NSString * userInfo[] =
         [menuBtn addTarget:self action:@selector(menuBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [menuInfoBar addSubview:menuBtn];
     }
-    
-    
-    [menuInfoBar setBackgroundColor:[UIColor redColor]];
+    [skViewMain addSubview:menuInfoBar];
     
     // 设置Monster界面为首页界面
     tabLight = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tab_light.png"]];
@@ -212,9 +208,6 @@ NSString * userInfo[] =
     
     [skViewMain bringSubviewToFront:monsterMainView];
     [self changeMenuState:PP_MENU_START];
-    
-    [skViewMain addSubview:menuInfoBar];
-
 }
 
 // 根据本地Player信息更新上方信息栏

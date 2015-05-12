@@ -13,7 +13,7 @@
         NSString * mapName = [NSString stringWithFormat:@"%@.png", @"bg_menu"];
         SKSpriteNode *spriteBackNode = [SKSpriteNode spriteNodeWithImageNamed:mapName];
         spriteBackNode.position = CGPointMake(self.size.width/2.0f, self.size.height/2.0f);
-        spriteBackNode.size = PP_FULLSCREEN_FRAME.size;
+        spriteBackNode.size = CGSizeMake(320.0f, 480.0f);
         [self addChild:spriteBackNode];
         
         
@@ -69,7 +69,6 @@
     NSLog(@"playerPixie = %lu",(unsigned long)[playerPixie.skillList count]);
     PPPixie *enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
     
-    
     if (playerPixie == nil || enemyPixie == nil) return;
     
     // 创建战斗场景并显示
@@ -109,7 +108,6 @@ andIndex:0 withTutorial:YES];
     [infoContentLabel setText:@"介绍内容"];
     [enemyDeadContent addChild:infoContentLabel];
     
-    
     PPSpriteButton * confirmButton = [PPSpriteButton buttonWithColor:[UIColor blueColor] andSize:CGSizeMake(90, 60)];
     confirmButton.position = CGPointMake(0, -100);
     [confirmButton setLabelWithText:@"知道" andFont:[UIFont systemFontOfSize:15] withColor:nil];
@@ -140,7 +138,6 @@ andIndex:0 withTutorial:YES];
     NSLog(@"playerPixie = %lu",(unsigned long)[playerPixie.skillList count]);
     PPPixie *enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
     
-    
     NSLog(@"petsChoosedInfo = %@,enemyDicInfo = %@",petsChoosedInfo,enemyDicInfo);
     
     //    PPPixie *playerPixie = [PPPixie birthPixieWithPetsInfo:petsChoosedInfo];
@@ -160,7 +157,6 @@ andIndex:0 withTutorial:YES];
     ballScene->previousScene = self;
     [ballScene setEnemyAtIndex:0];
     [self.view presentScene:ballScene];
-    
 }
 
 // 返回到世界地图首页
