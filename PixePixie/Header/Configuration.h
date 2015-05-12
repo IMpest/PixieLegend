@@ -4,6 +4,9 @@
 #define PP_FIT_TOP_SIZE                     ((CURRENT_DEVICE_REAL_SIZE.height > 500) ? 44.0f : 0.0f)
 #define PP_INSTANCE(ClassName)               [[ClassName alloc] init];
 
+#define PP_FULLSCREEN_FRAME CGRectMake(0, 0, 320, 568)
+
+
 #define PP_WORDS_FONT_NAME                  @"Chalkduster"
 
 // local data key

@@ -17,8 +17,8 @@ BOOL menuIsHidden;
         
         // 添加背景
         SKSpriteNode *bgImg = [[SKSpriteNode alloc] initWithImageNamed:@"theme_forest.png"];
-        bgImg.size = CGSizeMake(320, 392);
-        bgImg.position = CGPointMake(160, 196);
+        bgImg.size = PP_FULLSCREEN_FRAME.size;
+        bgImg.position = CGPointMake(160, 284);
         [self addChild:bgImg];
         
         // 宠物信息
