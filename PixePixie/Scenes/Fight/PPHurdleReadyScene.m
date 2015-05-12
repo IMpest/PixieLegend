@@ -66,10 +66,10 @@
 //    
 //    currentEnemyIndex = currentIndex;
 //    
-////    SKSpriteNode *hurdleReadyContentNode = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(CurrentDeviceRealSize.width, 480.0f)];
+////    SKSpriteNode *hurdleReadyContentNode = [[SKSpriteNode alloc] initWithColor:[UIColor clearColor] size:CGSizeMake(CurrentDeviceRealSize.width, 568.0f)];
 //    SKSpriteNode *hurdleReadyContentNode = [[SKSpriteNode alloc] initWithTexture:[SKTexture textureWithImageNamed:[NSString stringWithFormat:@"%@_encounter.png",kElementTypeString[chooseSceneType]]]];
 //    hurdleReadyContentNode.name = PP_HURDLE_READY_CONTENT_NAME;
-//    [hurdleReadyContentNode setSize:CGSizeMake(320.0f, 480.0f)];
+//    [hurdleReadyContentNode setSize:CGSizeMake(320.0f, 568.0f)];
 //    [hurdleReadyContentNode setPosition:CGPointMake(160.0f, 240)];
 //    [self addChild:hurdleReadyContentNode];
 //    

@@ -7,13 +7,13 @@
 -(id)initWithSize:(CGSize)size andElement:(PPElementType)elementType{
     if (self = [super initWithSize:size]) {
         
-        [self addTitle:@"场景菜单" andBackButton:440];
+        [self addTitle:@"场景菜单" andBackButton:528];
         
         // 添加背景
         NSString * mapName = [NSString stringWithFormat:@"%@.png", @"bg_menu"];
         SKSpriteNode *spriteBackNode = [SKSpriteNode spriteNodeWithImageNamed:mapName];
         spriteBackNode.position = CGPointMake(self.size.width/2.0f, self.size.height/2.0f);
-        spriteBackNode.size = CGSizeMake(320.0f, 480.0f);
+        spriteBackNode.size = PP_FULLSCREEN_FRAME.size;
         [self addChild:spriteBackNode];
         
         
@@ -46,7 +46,7 @@
         [passButton setLabelWithText:@"新手教程"
                              andFont:[UIFont systemFontOfSize:15] withColor:[UIColor blackColor]];
         passButton.size = CGSizeMake(140, 40);
-        passButton.position = CGPointMake(240, 440);
+        passButton.position = CGPointMake(240, 500);
         passButton.name =@"newPlayerGuide";
         [passButton addTarget:self selector:@selector(newPlayerGuide:)
                    withObject:passButton.name forControlEvent:PPButtonControlEventTouchUpInside];
@@ -68,6 +68,7 @@
     NSDictionary * enemyDicInfo = [[pixiesInfo objectForKey:@"enemysinfo"] objectAtIndex:0];
     NSLog(@"playerPixie = %lu",(unsigned long)[playerPixie.skillList count]);
     PPPixie *enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
+    
     
     if (playerPixie == nil || enemyPixie == nil) return;
     
@@ -108,6 +109,7 @@ andIndex:0 withTutorial:YES];
     [infoContentLabel setText:@"介绍内容"];
     [enemyDeadContent addChild:infoContentLabel];
     
+    
     PPSpriteButton * confirmButton = [PPSpriteButton buttonWithColor:[UIColor blueColor] andSize:CGSizeMake(90, 60)];
     confirmButton.position = CGPointMake(0, -100);
     [confirmButton setLabelWithText:@"知道" andFont:[UIFont systemFontOfSize:15] withColor:nil];
@@ -138,6 +140,7 @@ andIndex:0 withTutorial:YES];
     NSLog(@"playerPixie = %lu",(unsigned long)[playerPixie.skillList count]);
     PPPixie *enemyPixie = [PPPixie pixieWithData:enemyDicInfo];
     
+    
     NSLog(@"petsChoosedInfo = %@,enemyDicInfo = %@",petsChoosedInfo,enemyDicInfo);
     
     //    PPPixie *playerPixie = [PPPixie birthPixieWithPetsInfo:petsChoosedInfo];
@@ -157,6 +160,7 @@ andIndex:0 withTutorial:YES];
     ballScene->previousScene = self;
     [ballScene setEnemyAtIndex:0];
     [self.view presentScene:ballScene];
+    
 }
 
 // 返回到世界地图首页
