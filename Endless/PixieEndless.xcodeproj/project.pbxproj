@@ -1,0 +1,355 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1927C0721BEBBDF900BF1BB9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1927C0711BEBBDF900BF1BB9 /* Foundation.framework */; };
+		196E49631AEE136300041AC6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 196E49621AEE136300041AC6 /* main.m */; };
+		196E49661AEE136300041AC6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 196E49651AEE136300041AC6 /* AppDelegate.m */; };
+		196E496E1AEE136300041AC6 /* PEGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196E496D1AEE136300041AC6 /* PEGameViewController.m */; };
+		196E49731AEE136300041AC6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 196E49721AEE136300041AC6 /* Images.xcassets */; };
+		D43535BB1AEE852200ED291E /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43535BA1AEE852200ED291E /* SpriteKit.framework */; };
+		D43535BD1AEE87A600ED291E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D43535BC1AEE87A600ED291E /* Default-568h@2x.png */; };
+		D48889151AF12AD800D5D393 /* PEDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D48889121AF12AD800D5D393 /* PEDocument.m */; };
+		D48889161AF12AD800D5D393 /* PEICloudHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = D48889141AF12AD800D5D393 /* PEICloudHelp.m */; };
+		D488891F1AF12E7600D5D393 /* SKTextureAtlas+AnimationBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = D48889191AF12E7600D5D393 /* SKTextureAtlas+AnimationBuilder.m */; };
+		D48889201AF12E7600D5D393 /* NSObject+ExtendedProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D488891B1AF12E7600D5D393 /* NSObject+ExtendedProperties.m */; };
+		D48889211AF12E7600D5D393 /* NSObject+PerformSelectorEx.m in Sources */ = {isa = PBXBuildFile; fileRef = D488891D1AF12E7600D5D393 /* NSObject+PerformSelectorEx.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1927C0711BEBBDF900BF1BB9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		196E495D1AEE136300041AC6 /* PixieEndless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PixieEndless.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		196E49611AEE136300041AC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		196E49621AEE136300041AC6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		196E49641AEE136300041AC6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		196E49651AEE136300041AC6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		196E496C1AEE136300041AC6 /* PEGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEGameViewController.h; sourceTree = "<group>"; };
+		196E496D1AEE136300041AC6 /* PEGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PEGameViewController.m; sourceTree = "<group>"; };
+		196E49721AEE136300041AC6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D43535BA1AEE852200ED291E /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		D43535BC1AEE87A600ED291E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		D48889111AF12AD800D5D393 /* PEDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEDocument.h; sourceTree = "<group>"; };
+		D48889121AF12AD800D5D393 /* PEDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEDocument.m; sourceTree = "<group>"; };
+		D48889131AF12AD800D5D393 /* PEICloudHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEICloudHelp.h; sourceTree = "<group>"; };
+		D48889141AF12AD800D5D393 /* PEICloudHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEICloudHelp.m; sourceTree = "<group>"; };
+		D48889181AF12B9300D5D393 /* PEConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PEConfiguration.h; sourceTree = "<group>"; };
+		D48889191AF12E7600D5D393 /* SKTextureAtlas+AnimationBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKTextureAtlas+AnimationBuilder.m"; sourceTree = "<group>"; };
+		D488891A1AF12E7600D5D393 /* NSObject+ExtendedProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ExtendedProperties.h"; sourceTree = "<group>"; };
+		D488891B1AF12E7600D5D393 /* NSObject+ExtendedProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ExtendedProperties.m"; sourceTree = "<group>"; };
+		D488891C1AF12E7600D5D393 /* NSObject+PerformSelectorEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PerformSelectorEx.h"; sourceTree = "<group>"; };
+		D488891D1AF12E7600D5D393 /* NSObject+PerformSelectorEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PerformSelectorEx.m"; sourceTree = "<group>"; };
+		D488891E1AF12E7600D5D393 /* SKTextureAtlas+AnimationBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKTextureAtlas+AnimationBuilder.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		196E495A1AEE136200041AC6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1927C0721BEBBDF900BF1BB9 /* Foundation.framework in Frameworks */,
+				D43535BB1AEE852200ED291E /* SpriteKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		196E49541AEE136200041AC6 = {
+			isa = PBXGroup;
+			children = (
+				D43535BC1AEE87A600ED291E /* Default-568h@2x.png */,
+				196E495F1AEE136300041AC6 /* PixieEndless */,
+				196E498B1AEE140700041AC6 /* Resource */,
+				196E495E1AEE136300041AC6 /* Products */,
+				1927C0711BEBBDF900BF1BB9 /* Foundation.framework */,
+				D43535BA1AEE852200ED291E /* SpriteKit.framework */,
+			);
+			sourceTree = "<group>";
+		};
+		196E495E1AEE136300041AC6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				196E495D1AEE136300041AC6 /* PixieEndless.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		196E495F1AEE136300041AC6 /* PixieEndless */ = {
+			isa = PBXGroup;
+			children = (
+				D48889171AF12B4000D5D393 /* Headers */,
+				D48889101AF12AD800D5D393 /* Models */,
+				D488890C1AF1290300D5D393 /* Extensions */,
+				196E49641AEE136300041AC6 /* AppDelegate.h */,
+				196E49651AEE136300041AC6 /* AppDelegate.m */,
+				196E496C1AEE136300041AC6 /* PEGameViewController.h */,
+				196E496D1AEE136300041AC6 /* PEGameViewController.m */,
+				196E49721AEE136300041AC6 /* Images.xcassets */,
+				196E49601AEE136300041AC6 /* Supporting Files */,
+			);
+			path = PixieEndless;
+			sourceTree = "<group>";
+		};
+		196E49601AEE136300041AC6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				196E49611AEE136300041AC6 /* Info.plist */,
+				196E49621AEE136300041AC6 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		196E498B1AEE140700041AC6 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		D488890C1AF1290300D5D393 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D48889191AF12E7600D5D393 /* SKTextureAtlas+AnimationBuilder.m */,
+				D488891A1AF12E7600D5D393 /* NSObject+ExtendedProperties.h */,
+				D488891B1AF12E7600D5D393 /* NSObject+ExtendedProperties.m */,
+				D488891C1AF12E7600D5D393 /* NSObject+PerformSelectorEx.h */,
+				D488891D1AF12E7600D5D393 /* NSObject+PerformSelectorEx.m */,
+				D488891E1AF12E7600D5D393 /* SKTextureAtlas+AnimationBuilder.h */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D48889101AF12AD800D5D393 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D48889111AF12AD800D5D393 /* PEDocument.h */,
+				D48889121AF12AD800D5D393 /* PEDocument.m */,
+				D48889131AF12AD800D5D393 /* PEICloudHelp.h */,
+				D48889141AF12AD800D5D393 /* PEICloudHelp.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D48889171AF12B4000D5D393 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				D48889181AF12B9300D5D393 /* PEConfiguration.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		196E495C1AEE136200041AC6 /* PixieEndless */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 196E49851AEE136300041AC6 /* Build configuration list for PBXNativeTarget "PixieEndless" */;
+			buildPhases = (
+				196E49591AEE136200041AC6 /* Sources */,
+				196E495A1AEE136200041AC6 /* Frameworks */,
+				196E495B1AEE136200041AC6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PixieEndless;
+			productName = PixieEndless;
+			productReference = 196E495D1AEE136300041AC6 /* PixieEndless.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		196E49551AEE136200041AC6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = silver6wings;
+				TargetAttributes = {
+					196E495C1AEE136200041AC6 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 196E49581AEE136200041AC6 /* Build configuration list for PBXProject "PixieEndless" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 196E49541AEE136200041AC6;
+			productRefGroup = 196E495E1AEE136300041AC6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				196E495C1AEE136200041AC6 /* PixieEndless */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		196E495B1AEE136200041AC6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				196E49731AEE136300041AC6 /* Images.xcassets in Resources */,
+				D43535BD1AEE87A600ED291E /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		196E49591AEE136200041AC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				196E496E1AEE136300041AC6 /* PEGameViewController.m in Sources */,
+				D48889201AF12E7600D5D393 /* NSObject+ExtendedProperties.m in Sources */,
+				196E49661AEE136300041AC6 /* AppDelegate.m in Sources */,
+				D48889211AF12E7600D5D393 /* NSObject+PerformSelectorEx.m in Sources */,
+				196E49631AEE136300041AC6 /* main.m in Sources */,
+				D48889151AF12AD800D5D393 /* PEDocument.m in Sources */,
+				D488891F1AF12E7600D5D393 /* SKTextureAtlas+AnimationBuilder.m in Sources */,
+				D48889161AF12AD800D5D393 /* PEICloudHelp.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		196E49831AEE136300041AC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/PixieEndless/Headers/PEConfiguration.h";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		196E49841AEE136300041AC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/PixieEndless/Headers/PEConfiguration.h";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		196E49861AEE136300041AC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PixieEndless/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		196E49871AEE136300041AC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PixieEndless/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		196E49581AEE136200041AC6 /* Build configuration list for PBXProject "PixieEndless" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				196E49831AEE136300041AC6 /* Debug */,
+				196E49841AEE136300041AC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		196E49851AEE136300041AC6 /* Build configuration list for PBXNativeTarget "PixieEndless" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				196E49861AEE136300041AC6 /* Debug */,
+				196E49871AEE136300041AC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 196E49551AEE136200041AC6 /* Project object */;
+}
